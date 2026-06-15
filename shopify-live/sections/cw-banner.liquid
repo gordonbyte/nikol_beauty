@@ -1,0 +1,391 @@
+<style>
+section.cw-banner-section {
+    background-size: cover;
+    background-position: bottom;
+    padding-top: 20px;
+    position: relative;
+}
+
+.cw-banner-parent {
+    display: flex;
+    align-items: center;
+}
+
+.cw-banner-left {
+    width: 48%;
+    padding-left: 230px;
+}
+
+.cw-banner-right {
+    width: 52%;
+}
+
+.cw-banner-image1 img {
+    width: 100%;
+        height: 700px;
+    object-fit: contain;
+}
+
+.cw-banner-image2 img {
+    width: 100%;
+    max-width: 630px;
+    object-fit: contain;
+}
+
+.cw-banner-image2 {
+    position: absolute;
+    right: 0;
+    bottom: -6%;
+    z-index: 1;
+}
+
+.cw-banner-star-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cw-banner-star-img img {
+    max-width: 95px;
+    object-fit: contain;
+}
+
+.cw-banner-star-text {
+    font-family: 'Inter';
+    color: #2A2724;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.cw-banner-star-text strong {
+    font-weight: 700;
+}
+
+.cw-banner-star-img {
+    display: flex;
+}
+
+.cw-banner-title {
+    color: #2A2724;
+    font-size: 62px;
+    line-height: 110%;
+    font-family: 'Cormorant';
+    letter-spacing: -3px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    text-transform: capitalize;
+}
+
+.cw-banner-description {
+    color: #2A2724;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 140%;
+    font-family: 'Inter';
+}
+
+.cw-banner-button a {
+    display: flex;
+    align-items: center;
+    background: #D34270;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    height: 60px;
+    color: #fff;
+    font-family: 'Cormorant';
+    text-transform: uppercase;
+    font-size: 22px;
+    letter-spacing: 0;
+    gap: 5px;
+    font-weight: 700;
+}
+
+.cw-banner-button {
+    padding: 35px 0px;
+}
+
+.cw-banner-feature-list {
+    display: flex;
+    gap: 50px;
+}
+
+.cw-banner-feature-img img {max-width: 80px;object-fit: contain;}
+
+.cw-banner-feature-box {
+    text-align: center;
+}
+
+.cw-banner-feature-title {
+    font-weight: 500;
+    color: #2A2724;
+    font-family: 'Inter';
+    font-size: 16px;
+    line-height: 130%;
+    padding-top: 5px;
+        text-transform: capitalize;
+}
+
+@media only screen and (max-width: 600px) {
+.cw-banner-parent {
+    flex-wrap: wrap;
+    padding: 0 15px;
+}
+
+.cw-banner-left {
+    width: 100%;
+    padding-left: 0;
+}
+
+.cw-banner-feature-img img {
+    max-width: 65px;
+}
+
+.cw-banner-feature-list {
+          gap: 30px;
+}
+
+.cw-banner-feature-title {
+    font-size: 13px;
+}
+
+.cw-banner-image2 img {
+           max-width: 290px;
+}
+
+.cw-banner-right {
+    width: 100%;
+}
+section.cw-banner-section {
+    padding-top: 30px;
+}
+
+.cw-banner-star-img img {
+    max-width: 78px;
+}
+
+.cw-banner-star-text {
+    font-size: 14px;
+}
+
+.cw-banner-star-box {
+    gap: 5px;
+    justify-content: center;
+}
+
+.cw-banner-left {
+    text-align: center;
+}
+
+.cw-banner-title {
+    font-size: 34px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+.cw-banner-button a {
+    max-width: 100%;
+    height: 50px;
+    font-size: 18px;
+}
+
+.cw-banner-button {
+    padding: 15px 0px;
+}
+
+.cw-banner-feature-list {
+    background: #F7F2ED66;
+    padding: 15px;
+    padding-top: 90px;
+            justify-content: center;
+}
+
+.cw-banner-image2 {
+    bottom: -12%;
+}
+.cw-banner-image1 img {
+    height: auto;
+}
+}
+
+  </style>
+
+<section
+  class="cw-banner-section"
+  style="background-image: url({{ section.settings.bg_image | img_url: 'master' }});"
+>
+  <div class="cw-banner-parent">
+
+  
+    <div class="cw-banner-left">
+
+   
+      <div class="cw-banner-star-box">
+        {% if section.settings.star_image %}
+          <div class="cw-banner-star-img">
+            <img src="{{ section.settings.star_image | img_url: 'master' }}" alt="">
+          </div>
+        {% endif %}
+        <div class="cw-banner-star-text">
+          {{ section.settings.star_text }}
+        </div>
+      </div>
+
+    
+      <div class="cw-banner-title">
+        {{ section.settings.title }}
+      </div>
+
+  
+      <div class="cw-banner-description">
+        {{ section.settings.description }}
+      </div>
+
+
+      {% if section.settings.button_text != blank %}
+        <div class="cw-banner-button">
+          <a href="{{ section.settings.button_link }}">
+            {{ section.settings.button_text }} <svg width="22" height="13" viewBox="0 0 22 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.843262 5.36644C0.377534 5.36644 -1.22974e-05 5.74399 -1.23382e-05 6.20972C-1.23789e-05 6.67544 0.377534 7.05299 0.843262 7.05299L0.843262 6.20972L0.843262 5.36644ZM21.4395 6.806C21.7689 6.47668 21.7689 5.94275 21.4395 5.61343L16.073 0.24687C15.7437 -0.0824491 15.2097 -0.0824491 14.8804 0.24687C14.5511 0.576189 14.5511 1.11012 14.8804 1.43944L19.6507 6.20972L14.8804 10.98C14.5511 11.3093 14.5511 11.8432 14.8804 12.1726C15.2097 12.5019 15.7437 12.5019 16.073 12.1726L21.4395 6.806ZM0.843262 6.20972L0.843262 7.05299L20.8433 7.05299L20.8433 6.20972L20.8433 5.36644L0.843262 5.36644L0.843262 6.20972Z" fill="white"/>
+</svg>
+
+          </a>
+        </div>
+      {% endif %}
+
+      <div class="cw-desktop">
+      <div class="cw-banner-feature-list">
+        {% for block in section.blocks %}
+          <div class="cw-banner-feature-box">
+            {% if block.settings.feature_icon %}
+              <div class="cw-banner-feature-img">
+                <img src="{{ block.settings.feature_icon | img_url: 'master' }}" alt="">
+              </div>
+            {% endif %}
+            <div class="cw-banner-feature-title">
+              {{ block.settings.feature_title }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+</div>
+
+
+    </div>
+
+ 
+    <div class="cw-banner-right">
+
+      {% if section.settings.right_image_1 %}
+        <div class="cw-banner-image1">
+          <img src="{{ section.settings.right_image_1 | img_url: 'master' }}" alt="">
+        </div>
+      {% endif %}
+
+      {% if section.settings.right_image_2 %}
+        <div class="cw-banner-image2">
+          <img src="{{ section.settings.right_image_2 | img_url: 'master' }}" alt="">
+        </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+ 
+</section>
+  <div class="cw-mobile">
+      <div class="cw-banner-feature-list">
+        {% for block in section.blocks %}
+          <div class="cw-banner-feature-box">
+            {% if block.settings.feature_icon %}
+              <div class="cw-banner-feature-img">
+                <img src="{{ block.settings.feature_icon | img_url: 'master' }}" alt="">
+              </div>
+            {% endif %}
+            <div class="cw-banner-feature-title">
+              {{ block.settings.feature_title }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+</div>
+
+{% schema %}
+{
+  "name": "CW Banner",
+  "settings": [
+    {
+  "type": "image_picker",
+  "id": "bg_image",
+  "label": "Background Image"
+},
+    {
+      "type": "image_picker",
+      "id": "star_image",
+      "label": "Star Image"
+    },
+    {
+      "type": "textarea",
+      "id": "star_text",
+      "label": "Star Text",
+      "default": "4.7/5 stars | 12,000+ happy women"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image_1",
+      "label": "Right Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image_2",
+      "label": "Right Image 2"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "feature_icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "feature_title",
+          "label": "Title"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "CW Banner"
+    }
+  ]
+}
+{% endschema %}
+
+

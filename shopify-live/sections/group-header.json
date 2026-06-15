@@ -1,0 +1,69 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "announcement": {
+      "type": "announcement",
+      "settings": {
+        "show_border": false,
+        "layout": "slider",
+        "slider_speed": 7,
+        "text_alignment": "center",
+        "show_arrows": false,
+        "marquee_speed": 100,
+        "message_spacing": 10,
+        "text_size": 2,
+        "bg_color": "#f7f7f7",
+        "color": "#545454"
+      }
+    },
+    "header": {
+      "type": "header",
+      "custom_css": [],
+      "settings": {
+        "header_sticky": true,
+        "header_style": "logo_center_menu_left",
+        "show_separator_line": false,
+        "separator_opacity": 50,
+        "show_icons": true,
+        "icon_as_circle": false,
+        "cart_icon_family": "bag",
+        "logo": "shopify://shop_images/Nikol_logo.png",
+        "logo_max_limit": 115,
+        "logo_max_limit_mobile": 120,
+        "main_menu_linklist": "apr-2026-including-youtube",
+        "mobile_menu_linklist": "",
+        "enable_search": true,
+        "show_social_icons": false,
+        "show_locale_selector": false,
+        "show_country_selector": true,
+        "show_country_name": false,
+        "show_country_flag": false,
+        "highlight_item": "Sale",
+        "highlight_item_color": "#d02e2e",
+        "transparent_home": false,
+        "transparent_product_page": false,
+        "transparent_collection": false,
+        "transparent_article": false,
+        "transparent_page": false,
+        "secondary_menu_linklist": "",
+        "tertiary_menu_linklist": "",
+        "padding_top": 15,
+        "padding_bottom": 15
+      }
+    }
+  },
+  "order": [
+    "announcement",
+    "header"
+  ]
+}

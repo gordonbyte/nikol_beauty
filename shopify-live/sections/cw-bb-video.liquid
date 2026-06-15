@@ -1,0 +1,132 @@
+<style>
+
+
+.cw-bb-video-section {
+ width: 100%;
+    position: relative;
+}
+
+.cw-bb-videos-parent,
+.cw-bb-videos-box {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+
+.cw-bb-videos-box video {
+  width: 100%;
+  height: 100%;  
+  object-fit: cover;
+  display: block;
+}
+
+.cw-bb-videos-text {
+  position: absolute;
+  bottom: 50px;
+  right: 189px;
+  font-size: 84.62px;
+  line-height: 110%;
+  font-weight: 500;
+  color: #FFFFFF;
+  font-family: 'Cormorant', sans-serif;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .cw-bb-videos-box video {
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .cw-bb-videos-text {
+    font-size: 22px;
+    right: 30px;
+    bottom: 0;
+  }
+
+}
+</style>
+
+<section class="cw-bb-video-section">
+  <div class="cw-bb-videos-parent">
+
+    <div class="cw-bb-videos-box">
+
+      <video
+        class="cw-bb-videos-video"
+        {% if section.settings.poster != blank %}
+          poster="{{ section.settings.poster | img_url: 'master' }}"
+        {% endif %}
+        muted
+        playsinline
+        loop
+        controls
+      >
+        {% if section.settings.video_url != blank %}
+          <source src="{{ section.settings.video_url }}" type="video/mp4">
+        {% endif %}
+      </video>
+
+      <div class="cw-collect-videos-overlay">
+        <div class="cw-collect-videos-play-btn"></div>
+      </div>
+
+      {% if section.settings.text != blank %}
+        <div class="cw-bb-videos-text">
+          {{ section.settings.text }}
+        </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".cw-bb-videos-box").forEach(box => {
+    const video = box.querySelector(".cw-bb-videos-video");
+    const overlay = box.querySelector(".cw-collect-videos-overlay");
+
+    overlay.addEventListener("click", () => {
+      video.play();
+      box.classList.add("is-playing");
+    });
+
+    video.addEventListener("pause", () => {
+      box.classList.remove("is-playing");
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "CW BB Video",
+  "settings": [
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "MP4 Video URL (Shopify Files / CDN)"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster",
+      "label": "Poster Image"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Video Text",
+      "default": "<p>THE BB CREAM MADE<br> FOR MATURE SKIN</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CW BB Video"
+    }
+  ]
+}
+{% endschema %}
+

@@ -1,0 +1,219 @@
+
+<style>
+section.cw-nikol-benefits-section {
+    padding: 100px 0;
+    background: #F7F2ED66;
+}
+
+.cw-nikol-benefits-title {
+    text-align: center;
+    font-size: 56px;
+    line-height: 110%;
+        letter-spacing: -0.02em;
+    font-weight: 500;
+    color: #2A2724;
+    font-family: 'Cormorant';
+}
+
+.cw-nikol-benefits-description {
+    text-align: center;
+    font-size: 20px;
+    line-height: 140%;
+    letter-spacing: 0px;
+    font-weight: 400;
+    color: #2A2724;
+    padding-top: 15px;
+    font-family: Inter;
+}
+
+.cw-nikol-benefits-wrapper {
+    width: 100%;
+    display: flex;
+    gap: 45px;
+    padding-top: 60px;
+    justify-content: center;
+}
+
+.cw-nikol-benefits-icon img {
+    max-width: 90px;
+    object-fit: contain;
+}
+
+.cw-nikol-benefits-icon {
+    text-align: center;
+}
+
+.cw-nikol-benefits-box-title {
+    text-align: center;
+    font-size: 28px;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    color: #2A2724;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: 'Cormorant';
+        text-transform: capitalize;
+}
+
+.cw-nikol-benefits-box-text {
+    text-align: center;
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    color: #2A2724;
+    font-family: Inter;
+}
+
+.cw-nikol-benefits-box {
+    width: 25%;
+}
+
+@media only screen and (max-width: 600px) {
+	section.cw-nikol-benefits-section {
+    padding: 40px 0px;
+}
+
+.cw-nikol-benefits-title {
+    font-size: 34px;
+    letter-spacing: -0.02em;
+}
+
+.cw-nikol-benefits-description {
+    font-size: 16px;
+}
+
+.cw-nikol-benefits-wrapper {
+    flex-wrap: wrap;
+    gap: 0px;
+    justify-content: space-between;
+        padding-top: 30px;
+}
+
+.cw-nikol-benefits-box {
+    width: 47%;
+}
+
+.cw-nikol-benefits-box-title {
+    font-size: 23px;
+    text-align: start;
+}
+
+.cw-nikol-benefits-icon {
+    text-align: start;
+}
+
+.cw-nikol-benefits-box-text {
+    text-align: start;
+    font-size: 16px;
+}
+
+.cw-nikol-benefits-icon img {
+    max-width: 55px;
+}
+}
+    </style>
+
+<section class="cw-nikol-benefits-section">
+  <div class="page-width">
+
+    <div class="cw-nikol-benefits-container">
+
+      {% if section.settings.title != blank %}
+        <div class="cw-nikol-benefits-title">
+          {{ section.settings.title }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="cw-nikol-benefits-description">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <div class="cw-nikol-benefits-wrapper">
+          {% for block in section.blocks %}
+            <div class="cw-nikol-benefits-box" {{ block.shopify_attributes }}>
+
+              {% if block.settings.icon != blank %}
+                <div class="cw-nikol-benefits-icon">
+                  <img
+                    src="{{ block.settings.icon | img_url: 'master' }}"
+                    alt="{{ block.settings.title | escape }}">
+                </div>
+              {% endif %}
+
+              {% if block.settings.title != blank %}
+                <div class="cw-nikol-benefits-box-title">
+                  {{ block.settings.title }}
+                </div>
+              {% endif %}
+
+              {% if block.settings.text != blank %}
+                <div class="cw-nikol-benefits-box-text">
+                  {{ block.settings.text }}
+                </div>
+              {% endif %}
+
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "CW Benefits",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Why Thousands Of Women Are Switching To Nikol"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Section Description",
+      "default": "It's lightweight, natural-looking, and made for mature skin."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Benefit title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Benefit description goes here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CW Benefits"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,59 @@
+
+{% style %}
+.col-sitemap {
+  display: grid;
+  justify-content: center;
+  margin: 20px;
+}
+.col-sitemap li {
+  list-style-type: none;
+  padding: 0 10px;
+}
+.col-sitemap a:hover {
+  font-weight: 600;
+}
+{% endstyle %}
+{%- assign menu = section.settings.menu_handle -%}  
+<section> 
+<div class="col-sitemap">
+ <h1>{{ page.title }}</h1>     
+<ul class="menu">
+  {% for link in menu.links %}
+    <li class="menu-item">
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {% if section.settings.confirm_child %}
+      {% comment %} Check for sub-menu (dropdown) items {% endcomment %}
+      {% if link.links.size > 0 %}
+        <ul class="menu-dropdown">
+          {% for child_link in link.links %}
+            <li class="menu-dropdown-item">
+              <a href="{{ child_link.url }}">{{ child_link.title }}</a>
+              {% comment %} Add more nested levels if needed (grandchild_link) {% endcomment %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+</div>
+</section>
+{% schema %}
+{
+  "name": "Collection Sitemap",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu_handle",
+      "label": "Select a Menu",
+      "default": "main-menu" 
+    }
+],
+  "presets": [
+    {
+      "name": "Custom Menu Section"
+    }
+  ]
+}
+{% endschema %}

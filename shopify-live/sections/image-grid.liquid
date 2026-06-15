@@ -1,0 +1,75 @@
+<div 
+  class="image-grid" 
+  data-section-id="{{ section.id }}" 
+  data-section-type="image-grid"
+  >
+  <div class="image-grid__inner">
+    {%- for gridItem in section.blocks -%}
+      <div class="image-grid__item">
+        <figure class="image-grid__image">
+          <img 
+            src="{{ gridItem.settings.image | image_url }}"
+            alt="{{ gridItem.settings.image | default: shop.name }}"
+            loading="eager"
+            />
+        </figure>
+        <a class="image-grid__overlay" href="{{ gridItem.settings.link }}">
+          <h3 class="image-grid__title" style="color: {{ gridItem.settings.text_color  }}">
+            {{ gridItem.settings.title }}
+          </h3>
+        </a>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Images Grid",
+  "class": "section-images-grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Testimonials"
+    }
+  ],
+  "blocks": [
+      {
+        "type": "image",
+        "name": "Grid Item",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Lorem ipsum"
+          },
+          {
+            "type": "select",
+            "id": "text_color",
+            "label": "Text Color",
+            "default": "black",
+            "options": [
+              { "value": "black", "label": "Black" },
+              { "value": "white", "label": "White" }
+            ]
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          }
+        ]
+      }
+  ],
+  "presets": [{
+    "name": "Images Grid",
+    "category": "Image"
+  }]
+}
+{% endschema %}

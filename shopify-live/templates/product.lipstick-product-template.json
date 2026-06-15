@@ -1,0 +1,343 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "zp-product-header-content": {
+      "type": "product-header-content-zipifypages",
+      "settings": {}
+    },
+    "main": {
+      "type": "product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "subheading_option": "breadcrumb",
+            "text_size": 6,
+            "padding_bottom": 8
+          }
+        },
+        "ae04a6bf-86c3-42a2-a343-e2ddd1a83d42": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {}
+        },
+        "e2e54459-e05c-4256-bce4-f74ab2ac22a3": {
+          "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_text/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "padding_bottom": 16
+          }
+        },
+        "se_wishlist_engine_product_page_aKiHJQ": {
+          "type": "shopify://apps/se-wishlist-engine/blocks/Product-Page/8f7c0857-8e71-463d-a168-8e133094753b",
+          "settings": {}
+        },
+        "variants": {
+          "type": "variants",
+          "settings": {
+            "info_page": "",
+            "size_chart_style": "text",
+            "subscriptions_enable_selectors": false,
+            "padding_bottom": 16
+          }
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {
+            "show_quantity": true,
+            "show_payment_button": false,
+            "show_gift_card_recipient": false,
+            "padding_bottom": 32
+          }
+        },
+        "pickup": {
+          "type": "pickup",
+          "disabled": true,
+          "settings": {
+            "padding_bottom": 32
+          }
+        },
+        "tabs": {
+          "type": "tab_richtext",
+          "settings": {
+            "show_read_more": true,
+            "style": "tabs",
+            "title_1": "Ingredients",
+            "raw_content_1": "<p>{{ product.metafields.custom.tab_content | metafield_tag }}</p>",
+            "title_2": "",
+            "raw_content_2": "",
+            "title_3": "",
+            "raw_content_3": "",
+            "title_4": "",
+            "raw_content_4": "",
+            "title_5": "",
+            "raw_content_5": "",
+            "padding_bottom": 0
+          }
+        },
+        "divider_1": {
+          "type": "divider",
+          "settings": {
+            "show_line": true,
+            "padding_bottom": 16
+          }
+        },
+        "icon_1": {
+          "type": "icon",
+          "disabled": true,
+          "settings": {
+            "icon_name": "icon-email",
+            "icon_size": 20,
+            "icon_color": "#545454",
+            "title": "Free 30 Days Returns",
+            "text_size": 3,
+            "width": "full",
+            "padding_bottom": 16
+          }
+        },
+        "icon_2": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-truck",
+            "icon_size": 20,
+            "icon_color": "#545454",
+            "title": "Free domestic shipping on orders over $125",
+            "text_size": 3,
+            "width": "full",
+            "padding_bottom": 16
+          }
+        },
+        "c8ecc06f-2f65-4c95-a44e-437c458f4787": {
+          "type": "divider",
+          "settings": {
+            "show_line": true,
+            "padding_bottom": 20
+          }
+        },
+        "dc8a9295-1097-4bdc-b170-cdb20ac30a8f": {
+          "type": "features",
+          "disabled": true,
+          "settings": {
+            "icon_name": "icon-award",
+            "icon_size": 20,
+            "title": "Needs Beauty Help?",
+            "text_size": 3,
+            "text": "<p>Book an appointment with our virtual stylists! Chat now</p>",
+            "bg_color": "#f7f2ed",
+            "color": "#212121",
+            "padding_bottom": 16
+          }
+        },
+        "74d5d02b-9e9a-42ae-b7bb-98d6e0f58a31": {
+          "type": "divider",
+          "settings": {
+            "show_line": true,
+            "padding_bottom": 20
+          }
+        },
+        "upsell": {
+          "type": "upsell",
+          "settings": {
+            "upsell_product": "",
+            "upsell_product_list": [],
+            "bg_color": "",
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "ae04a6bf-86c3-42a2-a343-e2ddd1a83d42",
+        "e2e54459-e05c-4256-bce4-f74ab2ac22a3",
+        "price",
+        "se_wishlist_engine_product_page_aKiHJQ",
+        "variants",
+        "buttons",
+        "pickup",
+        "tabs",
+        "divider_1",
+        "icon_1",
+        "icon_2",
+        "c8ecc06f-2f65-4c95-a44e-437c458f4787",
+        "dc8a9295-1097-4bdc-b170-cdb20ac30a8f",
+        "74d5d02b-9e9a-42ae-b7bb-98d6e0f58a31",
+        "upsell"
+      ],
+      "settings": {
+        "product_sticky_enable": true,
+        "image_layout": "thumbnails-left",
+        "image_size": "normal",
+        "show_cart_bar": true,
+        "enable_zoom": true,
+        "enable_video_looping": true,
+        "mobile_image_style": "thumbs",
+        "padding_top": 90,
+        "padding_bottom": 30
+      }
+    },
+    "faq": {
+      "type": "section-accordion",
+      "blocks": {
+        "faq-1": {
+          "type": "text",
+          "settings": {
+            "title": "{{ product.metafields.custom.instruction_title_1.value }}",
+            "text": "<p>{{ product.metafields.custom.instruction_content_1 | metafield_tag }}</p>"
+          }
+        },
+        "faq-2": {
+          "type": "text",
+          "settings": {
+            "title": "{{ product.metafields.custom.instruction_title_2.value }}",
+            "text": "<p>{{ product.metafields.custom.instruction_content_2 | metafield_tag }}</p>"
+          }
+        },
+        "faq-3": {
+          "type": "text",
+          "settings": {
+            "title": "{{ product.metafields.custom.instruction_title_3.value }}",
+            "text": "<p>{{ product.metafields.custom.instruction_content_3 | metafield_tag }}</p>"
+          }
+        },
+        "faq-4": {
+          "type": "text",
+          "settings": {
+            "title": "{{ product.metafields.custom.instruction_title_4.value }}",
+            "text": "<p>{{ product.metafields.custom.instruction_content_4 | metafield_tag }}</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq-1",
+        "faq-2",
+        "faq-3",
+        "faq-4"
+      ],
+      "settings": {
+        "default_open": false,
+        "title": "Beauty Instructions",
+        "show_icon": false,
+        "icon_name": "icon-award",
+        "icon_size": 20,
+        "icon_color": "#545454",
+        "bg_color": "",
+        "color": "",
+        "border_color": "",
+        "width": "wrapper",
+        "padding_top": 30,
+        "padding_bottom": 0
+      }
+    },
+    "shipping": {
+      "type": "section-accordion",
+      "blocks": {
+        "773999a0-fb7a-4fd9-939e-ca8384865ead": {
+          "type": "text",
+          "settings": {
+            "title": "How and Where Do You Ship?",
+            "text": "<p>We ship via USPS both domestically and to Canada. Please allow for 5-7 business days for domestic orders and 10-20 days for Canadian orders. </p>"
+          }
+        },
+        "96877b66-d369-457c-8c4c-44efa5ee5539": {
+          "type": "text",
+          "settings": {
+            "title": "Do You Ship Internationally?",
+            "text": "<p>We currently ship to the USA and CANADA by USPS first class shipping or my Priority Mail depending on package weight. We are working on shipping to other countries in the near future. We will update our website and announce on Social Media when we open up to more countries. Thank you for your patience.</p>"
+          }
+        },
+        "3c4ab1ec-afd3-4012-a2a8-583fbd898df6": {
+          "type": "text",
+          "settings": {
+            "title": "Do You Take Returns?",
+            "text": "<p>We are unable to offer refunds, returns, or exchanges. All sales are final.<br/>In the unlikely event that a product arrives damaged, you must contact our customer support within 48 hours of receipt of your shipment. Customers must include photos of the issue and a screenshot of the invoice that came inside their order.</p>"
+          }
+        },
+        "95abfb85-0fbd-43ca-a99f-e118cce87d37": {
+          "type": "text",
+          "settings": {
+            "title": "How Do I Know My Order Was Received?",
+            "text": "<p>You will receive an email confirmation and text message (if you signed up for SMS alerts) with an order number from Fresh Beauty Studio at the time your order is placed detailing all items you ordered.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "773999a0-fb7a-4fd9-939e-ca8384865ead",
+        "96877b66-d369-457c-8c4c-44efa5ee5539",
+        "3c4ab1ec-afd3-4012-a2a8-583fbd898df6",
+        "95abfb85-0fbd-43ca-a99f-e118cce87d37"
+      ],
+      "settings": {
+        "default_open": false,
+        "title": "Shipping & Returns",
+        "show_icon": false,
+        "icon_name": "icon-award",
+        "icon_size": 20,
+        "icon_color": "#545454",
+        "bg_color": "",
+        "color": "",
+        "border_color": "",
+        "width": "wrapper",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "16904264243ceba35b": {
+      "type": "apps",
+      "blocks": {
+        "ce65d90e-2b35-4d37-b441-40fe96767d65": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "ce65d90e-2b35-4d37-b441-40fe96767d65"
+      ],
+      "settings": {
+        "include_margins": false
+      }
+    },
+    "related": {
+      "type": "related",
+      "settings": {
+        "enable_tabs": true,
+        "heading_alignment": "text-center",
+        "heading_size": 4,
+        "bg_color": "",
+        "color": "",
+        "border_color": "",
+        "padding_top": 30,
+        "padding_bottom": 0
+      }
+    },
+    "zp-product-footer-content": {
+      "type": "product-footer-content-zipifypages",
+      "settings": {}
+    }
+  },
+  "order": [
+    "zp-product-header-content",
+    "main",
+    "faq",
+    "shipping",
+    "16904264243ceba35b",
+    "related",
+    "zp-product-footer-content"
+  ]
+}

@@ -1,0 +1,190 @@
+<style>
+.cw-single-review-section {
+  position: relative;
+  padding: 30px 0;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin-top: -10px;
+  background-size: cover;
+}
+
+.cw-single-review-stars img {
+  max-width: 126px;
+  object-fit: contain;
+}
+
+.cw-single-review-description {
+  font-size: 20px;
+  line-height: 140%;
+  color: #2A2724;
+  margin-bottom: 25px;
+  margin-top: 25px;
+  font-weight: 400;
+  font-family: 'Inter';
+}
+
+.cw-single-review-author-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+
+.cw-single-review-author-text {
+  font-size: 20px;
+  color: #2A2724;
+  font-weight: 400;
+  font-family: 'Inter';
+}
+
+
+.cw-single-review-buyer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cw-single-review-buyer img {
+  max-width: 14px;
+}
+
+.cw-single-review-buyer-text {
+  font-size: 16px;
+  color: #2A2724;
+  font-family: 'Inter';
+  font-weight: 400;
+}
+
+
+.cw-single-review-parent {
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 600px) {
+.cw-single-review-section
+{
+    margin-top: 0px;
+}
+.cw-single-review-section {
+    padding: 25px 0;
+    background-position: center;
+    background-size: cover;
+}
+
+.cw-single-review-description {
+    font-size: 16px;
+    line-height: 150%;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.cw-single-review-author-box {
+    flex-wrap: wrap;
+}
+
+.cw-single-review-author-text {
+    width: 100%;
+    font-size: 16px;
+}
+
+.cw-single-review-buyer-text {
+    font-size: 12px;
+}
+
+.cw-single-review-stars img {
+    max-width: 105px;
+}
+}
+
+    </style>
+
+<section
+  class="cw-single-review-section"
+  style="background-image: url({{ section.settings.bg_image | img_url: 'master' }});"
+>
+  <div class="page-width cw-single-review-page-width">
+
+    <div class="cw-single-review-parent">
+
+      
+      {% if section.settings.star_image %}
+        <div class="cw-single-review-stars">
+          <img src="{{ section.settings.star_image | img_url: 'master' }}" alt="">
+        </div>
+      {% endif %}
+
+ 
+      <div class="cw-single-review-description">
+        {{ section.settings.review_text }}
+      </div>
+
+      
+      <div class="cw-single-review-author-box">
+
+        <div class="cw-single-review-author-text">
+          {{ section.settings.author_name }}
+        </div>
+
+        {% if section.settings.buyer_image %}
+          <div class="cw-single-review-buyer">
+            <img src="{{ section.settings.buyer_image | img_url: 'master' }}" alt="">
+            <div class="cw-single-review-buyer-text">
+              {{ section.settings.buyer_text }}
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CW Single Review",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "star_image",
+      "label": "Star Image"
+    },
+    {
+      "type": "textarea",
+      "id": "review_text",
+      "label": "Review Text"
+    },
+    {
+      "type": "text",
+      "id": "author_name",
+      "label": "Author Name"
+    },
+    {
+      "type": "image_picker",
+      "id": "buyer_image",
+      "label": "Verified Buyer Image"
+    },
+    {
+      "type": "text",
+      "id": "buyer_text",
+      "label": "Buyer Label",
+      "default": "Verified Buyer"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CW Single Review"
+    }
+  ]
+}
+{% endschema %}

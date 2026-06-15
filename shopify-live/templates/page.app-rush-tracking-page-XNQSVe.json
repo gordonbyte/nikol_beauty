@@ -1,0 +1,65 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "7f4d30d6-3118-4e76-ada5-219f5158f662": {
+      "type": "app-rush-container-grid",
+      "settings": {
+        "visibility": "all_the_time",
+        "columns_mobile": 1,
+        "columns_tablet": 1,
+        "columns_desktop": 1,
+        "columns_large": 1,
+        "columns_xlarge": 1,
+        "columns_2xlarge": 1,
+        "cssStyle": ""
+      }
+    },
+    "cd9440b1-2188-4eb0-8c8f-8fc61dbcd6fd": {
+      "type": "app-rush-container-grid",
+      "settings": {
+        "visibility": "all_the_time",
+        "columns_mobile": 1,
+        "columns_tablet": 2,
+        "columns_desktop": 2,
+        "columns_large": 2,
+        "columns_xlarge": 2,
+        "columns_2xlarge": 2,
+        "cssStyle": ""
+      }
+    },
+    "e9d99872-6df9-4ee9-9937-b05f8f086f59": {
+      "type": "app-rush-container-grid",
+      "settings": {
+        "visibility": "all_the_time",
+        "columns_mobile": 1,
+        "columns_tablet": 1,
+        "columns_desktop": 1,
+        "columns_large": 1,
+        "columns_xlarge": 1,
+        "columns_2xlarge": 1,
+        "cssStyle": ""
+      }
+    },
+    "455ffb15-c329-44ef-8f24-40aa5aa257ec": {
+      "type": "app-rush-container-empty-space",
+      "settings": {
+        "desktop_height": 40,
+        "mobile_height": 28
+      }
+    }
+  },
+  "order": [
+    "7f4d30d6-3118-4e76-ada5-219f5158f662",
+    "cd9440b1-2188-4eb0-8c8f-8fc61dbcd6fd",
+    "e9d99872-6df9-4ee9-9937-b05f8f086f59",
+    "455ffb15-c329-44ef-8f24-40aa5aa257ec"
+  ]
+}

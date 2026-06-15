@@ -1,0 +1,45 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "subheading": "",
+        "subheading_size": 3,
+        "show_title": false,
+        "heading_size": 8,
+        "show_content": true,
+        "text_size": 4,
+        "align_text": "text-center",
+        "width": "wrapper--full-padded",
+        "bg_color": "",
+        "color": "",
+        "padding_top": 50,
+        "padding_bottom": 6
+      }
+    },
+    "section_custom_code_3YKDiW": {
+      "type": "section-custom-code",
+      "settings": {
+        "code": "<div id=\"root\"></div> <div style='display: flex; justify-content: center; align-items: center; height: 100%;'> <button style=\"padding: 15px; background-color: #334a9f; color: white; border: none; border-radius: 5px; box-shadow: 0px 2px 8px #344a9f; cursor: pointer;\" onclick=\"onClick('2282f791-04dc-11f0-a5f9-6196bdef81a1')\"> Join the show </button> </div> <script> (function() { if (window.channelizeLogsSuppressed) return; window.channelizeLogsSuppressed = true; var originalConsoleLog = console.log; var originalConsoleWarn = console.warn; var originalConsoleError = console.error; console.log = function() { var args = Array.prototype.slice.call(arguments); var message = args.join(' '); if (message.includes('connectToWebsocket') || message.includes('ChannelizeLiveBroadcast') || message.includes('logger.js') || message.includes('Connection in progress') || message.includes('Starting websocket connection')) { return; } originalConsoleLog.apply(console, arguments); }; console.warn = function() { var args = Array.prototype.slice.call(arguments); var message = args.join(' '); if (message.includes('connectToWebsocket') || message.includes('ChannelizeLiveBroadcast') || message.includes('logger.js') || message.includes('Connection in progress') || message.includes('Starting websocket connection')) { return; } originalConsoleWarn.apply(console, arguments); }; console.error = function() { var args = Array.prototype.slice.call(arguments); var message = args.join(' '); if (message.includes('connectToWebsocket') || message.includes('ChannelizeLiveBroadcast') || message.includes('logger.js') || message.includes('Connection in progress') || message.includes('Starting websocket connection')) { return; } originalConsoleError.apply(console, arguments); }; })(); function onClick(eventId) { window.channelizeLivebroadcastEmbedUI.open({ eventId: eventId }); } (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = \"https://cdn.channelize.io/live-broadcast/embed/prod/embed.js\"; fjs.parentNode.insertBefore(js, fjs); window.initChannelizeLivebroadcastOptions = { publicKey: \"klCYsUF1pM8WNSvj\", mountDiv: document.getElementById(\"root\"), debug: false, logging: false, verbose: false }; }(document, \"script\", \"channelize-livebroadcast-id\")); </script>",
+        "width": "wrapper",
+        "bg_color": "",
+        "color": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_custom_code_3YKDiW"
+  ]
+}

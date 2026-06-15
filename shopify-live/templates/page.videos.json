@@ -1,0 +1,200 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "subheading": "",
+        "subheading_size": 3,
+        "show_title": true,
+        "heading_size": 8,
+        "show_content": true,
+        "text_size": 4,
+        "align_text": "text-left",
+        "width": "wrapper",
+        "bg_color": "",
+        "color": "",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "videos_featured_cRdTzC": {
+      "type": "videos-featured",
+      "settings": {
+        "video_url": "https://youtu.be/bR1B0RvvEek",
+        "image": "shopify://shop_images/lip_gloss_launch_pic.png",
+        "title": "The Lip Gloss Made For Mature Women",
+        "youtube_link": "shopify://pages/videos"
+      }
+    },
+    "videos_filter_f88jMW": {
+      "type": "videos-filter",
+      "blocks": {
+        "filter_Ref4D4": {
+          "type": "filter",
+          "settings": {
+            "title": "Makeup",
+            "category": "makeup"
+          }
+        },
+        "filter_8VhbEF": {
+          "type": "filter",
+          "settings": {
+            "title": "Skin Care",
+            "category": "skin-care"
+          }
+        },
+        "filter_JftD8i": {
+          "type": "filter",
+          "settings": {
+            "title": "Haircare",
+            "category": "haircare"
+          }
+        },
+        "filter_ER4d8X": {
+          "type": "filter",
+          "settings": {
+            "title": "Style",
+            "category": "style"
+          }
+        },
+        "filter_nLehPH": {
+          "type": "filter",
+          "settings": {
+            "title": "Fierce Aging",
+            "category": "fierce-aging"
+          }
+        }
+      },
+      "block_order": [
+        "filter_Ref4D4",
+        "filter_8VhbEF",
+        "filter_JftD8i",
+        "filter_ER4d8X",
+        "filter_nLehPH"
+      ],
+      "settings": {}
+    },
+    "yt_videos_list_aaGPii": {
+      "type": "yt-videos-list",
+      "blocks": {
+        "video_XLLGfd": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://youtu.be/m8AtOCMS8vA",
+            "title": "The Reverse Eyeliner Trick For Hooded, Droopy, Aging Eyes",
+            "image": "shopify://shop_images/Eyeliener_Trick.png",
+            "slider_title": "",
+            "product": "nikol-cosmetics-waterproof-eyeliner",
+            "product_2": "mascara-intense-curling-volumizing",
+            "product_3": "skinny-brow-pencil",
+            "product_4": "",
+            "product_5": "",
+            "category": "makeup"
+          }
+        },
+        "video_pVLiad": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://youtu.be/sbektulyPQw",
+            "title": "What Women Over 70 Are using To Look 20 Years Younger",
+            "image": "shopify://shop_images/concealer_hack.png",
+            "slider_title": "",
+            "product": "just-peachy-color-corrector",
+            "product_2": "no-redness-beauty-stix",
+            "product_3": "color-corrector-collection-1",
+            "product_4": "nikita-banana-translucent-pressed-color-corrector-powder",
+            "product_5": "nikol-beauty-blending-brush",
+            "category": "makeup"
+          }
+        },
+        "video_KjVgGD": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://youtu.be/-sYwyoEbA-E",
+            "title": "How To Create a Monochrome Wardrobe without Being Borning",
+            "image": "shopify://shop_images/nikol_oscar.png",
+            "slider_title": "",
+            "product": "nikray-lipstick",
+            "product_2": "1975-shiny-velvet-cream-lipstick",
+            "product_3": "bottled-blonde",
+            "product_4": "",
+            "product_5": "",
+            "category": "style"
+          }
+        },
+        "video_Di9wAn": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://youtu.be/fyMYttFbgbs",
+            "title": "The Most Underrated Brow Pencil For Mature Women",
+            "image": "shopify://shop_images/brows.png",
+            "slider_title": "",
+            "product": "skinny-brow-pencil",
+            "product_2": "",
+            "product_3": "",
+            "product_4": "",
+            "product_5": "",
+            "category": "makeup"
+          }
+        },
+        "video_AnbJTf": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://youtu.be/S4FouSBj-Us",
+            "title": "10 INEXPENSIVE HAIR PRODUCTS THAT WORK LIKE SALON PRODUCTS",
+            "image": "shopify://shop_images/hair_for_video_c4e6e978-3911-463d-bb44-715dbc87317a.png",
+            "slider_title": "",
+            "product": "nikray-lipstick",
+            "product_2": "",
+            "product_3": "",
+            "product_4": "",
+            "product_5": "",
+            "category": "haircare"
+          }
+        },
+        "video_iGBYYh": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://youtu.be/rF2GE7U2Fx4",
+            "title": "The Best Alternatives to Botox",
+            "image": "shopify://shop_images/SKIN_CARE.png",
+            "slider_title": "",
+            "product": "color-corrector-collection",
+            "product_2": "custom-concealer-trio-in-buffed-cool",
+            "product_3": "eye-primer",
+            "product_4": "fbs-eye-brightener",
+            "product_5": "",
+            "category": "skin-care"
+          }
+        }
+      },
+      "block_order": [
+        "video_XLLGfd",
+        "video_pVLiad",
+        "video_KjVgGD",
+        "video_Di9wAn",
+        "video_AnbJTf",
+        "video_iGBYYh"
+      ],
+      "settings": {
+        "position_reverse": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "videos_featured_cRdTzC",
+    "videos_filter_f88jMW",
+    "yt_videos_list_aaGPii"
+  ]
+}

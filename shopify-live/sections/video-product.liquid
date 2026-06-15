@@ -1,0 +1,51 @@
+<div 
+  class="video-product" 
+  data-section-id="{{ section.id }}" 
+  data-section-type="video-product"
+  >
+  <div class="video-product__inner">
+    <div class="video-product__product">
+      {% render 'product-grid-item', product: section.settings.product %}
+    </div>
+    <div class="video-product__video">
+      {% render 'yt-video', video_url: section.settings.video_url, image: section.settings.image, title: section.settings.title %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Video + Product",
+  "class": "section-video-product",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Video + Product"
+    },
+    {
+      "type": "url",
+      "label": "Youtube video URL",
+      "id": "video_url"
+    },
+    {
+      "type": "product",
+      "label": "Product",
+      "id": "product"
+    },
+    {
+      "type": "image_picker",
+      "label": "Image",
+      "id": "image"
+    },
+    {
+      "type": "text",
+      "label": "Title",
+      "id": "title"
+    }
+  ],
+  "presets": [{
+    "name": "Video + Product",
+    "category": "Image"
+  }]
+}
+{% endschema %}

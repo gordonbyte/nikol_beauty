@@ -1,0 +1,1831 @@
+
+{% layout 'theme' %}
+
+<style>
+  .video-detail {
+    padding: 2rem 0;
+  }
+  
+  /* Section 1: Hero Section - Video + Featured Bundle */
+  .hero-section {
+    background: #F7F2ED;
+    padding: 40px 0;
+    width: 100%;
+  }
+  
+  .hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  
+  .hero-grid.no-bundle {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  
+  .hero-grid.no-bundle .hero-video {
+    max-width: 800px;
+    width: 100%;
+  }
+  
+  .hero-video .video-container {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+  }
+  
+  .hero-video .video-container iframe {
+    width: 100%;
+    height: 400px;
+    border: none;
+    display: block;
+  }
+  
+  .hero-product {
+    background: transparent;
+    padding: 0;
+  }
+  
+  .hero-subtitle {
+    font-family: Jost;
+    font-size: 19px;
+    font-weight: 500;
+    color: #46413C;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+  
+  .hero-product-card {
+    display: flex;
+    gap: 20px;
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .hero-product-image {
+    flex-shrink: 0;
+    background: white;
+    padding: 10px;
+  }
+  
+  .hero-product-image img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    background: white;
+  }
+  
+  .hero-product-image a {
+    display: block;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    max-height: 150px;
+    background: white;
+  }
+  
+  .hero-product-image a:hover {
+    opacity: 0.8;
+  }
+  
+  .hero-product-info {
+    flex: 1;
+  }
+  
+  .hero-product-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #46413C;
+    margin-top: 0;
+    margin-bottom: 8px;
+    padding: 0;
+  }
+  
+  .hero-product-name a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .hero-product-name a:hover {
+    color: #ff6b6b;
+  }
+  
+  .hero-product-price {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #46413C;
+    margin-bottom: 10px;
+    margin-top: 0;
+    padding: 0;
+  }
+  
+  .hero-product-description {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    padding: 0;
+  }
+  
+  .hero-product-actions {
+    margin-top: 0;
+  }
+  
+  .btn-view-product {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: white;
+    color: #333;
+    border: 1px solid #fce4ec;
+    padding: 8px 16px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .btn-view-product:hover {
+    background: #fce4ec;
+  }
+  
+  .btn-view-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  /* Placeholder styles */
+  .hero-product-placeholder {
+    display: flex;
+    gap: 20px;
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .placeholder-image {
+    width: 120px;
+    height: 120px;
+    background: #ddd;
+    border-radius: 0;
+    flex-shrink: 0;
+  }
+  
+  .placeholder-info {
+    flex: 1;
+  }
+  
+  .placeholder-price {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #46413C;
+    margin-bottom: 11px;
+    margin-top: 15px;
+    padding: 0 10px;
+  }
+  
+  .placeholder-description {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    padding: 0;
+  }
+  
+  /* Section 2: Video Info (inside hero section) */
+  .video-info-section {
+    margin-top: 50px;
+    padding: 0;
+  }
+  
+  .video-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+  
+  .video-description {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.8;
+  }
+  
+  /* Section 3: Featured Products Grid */
+  .featured-products-section {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+    background: #fff;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 986px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .featured-item {
+    background: #F7F2ED;
+    border-radius: 8px;
+    padding: 30px;
+    transition: none;
+  }
+  
+  .featured-item:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .featured-item-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+  }
+  
+  .featured-item-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .product-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    background: white;
+    padding: 10px;
+  }
+  
+  .product-image img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 0;
+    background: white;
+  }
+  
+  .product-image a {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: white;
+  }
+  
+  .product-details {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .product-name {
+    font-family: 'Italiana', serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .product-name a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .product-name a:hover {
+    color: #8B4513;
+  }
+  
+  .product-price {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #8B4513;
+    margin-bottom: 5px;
+  }
+  
+  .btn-shop-now,
+  .btn-add-to-cart {
+    display: inline-block;
+    background: #E8B4AE;
+    color: #8B4513;
+    padding: 10px 24px;
+    border-radius: 0;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  
+  .btn-shop-now:hover,
+  .btn-add-to-cart:hover {
+    background: #d9a599;
+  }
+  
+  .btn-add-to-cart.loading {
+    opacity: 0.7;
+    cursor: wait;
+    pointer-events: none;
+  }
+  
+  .btn-add-to-cart.added {
+    background: #8B4513;
+    color: white;
+  }
+  
+  .variant-selector {
+    margin-bottom: 5px;
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .variant-selector select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #E8B4AE;
+    background: white;
+    color: #46413C;
+    font-size: 0.85rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+  }
+  
+  .variant-selector select:hover {
+    border-color: #d9a599;
+  }
+  
+  .variant-selector select:focus {
+    outline: none;
+    border-color: #8B4513;
+  }
+  
+  .add-to-cart-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .featured-item-video {
+    position: relative;
+    width: 100%;
+  }
+  
+  .video-thumbnail {
+    position: relative;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .video-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(139, 69, 19, 0.8);
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #fff;
+    transition: background 0.3s ease;
+  }
+  
+  .video-thumbnail:hover .play-icon {
+    background: rgba(139, 69, 19, 1);
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Channelize Widget Custom Styles - Anchor the floating widget */
+  .featured-item-video {
+    position: relative;
+    min-height: 220px;
+    background: transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    isolation: auto;
+  }
+  
+  /* Remove stacking context when modal is open - important to let modal escape */
+  body.channelize-modal-open .featured-item-video,
+  body.channelize-modal-open .featured-item,
+  body.channelize-modal-open .featured-item-row,
+  body.channelize-modal-open .featured-grid,
+  body.channelize-modal-open .featured-products-section {
+    position: static !important;
+    overflow: visible !important;
+    isolation: auto !important;
+    z-index: auto !important;
+  }
+  
+  .featured-item-video channelize-shoppable-videos-playlist {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 0 !important;
+  }
+  
+  /* Desktop specific styles */
+  @media (min-width: 769px) {
+    .featured-item-video channelize-shoppable-videos-playlist {
+      max-width: 100% !important;
+      margin: 0 !important;
+    }
+  }
+  
+  /* Hide close button (X) ONLY in the embedded video cards (not in the modal) */
+  .featured-item-video channelize-shoppable-videos-playlist [class*="close"]:not(.ch-live-broadcast__modal--open *),
+  .featured-item-video channelize-shoppable-videos-playlist [aria-label*="close"]:not(.ch-live-broadcast__modal--open *),
+  .featured-item-video channelize-shoppable-videos-playlist button[class*="close"]:not(.ch-live-broadcast__modal--open *) {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+  
+  /* Ensure close button is visible when modal is open */
+  .ch-live-broadcast__modal--open [class*="close"],
+  .ch-live-broadcast__modal--open [aria-label*="close"],
+  .ch-live-broadcast__modal--open button[class*="close"],
+  body > .ch-live-broadcast__modal [class*="close"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Center the X icon inside the close button */
+  .ch-live-broadcast__modal--open [class*="close"] svg,
+  .ch-live-broadcast__modal--open button[class*="close"] svg,
+  body > .ch-live-broadcast__modal [class*="close"] svg {
+    display: block !important;
+    margin: auto !important;
+  }
+  
+  /* Target inner elements to ensure they fill the space - DESKTOP ONLY */
+  @media (min-width: 769px) {
+    .featured-item-video channelize-shoppable-videos-playlist > *,
+    .featured-item-video channelize-shoppable-videos-playlist iframe,
+    .featured-item-video channelize-shoppable-videos-playlist > div {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  }
+  
+  /* Override the floating behavior - target ALL Channelize playlists */
+  body channelize-shoppable-videos-playlist[playlist_id] {
+    position: relative !important;
+    bottom: auto !important;
+    right: auto !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    z-index: 1 !important;
+    padding: 0 !important;
+  }
+  
+  /* Desktop: no margin */
+  @media (min-width: 769px) {
+    body channelize-shoppable-videos-playlist[playlist_id] {
+      margin: 0 !important;
+    }
+  }
+  
+  /* Mobile: apply padding to video widget */
+  @media (max-width: 768px) {
+    body .featured-item-video channelize-shoppable-videos-playlist[playlist_id] {
+      padding: 15px !important;
+      box-sizing: border-box !important;
+    }
+  }
+  
+  /* AGGRESSIVE: Lower ALL site elements z-index by default to prepare for modals */
+  header,
+  .header,
+  .header__wrapper,
+  .header__desktop,
+  .header__mobile,
+  nav,
+  .site-header,
+  footer,
+  .footer,
+  .announcement-bar,
+  .loading,
+  [data-section-type="header"],
+  [class*="header"],
+  [class*="navigation"] {
+    z-index: 10 !important;
+  }
+  
+  /* Lower children too */
+  header *,
+  .header *,
+  .header__wrapper *,
+  nav *,
+  .site-header * {
+    z-index: inherit !important;
+  }
+  
+  /* Modal/Dialog styles - MAXIMUM z-index for Channelize modals */
+  body > div[class*="channelize"],
+  body > div[id*="channelize"],
+  body > [role="dialog"],
+  div[role="dialog"],
+  [class*="channelize"][style*="position: fixed"],
+  [id*="channelize"][style*="position: fixed"] {
+    z-index: 2147483647 !important;
+    position: fixed !important;
+  }
+  
+  /* Backdrop/overlay styles */
+  body > div[class*="backdrop"],
+  body > div[class*="overlay"],
+  [class*="backdrop"][style*="position: fixed"],
+  [class*="overlay"][style*="position: fixed"] {
+    z-index: 2147483646 !important;
+    position: fixed !important;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 1024px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    
+    .hero-grid.no-bundle {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+    
+    .hero-video .video-container iframe {
+      height: 400px;
+    }
+    
+    .featured-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .hero-product-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .hero-product-image img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .video-title {
+      font-size: 1.8rem;
+    }
+    
+    .hero-video .video-container iframe {
+      height: 300px;
+    }
+    
+    .hero-grid.no-bundle .hero-video {
+      max-width: 100%;
+    }
+    
+    .featured-grid {
+      grid-template-columns: 1fr;
+      gap: 60px;
+      padding: 0 15px;
+    }
+    
+    .featured-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .featured-item-row {
+      grid-template-columns: 1fr;
+      gap: 0;
+      justify-items: center;
+      align-items: center;
+      width: 100%;
+    }
+    
+    .featured-item-video {
+      width: 100%;
+      max-width: 200px;
+      margin: 30px auto 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding-bottom: 0 !important;
+      margin-bottom: 0 !important;
+    }
+    
+    .featured-item-video channelize-shoppable-videos-playlist {
+      width: 100% !important;
+      max-width: 200px !important;
+      margin: 0 auto !important;
+      margin-bottom: 0 !important;
+      margin-top: 0 !important;
+      display: block !important;
+      left: auto !important;
+      right: auto !important;
+      transform: none !important;
+      position: relative !important;
+      min-height: 350px !important;
+      padding: 35px !important;
+      box-sizing: border-box !important;
+    }
+    
+    /* Ensure padding is applied to the widget container */
+    .featured-item-video channelize-shoppable-videos-playlist[playlist_id] {
+      padding: 35px !important;
+      box-sizing: border-box !important;
+    }
+    
+    .featured-item-video channelize-shoppable-videos-playlist > *,
+    .featured-item-video channelize-shoppable-videos-playlist iframe,
+    .featured-item-video channelize-shoppable-videos-playlist > div {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      max-width: 100% !important;
+    }
+    
+    /* Target the internal Channelize video container specifically */
+    .featured-item-video channelize-shoppable-videos-playlist .ch-live-broadcast__widgets__floating-video,
+    .featured-item-video channelize-shoppable-videos-playlist .ch-live-broadcast__widgets__floating-video--portrait {
+      position: relative !important;
+      left: auto !important;
+      right: auto !important;
+      transform: none !important;
+      margin: 0 auto !important;
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      height: 100% !important;
+    }
+    
+    /* Target the video wrapper inside */
+    .featured-item-video channelize-shoppable-videos-playlist .ch-live-broadcast__light {
+      position: relative !important;
+      left: auto !important;
+      right: auto !important;
+      transform: none !important;
+      margin: 0 auto !important;
+      display: block !important;
+    }
+    
+    /* Remove black bars by making video fill container width */
+    .featured-item-video channelize-shoppable-videos-playlist video,
+    .featured-item-video channelize-shoppable-videos-playlist canvas,
+    .featured-item-video channelize-shoppable-videos-playlist iframe {
+      width: 100% !important;
+      height: auto !important;
+      max-width: 100% !important;
+      object-fit: cover !important;
+    }
+    
+    /* Make sure the video container doesn't have extra width */
+    .featured-item-video channelize-shoppable-videos-playlist .ch-live-broadcast__widgets__floating-video,
+    .featured-item-video channelize-shoppable-videos-playlist .ch-live-broadcast__widgets__floating-video--portrait {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+    
+    /* Remove any background that creates black bars */
+    .featured-item-video channelize-shoppable-videos-playlist .ch-live-broadcast__light,
+    .featured-item-video channelize-shoppable-videos-playlist .ch-live-broadcast__widgets__floating-video {
+      background: transparent !important;
+    }
+    
+    .section-title {
+      font-size: 1.5rem;
+    }
+    
+    .hero-section {
+      padding: 20px 0;
+    }
+    
+    .hero-container {
+      padding: 0 15px;
+    }
+    
+    .video-info-section {
+      margin-top: 40px;
+    }
+    
+    .featured-products-section {
+      padding: 2rem 1rem;
+    }
+    
+    .hero-product-card {
+      padding: 15px;
+    }
+    
+    .hero-product-image img {
+      width: 150px;
+      height: 150px;
+    }
+    
+    .product-image img {
+      max-width: 180px;
+    }
+    
+    .featured-item {
+      padding: 20px;
+      padding-bottom: 0 !important;
+    }
+    
+    .featured-item-video {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+      margin-top: 30px !important;
+    }
+    
+    /* Remove any bottom spacing from video container */
+    .featured-item-video channelize-shoppable-videos-playlist,
+    .featured-item-video channelize-shoppable-videos-playlist > * {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  }
+</style>
+
+<script>
+  
+  // Check if video URL exists
+  const videoUrl = '{{ metaobject.video_url }}';
+  if (videoUrl) {
+    // Check if it's a YouTube URL
+    if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
+      let videoId = '';
+      if (videoUrl.includes('youtube.com/watch?v=')) {
+        videoId = videoUrl.split('v=')[1].split('&')[0];
+      } else if (videoUrl.includes('youtu.be/')) {
+        videoId = videoUrl.split('youtu.be/')[1];
+      }
+      
+      if (videoId) {
+        const embedUrl = `https://www.youtube.com/embed/${videoId}?rel=0`;
+      }
+    }
+  }
+  
+  // Check related products
+  const relatedProducts = {{ metaobject.related_products | json }};
+  
+  // Update price and image when variant is selected
+  function initVariantPriceUpdates() {
+    const variantSelects = document.querySelectorAll('select[id^="variant-select-"]');
+    
+    variantSelects.forEach(select => {
+      select.addEventListener('change', function() {
+        const selectedOption = this.options[this.selectedIndex];
+        const formattedPrice = selectedOption.getAttribute('data-price-formatted');
+        const imageUrl = selectedOption.getAttribute('data-image-url');
+        const productIndex = this.getAttribute('data-product-index');
+        
+        if (formattedPrice && productIndex) {
+          const priceElement = document.querySelector(`.product-price[data-product-index="${productIndex}"]`);
+          if (priceElement) {
+            priceElement.textContent = formattedPrice;
+          }
+        }
+        
+        if (imageUrl && productIndex) {
+          const imageElement = document.querySelector(`.product-variant-image[data-product-index="${productIndex}"]`);
+          if (imageElement) {
+            imageElement.src = imageUrl;
+          }
+        }
+      });
+    });
+  }
+  
+  // Initialize variant price updates when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initVariantPriceUpdates);
+  } else {
+    initVariantPriceUpdates();
+  }
+  
+  // Handle AJAX add to cart for featured products
+  function initAjaxAddToCart() {
+    const addToCartForms = document.querySelectorAll('[data-add-to-cart-form]');
+    
+    addToCartForms.forEach(form => {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const button = form.querySelector('[data-add-to-cart-button]');
+        
+        // Check if button is already disabled
+        if (button && button.hasAttribute('disabled')) {
+          return;
+        }
+        
+        // Validate form
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        
+        // Dispatch theme:cart:add event which the CartItems component listens to
+        // The CartItems component will handle the AJAX request and button state
+        document.dispatchEvent(new CustomEvent('theme:cart:add', {
+          detail: {
+            button: button
+          },
+          bubbles: true
+        }));
+      });
+    });
+  }
+  
+  // Initialize AJAX add to cart when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAjaxAddToCart);
+  } else {
+    initAjaxAddToCart();
+  }
+  
+  // Anchor Channelize floating widget into the designated containers
+  function anchorChannelizeWidget() {
+    const containers = document.querySelectorAll('.featured-item-video');
+    const isMobile = window.innerWidth <= 768;
+    
+    containers.forEach((container, index) => {
+      const widget = container.querySelector('channelize-shoppable-videos-playlist');
+      if (widget) {
+        // Force the widget to stay in its container
+        widget.style.position = 'relative';
+        widget.style.bottom = 'auto';
+        widget.style.right = 'auto';
+        widget.style.left = 'auto';
+        widget.style.top = 'auto';
+        widget.style.transform = 'none';
+        widget.style.zIndex = '1';
+        
+         if (isMobile) {
+           // Mobile: Force centering with narrower width for portrait videos
+           widget.style.width = '100%';
+           widget.style.maxWidth = '200px';
+           widget.style.minHeight = '350px';
+           widget.style.margin = '0 auto';
+           widget.style.marginBottom = '0';
+           widget.style.marginTop = '0';
+           widget.style.padding = '35px';
+           widget.style.display = 'block';
+           
+           // Add margin-top to container
+           const container = widget.closest('.featured-item-video');
+           if (container) {
+             container.style.marginTop = '30px';
+             container.style.marginBottom = '0';
+           }
+         } else {
+          // Desktop: Keep original behavior
+          widget.style.width = '100%';
+          widget.style.maxWidth = '100%';
+          widget.style.margin = '0';
+        }
+        
+        widget.style.height = '100%';
+        widget.style.minHeight = '300px';
+        widget.style.padding = '0';
+        
+        // Also target any inner divs, iframes or other elements
+        const innerElements = widget.querySelectorAll('*');
+        innerElements.forEach(el => {
+          if (el.tagName === 'DIV' || el.tagName === 'IFRAME') {
+            el.style.width = '100%';
+            el.style.maxWidth = '100%';
+            el.style.padding = '0';
+            
+            if (isMobile) {
+              el.style.marginLeft = 'auto';
+              el.style.marginRight = 'auto';
+            } else {
+              el.style.margin = '0';
+            }
+          }
+        });
+        
+        // Target Channelize-specific internal elements for centering in mobile
+        if (isMobile) {
+          const floatingVideo = widget.querySelector('.ch-live-broadcast__widgets__floating-video');
+          if (floatingVideo) {
+            floatingVideo.style.position = 'relative';
+            floatingVideo.style.left = 'auto';
+            floatingVideo.style.right = 'auto';
+            floatingVideo.style.transform = 'none';
+            floatingVideo.style.margin = '0 auto';
+            floatingVideo.style.display = 'block';
+            floatingVideo.style.width = '100%';
+            floatingVideo.style.maxWidth = '100%';
+            floatingVideo.style.height = '100%';
+            floatingVideo.style.background = 'transparent';
+          }
+          
+          // Also target portrait variant
+          const portraitVideo = widget.querySelector('.ch-live-broadcast__widgets__floating-video--portrait');
+          if (portraitVideo) {
+            portraitVideo.style.width = '100%';
+            portraitVideo.style.maxWidth = '100%';
+            portraitVideo.style.height = '100%';
+          }
+          
+          const lightContainer = widget.querySelector('.ch-live-broadcast__light');
+          if (lightContainer) {
+            lightContainer.style.position = 'relative';
+            lightContainer.style.left = 'auto';
+            lightContainer.style.right = 'auto';
+            lightContainer.style.transform = 'none';
+            lightContainer.style.margin = '0 auto';
+            lightContainer.style.display = 'block';
+            lightContainer.style.width = '100%';
+            lightContainer.style.maxWidth = '100%';
+            lightContainer.style.background = 'transparent';
+          }
+          
+          // Make video elements fill width to remove black bars
+          const videoElements = widget.querySelectorAll('video, canvas, iframe');
+          videoElements.forEach(video => {
+            video.style.width = '100%';
+            video.style.height = 'auto';
+            video.style.maxWidth = '100%';
+            video.style.objectFit = 'cover';
+          });
+        }
+      }
+    });
+    
+    // Also check for any floating widgets that might be created outside
+    const floatingWidgets = document.querySelectorAll('body > channelize-shoppable-videos-playlist');
+    floatingWidgets.forEach((widget) => {
+      // Hide or remove floating instances if they appear outside containers
+      if (!widget.closest('.featured-item-video')) {
+        widget.style.display = 'none';
+      }
+    });
+  }
+  
+  // Observer specifically for Channelize internal elements on mobile
+  function observeChannelizeInternals() {
+    const isMobile = window.innerWidth <= 768;
+    if (!isMobile) return;
+    
+    const widgets = document.querySelectorAll('channelize-shoppable-videos-playlist');
+    
+    widgets.forEach((widget, index) => {
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            if (node.nodeType === 1) {
+              // Check if the added node or its children contain Channelize internal elements
+              if (node.classList && (
+                  node.classList.contains('ch-live-broadcast__widgets__floating-video') ||
+                  node.classList.contains('ch-live-broadcast__light')
+              )) {
+                setTimeout(anchorChannelizeWidget, 50);
+              }
+              
+              // Also check descendants
+              const floatingVideo = node.querySelector && node.querySelector('.ch-live-broadcast__widgets__floating-video');
+              const lightContainer = node.querySelector && node.querySelector('.ch-live-broadcast__light');
+              
+              if (floatingVideo || lightContainer) {
+                setTimeout(anchorChannelizeWidget, 50);
+              }
+            }
+          });
+        });
+      });
+      
+      observer.observe(widget, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['style', 'class']
+      });
+    });
+  }
+  
+  // NEW STRATEGY: Don't move modal, just eliminate stacking contexts
+  function ensureModalZIndex() {
+    // Find ALL fixed position elements in the entire page
+    const allElements = document.querySelectorAll('*');
+    let modalFound = false;
+    
+    allElements.forEach(el => {
+      const style = window.getComputedStyle(el);
+      
+      // Only look at fixed position elements
+      if (style.position !== 'fixed') return;
+      
+      // Check if visible
+      const isVisible = style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0';
+      
+      // Check if it's related to Channelize
+      const isChannelizeRelated = 
+        el.className.toLowerCase().includes('channelize') ||
+        el.className.toLowerCase().includes('ch-live-broadcast') ||
+        el.id.toLowerCase().includes('channelize');
+      
+      if (!isChannelizeRelated) return;
+      
+      // Check if modal has the "open" class (Channelize uses --open class)
+      const hasOpenClass = el.className.includes('--open');
+      
+      if (isVisible && hasOpenClass) {
+        modalFound = true;
+        
+        // Force MAXIMUM z-index but DON'T MOVE IT
+        el.style.setProperty('z-index', '2147483647', 'important');
+        el.style.setProperty('position', 'fixed', 'important');
+        
+        // CRITICAL: Eliminate stacking context from ALL parent containers
+        let parent = el.parentElement;
+        while (parent && parent !== document.body) {
+          parent.style.setProperty('position', 'static', 'important');
+          parent.style.setProperty('overflow', 'visible', 'important');
+          parent.style.setProperty('z-index', 'auto', 'important');
+          parent.style.setProperty('transform', 'none', 'important');
+          parent.style.setProperty('perspective', 'none', 'important');
+          parent.style.setProperty('will-change', 'auto', 'important');
+          parent.style.setProperty('isolation', 'auto', 'important');
+          parent = parent.parentElement;
+        }
+      }
+    });
+    
+    if (!modalFound) {
+      // Restore container styles when modal closes
+      const containers = document.querySelectorAll('.featured-item-video, .featured-item, .featured-item-row, .featured-grid');
+      containers.forEach(container => {
+        container.style.removeProperty('position');
+        container.style.removeProperty('overflow');
+        container.style.removeProperty('z-index');
+        container.style.removeProperty('transform');
+        container.style.removeProperty('perspective');
+        container.style.removeProperty('will-change');
+        container.style.removeProperty('isolation');
+      });
+    }
+  }
+  
+  // MutationObserver to detect when modals are added or modified in the DOM
+  const modalObserver = new MutationObserver((mutations) => {
+    let needsCheck = false;
+    
+    mutations.forEach((mutation) => {
+      // Check if nodes were added
+      if (mutation.addedNodes.length) {
+        mutation.addedNodes.forEach(node => {
+          if (node.nodeType === 1) { // Element node
+            const style = window.getComputedStyle(node);
+            if (style.position === 'fixed') {
+              needsCheck = true;
+            }
+          }
+        });
+      }
+      
+      // Check if attributes changed (like style or class)
+      if (mutation.type === 'attributes' && mutation.target.nodeType === 1) {
+        const style = window.getComputedStyle(mutation.target);
+        if (style.position === 'fixed' || 
+            mutation.target.getAttribute('role') === 'dialog' ||
+            mutation.target.className.toLowerCase().includes('modal') ||
+            mutation.target.className.toLowerCase().includes('channelize')) {
+          needsCheck = true;
+        }
+      }
+    });
+    
+    if (needsCheck) {
+      setTimeout(ensureModalZIndex, 50);
+      setTimeout(ensureModalZIndex, 200);
+    }
+  });
+  
+  // Observe the entire body for modal additions and changes
+  modalObserver.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['style', 'class', 'role', 'aria-hidden']
+  });
+  
+  // Use setInterval as a fallback to check for modals (less frequently to avoid performance issues)
+  setInterval(ensureModalZIndex, 1000);
+  
+  // Listen for clicks on video widgets to catch modal opening
+  document.addEventListener('click', function(e) {
+    const videoWidget = e.target.closest('.featured-item-video');
+    if (videoWidget) {
+      setTimeout(ensureModalZIndex, 100);
+      setTimeout(ensureModalZIndex, 300);
+      setTimeout(ensureModalZIndex, 600);
+      setTimeout(ensureModalZIndex, 1000);
+    }
+    
+    // Also listen for close button clicks (X button)
+    const isCloseButton = e.target.closest('[aria-label*="close"]') || 
+                         e.target.closest('[class*="close"]') ||
+                         e.target.closest('button[type="button"]');
+    
+    if (isCloseButton) {
+      setTimeout(ensureModalZIndex, 100);
+      setTimeout(ensureModalZIndex, 300);
+      setTimeout(ensureModalZIndex, 600);
+    }
+  }, true);
+  
+  // Run immediately and after delay to catch dynamically loaded content
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      anchorChannelizeWidget();
+      observeChannelizeInternals();
+      ensureModalZIndex();
+      setTimeout(anchorChannelizeWidget, 1000);
+      setTimeout(anchorChannelizeWidget, 2000);
+      setTimeout(observeChannelizeInternals, 1000);
+      setTimeout(ensureModalZIndex, 1000);
+      setTimeout(ensureModalZIndex, 2000);
+    });
+  } else {
+    anchorChannelizeWidget();
+    observeChannelizeInternals();
+    ensureModalZIndex();
+    setTimeout(anchorChannelizeWidget, 1000);
+    setTimeout(anchorChannelizeWidget, 2000);
+    setTimeout(observeChannelizeInternals, 1000);
+    setTimeout(ensureModalZIndex, 1000);
+    setTimeout(ensureModalZIndex, 2000);
+  }
+  
+  // Re-anchor on window resize (with debounce)
+  let resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      anchorChannelizeWidget();
+      observeChannelizeInternals();
+    }, 250);
+  });
+  
+  // Close Channelize modals when returning to page via browser back/forward navigation
+  function closeChannelizeModals() {
+    // Find all open modals by looking for elements with the --open class
+    const openModals = document.querySelectorAll('[class*="ch-live-broadcast__modal--open"], [class*="modal--open"]');
+    
+    openModals.forEach(modal => {
+      // Try to find and click the close button using multiple selector strategies
+      let closeButton = modal.querySelector('[class*="close"]');
+      if (!closeButton) {
+        closeButton = modal.querySelector('[aria-label*="close" i]');
+      }
+      if (!closeButton) {
+        closeButton = modal.querySelector('button[class*="close"]');
+      }
+      if (!closeButton) {
+        // Try to find any button that might be a close button
+        const buttons = modal.querySelectorAll('button');
+        closeButton = Array.from(buttons).find(btn => {
+          const ariaLabel = btn.getAttribute('aria-label') || '';
+          const className = btn.className || '';
+          return ariaLabel.toLowerCase().includes('close') || className.toLowerCase().includes('close');
+        });
+      }
+      
+      if (closeButton) {
+        closeButton.click();
+      } else {
+        // If no close button found, remove the open class and hide the modal
+        modal.classList.remove('ch-live-broadcast__modal--open', 'modal--open');
+        modal.style.display = 'none';
+        modal.style.visibility = 'hidden';
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    });
+    
+    // Also check for modals in body that might be fixed position overlays
+    const bodyModals = document.querySelectorAll('body > div[class*="channelize"], body > div[class*="modal"]');
+    bodyModals.forEach(modal => {
+      const style = window.getComputedStyle(modal);
+      if (style.position === 'fixed' && style.display !== 'none') {
+        // Try to find and click the close button using multiple selector strategies
+        let closeButton = modal.querySelector('[class*="close"]');
+        if (!closeButton) {
+          closeButton = modal.querySelector('[aria-label*="close" i]');
+        }
+        if (!closeButton) {
+          closeButton = modal.querySelector('button[class*="close"]');
+        }
+        if (!closeButton) {
+          // Try to find any button that might be a close button
+          const buttons = modal.querySelectorAll('button');
+          closeButton = Array.from(buttons).find(btn => {
+            const ariaLabel = btn.getAttribute('aria-label') || '';
+            const className = btn.className || '';
+            return ariaLabel.toLowerCase().includes('close') || className.toLowerCase().includes('close');
+          });
+        }
+        
+        if (closeButton) {
+          closeButton.click();
+        } else {
+          modal.style.display = 'none';
+          modal.style.visibility = 'hidden';
+          modal.setAttribute('aria-hidden', 'true');
+        }
+      }
+    });
+    
+    // Remove the modal-open class from body if it exists
+    document.body.classList.remove('channelize-modal-open', 'modal-open');
+    
+    // Restore container styles
+    const containers = document.querySelectorAll('.featured-item-video, .featured-item, .featured-item-row, .featured-grid');
+    containers.forEach(container => {
+      container.style.removeProperty('position');
+      container.style.removeProperty('overflow');
+      container.style.removeProperty('z-index');
+      container.style.removeProperty('transform');
+      container.style.removeProperty('perspective');
+      container.style.removeProperty('will-change');
+      container.style.removeProperty('isolation');
+    });
+  }
+  
+  // Handle browser back/forward navigation
+  window.addEventListener('popstate', function(event) {
+    // Close modals when navigating back/forward
+    setTimeout(closeChannelizeModals, 100);
+    setTimeout(closeChannelizeModals, 300);
+  });
+  
+  // Handle page show event (fires when page is shown, including from back/forward cache)
+  window.addEventListener('pageshow', function(event) {
+    // If page was loaded from cache (back/forward navigation), close any open modals
+    if (event.persisted) {
+      setTimeout(closeChannelizeModals, 100);
+      setTimeout(closeChannelizeModals, 300);
+      setTimeout(closeChannelizeModals, 600);
+    }
+    
+    // Also close modals on regular page show (in case they were left open)
+    setTimeout(closeChannelizeModals, 100);
+  });
+  
+  // Close modals on initial page load if they're somehow already open
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(closeChannelizeModals, 500);
+      setTimeout(closeChannelizeModals, 1000);
+    });
+  } else {
+    setTimeout(closeChannelizeModals, 500);
+    setTimeout(closeChannelizeModals, 1000);
+  }
+</script>
+
+<section class="video-detail page-width">
+  
+  {% comment %} Section 1: Video + Featured Bundle + Video Info {% endcomment %}
+  <div class="hero-section">
+    <div class="hero-container">
+      {% comment %} Check if bundle or bundle description exists {% endcomment %}
+      {% assign has_bundle = false %}
+      {% if metaobject.featured_bundle %}
+        {% assign has_bundle = true %}
+      {% endif %}
+      {% if metaobject.featured_bundle_description and metaobject.featured_bundle_description != blank %}
+        {% assign has_bundle = true %}
+      {% endif %}
+      
+      <div class="hero-grid{% unless has_bundle %} no-bundle{% endunless %}">
+        <!-- Left: Main Video -->
+        <div class="hero-video">
+          {% if metaobject.video_url %}
+            {% assign video_id = metaobject.video_url | split: 'v=' | last %}
+            <div class="video-container">
+              <iframe 
+                src="https://www.youtube.com/embed/{{ video_id }}"
+                title="{{ metaobject.title }}"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+          {% endif %}
+        </div>
+        
+        <!-- Right: Featured Bundle with Subtitle and Description -->
+        {% if has_bundle %}
+        <div class="hero-product">
+          <h3 class="hero-subtitle">FEATURED BUNDLE</h3>
+          
+          {% if metaobject.featured_bundle %}
+            {% assign featured_bundle = metaobject.featured_bundle.value %}
+            
+            <div class="hero-product-card">
+              {% if featured_bundle.featured_image %}
+                <div class="hero-product-image">
+                  <a href="{{ featured_bundle.url }}">
+                    <img src="{{ featured_bundle.featured_image | img_url: '200x300' }}" alt="{{ featured_bundle.title }}">
+                  </a>
+                </div>
+              {% endif %}
+              
+              <div class="hero-product-info">
+                <h4 class="hero-product-name">
+                  <a href="{{ featured_bundle.url }}">{{ featured_bundle.title | upcase }}</a>
+                </h4>
+                <p class="hero-product-price">{{ featured_bundle.price | money }}</p>
+                
+                {% assign bundle_variants_count = featured_bundle.variants.size %}
+                {% if bundle_variants_count > 1 %}
+                  <a href="{{ featured_bundle.url }}" class="btn-view-product">
+                    <svg class="btn-view-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                    </svg>
+                    View product
+                  </a>
+                {% else %}
+                  <form action="/cart/add" method="post" enctype="multipart/form-data" style="display: inline;">
+                    <input type="hidden" name="id" value="{{ featured_bundle.variants.first.id }}">
+                    <button type="submit" class="btn-view-product">
+                      <svg class="btn-view-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                      </svg>
+                      Add to cart
+                    </button>
+                  </form>
+                {% endif %}
+              </div>
+            </div>
+            
+            <div class="hero-product-description">
+              {% if metaobject.featured_bundle_description %}
+                <p>{{ metaobject.featured_bundle_description | strip_html }}</p>
+              {% elsif featured_bundle.description %}
+                <p>{{ featured_bundle.description | strip_html }}</p>
+              {% else %}
+                <p>Discover this amazing bundle from our collection.</p>
+              {% endif %}
+            </div>
+          {% else %}
+            <div class="hero-product-placeholder">
+              <div class="placeholder-image"></div>
+              <div class="placeholder-info">
+                <h4 class="hero-product-name">Bundle Name</h4>
+                <p class="placeholder-price">$00.00</p>
+                <a href="#" class="btn-view-product">
+                  <svg class="btn-view-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                  </svg>
+                  View product
+                </a>
+              </div>
+            </div>
+            <div class="placeholder-description">
+              <p>Bundle description will appear here. This is a placeholder text to show the layout.</p>
+            </div>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+      
+      {% comment %} Video Title and Description inside hero section {% endcomment %}
+      <div class="video-info-section">
+        <h1 class="video-title">{{ metaobject.title | default: "Video Title" }}</h1>
+        <div class="video-description">
+          {% if metaobject.description %}
+            <p>{{ metaobject.description | newline_to_br }}</p>
+          {% else %}
+            <p>This is where the video description will appear. It provides context and details about the video content.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  {% comment %} Section 3: Featured Products Grid (2 columns with product + video) {% endcomment %}
+  <div class="featured-products-section">
+    <h2 class="section-title">FEATURED PRODUCTS</h2>
+    
+    <div class="featured-grid">
+      {% if metaobject.products and metaobject.products.value %}
+        {% for product in metaobject.products.value %}
+          {% comment %} Reset playlist_id for each product iteration {% endcomment %}
+          {% assign playlist_id = '' %}
+          
+          {% comment %} Detect if this is a variant or a product {% endcomment %}
+          {% if product.product %}
+            {% comment %} This is a variant - use product.product to access the parent product {% endcomment %}
+            {% assign product_obj = product.product %}
+            {% assign product_url = product.product.url %}
+            {% assign product_price = product.price %}
+            {% assign product_metafields = product.product.metafields %}
+            {% assign is_variant = true %}
+            {% assign variant_obj = product %}
+          {% else %}
+            {% comment %} This is a product - use directly {% endcomment %}
+            {% assign product_obj = product %}
+            {% assign product_url = product.url %}
+            {% assign product_price = product.price %}
+            {% assign product_metafields = product.metafields %}
+            {% assign is_variant = false %}
+          {% endif %}
+          
+          <div class="featured-item">
+            <div class="featured-item-row">
+              <div class="featured-item-product">
+                <div class="product-image">
+                  {% comment %} For variants, try to use variant image first, then fallback to product image {% endcomment %}
+                  {% if is_variant and variant_obj.image %}
+                    <a href="{{ product_url }}">
+                      <img src="{{ variant_obj.image | img_url: '200x200' }}" alt="{{ product_obj.title }}" data-product-index="{{ forloop.index }}" class="product-variant-image">
+                    </a>
+                  {% elsif product_obj.featured_image %}
+                    <a href="{{ product_url }}">
+                      <img src="{{ product_obj.featured_image | img_url: '200x200' }}" alt="{{ product_obj.title }}" data-product-index="{{ forloop.index }}" class="product-variant-image">
+                    </a>
+                  {% else %}
+                    <img src="https://via.placeholder.com/200x200" alt="{{ product_obj.title }}" data-product-index="{{ forloop.index }}" class="product-variant-image">
+                  {% endif %}
+                </div>
+                <div class="product-details">
+                  <h3 class="product-name">
+                    <a href="{{ product_url }}">{{ product_obj.title | upcase }}</a>
+                  </h3>
+                  
+                  {% comment %} Check if product has multiple variants {% endcomment %}
+                  {% assign variants_count = product_obj.variants.size %}
+                  {% comment %} Only show price if product has single variant (price is shown in dropdown for multiple variants) {% endcomment %}
+                  {% if variants_count <= 1 %}
+                    <p class="product-price" data-product-index="{{ forloop.index }}">{{ product_price | money }}</p>
+                  {% endif %}
+                  
+                  {% if variants_count > 1 %}
+                    {% comment %} Product has multiple variants - show dropdown {% endcomment %}
+                    <form action="/cart/add" method="post" enctype="multipart/form-data" class="add-to-cart-form" data-add-to-cart-form>
+                      <div class="variant-selector">
+                        <select name="id" id="variant-select-{{ forloop.index }}" data-product-index="{{ forloop.index }}" required>
+                          {% for variant in product_obj.variants %}
+                            {% if variant.image %}
+                              {% assign variant_image_url = variant.image | img_url: '200x200' %}
+                            {% elsif product_obj.featured_image %}
+                              {% assign variant_image_url = product_obj.featured_image | img_url: '200x200' %}
+                            {% else %}
+                              {% assign variant_image_url = '' %}
+                            {% endif %}
+                            <option value="{{ variant.id }}" data-price-formatted="{{ variant.price | money }}" data-image-url="{{ variant_image_url }}" {% if is_variant and variant_obj.id == variant.id %}selected{% endif %} {% if variant.available == false %}disabled{% endif %}>
+                              {{ variant.title }} - {{ variant.price | money }}{% unless variant.available %} (Sold out){% endunless %}
+                            </option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                      <button type="submit" class="btn-add-to-cart" data-add-to-cart-button>ADD TO CART</button>
+                    </form>
+                  {% else %}
+                    {% comment %} Product has only one variant - direct add to cart {% endcomment %}
+                    <form action="/cart/add" method="post" enctype="multipart/form-data" class="add-to-cart-form" data-add-to-cart-form>
+                      <input type="hidden" name="id" value="{{ product_obj.variants.first.id }}">
+                      <button type="submit" class="btn-add-to-cart" data-add-to-cart-button>ADD TO CART</button>
+                    </form>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="featured-item-video">
+                {% comment %} Determine playlist ID based on video category {% endcomment %}
+                
+                {% if metaobject.category == 'fierceaging' %}
+                  {% comment %} For fierceaging videos: get video identifier and lookup in JSON {% endcomment %}
+                  {% comment %} Try direct property access first (metaobject fields are often direct properties) {% endcomment %}
+                  {% assign video_identifier = metaobject.video_identifier %}
+                  
+                  {% comment %} If direct access is empty, try metafields access {% endcomment %}
+                  {% if video_identifier == blank %}
+                    {% assign video_identifier = metaobject.metafields.custom.video_identifier %}
+                  {% endif %}
+                  
+                  {% comment %} Try with .value {% endcomment %}
+                  {% if video_identifier == blank %}
+                    {% assign video_identifier = metaobject.metafields.custom.video_identifier.value %}
+                  {% endif %}
+                  
+                  {% comment %} Try alternative access methods {% endcomment %}
+                  {% if video_identifier == blank %}
+                    {% assign video_identifier = metaobject.metafields['custom']['video_identifier'] %}
+                  {% endif %}
+                  
+                  {% if video_identifier == blank %}
+                    {% assign video_identifier = metaobject.metafields['custom']['video_identifier'].value %}
+                  {% endif %}
+                  
+                  {% assign playlists_metafield = product_metafields.custom.fierceaging_playlists.value %}
+                  
+                  {% comment %} Try without .value if .value is empty {% endcomment %}
+                  {% if playlists_metafield == blank %}
+                    {% assign playlists_metafield = product_metafields.custom.fierceaging_playlists %}
+                  {% endif %}
+                  
+                  {% if playlists_metafield %}
+                    {% assign playlists_json = playlists_metafield %}
+                    
+                    {% comment %} Reset playlist_id to ensure clean state {% endcomment %}
+                    {% assign playlist_id = '' %}
+                    
+                    {% comment %} Dynamic lookup: Try to access JSON dynamically using the video_identifier {% endcomment %}
+                    {% if video_identifier != blank %}
+                      {% assign video_identifier_clean = video_identifier | strip %}
+                      
+                      {% comment %} Try direct access with original case {% endcomment %}
+                      {% assign playlist_id = playlists_json[video_identifier_clean] %}
+                      
+                      {% comment %} Try capitalized version {% endcomment %}
+                      {% if playlist_id == blank %}
+                        {% assign video_identifier_capitalized = video_identifier_clean | capitalize %}
+                        {% assign playlist_id = playlists_json[video_identifier_capitalized] %}
+                      {% endif %}
+                      
+                      {% comment %} Try lowercase version {% endcomment %}
+                      {% if playlist_id == blank %}
+                        {% assign video_identifier_lower = video_identifier_clean | downcase %}
+                        {% assign video_identifier_lower_capitalized = video_identifier_lower | capitalize %}
+                        {% assign playlist_id = playlists_json[video_identifier_lower_capitalized] %}
+                      {% endif %}
+                      
+                      {% comment %} Try uppercase version {% endcomment %}
+                      {% if playlist_id == blank %}
+                        {% assign video_identifier_upper = video_identifier_clean | upcase %}
+                        {% assign playlist_id = playlists_json[video_identifier_upper] %}
+                      {% endif %}
+                      
+                      {% comment %} If still blank, try string-based extraction from JSON {% endcomment %}
+                      {% if playlist_id == blank %}
+                        {% assign json_string = playlists_json | json %}
+                        {% assign search_key = '"' | append: video_identifier_clean | append: '"' %}
+                        {% assign search_key_capitalized = '"' | append: video_identifier_capitalized | append: '"' %}
+                        
+                        {% if json_string contains search_key %}
+                          {% comment %} Extract value after the key {% endcomment %}
+                          {% assign key_with_colon = search_key | append: ':' %}
+                          {% assign after_key = json_string | split: key_with_colon | last %}
+                          {% assign value_part = after_key | split: '"' | first %}
+                          {% if value_part != blank %}
+                            {% assign playlist_id = value_part %}
+                          {% endif %}
+                        {% elsif json_string contains search_key_capitalized %}
+                          {% assign key_with_colon = search_key_capitalized | append: ':' %}
+                          {% assign after_key = json_string | split: key_with_colon | last %}
+                          {% assign value_part = after_key | split: '"' | first %}
+                          {% if value_part != blank %}
+                            {% assign playlist_id = value_part %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                    
+                    {% comment %} Final fallback: ONLY use if video_identifier is truly blank or empty {% endcomment %}
+                    {% if playlist_id == blank and (video_identifier == blank or video_identifier == '') %}
+                      {% assign json_string = playlists_json | json %}
+                      {% comment %} Extract first available playlist_id from JSON {% endcomment %}
+                      {% if json_string contains '":"' %}
+                        {% assign first_value = json_string | split: '":"' | last | split: '"' | first %}
+                        {% if first_value != blank %}
+                          {% assign playlist_id = first_value %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                {% else %}
+                  {% comment %} For tutorials videos: use the standard shoppable_playlist metafield {% endcomment %}
+                  {% assign playlist_id = product_metafields.custom.shoppable_playlist %}
+                {% endif %}
+                
+                {% comment %} DIAGNOSTIC: Log playlist_id resolution {% endcomment %}
+                {% if playlist_id != blank %}
+                  {% assign playlist_id_clean = playlist_id | strip %}
+                  <channelize-shoppable-videos-playlist
+                    playlist_id="{{ playlist_id_clean }}"
+                    size="lg"
+                    navigation_type="QUICK_OPEN"
+                    data-product-index="{{ forloop.index }}"
+                    data-category="{{ metaobject.category }}"
+                    data-video-identifier="{{ video_identifier }}"
+                    data-debug="true">
+                  </channelize-shoppable-videos-playlist>
+                  {% comment %} DIAGNOSTIC COMMENT - Remove after fixing: playlist_id={{ playlist_id_clean }}, product={{ product_obj.title }}, category={{ metaobject.category }}, video_identifier={{ video_identifier }} {% endcomment %}
+                {% else %}
+                  <div class="video-thumbnail" data-debug="no-playlist-id" data-product-index="{{ forloop.index }}" data-category="{{ metaobject.category }}">
+                    <img src="https://via.placeholder.com/300x200?text=No+Video" alt="No Video">
+                    {% comment %} DIAGNOSTIC COMMENT - Remove after fixing: NO PLAYLIST_ID - product={{ product_obj.title }}, category={{ metaobject.category }}, video_identifier={{ video_identifier }}, playlists_metafield={{ playlists_metafield | json | slice: 0, 100 }}, product_metafields={{ product_metafields | json | slice: 0, 100 }} {% endcomment %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <!-- Placeholder items if no products -->
+        {% for i in (1..4) %}
+          <div class="featured-item">
+            <div class="featured-item-row">
+              <div class="featured-item-product">
+                <div class="product-image">
+                  <img src="https://via.placeholder.com/200x200" alt="Product {{ i }}">
+                </div>
+                <div class="product-details">
+                  <h3 class="product-name">PRODUCT NAME {{ i }}</h3>
+                  <p class="product-price">$00.00</p>
+                  <button type="button" class="btn-add-to-cart" disabled>ADD TO CART</button>
+                </div>
+              </div>
+              <div class="featured-item-video">
+                <channelize-shoppable-videos-playlist
+                  playlist_id="7863bba4-b4f3-11f0-97e5-f3ee3e2246b5"
+                  size="lg"
+                  navigation_type="QUICK_OPEN">
+                </channelize-shoppable-videos-playlist>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+  
+</section>
+
+<!-- Channelize Shoppable Videos Playlist Script - Load once for all widgets -->
+<script>
+  // DIAGNOSTIC SCRIPT - Remove after fixing the issue
+  (function() {
+    console.log('=== CHANNELIZE PLAYLIST DIAGNOSTICS ===');
+    console.log('Page URL:', window.location.href);
+    console.log('Timestamp:', new Date().toISOString());
+    
+    // Check if playlist elements exist in DOM immediately
+    const playlistElementsInitial = document.querySelectorAll('channelize-shoppable-videos-playlist');
+    console.log('Initial playlist elements found:', playlistElementsInitial.length);
+    
+    // Check elements without playlist_id
+    const noPlaylistElements = document.querySelectorAll('[data-debug="no-playlist-id"]');
+    console.log('Elements WITHOUT playlist_id:', noPlaylistElements.length);
+    noPlaylistElements.forEach(function(el, index) {
+      console.log('Missing playlist_id element #' + (index + 1) + ':', {
+        productIndex: el.getAttribute('data-product-index'),
+        category: el.getAttribute('data-category'),
+        parentProduct: el.closest('.featured-item') ? el.closest('.featured-item').querySelector('.product-name')?.textContent?.trim() : 'N/A'
+      });
+    });
+    
+    // Check if playlist elements exist in DOM after delay
+    setTimeout(function() {
+      const playlistElements = document.querySelectorAll('channelize-shoppable-videos-playlist');
+      console.log('=== AFTER 2 SECONDS ===');
+      console.log('Found playlist elements:', playlistElements.length);
+      
+      playlistElements.forEach(function(el, index) {
+        const playlistId = el.getAttribute('playlist_id');
+        console.log('Playlist element #' + (index + 1) + ':', {
+          playlist_id: playlistId,
+          hasId: !!playlistId,
+          idLength: playlistId ? playlistId.length : 0,
+          productIndex: el.getAttribute('data-product-index'),
+          category: el.getAttribute('data-category'),
+          videoIdentifier: el.getAttribute('data-video-identifier'),
+          elementVisible: el.offsetParent !== null,
+          elementDisplay: window.getComputedStyle(el).display,
+          elementHeight: el.offsetHeight,
+          elementWidth: el.offsetWidth,
+          hasContent: el.innerHTML.length > 0,
+          innerHTMLPreview: el.innerHTML.substring(0, 200)
+        });
+      });
+      
+      // Check if Channelize script is loaded
+      const channelizeScript = document.getElementById('channelize-shoppable-videos-playlist-1762192947868');
+      const scriptBySrc = document.querySelector('script[src*="shoppable-videos-playlist-embed.js"]');
+      console.log('Channelize script status:', {
+        scriptElementExists: !!channelizeScript,
+        scriptBySrcExists: !!scriptBySrc,
+        scriptSrc: scriptBySrc ? scriptBySrc.src : 'N/A',
+        scriptLoaded: scriptBySrc ? scriptBySrc.onload !== null : false
+      });
+      
+      // Check if custom element is defined
+      try {
+        const customElementDefined = customElements.get('channelize-shoppable-videos-playlist') !== undefined;
+        console.log('Custom element defined:', customElementDefined);
+        if (!customElementDefined) {
+          console.warn('WARNING: channelize-shoppable-videos-playlist custom element is NOT defined!');
+        }
+      } catch(e) {
+        console.error('Error checking custom element:', e);
+      }
+      
+      // Check window.initChannelizeShoppableVideoPlaylistOptions
+      console.log('Channelize options:', window.initChannelizeShoppableVideoPlaylistOptions);
+      
+      // Check for any Channelize-related errors in console
+      console.log('Check browser console for any Channelize-related errors');
+      
+    }, 2000);
+    
+    // Also check after 5 seconds
+    setTimeout(function() {
+      const playlistElements = document.querySelectorAll('channelize-shoppable-videos-playlist');
+      console.log('=== AFTER 5 SECONDS ===');
+      console.log('Playlist elements found:', playlistElements.length);
+      playlistElements.forEach(function(el, index) {
+        const playlistId = el.getAttribute('playlist_id');
+        console.log('Element #' + (index + 1) + ' after 5s:', {
+          playlist_id: playlistId,
+          hasContent: el.innerHTML.length > 0,
+          height: el.offsetHeight,
+          width: el.offsetWidth,
+          hasIframe: el.querySelector('iframe') !== null,
+          hasVideo: el.querySelector('video') !== null,
+          childrenCount: el.children.length
+        });
+      });
+      
+      // Final check for script
+      const scriptLoaded = document.querySelector('script[src*="shoppable-videos-playlist-embed.js"]') !== null;
+      const customElementDefined = customElements.get('channelize-shoppable-videos-playlist') !== undefined;
+      console.log('Final status:', {
+        scriptLoaded: scriptLoaded,
+        customElementDefined: customElementDefined,
+        elementsWithContent: Array.from(playlistElements).filter(el => el.innerHTML.length > 0).length
+      });
+    }, 5000);
+  })();
+</script>
+
+
+

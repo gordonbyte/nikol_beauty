@@ -1,0 +1,55 @@
+<div class="instagram-feed">
+	<div class="instagram-feed__inner">
+		<div class="instagram-feed__top">
+			<h3 class="instagram-feed__title">
+				{{ section.settings.title }}
+			</h3>
+			<a 
+				class="instagram-feed__handle desktop-only"
+				href="{{ section.settings.link }}"
+				>
+				{{ section.settings.handle }}
+			</a>
+		</div>
+		<div id="insta-feed"></div>
+		<a 
+			class="instagram-feed__handle mobile-only"
+			href="{{ section.settings.link }}"
+			>
+			{{ section.settings.handle }}
+		</a>
+	</div>
+</div>
+
+{% schema %}
+{
+  "name": "Instagram Feed",
+  "class": "instagram-feed-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Shop the feed"
+    },
+    {
+      "type": "text",
+      "id": "handle",
+      "label": "IG Handle"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "IG Link"
+    }
+  ],
+  
+  "presets": [{
+    "name": "Instagram Feed",
+    "category": "Image"
+  }]
+}
+{% endschema %}

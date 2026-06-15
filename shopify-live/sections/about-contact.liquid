@@ -1,0 +1,106 @@
+<div id="contact" class="about-contact site-about-contact-wrapper">
+  <div class="about-contact__inner">
+    <div class="about-contact__left">
+      <figure class="about-contact__image">  
+        <img 
+          src="{{ section.settings.image | image_url }}"
+          alt="{{ section.settings.image | default: shop.name }}"
+          loading="eager"
+          />
+        </figure>
+    </div>
+    <div class="about-contact__right">
+      <div class="about-contact__title">
+        {{ section.settings.title }}
+      </div>
+
+    	<div class="about-contact__copy">
+        {{ section.settings.copy }} 
+      </div>
+
+      {%- form 'contact', id: 'contact-us-page', class: 'about-contact__form' -%}
+        {%- if form.posted_successfully? -%}
+          <p class="form-success">
+            {{ 'contact.form.post_success' | t }}
+          </p>
+        {%- endif -%}
+
+        {{ form.errors | default_errors }}
+
+        <div class="about-contact__row">
+          <div class="custom-form__block">
+            <input type="text" class="contactFormText field" id="" name="contact[first_name]" placeholder="FIRST NAME*" autocapitalize="words" value=""  required/>
+          </div>
+          <div class="custom-form__block">
+            <input type="text" class="contactFormText field" id="" name="contact[last_name]" placeholder="LAST NAME*" autocapitalize="words" value=""  required/>
+          </div>
+        </div>
+
+        <div class="about-contact__row">
+          <div class="custom-form__block">
+            <input type="email" class="contactFormEmail field" id="" name="contact[email]" placeholder="EMAIL ADDRESS*" autocorrect="off" autocapitalize="off" required/>
+          </div>
+
+<!--           <div class="">
+            <fieldset class="custom-form__block custom-form__block--group">
+              <select id="reason" class="contactFormSelect field" name="contact[reason]">
+                  <option value="employment">Employment</option>
+                  <option value="Meet Nikol">Meet Nikol</option>
+              </select>
+            </fieldset>
+          </div> -->
+        </div>
+
+        <div class="about-contact__row">
+          <div class="custom-form__block">
+            <textarea rows="3" id="" class="contactFormMessage field" name="contact[body]" placeholder="MESSAGE*" required></textarea>
+          </div>
+        </div>
+
+        <div class="about-contact__row">
+          <div class="about-contact__submit">
+            <button type="submit" class="link">
+              Send Now
+            </button>
+          </div>
+        </div>
+      {%- endform -%}
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $("#reason").selectBoxIt();
+  })
+
+</script>
+
+{% schema %}
+{
+  "name": "About Contact",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "copy",
+      "label": "Copy",
+      "default": "<p>Fill Out The Form Below and we will get in touch within 48 hours.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "presets": [{
+    "name": "About Contact",
+    "category": "Image"
+  }]
+}
+{% endschema %}

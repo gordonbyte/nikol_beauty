@@ -1,0 +1,171 @@
+{%- comment -%}
+  ============================================================
+  Custom robots.txt for Nikol Beauty
+  ============================================================
+  Behavior:
+    1. Inherits Shopify's default robots rules.
+    2. REMOVES the disallow rules for /account, /policies/, /*/policies/
+       so Google can crawl those URLs and see a 'noindex' meta tag.
+       Fixes Search Console: "Indexed, though blocked by robots.txt"
+    3. Keeps all other Shopify defaults (cart, checkout, search, etc.)
+    4. Appends explicit AI crawler allow rules.
+
+  Apply at:  Online Store → Themes → … → Edit code → templates/robots.txt.liquid
+  ============================================================
+{%- endcomment -%}
+
+{%- for group in robots.default_groups -%}
+  {{- group.user_agent }}
+
+  {%- for rule in group.rules -%}
+    {%- assign skip_rule = false -%}
+    {%- if rule.directive == 'Disallow' -%}
+      {%- if rule.value == '/account' -%}{%- assign skip_rule = true -%}{%- endif -%}
+      {%- if rule.value == '/policies/' -%}{%- assign skip_rule = true -%}{%- endif -%}
+      {%- if rule.value == '/*/policies/' -%}{%- assign skip_rule = true -%}{%- endif -%}
+    {%- endif -%}
+    {%- unless skip_rule -%}
+      {{ rule }}
+    {%- endunless -%}
+  {%- endfor -%}
+
+  {%- if group.sitemap != blank %}
+    {{ group.sitemap }}
+  {%- endif %}
+
+{% endfor -%}
+
+# ============================================
+# NIKOL BEAUTY - AI CRAWLER RULES
+# ============================================
+
+# --- OpenAI / ChatGPT ---
+User-agent: GPTBot
+Allow: /
+Disallow: /checkout
+Disallow: /cart
+Disallow: /account
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /checkout
+Disallow: /cart
+Disallow: /account
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /checkout
+Disallow: /cart
+Disallow: /account
+
+# --- Anthropic / Claude ---
+User-agent: ClaudeBot
+Allow: /
+Disallow: /checkout
+Disallow: /cart
+Disallow: /account
+
+# --- Perplexity AI ---
+User-agent: PerplexityBot
+Allow: /
+Disallow: /checkout
+Disallow: /cart
+Disallow: /account
+
+# --- Google AI / Gemini ---
+User-agent: Google-Extended
+Allow: /
+Disallow: /checkout
+Disallow: /cart
+Disallow: /account
+
+# --- Apple Intelligence ---
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /checkout
+Disallow: /cart
+Disallow: /account
+
+# --- Common Crawl (feeds many open-source LLMs) ---
+User-agent: CCBot
+Allow: /
+Disallow: /checkout
+Disallow: /cart
+Disallow: /account
+
+# --- Amazon (Alexa / Rufus / Bedrock training) ---
+User-agent: Amazonbot
+Allow: /
+Disallow: /checkout
+Disallow: /cart
+Disallow: /account
+
+# --- ByteDance / TikTok ---
+User-agent: Bytespider
+Allow: /
+Disallow: /checkout
+Disallow: /cart
+Disallow: /account
+
+# --- Cohere ---
+User-agent: cohere-ai
+Allow: /
+Disallow: /checkout
+Disallow: /cart
+Disallow: /account
+
+# --- Meta AI ---
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /checkout
+Disallow: /cart
+Disallow: /account
+
+User-agent: FacebookBot
+Allow: /
+Disallow: /checkout
+Disallow: /cart
+Disallow: /account
+
+# --- Mistral AI ---
+User-agent: MistralAI-User
+Allow: /
+Disallow: /checkout
+Disallow: /cart
+Disallow: /account
+
+# --- Diffbot ---
+User-agent: Diffbot
+Allow: /
+Disallow: /checkout
+Disallow: /cart
+Disallow: /account
+
+# --- Naver Yeti ---
+User-agent: Yeti
+Allow: /
+Disallow: /checkout
+Disallow: /cart
+Disallow: /account
+
+# --- DuckAssist (DuckDuckGo) ---
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /checkout
+Disallow: /cart
+Disallow: /account
+
+# --- You.com ---
+User-agent: YouBot
+Allow: /
+Disallow: /checkout
+Disallow: /cart
+Disallow: /account
+
+# ===========================================================
+# Channelize live-stream pages - ephemeral content
+# Saves crawl budget on /pages/streams/{UUID} URLs.
+# The parent /pages/streams gallery remains crawlable.
+# ===========================================================
+User-agent: *
+Disallow: /pages/streams/

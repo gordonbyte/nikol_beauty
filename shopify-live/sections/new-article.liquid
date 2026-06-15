@@ -1,0 +1,289 @@
+<section
+  class="article--single section-padding"
+  data-section-id="{{ section.id }}"
+  data-section-type="article"
+  style="{{ style }}">
+
+  <div class="article-hero">
+    <div class="article-hero__inner">
+      <div class="article-hero__left">
+        <div class="article-hero__tags">
+            {%- if article.tags.size > 0 -%}
+              <div class="article-hero__tags">
+                {%- for tag in article.tags limit: 3 -%}
+                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}" title="{{ blog.title }} tagged {{ tag | escape }}" class="article-hero__tag">{{ tag }}</a>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+        </div>
+        <h1 class="article-hero__title">{{ article.title }}</h1>
+        {%- assign published_at = article.published_at | date: format: 'full_date' -%}    
+        <time datetime="{{ published_at }}">{{ published_at }}</time>
+      </div>
+      <div class="article-hero__right">
+        <figure
+          class="article-hero__image"
+          style="--article-hero-aspect-ratio: {{ article.image.aspect_ratio | default: 1 }};"
+        >
+          <img 
+            src="{{ article.image | image_url }}"
+            alt="{{ article.image | default: shop.name }}"
+            loading="eager"
+            />
+          </figure>
+      </div>
+    </div>
+  </div>
+
+    <div class="wrapper article__wrapper">
+      <div class="">
+        <article class="article">
+          <div class="article__content__wrapper">
+            <div class="article__content rte">
+            {{ article.metafields.custom.takeaways | metafield_tag }}
+              {% assign divider = '[PROD]' %}
+              {% assign dividerClose = '[/PROD]' %}
+              {% assign text = article.content | split: divider %} 
+
+              {{ text[0] }}
+
+              {% for divider in text offset:1 %}
+                {% assign x = forloop.index %}
+                {% assign newtext = text[x] | split: dividerClose %}
+                {% assign productHandle = newtext[0] %}     
+
+                {% assign product = all_products[productHandle] %}  
+                  <!-- Render your product block here -->
+                  <div class="article__product">
+                    {% render 'product-grid-item', product: product, loading: 'no-lazy' %}
+                  </div>
+                {{ newtext[1] }}
+              {% endfor %}
+
+            </div>
+          </div>
+
+          <div class="article__signature">
+            Bold, Fierce, Unapologetic <img src="{{ 'signature-new.png' | asset_url }}" alt="logo" />    
+          </div>
+        </article>
+      </div>
+   
+     {%- if blog.comments_enabled? -%}
+
+     <div class="article__comments">
+        <div class="js-toggle-comments article__comments-button">
+            Comments({{ article.comments_count }}) <span class="divider"></span> <span class="article__comments-button-label">Join the conversation</span>
+        </div>
+
+        <div class="comments-wrapper">
+            <div class="comments-container">
+              <!-- /partials/article-comments.liquid -->
+
+              <div class="comments-form">
+                <div class="hr"></div>
+                <h3 class="comments__title">Leave your comment below</h3>
+                <div class="hr"></div>
+                {% form article %}
+                  {% if form.posted_successfully? %}
+                      {% if blog.moderated? %}
+                          <p class="flash"><em>{{ 'blogs.comments.success_moderated' | t }}</em></p>
+                      {% else %}
+                          <p class="flash"><em>{{ 'blogs.comments.success' | t }}</em></p>
+                      {% endif %}
+                  {% endif %}
+                  {% if form.errors %}
+                      <p class="error">{{ 'general.forms.post_error' | t }}</p>
+                  {% endif %}
+                  <div class="form-row">
+                    <div class="form-field">
+                      <input type="text" id="comment_author" name="comment[author]" value="{{ form.author }}" placeholder="FIRST NAME *" />
+                    </div>
+                    <div class="form-field">
+                      <input type="text" id="comment_email" name="comment[email]" value="{{ form.email }}" placeholder="EMAIL ADDRESS *" />
+                    </div>
+                  </div>
+                  <div class="form-field">
+                    <textarea id="comment_body" name="comment[body]" rows="3" placeholder="MESSAGE *" >{{ form.body }}</textarea>
+                  </div>
+
+                  <div class="form-field">
+                    <div class="form__legal">
+                      {{ 'shopify.online_store.spam_detection.disclaimer_html' | t }}
+                    </div>
+                    {% if blog.moderated? %}
+                      <p><em>{{ 'blogs.comments.moderated' | t }}</em></p>
+                    {% endif %}
+
+                    <input type="submit" value="Post Now" id="comment-submit" class="link" />
+
+                    {% if form.errors %}
+                      <script>
+                        window.location.hash = '#add-comment-title';
+                      </script>
+                    {% endif %}
+
+                    {% if form.posted_successfully? %}
+                      <script>
+                        window.location.hash = '#comments';
+                      </script>
+                    {% endif %}
+
+                  </div>
+                {% endform %}
+              </div>
+
+              {% paginate article.comments by 5 %}
+                {% if article.comments_count > 0 %}
+                  <div class="comments__list" id="comments">
+                    <div class="hr"></div>
+                    {% assign number_of_comments = article.comments_count %}
+                    <h3 class="comments__list-title">Comments</h3>
+                    <div class="hr"></div>
+                    <!-- a "just published" comment -->
+                    {% if comment and comment.created_at %}
+                      <div id="comment-{{ comment.id }}" class="comment">
+                        <div class="comment-body">
+                          <div class="comment-meta">
+                            {% assign comment_date = comment.created_at | date: format: 'full_date' %}
+                            <span class="author">{{ comment.author }}</span>
+                          </div>
+                          {{ comment.content }}
+                        </div>
+                      </div>
+                    {% endif %}
+                    <!-- previous comments -->
+                    {% for comment in article.comments %}
+                      <div id="comment-{{ comment.id }}" class="comment">
+                        <div class="comment-body">
+                          <div class="comment-meta">
+                            {% assign comment_date = comment.created_at | date: format: 'full_date' %}
+                            <span class="author">{{ comment.author }}</span>
+                          </div>
+                          {{ comment.content }}
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+
+                {% if paginate.pages > 1 %}
+                  <div class="paginate">
+                    {% if paginate.previous %}
+                        <span class="left">{{ '&larr;' | link_to: paginate.previous.url }}</span>
+                    {% endif %}
+                    {% for part in paginate.parts %}
+                      {% if part.is_link %}
+                        <span class="num">{{ part.title | link_to: part.url }}</span>
+                      {% else %}
+                        <span class="num current">{{ part.title }}</span>
+                      {% endif %}
+                    {% endfor %}
+                    {% if paginate.next %}
+                      <span class="right">{{ '&rarr;' | link_to: paginate.next.url }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="hr"></div>
+                {% endif %}
+
+                
+              {% endpaginate %}
+
+            </div>
+
+            <div class="share">
+              {%- assign share_url = article.url | prepend: request.origin -%}
+              <label class="share__label">Share</label>
+              <a class="share__link" href="https://www.facebook.com/sharer.php?u={{ share_url }}">Facebook</a>
+              <a class="share__link" href="https://twitter.com/intent/tweet?url={{ share_url }}">Twitter</a>
+            </div>
+        </div>
+        <!-- end comments -->
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="related-articles">
+    <h2 class="related-articles__title">
+      Related <span>Posts</span>
+    </h2>
+    <div class="related-articles__inner">
+    {% assign currentHandle = article.handle %}
+      {% assign articlesFound = 0 %}
+      {% for addin in blogs[blog.handle].articles %}
+        {% unless addin.handle == currentHandle %}
+         {% render 'related-article', article: addin %}
+         {% assign articlesFound = articlesFound |plus: 1 %}
+         {% if articlesFound == 3 %}{% break %}{% endif %}
+        {% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ article.title | escape }}",
+  "description": "{{ article.excerpt_or_content | strip_html | truncate: 160 | escape }}",
+  "image": "{{ article.image | image_url: width: 1200 }}",
+  "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
+  "dateModified": "{{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ canonical_url }}"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Nikol Johnson",
+    "jobTitle": "Licensed Esthetician",
+    "url": "https://nikolbeauty.com/pages/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nikol Beauty",
+    "url": "https://nikolbeauty.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://nikolbeauty.com/cdn/shop/files/Nikol_logo.png?v=1712979254&width=115"
+    }
+  }
+}
+</script>
+
+{% schema %}
+  {
+    "name": "Article page",
+    "templates": ["article"],
+    "settings": [
+      {
+        "type": "header",
+        "content": "Hero"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_image",
+        "label": "Show image",
+        "default": true
+      }
+    ],
+    "blocks": [
+      {
+        "type": "@app"
+      },
+      {
+        "type": "recent",
+        "name": "Recent articles",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Recent articles"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

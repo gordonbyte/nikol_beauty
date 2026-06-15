@@ -1,0 +1,37 @@
+<div 
+  class="subscribe-form" 
+  data-section-id="{{ section.id }}" 
+  data-section-type="subscribe-form"
+  >
+  <div class="subscribe-form__inner">
+    <div class="subscribe-form__left">
+      {{ section.settings.title }}
+    </div>
+    <div class="subscribe-form__right">
+      {% render 'klaviyo-form' %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Subscribe Form",
+  "class": "section-subscribe-form",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Let's get this beauty started."
+    }
+  ],
+  "presets": [{
+    "name": "Subscribe Form",
+    "category": "Image"
+  }]
+}
+{% endschema %}

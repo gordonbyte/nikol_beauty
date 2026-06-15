@@ -1,0 +1,445 @@
+<style>
+section.cw-makeup-developed-section {
+    background-size: cover;
+    background-position: bottom;
+    padding: 40px 0px;
+}
+
+.cw-makeup-developed-image img {
+    width: 100%;
+}
+
+.cw-makeup-developed-parent {
+    display: flex;
+    align-items: center;
+    gap: 120px;
+}
+
+.cw-makeup-developed-left {
+    width: 50%;
+}
+
+.cw-makeup-developed-right {
+    width: 50%;
+}
+
+.cw-makeup-developed-title {
+    color: #2A2724;
+    font-size: 56px;
+    line-height: 110%;
+    font-family: 'Cormorant';
+    letter-spacing: -3px;
+    text-transform: capitalize;
+}
+
+.cw-makeup-developed-subtitle {
+    color: #2A2724;
+    font-family: 'Inter';
+    font-size: 20px;
+    line-height: 140%;
+    font-weight: 400;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.cw-makeup-developed-description p {
+    color: #2A2724;
+    font-weight: 400;
+    font-family: 'Inter';
+    font-size: 18px;
+    line-height: 150%;
+    width: 100%;
+}
+
+.cw-makeup-developed-description {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cw-makeup-developed-description p strong {
+    font-weight: 700;
+}
+
+.cw-blog-image img {
+    width: 100%;
+}
+section.cw-makeup-developed-section.cw-beauty-advice-sec .cw-makeup-developed-right {
+    position: relative;
+}
+.cw-blog-nav.cw-blog-prev {
+    position: absolute;
+    top: 40%;
+    z-index: 1;
+}
+
+.cw-blog-nav.cw-blog-next {
+    position: absolute;
+    top: 40%;
+    z-index: 1;
+    right: 0;
+}
+
+.cw-blog-image {
+    position: relative;
+}
+
+.cw-blog-image:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0.35) 45%,
+    rgba(0,0,0,0.65) 100%
+  );
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.cw-blog-card {
+    position: relative;
+}
+.cw-blog-content-main {
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+    z-index: 9;
+}
+.cw-blog-readtime {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #fff;
+    font-size: 16px;
+    font-family: 'Inter';
+}
+
+.cw-blog-clock {
+    display: flex;
+}
+
+.cw-blog-title {
+    color: #fff;
+    font-size: 52px;
+    line-height: 120%;
+    padding-right: 20px;
+    font-family: 'Cormorant';
+    text-transform: capitalize;
+    padding: 10px 0px;
+}
+
+.cw-blog-button a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #D34270;
+    font-size: 22px;
+    font-family: 'Cormorant';
+    text-decoration: underline;
+}
+
+.cw-blog-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.cw-blog-pagination span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background: #45413B;
+}
+@media only screen and (max-width: 600px) {
+.cw-makeup-developed-parent {
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.cw-makeup-developed-left {
+    width: 100%;
+    text-align: center;
+}
+
+.cw-makeup-developed-right {
+    width: 100%;
+    order: -1;
+}
+
+.cw-makeup-developed-title {
+    font-size: 34px;
+}
+
+.cw-makeup-developed-subtitle {
+    font-size: 16px;
+    line-height: 135%;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.cw-makeup-developed-description p {
+    font-size: 16px;
+    line-height: 135%;
+}
+
+section.cw-makeup-developed-section {
+    background-size: contain;
+}
+
+section.cw-makeup-developed-section.cw-beauty-advice-sec .cw-makeup-developed-left {
+    order: -1;
+}
+
+section.cw-makeup-developed-section.cw-beauty-advice-sec .cw-banner-button.cw-beauty-advice-button {
+    width: 100%;
+}
+.cw-blog-readtime {
+    font-size: 13px;
+}
+
+.cw-blog-title {
+    font-size: 34px;
+    line-height: 110%;
+    padding: 5px 0px;
+}
+
+.cw-blog-button a {
+    font-size: 16px;
+}
+.cw-blog-nav.cw-blog-prev {
+    top: 84%;
+    left: 20%;
+}
+
+.cw-blog-nav.cw-blog-prev svg {
+    width: 30px;
+}
+
+.cw-blog-swiper .swiper-wrapper {
+}
+
+.cw-blog-pagination {
+    margin-top: -20px;
+}
+.cw-blog-pagination {
+    margin-top: 40px;
+}
+.cw-blog-swiper {
+    position: relative;
+    padding-bottom: 40px;
+}
+
+section.cw-makeup-developed-section.cw-beauty-advice-sec {}
+
+section.cw-makeup-developed-section.cw-beauty-advice-sec .cw-makeup-developed-parent {
+    gap: 0px;
+}
+
+.cw-blog-nav.cw-blog-next {
+    right: 20%;
+    top: 84%;
+}
+
+.cw-blog-nav.cw-blog-next svg {
+    width: 30px;
+}
+}
+
+  </style>
+
+<section
+  class="cw-makeup-developed-section cw-beauty-advice-sec"
+  {% if section.settings.bg_image != blank %}
+    style="background-image:url({{ section.settings.bg_image | img_url: 'master' }});"
+  {% endif %}
+>
+  <div class="page-width cw-makeup-developed-page-width">
+
+    <div class="cw-makeup-developed-parent">
+
+ 
+      <div class="cw-makeup-developed-left">
+
+        {% if section.settings.title != blank %}
+          <div class="cw-makeup-developed-title">
+            {{ section.settings.title }}
+          </div>
+        {% endif %}
+
+
+        {% if section.settings.description != blank %}
+          <div class="cw-makeup-developed-description">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+<div class="cw-desktop">
+<div class="cw-banner-button cw-beauty-advice-button">
+          <a href="{{ section.settings.button_link }}">
+            {{ section.settings.button_label }} <svg width="22" height="13" viewBox="0 0 22 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.843262 5.36644C0.377534 5.36644 0 5.74399 0 6.20972C0 6.67544 0.377534 7.05299 0.843262 7.05299H20.8433C21.309 7.05299 21.6866 6.67544 21.6866 6.20972C21.6866 5.74399 21.309 5.36644 20.8433 5.36644H0.843262ZM21.4395 6.806C21.7689 6.47668 21.7689 5.94275 21.4395 5.61343L16.073 0.24687C15.7437 -0.0824491 15.2097 -0.0824491 14.8804 0.24687C14.5511 0.576189 14.5511 1.11012 14.8804 1.43944L19.6507 6.20972L14.8804 10.98C14.5511 11.3093 14.5511 11.8432 14.8804 12.1726C15.2097 12.5019 15.7437 12.5019 16.073 12.1726L21.4395 6.806Z" fill="white"></path>
+            </svg>
+
+
+          </a>
+        </div>
+
+      </div>
+</div>
+
+    <div class="cw-makeup-developed-right">
+
+  <div class="cw-blog-swiper swiper">
+    <div class="swiper-wrapper">
+
+      {% for article in blogs['news'].articles limit:6 %}
+      <div class="swiper-slide">
+
+        <div class="cw-blog-card">
+
+     
+          <div class="cw-blog-image">
+            {% if article.image %}
+              <img src="{{ article.image | img_url: 'master' }}" alt="{{ article.title }}">
+            {% endif %}
+          </div>
+
+       <div class="cw-blog-content-main">
+          <div class="cw-blog-meta">
+
+            <div class="cw-blog-readtime">
+              <div class="cw-blog-clock">
+               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.6654 7.9987C14.6654 11.6787 11.6787 14.6654 7.9987 14.6654C4.3187 14.6654 1.33203 11.6787 1.33203 7.9987C1.33203 4.3187 4.3187 1.33203 7.9987 1.33203C11.6787 1.33203 14.6654 4.3187 14.6654 7.9987Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.4739 10.1211L8.40724 8.88781C8.04724 8.67448 7.75391 8.16115 7.75391 7.74115V5.00781" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+              </div>
+
+              <div class="cw-blog-time">
+                {{ article.content | strip_html | size | divided_by: 200 }} min read
+              </div>
+            </div>
+
+          </div>
+
+     
+          <div class="cw-blog-content">
+
+            <div class="cw-blog-title">
+              {{ article.title }}
+            </div>
+
+            <div class="cw-blog-button">
+              <a href="{{ article.url }}">READ OUR BLOG  <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.679932 4.32648C0.30445 4.32648 6.23793e-05 4.63087 6.23465e-05 5.00635C6.23136e-05 5.38183 0.30445 5.68622 0.679932 5.68622L0.679932 5.00635L0.679932 4.32648ZM14.1607 5.48709C14.4262 5.22158 14.4262 4.79111 14.1607 4.52561L9.83401 0.198947C9.56851 -0.066559 9.13804 -0.0665591 8.87253 0.198947C8.60703 0.464452 8.60703 0.894922 8.87253 1.16043L12.7185 5.00635L8.87253 8.85227C8.60702 9.11778 8.60702 9.54824 8.87253 9.81375C9.13804 10.0793 9.5685 10.0793 9.83401 9.81375L14.1607 5.48709ZM0.679932 5.00635L0.679932 5.68622L13.6799 5.68622L13.6799 5.00635L13.6799 4.32648L0.679932 4.32648L0.679932 5.00635Z" fill="#D34270"/>
+</svg>
+</a>
+            </div>
+
+          </div>
+</div>
+        </div>
+
+      </div>
+      {% endfor %}
+
+    </div>
+
+
+    <div class="cw-blog-nav cw-blog-prev cw-mobile">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="48" height="48" rx="24" fill="#45413B"></rect>
+<path d="M28.8 30.8872C28.8 30.8294 28.7855 30.7618 28.7566 30.6847C28.7277 30.6075 28.6939 30.5496 28.6554 30.511L22.1493 24.0001L28.6554 17.518C28.6939 17.4601 28.7277 17.3974 28.7566 17.3299C28.7855 17.2624 28.8 17.1997 28.8 17.1418C28.8 17.0647 28.7855 16.9923 28.7566 16.9248C28.7277 16.8573 28.6939 16.7946 28.6554 16.7367L27.8168 15.9264C27.759 15.8686 27.6963 15.8252 27.6289 15.7962C27.5614 15.7673 27.4987 15.7528 27.4409 15.7528C27.3638 15.7528 27.2915 15.7673 27.224 15.7962C27.1566 15.8252 27.1036 15.8686 27.065 15.9264L19.3445 23.6239C19.306 23.6817 19.2722 23.7444 19.2433 23.812C19.2144 23.8795 19.2 23.9422 19.2 24.0001C19.2 24.0772 19.2144 24.1496 19.2433 24.2171C19.2722 24.2846 19.306 24.3377 19.3445 24.3762L27.065 32.1026C27.1036 32.1412 27.1566 32.175 27.224 32.2039C27.2915 32.2328 27.3638 32.2473 27.4409 32.2473C27.4987 32.2473 27.5614 32.2328 27.6289 32.2039C27.6963 32.175 27.759 32.1412 27.8168 32.1026L28.6554 31.2634C28.6939 31.2248 28.7277 31.1718 28.7566 31.1043C28.7855 31.0367 28.8 30.9644 28.8 30.8872Z" fill="white"></path>
+</svg>
+    </div>
+    <div class="cw-blog-nav cw-blog-next cw-mobile">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="48" height="48" rx="24" fill="#45413B"></rect>
+<path d="M19.2 17.1129C19.2 17.1708 19.2145 17.2383 19.2434 17.3155C19.2723 17.3926 19.3061 17.4505 19.3446 17.4891L25.8507 24.0001L19.3446 30.4821C19.3061 30.54 19.2723 30.6027 19.2434 30.6702C19.2145 30.7377 19.2 30.8004 19.2 30.8583C19.2 30.9355 19.2145 31.0078 19.2434 31.0753C19.2723 31.1429 19.3061 31.2056 19.3446 31.2634L20.1832 32.0737C20.241 32.1316 20.3037 32.175 20.3711 32.2039C20.4386 32.2328 20.5013 32.2473 20.5591 32.2473C20.6362 32.2473 20.7085 32.2328 20.776 32.2039C20.8434 32.175 20.8964 32.1316 20.935 32.0737L28.6555 24.3763C28.694 24.3184 28.7278 24.2557 28.7567 24.1882C28.7856 24.1206 28.8 24.0579 28.8 24.0001C28.8 23.9229 28.7856 23.8506 28.7567 23.783C28.7278 23.7155 28.694 23.6625 28.6555 23.6239L20.935 15.8975C20.8964 15.8589 20.8434 15.8252 20.776 15.7962C20.7085 15.7673 20.6362 15.7528 20.5591 15.7528C20.5013 15.7528 20.4386 15.7673 20.3711 15.7962C20.3037 15.8252 20.241 15.8589 20.1832 15.8975L19.3446 16.7367C19.3061 16.7753 19.2723 16.8283 19.2434 16.8959C19.2145 16.9634 19.2 17.0357 19.2 17.1129Z" fill="white"></path>
+</svg>
+    </div>
+
+  
+    <div class="cw-blog-pagination"></div>
+
+  </div>
+
+</div>
+
+<div class="cw-mobile" style="width: 100%;">
+<div class="cw-banner-button cw-beauty-advice-button">
+          <a href="{{ section.settings.button_link }}">
+            {{ section.settings.button_label }} <svg width="22" height="13" viewBox="0 0 22 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.843262 5.36644C0.377534 5.36644 0 5.74399 0 6.20972C0 6.67544 0.377534 7.05299 0.843262 7.05299H20.8433C21.309 7.05299 21.6866 6.67544 21.6866 6.20972C21.6866 5.74399 21.309 5.36644 20.8433 5.36644H0.843262ZM21.4395 6.806C21.7689 6.47668 21.7689 5.94275 21.4395 5.61343L16.073 0.24687C15.7437 -0.0824491 15.2097 -0.0824491 14.8804 0.24687C14.5511 0.576189 14.5511 1.11012 14.8804 1.43944L19.6507 6.20972L14.8804 10.98C14.5511 11.3093 14.5511 11.8432 14.8804 12.1726C15.2097 12.5019 15.7437 12.5019 16.073 12.1726L21.4395 6.806Z" fill="white"></path>
+            </svg>
+
+
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  new Swiper(".cw-blog-swiper", {
+    slidesPerView: 1,
+    loop: true,
+    pagination: {
+      el: ".cw-blog-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".cw-blog-next",
+      prevEl: ".cw-blog-prev",
+    },
+  });
+</script>
+
+
+{% schema %}
+{
+  "name": "CW Beauty Advise",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Makeup Developed By Licensed Esthetician"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Our founder, <strong>Nikol Johnson-Sanchez</strong>, started running into the same issues herself after years working as a licensed esthetician and makeup artist. She realized the problem wasn't technique, it was that the formulas simply weren't made for mature skin.</p><p>So she created Nikol. Makeup designed to feel lightweight, blend easily, and actually match your skin tone and undertone.</p>"
+    },
+     {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "View All Best Sellers"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Right Side Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CW Beauty Advise"
+    }
+  ]
+}
+{% endschema %}

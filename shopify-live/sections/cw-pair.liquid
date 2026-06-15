@@ -1,0 +1,238 @@
+<style>
+.cw-pair-btn-wrap a {
+    display: flex;
+    align-items: center;
+    background: #D34270;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    height: 60px;
+    color: #fff;
+    font-family: 'Cormorant';
+    text-transform: uppercase;
+    font-size: 22px;
+    letter-spacing: 0;
+    gap: 5px;
+    font-weight: 700;
+}
+
+section.cw-pair-section {
+    padding: 40px 0px;
+}
+
+.cw-pair-parent {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    width: 100%;
+}
+
+.cw-pair-left {
+    width: 65%;
+}
+
+.cw-pair-right {
+    width: 35%;
+}
+
+.cw-pair-left img {
+    width: 100%;
+}
+
+.cw-pair-title {
+    color: #2A2724;
+    font-size: 56px;
+    line-height: 110%;
+    font-family: 'Cormorant';
+    letter-spacing: -3px;
+    text-transform: capitalize;
+}
+
+.cw-pair-desc {
+    color: #2A2724;
+    font-size: 20px;
+    line-height: 150%;
+    font-family: 'Inter';
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.cw-pair-time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.cw-pair-time img {
+    max-width: 25px;
+    object-fit: contain;
+}
+
+.cw-pair-time-text {
+    color: #2A2724;
+    font-size: 18px;
+    font-family: 'Inter';
+}
+
+
+@media only screen and (max-width: 600px) {
+.cw-pair-parent {
+    flex-wrap: wrap;
+}
+.cw-pair-parent {
+    gap: 20px;
+}
+
+.cw-pair-left {
+    width: 100%;
+}
+
+.cw-pair-right {
+    width: 100%;
+    text-align: center;
+}
+
+.cw-pair-title {
+    font-size: 34px;
+    letter-spacing: -2px;
+}
+
+.cw-pair-desc {
+    padding-top: 15px;
+    padding-bottom: 20px;
+    font-size: 16px;
+    line-height: 135%;
+}
+
+.cw-pair-btn-wrap a {
+    font-size: 18px;
+    height: 50px;
+}
+
+.cw-pair-time img {
+    max-width: 20px;
+}
+
+.cw-pair-time-text {
+    font-size: 16px;
+}
+}
+  </style>
+
+<section class="cw-pair-section">
+  <div class="page-width">
+
+    <div class="cw-pair-parent">
+
+    
+      <div class="cw-pair-left">
+        {% if section.settings.main_image != blank %}
+          <img 
+            src="{{ section.settings.main_image | img_url: 'master' }}" 
+            alt="{{ section.settings.main_image.alt | escape }}">
+        {% endif %}
+      </div>
+
+
+      <div class="cw-pair-right">
+
+        {% if section.settings.title != blank %}
+          <div class="cw-pair-title">
+            {{ section.settings.title }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <div class="cw-pair-desc">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+
+
+        <div class="cw-pair-btn-wrap">
+          <a href="{{ section.settings.button_link }}">
+             {{ section.settings.button_text }} <svg width="22" height="13" viewBox="0 0 22 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.843262 5.36644C0.377534 5.36644 -1.22974e-05 5.74399 -1.23382e-05 6.20972C-1.23789e-05 6.67544 0.377534 7.05299 0.843262 7.05299L0.843262 6.20972L0.843262 5.36644ZM21.4395 6.806C21.7689 6.47668 21.7689 5.94275 21.4395 5.61343L16.073 0.24687C15.7437 -0.0824491 15.2097 -0.0824491 14.8804 0.24687C14.5511 0.576189 14.5511 1.11012 14.8804 1.43944L19.6507 6.20972L14.8804 10.98C14.5511 11.3093 14.5511 11.8432 14.8804 12.1726C15.2097 12.5019 15.7437 12.5019 16.073 12.1726L21.4395 6.806ZM0.843262 6.20972L0.843262 7.05299L20.8433 7.05299L20.8433 6.20972L20.8433 5.36644L0.843262 5.36644L0.843262 6.20972Z" fill="white"></path>
+</svg>
+
+          </a>
+        </div>
+       
+
+        
+        {% if section.settings.clock_icon != blank or section.settings.time_text != blank %}
+          <div class="cw-pair-time">
+            {% if section.settings.clock_icon != blank %}
+              <img 
+                src="{{ section.settings.clock_icon | img_url: 'master' }}" 
+                alt="Clock icon">
+            {% endif %}
+
+            {% if section.settings.time_text != blank %}
+              <div class="cw-pair-time-text">
+                {{ section.settings.time_text }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "CW Pair",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Left Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Not Sure Which Products To Choose Or Pair?"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Take our free 1-minute quiz and we'll recommend the Nikol products that work best for your skin, undertone (cool, warm, or neutral), routine, and preferences."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "TAKE OUR QUIZ →"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "clock_icon",
+      "label": "Clock Icon"
+    },
+    {
+      "type": "text",
+      "id": "time_text",
+      "label": "Time Text",
+      "default": "Takes 1 minute"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CW Pair"
+    }
+  ]
+}
+{% endschema %}

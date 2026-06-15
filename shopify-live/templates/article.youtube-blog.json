@@ -1,0 +1,36 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "new-article",
+      "blocks": {
+        "recent-articles": {
+          "type": "recent",
+          "settings": {
+            "title": "Recent articles"
+          }
+        }
+      },
+      "block_order": [
+        "recent-articles"
+      ],
+      "custom_css": [
+        "div.metafield-rich_text_field {text-align: left; border: 1px solid #212121; padding: 10px 15px; margin: -20px auto 30px;}"
+      ],
+      "settings": {
+        "show_image": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,232 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+<style>
+    .page-width {
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.cw-pdp-feature {
+        background: #F8F3EF;
+    padding: 17px 0px !important;
+}
+
+.cw-pdp-feature-main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__mobile {
+    background: #fff !important;
+}
+
+.header__desktop {
+    background: #fff !important;
+}
+
+.cw-pdp-feature-box {
+    display: flex;
+   font-size: 16px;
+    color: #2A2724;
+    align-items: center;
+    gap: 10px;
+    font-weight: 400;
+       width: 25%;
+    justify-content: center;
+       font-family: 'Inter';
+    text-transform: capitalize;
+}
+
+.cw-pdp-feature-box img {
+    height: 24px;
+    object-fit: contain;
+}
+.cw-mobile
+{
+display: none;
+}
+
+
+.cw-pdp-feature-main .cw-pdp-feature-box:last-child {
+    border: none;
+}
+
+@media only screen and (max-width: 600px) {
+.cw-mobile
+{
+display: block;
+}
+.cw-desktop
+{
+display: none;
+}
+.logo-scroller-content {
+    overflow: hidden;
+}
+.cw-pdp-feature-main .logo-scroller-row {
+    display: flex;
+    position: relative;
+    white-space: nowrap;
+    justify-content: center;
+    gap: 25px;
+    align-items: center;
+}
+.logo-scroller-items {
+    overflow: hidden;
+}
+
+.logo-scroller-item.cw-pdp-feature-box {
+    width: auto !important;
+    min-width: auto !important;
+    gap: 10px !important;
+    padding-right: 30px;
+}
+.page-width {
+    padding: 0 15px;
+}
+.cw-pdp-feature-box img {
+    height: 22px;
+}
+}
+
+    </style>
+
+<div class="cw-pdp-feature cw-desktop">
+  <div class="page-width">
+    <div class="cw-pdp-feature-main">
+      {% for block in section.blocks %}
+        <div class="cw-pdp-feature-box">
+          {% if block.settings.feature_icon != blank %}
+            <img src="{{ block.settings.feature_icon | img_url: 'master' }}" alt="{{ block.settings.feature_text | escape }}">
+          {% endif %}
+          {{ block.settings.feature_text }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="cw-pdp-feature cw-mobile">
+  <div class="page-width">
+    <div class="cw-pdp-feature-main">
+      <div class="logo-scroller-content">
+      <div class="logo-scroller-items" role="marquee">
+        <div class="logo-scroller-row" id="logoRow">
+          {% for block in section.blocks %}
+            
+              <div class="logo-scroller-item cw-pdp-feature-box">
+                {% if block.settings.feature_icon != blank %}
+            <img src="{{ block.settings.feature_icon | img_url: 'master' }}" alt="{{ block.settings.feature_text | escape }}">
+          {% endif %}
+          {{ block.settings.feature_text }}
+              </div>
+            
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+let logoScrollers = new WeakMap();
+
+function initiateLogoScroller() {
+  if (typeof gsap === "undefined") {
+    console.warn("GSAP not loaded");
+    return;
+  }
+
+  const rows = document.querySelectorAll(".logo-scroller-row");
+  if (!rows.length) return;
+
+  rows.forEach(row => {
+    const existingTL = logoScrollers.get(row);
+    if (existingTL) {
+      existingTL.kill();
+      logoScrollers.delete(row);
+    }
+
+    if (!row.dataset.cloned) {
+      const rowItems = Array.from(row.children);
+      let totalWidth = row.scrollWidth;
+      const minWidth = window.innerWidth * 2;
+
+      let cloneCount = 0;
+      const maxClones = 10; // To avoid infinite loop
+      while (totalWidth < minWidth && cloneCount < maxClones) {
+        rowItems.forEach(item => {
+          const clone = item.cloneNode(true);
+          row.appendChild(clone);
+          totalWidth += item.offsetWidth;
+        });
+        cloneCount++;
+      }
+
+      row.dataset.cloned = "true";
+    }
+
+    const rowWidth = row.scrollWidth;
+    gsap.set(row, { x: 0 });
+
+    let baseSpeed = 20;
+    let duration = (rowWidth / window.innerWidth) * baseSpeed;
+    if (window.innerWidth < 768) duration *= 0.5;
+
+    const tl = gsap.timeline({ repeat: -1, ease: "none" });
+    tl.to(row, {
+      x: `-${rowWidth / 2}px`,
+      duration: duration,
+      ease: "none",
+      onComplete: () => gsap.set(row, { x: 0 }),
+    });
+
+    logoScrollers.set(row, tl);
+  });
+}
+
+
+setTimeout(initiateLogoScroller, 300);
+
+
+window.reinitScrollerAfterPageChange = function () {
+  setTimeout(initiateLogoScroller, 200);
+};
+</script>
+
+  
+{% schema %}
+{
+  "name": "CW Listicle Feature",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Box",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "feature_icon",
+          "label": "Feature Icon"
+        },
+        {
+          "type": "text",
+          "id": "feature_text",
+          "label": "Feature Text",
+          "default": "Free Shipping & Returns"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "CW Listicle Features",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

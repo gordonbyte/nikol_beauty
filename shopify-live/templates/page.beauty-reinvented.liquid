@@ -1,0 +1,168 @@
+<style>
+.br-page {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #1a1a1a;
+  background: #fff;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+.br-hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+  align-items: flex-start;
+  margin-bottom: 64px;
+}
+.br-hero__cover { flex: 0 0 300px; max-width: 300px; }
+.br-hero__cover img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.br-hero__cover img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.22);
+}
+.br-hero__text { flex: 1 1 260px; padding-top: 8px; }
+.br-hero__eyebrow {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #b0006e;
+  margin: 0 0 12px;
+}
+.br-hero__title { font-size: clamp(32px,5vw,52px); line-height: 1.1; margin: 0 0 12px; font-weight: 700; }
+.br-hero__title span { color: #b0006e; }
+.br-hero__subtitle { font-size: 18px; font-style: italic; color: #555; margin: 0 0 20px; line-height: 1.5; }
+.br-hero__byline { font-family: Arial, sans-serif; font-size: 14px; color: #888; margin: 0 0 28px; }
+.br-hero__tagline { font-size: 17px; color: #333; font-style: italic; margin: 0 0 32px; padding-left: 16px; border-left: 3px solid #b0006e; }
+.br-btn { display: inline-block; background: #b0006e; color: #fff !important; text-decoration: none; padding: 14px 32px; border-radius: 3px; font-family: Arial, sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.05em; transition: background 0.2s; }
+.br-btn:hover { background: #8a0056; }
+.br-section { margin-bottom: 56px; }
+.br-section__title { font-size: 26px; font-weight: 700; margin: 0 0 20px; padding-bottom: 10px; border-bottom: 2px solid #f0e0ea; }
+.br-section p { font-size: 17px; line-height: 1.75; margin: 0 0 16px; }
+.br-pullquote { font-size: 22px; font-style: italic; color: #b0006e; border-left: 4px solid #b0006e; padding: 16px 24px; margin: 32px 0; background: #fdf5f9; border-radius: 0 4px 4px 0; }
+.br-method { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 24px; margin-top: 24px; }
+.br-method__card { border: 1px solid #f0dde9; border-radius: 6px; padding: 20px; background: #fdf5f9; }
+.br-method__card h3 { font-size: 15px; margin: 0 0 8px; color: #b0006e; font-family: Arial, sans-serif; text-transform: uppercase; letter-spacing: 0.08em; }
+.br-method__card p { font-size: 15px; margin: 0; color: #444; line-height: 1.6; }
+.br-faq { margin-top: 24px; }
+.br-faq__item { border-bottom: 1px solid #eee; padding: 18px 0; }
+.br-faq__q { font-size: 17px; font-weight: 700; margin: 0 0 8px; }
+.br-faq__a { font-size: 16px; line-height: 1.7; color: #444; margin: 0; }
+.br-cta { text-align: center; padding: 48px 24px; background: linear-gradient(135deg,#fdf5f9,#fff0f7); border-radius: 8px; margin-top: 16px; }
+.br-cta h2 { font-size: 28px; margin: 0 0 12px; }
+.br-cta p { font-size: 17px; color: #555; margin: 0 0 28px; }
+@media (max-width:640px) {
+  .br-hero__cover { flex: 0 0 100%; max-width: 100%; }
+  .br-hero { gap: 28px; }
+}
+</style>
+
+{% assign cover_url = 'https://cdn.shopify.com/s/files/1/0690/6347/5504/files/Beauty-Reinvented-Book-Cover_800x800.jpg?v=1777947773' %}
+{% assign amazon_url = 'https://www.amazon.com/Beauty-Reinvented-Embrace-Self-Confidence-Redefine/dp/1726890198' %}
+{% assign shop_url = shop.url %}
+{% assign page_url = shop_url | append: page.url %}
+
+<div class="br-page">
+
+  <section class="br-hero">
+    <div class="br-hero__cover">
+      <a href="{{ amazon_url }}" target="_blank" rel="noopener">
+        <img src="{{ cover_url }}" alt="Beauty Reinvented book cover — Nikol Johnson with silver hair and hot-pink top" width="300" height="450" loading="eager">
+      </a>
+    </div>
+    <div class="br-hero__text">
+      <p class="br-hero__eyebrow">Now Available on Amazon</p>
+      <h1 class="br-hero__title">Beauty<br><span>Reinvented</span></h1>
+      <p class="br-hero__subtitle">How to Embrace Gray Hair, Upgrade Your Self-Confidence, and Redefine Your Beauty</p>
+      <p class="br-hero__byline">By Nikol Johnson</p>
+      <p class="br-hero__tagline">"You don't have to look older just because your hair is silver."</p>
+      <a class="br-btn" href="{{ amazon_url }}" target="_blank" rel="noopener sponsored">Buy on Amazon &rarr;</a>
+    </div>
+  </section>
+
+  <section class="br-section">
+    <h2 class="br-section__title">What Beauty Reinvented Is About</h2>
+    <p>Nikol Johnson is a licensed cosmetologist and professional makeup artist with over 25 years in the beauty industry. She built one of YouTube's most-watched channels dedicated entirely to beauty for mature women — and wrote this book because she kept seeing the same fear: women convinced that going gray meant giving up.</p>
+    <p><em>Beauty Reinvented</em> is her answer. It's a practical, warm, and visually rich guide that walks you through every stage of the gray transition — from the first decision to stop dyeing, through the awkward grow-out, all the way to owning your silver with confidence. Along the way Nikol covers skincare, makeup, wardrobe, and mindset.</p>
+    <p>The result is a complete reinvention toolkit — not a consolation prize for aging, but a genuine upgrade.</p>
+  </section>
+
+  <section class="br-section">
+    <h2 class="br-section__title">Why Going Gray Feels So Hard</h2>
+    <p>Society has spent decades telling women that gray hair equals letting yourself go. Most women who want to go gray don't struggle with the hair — they struggle with the fear of how they'll be perceived: at work, by their partners, by strangers.</p>
+    <blockquote class="br-pullquote">"Going gray isn't about giving up on beauty. It's about discovering a version of it that's entirely your own."</blockquote>
+    <p>Nikol spent years watching clients sit in her chair terrified to make the change. This book is what she told every single one of them — except now it has photos, tutorials, product picks, and a roadmap.</p>
+  </section>
+
+  <section class="br-section">
+    <h2 class="br-section__title">The Four-Part Method</h2>
+    <p>The book is structured around four pillars — each one addresses a part of your look that changes when you embrace silver:</p>
+    <div class="br-method">
+      <div class="br-method__card"><h3>Hair</h3><p>How to manage the grow-out, choose the right cut, and style silver so it looks intentional and chic — not accidental.</p></div>
+      <div class="br-method__card"><h3>Skin</h3><p>Silver hair changes your skin's undertones. Nikol shows you which skincare and foundation adjustments make the difference between tired and radiant.</p></div>
+      <div class="br-method__card"><h3>Makeup</h3><p>The exact color palette shifts, application techniques, and product swaps that make makeup work with silver hair, not against it.</p></div>
+      <div class="br-method__card"><h3>Mindset</h3><p>The inner work that makes the outer transformation stick — including how to handle outside opinions and build a new relationship with your reflection.</p></div>
+    </div>
+  </section>
+
+  <section class="br-section">
+    <h2 class="br-section__title">Frequently Asked Questions</h2>
+    <div class="br-faq">
+      <div class="br-faq__item"><p class="br-faq__q">Is this book only for women who want to go fully gray?</p><p class="br-faq__a">No. The beauty, makeup, and mindset advice applies to any woman over 40 reassessing her relationship with her look — whether going fully silver, keeping highlights, or just tired of feeling invisible.</p></div>
+      <div class="br-faq__item"><p class="br-faq__q">Is the book available in print or only digital?</p><p class="br-faq__a">Both. You can order the paperback or download the Kindle edition instantly from Amazon.</p></div>
+      <div class="br-faq__item"><p class="br-faq__q">Does the book recommend specific products?</p><p class="br-faq__a">Yes — Nikol shares the exact products she uses on clients and on herself, covering a range of budgets from drugstore to professional.</p></div>
+      <div class="br-faq__item"><p class="br-faq__q">I'm in my 30s and starting to go gray. Is this for me?</p><p class="br-faq__a">Absolutely. Reading it earlier gives you a head start — the grow-out advice and mindset sections are especially useful before the process begins.</p></div>
+      <div class="br-faq__item"><p class="br-faq__q">How long is the book?</p><p class="br-faq__a">It's a focused, visual guide — long enough to be thorough, short enough to finish in a weekend.</p></div>
+      <div class="br-faq__item"><p class="br-faq__q">Can I find Nikol's other work online?</p><p class="br-faq__a">Yes. Nikol's YouTube channel has hundreds of tutorials for women over 40. You can also find her here at Nikol Beauty.</p></div>
+      <div class="br-faq__item"><p class="br-faq__q">Is this book available outside the US?</p><p class="br-faq__a">Yes. Amazon ships the paperback internationally and the Kindle edition is available worldwide instantly.</p></div>
+      <div class="br-faq__item"><p class="br-faq__q">What makes this different from a generic beauty book?</p><p class="br-faq__a">Most beauty books treat gray hair as a problem. <em>Beauty Reinvented</em> puts it front and center as a choice — and builds an entire system around making that choice look and feel amazing.</p></div>
+    </div>
+  </section>
+
+  <section class="br-cta">
+    <h2>Ready to Reinvent Your Beauty?</h2>
+    <p><em>Beauty Reinvented</em> is available now in paperback and Kindle on Amazon.</p>
+    <a class="br-btn" href="{{ amazon_url }}" target="_blank" rel="noopener sponsored">Get the Book on Amazon &rarr;</a>
+  </section>
+
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "Beauty Reinvented",
+  "description": "How to Embrace Gray Hair, Upgrade Your Self-Confidence, and Redefine Your Beauty",
+  "author": {
+    "@type": "Person",
+    "name": "Nikol Johnson",
+    "url": "{{ shop_url }}",
+    "sameAs": ["https://www.youtube.com/@NikolBeauty","https://www.instagram.com/nikolbeauty/"]
+  },
+  "image": "{{ cover_url }}",
+  "publisher": { "@type": "Organization", "name": {{ shop.name | json }} },
+  "url": "{{ page_url }}",
+  "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "url": "{{ amazon_url }}" }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Is this book only for women who want to go fully gray?","acceptedAnswer":{"@type":"Answer","text":"No. The advice applies to any woman over 40 reassessing her look."}},
+    {"@type":"Question","name":"Is the book available in print or only digital?","acceptedAnswer":{"@type":"Answer","text":"Both — paperback and Kindle on Amazon."}},
+    {"@type":"Question","name":"Does the book recommend specific products?","acceptedAnswer":{"@type":"Answer","text":"Yes — products Nikol uses on clients and herself, across a range of budgets."}},
+    {"@type":"Question","name":"Is this book available outside the US?","acceptedAnswer":{"@type":"Answer","text":"Yes. Amazon ships internationally; Kindle is available worldwide instantly."}},
+    {"@type":"Question","name":"What makes this different from a generic beauty book?","acceptedAnswer":{"@type":"Answer","text":"Beauty Reinvented treats gray as a choice and builds a complete system around making it look amazing."}}
+  ]
+}
+</script>

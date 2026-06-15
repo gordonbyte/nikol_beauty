@@ -1,0 +1,115 @@
+<style>
+
+</style>
+
+<section class="cw-bb-wearing-section"
+  style="
+    background-image: url({{ section.settings.bg_image | img_url: 'master' }});
+    background-size: cover;
+    background-position: center;
+  "
+>
+  <div class="cw-bb-wearing-container">
+
+    <div class="cw-bb-wearing-left">
+      <div class="cw-bb-wearing-image-wrap">
+        <img
+          class="cw-bb-wearing-image"
+          src="{{ section.settings.left_image | img_url: 'master' }}"
+          alt="{{ product.title }}"
+          loading="lazy"
+        >
+      </div>
+    </div>
+
+    <div class="cw-bb-wearing-right">
+
+      <div class="cw-bb-rating-box">
+<a href="#judgeme_product_reviews">
+        <div class="cw-bb-rating-image">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0690/6347/5504/files/Stars_Container_a8ef23fa-4cb0-442a-aebc-8875c6ae38e3.png?v=1771227398"
+            alt="4.76 out of 5 stars"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="cw-bb-rating-text">
+          <strong>4.76/5</strong> stars |
+          <strong>12,000+</strong> happy women
+        </div>
+</a>
+      </div>
+    
+      <div class="cw-bb-wearing-title">
+        {{ section.settings.title }}
+      </div>
+
+      <div class="cw-bb-wearing-price">
+        {{ product.price | money }}
+      </div>
+
+      <div class="cw-bb-wearing-description">
+        {{ section.settings.description }}
+      </div>
+
+     <div class="cw-bb-wearing-button-wrap">
+  <a 
+    href="{% if section.settings.button_link != blank %}{{ section.settings.button_link }}{% else %}{{ product.url }}{% endif %}" 
+    class="cw-bb-wearing-button"
+  >
+    {{ section.settings.button_text }}
+  </a>
+</div>
+
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CW BB Wearing",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Stop Wearing Makeup That Makes You Look Older"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Switch to a BB Creme made for mature skin that stays comfortable and looks like real skin all day."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "GET YOURS NOW →"
+    },
+   {
+  "type": "url",
+  "id": "button_link",
+  "label": "Button Link"
+}
+  ],
+  "presets": [
+    {
+      "name": "CW BB Wearing"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,59 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "cart",
+      "blocks": {
+        "free_shipping_bKBd9j": {
+          "type": "free-shipping",
+          "settings": {
+            "message": "You are ||amount|| away from free shipping.",
+            "free_shipping_gradient": ""
+          }
+        },
+        "order_note_XXFVEn": {
+          "type": "order-note",
+          "settings": {}
+        },
+        "gift_note_xbbrfF": {
+          "type": "gift-note",
+          "settings": {}
+        },
+        "checkout_buttons_kdPreP": {
+          "type": "checkout-buttons",
+          "settings": {
+            "enable_additional_buttons": false
+          }
+        },
+        "upsell_products_t4jYCY": {
+          "type": "upsell-products",
+          "settings": {
+            "upsell_auto_open": true
+          }
+        }
+      },
+      "block_order": [
+        "free_shipping_bKBd9j",
+        "order_note_XXFVEn",
+        "gift_note_xbbrfF",
+        "checkout_buttons_kdPreP",
+        "upsell_products_t4jYCY"
+      ],
+      "settings": {
+        "padding_top": 80,
+        "padding_bottom": 50
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

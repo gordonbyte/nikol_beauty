@@ -1,0 +1,331 @@
+<style>
+.cw-collect-bestseller-title {
+    text-align: center;
+    font-size: 56px;
+    line-height: 110%;
+    font-weight: 500;
+    letter-spacing: -1px;
+    font-family: 'Cormorant',sans-serif;
+    color: #2A2724;
+}
+
+.cw-collect-bestseller-subtitle {
+    padding-top: 10px;
+    padding-bottom: 40px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 140%;
+    font-weight: 400;
+    color: #2A2724;
+    font-family: Inter,sans-serif;
+}
+
+.cw-banner-button.cw-collect-bestseller-btn-wrap {
+    display: none !important;
+}
+
+
+
+
+.steps-section {
+ padding: 80px 20px;
+ text-align: center;
+ background: url(https://cdn.shopify.com/s/files/1/0690/6347/5504/files/steps-bg.jpg?v=1770984877);
+ background-size: cover;
+ background-position: center;
+ background-repeat: no-repeat;
+}
+
+.steps-header h2 {
+  	font-family: var(--FONT-STACK-HEADING);
+  	color: #2A2724;
+  	font-size: 56px;
+  	line-height: 110%;
+    letter-spacing: -1px;
+  	margin: 0px;
+  	font-weight: 500;
+}
+
+.steps-header p {
+  font-size: 20px;
+  line-height: 140%;
+  color: #2A2724;
+  font-family: Inter;
+  margin: 0;
+  padding-bottom: 40px;
+  padding-top: 10px;
+  font-weight: 400;
+}
+
+.steps-container {display: flex;width: 100%;}
+
+.step-card {
+  position: relative;
+  padding-top: 20px;
+  width: 33%;
+  margin: 0 auto;
+}
+
+
+.step-image img {
+	width: 100%;
+	max-width: 390px;
+	object-fit: contain;
+	
+}
+
+
+.step-number {
+  width: 35px;
+    height: 35px;
+    background: #45413B;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 600;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 285px;
+    line-height: 130%;
+    border: 2.23px solid #FCFAF8;
+    font-family: 'Cormorant', sans-serif;
+    padding-bottom: 7px;
+    box-shadow: 0px 3.96px 29.71px 0px #34445E0D;
+}
+.step-card:nth-child(3) .step-number {
+    padding-bottom: 13px;
+}
+
+.step-card h3 {
+  	font-family: 'Cormorant', sans-serif;
+  	font-size: 28px;
+  	line-height: 120%;
+  	margin: 40px 0 12px;
+  	color: #2A2724;
+}
+
+.step-card p {
+    font-size: 18px;
+    line-height: 150%;
+    color: #2A2724;
+    padding: 0 10px;
+    font-family: Inter,sans-serif;
+    font-weight: 400;
+}
+
+.steps-btn-wrap a {
+    display: flex;
+    background: #D34270;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    height: 60px;
+    margin: 0 auto;
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: 0;
+    font-weight: 700;
+    color: #FFFFFF;
+    font-family: 'Cormorant',sans-serif;
+    cursor: pointer;
+}
+
+
+
+.step-image {
+    width: 100%;
+}
+
+.steps-btn-wrap {
+    margin-top: 40px;
+}
+@media only screen and (max-width: 600px) {
+
+.cw-collect-bestseller-title {
+    font-size: 30px;
+}
+
+.cw-collect-bestseller-subtitle {
+    font-size: 16px;
+    padding-bottom: 10px;
+}
+
+section.cw-collect-videos-section {
+    padding: 40px 0px 20px !important;
+}
+
+
+
+
+section.steps-section {
+    padding: 50px 0;
+}
+
+.steps-header h2 {
+    font-size: 34px;
+}
+
+.steps-header p {
+    font-size: 16px;
+    padding-bottom: 20px;
+}
+
+.steps-container {
+    flex-wrap: wrap;
+}
+
+.step-card {
+    width: 100%;
+}
+
+.step-card h3 {
+    font-size: 23px;
+}
+
+.step-card p {
+    font-size: 16px;
+    line-height: 135%;
+}
+
+.steps-btn-wrap a {
+    font-size: 18px;
+    height: 50px;
+}
+
+.steps-btn-wrap {
+    margin-top: 20px;
+}
+.step-number {
+    top: 250px;
+}
+}
+</style>
+
+<section class="steps-section">
+  <div class="page-width">
+
+    <div class="steps-header">
+      {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p>{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+
+    <div class="steps-container">
+      {% for block in section.blocks %}
+        <div class="step-card" {{ block.shopify_attributes }}>
+          
+          <div class="step-image image-{{ forloop.index }}">
+            {% if block.settings.image != blank %}
+              <img
+                class="step-images"
+                src="{{ block.settings.image | img_url: 'master' }}"
+                alt="{{ block.settings.title | escape }}"
+                loading="lazy"
+              >
+            {% endif %}
+          </div>
+
+          <div class="step-number">{{ forloop.index }}</div>
+
+          {% if block.settings.title != blank %}
+            <h3>{{ block.settings.title }}</h3>
+          {% endif %}
+
+          {% if block.settings.description != blank %}
+            <p>{{ block.settings.description }}</p>
+          {% endif %}
+
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.button_text != blank %}
+      <div class="steps-btn-wrap">
+        <a
+          href="{{ section.settings.button_link }}"
+          class="steps-btn"
+        >
+          {{ section.settings.button_text }}
+        </a>
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "CW Steps Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Natural, Polished Skin In 3 Simple Steps"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sub Heading",
+      "default": "Here’s exactly how Nikol Beauty BB Creme works:"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "GET YOURS NOW →"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Step Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title",
+          "default": "Step title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Step Description",
+          "default": "Step description here"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "CW Steps Section",
+      "blocks": [
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step" }
+      ]
+    }
+  ]
+}
+{% endschema %}

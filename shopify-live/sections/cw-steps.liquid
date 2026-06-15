@@ -1,0 +1,273 @@
+<style>
+section.cw-steps-section {
+    padding: 80px 0px;
+}
+
+.cw-steps-image img {
+    width: 100%;
+}
+
+.cw-steps-box {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    width: 100%;
+}
+
+.cw-steps-image {
+       width: 39%;
+}
+
+.cw-steps-content {
+       width: 37%;
+}
+
+.cw-steps-title {
+    color: #2A2724;
+    font-size: 56px;
+    line-height: 110%;
+    font-family: 'Cormorant';
+    letter-spacing: -3px;
+    text-transform: capitalize;
+}
+
+.cw-steps-text {
+    color: #2A2724;
+    font-size: 20px;
+    line-height: 150%;
+    font-family: 'Inter';
+    padding-top: 30px;
+}
+
+.cw-steps-parent {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+section.cw-steps-section .cw-banner-button a {
+    margin: 0 auto;
+}
+.cw-steps-box {
+    background: #F7F2ED;
+    position: relative;
+    height: 450px;
+    padding-left: 60px;
+    justify-content: center;
+    margin-top: 110px;
+}
+
+.cw-steps-image img {
+    max-width: 470px;
+}
+
+section.cw-steps-section .cw-collect-bestseller-subtitle {
+    padding-bottom: 0;
+}
+
+.cw-steps-parent {
+    margin-bottom: 70px;
+}
+@media only screen and (max-width: 600px) {
+section.cw-steps-section {
+    padding: 40px 0px;
+}
+
+.cw-steps-box {
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.cw-steps-image {
+    width: 100%;
+    order: -1;
+}
+
+.cw-steps-content {
+    width: 100%;
+}
+
+.cw-steps-title {
+    font-size: 26px;
+    letter-spacing: -2px;
+}
+
+.cw-steps-text {
+    font-size: 16px;
+    line-height: 135%;
+    padding-top: 15px;
+}
+
+.cw-steps-parent {
+    gap: 20px;
+}
+section.cw-steps-section .cw-banner-button a {
+    margin: 0 auto;
+}
+.cw-steps-image img {
+    max-width: 100%;
+}
+
+.cw-steps-box {
+    height: auto;
+    padding-left: 0;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+section.cw-steps-section .cw-collect-bestseller-subtitle {
+    padding-bottom: 15px;
+}
+
+.cw-steps-parent {
+    margin-bottom: 25px;
+}
+}
+  </style>
+
+  
+<section class="cw-steps-section">
+  <div class="page-width cw-steps-page-width">
+ <div class="cw-collect-bestseller-header">
+      {% if section.settings.title != blank %}
+        <div class="cw-collect-bestseller-title">
+          {{ section.settings.title }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.subtitle != blank %}
+        <div class="cw-collect-bestseller-subtitle">
+          {{ section.settings.subtitle }}
+        </div>
+      {% endif %}
+    </div>
+    <div class="cw-steps-parent">
+
+      {% for block in section.blocks %}
+        <div class="cw-steps-box cw-steps-{{ block.settings.image_position }}">
+
+          {% if block.settings.image_position == 'left' %}
+            <div class="cw-steps-image">
+              {% if block.settings.image != blank %}
+                <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.title }}">
+              {% endif %}
+             
+            </div>
+          {% endif %}
+
+          <div class="cw-steps-content">
+            {% if block.settings.title != blank %}
+              <div class="cw-steps-title">
+                {{ block.settings.title }}
+              </div>
+            {% endif %}
+
+            {% if block.settings.content != blank %}
+              <div class="cw-steps-text">
+                {{ block.settings.content }}
+              </div>
+            {% endif %}
+          </div>
+
+          {% if block.settings.image_position == 'right' %}
+            <div class="cw-steps-image">
+              {% if block.settings.image != blank %}
+                <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.title }}">
+              {% endif %}
+              {% if block.settings.step_label != blank %}
+                <div class="cw-steps-step">
+                  {{ block.settings.step_label }}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+
+        </div>
+      {% endfor %}
+
+    </div>
+<div class="cw-banner-button">
+          <a href="{{ section.settings.button_link }}">
+            {{ section.settings.button_label }} <svg width="22" height="13" viewBox="0 0 22 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.843262 5.36644C0.377534 5.36644 -1.22974e-05 5.74399 -1.23382e-05 6.20972C-1.23789e-05 6.67544 0.377534 7.05299 0.843262 7.05299L0.843262 6.20972L0.843262 5.36644ZM21.4395 6.806C21.7689 6.47668 21.7689 5.94275 21.4395 5.61343L16.073 0.24687C15.7437 -0.0824491 15.2097 -0.0824491 14.8804 0.24687C14.5511 0.576189 14.5511 1.11012 14.8804 1.43944L19.6507 6.20972L14.8804 10.98C14.5511 11.3093 14.5511 11.8432 14.8804 12.1726C15.2097 12.5019 15.7437 12.5019 16.073 12.1726L21.4395 6.806ZM0.843262 6.20972L0.843262 7.05299L20.8433 7.05299L20.8433 6.20972L20.8433 5.36644L0.843262 5.36644L0.843262 6.20972Z" fill="white"/>
+</svg>
+          </a>
+        </div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "CW Steps",
+  "settings": [
+     {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Real Stories From Women Who Switched To Nikol"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "See how women in their 50s, 60s, and 70s use Nikol to look polished without fighting their skin."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "View All Best Sellers"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Image Position",
+          "default": "left",
+          "options": [
+            { "value": "left", "label": "Image Left" },
+            { "value": "right", "label": "Image Right" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Step Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Choose What Suits Your Skin"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content",
+          "default": "Start with best sellers or take the quick quiz to find products matched to your skin, undertone, and preferences without trial and error."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CW Steps",
+      "blocks": [
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step" }
+      ]
+    }
+  ]
+}
+{% endschema %}

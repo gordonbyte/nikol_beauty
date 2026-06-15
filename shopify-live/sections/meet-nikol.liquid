@@ -1,0 +1,76 @@
+<div 
+  class="meet-nikol" 
+  data-section-id="{{ section.id }}" 
+  data-section-type="meet-nikol"
+  >
+  <div class="meet-nikol__inner">
+    <div class="meet-nikol__left">
+      <figure class="meet-nikol__image">
+        <img 
+          src="{{ section.settings.image | image_url }}"
+          alt="{{ section.settings.image.alt | default: shop.name }}"
+          loading="eager"
+          >
+      </figure>
+    </div>
+    <div class="meet-nikol__right" style="background-image: url({{ 'meet-nikol-bg.png' | asset_url }})">
+      <div class="meet-nikol__text">
+        <h2 class="meet-nikol__title">
+          {{ section.settings.title }}  
+        </h2>
+        <div class="meet-nikol__copy">
+          {{ section.settings.copy }}
+        </div>
+        <a href="{{ section.settings.cta_link }}" class="link">
+          {{ section.settings.cta_text }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Meet Nikol",
+  "class": "section-meet-nikol",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Meet Nikol"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "richtext",
+      "id": "copy",
+      "label": "Copy",
+      "default": "<p>Lorem ipsum dolor sit amet...</p>"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "Read More"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link",
+      "default": "/"
+    }
+  ],
+  "presets": [{
+    "name": "Meet Nikol",
+    "category": "Image"
+  }]
+}
+{% endschema %}

@@ -1,0 +1,441 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "zp-product-header-content": {
+      "type": "product-header-content-zipifypages",
+      "settings": {}
+    },
+    "main": {
+      "type": "product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "subheading_option": "breadcrumb",
+            "text_size": 6,
+            "padding_bottom": 8
+          }
+        },
+        "badges_8GMAqL": {
+          "type": "badges",
+          "settings": {
+            "sale_badge": false,
+            "product_badges": true,
+            "padding_bottom": 14
+          }
+        },
+        "e2e54459-e05c-4256-bce4-f74ab2ac22a3": {
+          "type": "shopify://apps/judge-me-reviews/blocks/all_reviews_text/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "padding_bottom": 16
+          }
+        },
+        "variants": {
+          "type": "variants",
+          "settings": {
+            "info_page": "",
+            "size_chart_style": "text",
+            "subscriptions_enable_selectors": false,
+            "padding_bottom": 16
+          }
+        },
+        "se_wishlist_engine_product_page_PNbWRj": {
+          "type": "shopify://apps/se-wishlist-engine/blocks/Product-Page/8f7c0857-8e71-463d-a168-8e133094753b",
+          "settings": {}
+        },
+        "code_jzPbiC": {
+          "type": "code",
+          "settings": {
+            "code": "{% if product.title == \"Beginner Beauty Bundle\" %}\n<div style=\"display:flex; flex-direction: column; margin-top: 30px;\">\n\t<p> <b style=\"font-family: 'Jost', sans-serif\">Included products</b> </p>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/eye-primer\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/EyePrimerCorrectweb_7b4b0199-b97f-4840-a5a4-cec9fbb8fabf.png?v=1694481704\">\n\t\t</a> <p style=\"margin-left: 8px;\">Eye Primer $26.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/mascara-intense-curling-volumizing\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/products/mascara-3.png?v=1681859081\">\n\t\t</a> <p style=\"margin-left: 8px;\">Volume Up Mascara $24.00 </p>\n\t</div>\t\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/brow-fixx\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/ClearbrowmascropenWhitebackgrnd.png?v=1713815770\">\n\t\t</a> <p style=\"margin-left: 8px;\">Clear Brow Mascara $18.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/vitamin-e-treatment\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/Nikol_Lip_Balm_1000x1000_10480f31-34b5-4c3f-aebf-5fa1d1968ffe.jpg?v=1717778629\">\n\t\t</a> <p style=\"margin-left: 8px;\">Rose Lip Balm $23.00 </p>\n\t</div>\n  \t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/skinny-brow-pencil\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/darkblondepencilopen.png?v=1713815894\">\n\t\t</a> <p style=\"margin-left: 8px;\">Skinny Brow Pencil $19.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/nikol-cosmetics-precision-eyebrow-stencils\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/browstencilspackWEB.jpg?v=1713970786\">\n\t\t</a> <p style=\"margin-left: 8px;\">Nikol Beauty Precision Eyebrow Stencils $12.00 </p>\n\t</div>\n  \t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/custom-concealer-trio-in-buffed-cool\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/Fairconcealerpose1.jpg?v=1712459737\">\n\t\t</a> <p style=\"margin-left: 8px;\">Creamy Concealer $30.00 </p>\n\t</div>\n</div>\n{% endif %}\n\n{% if product.title == \"The Best Seller Beauty Bundle\" %}\n<div style=\"display:flex; flex-direction: column; margin-top: 30px;\">\n\t<p> <b style=\"font-family: 'Jost', sans-serif\">Included products</b> </p>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/eye-primer\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/EyePrimerCorrectweb_7b4b0199-b97f-4840-a5a4-cec9fbb8fabf.png?v=1694481704\">\n\t\t</a> <p style=\"margin-left: 8px;\">Eye Primer $26.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/bb-cream\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/BBCreamclosedsmudgeFAIR_8939951c-d391-41fe-9d03-221c7bf807dc.png?v=1713502273\">\n\t\t</a> <p style=\"margin-left: 8px;\">BB Créme $43.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/nikray-lipstick\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/Nikraylipbullets100x1000.jpg?v=1717016566\">\n\t\t</a> <p style=\"margin-left: 8px;\">NikRay Shiny Velvet Cream Lipstick $22.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/vitamin-e-treatment\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/Nikol_Lip_Balm_1000x1000_10480f31-34b5-4c3f-aebf-5fa1d1968ffe.jpg?v=1717778629\">\n\t\t</a> <p style=\"margin-left: 8px;\">Rose Lip Balm $23.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/lip-liners-waterproof?variant=44969137897776\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/CAMEOLIPlinerSMDGE_57de92e6-0376-49fb-aa28-f21b3c3e09a6.png?v=1705541207\">\n\t\t</a> <p style=\"margin-left: 8px;\">Waterproof Lip Liner in Cameo $20.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/lip-and-cheek-cream\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/PalmBeachopenwhitebackground.png?v=1705530314\">\n\t\t</a> <p style=\"margin-left: 8px;\">Cream Blush Stick $23.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/mascara-intense-curling-volumizing\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/products/mascara-3.png?v=1681859081\">\n\t\t</a> <p style=\"margin-left: 8px;\">Volume Up Mascara $24.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/travel-makeup-brushes\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/products/website-1.png?v=1681859046\">\n\t\t</a> <p style=\"margin-left: 8px;\">Essential Makeup Brush Kit $75.00 </p>\n\t</div>\n  \t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/skinny-brow-pencil\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/darkblondepencilopen.png?v=1713815894\">\n\t\t</a> <p style=\"margin-left: 8px;\">Skinny Brow Pencil $19.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/nikol-cosmetics-precision-eyebrow-stencils\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/browstencilspackWEB.jpg?v=1713970786\">\n\t\t</a> <p style=\"margin-left: 8px;\">Nikol Beauty Precision Brow Stencils $12.00 </p>\n\t</div>\n\t\n</div>\n{% endif %}\n\n{% if product.title == \"Perfect Complexion Bundle\" %}\n<div style=\"display:flex; flex-direction: column; margin-top: 30px;\">\n\t<p> <b style=\"font-family: 'Jost', sans-serif\">Included products</b> </p>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/fiercely-smooth-face-primer?_pos=1&_psq=fier&_ss=e&_v=1.0\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/faceprimerweb.png?v=1690576338\">\n\t\t</a> <p style=\"margin-left: 8px;\">Fiercely Smooth Face Primer $36.00 </p>\n\t</div>\n  \t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/custom-concealer-trio-in-buffed-cool\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/Fairconcealerpose1.jpg?v=1712459737\">\n\t\t</a> <p style=\"margin-left: 8px;\">Creamy Concealer $30.00 </p>\n\t</div>\n  \t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/eye-primer\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/EyePrimerCorrectweb_7b4b0199-b97f-4840-a5a4-cec9fbb8fabf.png?v=1694481704\">\n\t\t</a> <p style=\"margin-left: 8px;\">Eye Primer $26.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/bb-cream\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/BBCreamclosedsmudgeFAIR_8939951c-d391-41fe-9d03-221c7bf807dc.png?v=1713502273\">\n\t\t</a> <p style=\"margin-left: 8px;\">BB Créme $43.00 </p>\n\t</div>\n</div>\n{% endif %}\n\n{% if product.title == \"Color Corrector Collection\" %}\n<div style=\"display:flex; flex-direction: column; margin-top: 30px;\">\n\t<p> <b style=\"font-family: 'Jost', sans-serif\">Included products</b> </p>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/no-redness-beauty-stix?pr_prod_strat=jac&pr_rec_id=4df8ce154&pr_rec_pid=8295033176368&pr_ref_pid=8295035076912&pr_seq=uniform\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/products/No-Redness-squiggle-website.png?v=1681859085\">\n\t\t</a> <p style=\"margin-left: 8px;\">No Redness Color Corrector $25.00 </p>\n\t</div>\n  \t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/just-peachy-color-corrector?pr_prod_strat=jac&pr_rec_id=49f436554&pr_rec_pid=8295033536816&pr_ref_pid=8295033176368&pr_seq=uniform\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/products/Just-Peachy-wtih-Swatch.png?v=1681859093\">\n\t\t</a> <p style=\"margin-left: 8px;\">Just Peachy Color Corrector $25.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/extreme-cancel-color-corrector?_pos=2&_sid=07822d9b9&_ss=r\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://cdn.shopify.com/s/files/1/0690/6347/5504/files/simply_apricot_product_image_2..png?v=1770391948\">\n\t\t</a> <p style=\"margin-left: 8px;\">Simply Apricot Color Corrector $25.00 </p>\n\t</div>\n</div>\n{% endif %}\n{% if product.title == \"Holiday Glow Up\" %}\n<div style=\"display:flex; flex-direction: column; margin-top: 30px;\">\n\t<p> <b style=\"font-family: 'Jost', sans-serif\">Included products</b> </p>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/naughty-nancy-eye-shadow-palette-limited-edition?_pos=1&_sid=f49cbf15f&_ss=r\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/NaughtNancyforWeb.png?v=1692763472\">\n\t\t</a> <p style=\"margin-left: 8px;\">Naughty Nancy 3-Well Eyeshadow Palette $45.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/pretty-smart-lipstick?_pos=1&_sid=9b04a9fa4&_ss=r\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/PrettySmartlipbullets100x1000_1.jpg?v=1717015683\">\n\t\t</a> <p style=\"margin-left: 8px;\">Pretty Smart Lipstick $22.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/mascara-intense-curling-volumizing?_pos=1&_sid=da745983f&_ss=r\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/products/mascara-3.png?v=1681859081\">\n\t\t</a> <p style=\"margin-left: 8px;\">Volume Up Mascara $24.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/lip-liners-waterproof?_pos=1&_psq=rose+all&_ss=e&_v=1.0&variant=44969137865008\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/RoseallDLIPlinerSMDGE.png?v=1724441733\">\n\t\t</a> <p style=\"margin-left: 8px;\">\"Rose All Day\" Water-Proof Lip Liner Pencil $20.00 </p>\n\t</div>\n  \t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/good-vibes-lip-gloss?_pos=1&_sid=a229518e8&_ss=r\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/products/Good-Vibes.png?v=1681859065\">\n\t\t</a> <p style=\"margin-left: 8px;\">Good Vibes Lip Gloss $19.00 </p>\n\t</div>\n  \t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/GIftWithPurchase2.jpg?v=1731644905\">\n\t\t</a> <p style=\"margin-left: 8px;\">Free Holiday Pink Velvet Makeup Bag</p>\n\t</div>\n</div>\n{% endif %}",
+            "padding_bottom": 16
+          }
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {
+            "show_quantity": true,
+            "show_payment_button": true,
+            "show_gift_card_recipient": false,
+            "padding_bottom": 32
+          }
+        },
+        "pickup": {
+          "type": "pickup",
+          "disabled": true,
+          "settings": {
+            "padding_bottom": 32
+          }
+        },
+        "tabs": {
+          "type": "tab_richtext",
+          "settings": {
+            "show_read_more": true,
+            "style": "tabs",
+            "title_1": "Ingredients",
+            "raw_content_1": "<p>{{ product.metafields.custom.tab_content | metafield_tag }}</p>",
+            "title_2": "",
+            "raw_content_2": "",
+            "title_3": "",
+            "raw_content_3": "",
+            "title_4": "",
+            "raw_content_4": "",
+            "title_5": "",
+            "raw_content_5": "",
+            "padding_bottom": 0
+          }
+        },
+        "divider_1": {
+          "type": "divider",
+          "settings": {
+            "show_line": true,
+            "padding_bottom": 16
+          }
+        },
+        "icon_1": {
+          "type": "icon",
+          "disabled": true,
+          "settings": {
+            "icon_name": "icon-email",
+            "icon_size": 20,
+            "icon_color": "#545454",
+            "title": "Free 30 Days Returns",
+            "text_size": 3,
+            "width": "full",
+            "padding_bottom": 16
+          }
+        },
+        "icon_2": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-truck",
+            "icon_size": 20,
+            "icon_color": "#545454",
+            "title": "Free domestic shipping on orders over $125",
+            "text_size": 3,
+            "width": "full",
+            "padding_bottom": 16
+          }
+        },
+        "c8ecc06f-2f65-4c95-a44e-437c458f4787": {
+          "type": "divider",
+          "settings": {
+            "show_line": true,
+            "padding_bottom": 20
+          }
+        },
+        "dc8a9295-1097-4bdc-b170-cdb20ac30a8f": {
+          "type": "features",
+          "disabled": true,
+          "settings": {
+            "icon_name": "icon-award",
+            "icon_size": 20,
+            "title": "Needs Beauty Help?",
+            "text_size": 3,
+            "text": "<p>Book an appointment with our virtual stylists! Chat now</p>",
+            "bg_color": "#f7f2ed",
+            "color": "#212121",
+            "padding_bottom": 16
+          }
+        },
+        "upsell_76CJ9x": {
+          "type": "upsell",
+          "settings": {
+            "upsell_product": "",
+            "upsell_product_list": [],
+            "bg_color": "",
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "badges_8GMAqL",
+        "e2e54459-e05c-4256-bce4-f74ab2ac22a3",
+        "price",
+        "variants",
+        "se_wishlist_engine_product_page_PNbWRj",
+        "code_jzPbiC",
+        "buttons",
+        "pickup",
+        "tabs",
+        "divider_1",
+        "icon_1",
+        "icon_2",
+        "c8ecc06f-2f65-4c95-a44e-437c458f4787",
+        "dc8a9295-1097-4bdc-b170-cdb20ac30a8f",
+        "upsell_76CJ9x"
+      ],
+      "custom_css": [
+        ".gravity-button-wrapper {--gravity-button-width: unset;}"
+      ],
+      "settings": {
+        "product_sticky_enable": true,
+        "image_layout": "thumbnails-left",
+        "image_size": "normal",
+        "show_cart_bar": true,
+        "enable_zoom": true,
+        "enable_video_looping": false,
+        "mobile_image_style": "thumbs",
+        "padding_top": 90,
+        "padding_bottom": 30
+      }
+    },
+    "section_custom_code_cbKEGN": {
+      "type": "section-custom-code",
+      "settings": {
+        "code": "<script>\nwindow.addEventListener('load', function() {\nvar _learnq = window._learnq || [];\nfunction addedToCart() {\n  fetch(`${window.location.origin}/cart.js`)\n  .then(res => res.clone().json().then(data => {\n    var cart = {\n      total_price: data.total_price/100,\n      $value: data.total_price/100,\n      total_discount: data.total_discount,\n      original_total_price: data.original_total_price/100,\n      items: data.items\n    }\n    if (item !== 'undefined') {\n      cart = Object.assign(cart, item)\n    }\n    if (klAjax) {\n        _learnq.push(['track', 'Added to Cart', cart]);\n        klAjax = false;\n      }\n  }))\n};\n(function (ns, fetch) {\n  ns.fetch = function() {\n    const response = fetch.apply(this, arguments);\n    response.then(res => {\n      if (`${window.location.origin}/cart/add.js`\n      \t.includes(res.url)) {\n        \taddedToCart()\n      }\n    });\n    return response\n  }\n}(window, window.fetch));\nvar klAjax = true;\nvar atcButtons = document.querySelectorAll(\"form[action*='/cart/add'] button[type='submit']\");\nfor (var i = 0; i < atcButtons.length; i++) {\n    atcButtons[i].addEventListener(\"click\", function() {\n      if (klAjax) {\n        _learnq.push(['track', 'Added to Cart', item]);\n        klAjax = false;\n      }\n    })\n}\n});\n</script>",
+        "width": "wrapper",
+        "bg_color": "",
+        "color": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "faq": {
+      "type": "section-accordion",
+      "blocks": {
+        "faq-1": {
+          "type": "text",
+          "settings": {
+            "title": "{{ product.metafields.custom.instruction_title_1.value }}",
+            "text": "<p>{{ product.metafields.custom.instruction_content_1 | metafield_tag }}</p>"
+          }
+        },
+        "faq-2": {
+          "type": "text",
+          "settings": {
+            "title": "{{ product.metafields.custom.instruction_title_2.value }}",
+            "text": "<p>{{ product.metafields.custom.instruction_content_2 | metafield_tag }}</p>"
+          }
+        },
+        "faq-3": {
+          "type": "text",
+          "settings": {
+            "title": "{{ product.metafields.custom.instruction_title_3.value }}",
+            "text": "<p>{{ product.metafields.custom.instruction_content_3 | metafield_tag }}</p>"
+          }
+        },
+        "faq-4": {
+          "type": "text",
+          "settings": {
+            "title": "{{ product.metafields.custom.instruction_title_4.value }}",
+            "text": "<p>{{ product.metafields.custom.instruction_content_4 | metafield_tag }}</p>"
+          }
+        },
+        "text_7p3LzB": {
+          "type": "text",
+          "settings": {
+            "title": "{{ product.metafields.custom.instruction_title_5.value }}",
+            "text": "<p>{{ product.metafields.custom.instruction_content_5 | metafield_tag }}</p>"
+          }
+        },
+        "text_CtHeTB": {
+          "type": "text",
+          "settings": {
+            "title": "{{ product.metafields.custom.instruction_title_6.value }}",
+            "text": "<p>{{ product.metafields.custom.instruction_content_6 | metafield_tag }}</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq-1",
+        "faq-2",
+        "faq-3",
+        "faq-4",
+        "text_7p3LzB",
+        "text_CtHeTB"
+      ],
+      "settings": {
+        "default_open": false,
+        "title": "Beauty Instructions",
+        "show_icon": false,
+        "icon_name": "icon-award",
+        "icon_size": 20,
+        "icon_color": "#545454",
+        "bg_color": "",
+        "color": "",
+        "border_color": "",
+        "width": "wrapper",
+        "padding_top": 30,
+        "padding_bottom": 0
+      }
+    },
+    "shipping": {
+      "type": "section-accordion",
+      "blocks": {
+        "773999a0-fb7a-4fd9-939e-ca8384865ead": {
+          "type": "text",
+          "settings": {
+            "title": "How and Where Do You Ship?",
+            "text": "<p>We ship via USPS both domestically and to Canada. Please allow for 5-7 business days for domestic orders and 10-20 days for Canadian orders. </p>"
+          }
+        },
+        "96877b66-d369-457c-8c4c-44efa5ee5539": {
+          "type": "text",
+          "settings": {
+            "title": "Do You Ship Internationally?",
+            "text": "<p>We currently ship to the USA and CANADA by USPS first class shipping or my Priority Mail depending on package weight. We are working on shipping to other countries in the near future. We will update our website and announce on Social Media when we open up to more countries. Thank you for your patience.</p>"
+          }
+        },
+        "3c4ab1ec-afd3-4012-a2a8-583fbd898df6": {
+          "type": "text",
+          "settings": {
+            "title": "Do You Take Returns?",
+            "text": "<p>We are unable to offer refunds, returns, or exchanges. All sales are final.<br/>In the unlikely event that a product arrives damaged, you must contact our customer support within 48 hours of receipt of your shipment. Customers must include photos of the issue and a screenshot of the invoice that came inside their order.</p>"
+          }
+        },
+        "95abfb85-0fbd-43ca-a99f-e118cce87d37": {
+          "type": "text",
+          "settings": {
+            "title": "How Do I Know My Order Was Received?",
+            "text": "<p>You will receive an email confirmation and text message (if you signed up for SMS alerts) with an order number from Fresh Beauty Studio at the time your order is placed detailing all items you ordered.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "773999a0-fb7a-4fd9-939e-ca8384865ead",
+        "96877b66-d369-457c-8c4c-44efa5ee5539",
+        "3c4ab1ec-afd3-4012-a2a8-583fbd898df6",
+        "95abfb85-0fbd-43ca-a99f-e118cce87d37"
+      ],
+      "settings": {
+        "default_open": false,
+        "title": "Shipping & Returns",
+        "show_icon": false,
+        "icon_name": "icon-award",
+        "icon_size": 20,
+        "icon_color": "#545454",
+        "bg_color": "",
+        "color": "",
+        "border_color": "",
+        "width": "wrapper",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "16904264243ceba35b": {
+      "type": "apps",
+      "blocks": {
+        "ce65d90e-2b35-4d37-b441-40fe96767d65": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "disabled": true,
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "ce65d90e-2b35-4d37-b441-40fe96767d65"
+      ],
+      "custom_css": [],
+      "settings": {
+        "include_margins": false
+      }
+    },
+    "image_grid_MeXLj9": {
+      "type": "image-grid",
+      "blocks": {
+        "image_PbRggf": {
+          "type": "image",
+          "settings": {
+            "title": "Clean Beauty",
+            "text_color": "white",
+            "image": "shopify://shop_images/image-grid-1.jpg",
+            "link": "shopify://collections/lip-gloss"
+          }
+        },
+        "image_zHpcb4": {
+          "type": "image",
+          "settings": {
+            "title": "BB Cream",
+            "text_color": "black",
+            "image": "shopify://shop_images/image-grid-2.jpg",
+            "link": "shopify://products/bb-cream"
+          }
+        }
+      },
+      "block_order": [
+        "image_PbRggf",
+        "image_zHpcb4"
+      ],
+      "settings": {}
+    },
+    "related": {
+      "type": "related",
+      "blocks": {
+        "related_EVyf4K": {
+          "type": "related",
+          "settings": {
+            "product_recommendations_heading": "Recommended Products",
+            "limit": 3
+          }
+        }
+      },
+      "block_order": [
+        "related_EVyf4K"
+      ],
+      "settings": {
+        "enable_tabs": false,
+        "heading_alignment": "text-center",
+        "heading_size": 7,
+        "bg_color": "",
+        "color": "rgba(0,0,0,0)",
+        "border_color": "",
+        "padding_top": 30,
+        "padding_bottom": 0
+      }
+    },
+    "zp-product-footer-content": {
+      "type": "product-footer-content-zipifypages",
+      "settings": {}
+    },
+    "177628004852077364": {
+      "type": "apps",
+      "blocks": {
+        "junip_junip_product_review_bNeiRT": {
+          "type": "shopify://apps/junip/blocks/junip-product-review/dc14f5a8-ed15-41b1-ad08-cfba23f9789b",
+          "settings": {
+            "product": "{{product}}",
+            "title": "",
+            "alignment": "center",
+            "sortOrder": "mostRecent"
+          }
+        }
+      },
+      "block_order": [
+        "junip_junip_product_review_bNeiRT"
+      ],
+      "settings": {
+        "include_margins": false
+      }
+    }
+  },
+  "order": [
+    "zp-product-header-content",
+    "main",
+    "section_custom_code_cbKEGN",
+    "faq",
+    "shipping",
+    "16904264243ceba35b",
+    "image_grid_MeXLj9",
+    "related",
+    "zp-product-footer-content",
+    "177628004852077364"
+  ]
+}

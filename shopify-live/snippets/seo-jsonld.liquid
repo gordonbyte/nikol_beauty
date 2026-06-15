@@ -1,0 +1,165 @@
+{%- comment -%}
+  ============================================================
+  Nikol Beauty - GEO supplementary structured data
+  Added: 2026-05-07 (GEO Audit)
+
+  Adds Organization, Person, WebSite+SearchAction, AggregateRating,
+  FAQPage, ItemList, BlogPosting, AboutPage. Does NOT replace
+  Shopify's default Product JSON-LD or BreadcrumbList in theme.liquid.
+
+  Junip metafields (verified on /products/actually-i-can):
+    product.metafields.junip.rating_average
+    product.metafields.junip.rating_count
+  ============================================================
+{%- endcomment -%}
+
+{%- liquid
+  assign brand_url = shop.url
+  assign founder_id = brand_url | append: '#nikol-johnson'
+  assign org_id = brand_url | append: '#organization'
+-%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{ org_id }}",
+      "name": {{ shop.name | json }},
+      "url": "{{ brand_url }}",
+      "logo": { "@type": "ImageObject", "url": "{{ 'logo.png' | asset_url | prepend: 'https:' }}" },
+      "founder": { "@id": "{{ founder_id }}" },
+      "sameAs": [
+        "https://www.youtube.com/@nikoljohnson",
+        "https://www.instagram.com/freshbeautystudio/",
+        "https://www.facebook.com/nikolcosmetics",
+        "https://tiktok.com/@nikolcosmetics",
+        "https://pinterest.com/nikolbeauty"
+      ],
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "telephone": "+1-954-537-1772",
+        "email": "Hello@nikolbeauty.com",
+        "contactType": "customer support",
+        "areaServed": ["US","CA"],
+        "availableLanguage": ["en"]
+      }]
+    },
+    {
+      "@type": "Person",
+      "@id": "{{ founder_id }}",
+      "name": "Nikol Johnson",
+      "jobTitle": "Licensed Esthetician, On-Air Beauty Expert, Multi-Media Makeup Artist",
+      "description": "Founder of Nikol Beauty and Fresh Beauty Studio (2006). Licensed Esthetician with 16+ years experience. 2.2M+ social followers, 233M+ YouTube views.",
+      "alumniOf": "FORD Models",
+      "knowsAbout": ["Beauty","Skincare","Makeup","Mature Skin","Pro-Aging","Esthetics","Color Theory"],
+      "worksFor": { "@id": "{{ org_id }}" },
+      "sameAs": [
+        "https://www.youtube.com/@nikoljohnson",
+        "https://www.instagram.com/freshbeautystudio/",
+        "https://www.facebook.com/nikolcosmetics",
+        "https://tiktok.com/@nikolcosmetics",
+        "https://pinterest.com/nikolbeauty",
+        "https://www.linkedin.com/in/nikol-johnson-sanchez-0bb1861/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ brand_url }}#website",
+      "url": "{{ brand_url }}",
+      "name": {{ shop.name | json }},
+      "publisher": { "@id": "{{ org_id }}" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": { "@type": "EntryPoint", "urlTemplate": "{{ brand_url }}/search?q={search_term_string}" },
+        "query-input": "required name=search_term_string"
+      }
+    }
+
+    {%- if request.page_type == 'product' and product != blank -%}
+      {%- if product.metafields.junip.rating_average and product.metafields.junip.rating_count and product.metafields.junip.rating_count > 0 -%}
+        ,
+        {
+          "@type": "Product",
+          "@id": "{{ canonical_url }}#product",
+          "url": "{{ canonical_url }}",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "{{ product.metafields.junip.rating_average | times: 1.0 | round: 2 }}",
+            "ratingCount": {{ product.metafields.junip.rating_count }},
+            "reviewCount": {{ product.metafields.junip.rating_count }},
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        }
+      {%- endif -%}
+
+      {%- assign faq_items = '' -%}
+      {%- for i in (1..6) -%}
+        {%- assign tk = 'instruction_title_' | append: i -%}
+        {%- assign ck = 'instruction_content_' | append: i -%}
+        {%- assign t = product.metafields.custom[tk] -%}
+        {%- assign body = product.metafields.custom[ck] -%}
+        {%- if t != blank and body != blank -%}
+          {%- capture q -%}{"@type":"Question","name":{{ t | strip_html | strip_newlines | json }},"acceptedAnswer":{"@type":"Answer","text":{{ body | strip_html | strip_newlines | json }}}}{%- endcapture -%}
+          {%- if faq_items == '' -%}{%- assign faq_items = q -%}{%- else -%}{%- assign faq_items = faq_items | append: ',' | append: q -%}{%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- capture shipping_faqs -%}{"@type":"Question","name":"How and Where Do You Ship?","acceptedAnswer":{"@type":"Answer","text":"We ship via USPS both domestically and to Canada. Please allow 5-7 business days for domestic orders and 10-20 days for Canadian orders."}},{"@type":"Question","name":"Do You Ship Internationally?","acceptedAnswer":{"@type":"Answer","text":"We currently ship to the USA and Canada via USPS first class or Priority Mail depending on package weight."}},{"@type":"Question","name":"Do You Take Returns?","acceptedAnswer":{"@type":"Answer","text":"All sales are final. In the unlikely event a product arrives damaged, contact customer support within 48 hours of receipt with photos."}},{"@type":"Question","name":"How Do I Know My Order Was Received?","acceptedAnswer":{"@type":"Answer","text":"You will receive an email confirmation (and SMS if signed up) with an order number from Fresh Beauty Studio at the time your order is placed."}}{%- endcapture -%}
+
+      {%- if faq_items != '' -%}{%- assign faq_items = faq_items | append: ',' | append: shipping_faqs -%}{%- else -%}{%- assign faq_items = shipping_faqs -%}{%- endif -%}
+
+      ,
+      {
+        "@type": "FAQPage",
+        "@id": "{{ canonical_url }}#faqs",
+        "mainEntity": [{{ faq_items }}]
+      }
+    {%- endif -%}
+
+    {%- if request.page_type == 'collection' and collection != blank -%}
+      ,
+      {
+        "@type": "ItemList",
+        "@id": "{{ canonical_url }}#itemlist",
+        "name": {{ collection.title | json }},
+        "numberOfItems": {{ collection.products_count }},
+        "itemListElement": [
+          {%- for prod in collection.products limit: 24 -%}
+            {%- unless forloop.first %},{% endunless -%}
+            { "@type": "ListItem", "position": {{ forloop.index }}, "url": "{{ shop.url }}{{ prod.url }}", "name": {{ prod.title | json }} }
+          {%- endfor -%}
+        ]
+      }
+    {%- endif -%}
+
+    {%- if request.page_type == 'article' and article != blank -%}
+      ,
+      {
+        "@type": "BlogPosting",
+        "@id": "{{ canonical_url }}#article",
+        "url": "{{ canonical_url }}",
+        "headline": {{ article.title | json }},
+        "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
+        "dateModified": "{{ article.updated_at | default: article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
+        "author": { "@id": "{{ founder_id }}" },
+        "publisher": { "@id": "{{ org_id }}" }
+        {%- if article.image -%},"image": "{{ article.image | image_url: width: 1600 | prepend: 'https:' }}"{%- endif -%}
+      }
+    {%- endif -%}
+
+    {%- if request.page_type == 'page' and page != blank and page.handle == 'about' -%}
+      ,
+      {
+        "@type": "AboutPage",
+        "@id": "{{ canonical_url }}#about",
+        "url": "{{ canonical_url }}",
+        "name": "About Nikol Beauty",
+        "mainEntity": { "@id": "{{ founder_id }}" }
+      }
+    {%- endif -%}
+  ]
+}
+</script>

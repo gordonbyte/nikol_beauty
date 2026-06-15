@@ -1,0 +1,240 @@
+<style>
+.cw-faq-section {
+  background: #F7F2ED66;
+  padding: 80px 0;
+}
+
+.cw-faq-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.cw-faq-title {
+  font-size: 56px;
+  font-weight: 500;
+  line-height: 110%;
+  letter-spacing: -0.02em;
+  font-family: 'Cormorant';
+  color: #2A2724;
+}
+
+.cw-faq-subtitle {
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  color: #2A2724;
+  padding-top: 15px;
+}
+
+.cw-faq-parent {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cw-faq-item {
+    border-bottom: 1px solid #2A272433;
+}
+
+.cw-faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 20px 0;
+ text-transform: capitalize;
+}
+
+.cw-faq-q-text {
+  font-size: 26px;
+  line-height: 110%;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  color: #2A2724;
+  font-family: 'Cormorant';
+}
+
+.cw-faq-icon img {
+  width: 18px;
+  display: none;
+}
+
+.cw-faq-item:not(.active) .cw-faq-plus {
+  display: block;
+}
+
+.cw-faq-item.active .cw-faq-minus {
+  display: block;
+}
+
+.cw-faq-answer {
+  display: none;
+  padding-bottom: 20px;
+  font-size: 18px;
+  line-height: 150%;
+  font-weight: 400;
+  color: #2A2724;
+}
+
+.cw-faq-item.active .cw-faq-answer {
+  display: block;
+}
+
+@media only screen and (max-width: 600px) {
+section.cw-faq-section {
+    padding: 40px 0;
+}
+
+.cw-faq-title {
+    font-size: 34px;
+}
+
+.cw-faq-subtitle {
+    font-size: 16px;
+}
+
+.cw-faq-header {
+    margin-bottom: 20px;
+}
+
+.cw-faq-question {
+    gap: 20px;
+}
+.cw-faq-q-text {
+    font-size: 22px;
+}
+
+.cw-faq-answer {
+    font-size: 16px;
+        padding-right: 20px;
+}
+}
+    </style>
+
+<section class="cw-faq-section">
+  <div class="page-width">
+
+ 
+    <div class="cw-faq-header">
+      <div class="cw-faq-title">{{ section.settings.title }}</div>
+      <div class="cw-faq-subtitle">{{ section.settings.subtitle }}</div>
+    </div>
+
+ 
+    <div class="cw-faq-parent">
+
+      {% for block in section.blocks %}
+        <div class="cw-faq-item {% if forloop.first %}active{% endif %}">
+          <div class="cw-faq-question">
+            <div class="cw-faq-q-text">
+              {{ block.settings.question }}
+            </div>
+
+            <div class="cw-faq-icon">
+              {% if section.settings.plus_icon != blank %}
+                <img
+                  class="cw-faq-plus"
+                  src="{{ section.settings.plus_icon | img_url: 'master' }}"
+                  alt="plus"
+                >
+              {% endif %}
+
+              {% if section.settings.minus_icon != blank %}
+                <img
+                  class="cw-faq-minus"
+                  src="{{ section.settings.minus_icon | img_url: 'master' }}"
+                  alt="minus"
+                >
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="cw-faq-answer">
+            {{ block.settings.answer }}
+          </div>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+<script>
+setTimeout(function () {
+  const items = document.querySelectorAll(".cw-faq-item");
+
+  items.forEach(item => {
+    item.querySelector(".cw-faq-question").addEventListener("click", () => {
+
+      items.forEach(other => {
+        if (other !== item) {
+          other.classList.remove("active");
+        }
+      });
+
+      item.classList.toggle("active");
+    });
+  });
+}, 100);
+    </script>
+
+{% schema %}
+{
+  "name": "CW FAQ Accordion",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Everything you need to know about Nikol."
+    },
+    {
+      "type": "image_picker",
+      "id": "plus_icon",
+      "label": "Plus Icon Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "minus_icon",
+      "label": "Minus Icon Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Your question here"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Your answer here"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "CW FAQ Accordion",
+      "blocks": [
+        { "type": "faq" },
+        { "type": "faq" },
+        { "type": "faq" }
+      ]
+    }
+  ]
+}
+{% endschema %}
