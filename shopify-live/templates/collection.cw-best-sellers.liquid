@@ -1,0 +1,46 @@
+{%- layout none -%}
+{%- comment -%}
+  Alternate collection view for the "CW Best Sellers (Automatic)" section.
+
+  This template is NOT meant to be browsed directly. It is fetched by the
+  cw-best-sellers section via:
+      /collections/all?sort_by=best-selling&view=cw-best-sellers
+
+  Because it is requested as a collection URL, the `collection` object is the
+  built-in "all" collection and `collection.products` honours the
+  ?sort_by=best-selling URL parameter — giving store-wide best sellers in
+  best-selling order with no manually attached collection.
+
+  `layout none` strips all theme chrome so only the bare product cards are
+  returned, ready to be injected into the section on the homepage.
+{%- endcomment -%}
+{%- for product in collection.products limit: 24 -%}
+  <div class="cw-bs__card" data-bs-card>
+    <a class="cw-bs__media" href="{{ product.url }}">
+      {%- if product.featured_image -%}
+        <img
+          class="cw-bs__image"
+          src="{{ product.featured_image | image_url: width: 600 }}"
+          srcset="{{ product.featured_image | image_url: width: 300 }} 300w, {{ product.featured_image | image_url: width: 600 }} 600w, {{ product.featured_image | image_url: width: 900 }} 900w"
+          sizes="(max-width: 600px) 50vw, 25vw"
+          alt="{{ product.featured_image.alt | escape | default: product.title | escape }}"
+          width="{{ product.featured_image.width }}"
+          height="{{ product.featured_image.height }}"
+          loading="lazy">
+      {%- else -%}
+        {{ product | placeholder_svg_tag: 'cw-bs__image cw-bs__image--placeholder' }}
+      {%- endif -%}
+    </a>
+
+    <a class="cw-bs__title" href="{{ product.url }}">{{ product.title }}</a>
+
+    <div class="cw-bs__price">
+      {%- if product.compare_at_price > product.price -%}
+        <span class="cw-bs__price-sale">{{ product.price | money }}</span>
+        <s class="cw-bs__price-was">{{ product.compare_at_price | money }}</s>
+      {%- else -%}
+        {{ product.price | money }}
+      {%- endif -%}
+    </div>
+  </div>
+{%- endfor -%}

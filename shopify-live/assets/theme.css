@@ -8008,6 +8008,26 @@ announcement-bar {
   bottom: 0;
 }
 
+/* Layer the top bar: banner image (0) -> tint overlay (1) -> message text (2) */
+.announcement__bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+.announcement__wrapper--top .announcement__bg-image {
+  z-index: 0;
+}
+.announcement__wrapper--top .announcement__bg-overlay {
+  z-index: 1;
+}
+.announcement__wrapper--top .announcement__bar-outer {
+  position: relative;
+  z-index: 2;
+}
+
 .announcement__slide:not(.announcement__bar) {
   white-space: nowrap;
 }
@@ -8197,6 +8217,12 @@ html:not(.js) .announcement__scale.ticker--unloaded {
 .announcement__bar-holder {
   position: relative;
   background-color: var(--bg);
+  padding-top: var(--PT, 0px);
+  padding-bottom: var(--PB, 0px);
+}
+/* With a banner image, let the image + tint show through the bar instead of the solid color */
+.announcement__wrapper--has-bg-image .announcement__bar-holder {
+  background-color: transparent;
 }
 .announcement__bar-holder .flickity-slider {
   display: flex;

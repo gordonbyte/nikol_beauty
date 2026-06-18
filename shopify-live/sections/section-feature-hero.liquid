@@ -1,0 +1,698 @@
+<!-- /sections/section-feature-hero.liquid -->
+
+{%- liquid
+  assign section_id = section.id
+  assign anchor = 'feature-hero-' | append: section_id
+
+  assign image_position = section.settings.image_position
+  assign enable_background = section.settings.enable_background
+  assign background_color = section.settings.background_color
+
+  assign title = section.settings.title
+  assign mobile_title = section.settings.mobile_title
+  assign heading_size_class = section.settings.heading_size | prepend: 'heading-size-'
+  assign description = section.settings.description
+  assign mobile_description = section.settings.mobile_description
+  assign text_color = section.settings.text_color
+  assign content_align = section.settings.content_alignment
+
+  assign button_text = section.settings.button_text
+  assign button_link = section.settings.button_link
+  assign button_size = section.settings.button_size
+  assign button_style = section.settings.button_style
+  assign button_type = section.settings.button_type
+  assign button_show_arrow = section.settings.button_show_arrow
+
+  assign circle_visibility = section.settings.circle_visibility
+  assign circle_color = section.settings.circle_color
+  assign circle_size = section.settings.circle_size
+
+  assign image_blocks = section.blocks | where: 'type', 'image'
+  assign icon_blocks = section.blocks | where: 'type', 'icon'
+
+  if button_style == 'btn--text' and button_show_arrow
+    assign button_style = button_style | append: ' btn--text-no-underline'
+  endif
+
+  assign text_animation = section.settings.text_animation
+  assign stagger = section.settings.animation_stagger
+  assign anim_enabled = true
+  if text_animation == 'none'
+    assign anim_enabled = false
+  endif
+  assign anim_index = 0
+-%}
+
+{%- style -%}
+  #{{ anchor }} {
+    --fh-circle-color: {{ circle_color }};
+    --fh-circle-size: {{ circle_size }}px;
+    {%- if text_color != blank and text_color != 'rgba(0,0,0,0)' -%}--fh-text: {{ text_color }};{%- endif -%}
+    {%- if enable_background and background_color != blank and background_color != 'rgba(0,0,0,0)' -%}
+      background-color: {{ background_color }};
+    {%- endif -%}
+  }
+
+  #{{ anchor }} .feature-hero__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "content" "media" "icons";
+    align-items: start;
+    gap: 0;
+  }
+  #{{ anchor }} .feature-hero__content { grid-area: content; }
+  #{{ anchor }} .feature-hero__media   { grid-area: media; }
+  #{{ anchor }} .feature-hero__icons   { grid-area: icons; }
+
+  #{{ anchor }} .feature-hero__content {
+    padding: 48px clamp(20px, 5vw, 72px) 16px;
+    {%- if text_color != blank and text_color != 'rgba(0,0,0,0)' -%}color: var(--fh-text);{%- endif -%}
+  }
+
+  #{{ anchor }} .feature-hero__title {
+    margin: 0 0 0.4em;
+    line-height: 1.1;
+  }
+  #{{ anchor }} .feature-hero__description { margin: 0 0 1.5em; }
+  #{{ anchor }} .feature-hero__description > *:last-child { margin-bottom: 0; }
+  #{{ anchor }} .feature-hero__button { margin-bottom: 0; }
+
+  #{{ anchor }} .feature-hero__title--mobile,
+  #{{ anchor }} .feature-hero__description--mobile { display: none; }
+
+  #{{ anchor }} .feature-hero__media {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    height: 100%;
+  }
+  #{{ anchor }} .feature-hero__image { position: relative; overflow: hidden; }
+  #{{ anchor }} .feature-hero__image img,
+  #{{ anchor }} .feature-hero__image svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #{{ anchor }} .feature-hero__icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(16px, 4vw, 48px);
+    padding: 24px clamp(20px, 5vw, 72px) 48px;
+  }
+  #{{ anchor }} .feature-hero__inner.text-center .feature-hero__icons {
+    justify-content: center;
+  }
+  #{{ anchor }} .feature-hero__icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 120px;
+  }
+  #{{ anchor }} .feature-hero__icon-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--fh-circle-size);
+    height: var(--fh-circle-size);
+    border-radius: 50%;
+    margin-bottom: 8px;
+  }
+  #{{ anchor }} .feature-hero__icon-media img {
+    width: 55%;
+    height: 55%;
+    object-fit: contain;
+  }
+  #{{ anchor }} .feature-hero__icon-label {
+    font-size: 0.875rem;
+    line-height: 1.3;
+  }
+
+  {%- comment -%} Circle visibility (border is 1px thicker than before) {%- endcomment -%}
+  {%- case circle_visibility -%}
+    {%- when 'both' -%}
+      #{{ anchor }} .feature-hero__icon-media { border: 2.5px solid var(--fh-circle-color); }
+    {%- when 'desktop' -%}
+      @media (min-width: 750px) {
+        #{{ anchor }} .feature-hero__icon-media { border: 2.5px solid var(--fh-circle-color); }
+      }
+    {%- when 'mobile' -%}
+      @media (max-width: 749px) {
+        #{{ anchor }} .feature-hero__icon-media { border: 2.5px solid var(--fh-circle-color); }
+      }
+  {%- endcase -%}
+
+  @media (max-width: 749px) {
+    {%- if mobile_title != blank -%}
+      #{{ anchor }} .feature-hero__title--desktop { display: none; }
+      #{{ anchor }} .feature-hero__title--mobile { display: block; }
+    {%- endif -%}
+    {%- if mobile_description != blank -%}
+      #{{ anchor }} .feature-hero__description--desktop { display: none; }
+      #{{ anchor }} .feature-hero__description--mobile { display: block; }
+    {%- endif -%}
+  }
+
+  @media (min-width: 750px) {
+    #{{ anchor }} .feature-hero__inner {
+      grid-template-columns: 1fr 1fr;
+      /* Flexible top/bottom rows center the content + icons group vertically against the image. */
+      grid-template-rows: 1fr auto auto 1fr;
+    }
+    {%- if image_position == 'left' -%}
+      #{{ anchor }} .feature-hero__content { grid-area: 2 / 2 / 3 / 3; }
+      #{{ anchor }} .feature-hero__icons   { grid-area: 3 / 2 / 4 / 3; }
+      #{{ anchor }} .feature-hero__media    { grid-area: 1 / 1 / 5 / 2; }
+    {%- else -%}
+      #{{ anchor }} .feature-hero__content { grid-area: 2 / 1 / 3 / 2; }
+      #{{ anchor }} .feature-hero__icons   { grid-area: 3 / 1 / 4 / 2; }
+      #{{ anchor }} .feature-hero__media    { grid-area: 1 / 2 / 5 / 3; }
+    {%- endif -%}
+  }
+
+  {%- comment -%} Smooth, staggered entrance animation {%- endcomment -%}
+  {%- if anim_enabled -%}
+    #{{ anchor }} .fh-anim {
+      opacity: 0;
+      transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
+                  transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
+      transition-delay: var(--fh-delay, 0ms);
+      will-change: opacity, transform;
+    }
+    {%- case text_animation -%}
+      {%- when 'fade-up' -%}
+        #{{ anchor }} .fh-anim { transform: translateY(24px); }
+      {%- when 'fade-left' -%}
+        #{{ anchor }} .fh-anim { transform: translateX(-32px); }
+      {%- when 'fade-right' -%}
+        #{{ anchor }} .fh-anim { transform: translateX(32px); }
+      {%- when 'alternate' -%}
+        #{{ anchor }} .fh-anim--left  { transform: translateX(-32px); }
+        #{{ anchor }} .fh-anim--right { transform: translateX(32px); }
+    {%- endcase -%}
+    #{{ anchor }}.is-fh-visible .fh-anim {
+      opacity: 1;
+      transform: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #{{ anchor }} .fh-anim {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  {%- endif -%}
+{%- endstyle -%}
+
+<div id="{{ anchor }}" class="feature-hero {{ section.settings.width }}{% if enable_background %} feature-hero--has-bg{% endif %}"
+  data-section-id="{{ section_id }}"
+  data-section-type="feature-hero">
+  <div class="feature-hero__inner {{ content_align }}">
+
+    <div class="feature-hero__content">
+      {%- if title != blank or mobile_title != blank -%}
+        {%- liquid
+          assign anim_class = ''
+          assign anim_style = ''
+          if anim_enabled
+            assign delay = anim_index | times: stagger
+            assign anim_style = 'style="--fh-delay: ' | append: delay | append: 'ms;"'
+            assign anim_class = ' fh-anim'
+            if text_animation == 'alternate'
+              assign mod = anim_index | modulo: 2
+              if mod == 0
+                assign anim_class = anim_class | append: ' fh-anim--left'
+              else
+                assign anim_class = anim_class | append: ' fh-anim--right'
+              endif
+            endif
+            assign anim_index = anim_index | plus: 1
+          endif
+        -%}
+        {%- if title != blank -%}
+          <h2 class="feature-hero__title {{ heading_size_class }}{% if mobile_title != blank %} feature-hero__title--desktop{% endif %}{{ anim_class }}" {{ anim_style }}>
+            {{ title | escape }}
+          </h2>
+        {%- endif -%}
+        {%- if mobile_title != blank -%}
+          <h2 class="feature-hero__title {{ heading_size_class }} feature-hero__title--mobile{{ anim_class }}" {{ anim_style }}>
+            {{ mobile_title | escape }}
+          </h2>
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- if description != blank or mobile_description != blank -%}
+        {%- liquid
+          assign anim_class = ''
+          assign anim_style = ''
+          if anim_enabled
+            assign delay = anim_index | times: stagger
+            assign anim_style = 'style="--fh-delay: ' | append: delay | append: 'ms;"'
+            assign anim_class = ' fh-anim'
+            if text_animation == 'alternate'
+              assign mod = anim_index | modulo: 2
+              if mod == 0
+                assign anim_class = anim_class | append: ' fh-anim--left'
+              else
+                assign anim_class = anim_class | append: ' fh-anim--right'
+              endif
+            endif
+            assign anim_index = anim_index | plus: 1
+          endif
+        -%}
+        {%- if description != blank -%}
+          <div class="feature-hero__description rte{% if mobile_description != blank %} feature-hero__description--desktop{% endif %}{{ anim_class }}" {{ anim_style }}>
+            {{ description }}
+          </div>
+        {%- endif -%}
+        {%- if mobile_description != blank -%}
+          <div class="feature-hero__description rte feature-hero__description--mobile{{ anim_class }}" {{ anim_style }}>
+            {{ mobile_description }}
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- if button_text != blank -%}
+        {%- liquid
+          assign anim_class = ''
+          assign anim_style = ''
+          if anim_enabled
+            assign delay = anim_index | times: stagger
+            assign anim_style = 'style="--fh-delay: ' | append: delay | append: 'ms;"'
+            assign anim_class = ' fh-anim'
+            if text_animation == 'alternate'
+              assign mod = anim_index | modulo: 2
+              if mod == 0
+                assign anim_class = anim_class | append: ' fh-anim--left'
+              else
+                assign anim_class = anim_class | append: ' fh-anim--right'
+              endif
+            endif
+            assign anim_index = anim_index | plus: 1
+          endif
+        -%}
+        <div class="feature-hero__button{{ anim_class }}" {{ anim_style }}>
+          <a class="btn {{ button_size }} {{ button_style }} {{ button_type }}" href="{{ button_link | default: '#!' }}">
+            <span>{{ button_text | escape }}</span>
+            {%- if button_show_arrow -%}
+              {%- render 'icon-arrow-right' -%}
+            {%- endif -%}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if image_blocks.size > 0 -%}
+      <div class="feature-hero__media">
+        {%- for block in image_blocks -%}
+          {%- liquid
+            assign image = block.settings.image
+            assign mobile_image = block.settings.mobile_image
+            assign img_alt = image.alt | default: block.settings.alt_text | default: title
+            if forloop.first and section.index < 3
+              assign loading = 'eager'
+              assign fetchpriority = 'high'
+            else
+              assign loading = 'lazy'
+              assign fetchpriority = 'auto'
+            endif
+          -%}
+          <div class="feature-hero__image" {{ block.shopify_attributes }}>
+            {%- if image != blank or mobile_image != blank -%}
+              <picture>
+                {%- if mobile_image != blank -%}
+                  <source media="(max-width: 749px)"
+                    srcset="{{ mobile_image | image_url: width: 750 }} 750w, {{ mobile_image | image_url: width: 1100 }} 1100w"
+                    sizes="100vw">
+                {%- endif -%}
+                {%- assign base_image = image | default: mobile_image -%}
+                {{ base_image | image_url: width: 1200 | image_tag:
+                  loading: loading,
+                  fetchpriority: fetchpriority,
+                  widths: '300, 450, 600, 750, 900, 1100, 1300, 1500',
+                  sizes: '(min-width: 750px) 25vw, 100vw',
+                  alt: img_alt }}
+              </picture>
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if icon_blocks.size > 0 -%}
+      <div class="feature-hero__icons">
+        {%- for block in icon_blocks -%}
+          {%- liquid
+            assign icon = block.settings.icon
+            assign label = block.settings.label
+            assign icon_alt = icon.alt | default: label | default: 'feature icon'
+
+            assign anim_class = ''
+            assign anim_style = ''
+            if anim_enabled
+              assign delay = anim_index | times: stagger
+              assign anim_style = 'style="--fh-delay: ' | append: delay | append: 'ms;"'
+              assign anim_class = ' fh-anim'
+              if text_animation == 'alternate'
+                assign mod = anim_index | modulo: 2
+                if mod == 0
+                  assign anim_class = anim_class | append: ' fh-anim--left'
+                else
+                  assign anim_class = anim_class | append: ' fh-anim--right'
+                endif
+              endif
+              assign anim_index = anim_index | plus: 1
+            endif
+          -%}
+          <div class="feature-hero__icon{{ anim_class }}" {{ anim_style }} {{ block.shopify_attributes }}>
+            <span class="feature-hero__icon-media">
+              {%- if icon != blank -%}
+                {{ icon | image_url: width: 160 | image_tag:
+                  loading: 'lazy',
+                  widths: '60, 90, 120, 160, 240',
+                  sizes: '120px',
+                  alt: icon_alt }}
+              {%- endif -%}
+            </span>
+            {%- if label != blank -%}
+              <span class="feature-hero__icon-label">{{ label | escape }}</span>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{%- if anim_enabled -%}
+  <script>
+    (function () {
+      var el = document.getElementById('{{ anchor }}');
+      if (!el) return;
+
+      var reveal = function () { el.classList.add('is-fh-visible'); };
+
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        reveal();
+        return;
+      }
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              reveal();
+              obs.disconnect();
+            }
+          });
+        }, { threshold: 0.15 });
+        observer.observe(el);
+      } else {
+        reveal();
+      }
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Dev- Feature hero",
+  "class": "section-feature-hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position (desktop)",
+      "default": "right",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wrapper--full",
+      "options": [
+        { "value": "wrapper--full", "label": "Full width" },
+        { "value": "wrapper--full-padded", "label": "Full width padded" },
+        { "value": "wrapper", "label": "Contained" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Text alignment",
+      "info": "Center also centers the icon row.",
+      "default": "text-left",
+      "options": [
+        { "value": "text-left", "label": "Left" },
+        { "value": "text-center", "label": "Center" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Entrance animation",
+      "info": "Text, button and icons fade in one after another when the banner scrolls into view."
+    },
+    {
+      "type": "select",
+      "id": "text_animation",
+      "label": "Animation style",
+      "default": "fade-up",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "fade", "label": "Fade in" },
+        { "value": "fade-up", "label": "Fade up" },
+        { "value": "fade-left", "label": "Fade in from left" },
+        { "value": "fade-right", "label": "Fade in from right" },
+        { "value": "alternate", "label": "Alternate (left & right)" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "animation_stagger",
+      "label": "Delay between items",
+      "min": 0,
+      "max": 400,
+      "step": 25,
+      "unit": "ms",
+      "default": 150
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_background",
+      "label": "Use solid background color",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f9e3e3"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Clean Makeup That Looks Natural"
+    },
+    {
+      "type": "text",
+      "id": "mobile_title",
+      "label": "Heading (mobile)",
+      "info": "Optional. Falls back to the desktop heading if blank."
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 1,
+      "max": 15,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Thoughtfully formulated to enhance your features and match your skin tone without settling into fine lines.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "mobile_description",
+      "label": "Description (mobile)",
+      "info": "Optional. Falls back to the desktop description if blank."
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color"
+    },
+    {
+      "type": "header",
+      "content": "Call to action button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop our best sellers"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "button_type",
+      "label": "Color",
+      "default": "btn--primary",
+      "options": [
+        { "value": "btn--primary", "label": "Primary" },
+        { "value": "btn--secondary", "label": "Secondary" },
+        { "value": "btn--white", "label": "White" },
+        { "value": "btn--black", "label": "Black" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "button_size",
+      "label": "Size",
+      "default": "",
+      "options": [
+        { "value": "btn--small", "label": "Small" },
+        { "value": "", "label": "Medium" },
+        { "value": "btn--large", "label": "Large" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Style",
+      "default": "btn--solid",
+      "options": [
+        { "value": "btn--solid", "label": "Solid" },
+        { "value": "btn--outline", "label": "Outline" },
+        { "value": "btn--text", "label": "Text" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "button_show_arrow",
+      "label": "Show arrow",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Icon circles",
+      "info": "Circles are drawn automatically around each icon."
+    },
+    {
+      "type": "select",
+      "id": "circle_visibility",
+      "label": "Show circle around icons",
+      "default": "both",
+      "options": [
+        { "value": "both", "label": "Desktop & mobile" },
+        { "value": "desktop", "label": "Desktop only" },
+        { "value": "mobile", "label": "Mobile only" },
+        { "value": "none", "label": "Hidden" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "circle_color",
+      "label": "Circle color",
+      "default": "#d28b9d"
+    },
+    {
+      "type": "range",
+      "id": "circle_size",
+      "label": "Circle size",
+      "min": 40,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Add multiple Image blocks to place them side by side. Each renders its own <img> with alt text for SEO."
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image",
+          "info": "Optional. Shown below 750px. Falls back to the main image."
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt text (SEO)",
+          "info": "Falls back to the image's own alt text if left blank."
+        }
+      ]
+    },
+    {
+      "type": "icon",
+      "name": "Icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Cruelty-Free"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature hero",
+      "category": "Image",
+      "blocks": [
+        { "type": "image" },
+        { "type": "icon", "settings": { "label": "Cruelty-Free" } },
+        { "type": "icon", "settings": { "label": "Esthetician-Approved" } },
+        { "type": "icon", "settings": { "label": "Paraben-Free" } }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "aside", "footer"]
+  }
+}
+{% endschema %}

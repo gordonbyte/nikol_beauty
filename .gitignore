@@ -12,3 +12,22 @@ desktop.ini
 
 # Logs
 *.log
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# Test harness / tooling — kept local, not part of the theme
+/package.json
+/package-lock.json
+/playwright.config.js
+/tests/
+/scripts/
+/.github/
+
+# Local project docs / config — kept local
+/CLAUDE.md

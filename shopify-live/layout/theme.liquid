@@ -70,15 +70,13 @@
     >
 
 {% if template == 'index' %}
-  <link rel="preload" as="image" 
-    media="(max-width: 749px)"
-    href="//nikolbeauty.com/cdn/shop/files/Feb_LIP_GLOSS_MOBILE_1950_x_951.webp?v=1769585113&width=900">
-
-  <link rel="preload" as="image" 
-    media="(min-width: 750px)"
-    href="//nikolbeauty.com/cdn/shop/files/Feb_Lip_GLOSS_2000x719_fdb8e7a1-306b-4c5f-acb3-a8d3d28d67fa.webp?v=1769585179&width=2000">
-  
-
+  {%- comment -%}
+    Removed stale homepage hero image preloads (retired "Feb_Lip_GLOSS" campaign
+    that the homepage no longer renders). They triggered "preloaded but not used"
+    console warnings and wasted bandwidth on unused images. The live hero is in
+    the cw-feature section (managed in the theme editor). The orphan </style>
+    below is left as-is (harmless, pre-existing).
+  {%- endcomment -%}
   </style>
 {% endif %}
 

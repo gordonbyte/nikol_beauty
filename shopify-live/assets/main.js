@@ -188,7 +188,7 @@ $(document).ready( () => {
 
     const Shuffle = window.Shuffle; // Assumes you're using the UMD version of Shuffle (for example, from unpkg.com).
     const element = document.getElementById('videos_list');
-    if(element) {
+    if(element && typeof Shuffle === 'function') {
 
       const shuffleInstance = new Shuffle(element, {
         itemSelector: '.video-product-hub',
@@ -301,5 +301,7 @@ $(document).ready( () => {
     }
 
     var checkbox = document.getElementById("agree_cart");
-    checkbox.addEventListener("click", toggleButton);
+    if (checkbox) {
+      checkbox.addEventListener("click", toggleButton);
+    }
 })

@@ -120,6 +120,40 @@
     {{ block.shopify_attributes }}
   {%- endcapture -%}
 
+  {%- liquid
+    # Schedule (store timezone): hide this block before its start date/time or after its end date/time.
+    assign tz_offset = 'now' | date: '%z'
+    assign now_ts = 'now' | date: '%s' | plus: 0
+
+    if block.settings.start_enabled and block.settings.start_date != blank
+      assign start_time_value = block.settings.start_time
+      if start_time_value == blank
+        assign start_time_value = '00:00'
+      endif
+      capture start_datetime_string
+        echo block.settings.start_date | append: ' ' | append: start_time_value | append: ' ' | append: tz_offset
+      endcapture
+      assign start_ts = start_datetime_string | date: '%s' | plus: 0
+      if start_ts > 0 and now_ts < start_ts
+        assign show_bar = false
+      endif
+    endif
+
+    if block.settings.end_enabled and block.settings.end_date != blank
+      assign end_time_value = block.settings.end_time
+      if end_time_value == blank
+        assign end_time_value = '23:59'
+      endif
+      capture end_datetime_string
+        echo block.settings.end_date | append: ' ' | append: end_time_value | append: ' ' | append: tz_offset
+      endcapture
+      assign end_ts = end_datetime_string | date: '%s' | plus: 0
+      if end_ts > 0 and now_ts >= end_ts
+        assign show_bar = false
+      endif
+    endif
+  -%}
+
   {%- if show_bar -%}
     {%- capture block_content -%}
       {%- if block.type == 'image' -%}
@@ -142,7 +176,12 @@
             {%- when 'text' -%}
 
               {%- if block.settings.text != blank -%}
-                {{ block.settings.text | replace: '|', '<span class="announcement__divider"></span>' }}
+                {%- assign announcement_text = block.settings.text | replace: '|', '<span class="announcement__divider"></span>' -%}
+                {%- if block.settings.link != blank -%}
+                  <a href="{{ block.settings.link }}" class="announcement__link" style="color: inherit; text-decoration: none;">{{ announcement_text }}</a>
+                {%- else -%}
+                  {{ announcement_text }}
+                {%- endif -%}
               {%- endif -%}
 
             {%- when 'message' -%}
@@ -347,7 +386,7 @@
 {%- endif -%}
 
 <div id="Announcement--{{ section.id }}"
-  class="announcement__wrapper{% if is_top %} announcement__wrapper--top{% else %} section-padding{% endif %}{% if show_border %} announcement__wrapper--borders{% endif %}"
+  class="announcement__wrapper{% if is_top %} announcement__wrapper--top{% else %} section-padding{% endif %}{% if show_border %} announcement__wrapper--borders{% endif %}{% if section.settings.background_image != blank %} announcement__wrapper--has-bg-image{% endif %}"
   data-announcement-wrapper
   data-section-id="{{ section.id }}"
   data-section-type="announcement"
@@ -362,10 +401,13 @@
     </div>
   {%- endif -%}
 
-  {%- if is_top == false and section.settings.background_image != blank -%}
+  {%- if section.settings.background_image != blank -%}
     <div class="announcement__bg-image">
       {%- render 'image' image: section.settings.background_image, sizes: '100vw', cover: true -%}
     </div>
+    {%- if section.settings.overlay_opacity > 0 -%}
+      <div class="announcement__bg-overlay" style="background-color: {{ section.settings.overlay_color | default: '#000000' }}; opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};"></div>
+    {%- endif -%}
   {%- endif -%}
 
   {%- if section.blocks.size > 0 -%}

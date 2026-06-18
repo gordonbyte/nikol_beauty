@@ -450,32 +450,6 @@
   <div {{ block.shopify_attributes }}></div>
 {%- endif -%}
 
-                  {%- when 'upsell' -%}
-                    {%- assign upsell_product = product.metafields.theme.upsell.value | default: block.settings.upsell_product -%}
-                    {%- assign upsell_product_List = product.metafields.theme.upsell_list.value | default: block.settings.upsell_product_list -%}
-
-                    {%- if upsell_product != blank or upsell_product_List != blank or request.design_mode -%}
-                      <div class="product__block product__upsell block-padding" {{ block.shopify_attributes }} {{ block_style }}>
-                        {%- assign upsell_title = 'products.general.upsell_title' | t -%}
-
-                        <p class="product-upsell__holder__title">{{ upsell_title }}</p>
-
-                        {%- if upsell_product == blank and upsell_product_List == blank -%}
-                          {%- render 'upsell-product' -%}
-                        {%- else -%}
-                          {%- if upsell_product != blank -%}
-                            {%- render 'upsell-product', upsell_product: upsell_product -%}
-                          {%- endif -%}
-
-                          {%- if upsell_product_List != blank -%}
-                            {%- for upsell_product in upsell_product_List -%}
-                              {%- render 'upsell-product', upsell_product: upsell_product -%}
-                            {%- endfor -%}
-                          {%- endif -%}
-                        {%- endif -%}
-                      </div>
-                    {%- endif -%}
-
                   {%- when 'pickup' -%}
                     <pickup-availability class="product__block product__pickup block-padding" data-store-availability-container="{{ current_variant.id }}" {{ block.shopify_attributes }} {{ block_style }}></pickup-availability>
 
@@ -955,6 +929,7 @@
   </script>
 
   {%- if show_cart_bar -%}
+  
     <!-- /partials/cart-bar.liquid -->
 {%- liquid
   assign current_variant = product.selected_or_first_available_variant

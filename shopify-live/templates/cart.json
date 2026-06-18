@@ -35,6 +35,7 @@
         },
         "upsell_products_t4jYCY": {
           "type": "upsell-products",
+          "disabled": true,
           "settings": {
             "upsell_auto_open": true
           }
