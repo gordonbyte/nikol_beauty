@@ -77,7 +77,7 @@
       }
     },
     "instagram_feed_KxxVK3": {
-      "type": "instagram-feed",
+      "type": "custom-instagram-feed",
       "disabled": true,
       "settings": {
         "title": "FOLLOW US ON INSTAGRAM",

@@ -228,8 +228,8 @@
           "padding_bottom": 65
         }
       },
-      "footer-new": {
-        "type": "footer-new",
+      "custom-footer": {
+        "type": "custom-footer",
         "custom_css": [],
         "settings": {
           "title_subscribe": "Let's Get this beauty started.",
@@ -252,11 +252,6 @@
         "disabled": false,
         "settings": {}
       },
-      "14060646107696862457": {
-        "type": "shopify://apps/judge-me-product-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-        "disabled": false,
-        "settings": {}
-      },
       "855628211100114053": {
         "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
@@ -276,18 +271,6 @@
       },
       "11989736685688860011": {
         "type": "shopify://apps/easy-variant-images/blocks/embed_via/bfecabd5-49af-4d37-8214-f0f4649f4cb3",
-        "disabled": false,
-        "settings": {}
-      },
-      "18200565304124502559": {
-        "type": "shopify://apps/alpha-sale/blocks/bar-block/45a35b3f-4683-44a8-afc3-1d6788fea377",
-        "disabled": false,
-        "settings": {
-          "demo": false
-        }
-      },
-      "11360718970158082676": {
-        "type": "shopify://apps/cross-sell-upsell-pro/blocks/crosssell/a1de75bd-abc2-408f-b8be-5bce11f6a502",
         "disabled": false,
         "settings": {}
       },
