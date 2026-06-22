@@ -7,8 +7,8 @@
 
   How it works:
     - On load, the section's JavaScript fetches
-        /collections/all?sort_by=best-selling&view=cw-best-sellers
-      The alternate template `templates/collection.cw-best-sellers.liquid`
+        /collections/all?sort_by=best-selling&view=custom-best-sellers
+      The alternate template `templates/collection.custom-best-sellers.liquid`
       returns only bare product cards (best-selling order), which are injected
       into the grid below.
     - Best-selling order is recalculated by Shopify automatically, so this
@@ -23,25 +23,25 @@
 {%- assign products_limit = section.settings.products_limit | default: 8 -%}
 
 {%- style -%}
-  #cw-best-sellers-{{ section.id }} {
+  #custom-best-sellers-{{ section.id }} {
     --cw-bs-columns: {{ section.settings.columns_desktop }};
     --cw-bs-columns-mobile: {{ section.settings.columns_mobile }};
     background: {{ section.settings.bg_color }};
     padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
   }
 
-  #cw-best-sellers-{{ section.id }} .cw-bs__inner {
+  #custom-best-sellers-{{ section.id }} .cw-bs__inner {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
   }
 
-  #cw-best-sellers-{{ section.id }} .cw-bs__header {
+  #custom-best-sellers-{{ section.id }} .cw-bs__header {
     text-align: center;
     margin-bottom: 50px;
   }
 
-  #cw-best-sellers-{{ section.id }} .cw-bs__title {
+  #custom-best-sellers-{{ section.id }} .cw-bs__title {
     font-size: 56px;
     line-height: 110%;
     letter-spacing: -3px;
@@ -50,29 +50,29 @@
     margin: 0;
   }
 
-  #cw-best-sellers-{{ section.id }} .cw-bs__subtitle {
+  #custom-best-sellers-{{ section.id }} .cw-bs__subtitle {
     font-size: 20px;
     padding-top: 20px;
     margin: 0;
   }
 
-  #cw-best-sellers-{{ section.id }} .cw-bs__grid {
+  #custom-best-sellers-{{ section.id }} .cw-bs__grid {
     display: grid;
     grid-template-columns: repeat(var(--cw-bs-columns), 1fr);
     gap: 30px;
   }
 
-  #cw-best-sellers-{{ section.id }} .cw-bs__card {
+  #custom-best-sellers-{{ section.id }} .cw-bs__card {
     display: flex;
     flex-direction: column;
   }
 
-  #cw-best-sellers-{{ section.id }} .cw-bs__media {
+  #custom-best-sellers-{{ section.id }} .cw-bs__media {
     display: block;
     overflow: hidden;
   }
 
-  #cw-best-sellers-{{ section.id }} .cw-bs__image {
+  #custom-best-sellers-{{ section.id }} .cw-bs__image {
     display: block;
     width: 100%;
     height: auto;
@@ -80,7 +80,7 @@
     object-fit: cover;
   }
 
-  #cw-best-sellers-{{ section.id }} .cw-bs__title {
+  #custom-best-sellers-{{ section.id }} .cw-bs__title {
     font-size: 26px;
     line-height: 120%;
     font-weight: 500;
@@ -89,51 +89,51 @@
     padding-bottom: 8px;
   }
 
-  #cw-best-sellers-{{ section.id }} .cw-bs__price {
+  #custom-best-sellers-{{ section.id }} .cw-bs__price {
     font-weight: 400;
     font-size: 18px;
   }
 
-  #cw-best-sellers-{{ section.id }} .cw-bs__price-sale {
+  #custom-best-sellers-{{ section.id }} .cw-bs__price-sale {
     color: #c0392b;
     margin-right: 8px;
   }
 
-  #cw-best-sellers-{{ section.id }} .cw-bs__price-was {
+  #custom-best-sellers-{{ section.id }} .cw-bs__price-was {
     opacity: 0.6;
   }
 
   /* Skeleton placeholders shown while best sellers load */
-  #cw-best-sellers-{{ section.id }} .cw-bs__card--skeleton .cw-bs__skeleton {
+  #custom-best-sellers-{{ section.id }} .cw-bs__card--skeleton .cw-bs__skeleton {
     background: #ece5dc;
     border-radius: 4px;
   }
 
-  #cw-best-sellers-{{ section.id }} .cw-bs__card--skeleton .cw-bs__skeleton--image {
+  #custom-best-sellers-{{ section.id }} .cw-bs__card--skeleton .cw-bs__skeleton--image {
     width: 100%;
     aspect-ratio: 1 / 1;
   }
 
-  #cw-best-sellers-{{ section.id }} .cw-bs__card--skeleton .cw-bs__skeleton--line {
+  #custom-best-sellers-{{ section.id }} .cw-bs__card--skeleton .cw-bs__skeleton--line {
     height: 18px;
     margin-top: 14px;
   }
 
-  #cw-best-sellers-{{ section.id }} .cw-bs__card--skeleton .cw-bs__skeleton--line.short {
+  #custom-best-sellers-{{ section.id }} .cw-bs__card--skeleton .cw-bs__skeleton--line.short {
     width: 40%;
   }
 
-  #cw-best-sellers-{{ section.id }} .cw-bs__empty {
+  #custom-best-sellers-{{ section.id }} .cw-bs__empty {
     grid-column: 1 / -1;
     text-align: center;
   }
 
-  #cw-best-sellers-{{ section.id }} .cw-bs__btn-wrap {
+  #custom-best-sellers-{{ section.id }} .cw-bs__btn-wrap {
     text-align: center;
     padding-top: 50px;
   }
 
-  #cw-best-sellers-{{ section.id }} .cw-bs__btn {
+  #custom-best-sellers-{{ section.id }} .cw-bs__btn {
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -145,42 +145,42 @@
   }
 
   @media only screen and (max-width: 749px) {
-    #cw-best-sellers-{{ section.id }} {
+    #custom-best-sellers-{{ section.id }} {
       padding: 40px 0;
     }
 
-    #cw-best-sellers-{{ section.id }} .cw-bs__title {
+    #custom-best-sellers-{{ section.id }} .cw-bs__title {
       font-size: 34px;
     }
 
-    #cw-best-sellers-{{ section.id }} .cw-bs__subtitle {
+    #custom-best-sellers-{{ section.id }} .cw-bs__subtitle {
       font-size: 16px;
       line-height: 135%;
       padding-top: 15px;
     }
 
-    #cw-best-sellers-{{ section.id }} .cw-bs__header {
+    #custom-best-sellers-{{ section.id }} .cw-bs__header {
       margin-bottom: 30px;
     }
 
-    #cw-best-sellers-{{ section.id }} .cw-bs__grid {
+    #custom-best-sellers-{{ section.id }} .cw-bs__grid {
       grid-template-columns: repeat(var(--cw-bs-columns-mobile), 1fr);
       gap: 16px;
     }
 
-    #cw-best-sellers-{{ section.id }} .cw-bs__title {
+    #custom-best-sellers-{{ section.id }} .cw-bs__title {
       font-size: 22px;
     }
 
-    #cw-best-sellers-{{ section.id }} .cw-bs__price {
+    #custom-best-sellers-{{ section.id }} .cw-bs__price {
       font-size: 16px;
     }
   }
 {%- endstyle -%}
 
 <section
-  id="cw-best-sellers-{{ section.id }}"
-  class="cw-best-sellers-section"
+  id="custom-best-sellers-{{ section.id }}"
+  class="custom-best-sellers-section"
   data-bs-limit="{{ products_limit }}">
   <div class="cw-bs__inner">
     <div class="cw-bs__header">
@@ -221,9 +221,9 @@
     var SECTION_ID = {{ section.id | json }};
 
     function initBestSellers(scope) {
-      var section = (scope && scope.id === 'cw-best-sellers-' + SECTION_ID)
+      var section = (scope && scope.id === 'custom-best-sellers-' + SECTION_ID)
         ? scope
-        : document.getElementById('cw-best-sellers-' + SECTION_ID);
+        : document.getElementById('custom-best-sellers-' + SECTION_ID);
       if (!section) { return; }
 
       var grid = section.querySelector('[data-bs-grid]');
@@ -232,7 +232,7 @@
 
       var limit = parseInt(section.getAttribute('data-bs-limit'), 10) || 8;
 
-      fetch('/collections/all?sort_by=best-selling&view=cw-best-sellers', {
+      fetch('/collections/all?sort_by=best-selling&view=custom-best-sellers', {
         headers: { 'X-Requested-With': 'XMLHttpRequest' }
       })
         .then(function (response) {
@@ -269,7 +269,7 @@
     // Re-run inside the theme editor when this section is reloaded.
     document.addEventListener('shopify:section:load', function (event) {
       if (event.detail && event.detail.sectionId === SECTION_ID) {
-        initBestSellers(event.target.querySelector('#cw-best-sellers-' + SECTION_ID));
+        initBestSellers(event.target.querySelector('#custom-best-sellers-' + SECTION_ID));
       }
     });
   })();
@@ -277,7 +277,7 @@
 
 {% schema %}
 {
-  "name": "CW Best Sellers (Auto)",
+  "name": "[Custom] Best Sellers",
   "tag": "section",
   "settings": [
     {
@@ -377,7 +377,7 @@
   ],
   "presets": [
     {
-      "name": "CW Best Sellers (Auto)"
+      "name": "[Custom] Best Sellers"
     }
   ],
   "disabled_on": {

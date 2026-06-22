@@ -75,38 +75,10 @@
         "checkout-buttons"
       ],
       "settings": {}
-    },
-    "overlay_newsletter_W4JmLL": {
-      "type": "overlay-newsletter",
-      "blocks": {
-        "large_newsletter_7zFkNf": {
-          "type": "large-newsletter",
-          "disabled": true,
-          "settings": {
-            "title": "LET'S GET THIS BEAUTY STARTED™",
-            "text": "",
-            "bg_color": "#fcc9c6",
-            "color": "#46413c",
-            "trigger": "always",
-            "target_url_enabled": false,
-            "target_url": "",
-            "target_referrer_enabled": false,
-            "target_referrer": "",
-            "target_device_enabled": false,
-            "target_device": "mobile"
-          }
-        }
-      },
-      "block_order": [
-        "large_newsletter_7zFkNf"
-      ],
-      "disabled": true,
-      "settings": {}
     }
   },
   "order": [
     "cookie",
-    "cart-drawer",
-    "overlay_newsletter_W4JmLL"
+    "cart-drawer"
   ]
 }

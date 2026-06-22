@@ -56,12 +56,18 @@
       "settings": {}
     },
     "main": {
-      "type": "productv2",
+      "type": "custom-product-coming-soon",
       "blocks": {
         "code_QTP4Qc": {
-          "type": "code",
+          "type": "rating_summary",
           "settings": {
-            "code": "<div class=\"cw-bb-rating-box\" id=\"pro-scroll\">\n<a href=\"#judgeme_product_reviews\">\n  <div class=\"cw-bb-rating-image\">\n    <img\n      src=\"https://cdn.shopify.com/s/files/1/0690/6347/5504/files/Stars_Container_a8ef23fa-4cb0-442a-aebc-8875c6ae38e3.png?v=1771227398\"\n      alt=\"4.76 out of 5 stars\"\n      loading=\"lazy\"\n    >\n  </div>\n\n  <div class=\"cw-bb-rating-text\">\n    <strong>4.76/5</strong> stars | <strong>12,000+</strong> happy women\n  </div>\n</a>\n</div>",
+            "rating_image_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/Stars_Container_a8ef23fa-4cb0-442a-aebc-8875c6ae38e3.png?v=1771227398",
+            "rating_image_alt": "4.76 out of 5 stars",
+            "rating_text": "4.76/5",
+            "review_count_text": "12,000+",
+            "summary_suffix": "happy women",
+            "link_url": "#judgeme_product_reviews",
+            "anchor_id": "pro-scroll",
             "padding_bottom": 16
           }
         },
@@ -88,17 +94,58 @@
           }
         },
         "code_CtMwbx": {
-          "type": "code",
+          "type": "payment_details",
           "settings": {
-            "code": "<div class=\"cw-bb-color-main-container\">\n\n  <div class=\"cw-bb-color-top-bar\">\n    <div class=\"cw-bb-color-top-inner\">\n            <div class=\"cw-bb-color-top-text\">\n        Pay in 2 interest-free installments of $21.50 with\n         <img class=\"cw-bb-color-shop-pay-img\"\n        src=\"https://cdn.shopify.com/s/files/1/0690/6347/5504/files/Img_-_Shop_Pay.png?v=1771238348\"\n        alt=\"Shop Pay\" />\n        <a href=\"#\" class=\"cw-bb-color-learn-more\"> Learn more</a>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"cw-bb-color-description\">\n    An esthetician-approved BB Creme for mature skin that evens tone without\n    settling into lines or feeling thick. It softens redness and uneven areas\n    without that “too much makeup” look.\n  </div>\n\n  <div class=\"cw-bb-color-features\">\n    <ul class=\"cw-bb-color-feature-list\">\n      <li class=\"cw-bb-color-feature-item\">\n        Reduces shine without making skin look dull\n      </li>\n      <li class=\"cw-bb-color-feature-item\">\n        Stays comfortable around the nose and mouth\n      </li>\n      <li class=\"cw-bb-color-feature-item\">\n        Formulated with clinically proven ingredients (no sulfates or parabens)\n      </li>\n    </ul>\n  </div>\n</div>",
+            "installment_text": "Pay in 2 interest-free installments of $21.50 with",
+            "payment_logo_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/Img_-_Shop_Pay.png?v=1771238348",
+            "payment_logo_alt": "Shop Pay",
+            "learn_more_text": "Learn more",
+            "learn_more_url": "#",
+            "description": "<p>An esthetician-approved BB Creme for mature skin that evens tone without settling into lines or feeling thick. It softens redness and uneven areas without that \"too much makeup\" look.</p>",
+            "feature_1": "Reduces shine without making skin look dull",
+            "feature_2": "Stays comfortable around the nose and mouth",
+            "feature_3": "Formulated with clinically proven ingredients (no sulfates or parabens)",
             "padding_bottom": 16
           }
         },
         "code_7R8Abt": {
-          "type": "code",
+          "type": "color_picker",
           "settings": {
-            "code": "{% assign color_option = product.options_with_values | where: \"name\", \"Color\" | first %}\n\n{% if color_option %}\n\n<div class=\"cw-bb-color-chooser-title\">\n  Choose Color:\n  <span class=\"cw-bb-color-selected\">\n    {{ color_option.selected_value }}\n  </span>\n</div>\n\n<div class=\"cw-bb-color-image-wrapper\">\n\n  {% for value in color_option.values %}\n\n    <div \n      class=\"cw-bb-color-swatch {% if value == color_option.selected_value %}is-active{% endif %}\" \n      data-value=\"{{ value }}\"\n    >\n\n      {% case forloop.index %}\n\n        {% when 1 %}\n          <img src=\"https://cdn.shopify.com/s/files/1/0690/6347/5504/files/color1.png?v=1771406447\" class=\"cw-color\">\n\n        {% when 2 %}\n          <img src=\"https://cdn.shopify.com/s/files/1/0690/6347/5504/files/color2.png?v=1771406635\" class=\"cw-color\">\n\n        {% when 3 %}\n          <img src=\"https://cdn.shopify.com/s/files/1/0690/6347/5504/files/color3.png?v=1771406638\" class=\"cw-color\">\n\n        {% when 4 %}\n          <img src=\"https://cdn.shopify.com/s/files/1/0690/6347/5504/files/color4.png?v=1771406644\" class=\"cw-color\">\n\n      {% endcase %}\n\n    </div>\n\n  {% endfor %}\n\n</div>\n\n{% endif %}",
+            "label": "Choose Color:",
+            "option_name": "Color",
             "padding_bottom": 16
+          }
+        },
+        "color_swatch_fair": {
+          "type": "color_swatch_item",
+          "settings": {
+            "option_value": "Fair",
+            "image_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/color1.png?v=1771406447",
+            "image_alt": "Fair color swatch"
+          }
+        },
+        "color_swatch_light": {
+          "type": "color_swatch_item",
+          "settings": {
+            "option_value": "Light",
+            "image_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/color2.png?v=1771406635",
+            "image_alt": "Light color swatch"
+          }
+        },
+        "color_swatch_light_medium": {
+          "type": "color_swatch_item",
+          "settings": {
+            "option_value": "Light-Medium",
+            "image_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/color3.png?v=1771406638",
+            "image_alt": "Light-Medium color swatch"
+          }
+        },
+        "color_swatch_tan": {
+          "type": "color_swatch_item",
+          "settings": {
+            "option_value": "Tan",
+            "image_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/color4.png?v=1771406644",
+            "image_alt": "Tan color swatch"
           }
         },
         "variants": {
@@ -114,10 +161,380 @@
           "type": "shopify://apps/se-wishlist-engine/blocks/Product-Page/8f7c0857-8e71-463d-a168-8e133094753b",
           "settings": {}
         },
-        "code_jzPbiC": {
-          "type": "code",
+        "bundle_item_beginner_1": {
+          "type": "bundle_item",
           "settings": {
-            "code": "{% if product.title == \"Beginner Beauty Bundle\" %}\n<div style=\"display:flex; flex-direction: column; margin-top: 30px;\">\n\t<p> <b style=\"font-family: 'Jost', sans-serif\">Included products</b> </p>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/eye-primer\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/EyePrimerCorrectweb_7b4b0199-b97f-4840-a5a4-cec9fbb8fabf.png?v=1694481704\">\n\t\t</a> <p style=\"margin-left: 8px;\">Eye Primer $26.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/mascara-intense-curling-volumizing\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/products/mascara-3.png?v=1681859081\">\n\t\t</a> <p style=\"margin-left: 8px;\">Volume Up Mascara $24.00 </p>\n\t</div>\t\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/brow-fixx\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/ClearbrowmascropenWhitebackgrnd.png?v=1713815770\">\n\t\t</a> <p style=\"margin-left: 8px;\">Clear Brow Mascara $18.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/vitamin-e-treatment\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/Nikol_Lip_Balm_1000x1000_10480f31-34b5-4c3f-aebf-5fa1d1968ffe.jpg?v=1717778629\">\n\t\t</a> <p style=\"margin-left: 8px;\">Rose Lip Balm $23.00 </p>\n\t</div>\n  \t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/skinny-brow-pencil\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/darkblondepencilopen.png?v=1713815894\">\n\t\t</a> <p style=\"margin-left: 8px;\">Skinny Brow Pencil $19.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/nikol-cosmetics-precision-eyebrow-stencils\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/browstencilspackWEB.jpg?v=1713970786\">\n\t\t</a> <p style=\"margin-left: 8px;\">Nikol Beauty Precision Eyebrow Stencils $12.00 </p>\n\t</div>\n  \t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/custom-concealer-trio-in-buffed-cool\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/Fairconcealerpose1.jpg?v=1712459737\">\n\t\t</a> <p style=\"margin-left: 8px;\">Creamy Concealer $30.00 </p>\n\t</div>\n</div>\n{% endif %}\n\n{% if product.title == \"The Best Seller Beauty Bundle\" %}\n<div style=\"display:flex; flex-direction: column; margin-top: 30px;\">\n\t<p> <b style=\"font-family: 'Jost', sans-serif\">Included products</b> </p>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/eye-primer\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/EyePrimerCorrectweb_7b4b0199-b97f-4840-a5a4-cec9fbb8fabf.png?v=1694481704\">\n\t\t</a> <p style=\"margin-left: 8px;\">Eye Primer $26.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/bb-cream\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/BBCreamclosedsmudgeFAIR_8939951c-d391-41fe-9d03-221c7bf807dc.png?v=1713502273\">\n\t\t</a> <p style=\"margin-left: 8px;\">BB Créme $43.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/nikray-lipstick\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/Nikraylipbullets100x1000.jpg?v=1717016566\">\n\t\t</a> <p style=\"margin-left: 8px;\">NikRay Shiny Velvet Cream Lipstick $22.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/vitamin-e-treatment\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/Nikol_Lip_Balm_1000x1000_10480f31-34b5-4c3f-aebf-5fa1d1968ffe.jpg?v=1717778629\">\n\t\t</a> <p style=\"margin-left: 8px;\">Rose Lip Balm $23.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/lip-liners-waterproof?variant=44969137897776\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/CAMEOLIPlinerSMDGE_57de92e6-0376-49fb-aa28-f21b3c3e09a6.png?v=1705541207\">\n\t\t</a> <p style=\"margin-left: 8px;\">Waterproof Lip Liner in Cameo $20.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/lip-and-cheek-cream\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/PalmBeachopenwhitebackground.png?v=1705530314\">\n\t\t</a> <p style=\"margin-left: 8px;\">Cream Blush Stick $23.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/mascara-intense-curling-volumizing\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/products/mascara-3.png?v=1681859081\">\n\t\t</a> <p style=\"margin-left: 8px;\">Volume Up Mascara $24.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/travel-makeup-brushes\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/products/website-1.png?v=1681859046\">\n\t\t</a> <p style=\"margin-left: 8px;\">Essential Makeup Brush Kit $75.00 </p>\n\t</div>\n  \t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/skinny-brow-pencil\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/darkblondepencilopen.png?v=1713815894\">\n\t\t</a> <p style=\"margin-left: 8px;\">Skinny Brow Pencil $19.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/nikol-cosmetics-precision-eyebrow-stencils\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/browstencilspackWEB.jpg?v=1713970786\">\n\t\t</a> <p style=\"margin-left: 8px;\">Nikol Beauty Precision Brow Stencils $12.00 </p>\n\t</div>\n\t\n</div>\n{% endif %}\n\n{% if product.title == \"Perfect Complexion Bundle\" %}\n<div style=\"display:flex; flex-direction: column; margin-top: 30px;\">\n\t<p> <b style=\"font-family: 'Jost', sans-serif\">Included products</b> </p>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/fiercely-smooth-face-primer?_pos=1&_psq=fier&_ss=e&_v=1.0\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/faceprimerweb.png?v=1690576338\">\n\t\t</a> <p style=\"margin-left: 8px;\">Fiercely Smooth Face Primer $36.00 </p>\n\t</div>\n  \t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/custom-concealer-trio-in-buffed-cool\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/Fairconcealerpose1.jpg?v=1712459737\">\n\t\t</a> <p style=\"margin-left: 8px;\">Creamy Concealer $30.00 </p>\n\t</div>\n  \t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/eye-primer\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/EyePrimerCorrectweb_7b4b0199-b97f-4840-a5a4-cec9fbb8fabf.png?v=1694481704\">\n\t\t</a> <p style=\"margin-left: 8px;\">Eye Primer $26.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/bb-cream\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/BBCreamclosedsmudgeFAIR_8939951c-d391-41fe-9d03-221c7bf807dc.png?v=1713502273\">\n\t\t</a> <p style=\"margin-left: 8px;\">BB Créme $43.00 </p>\n\t</div>\n</div>\n{% endif %}\n\n{% if product.title == \"Color Corrector Collection\" %}\n<div style=\"display:flex; flex-direction: column; margin-top: 30px;\">\n\t<p> <b style=\"font-family: 'Jost', sans-serif\">Included products</b> </p>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/no-redness-beauty-stix?pr_prod_strat=jac&pr_rec_id=4df8ce154&pr_rec_pid=8295033176368&pr_ref_pid=8295035076912&pr_seq=uniform\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/products/No-Redness-squiggle-website.png?v=1681859085\">\n\t\t</a> <p style=\"margin-left: 8px;\">No Redness Color Corrector $25.00 </p>\n\t</div>\n  \t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/just-peachy-color-corrector?pr_prod_strat=jac&pr_rec_id=49f436554&pr_rec_pid=8295033536816&pr_ref_pid=8295033176368&pr_seq=uniform\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/products/Just-Peachy-wtih-Swatch.png?v=1681859093\">\n\t\t</a> <p style=\"margin-left: 8px;\">Just Peachy Color Corrector $25.00 </p>\n\t</div>\n</div>\n{% endif %}\n{% if product.title == \"Holiday Glow Up\" %}\n<div style=\"display:flex; flex-direction: column; margin-top: 30px;\">\n\t<p> <b style=\"font-family: 'Jost', sans-serif\">Included products</b> </p>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/naughty-nancy-eye-shadow-palette-limited-edition?_pos=1&_sid=f49cbf15f&_ss=r\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/NaughtNancyforWeb.png?v=1692763472\">\n\t\t</a> <p style=\"margin-left: 8px;\">Naughty Nancy 3-Well Eyeshadow Palette $45.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/pretty-smart-lipstick?_pos=1&_sid=9b04a9fa4&_ss=r\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/PrettySmartlipbullets100x1000_1.jpg?v=1717015683\">\n\t\t</a> <p style=\"margin-left: 8px;\">Pretty Smart Lipstick $22.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/mascara-intense-curling-volumizing?_pos=1&_sid=da745983f&_ss=r\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/products/mascara-3.png?v=1681859081\">\n\t\t</a> <p style=\"margin-left: 8px;\">Volume Up Mascara $24.00 </p>\n\t</div>\n\t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/lip-liners-waterproof?_pos=1&_psq=rose+all&_ss=e&_v=1.0&variant=44969137865008\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/RoseallDLIPlinerSMDGE.png?v=1724441733\">\n\t\t</a> <p style=\"margin-left: 8px;\">\"Rose All Day\" Water-Proof Lip Liner Pencil $20.00 </p>\n\t</div>\n  \t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\t\t<a href=\"https://nikolbeauty.com/products/good-vibes-lip-gloss?_pos=1&_sid=a229518e8&_ss=r\">\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/products/Good-Vibes.png?v=1681859065\">\n\t\t</a> <p style=\"margin-left: 8px;\">Good Vibes Lip Gloss $19.00 </p>\n\t</div>\n  \t<div style=\"display:flex; flex-direction: row; align-items: center;\">\n\n\t\t\t<img style=\"width: 50px; height: 50px; object-fit: contain\" src=\"https://nikolbeauty.com/cdn/shop/files/GIftWithPurchase2.jpg?v=1731644905\">\n\t\t</a> <p style=\"margin-left: 8px;\">Free Holiday Pink Velvet Makeup Bag</p>\n\t</div>\n</div>\n{% endif %}",
+            "heading": "Included products",
+            "show_for_product_titles": "Beginner Beauty Bundle",
+            "item_title": "Eye Primer",
+            "item_price": "$26.00",
+            "item_url": "https://nikolbeauty.com/products/eye-primer",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/EyePrimerCorrectweb_7b4b0199-b97f-4840-a5a4-cec9fbb8fabf.png?v=1694481704",
+            "image_alt": "Eye Primer",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_beginner_2": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Beginner Beauty Bundle",
+            "item_title": "Volume Up Mascara",
+            "item_price": "$24.00",
+            "item_url": "https://nikolbeauty.com/products/mascara-intense-curling-volumizing",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/products/mascara-3.png?v=1681859081",
+            "image_alt": "Volume Up Mascara",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_beginner_3": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Beginner Beauty Bundle",
+            "item_title": "Clear Brow Mascara",
+            "item_price": "$18.00",
+            "item_url": "https://nikolbeauty.com/products/brow-fixx",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/ClearbrowmascropenWhitebackgrnd.png?v=1713815770",
+            "image_alt": "Clear Brow Mascara",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_beginner_4": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Beginner Beauty Bundle",
+            "item_title": "Rose Lip Balm",
+            "item_price": "$23.00",
+            "item_url": "https://nikolbeauty.com/products/vitamin-e-treatment",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/Nikol_Lip_Balm_1000x1000_10480f31-34b5-4c3f-aebf-5fa1d1968ffe.jpg?v=1717778629",
+            "image_alt": "Rose Lip Balm",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_beginner_5": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Beginner Beauty Bundle",
+            "item_title": "Skinny Brow Pencil",
+            "item_price": "$19.00",
+            "item_url": "https://nikolbeauty.com/products/skinny-brow-pencil",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/darkblondepencilopen.png?v=1713815894",
+            "image_alt": "Skinny Brow Pencil",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_beginner_6": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Beginner Beauty Bundle",
+            "item_title": "Nikol Beauty Precision Eyebrow Stencils",
+            "item_price": "$12.00",
+            "item_url": "https://nikolbeauty.com/products/nikol-cosmetics-precision-eyebrow-stencils",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/browstencilspackWEB.jpg?v=1713970786",
+            "image_alt": "Nikol Beauty Precision Eyebrow Stencils",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_beginner_7": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Beginner Beauty Bundle",
+            "item_title": "Creamy Concealer",
+            "item_price": "$30.00",
+            "item_url": "https://nikolbeauty.com/products/custom-concealer-trio-in-buffed-cool",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/Fairconcealerpose1.jpg?v=1712459737",
+            "image_alt": "Creamy Concealer",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_1": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "Eye Primer",
+            "item_price": "$26.00",
+            "item_url": "https://nikolbeauty.com/products/eye-primer",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/EyePrimerCorrectweb_7b4b0199-b97f-4840-a5a4-cec9fbb8fabf.png?v=1694481704",
+            "image_alt": "Eye Primer",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_2": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "BB Créme",
+            "item_price": "$43.00",
+            "item_url": "https://nikolbeauty.com/products/bb-cream",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/BBCreamclosedsmudgeFAIR_8939951c-d391-41fe-9d03-221c7bf807dc.png?v=1713502273",
+            "image_alt": "BB Créme",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_3": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "NikRay Shiny Velvet Cream Lipstick",
+            "item_price": "$22.00",
+            "item_url": "https://nikolbeauty.com/products/nikray-lipstick",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/Nikraylipbullets100x1000.jpg?v=1717016566",
+            "image_alt": "NikRay Shiny Velvet Cream Lipstick",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_4": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "Rose Lip Balm",
+            "item_price": "$23.00",
+            "item_url": "https://nikolbeauty.com/products/vitamin-e-treatment",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/Nikol_Lip_Balm_1000x1000_10480f31-34b5-4c3f-aebf-5fa1d1968ffe.jpg?v=1717778629",
+            "image_alt": "Rose Lip Balm",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_5": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "Waterproof Lip Liner in Cameo",
+            "item_price": "$20.00",
+            "item_url": "https://nikolbeauty.com/products/lip-liners-waterproof?variant=44969137897776",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/CAMEOLIPlinerSMDGE_57de92e6-0376-49fb-aa28-f21b3c3e09a6.png?v=1705541207",
+            "image_alt": "Waterproof Lip Liner in Cameo",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_6": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "Cream Blush Stick",
+            "item_price": "$23.00",
+            "item_url": "https://nikolbeauty.com/products/lip-and-cheek-cream",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/PalmBeachopenwhitebackground.png?v=1705530314",
+            "image_alt": "Cream Blush Stick",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_7": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "Volume Up Mascara",
+            "item_price": "$24.00",
+            "item_url": "https://nikolbeauty.com/products/mascara-intense-curling-volumizing",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/products/mascara-3.png?v=1681859081",
+            "image_alt": "Volume Up Mascara",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_8": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "Essential Makeup Brush Kit",
+            "item_price": "$75.00",
+            "item_url": "https://nikolbeauty.com/products/travel-makeup-brushes",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/products/website-1.png?v=1681859046",
+            "image_alt": "Essential Makeup Brush Kit",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_9": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "Skinny Brow Pencil",
+            "item_price": "$19.00",
+            "item_url": "https://nikolbeauty.com/products/skinny-brow-pencil",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/darkblondepencilopen.png?v=1713815894",
+            "image_alt": "Skinny Brow Pencil",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_10": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "Nikol Beauty Precision Brow Stencils",
+            "item_price": "$12.00",
+            "item_url": "https://nikolbeauty.com/products/nikol-cosmetics-precision-eyebrow-stencils",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/browstencilspackWEB.jpg?v=1713970786",
+            "image_alt": "Nikol Beauty Precision Brow Stencils",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_complexion_1": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Perfect Complexion Bundle",
+            "item_title": "Fiercely Smooth Face Primer",
+            "item_price": "$36.00",
+            "item_url": "https://nikolbeauty.com/products/fiercely-smooth-face-primer?_pos=1&_psq=fier&_ss=e&_v=1.0",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/faceprimerweb.png?v=1690576338",
+            "image_alt": "Fiercely Smooth Face Primer",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_complexion_2": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Perfect Complexion Bundle",
+            "item_title": "Creamy Concealer",
+            "item_price": "$30.00",
+            "item_url": "https://nikolbeauty.com/products/custom-concealer-trio-in-buffed-cool",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/Fairconcealerpose1.jpg?v=1712459737",
+            "image_alt": "Creamy Concealer",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_complexion_3": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Perfect Complexion Bundle",
+            "item_title": "Eye Primer",
+            "item_price": "$26.00",
+            "item_url": "https://nikolbeauty.com/products/eye-primer",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/EyePrimerCorrectweb_7b4b0199-b97f-4840-a5a4-cec9fbb8fabf.png?v=1694481704",
+            "image_alt": "Eye Primer",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_complexion_4": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Perfect Complexion Bundle",
+            "item_title": "BB Créme",
+            "item_price": "$43.00",
+            "item_url": "https://nikolbeauty.com/products/bb-cream",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/BBCreamclosedsmudgeFAIR_8939951c-d391-41fe-9d03-221c7bf807dc.png?v=1713502273",
+            "image_alt": "BB Créme",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_corrector_1": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Color Corrector Collection",
+            "item_title": "No Redness Color Corrector",
+            "item_price": "$25.00",
+            "item_url": "https://nikolbeauty.com/products/no-redness-beauty-stix?pr_prod_strat=jac&pr_rec_id=4df8ce154&pr_rec_pid=8295033176368&pr_ref_pid=8295035076912&pr_seq=uniform",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/products/No-Redness-squiggle-website.png?v=1681859085",
+            "image_alt": "No Redness Color Corrector",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_corrector_2": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Color Corrector Collection",
+            "item_title": "Just Peachy Color Corrector",
+            "item_price": "$25.00",
+            "item_url": "https://nikolbeauty.com/products/just-peachy-color-corrector?pr_prod_strat=jac&pr_rec_id=49f436554&pr_rec_pid=8295033536816&pr_ref_pid=8295033176368&pr_seq=uniform",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/products/Just-Peachy-wtih-Swatch.png?v=1681859093",
+            "image_alt": "Just Peachy Color Corrector",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_holiday_1": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Holiday Glow Up",
+            "item_title": "Naughty Nancy 3-Well Eyeshadow Palette",
+            "item_price": "$45.00",
+            "item_url": "https://nikolbeauty.com/products/naughty-nancy-eye-shadow-palette-limited-edition?_pos=1&_sid=f49cbf15f&_ss=r",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/NaughtNancyforWeb.png?v=1692763472",
+            "image_alt": "Naughty Nancy 3-Well Eyeshadow Palette",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_holiday_2": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Holiday Glow Up",
+            "item_title": "Pretty Smart Lipstick",
+            "item_price": "$22.00",
+            "item_url": "https://nikolbeauty.com/products/pretty-smart-lipstick?_pos=1&_sid=9b04a9fa4&_ss=r",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/PrettySmartlipbullets100x1000_1.jpg?v=1717015683",
+            "image_alt": "Pretty Smart Lipstick",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_holiday_3": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Holiday Glow Up",
+            "item_title": "Volume Up Mascara",
+            "item_price": "$24.00",
+            "item_url": "https://nikolbeauty.com/products/mascara-intense-curling-volumizing?_pos=1&_sid=da745983f&_ss=r",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/products/mascara-3.png?v=1681859081",
+            "image_alt": "Volume Up Mascara",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_holiday_4": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Holiday Glow Up",
+            "item_title": "\"Rose All Day\" Water-Proof Lip Liner Pencil",
+            "item_price": "$20.00",
+            "item_url": "https://nikolbeauty.com/products/lip-liners-waterproof?_pos=1&_psq=rose+all&_ss=e&_v=1.0&variant=44969137865008",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/RoseallDLIPlinerSMDGE.png?v=1724441733",
+            "image_alt": "\"Rose All Day\" Water-Proof Lip Liner Pencil",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_holiday_5": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Holiday Glow Up",
+            "item_title": "Good Vibes Lip Gloss",
+            "item_price": "$19.00",
+            "item_url": "https://nikolbeauty.com/products/good-vibes-lip-gloss?_pos=1&_sid=a229518e8&_ss=r",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/products/Good-Vibes.png?v=1681859065",
+            "image_alt": "Good Vibes Lip Gloss",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_holiday_6": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Holiday Glow Up",
+            "item_title": "Free Holiday Pink Velvet Makeup Bag",
+            "item_price": "",
+            "item_url": "",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/GIftWithPurchase2.jpg?v=1731644905",
+            "image_alt": "Free Holiday Pink Velvet Makeup Bag",
             "padding_bottom": 16
           }
         },
@@ -158,9 +575,17 @@
           }
         },
         "code_dVeTYP": {
-          "type": "code",
+          "type": "testimonial_card",
           "settings": {
-            "code": "<div class=\"cw-bb-switched-review-box main-product-box\">\n\n  <div class=\"cw-bb-switched-review-stars\">\n    <img\n      src=\"https://cdn.shopify.com/s/files/1/0690/6347/5504/files/Stars_Container_a8ef23fa-4cb0-442a-aebc-8875c6ae38e3.png?v=1771227398\"\n      alt=\"Review Stars\"\n      loading=\"lazy\"\n    >\n  </div>\n\n  <div class=\"cw-bb-switched-review-text\">\n   “I think this is my favourite product. I also gave the creme to my aunty, who is 86 years young. She asked me what i was using. She absolutely loves it.”\n  </div>\n\n  <div class=\"cw-bb-switched-author-box\">\n\n    <div class=\"cw-bb-switched-author-name\">\n      C.M.\n    </div>\n\n    <div class=\"cw-bb-switched-verified\">\n      <img\n        src=\"https://cdn.shopify.com/s/files/1/0690/6347/5504/files/verify.png?v=1771227398\"\n        alt=\"Verified Buyer\"\n        loading=\"lazy\"\n      >\n      <div class=\"cw-bb-switched-verified-text\">\n        Verified Buyer\n      </div>\n    </div>\n\n  </div>\n\n</div>",
+            "star_image": "shopify://shop_images/Stars_Container_a8ef23fa-4cb0-442a-aebc-8875c6ae38e3.png",
+            "star_image_url": "",
+            "star_image_alt": "Review Stars",
+            "quote": "<p>“I think this is my favourite product. I also gave the creme to my aunty, who is 86 years young. She asked me what i was using. She absolutely loves it.”</p>",
+            "author_name": "C.M.",
+            "show_verified": true,
+            "verified_icon_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/verify.png?v=1771227398",
+            "verified_icon_alt": "Verified Buyer",
+            "verified_text": "Verified Buyer",
             "padding_bottom": 16
           }
         },
@@ -207,9 +632,41 @@
         "price",
         "code_CtMwbx",
         "code_7R8Abt",
+        "color_swatch_fair",
+        "color_swatch_light",
+        "color_swatch_light_medium",
+        "color_swatch_tan",
         "variants",
         "5e95bd58-e59e-42dc-a60a-763c3d4df302",
-        "code_jzPbiC",
+        "bundle_item_beginner_1",
+        "bundle_item_beginner_2",
+        "bundle_item_beginner_3",
+        "bundle_item_beginner_4",
+        "bundle_item_beginner_5",
+        "bundle_item_beginner_6",
+        "bundle_item_beginner_7",
+        "bundle_item_bestsellers_1",
+        "bundle_item_bestsellers_2",
+        "bundle_item_bestsellers_3",
+        "bundle_item_bestsellers_4",
+        "bundle_item_bestsellers_5",
+        "bundle_item_bestsellers_6",
+        "bundle_item_bestsellers_7",
+        "bundle_item_bestsellers_8",
+        "bundle_item_bestsellers_9",
+        "bundle_item_bestsellers_10",
+        "bundle_item_complexion_1",
+        "bundle_item_complexion_2",
+        "bundle_item_complexion_3",
+        "bundle_item_complexion_4",
+        "bundle_item_corrector_1",
+        "bundle_item_corrector_2",
+        "bundle_item_holiday_1",
+        "bundle_item_holiday_2",
+        "bundle_item_holiday_3",
+        "bundle_item_holiday_4",
+        "bundle_item_holiday_5",
+        "bundle_item_holiday_6",
         "buttons",
         "upsell_76CJ9x",
         "tabs",

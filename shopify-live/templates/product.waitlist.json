@@ -14,7 +14,7 @@
       "settings": {}
     },
     "main": {
-      "type": "product-default-copy",
+      "type": "custom-product-waitlist",
       "blocks": {
         "title": {
           "type": "title",
@@ -36,8 +36,7 @@
           "type": "price",
           "settings": {
             "padding_bottom": 16
-          },
-          "disabled": true
+          }
         },
         "variants": {
           "type": "variants",
@@ -50,8 +49,8 @@
         },
         "se_wishlist_engine_product_page_PNbWRj": {
           "type": "shopify://apps/se-wishlist-engine/blocks/Product-Page/8f7c0857-8e71-463d-a168-8e133094753b",
-          "settings": {},
-          "disabled": true
+          "disabled": true,
+          "settings": {}
         },
         "code_jzPbiC": {
           "type": "code",
@@ -188,6 +187,11 @@
         "padding_top": 90,
         "padding_bottom": 30,
         "enable_prelaunch_notify": true,
+        "notify_button_text": "Notify me when it goes live",
+        "notify_submit_text": "Notify me",
+        "notify_email_placeholder": "Enter your email",
+        "notify_success_text": "Thanks! We'll email you when it launches.",
+        "notify_error_text": "Something went wrong. Please try again.",
         "klaviyo_public_key": "TqzBWX",
         "klaviyo_list_id": "R9z9N3"
       }
@@ -374,6 +378,7 @@
       "block_order": [
         "related_EVyf4K"
       ],
+      "disabled": true,
       "settings": {
         "enable_tabs": false,
         "heading_alignment": "text-center",
@@ -405,6 +410,7 @@
       "block_order": [
         "junip_junip_product_review_bNeiRT"
       ],
+      "disabled": true,
       "settings": {
         "include_margins": false
       }
