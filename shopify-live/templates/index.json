@@ -353,8 +353,8 @@
         "autoplay_speed": 5
       }
     },
-    "cw_banner_vb_F7ppwR": {
-      "type": "cw-banner_vb",
+    "custom_hero_banner_F7ppwR": {
+      "type": "custom-hero-banner",
       "blocks": {
         "feature_z4wnQM": {
           "type": "feature",
@@ -1180,7 +1180,7 @@
   "order": [
     "cw_feature_t8VGLm",
     "f46cddd5-0a2f-417e-9dd8-66e002167481",
-    "cw_banner_vb_F7ppwR",
+    "custom_hero_banner_F7ppwR",
     "cw_single_reviews_3HjLex",
     "featured-collection",
     "section_hero_ztm4he",

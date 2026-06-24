@@ -375,13 +375,16 @@ section.cw-collect-bestseller-section .cw-collect-bestseller-header {
 
 {% schema %}
 {
-  "name": "CW PDP COllection",
+  "name": "[Custom] Product Slider",
+  "enabled_on": {
+    "templates": ["product"]
+  },
   "settings": [
     {
       "type": "text",
       "id": "title",
       "label": "Section Title",
-      "default": "Shop Best Sellers"
+      "default": "Products you may also like"
     },
     {
       "type": "textarea",
@@ -402,7 +405,7 @@ section.cw-collect-bestseller-section .cw-collect-bestseller-header {
       "type": "text",
       "id": "button_label",
       "label": "Button Label",
-      "default": "View All Best Sellers"
+      "default": "View All"
     },
     {
       "type": "url",
@@ -435,7 +438,7 @@ section.cw-collect-bestseller-section .cw-collect-bestseller-header {
       "type": "text",
       "id": "button_label",
       "label": "Button Label",
-      "default": "View All Best Sellers"
+      "default": "View All"
     },
     {
       "type": "url",
@@ -448,7 +451,7 @@ section.cw-collect-bestseller-section .cw-collect-bestseller-header {
   "max_blocks": 6,
   "presets": [
     {
-      "name": "CW PDP COllection",
+      "name": "[Custom] Product Slider",
       "blocks": [
         { "type": "collection_tab" },
         { "type": "collection_tab" },

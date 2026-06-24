@@ -80,8 +80,8 @@
       "name": "CW Listicle Features",
       "settings": {}
     },
-    "cw_banner_WBDkbD": {
-      "type": "cw-banner",
+    "custom_hero_banner_WBDkbD": {
+      "type": "custom-hero-banner",
       "blocks": {
         "feature_bKjMwD": {
           "type": "feature",
@@ -679,8 +679,8 @@
       "name": "CW Listicle Features",
       "settings": {}
     },
-    "cw_banner_bottom_bPCMH4": {
-      "type": "cw-banner-bottom",
+    "custom_info_banner_bPCMH4": {
+      "type": "custom-info-banner",
       "name": "Banner Bottom",
       "settings": {
         "bg_image": "shopify://shop_images/banner-bottom-bg.jpg",
@@ -722,7 +722,7 @@
     "main",
     "section_custom_code_3YKDiW",
     "cw_feature_yG9DMk",
-    "cw_banner_WBDkbD",
+    "custom_hero_banner_WBDkbD",
     "cw_single_reviews_C4ELiX",
     "cw_collection_bestseller_hgtKjT",
     "cw_videos_pDhphj",
@@ -734,7 +734,7 @@
     "cw_customer_reviews_w84Rig",
     "cw_faq_Pwzh8K",
     "cw_feature_Nc6MQh",
-    "cw_banner_bottom_bPCMH4",
+    "custom_info_banner_bPCMH4",
     "cw_beauty_advice_P4hRaz",
     "cw_home_newsletter_aN7Bpn"
   ]

@@ -1173,8 +1173,8 @@
         "button_link": "#buynow"
       }
     },
-    "cw_pdp_collection_CByXCN": {
-      "type": "cw-pdp-collection",
+    "custom_product_slider_CByXCN": {
+      "type": "custom-product-slider",
       "blocks": {
         "collection_tab_qhCjbJ": {
           "type": "collection_tab",
@@ -1189,7 +1189,7 @@
       "block_order": [
         "collection_tab_qhCjbJ"
       ],
-      "name": "CW PDP COllection",
+      "name": "[Custom] Product Slider",
       "settings": {
         "title": "Products you may also like",
         "subtitle": "",
@@ -1228,7 +1228,7 @@
     "cw_faq_QtK7h3",
     "cw_feature_qxiYQE",
     "cw_bh_wearing_Adm6cV",
-    "cw_pdp_collection_CByXCN",
+    "custom_product_slider_CByXCN",
     "cw_home_newsletter_RMchwh"
   ]
 }
