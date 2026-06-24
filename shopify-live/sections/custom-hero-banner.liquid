@@ -63,24 +63,12 @@ section.cw-banner-section {
     font-weight: 400;
 }
 
-.cw-pdp-feature-box {
-    font-family: 'Jost' !important;
-}
-
 .cw-banner-star-text strong {
     font-weight: 700;
 }
 
 .cw-banner-star-img {
     display: flex;
-}
-
-.cw-single-review-description {
-    font-family: 'Jost' !important;
-    line-height: 150% !important;
-    max-width: 910px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .cw-banner-title {
@@ -128,6 +116,14 @@ section.cw-banner-section {
     gap: 50px;
 }
 
+.cw-banner-desktop {
+    display: block;
+}
+
+.cw-banner-mobile {
+    display: none;
+}
+
 .cw-banner-feature-img img {max-width: 80px;object-fit: contain;}
 
 .cw-banner-feature-box {
@@ -143,12 +139,15 @@ section.cw-banner-section {
     text-transform: capitalize;
 }
 
-.cw-pdp-feature {
-    margin-top: 0px;
-    padding:10px 0px;
+@media only screen and (max-width: 600px) {
+.cw-banner-desktop {
+    display: none;
 }
 
-@media only screen and (max-width: 600px) {
+.cw-banner-mobile {
+    display: block;
+}
+
 .cw-banner-parent {
     flex-wrap: wrap;
     padding: 0 15px;
@@ -267,10 +266,6 @@ section.cw-banner-section {
 }
 
 
-.vc-variant .cw-banner-feature-list {
-    padding-top: 25px;
-    padding-bottom: 25px !important;
-}
 .cw-banner-image1 {
     margin-top: -30px;
 }
@@ -320,7 +315,7 @@ section.cw-banner-section {
         </div>
       {% endif %}
 
-      <div class="cw-desktop">
+      <div class="cw-banner-desktop">
       <div class="cw-banner-feature-list">
         {% for block in section.blocks %}
           <div class="cw-banner-feature-box">
@@ -360,7 +355,7 @@ section.cw-banner-section {
   </div>
  
 </section>
-  <div class="cw-mobile">
+  <div class="cw-banner-mobile">
       <div class="cw-banner-feature-list">
         {% for block in section.blocks %}
           <div class="cw-banner-feature-box">
@@ -377,16 +372,9 @@ section.cw-banner-section {
       </div>
 </div>
 
-<script>
-  const params = new URLSearchParams(window.location.search);
-  if (params.get('view') === 'vc') {
-    document.documentElement.classList.add('vc-variant');
-  }
-</script>
-
 {% schema %}
 {
-  "name": "CW Banner",
+  "name": "[Custom] Hero Banner",
   "settings": [
     {
   "type": "image_picker",
@@ -456,7 +444,7 @@ section.cw-banner-section {
   "max_blocks": 6,
   "presets": [
     {
-      "name": "CW Banner"
+      "name": "[Custom] Hero Banner"
     }
   ]
 }
