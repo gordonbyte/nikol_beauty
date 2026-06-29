@@ -9,8 +9,8 @@
  */
 {
   "sections": {
-    "cw_feature_t8VGLm": {
-      "type": "cw-feature",
+    "custom_guarantee_list_t8VGLm": {
+      "type": "custom-guarantee-list",
       "blocks": {
         "feature_xJYGMx": {
           "type": "feature",
@@ -47,7 +47,7 @@
         "feature_kY68HR",
         "feature_M6ymJU"
       ],
-      "name": "CW Listicle Features",
+      "name": "[Custom] Guarantee List",
       "settings": {}
     },
     "f46cddd5-0a2f-417e-9dd8-66e002167481": {
@@ -393,7 +393,7 @@
         "feature_f4gQyd"
       ],
       "disabled": true,
-      "name": "CW Banner",
+      "name": "[Custom] Hero Banner",
       "settings": {
         "bg_image": "shopify://shop_images/banner-desktop.jpg",
         "star_image": "shopify://shop_images/Stars_Container.png",
@@ -405,9 +405,9 @@
         "right_image_1": "shopify://shop_images/Frame_2085670276_2.webp"
       }
     },
-    "cw_single_reviews_3HjLex": {
-      "type": "cw-single-reviews",
-      "name": "CW Single Review",
+    "custom_customer_quote_3HjLex": {
+      "type": "custom-customer-quote",
+      "name": "[Custom] Customer Quote",
       "settings": {
         "bg_image": "shopify://shop_images/reviews-banner.jpg",
         "star_image": "shopify://shop_images/Stars_Container.png",
@@ -1178,10 +1178,10 @@
     }
   },
   "order": [
-    "cw_feature_t8VGLm",
+    "custom_guarantee_list_t8VGLm",
     "f46cddd5-0a2f-417e-9dd8-66e002167481",
     "custom_hero_banner_F7ppwR",
-    "cw_single_reviews_3HjLex",
+    "custom_customer_quote_3HjLex",
     "featured-collection",
     "section_hero_ztm4he",
     "section_collection_YzWzhr",

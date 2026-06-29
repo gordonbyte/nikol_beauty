@@ -1,12 +1,16 @@
+{% comment %}
+  TODO (future improvement): convert these alternating image/text rows into a
+  slider/carousel — that's the better design direction for this section.
+{% endcomment %}
 <style>
-section.cw-bb-switched-section {
+section.alt-rows-section {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     padding: 90px 0;
 }
 
-.cw-bb-switched-title {
+.alt-rows-title {
     text-align: center;
     font-size: 56px;
     line-height: 110%;
@@ -18,7 +22,7 @@ section.cw-bb-switched-section {
     font-family: 'Cormorant',sans-serif;
 }
 
-.cw-bb-switched-description {
+.alt-rows-description {
     text-align: center;
     font-size: 20px;
     line-height: 140%;
@@ -28,11 +32,11 @@ section.cw-bb-switched-section {
     font-family: 'Inter',sans-serif;
 }
 
-.cw-bb-switched-box-wrapper {
+.alt-rows-box-wrapper {
     margin-top: 50px;
 }
 
-.cw-bb-switched-box {
+.alt-rows-box {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -43,21 +47,21 @@ section.cw-bb-switched-section {
     margin-bottom: 40px;
 }
 
-.cw-bb-switched-image {
+.alt-rows-image {
     width: 50%;
 }
 
-.cw-bb-switched-content {
+.alt-rows-content {
     width: 50%;
     padding-right: 60px;
 }
 
-.cw-bb-switched-image img {
+.alt-rows-image img {
     max-width: 610px;
     object-fit: contain;
 }
 
-.cw-bb-switched-box-title {
+.alt-rows-box-title {
     font-size: 44px;
     line-height: 110%;
     letter-spacing: -1px;
@@ -66,7 +70,7 @@ section.cw-bb-switched-section {
     font-family: 'Cormorant', sans-serif;
 }
 
-.cw-bb-switched-box-description {
+.alt-rows-box-description {
     font-size: 20px;
     line-height: 140%;
     font-weight: 400;
@@ -75,16 +79,16 @@ section.cw-bb-switched-section {
     font-family: 'Inter', sans-serif;
 }
 
-.cw-bb-switched-review-box {
+.alt-rows-review-box {
     margin-top: 20px;
 }
 
-.cw-bb-switched-review-stars img {
+.alt-rows-review-stars img {
     max-width: 95px;
     object-fit: contain;
 }
 
-.cw-bb-switched-review-text {
+.alt-rows-review-text {
     font-size: 16px;
     line-height: 150%;
     font-weight: 400;
@@ -93,25 +97,25 @@ section.cw-bb-switched-section {
     font-family: 'Inter', sans-serif;
 }
 
-.cw-bb-switched-author-box {
+.alt-rows-author-box {
     display: flex;
     align-items: center;
     gap: 5px;
     margin-top: 10px;
 }
 
-.cw-bb-switched-verified {
+.alt-rows-verified {
     display: flex;
     align-items: center;
     gap: 4px;
 }
 
-.cw-bb-switched-verified img {
+.alt-rows-verified img {
     max-width: 14px;
     object-fit: contain;
 }
 
-.cw-bb-switched-button-wrap a {
+.alt-rows-button-wrap a {
     display: flex;
     background: #D34270;
     text-decoration: none;
@@ -130,15 +134,15 @@ section.cw-bb-switched-section {
     cursor: pointer;
 }
 
-.cw-bb-switched-box.cw-bb-switched-reverse {
+.alt-rows-box.alt-rows-reverse {
     flex-direction: row-reverse;
 }
 
-.cw-bb-switched-box.cw-bb-switched-reverse .cw-bb-switched-content {
+.alt-rows-box.alt-rows-reverse .alt-rows-content {
     padding-right: 0;
     padding-left: 60px;
 }
-.cw-bb-switched-author-name {
+.alt-rows-author-name {
     font-size: 16px;
     line-height: 150%;
     font-weight: 400;
@@ -146,7 +150,7 @@ section.cw-bb-switched-section {
     font-family: 'Inter',sans-serif;
 }
 
-.cw-bb-switched-verified-text {
+.alt-rows-verified-text {
     font-size: 14px;
     line-height: 150%;
     font-weight: 400;
@@ -154,105 +158,105 @@ section.cw-bb-switched-section {
     font-family: 'Inter', sans-serif;
 }
 @media only screen and (max-width: 600px) {
-section.cw-bb-switched-section {
+section.alt-rows-section {
     padding: 50px 0;
 }
 
-.cw-bb-switched-title {
+.alt-rows-title {
     font-size: 33px;
 }
 
-.cw-bb-switched-description {
+.alt-rows-description {
     font-size: 16px;
     padding-top: 15px;
 }
 
-.cw-bb-switched-box {padding: 15px;flex-wrap: wrap;gap: 20px;margin-bottom: 25px;}
+.alt-rows-box {padding: 15px;flex-wrap: wrap;gap: 20px;margin-bottom: 25px;}
 
-.cw-bb-switched-image {
+.alt-rows-image {
     width: 100%;
 }
 
-.cw-bb-switched-image img {
+.alt-rows-image img {
     max-width: 100%;
 }
 
-.cw-bb-switched-box-title {
+.alt-rows-box-title {
     font-size: 26px;
 }
 
-.cw-bb-switched-content {
+.alt-rows-content {
     width: 100%;
     padding: 0;
 }
 
-.cw-bb-switched-box-description {
+.alt-rows-box-description {
     padding-top: 10px;
     font-size: 16px;
 }
 
-.cw-bb-switched-box.cw-bb-switched-reverse .cw-bb-switched-content {
+.alt-rows-box.alt-rows-reverse .alt-rows-content {
     padding-left: 0;
 }
 
-.cw-bb-switched-review-box {
+.alt-rows-review-box {
     padding-left: 15px;
     margin-top: 15px;
 }
 
-.cw-bb-switched-review-text {
+.alt-rows-review-text {
     font-size: 14px;
 }
 
-.cw-bb-switched-review-stars img {
+.alt-rows-review-stars img {
     max-width: 85px;
 }
 
-.cw-bb-switched-button-wrap a {
+.alt-rows-button-wrap a {
     font-size: 18px;
 }
-.cw-bb-switched-author-name {
+.alt-rows-author-name {
     font-size: 14px;
 }
 
-.cw-bb-switched-verified-text {
+.alt-rows-verified-text {
     font-size: 12px;
 }
-.cw-bb-switched-verified img {
+.alt-rows-verified img {
     max-width: 12px;
 }
 }
 </style>
 
 <section
-  class="cw-bb-switched-section"
+  class="alt-rows-section"
   style="background-image: url({{ section.settings.bg_image | img_url: 'master' }});"
 >
   <div class="page-width">
 
-    <div class="cw-bb-switched-main-container">
+    <div class="alt-rows-main-container">
 
       <!-- TOP TITLE -->
-      <div class="cw-bb-switched-title">
+      <div class="alt-rows-title">
         {{ section.settings.title }}
       </div>
 
       <!-- TOP DESCRIPTION -->
-      <div class="cw-bb-switched-description">
+      <div class="alt-rows-description">
         {{ section.settings.description }}
       </div>
 
       <!-- REPEATER BOXES -->
-      <div class="cw-bb-switched-box-wrapper">
+      <div class="alt-rows-box-wrapper">
 
         {% for block in section.blocks %}
           <div
-            class="cw-bb-switched-box {% if block.settings.image_position == 'right' %}cw-bb-switched-reverse{% endif %}"
+            class="alt-rows-box {% if block.settings.image_position == 'right' %}alt-rows-reverse{% endif %}"
             {{ block.shopify_attributes }}
           >
 
             <!-- IMAGE SIDE -->
-            <div class="cw-bb-switched-image">
+            <div class="alt-rows-image">
               {% if block.settings.image %}
                 <img
                   src="{{ block.settings.image | img_url: 'master' }}"
@@ -263,20 +267,20 @@ section.cw-bb-switched-section {
             </div>
 
             <!-- CONTENT SIDE -->
-            <div class="cw-bb-switched-content">
+            <div class="alt-rows-content">
 
-              <div class="cw-bb-switched-box-title">
+              <div class="alt-rows-box-title">
                 {{ block.settings.title }}
               </div>
 
-              <div class="cw-bb-switched-box-description">
+              <div class="alt-rows-box-description">
                 {{ block.settings.text }}
               </div>
 
               {% if block.settings.show_review %}
-                <div class="cw-bb-switched-review-box">
+                <div class="alt-rows-review-box">
 
-                  <div class="cw-bb-switched-review-stars">
+                  <div class="alt-rows-review-stars">
                     {% if block.settings.stars %}
                       <img
                         src="{{ block.settings.stars | img_url: 'master' }}"
@@ -286,17 +290,17 @@ section.cw-bb-switched-section {
                     {% endif %}
                   </div>
 
-                  <div class="cw-bb-switched-review-text">
+                  <div class="alt-rows-review-text">
                     {{ block.settings.review_text }}
                   </div>
 
-                  <div class="cw-bb-switched-author-box">
+                  <div class="alt-rows-author-box">
 
-                    <div class="cw-bb-switched-author-name">
+                    <div class="alt-rows-author-name">
                       {{ block.settings.author }}
                     </div>
 
-                    <div class="cw-bb-switched-verified">
+                    <div class="alt-rows-verified">
                       {% if block.settings.verified_icon %}
                         <img
                           src="{{ block.settings.verified_icon | img_url: 'master' }}"
@@ -304,7 +308,7 @@ section.cw-bb-switched-section {
                           loading="lazy"
                         >
                       {% endif %}
-                      <div class="cw-bb-switched-verified-text">
+                      <div class="alt-rows-verified-text">
                         {{ block.settings.verified_text }}
                       </div>
                     </div>
@@ -320,7 +324,7 @@ section.cw-bb-switched-section {
       </div>
 
       <!-- CTA BUTTON -->
-      <div class="cw-bb-switched-button-wrap">
+      <div class="alt-rows-button-wrap">
         <a href="{{ section.settings.button_link }}">
           {{ section.settings.button_text }}
         </a>
@@ -332,7 +336,7 @@ section.cw-bb-switched-section {
 
 {% schema %}
 {
-  "name": "CW BB Switched",
+  "name": "[Custom] Alternating Rows",
   "settings": [
     {
       "type": "image_picker",
@@ -428,7 +432,7 @@ section.cw-bb-switched-section {
   ],
   "presets": [
     {
-      "name": "CW BB Switched"
+      "name": "[Custom] Alternating Rows"
     }
   ]
 }

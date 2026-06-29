@@ -18,6 +18,52 @@ video.cw-collect-videos-video {
     max-width: 1000px;
     margin: 0 auto;
 }
+
+.cw-collect-videos-header {
+    text-align: center;
+}
+
+.cw-collect-videos-title {
+    color: #2A2724;
+    font-size: 56px;
+    line-height: 110%;
+    font-family: 'Cormorant';
+    letter-spacing: -3px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.cw-collect-videos-subtitle {
+    color: #2A2724;
+    font-family: 'Inter';
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.cw-collect-videos-btn-wrap {
+    padding: 0;
+    padding-top: 50px;
+    text-align: center;
+}
+
+.cw-collect-videos-btn-wrap a {
+    display: flex;
+    align-items: center;
+    background: #D34270;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    height: 60px;
+    color: #fff;
+    font-family: 'Cormorant';
+    text-transform: uppercase;
+    font-size: 22px;
+    letter-spacing: 0;
+    gap: 5px;
+    font-weight: 700;
+    margin: 0 auto;
+}
 @media only screen and (max-width: 600px) {
 .cw-collect-videos-swiper {
     padding: 0 0px !important;
@@ -28,6 +74,28 @@ section.cw-collect-videos-section {
 video.cw-collect-videos-video {
     height: 220px;
 }
+
+.cw-collect-videos-title {
+    font-size: 34px;
+}
+
+.cw-collect-videos-subtitle {
+    font-size: 16px;
+    line-height: 135%;
+    padding-top: 15px;
+    padding-bottom: 30px;
+}
+
+.cw-collect-videos-btn-wrap {
+    padding: 0 15px;
+    padding-top: 30px;
+}
+
+.cw-collect-videos-btn-wrap a {
+    max-width: 100%;
+    height: 50px;
+    font-size: 18px;
+}
 }
     </style>
 
@@ -36,15 +104,15 @@ video.cw-collect-videos-video {
 
     <div class="cw-collect-videos-parent">
 
-       <div class="cw-collect-bestseller-header">
+       <div class="cw-collect-videos-header">
       {% if section.settings.title != blank %}
-        <div class="cw-collect-bestseller-title">
+        <div class="cw-collect-videos-title">
           {{ section.settings.title }}
         </div>
       {% endif %}
 
       {% if section.settings.subtitle != blank %}
-        <div class="cw-collect-bestseller-subtitle">
+        <div class="cw-collect-videos-subtitle">
           {{ section.settings.subtitle }}
         </div>
       {% endif %}
@@ -77,7 +145,7 @@ video.cw-collect-videos-video {
 
          
       </div>
- <div class="cw-banner-button cw-collect-bestseller-btn-wrap">
+ <div class="cw-collect-videos-btn-wrap">
           <a href="{{ section.settings.button_link }}">
             {{ section.settings.button_label }} <svg width="22" height="13" viewBox="0 0 22 13" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M0.843262 5.36644C0.377534 5.36644 0 5.74399 0 6.20972C0 6.67544 0.377534 7.05299 0.843262 7.05299H20.8433C21.309 7.05299 21.6866 6.67544 21.6866 6.20972C21.6866 5.74399 21.309 5.36644 20.8433 5.36644H0.843262ZM21.4395 6.806C21.7689 6.47668 21.7689 5.94275 21.4395 5.61343L16.073 0.24687C15.7437 -0.0824491 15.2097 -0.0824491 14.8804 0.24687C14.5511 0.576189 14.5511 1.11012 14.8804 1.43944L19.6507 6.20972L14.8804 10.98C14.5511 11.3093 14.5511 11.8432 14.8804 12.1726C15.2097 12.5019 15.7437 12.5019 16.073 12.1726L21.4395 6.806Z" fill="white"></path>

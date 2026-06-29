@@ -39,8 +39,8 @@
         "padding_bottom": 0
       }
     },
-    "cw_feature_yG9DMk": {
-      "type": "cw-feature",
+    "custom_guarantee_list_yG9DMk": {
+      "type": "custom-guarantee-list",
       "blocks": {
         "feature_Tdc9Ap": {
           "type": "feature",
@@ -77,7 +77,7 @@
         "feature_aFfr3H",
         "feature_TKmXbc"
       ],
-      "name": "CW Listicle Features",
+      "name": "[Custom] Guarantee List",
       "settings": {}
     },
     "custom_hero_banner_WBDkbD": {
@@ -119,7 +119,7 @@
         "feature_TVUCTW",
         "feature_ctVcCw"
       ],
-      "name": "CW Banner",
+      "name": "[Custom] Hero Banner",
       "settings": {
         "bg_image": "shopify://shop_images/banner-desktop.jpg",
         "star_image": "shopify://shop_images/Stars_Container.png",
@@ -132,9 +132,9 @@
         "right_image_2": "shopify://shop_images/banner-cosmetic.png"
       }
     },
-    "cw_single_reviews_C4ELiX": {
-      "type": "cw-single-reviews",
-      "name": "CW Single Review",
+    "custom_customer_quote_C4ELiX": {
+      "type": "custom-customer-quote",
+      "name": "[Custom] Customer Quote",
       "settings": {
         "bg_image": "shopify://shop_images/reviews-banner.jpg",
         "star_image": "shopify://shop_images/Stars_Container.png",
@@ -144,8 +144,8 @@
         "buyer_text": "Verified Buyer"
       }
     },
-    "cw_collection_bestseller_hgtKjT": {
-      "type": "cw-collection-bestseller",
+    "custom_collection_tabs_hgtKjT": {
+      "type": "custom-collection-tabs",
       "blocks": {
         "collection_tab_gaMYhn": {
           "type": "collection_tab",
@@ -216,7 +216,7 @@
         "collection_tab_VpYXja",
         "collection_tab_MTWHqc"
       ],
-      "name": "CW Collection Best Seller",
+      "name": "[Custom] Collection Tabs",
       "settings": {
         "title": "Shop Best Sellers",
         "subtitle": "Our most-loved makeup for mature skin, designed to look natural and feel comfortable.",
@@ -247,19 +247,57 @@
         "button_link": "/pages/video-gallery"
       }
     },
-    "cw_makeup_developed_4w64P3": {
-      "type": "cw-makeup-developed",
-      "name": "CW Makeup Developed",
+    "custom_info_banner_makeup": {
+      "type": "custom-info-banner",
+      "blocks": {
+        "heading_makeup": {
+          "type": "heading",
+          "settings": {
+            "heading": "Makeup Developed by Licensed Esthetician",
+            "padding_top": 5,
+            "padding_bottom": 10
+          }
+        },
+        "text_sub_makeup": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Most makeup was created for young skin. That’s why it often settles into lines, looks heavy, or just doesn’t sit right as skin changes.</p>",
+            "padding_top": 10,
+            "padding_bottom": 5
+          }
+        },
+        "text_desc_makeup": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our founder, <strong>Nikol Johnson-Sanchez</strong>, started running into the same issues herself after years working as a licensed esthetician and makeup artist. She realized the problem wasn't technique, it was that the formulas simply weren't made for mature skin.</p><p>So she created Nikol Beauty. Makeup designed to feel lightweight, blend easily, and actually match your skin tone and undertone.</p>",
+            "padding_top": 5,
+            "padding_bottom": 5
+          }
+        },
+        "media_makeup": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "media_position": "right",
+            "media_padding": 0,
+            "media_width": 50,
+            "image_desktop": "shopify://shop_images/mkd1.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "heading_makeup",
+        "text_sub_makeup",
+        "text_desc_makeup",
+        "media_makeup"
+      ],
+      "name": "[Custom] Info Banner",
       "settings": {
-        "bg_image": "shopify://shop_images/makup-bg.jpg",
-        "title": "Makeup Developed by Licensed Esthetician",
-        "subtitle": "Most makeup was created for young skin. That’s why it often settles into lines, looks heavy, or just doesn’t sit right as skin changes.",
-        "description": "<p>Our founder, <strong>Nikol Johnson-Sanchez</strong>, started running into the same issues herself after years working as a licensed esthetician and makeup artist. She realized the problem wasn't technique, it was that the formulas simply weren't made for mature skin.</p><p>So she created Nikol Beauty. Makeup designed to feel lightweight, blend easily, and actually match your skin tone and undertone.</p>",
-        "right_image": "shopify://shop_images/mkd1.jpg"
+        "bg_image": "shopify://shop_images/makup-bg.jpg"
       }
     },
-    "cw_steps_iXrHGd": {
-      "type": "cw-steps",
+    "custom_steps_vertical_iXrHGd": {
+      "type": "custom-steps-vertical",
       "blocks": {
         "step_pJCrXd": {
           "type": "step",
@@ -294,7 +332,7 @@
         "step_K7jYb3",
         "step_kgHwKM"
       ],
-      "name": "CW Steps",
+      "name": "[Custom] Steps Vertical",
       "settings": {
         "title": "Natural, Polished Makeup in 3 Simple Steps",
         "subtitle": "There’s no creasing, heaviness, guesswork, or fighting your skin.",
@@ -302,8 +340,8 @@
         "button_link": "/collections/best-selling-products"
       }
     },
-    "cw_benefits_4gzPy4": {
-      "type": "cw-benefits",
+    "custom_benefits_4gzPy4": {
+      "type": "custom-benefits",
       "blocks": {
         "benefit_4G8Die": {
           "type": "benefit",
@@ -344,27 +382,65 @@
         "benefit_q3e4HD",
         "benefit_9gK7pP"
       ],
-      "name": "CW Benefits",
+      "name": "[Custom] Benefits",
       "settings": {
         "title": "Why Thousands Of Women Are Switching To Nikol Beauty",
         "description": "It’s lightweight, natural-looking, and made for mature skin."
       }
     },
-    "cw_pair_7YRBhL": {
-      "type": "cw-pair",
-      "name": "CW Pair",
-      "settings": {
-        "main_image": "shopify://shop_images/step-pair.jpg",
-        "title": "Not Sure Which Products to Choose or Pair?",
-        "description": "Take our free 1-minute quiz and we’ll recommend the Nikol Beauty products that work best for your skin, undertone (cool, warm, or neutral), routine, and preferences.",
-        "button_text": "TAKE OUR QUIZ",
-        "button_link": "shopify://pages/the-makeup-quiz",
-        "clock_icon": "shopify://shop_images/Group.png",
-        "time_text": "Takes 1 minute"
-      }
+    "custom_info_banner_quiz": {
+      "type": "custom-info-banner",
+      "blocks": {
+        "media_quiz": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "media_position": "left",
+            "media_padding": 0,
+            "media_width": 65,
+            "image_desktop": "shopify://shop_images/step-pair.jpg"
+          }
+        },
+        "heading_quiz": {
+          "type": "heading",
+          "settings": {
+            "heading": "Not Sure Which Products to Choose or Pair?"
+          }
+        },
+        "text_quiz": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Take our free 1-minute quiz and we’ll recommend the Nikol Beauty products that work best for your skin, undertone (cool, warm, or neutral), routine, and preferences.</p>"
+          }
+        },
+        "button_quiz": {
+          "type": "button",
+          "settings": {
+            "button_text": "TAKE OUR QUIZ",
+            "button_link": "shopify://pages/the-makeup-quiz"
+          }
+        },
+        "icon_note_quiz": {
+          "type": "icon_note",
+          "settings": {
+            "icon": "shopify://shop_images/Group.png",
+            "text": "Takes 1 minute",
+            "alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "media_quiz",
+        "heading_quiz",
+        "text_quiz",
+        "button_quiz",
+        "icon_note_quiz"
+      ],
+      "name": "[Custom] Info Banner",
+      "settings": {}
     },
-    "cw_main_collections_fCeq6M": {
-      "type": "cw-main-collections",
+    "custom_collection_banners_fCeq6M": {
+      "type": "custom-collection-banners",
       "blocks": {
         "collection_box_r3nckz": {
           "type": "collection_box",
@@ -435,15 +511,15 @@
         "collection_box_hzWAkn",
         "collection_box_XYX87B"
       ],
-      "name": "CW Main Collections",
+      "name": "[Custom] Collection Banners",
       "settings": {
         "bg_image": "shopify://shop_images/cl-bg.jpg",
         "title": "Shop by Category",
         "subtitle": "Find the products you need most that look natural and feel comfortable on mature skin."
       }
     },
-    "cw_customer_reviews_w84Rig": {
-      "type": "cw-customer-reviews",
+    "custom_customer_reviews_w84Rig": {
+      "type": "custom-customer-reviews",
       "blocks": {
         "review_qwBeDr": {
           "type": "review",
@@ -546,14 +622,14 @@
         "review_VgUw8N",
         "review_fyEtMV"
       ],
-      "name": "CW Customer Reviews",
+      "name": "[Custom] Customer Reviews",
       "settings": {
         "title": "Loved By Thousands Of Women",
         "subtitle": "Real reviews from women who switched to Nikol Beauty."
       }
     },
-    "cw_faq_Pwzh8K": {
-      "type": "cw-faq",
+    "custom_faq_Pwzh8K": {
+      "type": "custom-faq",
       "blocks": {
         "faq_p6yLEr": {
           "type": "faq",
@@ -630,7 +706,7 @@
         "faq_bdyYMG",
         "faq_ftYxJY"
       ],
-      "name": "CW FAQ Accordion",
+      "name": "[Custom] FAQ",
       "settings": {
         "title": "Frequently Asked Questions",
         "subtitle": "Everything you need to know about Nikol Beauty.",
@@ -638,8 +714,8 @@
         "minus_icon": "shopify://shop_images/FAQ-minus.png"
       }
     },
-    "cw_feature_Nc6MQh": {
-      "type": "cw-feature",
+    "custom_guarantee_list_Nc6MQh": {
+      "type": "custom-guarantee-list",
       "blocks": {
         "feature_WmLCWt": {
           "type": "feature",
@@ -676,39 +752,98 @@
         "feature_z8qjmF",
         "feature_JT7Um8"
       ],
-      "name": "CW Listicle Features",
+      "name": "[Custom] Guarantee List",
       "settings": {}
     },
     "custom_info_banner_bPCMH4": {
       "type": "custom-info-banner",
-      "name": "Banner Bottom",
+      "name": "[Custom] Info Banner",
+      "blocks": {
+        "image_1": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "media_position": "left",
+            "media_padding": 0,
+            "image_desktop": "shopify://shop_images/looks.jpg",
+            "image_mobile": "shopify://shop_images/happy-senior-friends-looking-each-other_1.jpg"
+          }
+        },
+        "rating_1": {
+          "type": "rating",
+          "settings": {
+            "star_image": "shopify://shop_images/Stars_Container.png",
+            "star_text": "<strong>4.76/5</strong> stars | <strong>12,000+</strong> happy women"
+          }
+        },
+        "heading_1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Stop Wearing Makeup That Makes You Look Older"
+          }
+        },
+        "text_1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Get makeup designed for mature skin that makes you feel confident without fighting your skin, redoing your makeup, or looking overdone.</p>"
+          }
+        },
+        "button_1": {
+          "type": "button",
+          "settings": {
+            "button_text": "Shop Our Best Sellers",
+            "button_link": "/collections/best-selling-products"
+          }
+        }
+      },
+      "block_order": ["image_1", "rating_1", "heading_1", "text_1", "button_1"],
       "settings": {
-        "bg_image": "shopify://shop_images/banner-bottom-bg.jpg",
-        "left_image_desktop": "shopify://shop_images/looks.jpg",
-        "left_image_mobile": "shopify://shop_images/happy-senior-friends-looking-each-other_1.jpg",
-        "star_image": "shopify://shop_images/Stars_Container.png",
-        "star_text": "<strong>4.76/5</strong> stars | <strong>12,000+</strong> happy women",
-        "title": "Stop Wearing Makeup That Makes You Look Older",
-        "description": "Get makeup designed for mature skin that makes you feel confident without fighting your skin, redoing your makeup, or looking overdone.",
-        "button_text": "Shop Our Best Sellers",
-        "button_link": "/collections/best-selling-products"
+        "bg_image": "shopify://shop_images/banner-bottom-bg.jpg"
       }
     },
-    "cw_beauty_advice_P4hRaz": {
-      "type": "cw-beauty-advice",
-      "name": "CW Beauty Advise",
+    "custom_info_banner_P4hRaz": {
+      "type": "custom-info-banner",
+      "name": "[Custom] Info Banner",
+      "blocks": {
+        "media_1": {
+          "type": "media",
+          "settings": {
+            "media_type": "blog",
+            "media_position": "right",
+            "media_padding": 0,
+            "blog": "news",
+            "blog_limit": 6,
+            "blog_overlay": 35
+          }
+        },
+        "heading_1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Beauty Advice from a Licensed Esthetician"
+          }
+        },
+        "text_1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Read our articles and get straightforward makeup advice designed for mature skin, so you know what works, how to use it, and when to keep things simple.</p>"
+          }
+        },
+        "button_1": {
+          "type": "button",
+          "settings": {
+            "button_text": "VIEW ALL BLOGS",
+            "button_link": "/blogs/news"
+          }
+        }
+      },
+      "block_order": ["media_1", "heading_1", "text_1", "button_1"],
       "settings": {
-        "bg_image": "shopify://shop_images/advice-bg.jpg",
-        "title": "Beauty Advice from a Licensed Esthetician",
-        "description": "<p>Read our articles and get straightforward makeup advice designed for mature skin, so you know what works, how to use it, and when to keep things simple.</p>",
-        "button_label": "VIEW ALL BLOGS",
-        "button_link": "/blogs/news",
-        "right_image": "shopify://shop_images/blog-img.jpg"
+        "bg_image": "shopify://shop_images/advice-bg.jpg"
       }
     },
-    "cw_home_newsletter_aN7Bpn": {
-      "type": "cw-home-newsletter",
-      "name": "CW Home Newsletter",
+    "custom_newsletter_aN7Bpn": {
+      "type": "custom-newsletter",
+      "name": "[Custom] Newsletter",
       "settings": {
         "bg_image": "shopify://shop_images/form-bg.jpg",
         "title": "Let's Get this <br> beauty started.",
@@ -721,21 +856,21 @@
   "order": [
     "main",
     "section_custom_code_3YKDiW",
-    "cw_feature_yG9DMk",
+    "custom_guarantee_list_yG9DMk",
     "custom_hero_banner_WBDkbD",
-    "cw_single_reviews_C4ELiX",
-    "cw_collection_bestseller_hgtKjT",
+    "custom_customer_quote_C4ELiX",
+    "custom_collection_tabs_hgtKjT",
     "cw_videos_pDhphj",
-    "cw_makeup_developed_4w64P3",
-    "cw_steps_iXrHGd",
-    "cw_benefits_4gzPy4",
-    "cw_pair_7YRBhL",
-    "cw_main_collections_fCeq6M",
-    "cw_customer_reviews_w84Rig",
-    "cw_faq_Pwzh8K",
-    "cw_feature_Nc6MQh",
+    "custom_info_banner_makeup",
+    "custom_steps_vertical_iXrHGd",
+    "custom_benefits_4gzPy4",
+    "custom_info_banner_quiz",
+    "custom_collection_banners_fCeq6M",
+    "custom_customer_reviews_w84Rig",
+    "custom_faq_Pwzh8K",
+    "custom_guarantee_list_Nc6MQh",
     "custom_info_banner_bPCMH4",
-    "cw_beauty_advice_P4hRaz",
-    "cw_home_newsletter_aN7Bpn"
+    "custom_info_banner_P4hRaz",
+    "custom_newsletter_aN7Bpn"
   ]
 }

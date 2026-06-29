@@ -1,0 +1,194 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+<style>
+.cw-pdp-feature {
+        background: #F8F3EF;
+    padding: 17px 0px !important;
+}
+
+.cw-pdp-feature-main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cw-pdp-feature-box {
+    display: flex;
+   font-size: 16px;
+    color: #2A2724;
+    align-items: center;
+    gap: 10px;
+    font-weight: 400;
+       width: 25%;
+    justify-content: center;
+       font-family: 'Inter';
+    text-transform: capitalize;
+}
+
+.cw-pdp-feature-box img {
+    height: 24px;
+    object-fit: contain;
+}
+
+.cw-pdp-feature-main .cw-pdp-feature-box:last-child {
+    border: none;
+}
+
+@media only screen and (max-width: 600px) {
+.logo-scroller-content {
+    overflow: hidden;
+}
+.cw-pdp-feature-main .logo-scroller-row {
+    display: flex;
+    position: relative;
+    white-space: nowrap;
+    justify-content: center;
+    gap: 25px;
+    align-items: center;
+}
+.logo-scroller-items {
+    overflow: hidden;
+}
+
+.logo-scroller-item.cw-pdp-feature-box {
+    width: auto !important;
+    min-width: auto !important;
+    gap: 10px !important;
+    padding-right: 30px;
+}
+.cw-pdp-feature-box img {
+    height: 22px;
+}
+}
+
+    </style>
+
+<div id="GuaranteeList-{{ section.id }}" class="custom-guarantee-list">
+
+  <div class="cw-pdp-feature cw-desktop">
+    <div class="page-width">
+      <div class="cw-pdp-feature-main">
+        {% for block in section.blocks %}
+          <div class="cw-pdp-feature-box" {{ block.shopify_attributes }}>
+            {% if block.settings.feature_icon != blank %}
+              <img src="{{ block.settings.feature_icon | img_url: 'master' }}" alt="{{ block.settings.feature_text | escape }}">
+            {% endif %}
+            {{ block.settings.feature_text }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="cw-pdp-feature cw-mobile">
+    <div class="page-width">
+      <div class="cw-pdp-feature-main">
+        <div class="logo-scroller-content">
+          <div class="logo-scroller-items" role="marquee">
+            <div class="logo-scroller-row">
+              {% for block in section.blocks %}
+                <div class="logo-scroller-item cw-pdp-feature-box">
+                  {% if block.settings.feature_icon != blank %}
+                    <img src="{{ block.settings.feature_icon | img_url: 'master' }}" alt="{{ block.settings.feature_text | escape }}">
+                  {% endif %}
+                  {{ block.settings.feature_text }}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var root = document.getElementById("GuaranteeList-{{ section.id }}");
+  if (!root) return;
+  if (!window.__guaranteeScrollerTLs) window.__guaranteeScrollerTLs = new WeakMap();
+
+  function initRows(rows) {
+    if (typeof gsap === "undefined") return;
+    rows.forEach(function (row) {
+      var existing = window.__guaranteeScrollerTLs.get(row);
+      if (existing) { existing.kill(); window.__guaranteeScrollerTLs.delete(row); }
+
+      if (!row.dataset.cloned) {
+        var rowItems = Array.from(row.children);
+        var totalWidth = row.scrollWidth;
+        var minWidth = window.innerWidth * 2;
+        var cloneCount = 0;
+        while (totalWidth < minWidth && cloneCount < 10) {
+          rowItems.forEach(function (item) {
+            var clone = item.cloneNode(true);
+            row.appendChild(clone);
+            totalWidth += item.offsetWidth;
+          });
+          cloneCount++;
+        }
+        row.dataset.cloned = "true";
+      }
+
+      var rowWidth = row.scrollWidth;
+      gsap.set(row, { x: 0 });
+      var duration = (rowWidth / window.innerWidth) * 20;
+      if (window.innerWidth < 768) duration *= 0.5;
+
+      var tl = gsap.timeline({ repeat: -1 });
+      tl.to(row, {
+        x: "-" + (rowWidth / 2) + "px",
+        duration: duration,
+        ease: "none",
+        onComplete: function () { gsap.set(row, { x: 0 }); }
+      });
+      window.__guaranteeScrollerTLs.set(row, tl);
+    });
+  }
+
+  function run() { initRows(root.querySelectorAll(".logo-scroller-row")); }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () { setTimeout(run, 300); });
+  } else {
+    setTimeout(run, 300);
+  }
+
+  window.reinitScrollerAfterPageChange = function () {
+    setTimeout(function () { initRows(document.querySelectorAll(".logo-scroller-row")); }, 200);
+  };
+})();
+</script>
+
+{% schema %}
+{
+  "name": "[Custom] Guarantee List",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Guarantee Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "feature_icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "feature_text",
+          "label": "Text",
+          "default": "Free Shipping & Returns"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "[Custom] Guarantee List",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

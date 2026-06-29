@@ -111,7 +111,7 @@ section.cw-faq-section {
 }
     </style>
 
-<section class="cw-faq-section">
+<section class="cw-faq-section" id="Faq-{{ section.id }}">
   <div class="page-width">
 
  
@@ -160,27 +160,27 @@ section.cw-faq-section {
 </section>
 
 <script>
-setTimeout(function () {
-  const items = document.querySelectorAll(".cw-faq-item");
+document.addEventListener("DOMContentLoaded", function () {
+  var root = document.getElementById("Faq-{{ section.id }}");
+  if (!root) return;
+  var items = root.querySelectorAll(".cw-faq-item");
 
-  items.forEach(item => {
-    item.querySelector(".cw-faq-question").addEventListener("click", () => {
-
-      items.forEach(other => {
+  items.forEach(function (item) {
+    item.querySelector(".cw-faq-question").addEventListener("click", function () {
+      items.forEach(function (other) {
         if (other !== item) {
           other.classList.remove("active");
         }
       });
-
       item.classList.toggle("active");
     });
   });
-}, 100);
+});
     </script>
 
 {% schema %}
 {
-  "name": "CW FAQ Accordion",
+  "name": "[Custom] FAQ",
   "settings": [
     {
       "type": "text",
@@ -192,7 +192,7 @@ setTimeout(function () {
       "type": "text",
       "id": "subtitle",
       "label": "Subtitle",
-      "default": "Everything you need to know about Nikol."
+      "default": "Everything you need to know."
     },
     {
       "type": "image_picker",
@@ -228,7 +228,7 @@ setTimeout(function () {
   "max_blocks": 20,
   "presets": [
     {
-      "name": "CW FAQ Accordion",
+      "name": "[Custom] FAQ",
       "blocks": [
         { "type": "faq" },
         { "type": "faq" },

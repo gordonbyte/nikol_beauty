@@ -3,6 +3,28 @@ section.cw-steps-section {
     padding: 80px 0px;
 }
 
+.cw-steps-header {
+    text-align: center;
+}
+
+.cw-steps-heading {
+    color: #2A2724;
+    font-size: 56px;
+    line-height: 110%;
+    font-family: 'Cormorant';
+    letter-spacing: -3px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.cw-steps-subheading {
+    color: #2A2724;
+    font-family: 'Inter';
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 0;
+}
+
 .cw-steps-image img {
     width: 100%;
 }
@@ -44,8 +66,22 @@ section.cw-steps-section {
     flex-wrap: wrap;
     gap: 40px;
 }
-section.cw-steps-section .cw-banner-button a {
+.cw-steps-btn a {
+    display: flex;
+    align-items: center;
+    background: #D34270;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    height: 60px;
     margin: 0 auto;
+    color: #fff;
+    font-family: 'Cormorant';
+    text-transform: uppercase;
+    font-size: 22px;
+    letter-spacing: 0;
+    gap: 5px;
+    font-weight: 700;
 }
 .cw-steps-box {
     background: #F7F2ED;
@@ -60,16 +96,23 @@ section.cw-steps-section .cw-banner-button a {
     max-width: 470px;
 }
 
-section.cw-steps-section .cw-collect-bestseller-subtitle {
-    padding-bottom: 0;
-}
-
 .cw-steps-parent {
     margin-bottom: 70px;
 }
 @media only screen and (max-width: 600px) {
 section.cw-steps-section {
     padding: 40px 0px;
+}
+
+.cw-steps-heading {
+    font-size: 34px;
+}
+
+.cw-steps-subheading {
+    font-size: 16px;
+    line-height: 135%;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .cw-steps-box {
@@ -100,7 +143,10 @@ section.cw-steps-section {
 .cw-steps-parent {
     gap: 20px;
 }
-section.cw-steps-section .cw-banner-button a {
+.cw-steps-btn a {
+    max-width: 100%;
+    height: 50px;
+    font-size: 18px;
     margin: 0 auto;
 }
 .cw-steps-image img {
@@ -114,10 +160,6 @@ section.cw-steps-section .cw-banner-button a {
     margin-top: 10px;
 }
 
-section.cw-steps-section .cw-collect-bestseller-subtitle {
-    padding-bottom: 15px;
-}
-
 .cw-steps-parent {
     margin-bottom: 25px;
 }
@@ -127,15 +169,15 @@ section.cw-steps-section .cw-collect-bestseller-subtitle {
   
 <section class="cw-steps-section">
   <div class="page-width cw-steps-page-width">
- <div class="cw-collect-bestseller-header">
+ <div class="cw-steps-header">
       {% if section.settings.title != blank %}
-        <div class="cw-collect-bestseller-title">
+        <div class="cw-steps-heading">
           {{ section.settings.title }}
         </div>
       {% endif %}
 
       {% if section.settings.subtitle != blank %}
-        <div class="cw-collect-bestseller-subtitle">
+        <div class="cw-steps-subheading">
           {{ section.settings.subtitle }}
         </div>
       {% endif %}
@@ -185,7 +227,7 @@ section.cw-steps-section .cw-collect-bestseller-subtitle {
       {% endfor %}
 
     </div>
-<div class="cw-banner-button">
+<div class="cw-steps-btn">
           <a href="{{ section.settings.button_link }}">
             {{ section.settings.button_label }} <svg width="22" height="13" viewBox="0 0 22 13" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M0.843262 5.36644C0.377534 5.36644 -1.22974e-05 5.74399 -1.23382e-05 6.20972C-1.23789e-05 6.67544 0.377534 7.05299 0.843262 7.05299L0.843262 6.20972L0.843262 5.36644ZM21.4395 6.806C21.7689 6.47668 21.7689 5.94275 21.4395 5.61343L16.073 0.24687C15.7437 -0.0824491 15.2097 -0.0824491 14.8804 0.24687C14.5511 0.576189 14.5511 1.11012 14.8804 1.43944L19.6507 6.20972L14.8804 10.98C14.5511 11.3093 14.5511 11.8432 14.8804 12.1726C15.2097 12.5019 15.7437 12.5019 16.073 12.1726L21.4395 6.806ZM0.843262 6.20972L0.843262 7.05299L20.8433 7.05299L20.8433 6.20972L20.8433 5.36644L0.843262 5.36644L0.843262 6.20972Z" fill="white"/>
@@ -198,7 +240,7 @@ section.cw-steps-section .cw-collect-bestseller-subtitle {
 
 {% schema %}
 {
-  "name": "CW Steps",
+  "name": "[Custom] Steps Vertical",
   "settings": [
      {
       "type": "text",
@@ -261,7 +303,7 @@ section.cw-steps-section .cw-collect-bestseller-subtitle {
   ],
   "presets": [
     {
-      "name": "CW Steps",
+      "name": "[Custom] Steps Vertical",
       "blocks": [
         { "type": "step" },
         { "type": "step" },

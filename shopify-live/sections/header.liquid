@@ -13,6 +13,10 @@
     assign transparent_header = true
   elsif template == 'index' and section.settings.transparent_home
     assign transparent_header = true
+  elsif template.suffix == 'about' and section.settings.transparent_about
+    assign transparent_header = true
+  elsif template.suffix == 'videos' and section.settings.transparent_videos
+    assign transparent_header = true
   elsif template.name == 'page' and section.settings.transparent_page
     assign transparent_header = true
   elsif template.name == 'product' and section.settings.transparent_product_page
@@ -1000,6 +1004,18 @@
       "id": "transparent_page",
       "label": "Enable on Pages",
       "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "transparent_about",
+      "label": "Enable on About page",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "transparent_videos",
+      "label": "Enable on Videos page",
+      "default": true
     },
     {
       "type": "image_picker",
