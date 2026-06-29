@@ -10,6 +10,28 @@ section.cw-main-collections-section {
     width: 100%;
 }
 
+.cw-main-collections-header {
+    text-align: center;
+}
+
+.cw-main-collections-heading {
+    color: #2A2724;
+    font-size: 56px;
+    line-height: 110%;
+    font-family: 'Cormorant';
+    letter-spacing: -3px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.cw-main-collections-subheading {
+    color: #2A2724;
+    font-family: 'Inter';
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
 .cw-main-collections-parent {
     display: flex;
     flex-wrap: wrap;
@@ -77,6 +99,21 @@ section.cw-main-collections-section {
     font-size: 16px;
 }
 
+.cw-main-collections-heading {
+    font-size: 34px;
+}
+
+.cw-main-collections-subheading {
+    font-size: 16px;
+    line-height: 135%;
+    padding-top: 15px;
+    padding-bottom: 30px;
+}
+
+.cw-main-collections-header {
+    padding: 0 15px;
+}
+
 
 }
     </style>
@@ -88,15 +125,15 @@ section.cw-main-collections-section {
   {% endif %}
 >
   <div class="page-width">
- <div class="cw-collect-bestseller-header">
+ <div class="cw-main-collections-header">
       {% if section.settings.title != blank %}
-        <div class="cw-collect-bestseller-title">
+        <div class="cw-main-collections-heading">
           {{ section.settings.title }}
         </div>
       {% endif %}
 
       {% if section.settings.subtitle != blank %}
-        <div class="cw-collect-bestseller-subtitle">
+        <div class="cw-main-collections-subheading">
           {{ section.settings.subtitle }}
         </div>
       {% endif %}
@@ -150,7 +187,10 @@ section.cw-main-collections-section {
 
 {% schema %}
 {
-  "name": "CW Main Collections",
+  "name": "[Custom] Coll. Banners",
+  "enabled_on": {
+    "templates": ["index"]
+  },
   "settings": [
     {
       "type": "image_picker",
@@ -161,13 +201,13 @@ section.cw-main-collections-section {
       "type": "text",
       "id": "title",
       "label": "Section Title",
-      "default": "Real Stories From Women Who Switched To Nikol"
+      "default": "Shop by Collection"
     },
     {
       "type": "textarea",
       "id": "subtitle",
       "label": "Section Subtitle",
-      "default": "See how women in their 50s, 60s, and 70s use Nikol to look polished without fighting their skin."
+      "default": "Browse our collections and find your next favorite."
     }
   ],
   "blocks": [
@@ -189,13 +229,13 @@ section.cw-main-collections-section {
           "type": "text",
           "id": "title",
           "label": "Title",
-          "default": "Lashes"
+          "default": "Collection Name"
         },
         {
           "type": "text",
           "id": "shop_text",
           "label": "Shop Text",
-          "default": "SHOP NOW →"
+          "default": "SHOP NOW"
         },
         {
           "type": "url",
@@ -207,7 +247,7 @@ section.cw-main-collections-section {
   ],
   "presets": [
     {
-      "name": "CW Main Collections"
+      "name": "[Custom] Coll. Banners"
     }
   ]
 }

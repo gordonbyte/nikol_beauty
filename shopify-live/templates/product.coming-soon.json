@@ -14,8 +14,8 @@
       "disabled": true,
       "settings": {}
     },
-    "cw_feature_3jG9Xr": {
-      "type": "cw-feature",
+    "custom_guarantee_list_3jG9Xr": {
+      "type": "custom-guarantee-list",
       "blocks": {
         "feature_wHLh43": {
           "type": "feature",
@@ -52,7 +52,7 @@
         "feature_yWHCEE",
         "feature_jExeC6"
       ],
-      "name": "CW Listicle Features",
+      "name": "[Custom] Guarantee List",
       "settings": {}
     },
     "main": {
@@ -846,8 +846,8 @@
       "disabled": true,
       "settings": {}
     },
-    "cw_bb_steps_48B6BD": {
-      "type": "cw-bb-steps",
+    "custom_steps_horizontal_48B6BD": {
+      "type": "custom-steps-horizontal",
       "blocks": {
         "step_mENXfG": {
           "type": "step",
@@ -879,7 +879,7 @@
         "step_r4FKV3",
         "step_MzWHCr"
       ],
-      "name": "CW Steps Section",
+      "name": "[Custom] Steps Horizontal",
       "settings": {
         "heading": "Natural, Polished Skin In 3 Simple Steps",
         "subheading": "Here’s exactly how Nikol Beauty BB Creme works:",
@@ -887,17 +887,8 @@
         "button_link": "#buynow"
       }
     },
-    "cw_bb_video_FprzVQ": {
-      "type": "cw-bb-video",
-      "name": "CW BB Video",
-      "settings": {
-        "video_url": "https://cdn.shopify.com/videos/c/o/v/c39362bf898b4ca1a112fe28958e87f5.mp4",
-        "poster": "shopify://shop_images/vid.jpg",
-        "text": "<p>THE BB CREAM MADE<br/> FOR MATURE SKIN</p>"
-      }
-    },
-    "cw_bb_ingredients_fHrGm4": {
-      "type": "cw-bb-ingredients",
+    "custom_icon_features_fHrGm4": {
+      "type": "custom-icon-features",
       "blocks": {
         "feature_KEJe4m": {
           "type": "feature",
@@ -929,7 +920,7 @@
         "feature_Edhg8N",
         "feature_dh8RrV"
       ],
-      "name": "CW Ingredients Section",
+      "name": "[Custom] Icon Features",
       "settings": {
         "heading": "<p>Made With Skin-Safe<br/>Ingredients You Can Trust</p>",
         "subheading": "Formulated to feel comfortable on mature and sensitive skin.",
@@ -938,8 +929,8 @@
         "button_link": "#buynow"
       }
     },
-    "cw_bb_switched_abL96y": {
-      "type": "cw-bb-switched",
+    "custom_alternating_rows_abL96y": {
+      "type": "custom-alternating-rows",
       "blocks": {
         "content_box_gh38Xn": {
           "type": "content_box",
@@ -988,7 +979,7 @@
         "content_box_WxJCUi",
         "content_box_9RJgUG"
       ],
-      "name": "CW BB Switched",
+      "name": "[Custom] Alternating Rows",
       "settings": {
         "bg_image": "shopify://shop_images/switched-bg.jpg",
         "title": "Why Thousands of Mature Women Switched to Nikol beauty BB Creme",
@@ -1034,8 +1025,8 @@
         "include_margins": false
       }
     },
-    "cw_faq_QtK7h3": {
-      "type": "cw-faq",
+    "custom_faq_QtK7h3": {
+      "type": "custom-faq",
       "blocks": {
         "faq_gA3VtR": {
           "type": "faq",
@@ -1112,7 +1103,7 @@
         "faq_qmicbe",
         "faq_8yGXxe"
       ],
-      "name": "CW FAQ Accordion",
+      "name": "[Custom] FAQ",
       "settings": {
         "title": "Frequently Asked Questions",
         "subtitle": "Everything you need to know before trying Nikol Beauty BB Creme.",
@@ -1120,8 +1111,8 @@
         "minus_icon": "shopify://shop_images/FAQ-minus.png"
       }
     },
-    "cw_feature_qxiYQE": {
-      "type": "cw-feature",
+    "custom_guarantee_list_qxiYQE": {
+      "type": "custom-guarantee-list",
       "blocks": {
         "feature_YGc7h6": {
           "type": "feature",
@@ -1158,19 +1149,57 @@
         "feature_TwnmT7",
         "feature_BxnkDJ"
       ],
-      "name": "CW Listicle Features",
+      "name": "[Custom] Guarantee List",
       "settings": {}
     },
-    "cw_bh_wearing_Adm6cV": {
-      "type": "cw-bh-wearing",
-      "name": "CW BB Wearing",
+    "custom_info_banner_Adm6cV": {
+      "type": "custom-info-banner",
+      "name": "[Custom] Info Banner",
+      "blocks": {
+        "image_1": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "media_position": "left",
+            "media_padding": 0,
+            "image_desktop": "shopify://shop_images/wearing-img.png",
+            "image_mobile": "shopify://shop_images/wearing-img.png"
+          }
+        },
+        "rating_1": {
+          "type": "rating",
+          "settings": {
+            "star_image": "shopify://shop_images/Stars_Container_a8ef23fa-4cb0-442a-aebc-8875c6ae38e3.png",
+            "star_text": "<strong>4.76/5</strong> stars | <strong>12,000+</strong> happy women"
+          }
+        },
+        "heading_1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Stop Wearing Makeup That Makes You Look Older"
+          }
+        },
+        "price_1": {
+          "type": "price",
+          "settings": {}
+        },
+        "text_1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Switch to a BB Creme made for mature skin that stays comfortable and looks like real skin all day.</p>"
+          }
+        },
+        "button_1": {
+          "type": "button",
+          "settings": {
+            "button_text": "GET YOURS NOW →",
+            "button_link": "#buynow"
+          }
+        }
+      },
+      "block_order": ["image_1", "rating_1", "heading_1", "price_1", "text_1", "button_1"],
       "settings": {
-        "bg_image": "shopify://shop_images/steps-bg.jpg",
-        "left_image": "shopify://shop_images/wearing-img.png",
-        "title": "Stop Wearing Makeup That Makes You Look Older",
-        "description": "Switch to a BB Creme made for mature skin that stays comfortable and looks like real skin all day.",
-        "button_text": "GET YOURS NOW →",
-        "button_link": "#buynow"
+        "bg_image": "shopify://shop_images/steps-bg.jpg"
       }
     },
     "custom_product_slider_CByXCN": {
@@ -1198,9 +1227,9 @@
         "button_link": ""
       }
     },
-    "cw_home_newsletter_RMchwh": {
-      "type": "cw-home-newsletter",
-      "name": "CW Home Newsletter",
+    "custom_newsletter_RMchwh": {
+      "type": "custom-newsletter",
+      "name": "[Custom] Newsletter",
       "settings": {
         "bg_image": "shopify://shop_images/form-bg.jpg",
         "title": "Let's Get this <br> beauty started.",
@@ -1212,23 +1241,22 @@
   },
   "order": [
     "zp-product-header-content",
-    "cw_feature_3jG9Xr",
+    "custom_guarantee_list_3jG9Xr",
     "main",
     "faq",
     "shipping",
     "related",
     "zp-product-footer-content",
-    "cw_bb_steps_48B6BD",
-    "cw_bb_video_FprzVQ",
-    "cw_bb_ingredients_fHrGm4",
-    "cw_bb_switched_abL96y",
+    "custom_steps_horizontal_48B6BD",
+    "custom_icon_features_fHrGm4",
+    "custom_alternating_rows_abL96y",
     "cw_videos_WcxwdJ",
     "1771850328ecb59717",
     "16904264243ceba35b",
-    "cw_faq_QtK7h3",
-    "cw_feature_qxiYQE",
-    "cw_bh_wearing_Adm6cV",
+    "custom_faq_QtK7h3",
+    "custom_guarantee_list_qxiYQE",
+    "custom_info_banner_Adm6cV",
     "custom_product_slider_CByXCN",
-    "cw_home_newsletter_RMchwh"
+    "custom_newsletter_RMchwh"
   ]
 }

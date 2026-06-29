@@ -1,3 +1,7 @@
+{% if section.blocks.size > 0 %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+{% endif %}
 <style>
 .cw-customer-review-product-img img {
     width: 100%;
@@ -6,6 +10,28 @@
 section.cw-customer-review-section {
     background: #F7F2ED;
     padding: 80px 0px;
+}
+
+.cw-customer-review-header {
+    text-align: center;
+}
+
+.cw-customer-review-heading {
+    color: #2A2724;
+    font-size: 56px;
+    line-height: 110%;
+    font-family: 'Cormorant';
+    letter-spacing: -3px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.cw-customer-review-subheading {
+    color: #2A2724;
+    font-family: 'Inter';
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 40px;
 }
 
 .swiper-slide.cw-customer-review-slide {
@@ -151,8 +177,19 @@ section.cw-customer-review-section {
     padding: 40px 0px;
 }
 
-.cw-collect-bestseller-header {
+.cw-customer-review-header {
     padding: 0 15px;
+}
+
+.cw-customer-review-heading {
+    font-size: 34px;
+}
+
+.cw-customer-review-subheading {
+    font-size: 16px;
+    line-height: 135%;
+    padding-top: 15px;
+    padding-bottom: 30px;
 }
 
 .cw-customer-review-nav.cw-customer-review-prev svg {
@@ -219,17 +256,17 @@ section.cw-customer-review-section {
 
     </style>
 
-<section class="cw-customer-review-section">
-  <div class="page-widthn">
-     <div class="cw-collect-bestseller-header">
+<section class="cw-customer-review-section" id="CustomerReviews-{{ section.id }}">
+  <div class="page-width">
+     <div class="cw-customer-review-header">
       {% if section.settings.title != blank %}
-        <div class="cw-collect-bestseller-title">
+        <div class="cw-customer-review-heading">
           {{ section.settings.title }}
         </div>
       {% endif %}
 
       {% if section.settings.subtitle != blank %}
-        <div class="cw-collect-bestseller-subtitle">
+        <div class="cw-customer-review-subheading">
           {{ section.settings.subtitle }}
         </div>
       {% endif %}
@@ -348,30 +385,37 @@ section.cw-customer-review-section {
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  new Swiper(".cw-customer-review-swiper", {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    centeredSlides: true,
-    loop: true,
-    navigation: {
-      nextEl: ".cw-customer-review-next",
-      prevEl: ".cw-customer-review-prev"
-    },
-    pagination: {
-      el: ".cw-customer-review-pagination",
-      clickable: true
-    },
-    breakpoints: {
-      0: {
-        slidesPerView: 1
+  document.querySelectorAll("#CustomerReviews-{{ section.id }} .cw-customer-review-swiper").forEach(function (el) {
+    new Swiper(el, {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      centeredSlides: true,
+      loop: true,
+      speed: {{ section.settings.scroll_speed }},
+      {% if section.settings.autoplay %}autoplay: {
+        delay: {{ section.settings.autoplay_delay | times: 1000 }},
+        disableOnInteraction: false
+      },{% endif %}
+      navigation: {
+        nextEl: el.querySelector(".cw-customer-review-next"),
+        prevEl: el.querySelector(".cw-customer-review-prev")
       },
-      768: {
-        slidesPerView: 2
+      pagination: {
+        el: el.querySelector(".cw-customer-review-pagination"),
+        clickable: true
       },
-      1024: {
-        slidesPerView: 3
+      breakpoints: {
+        0: {
+          slidesPerView: 1
+        },
+        768: {
+          slidesPerView: 2
+        },
+        1024: {
+          slidesPerView: {{ section.settings.slides_per_view }}
+        }
       }
-    }
+    });
   });
 });
 </script>
@@ -379,19 +423,60 @@ document.addEventListener("DOMContentLoaded", function () {
 
 {% schema %}
 {
-  "name": "CW Customer Reviews",
+  "name": "[Custom] Customer Reviews",
     "settings": [
     {
       "type": "text",
       "id": "title",
       "label": "Section Title",
-      "default": "Real Stories From Women Who Switched To Nikol"
+      "default": "What Our Customers Say"
     },
     {
       "type": "textarea",
       "id": "subtitle",
       "label": "Section Subtitle",
-      "default": "See how women in their 50s, 60s, and 70s use Nikol to look polished without fighting their skin."
+      "default": "Real reviews from happy customers."
+    },
+    {
+      "type": "header",
+      "content": "Carousel"
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view",
+      "label": "Reviews shown (desktop)",
+      "info": "How many reviews are visible before the arrows. Tablet shows 2, mobile shows 1.",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll speed",
+      "min": 100,
+      "max": 3000,
+      "step": 100,
+      "unit": "ms",
+      "default": 600
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Auto scroll",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_delay",
+      "label": "Auto scroll timer",
+      "info": "Seconds each review stays before advancing (when Auto scroll is on).",
+      "min": 1,
+      "max": 15,
+      "step": 1,
+      "unit": "s",
+      "default": 4
     }
   ],
   "blocks": [
@@ -418,7 +503,7 @@ document.addEventListener("DOMContentLoaded", function () {
           "type": "text",
           "id": "title",
           "label": "Review Title",
-          "default": "My Favorite Mascara"
+          "default": "Great product"
         },
         {
           "type": "textarea",
@@ -429,7 +514,7 @@ document.addEventListener("DOMContentLoaded", function () {
           "type": "text",
           "id": "author",
           "label": "Author Name",
-          "default": "Marney Elliott"
+          "default": "Customer Name"
         },
         {
           "type": "image_picker",
@@ -446,7 +531,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ],
   "presets": [
     {
-      "name": "CW Customer Reviews"
+      "name": "[Custom] Customer Reviews"
     }
   ]
 }

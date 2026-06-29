@@ -74,7 +74,7 @@
     Removed stale homepage hero image preloads (retired "Feb_Lip_GLOSS" campaign
     that the homepage no longer renders). They triggered "preloaded but not used"
     console warnings and wasted bandwidth on unused images. The live hero is in
-    the cw-feature section (managed in the theme editor). The orphan </style>
+    the custom-guarantee-list section (managed in the theme editor). The orphan </style>
     below is left as-is (harmless, pre-existing).
   {%- endcomment -%}
   </style>
@@ -415,8 +415,10 @@
   Apply at:  Online Store → Themes → … → Edit code → layout/theme.liquid
   Paste INSIDE the <head>...
 
+
 {% include 'store-credit-launcher' %}
 </head> block, anywhere before 
+
 
 {% include 'store-credit-launcher' %}
 </head>.
@@ -472,7 +474,19 @@
   <script type="module" fetchpriority="high" src="https://cdn.intelligems.io/esm/fec7d9978c20/bundle.js" data-em-disable async></script>
   
 
+
 {% include 'store-credit-launcher' %}
+  {%- comment -%} Global container width + responsive show/hide utilities (uniform site-wide) {%- endcomment -%}
+  <style>
+    .page-width { max-width: 1350px; margin: 0 auto; padding: 0 40px; }
+    .cw-desktop { display: block; }
+    .cw-mobile { display: none; }
+    @media only screen and (max-width: 600px) {
+      .page-width { padding: 0 15px; }
+      .cw-desktop { display: none; }
+      .cw-mobile { display: block; }
+    }
+  </style>
 </head>
   <body
     id="{{ page_title | handle }}"
@@ -586,6 +600,7 @@ window.igData?.user.assignTestGroup("595abf02-a359-4f60-8936-160a08f53a88",
 console.log('Cart drawer opened. window.igCartOpened =',window.igCartOpened)
 })
 </script>
+
 
 
 

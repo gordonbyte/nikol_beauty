@@ -6,6 +6,75 @@
 
   {% render 'cw-pdp-css' %}
 
+{%- comment -%} Review-card styles (self-contained; previously inherited from the alternating-rows section) {%- endcomment -%}
+<style>
+.mp-review-box {
+    margin-top: 20px;
+}
+.mp-review-stars img {
+    max-width: 95px;
+    object-fit: contain;
+}
+.mp-review-text {
+    font-size: 16px;
+    line-height: 150%;
+    font-weight: 400;
+    color: #2A2724;
+    padding-top: 5px;
+    font-family: 'Inter', sans-serif;
+}
+.mp-author-box {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+.mp-author-name {
+    font-size: 16px;
+    line-height: 150%;
+    font-weight: 400;
+    color: #2A2724;
+    font-family: 'Inter',sans-serif;
+}
+.mp-verified {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.mp-verified img {
+    max-width: 14px;
+    object-fit: contain;
+}
+.mp-verified-text {
+    font-size: 14px;
+    line-height: 150%;
+    font-weight: 400;
+    color: #2A2724;
+    font-family: 'Inter', sans-serif;
+}
+@media only screen and (max-width: 600px) {
+.mp-review-box {
+    padding-left: 15px;
+    margin-top: 15px;
+}
+.mp-review-text {
+    font-size: 14px;
+}
+.mp-review-stars img {
+    max-width: 85px;
+}
+.mp-author-name {
+    font-size: 14px;
+}
+.mp-verified-text {
+    font-size: 12px;
+}
+.mp-verified img {
+    max-width: 12px;
+}
+}
+</style>
+
 {%- liquid
   assign current_variant = product.selected_or_first_available_variant
   assign enable_video_looping = section.settings.enable_video_looping
@@ -734,9 +803,9 @@
                   {%- when 'testimonial_card' -%}
                     {%- if block.settings.quote != blank -%}
                       <div class="product__block block-padding" {{ block_style }} {{ block.shopify_attributes }}>
-                        <div class="cw-bb-switched-review-box main-product-box">
+                        <div class="mp-review-box main-product-box">
                           {%- if block.settings.star_image != blank or block.settings.star_image_url != blank -%}
-                            <div class="cw-bb-switched-review-stars">
+                            <div class="mp-review-stars">
                               {%- if block.settings.star_image != blank -%}
                                 {{ block.settings.star_image | image_url: width: 320 | image_tag: alt: block.settings.star_image_alt, loading: 'lazy' }}
                               {%- else -%}
@@ -745,20 +814,20 @@
                             </div>
                           {%- endif -%}
 
-                          <div class="cw-bb-switched-review-text">
+                          <div class="mp-review-text">
                             {{ block.settings.quote }}
                           </div>
 
                           {%- if block.settings.author_name != blank or block.settings.show_verified -%}
-                            <div class="cw-bb-switched-author-box">
+                            <div class="mp-author-box">
                               {%- if block.settings.author_name != blank -%}
-                                <div class="cw-bb-switched-author-name">
+                                <div class="mp-author-name">
                                   {{ block.settings.author_name }}
                                 </div>
                               {%- endif -%}
 
                               {%- if block.settings.show_verified -%}
-                                <div class="cw-bb-switched-verified">
+                                <div class="mp-verified">
                                   {%- if block.settings.verified_icon != blank or block.settings.verified_icon_url != blank -%}
                                     {%- if block.settings.verified_icon != blank -%}
                                       {{ block.settings.verified_icon | image_url: width: 48 | image_tag: alt: block.settings.verified_icon_alt, loading: 'lazy' }}
@@ -766,7 +835,7 @@
                                       <img src="{{ block.settings.verified_icon_url }}" alt="{{ block.settings.verified_icon_alt }}" loading="lazy">
                                     {%- endif -%}
                                   {%- endif -%}
-                                  <div class="cw-bb-switched-verified-text">
+                                  <div class="mp-verified-text">
                                     {{ block.settings.verified_text }}
                                   </div>
                                 </div>

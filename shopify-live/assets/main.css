@@ -220,7 +220,6 @@ hr.hr {
   fill: #FCC9C6; }
 
 .header__mobile {
-  background-color: #F7F2ED;
   padding-left: 30px;
   padding-right: 30px; }
   .header__mobile svg.icon-search {
@@ -236,17 +235,24 @@ hr.hr {
     visibility: hidden;
     opacity: 0; }
 
-.header__wrapper .header__desktop {
-  background-color: white; }
+/* Header background — single source of truth: Theme settings > Colors > Header bar > Background (header_bg -> --COLOR-HEADER-BG) */
+.header__wrapper .header__desktop,
+.header__wrapper .header__mobile {
+  background-color: var(--COLOR-HEADER-BG); }
 
+/* Transparent header — driven by the section's "Transparent header" toggles */
+.header__wrapper[data-header-transparent] .header__desktop,
+.header__wrapper[data-header-transparent] .header__mobile {
+  background-color: transparent; }
+
+/* Solid header background when scrolled (sticky) or mega-menu open */
+.header__wrapper.js__header__stuck .header__desktop,
+.header__wrapper.js__header__stuck .header__mobile,
 .header__wrapper.meganav--visible .header__desktop {
-  background-color: white !important; }
+  background-color: var(--COLOR-HEADER-BG) !important; }
 
 .header__wrapper.js__header__stuck .header__desktop__bar__sticky-logo {
   display: block; }
-
-.header__wrapper.js__header__stuck .header__desktop {
-  background-color: white !important; }
 
 @media (min-width: 786px) {
   .header__wrapper.js__header__stuck .header__logo {
@@ -455,35 +461,9 @@ hr.hr {
     .link:hover::after {
       max-width: 0; }
 
-.template-index .header__wrapper .header__desktop {
-  background-color: #F7F2ED; }
-
-#about .header__wrapper.js__header__stuck .header__mobile {
-  background-color: #F7F2ED; }
-
-#about .header__wrapper .header__desktop,
-#about .header__wrapper .header__mobile {
-  background-color: transparent; }
-
-#about .header__wrapper .menu__item a:hover {
-  color: #46413C; }
-
-#about .theme__header::after {
-  background-color: transparent; }
-
-#videos .header__wrapper .header__desktop {
-  background-color: transparent; }
-
-#videos .theme__header::after {
-  background-color: transparent; }
-
 .template-blog .instagram-feed,
 .related-articles .instagram-feed {
   background-color: #FCFAF8; }
-
-.template-blog .header__wrapper .header__desktop,
-.related-articles .header__wrapper .header__desktop {
-  background-color: white; }
 
 .template-blog .blog-section,
 .related-articles .blog-section {
@@ -2053,13 +2033,6 @@ align-items: center;
     max-width: 1080px;
     margin: auto;
     padding: 0 30px; }
-
-.template-article .header__wrapper .header__desktop,
-.template-article .header__wrapper .header__mobile {
-  background-color: #fcfaf8; }
-
-.template-article .theme__header::after {
-  background-color: #fcfaf8; }
 
 .template-article .wp-caption {
   max-width: 100%; }
