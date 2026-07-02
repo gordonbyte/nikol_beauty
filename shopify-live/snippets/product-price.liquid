@@ -6,6 +6,38 @@
   else
     assign has_units = false
   endif
+
+  comment
+    Single-variant promo price (mirrors the collection card). Only for
+    products with exactly one variant, whose price is fixed — so the
+    calculated sale price is exact. Multi-variant products keep the normal
+    price because it changes with variant selection (handled by theme JS).
+    Reads the 'promo-<n>' / 'promo-up-to-<n>' product tag.
+  endcomment
+  assign promo_percent = ''
+  assign promo_sale_price_display = ''
+  assign promo_original_display = ''
+  if settings.promo_badge_enable and product.variants.size == 1 and product.available
+    assign promo_tags = product.tags | join: ',' | append: ','
+    if promo_tags contains 'promo-up-to-'
+      assign promo_parts = promo_tags | split: 'promo-up-to-'
+      assign promo_percent = promo_parts[1] | split: ',' | first | strip
+    elsif promo_tags contains 'promo-'
+      assign promo_parts = promo_tags | split: 'promo-'
+      assign promo_percent = promo_parts[1] | split: ',' | first | strip
+    endif
+    if promo_percent != blank and current_variant.price > 0
+      assign promo_discount_amount = current_variant.price | times: promo_percent | divided_by: 100
+      assign promo_sale_price = current_variant.price | minus: promo_discount_amount
+      if settings.currency_code_enable
+        assign promo_sale_price_display = promo_sale_price | money_with_currency
+        assign promo_original_display = current_variant.price | money_with_currency
+      else
+        assign promo_sale_price_display = promo_sale_price | money
+        assign promo_original_display = current_variant.price | money
+      endif
+    endif
+  endif
 -%}
 
 <div class="product__block block-padding"
@@ -16,7 +48,12 @@
     data-animation-delay="{{ animation_delay }}"
   {% endif %}>
   <div class="product__price__wrap">
-    <div class="product__price{% if has_units %} product__price--has-units{% endif %}" data-price-wrapper>
+    <div class="product__price{% if has_units %} product__price--has-units{% endif %}{% if promo_sale_price_display != blank %} product__price--promo{% endif %}" data-price-wrapper>
+      {%- if promo_sale_price_display != blank -%}
+        <span class="promo-old-price">{{ promo_original_display }}</span>
+        <span class="promo-new-price" style="color: {{ settings.promo_badge_bg_color }};">{{ promo_sale_price_display }}</span>
+        <span class="promo-on-sale-pill" style="background: {{ settings.promo_badge_bg_color }};">On Sale</span>
+      {%- endif -%}
       <span data-product-price {% if current_variant.compare_at_price > current_variant.price %} class="product__price--sale"{% endif %}>
         {%- if current_variant.price == 0 -%}
           {{ 'general.money.free' | t }}

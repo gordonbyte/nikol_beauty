@@ -716,6 +716,29 @@
       },
       {
         "type": "header",
+        "content": "Promo % badge",
+        "info": "Add the tag 'promo-20' to a product (the number = percent off) to show a '20% OFF' bubble on its card. Keep the tagged products in sync with your automatic discount's product list."
+      },
+      {
+        "type": "checkbox",
+        "id": "promo_badge_enable",
+        "label": "Show promo % badge",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "promo_badge_bg_color",
+        "label": "Background",
+        "default": "#14448A"
+      },
+      {
+        "type": "color",
+        "id": "promo_badge_text_color",
+        "label": "Text",
+        "default": "#ffffff"
+      },
+      {
+        "type": "header",
         "content": "Quick add"
       },
       {

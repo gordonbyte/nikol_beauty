@@ -317,8 +317,8 @@
 --FONT-WEIGHT-BODY: {{ base_font.weight | default: 400 }};
 --FONT-WEIGHT-BODY-BOLD: {{ base_font_bold.weight | default: 700 }};
 
-/*--FONT-STACK-BODY: {{ base_font.family }}, {{ base_font.fallback_families }};*/
---FONT-STACK-BODY: 'Jost', sans-serif;
+{%- comment -%} Body font: driven by the Typography "Body" font picker, defaults to Inter (loaded in theme.liquid, since Shopify's picker doesn't offer Inter). {%- endcomment -%}
+--FONT-STACK-BODY: {{ base_font.family | default: 'Inter' }}, sans-serif;
 --FONT-STYLE-BODY: {{ base_font.style }};
 --FONT-STYLE-BODY-ITALIC: {{ base_font_italic.style }};
 --FONT-ADJUST-BODY: {{ settings.type_body_size | divided_by: 100.0 }};
@@ -326,7 +326,7 @@
 --FONT-WEIGHT-HEADING: {{ heading_font.weight | default: 400 }};
 --FONT-WEIGHT-HEADING-BOLD: {{ heading_font_bold.weight | default: 700 }};
 
---FONT-STACK-HEADING: 'Cormorant', {{ heading_font.fallback_families }};
+--FONT-STACK-HEADING: {{ heading_font.family | default: 'Cormorant' }}, serif;
 --FONT-STYLE-HEADING: {{ heading_font.style }};
 --FONT-STYLE-HEADING-ITALIC: {{ heading_font_italic.style }};
 --FONT-ADJUST-HEADING: {{ settings.type_heading_size | divided_by: 100.0 }};
@@ -353,7 +353,7 @@
 --FONT-WEIGHT-NAV: {{ nav_font.weight | default: 400 }};
 --FONT-WEIGHT-NAV-BOLD: {{ nav_font_bold.weight | default: 700 }};
 
---FONT-SIZE-BASE: {{ settings.type_body_size | divided_by: 100.0 | append: 'rem' }};
+--FONT-SIZE-BASE: max(18px, {{ settings.type_body_size | divided_by: 100.0 | append: 'rem' }});
 --FONT-SIZE-BASE-PERCENT: {{ settings.type_body_size | divided_by: 100.0 }};
 
 
@@ -410,7 +410,8 @@
 {%- endif -%}
 
 /* === Button General ===*/
---BTN-FONT-STACK: {{ btn_font.family }}, {{ btn_font.fallback_families }};
+{%- comment -%} Button font hardcoded to Cormorant (the btn_font picker points to a font that isn't loaded). Matches the heading-font approach above. {%- endcomment -%}
+--BTN-FONT-STACK: 'Cormorant', serif;
 --BTN-FONT-WEIGHT: {{ btn_font.weight | default: 400 }};
 --BTN-FONT-STYLE: {{ btn_font.style }};
 --BTN-FONT-SIZE: {{ settings.btn_size }}px;

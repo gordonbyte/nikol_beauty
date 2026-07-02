@@ -12610,7 +12610,7 @@ body {
   display: flex;
   min-height: calc(var(--font-2) * var(--FONT-ADJUST-BODY) * 1.4 + 16px);
   position: relative;
-  margin: 0 calc((var(--inner) / 2) * -1);
+  margin: 0;
   padding: 0;
   font-size: 0;
 }
@@ -12879,7 +12879,7 @@ body {
 
 .product-item__title {
   position: relative;
-  font-weight: var(--FONT-WEIGHT-BODY);
+  font-weight: 600;
   font-size: calc(1rem * var(--FONT-ADJUST-BODY));
   color: inherit;
   margin: 0;
@@ -14568,6 +14568,9 @@ input[type=radio].variant-input {
 }
 
 /*================ Add to cart ================*/
+.product__submit [data-add-to-cart]{
+  font-weight: 800;
+}
 .product__submit__add {
   position: relative;
   width: 100%;
@@ -15836,6 +15839,7 @@ a.review {
   line-height: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: 800;
 }
 .cart-bar__form .product__submit__add span.btn__text {
   display: flex;
@@ -15889,19 +15893,19 @@ a.review {
 }
 
 .cart-bar__product__title {
-  line-height: 25px;
+  font-weight: 800;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: calc(1rem * var(--FONT-ADJUST-HEADING));
+  /* font-size: calc(1rem * var(--FONT-ADJUST-HEADING)); */
 }
 @media only screen and (max-width: 749px) {
   .cart-bar__product__title {
     display: inline;
     padding: 0 3px;
     white-space: normal;
-    font-size: calc(0.75rem * var(--FONT-ADJUST-HEADING));
+    font-size: 21px;
   }
 }
 
@@ -15912,7 +15916,7 @@ a.review {
   line-height: 25px;
   padding: 0 0 0 10px;
   margin: 0;
-  font-size: calc(1rem * var(--FONT-ADJUST-BODY));
+  /* font-size: calc(1rem * var(--FONT-ADJUST-BODY)); */
 }
 @media only screen and (max-width: 749px) {
   .cart-bar__product__price {
@@ -22765,6 +22769,7 @@ dialog.is-loading .loader {
   align-items: center;
   padding: 1.5rem 30px 1.5rem 0;
   margin: 0;
+  text-transform: uppercase;
 }
 
 .accordion__title .icon__animated {
@@ -22819,7 +22824,7 @@ dialog.is-loading .loader {
 .faq-list__item {
   flex-basis: 45%;
   padding: calc(var(--gutter) / 2) 0;
-  font-size: calc(var(--font-2) * var(--FONT-ADJUST-BODY));
+  /* font-size: calc(var(--font-2) * var(--FONT-ADJUST-BODY)); */
   line-height: 1.3;
 }
 .faq-list__item:only-child {
@@ -22868,7 +22873,7 @@ dialog.is-loading .loader {
 
 .faq-list__item-title {
   margin-bottom: calc(var(--gutter) / 3);
-  font-size: calc(var(--font-3) * var(--FONT-ADJUST-HEADING));
+  /* font-size: calc(var(--font-3) * var(--FONT-ADJUST-HEADING)); */
   font-weight: var(--FONT-WEIGHT-HEADING);
 }
 
@@ -23190,7 +23195,6 @@ dialog.is-loading .loader {
   background: var(--bg);
   padding-top: var(--PT);
   padding-bottom: var(--PB);
-  font-family: jost;
 }
 
 .highlights__items {
@@ -24203,4 +24207,11 @@ body.has-header-sticky .timeline {
 
 a.social-link svg {
     height: 20px;
+}
+
+
+
+/* Wishlist */
+.wishlist-p-right h3{
+  font-size: 17px;
 }
