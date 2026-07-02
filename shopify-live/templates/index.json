@@ -56,8 +56,8 @@
         "image_w3NqUL": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/New_Banner_June_desktop.png",
-            "mobile_image": "shopify://shop_images/Updated_again_for_Mobile.png",
+            "image": "shopify://shop_images/4th_hero_1950x700_png.png",
+            "mobile_image": "shopify://shop_images/4th_hero_400x660_mobile.png_2.png",
             "overlay_opacity": 0,
             "overlay_color": "#000000",
             "show_overlay_text": false,
@@ -450,7 +450,7 @@
           "settings": {
             "link_text": "SHOP NOW",
             "link": "shopify://products/bb-cream",
-            "button_type": "btn--secondary",
+            "button_type": "btn--primary",
             "button_size": "",
             "button_style": "btn--solid",
             "show_arrow": false

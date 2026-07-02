@@ -294,6 +294,26 @@
     unless product.available
       assign sold_out = true
     endunless
+
+    comment
+      Promo % badge: reads a product tag.
+        promo-20        -> "20% OFF" (all variants get the same 20%)
+        promo-up-to-30  -> "UP TO 30% OFF" (variants get different %; tag the
+                           HIGHER number). Price is calculated off this %.
+      Purely visual — the actual discount is applied by Shopify at checkout.
+    endcomment
+    assign promo_percent = ''
+    assign promo_up_to = false
+    if settings.promo_badge_enable
+      if product_tags contains 'promo-up-to-'
+        assign promo_up_to = true
+        assign promo_parts = product_tags | split: 'promo-up-to-'
+        assign promo_percent = promo_parts[1] | split: ',' | first | strip
+      elsif product_tags contains 'promo-'
+        assign promo_parts = product_tags | split: 'promo-'
+        assign promo_percent = promo_parts[1] | split: ',' | first | strip
+      endif
+    endif
   -%}
 
   {%- if badge != '' -%}
@@ -314,6 +334,15 @@
       data-aos-delay="{{ aos_delay }}"
       data-aos-duration="{{ aos_duration }}"
       data-aos-anchor="{{ aos_anchor }}">{{ 'products.product.on_sale' | t }}</span>
+  {%- endif -%}
+
+  {%- if promo_percent != blank and sold_out == false -%}
+    <span class="promo-box"
+      style="background: {{ settings.promo_badge_bg_color }}; color: {{ settings.promo_badge_text_color }};"
+      data-aos="fade"
+      data-aos-delay="{{ aos_delay }}"
+      data-aos-duration="{{ aos_duration }}"
+      data-aos-anchor="{{ aos_anchor }}">{% if promo_up_to %}<span class="promo-box__line">Up to</span>{% endif %}<span class="promo-box__line">{{ promo_percent }}% {{ 'products.product.off' | t }}</span></span>
   {%- endif -%}
 
   {%- if settings.quickview_enable and current_variant -%}
@@ -566,25 +595,62 @@
     assign product_price_min = product.price_min | money
     assign product_compare_at_price = product.compare_at_price | money
   endif
+
+  comment
+    When a 'promo-<percent>' tag is present, calculate the sale price
+    from the full price (the promo is a cart discount, so product.price
+    is NOT reduced here). Display estimate — checkout may round by a cent.
+  endcomment
+  assign promo_sale_price_display = ''
+  if promo_percent != blank
+    assign promo_discount_amount = product.price_min | times: promo_percent | divided_by: 100
+    assign promo_sale_price = product.price_min | minus: promo_discount_amount
+    if settings.currency_code_enable
+      assign promo_sale_price_display = promo_sale_price | money_with_currency
+    else
+      assign promo_sale_price_display = promo_sale_price | money
+    endif
+  endif
 -%}
 
-<span class="price{% if product.compare_at_price > product.price %} sale{% endif %}">
+<span class="price{% if promo_sale_price_display != blank and product.available %} price--promo{% elsif product.compare_at_price > product.price %} sale{% endif %}">
   {% if product.available %}
-    <span class="new-price">
-      {% if product.price_varies %}
-        <small>{{ 'products.general.from' | t }}</small>
+    {%- if promo_sale_price_display != blank -%}
+      <span class="promo-old-price">
+        {%- if product.price == 0 and product.price_varies == false -%}
+          {{ 'general.money.free' | t }}
+        {%- else -%}
+          {{ product_price_min }}
+        {%- endif -%}
+      </span>
+      <span class="promo-new-price" style="color: {{ settings.promo_badge_bg_color }};">
+        {% if product.price_varies or promo_up_to %}
+          <small>{{ 'products.general.from' | t | downcase }}</small>
+        {% endif %}
+        {{ promo_sale_price_display }}
+      </span>
+      <span class="promo-on-sale-pill" style="background: {{ settings.promo_badge_bg_color }};">On Sale</span>
+    {%- else -%}
+      <span class="new-price">
+        {% if product.price_varies %}
+          <small>{{ 'products.general.from' | t }}</small>
+        {% endif %}
+        {%- if product.price == 0 and product.price_varies == false -%}
+          {{ 'general.money.free' | t }}
+        {%- else -%}
+          {{ product_price_min }}
+        {%- endif -%}
+      </span>
+      {% if product.compare_at_price > product.price %}
+        <span class="old-price">{{ product_compare_at_price }}</span>
       {% endif %}
-      {%- if product.price == 0 and product.price_varies == false -%}
-        {{ 'general.money.free' | t }}
-      {%- else -%}
-        {{ product_price_min }}
-      {%- endif -%}
-    </span>
-    {% if product.compare_at_price > product.price %}
-      <span class="old-price">{{ product_compare_at_price }}</span>
-    {% endif %}
+    {%- endif -%}
   {% else %}
-    <span class="sold-out">{{ 'products.product.sold_out' | t }}</span>
+    {%- if product.handle == '10x-mirror' -%}
+      <span class="sold-out sold-out--notify" style="color:#d34270 !important;">Notify me when it goes live</span>
+    {%- else -%}
+      <span class="sold-out">{{ 'products.product.sold_out' | t }}</span>
+    {%- endif -%}
   {% endif %}
 </span>
 {% if current_variant.unit_price %}

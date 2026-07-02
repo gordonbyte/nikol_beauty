@@ -87,7 +87,6 @@ legend.quantity__legend {
 }
 .home-featured-collection .btn--primary.btn--outline {
   min-width: 11rem;
-  font-size:16px;
 }
 
 .video-product-hub .product-item__info {
@@ -140,6 +139,8 @@ legend.quantity__legend {
 
 .product-title {
   font-family: var(--FONT-STACK-HEADING);
+  text-transform: uppercase;
+  font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -397,5 +398,123 @@ legend.quantity__legend {
 
 .template-article .article-hero__image > img {
   object-fit: contain;
+}
+
+/* ------------------------------------------------------------------ */
+/* Promo % badge — driven by the 'promo-<percent>' product tag.       */
+/* Sits top-left over the product image so it never collides with the */
+/* theme's existing sale/badge bubble (top-right). Colors are set     */
+/* inline from theme settings; this rule only handles layout.         */
+/* ------------------------------------------------------------------ */
+.product-item__image .promo-box {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: auto;
+  z-index: 3;
+  width: 58px;
+  height: 58px;
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+/* Each line stays on its own line: plain badge = 1 line ("20% OFF"); */
+/* "up to" badge = 2 lines ("Up to" / "30% OFF").                     */
+.product-item__image .promo-box .promo-box__line {
+  display: block;
+  white-space: nowrap;
+}
+
+@media only screen and (max-width: 768px) {
+  .product-item__image .promo-box {
+    top: 8px;
+    left: 8px;
+    width: 48px;
+    height: 48px;
+    padding: 3px;
+    font-size: 8px;
+  }
+}
+
+/* Promo price display: struck-through original + calculated sale price.  */
+/* Used on collection cards (.price--promo) and the product page          */
+/* (.product__price--promo).                                              */
+.product-item__price .price--promo,
+.product__price--promo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* On the product page, hide the theme's default price line so only the    */
+/* calculated promo price shows. The [data-product-price] node is kept in  */
+/* the DOM (hidden) so the theme's JS hooks stay intact.                   */
+.product__price--promo [data-product-price],
+.product__price--promo .product__price--strike,
+.product__price--promo [data-compare-text] {
+  display: none;
+}
+
+/* Original (full) price with a slanted #fcc9c6 line through it. */
+.promo-old-price {
+  position: relative;
+  display: inline-block;
+  color: inherit;
+  opacity: 0.75;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.promo-old-price::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 50%;
+  height: 2px;
+  background: #fcc9c6;
+  transform: rotate(-10deg);
+  transform-origin: center;
+  pointer-events: none;
+}
+
+/* Calculated sale price — color is set inline from the badge background. */
+.promo-new-price {
+  white-space: nowrap;
+}
+
+/* The "from" prefix — a little smaller than the price.                    */
+/* Higher-specificity selector first to beat the theme's                   */
+/* `.product-information .price small` rule (0-2-1).                        */
+.product-information .price .promo-new-price small,
+.promo-new-price small {
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+/* "On sale" pill — background matches the sale-price color, text white. */
+.promo-on-sale-pill {
+  display: inline-block;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
 }
 
