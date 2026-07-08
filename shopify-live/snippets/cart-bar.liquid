@@ -16,6 +16,59 @@
     assign current_variant_price = current_variant.price | money
     assign current_variant_compare_at_price = current_variant.compare_at_price | money
   endif
+
+  # Promo sale price — mirrors product-price.liquid so the cart bar matches the main price.
+  #  - 1 variant  -> 'promo-<n>' / 'promo-up-to-<n>' product tag.
+  #  - >1 variant -> per-variant metafield custom.promo_percent.
+  # On variant change, the script in product-price.liquid updates every [data-promo-new]
+  # in the section (the cart bar included), so no extra JS is needed here.
+  assign promo_percent = ''
+  assign promo_sale_price_display = ''
+  assign promo_original_display = ''
+  assign promo_multi = false
+  assign has_any_promo = false
+
+  if settings.promo_badge_enable and product.available
+    if product.variants.size == 1
+      assign promo_tags = product.tags | join: ',' | append: ','
+      if promo_tags contains 'promo-up-to-'
+        assign promo_parts = promo_tags | split: 'promo-up-to-'
+        assign promo_percent = promo_parts[1] | split: ',' | first | strip
+      elsif promo_tags contains 'promo-'
+        assign promo_parts = promo_tags | split: 'promo-'
+        assign promo_percent = promo_parts[1] | split: ',' | first | strip
+      endif
+    else
+      assign promo_multi = true
+      assign promo_percent = current_variant.metafields.custom.promo_percent.value
+      for v in product.variants
+        assign vp = v.metafields.custom.promo_percent.value
+        if vp != blank and vp > 0
+          assign has_any_promo = true
+          break
+        endif
+      endfor
+    endif
+
+    if promo_percent != blank and current_variant.price > 0
+      assign promo_discount_amount = current_variant.price | times: promo_percent | divided_by: 100
+      assign promo_sale_price = current_variant.price | minus: promo_discount_amount
+      if settings.currency_code_enable
+        assign promo_sale_price_display = promo_sale_price | money_with_currency
+        assign promo_original_display = current_variant.price | money_with_currency
+      else
+        assign promo_sale_price_display = promo_sale_price | money
+        assign promo_original_display = current_variant.price | money
+      endif
+    endif
+  endif
+
+  assign show_promo_markup = false
+  if promo_sale_price_display != blank
+    assign show_promo_markup = true
+  elsif promo_multi and has_any_promo
+    assign show_promo_markup = true
+  endif
 -%}
 
 {% if product.selling_plan_groups.size > 0 and blocks_form.size > 0 and blocks_form[0].settings.subscriptions_enable_selectors %}
@@ -29,25 +82,47 @@
 <div id="cart-bar" class="cart-bar">
   <div class="cart-bar__form__wrapper form__wrapper{% if button_add and current_variant.available != true %} variant--soldout{% endif %}" data-form-wrapper>
     <div class="cart-bar__info">
-      <h4 class="cart-bar__product__title">{{ product.title | strip_html }}</h4>
+      {%- if product.featured_image -%}
+        <div class="cart-bar__image">
+          <img
+            src="{{ product.featured_image | image_url: width: 160, height: 160, crop: 'center' }}"
+            srcset="{{ product.featured_image | image_url: width: 88, height: 88, crop: 'center' }} 88w,
+                    {{ product.featured_image | image_url: width: 112, height: 112, crop: 'center' }} 112w,
+                    {{ product.featured_image | image_url: width: 160, height: 160, crop: 'center' }} 160w"
+            sizes="56px"
+            width="56"
+            height="56"
+            loading="lazy"
+            alt="{{ product.title | strip_html | escape }}">
+        </div>
+      {%- endif -%}
 
-      <div class="h5--body cart-bar__product__price product__price" data-price-wrapper>
-        <span data-product-price {% if current_variant.compare_at_price > current_variant.price %} class="product__price--sale"{% endif %}>
-          {%- if current_variant.price == 0 -%}
-            {{ 'general.money.free' | t }}
-          {%- else -%}
-            {{ current_variant_price }}
+      <div class="cart-bar__info__text">
+        <h4 class="cart-bar__product__title">{{ product.title | strip_html }}</h4>
+
+        <div class="h5--body cart-bar__product__price product__price{% if promo_sale_price_display != blank %} product__price--promo{% endif %}" data-price-wrapper>
+          {%- if show_promo_markup -%}
+            <span class="promo-old-price" data-promo-old>{{ promo_original_display }}</span>
+            <span class="promo-new-price" data-promo-new style="color: {{ settings.promo_badge_bg_color }};">{{ promo_sale_price_display }}</span>
+            <span class="promo-on-sale-pill" data-promo-pill style="background: {{ settings.promo_badge_bg_color }};">On Sale</span>
           {%- endif -%}
-        </span>
+          <span data-product-price {% if current_variant.compare_at_price > current_variant.price %} class="product__price--sale"{% endif %}>
+            {%- if current_variant.price == 0 -%}
+              {{ 'general.money.free' | t }}
+            {%- else -%}
+              {{ current_variant_price }}
+            {%- endif -%}
+          </span>
 
-        {% if product.compare_at_price_max > product.price %}
-          <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
-          <s class="product__price--strike" data-compare-price>
-            {% if current_variant.compare_at_price > current_variant.price %}
-              {{ current_variant_compare_at_price }}
-            {% endif %}
-          </s>
-        {% endif %}
+          {% if product.compare_at_price_max > product.price %}
+            <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+            <s class="product__price--strike" data-compare-price>
+              {% if current_variant.compare_at_price > current_variant.price %}
+                {{ current_variant_compare_at_price }}
+              {% endif %}
+            </s>
+          {% endif %}
+        </div>
       </div>
     </div>
 

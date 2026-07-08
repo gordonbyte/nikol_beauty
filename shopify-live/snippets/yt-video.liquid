@@ -1,14 +1,14 @@
 <div class="yt-video">
   <div class="yt-video__wrapper">
     <figure class="yt-video__image">
-      <img 
+      <img
         src="{{ image | image_url }}"
-        alt="{{ image | default: shop.name }}"
+        alt="{{ image.alt | default: title | default: shop.name | strip_html | escape }}"
         loading="eager"
         />
     </figure>
-    <a class="yt-video__overlay" href="{{ video_url }}" data-fancybox>
-      <img src="{{ 'icon-play.svg' | asset_url }}"/>
+    <a class="yt-video__overlay" href="{{ video_url }}" data-fancybox aria-label="Play video{% if title != blank %}: {{ title | strip_html | escape }}{% endif %}">
+      <img src="{{ 'icon-play.svg' | asset_url }}" alt="">
     </a>
   </div>
 

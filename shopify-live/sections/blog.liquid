@@ -26,7 +26,7 @@
           {{ blog.title }}
         {%- endif -%}
         {%- if section.settings.show_rss -%}
-          <a class="icon-rss" href="{{ blog.title }}.atom" rel="noopener" target="_blank">
+          <a class="icon-rss" href="{{ blog.url }}.atom" rel="noopener" target="_blank" aria-label="RSS feed">
             {%- render 'icon-rss' -%}
           </a>
         {%- endif -%}
@@ -136,7 +136,7 @@
             {%- if show_date or show_author or show_comments -%}
               <p class="article__meta">
                 {%- if show_date -%}
-                  <time datetime="{{ 'now' | date: format: 'full_date' }}">{{ 'now' | date: format: 'full_date' }}</time>
+                  <time datetime="{{ 'now' | date: '%Y-%m-%d' }}">{{ 'now' | date: format: 'full_date' }}</time>
                 {%- endif -%}
 
                 {%- if show_author -%}
@@ -232,7 +232,7 @@
               <p class="article__meta">
                 {%- if show_date -%}
                   {%- assign published_at = article.published_at | date: format: 'full_date' -%}
-                  <time datetime="{{ published_at }}">{{ published_at }}</time>
+                  <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ published_at }}</time>
                 {%- endif -%}
 
                 {%- if show_author -%}

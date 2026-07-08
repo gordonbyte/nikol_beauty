@@ -7,25 +7,40 @@
     assign has_units = false
   endif
 
-  comment
-    Single-variant promo price (mirrors the collection card). Only for
-    products with exactly one variant, whose price is fixed — so the
-    calculated sale price is exact. Multi-variant products keep the normal
-    price because it changes with variant selection (handled by theme JS).
-    Reads the 'promo-<n>' / 'promo-up-to-<n>' product tag.
-  endcomment
+  # Promo sale price (mirrors the collection card). Display-only; the real
+  # discount is applied by Shopify at checkout.
+  #  - 1 variant  -> read the 'promo-<n>' / 'promo-up-to-<n>' product tag (price is fixed).
+  #  - >1 variant -> read the per-variant metafield custom.promo_percent, because each
+  #    variant can belong to a different discount. Recalculated on variant change by the
+  #    script at the bottom of this snippet.
   assign promo_percent = ''
   assign promo_sale_price_display = ''
   assign promo_original_display = ''
-  if settings.promo_badge_enable and product.variants.size == 1 and product.available
-    assign promo_tags = product.tags | join: ',' | append: ','
-    if promo_tags contains 'promo-up-to-'
-      assign promo_parts = promo_tags | split: 'promo-up-to-'
-      assign promo_percent = promo_parts[1] | split: ',' | first | strip
-    elsif promo_tags contains 'promo-'
-      assign promo_parts = promo_tags | split: 'promo-'
-      assign promo_percent = promo_parts[1] | split: ',' | first | strip
+  assign promo_multi = false
+  assign has_any_promo = false
+
+  if settings.promo_badge_enable and product.available
+    if product.variants.size == 1
+      assign promo_tags = product.tags | join: ',' | append: ','
+      if promo_tags contains 'promo-up-to-'
+        assign promo_parts = promo_tags | split: 'promo-up-to-'
+        assign promo_percent = promo_parts[1] | split: ',' | first | strip
+      elsif promo_tags contains 'promo-'
+        assign promo_parts = promo_tags | split: 'promo-'
+        assign promo_percent = promo_parts[1] | split: ',' | first | strip
+      endif
+    else
+      assign promo_multi = true
+      assign promo_percent = current_variant.metafields.custom.promo_percent.value
+      for v in product.variants
+        assign vp = v.metafields.custom.promo_percent.value
+        if vp != blank and vp > 0
+          assign has_any_promo = true
+          break
+        endif
+      endfor
     endif
+
     if promo_percent != blank and current_variant.price > 0
       assign promo_discount_amount = current_variant.price | times: promo_percent | divided_by: 100
       assign promo_sale_price = current_variant.price | minus: promo_discount_amount
@@ -38,6 +53,13 @@
       endif
     endif
   endif
+
+  assign show_promo_markup = false
+  if promo_sale_price_display != blank
+    assign show_promo_markup = true
+  elsif promo_multi and has_any_promo
+    assign show_promo_markup = true
+  endif
 -%}
 
 <div class="product__block block-padding"
@@ -49,10 +71,10 @@
   {% endif %}>
   <div class="product__price__wrap">
     <div class="product__price{% if has_units %} product__price--has-units{% endif %}{% if promo_sale_price_display != blank %} product__price--promo{% endif %}" data-price-wrapper>
-      {%- if promo_sale_price_display != blank -%}
-        <span class="promo-old-price">{{ promo_original_display }}</span>
-        <span class="promo-new-price" style="color: {{ settings.promo_badge_bg_color }};">{{ promo_sale_price_display }}</span>
-        <span class="promo-on-sale-pill" style="background: {{ settings.promo_badge_bg_color }};">On Sale</span>
+      {%- if show_promo_markup -%}
+        <span class="promo-old-price" data-promo-old>{{ promo_original_display }}</span>
+        <span class="promo-new-price" data-promo-new style="color: {{ settings.promo_badge_bg_color }};">{{ promo_sale_price_display }}</span>
+        <span class="promo-on-sale-pill" data-promo-pill style="background: {{ settings.promo_badge_bg_color }};">On Sale</span>
       {%- endif -%}
       <span data-product-price {% if current_variant.compare_at_price > current_variant.price %} class="product__price--sale"{% endif %}>
         {%- if current_variant.price == 0 -%}
@@ -123,3 +145,71 @@
     {%- endform -%}
   </div>
 </div>
+
+{%- comment -%}
+  Per-variant promo (multi-variant products). Emits a variantId -> pre-formatted
+  price map and recalculates the promo display on variant change, mirroring the card.
+{%- endcomment -%}
+{%- if promo_multi and has_any_promo -%}
+  <script type="application/json" data-promo-percent-json>
+    {
+      {%- for v in product.variants -%}
+        {%- assign vp = v.metafields.custom.promo_percent.value -%}
+        {%- if vp != blank and vp > 0 and v.price > 0 -%}
+          {%- assign v_disc = v.price | times: vp | divided_by: 100 -%}
+          {%- assign v_sale = v.price | minus: v_disc -%}
+          {%- if settings.currency_code_enable -%}
+            {%- assign v_sale_disp = v_sale | money_with_currency -%}
+            {%- assign v_orig_disp = v.price | money_with_currency -%}
+          {%- else -%}
+            {%- assign v_sale_disp = v_sale | money -%}
+            {%- assign v_orig_disp = v.price | money -%}
+          {%- endif -%}
+          "{{ v.id }}": { "sale": {{ v_sale_disp | json }}, "orig": {{ v_orig_disp | json }} }
+        {%- else -%}
+          "{{ v.id }}": null
+        {%- endif -%}
+        {%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    }
+  </script>
+  <script>
+    (function () {
+      var thisScript = document.currentScript;
+      var section = thisScript ? thisScript.closest('[data-section-type]') : null;
+      if (!section) return;
+      var jsonEl = section.querySelector('[data-promo-percent-json]');
+      if (!jsonEl) return;
+      var map;
+      try { map = JSON.parse(jsonEl.textContent); } catch (e) { return; }
+
+      function clearWrap(wrap) { if (wrap) wrap.classList.remove('product__price--promo'); }
+
+      function apply(variantId) {
+        var data = map[variantId];
+        section.querySelectorAll('[data-promo-new]').forEach(function (newEl) {
+          var wrap = newEl.closest('[data-price-wrapper]');
+          if (!wrap) return;
+          var oldEl = wrap.querySelector('[data-promo-old]');
+          if (data) {
+            wrap.classList.add('product__price--promo');
+            newEl.textContent = data.sale;
+            if (oldEl) oldEl.textContent = data.orig;
+          } else {
+            clearWrap(wrap);
+          }
+        });
+      }
+
+      section.addEventListener('theme:variant:change', function (e) {
+        if (e.detail && e.detail.variant) {
+          apply(e.detail.variant.id);
+        } else {
+          section.querySelectorAll('[data-promo-new]').forEach(function (newEl) {
+            clearWrap(newEl.closest('[data-price-wrapper]'));
+          });
+        }
+      });
+    })();
+  </script>
+{%- endif -%}

@@ -15868,11 +15868,12 @@ a.review {
 }
 @media only screen and (max-width: 749px) {
   .cart-bar__info {
-    display: block;
-    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
     justify-content: center;
+    flex-wrap: nowrap;
     padding-right: 0;
-    text-align: center;
+    text-align: left;
   }
   .cart-bar__info:not(:last-child) {
     margin-bottom: 15px;
@@ -15880,16 +15881,31 @@ a.review {
 }
 
 .cart-bar__image {
-  width: 50px;
-  height: 50px;
-  padding: 5px;
-  margin: 0 10px 0 0;
+  flex: 0 0 auto;
+  width: 56px;
+  aspect-ratio: 1 / 1;
+  margin: 0 12px 0 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--COLOR-BORDER-HAIRLINE, #f2f2f2);
 }
 .cart-bar__image img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+}
+.cart-bar__info__text {
+  min-width: 0;
+}
+@media only screen and (max-width: 749px) {
+  .cart-bar__info__text {
+    min-width: 0;
+  }
+  .cart-bar__image {
+    width: 44px;
+    margin-right: 10px;
+  }
 }
 
 .cart-bar__product__title {
@@ -15917,6 +15933,18 @@ a.review {
   padding: 0 0 0 10px;
   margin: 0;
   /* font-size: calc(1rem * var(--FONT-ADJUST-BODY)); */
+}
+/* Make the cart-bar price a little bigger + bolder (base rule sets spans to 14px).
+   Targets only the visible price, not the struck-through original or the pill. */
+.cart-bar__product__price [data-product-price],
+.cart-bar__product__price .promo-new-price {
+  font-size: 16px;
+  font-weight: 500;
+}
+/* Keep the "On Sale" pill at the same size as the product card (10px); the
+   cart-bar's base `span { font-size: 14px }` rule would otherwise enlarge it. */
+.cart-bar__product__price .promo-on-sale-pill {
+  font-size: 10px;
 }
 @media only screen and (max-width: 749px) {
   .cart-bar__product__price {
@@ -16515,7 +16543,7 @@ input.cart__acceptance__input {
   margin-top: calc(var(--inner) - 2px);
   background-color: var(--primary-fade);
   font-size: max(0.75rem * var(--FONT-ADJUST-BODY), 12px * var(--FONT-ADJUST-BODY));
-  color: var(--primary);
+  color: #14448A;
 }
 
 .cart__discount .icon,

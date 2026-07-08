@@ -440,10 +440,10 @@ legend.quantity__legend {
   .product-item__image .promo-box {
     top: 8px;
     left: 8px;
-    width: 48px;
-    height: 48px;
-    padding: 3px;
-    font-size: 8px;
+    width: 70px;
+    height: 70px;
+    padding: 4px;
+    font-size: 12px;
   }
 }
 
@@ -464,6 +464,15 @@ legend.quantity__legend {
 .product__price--promo [data-product-price],
 .product__price--promo .product__price--strike,
 .product__price--promo [data-compare-text] {
+  display: none;
+}
+
+/* Per-variant PDP promo: the spans are always in the DOM (so the variant-change  */
+/* script can fill them), but only visible when the wrapper is in promo mode.      */
+/* The script toggles .product__price--promo to match the selected variant.        */
+.product__price:not(.product__price--promo) .promo-old-price,
+.product__price:not(.product__price--promo) .promo-new-price,
+.product__price:not(.product__price--promo) .promo-on-sale-pill {
   display: none;
 }
 
