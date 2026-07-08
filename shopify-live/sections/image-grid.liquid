@@ -7,13 +7,13 @@
     {%- for gridItem in section.blocks -%}
       <div class="image-grid__item">
         <figure class="image-grid__image">
-          <img 
+          <img
             src="{{ gridItem.settings.image | image_url }}"
-            alt="{{ gridItem.settings.image | default: shop.name }}"
+            alt="{{ gridItem.settings.image.alt | default: gridItem.settings.title | strip_html | escape }}"
             loading="eager"
             />
         </figure>
-        <a class="image-grid__overlay" href="{{ gridItem.settings.link }}">
+        <a class="image-grid__overlay"{% if gridItem.settings.link != blank %} href="{{ gridItem.settings.link }}"{% endif %}>
           <h3 class="image-grid__title" style="color: {{ gridItem.settings.text_color  }}">
             {{ gridItem.settings.title }}
           </h3>

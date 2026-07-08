@@ -67,6 +67,11 @@
     assign has_content = true
   endif
 
+  assign column_heading_tag = 'h2'
+  if heading != blank
+    assign column_heading_tag = 'h3'
+  endif
+
   assign eager_images_limit = grid_columns | default: 3
 
   if type == 'images'
@@ -282,9 +287,9 @@
                     <div class="column__content">
                       {%- if title != blank -%}
                         {%- assign font_size_class = block.settings.heading_size | prepend: 'heading-size-' -%}
-                        <h2 class="column__heading {{ font_size_class }}">
+                        <{{ column_heading_tag }} class="column__heading {{ font_size_class }}">
                           {{- title -}}
-                        </h2>
+                        </{{ column_heading_tag }}>
                       {%- endif -%}
 
                       {%- if text != blank -%}
@@ -352,9 +357,9 @@
                           {%- if title != blank -%}
                             {%- assign font_size_class = block.settings.heading_size | prepend: 'heading-size-' -%}
 
-                            <h2 class="column__heading {{ font_size_class }}">
+                            <{{ column_heading_tag }} class="column__heading {{ font_size_class }}">
                               {{ title }}
-                            </h2>
+                            </{{ column_heading_tag }}>
                           {%- endif -%}
 
                           {%- if text != blank -%}
@@ -386,9 +391,9 @@
                       {%- if title != blank -%}
                         {%- assign font_size_class = block.settings.heading_size | prepend: 'heading-size-' -%}
 
-                        <h2 class="column__heading {{ font_size_class }}">
+                        <{{ column_heading_tag }} class="column__heading {{ font_size_class }}">
                           {{ title }}
-                        </h2>
+                        </{{ column_heading_tag }}>
                       {%- endif -%}
 
                       {%- if text != blank -%}

@@ -1,165 +1,173 @@
-
 <style>
-section.cw-nikol-benefits-section {
+.custom-benefits {
     padding: 100px 0;
-    background: #F7F2ED66;
 }
 
-.cw-nikol-benefits-title {
+.custom-benefits__title {
     text-align: center;
-    font-size: 56px;
     line-height: 110%;
-        letter-spacing: -0.02em;
+    letter-spacing: -0.02em;
     font-weight: 500;
-    color: #2A2724;
-    font-family: 'Cormorant';
+    color: var(--COLOR-TEXT);
+    margin: 0;
+    font-family: var(--FONT-STACK-HEADING);
 }
 
-.cw-nikol-benefits-description {
+.custom-benefits__subtitle {
     text-align: center;
-    font-size: 20px;
+    font-size: var(--FONT-SIZE-BASE);
     line-height: 140%;
     letter-spacing: 0px;
     font-weight: 400;
-    color: #2A2724;
+    color: var(--COLOR-TEXT);
+    margin: 0;
     padding-top: 15px;
-    font-family: Inter;
+    font-family: var(--FONT-STACK-BODY);
 }
 
-.cw-nikol-benefits-wrapper {
+.custom-benefits__list {
     width: 100%;
     display: flex;
     gap: 45px;
-    padding-top: 60px;
+    padding: 60px 0 0;
+    margin: 0;
+    list-style: none;
     justify-content: center;
 }
 
-.cw-nikol-benefits-icon img {
+.custom-benefits__icon img {
     max-width: 90px;
     object-fit: contain;
 }
 
-.cw-nikol-benefits-icon {
+.custom-benefits__icon {
     text-align: center;
 }
 
-.cw-nikol-benefits-box-title {
+.custom-benefits__item-title {
     text-align: center;
-    font-size: 28px;
     line-height: 120%;
     letter-spacing: -0.02em;
     font-weight: 500;
-    color: #2A2724;
+    color: var(--COLOR-TEXT);
+    margin: 0;
     padding-top: 10px;
     padding-bottom: 10px;
-    font-family: 'Cormorant';
-        text-transform: capitalize;
+    font-family: var(--FONT-STACK-HEADING);
+    text-transform: capitalize;
 }
 
-.cw-nikol-benefits-box-text {
+.custom-benefits__item-text {
     text-align: center;
     font-size: var(--FONT-SIZE-BASE);
     line-height: 150%;
     letter-spacing: -0.02em;
     font-weight: 400;
-    color: #2A2724;
-    font-family: Inter;
+    color: var(--COLOR-TEXT);
+    margin: 0;
+    font-family: var(--FONT-STACK-BODY);
 }
 
-.cw-nikol-benefits-box {
+.custom-benefits__item {
     width: 25%;
 }
 
 @media only screen and (max-width: 600px) {
-	section.cw-nikol-benefits-section {
+	.custom-benefits {
     padding: 40px 0px;
 }
 
-.cw-nikol-benefits-title {
-    font-size: 34px;
+.custom-benefits__title {
     letter-spacing: -0.02em;
 }
 
-.cw-nikol-benefits-description {
+.custom-benefits__subtitle {
     font-size: var(--FONT-SIZE-BASE);
 }
 
-.cw-nikol-benefits-wrapper {
+.custom-benefits__list {
     flex-wrap: wrap;
     gap: 0px;
     justify-content: space-between;
         padding-top: 30px;
 }
 
-.cw-nikol-benefits-box {
+.custom-benefits__item {
     width: 47%;
 }
 
-.cw-nikol-benefits-box-title {
-    font-size: 23px;
+.custom-benefits__item-title {
     text-align: start;
 }
 
-.cw-nikol-benefits-icon {
+.custom-benefits__icon {
     text-align: start;
 }
 
-.cw-nikol-benefits-box-text {
+.custom-benefits__item-text {
     text-align: start;
     font-size: var(--FONT-SIZE-BASE);
 }
 
-.cw-nikol-benefits-icon img {
+.custom-benefits__icon img {
     max-width: 55px;
 }
 }
     </style>
 
-<section class="cw-nikol-benefits-section">
+{%- assign heading_id = 'CustomBenefits-title-' | append: section.id -%}
+
+<section
+  class="custom-benefits"
+  {% if section.settings.title != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
+  style="background: {{ section.settings.bg_color }};"
+>
   <div class="page-width">
 
-    <div class="cw-nikol-benefits-container">
+    <div class="custom-benefits__inner">
 
       {% if section.settings.title != blank %}
-        <div class="cw-nikol-benefits-title">
+        <h2 id="{{ heading_id }}" class="custom-benefits__title heading-size-11">
           {{ section.settings.title }}
-        </div>
+        </h2>
       {% endif %}
 
       {% if section.settings.description != blank %}
-        <div class="cw-nikol-benefits-description">
+        <p class="custom-benefits__subtitle">
           {{ section.settings.description }}
-        </div>
+        </p>
       {% endif %}
 
       {% if section.blocks.size > 0 %}
-        <div class="cw-nikol-benefits-wrapper">
+        <ul class="custom-benefits__list" role="list">
           {% for block in section.blocks %}
-            <div class="cw-nikol-benefits-box" {{ block.shopify_attributes }}>
+            <li class="custom-benefits__item" {{ block.shopify_attributes }}>
 
               {% if block.settings.icon != blank %}
-                <div class="cw-nikol-benefits-icon">
+                <div class="custom-benefits__icon">
                   <img
                     src="{{ block.settings.icon | img_url: 'master' }}"
-                    alt="{{ block.settings.title | escape }}">
+                    alt=""
+                    loading="lazy"
+                  >
                 </div>
               {% endif %}
 
               {% if block.settings.title != blank %}
-                <div class="cw-nikol-benefits-box-title">
+                <h3 class="custom-benefits__item-title heading-size-6">
                   {{ block.settings.title }}
-                </div>
+                </h3>
               {% endif %}
 
               {% if block.settings.text != blank %}
-                <div class="cw-nikol-benefits-box-text">
+                <p class="custom-benefits__item-text">
                   {{ block.settings.text }}
-                </div>
+                </p>
               {% endif %}
 
-            </div>
+            </li>
           {% endfor %}
-        </div>
+        </ul>
       {% endif %}
 
     </div>
@@ -172,6 +180,12 @@ section.cw-nikol-benefits-section {
 {
   "name": "[Custom] Benefits",
   "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section background",
+      "default": "#F7F2ED66"
+    },
     {
       "type": "text",
       "id": "title",

@@ -1,169 +1,143 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+{%- style -%}
+  #GuaranteeList-{{ section.id }} {
+    --custom-guarantee-list-bg: {{ section.settings.background_color }};
+  }
+{%- endstyle -%}
 
 <style>
-.cw-pdp-feature {
-        background: #F8F3EF;
-    padding: 17px 0px !important;
+.custom-guarantee-list__bar {
+  background: var(--custom-guarantee-list-bg);
+  padding: 17px 0;
 }
 
-.cw-pdp-feature-main {
-    display: flex;
-    justify-content: space-between;
+.custom-guarantee-list__desktop { display: block; }
+.custom-guarantee-list__mobile { display: none; }
+
+.custom-guarantee-list__items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.cw-pdp-feature-box {
-    display: flex;
-   font-size: var(--FONT-SIZE-BASE);
-    color: #2A2724;
-    align-items: center;
-    gap: 10px;
-    font-weight: 400;
-       width: 25%;
-    justify-content: center;
-       font-family: 'Inter';
-    text-transform: capitalize;
+.custom-guarantee-list__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 25%;
+  font-family: 'Inter';
+  font-size: var(--FONT-SIZE-BASE);
+  font-weight: 400;
+  color: var(--COLOR-TEXT);
+  text-transform: capitalize;
 }
 
-.cw-pdp-feature-box img {
-    height: 24px;
-    object-fit: contain;
-}
-
-.cw-pdp-feature-main .cw-pdp-feature-box:last-child {
-    border: none;
+.custom-guarantee-list__icon {
+  width: auto;
+  height: 24px;
+  flex-shrink: 0;
+  object-fit: contain;
 }
 
 @media only screen and (max-width: 600px) {
-.logo-scroller-content {
-    overflow: hidden;
-}
-.cw-pdp-feature-main .logo-scroller-row {
+  .custom-guarantee-list__desktop { display: none; }
+  .custom-guarantee-list__mobile { display: block; }
+
+  .custom-guarantee-list__marquee { overflow: hidden; }
+
+  .custom-guarantee-list__track {
     display: flex;
-    position: relative;
-    white-space: nowrap;
-    justify-content: center;
-    gap: 25px;
+    width: max-content;
     align-items: center;
-}
-.logo-scroller-items {
-    overflow: hidden;
-}
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    animation: custom-guarantee-list-scroll 20s linear infinite;
+  }
 
-.logo-scroller-item.cw-pdp-feature-box {
-    width: auto !important;
-    min-width: auto !important;
-    gap: 10px !important;
+  .custom-guarantee-list__track .custom-guarantee-list__box {
+    width: auto;
     padding-right: 30px;
-}
-.cw-pdp-feature-box img {
-    height: 22px;
-}
-}
+  }
 
-    </style>
+  .custom-guarantee-list__track .custom-guarantee-list__icon { height: 22px; }
+
+  @keyframes custom-guarantee-list-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .custom-guarantee-list__track {
+      animation: none;
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px 25px;
+    }
+    .custom-guarantee-list__track [aria-hidden="true"] { display: none; }
+  }
+}
+</style>
 
 <div id="GuaranteeList-{{ section.id }}" class="custom-guarantee-list">
 
-  <div class="cw-pdp-feature cw-desktop">
+  <div class="custom-guarantee-list__bar custom-guarantee-list__desktop">
     <div class="page-width">
-      <div class="cw-pdp-feature-main">
-        {% for block in section.blocks %}
-          <div class="cw-pdp-feature-box" {{ block.shopify_attributes }}>
-            {% if block.settings.feature_icon != blank %}
-              <img src="{{ block.settings.feature_icon | img_url: 'master' }}" alt="{{ block.settings.feature_text | escape }}">
-            {% endif %}
-            {{ block.settings.feature_text }}
-          </div>
-        {% endfor %}
-      </div>
+      <ul class="custom-guarantee-list__items">
+        {%- for block in section.blocks -%}
+          <li class="custom-guarantee-list__box" {{ block.shopify_attributes }}>
+            {%- if block.settings.feature_icon != blank -%}
+              {{ block.settings.feature_icon | image_url: width: 120 | image_tag: class: 'custom-guarantee-list__icon', alt: '', loading: 'lazy' }}
+            {%- endif -%}
+            <span class="custom-guarantee-list__text">{{ block.settings.feature_text }}</span>
+          </li>
+        {%- endfor -%}
+      </ul>
     </div>
   </div>
 
-  <div class="cw-pdp-feature cw-mobile">
+  <div class="custom-guarantee-list__bar custom-guarantee-list__mobile">
     <div class="page-width">
-      <div class="cw-pdp-feature-main">
-        <div class="logo-scroller-content">
-          <div class="logo-scroller-items" role="marquee">
-            <div class="logo-scroller-row">
-              {% for block in section.blocks %}
-                <div class="logo-scroller-item cw-pdp-feature-box">
-                  {% if block.settings.feature_icon != blank %}
-                    <img src="{{ block.settings.feature_icon | img_url: 'master' }}" alt="{{ block.settings.feature_text | escape }}">
-                  {% endif %}
-                  {{ block.settings.feature_text }}
-                </div>
-              {% endfor %}
-            </div>
-          </div>
-        </div>
+      <div class="custom-guarantee-list__marquee">
+        <ul class="custom-guarantee-list__track">
+          {%- for block in section.blocks -%}
+            <li class="custom-guarantee-list__box" {{ block.shopify_attributes }}>
+              {%- if block.settings.feature_icon != blank -%}
+                {{ block.settings.feature_icon | image_url: width: 120 | image_tag: class: 'custom-guarantee-list__icon', alt: '', loading: 'lazy' }}
+              {%- endif -%}
+              <span class="custom-guarantee-list__text">{{ block.settings.feature_text }}</span>
+            </li>
+          {%- endfor -%}
+          {%- for block in section.blocks -%}
+            <li class="custom-guarantee-list__box" aria-hidden="true">
+              {%- if block.settings.feature_icon != blank -%}
+                {{ block.settings.feature_icon | image_url: width: 120 | image_tag: class: 'custom-guarantee-list__icon', alt: '', loading: 'lazy' }}
+              {%- endif -%}
+              <span class="custom-guarantee-list__text">{{ block.settings.feature_text }}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
       </div>
     </div>
   </div>
 
 </div>
 
-<script>
-(function () {
-  var root = document.getElementById("GuaranteeList-{{ section.id }}");
-  if (!root) return;
-  if (!window.__guaranteeScrollerTLs) window.__guaranteeScrollerTLs = new WeakMap();
-
-  function initRows(rows) {
-    if (typeof gsap === "undefined") return;
-    rows.forEach(function (row) {
-      var existing = window.__guaranteeScrollerTLs.get(row);
-      if (existing) { existing.kill(); window.__guaranteeScrollerTLs.delete(row); }
-
-      if (!row.dataset.cloned) {
-        var rowItems = Array.from(row.children);
-        var totalWidth = row.scrollWidth;
-        var minWidth = window.innerWidth * 2;
-        var cloneCount = 0;
-        while (totalWidth < minWidth && cloneCount < 10) {
-          rowItems.forEach(function (item) {
-            var clone = item.cloneNode(true);
-            row.appendChild(clone);
-            totalWidth += item.offsetWidth;
-          });
-          cloneCount++;
-        }
-        row.dataset.cloned = "true";
-      }
-
-      var rowWidth = row.scrollWidth;
-      gsap.set(row, { x: 0 });
-      var duration = (rowWidth / window.innerWidth) * 20;
-      if (window.innerWidth < 768) duration *= 0.5;
-
-      var tl = gsap.timeline({ repeat: -1 });
-      tl.to(row, {
-        x: "-" + (rowWidth / 2) + "px",
-        duration: duration,
-        ease: "none",
-        onComplete: function () { gsap.set(row, { x: 0 }); }
-      });
-      window.__guaranteeScrollerTLs.set(row, tl);
-    });
-  }
-
-  function run() { initRows(root.querySelectorAll(".logo-scroller-row")); }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () { setTimeout(run, 300); });
-  } else {
-    setTimeout(run, 300);
-  }
-
-  window.reinitScrollerAfterPageChange = function () {
-    setTimeout(function () { initRows(document.querySelectorAll(".logo-scroller-row")); }, 200);
-  };
-})();
-</script>
-
 {% schema %}
 {
   "name": "[Custom] Guarantee List",
-  "settings": [],
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#F8F3EF"
+    }
+  ],
   "blocks": [
     {
       "type": "feature",

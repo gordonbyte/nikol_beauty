@@ -2643,8 +2643,8 @@ align-items: center;
     font-size: 15px; }
 
 .cart__item__title {
-  font-size: 14px;
   font-family: 'Cormorant';
+  font-weight: 600;
   text-transform: uppercase; }
 
 .cart__price {
@@ -2672,8 +2672,7 @@ align-items: center;
   font-size: 25px;
   font-weight: 300; }
 
-.cart__checkout {
-  font-size: 11px; }
+
   .cart__checkout::after {
     content: none; }
   .cart__checkout[disabled] {
