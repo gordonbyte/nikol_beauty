@@ -18,6 +18,11 @@
     cursor: pointer;
     -webkit-appearance: none;
     appearance: none;
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>
 
@@ -34,7 +39,7 @@
         >
         <div class="video-product-hub__inner {% if thecycle == 'odd' %} video-product-hub__inner--reverse {% endif %}">
           <div class="video-product-hub__product">
-            {% if block.settings.slider_title %}<div><h5>{{ block.settings.slider_title }}</h5></div>{% endif %}
+            {% if block.settings.slider_title %}<div><h2 class="h5">{{ block.settings.slider_title }}</h2></div>{% endif %}
             <div class="swiper-container">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">

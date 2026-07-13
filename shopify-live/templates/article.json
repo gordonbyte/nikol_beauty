@@ -15,7 +15,7 @@
         "recent-articles": {
           "type": "recent",
           "settings": {
-            "title": "Recent articles"
+            "title": "Related Posts"
           }
         }
       },

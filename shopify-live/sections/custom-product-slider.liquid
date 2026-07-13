@@ -45,33 +45,42 @@
 }
 
 .custom-product-slider__tab {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
   text-align: center;
   cursor: pointer;
   opacity: 0.8;
 }
 
-.custom-product-slider__tab .custom-product-slider__tab-img img {
+.custom-product-slider__tab[aria-selected="true"] {
+  opacity: 1;
+}
+
+.custom-product-slider__tab-img {
+  display: block;
+}
+
+.custom-product-slider__tab-img img {
   max-width: 90px;
   object-fit: contain;
 }
 
-.custom-product-slider__tab .custom-product-slider__tab-label {
+.custom-product-slider__tab-label {
+  display: block;
   padding-top: 5px;
   color: var(--COLOR-TEXT);
   font-size: var(--FONT-SIZE-BASE);
 }
 
-.custom-product-slider__tab.active {
-  opacity: 1;
-}
-
 .custom-product-slider__panel {
-  display: none;
   position: relative;
 }
 
-.custom-product-slider__panel.active {
-  display: block;
+.custom-product-slider__panel[hidden] {
+  display: none;
 }
 
 .custom-product-slider__swiper {
@@ -114,6 +123,7 @@
 
 .custom-product-slider__img a img {
   width: 100%;
+  height: auto;
 }
 
 .custom-product-slider__product-title {
@@ -134,14 +144,36 @@
 }
 
 .custom-product-slider__btn-wrap {
-  display: none;
   padding: 0;
   padding-top: 50px;
   text-align: center;
 }
 
 .custom-product-slider__btn-wrap a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  max-width: 400px;
+  height: 60px;
   margin: 0 auto;
+  background: var(--BTN-PRIMARY-BG-COLOR);
+  color: var(--BTN-PRIMARY-TEXT-COLOR);
+  font-family: var(--BTN-FONT-STACK);
+  font-size: var(--BTN-FONT-SIZE);
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.custom-product-slider__tab:focus-visible,
+.custom-product-slider__arrow:focus-visible,
+.custom-product-slider__btn-wrap a:focus-visible,
+.custom-product-slider__img a:focus-visible {
+  outline: 2px solid var(--COLOR-TEXT);
+  outline-offset: 2px;
 }
 
 .custom-product-slider .swiper-backface-hidden .swiper-slide {
@@ -182,11 +214,11 @@
     padding-bottom: 30px;
   }
 
-  .custom-product-slider__tab .custom-product-slider__tab-img img {
+  .custom-product-slider__tab-img img {
     max-width: 75px;
   }
 
-  .custom-product-slider__tab .custom-product-slider__tab-label {
+  .custom-product-slider__tab-label {
     font-size: var(--FONT-SIZE-BASE);
     padding-top: 3px;
   }
@@ -207,10 +239,6 @@
 
   .custom-product-slider__rating {
     padding-bottom: 5px;
-  }
-
-  .custom-product-slider__product-price {
-    font-size: var(--FONT-SIZE-BASE);
   }
 
   .custom-product-slider__arrow.custom-product-slider__next {
@@ -235,6 +263,13 @@
 }
 </style>
 
+{%- liquid
+  assign show_tabs = false
+  if section.blocks.size > 1
+    assign show_tabs = true
+  endif
+-%}
+
 <section class="custom-product-slider" id="ProductSlider-{{ section.id }}">
   <div class="custom-product-slider__inner">
 
@@ -248,14 +283,49 @@
       {%- endif -%}
     </div>
 
+    {%- if show_tabs -%}
+      <div class="custom-product-slider__tabs-overflow">
+        <div class="custom-product-slider__tabs" role="tablist" aria-label="{{ section.settings.title | default: 'Collections' | escape }}">
+          {%- for block in section.blocks -%}
+            <button
+              type="button"
+              role="tab"
+              id="ProductSlider-{{ section.id }}-tab-{{ block.id }}"
+              class="custom-product-slider__tab"
+              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+              aria-controls="ProductSlider-{{ section.id }}-panel-{{ block.id }}"
+              tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+              {{ block.shopify_attributes }}
+            >
+              {%- if block.settings.tab_image != blank -%}
+                <span class="custom-product-slider__tab-img">
+                  <img src="{{ block.settings.tab_image | image_url: width: 180 }}" alt="" loading="lazy">
+                </span>
+              {%- endif -%}
+              {%- if block.settings.tab_label != blank -%}
+                <span class="custom-product-slider__tab-label">{{ block.settings.tab_label }}</span>
+              {%- elsif block.settings.tab_image == blank -%}
+                <span class="custom-product-slider__tab-label">{{ block.settings.collection.title | default: 'Collection' }}</span>
+              {%- endif -%}
+            </button>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
     <div class="custom-product-slider__content">
 
       {%- for block in section.blocks -%}
         {%- assign tab_collection = block.settings.collection -%}
 
         <div
-          class="custom-product-slider__panel {% if forloop.first %}active{% endif %}"
-          data-content="tab-{{ block.id }}"
+          class="custom-product-slider__panel"
+          id="ProductSlider-{{ section.id }}-panel-{{ block.id }}"
+          {% if show_tabs %}
+            role="tabpanel"
+            aria-labelledby="ProductSlider-{{ section.id }}-tab-{{ block.id }}"
+            {% unless forloop.first %}hidden{% endunless %}
+          {% endif %}
           {{ block.shopify_attributes }}
         >
 
@@ -274,8 +344,8 @@
 
                     {%- if product.metafields.judgeme.badge -%}
                       <div class="custom-product-slider__rating">
-                        <span class="custom-product-slider__stars">
-                          <svg width="74" height="14" viewBox="0 0 74 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                        <span class="custom-product-slider__stars" aria-hidden="true">
+                          <svg width="74" height="14" viewBox="0 0 74 14" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
                             <path d="M7 0L8.64397 5.35983L14 5.34752L9.66 8.64777L11.3262 14L7 10.6798L2.67376 14L4.34 8.64777L0 5.34752L5.35603 5.35983L7 0Z" fill="#FB6D00"/>
                             <path d="M21.8921 0L23.5361 5.35983L28.8921 5.34752L24.5521 8.64777L26.2183 14L21.8921 10.6798L17.5659 14L19.2321 8.64777L14.8921 5.34752L20.2481 5.35983L21.8921 0Z" fill="#FB6D00"/>
                             <path d="M36.7842 0L38.4282 5.35983L43.7842 5.34752L39.4442 8.64777L41.1104 14L36.7842 10.6798L32.4579 14L34.1242 8.64777L29.7842 5.34752L35.1402 5.35983L36.7842 0Z" fill="#FB6D00"/>
@@ -283,7 +353,7 @@
                             <path d="M66.5684 0L68.2123 5.35983L73.5684 5.34752L69.2284 8.64777L70.8946 14L66.5684 10.6798L62.2421 14L63.9084 8.64777L59.5684 5.34752L64.9244 5.35983L66.5684 0Z" fill="#FB6D00"/>
                           </svg>
                         </span>
-                        <span class="custom-product-slider__review-count">{{ product.metafields.judgeme.badge | split: "data-number-of-reviews='" | last | split: "'" | first | default: "0" }}</span>
+                        <span class="custom-product-slider__review-count">{{ product.metafields.judgeme.badge | split: "data-number-of-reviews='" | last | split: "'" | first | default: "0" }} <span class="visually-hidden">reviews</span></span>
                       </div>
                     {%- endif -%}
 
@@ -330,44 +400,78 @@
 </section>
 
 <script>
-  const bestSellerSwipers = document.querySelectorAll('#ProductSlider-{{ section.id }} .custom-product-slider__swiper');
+(function () {
+  var root = document.getElementById('ProductSlider-{{ section.id }}');
+  if (!root) return;
 
-  bestSellerSwipers.forEach((slider) => {
-    new Swiper(slider, {
-      slidesPerView: 1.2,
-      spaceBetween: 40,
-      loop: true,
-      speed: 600,
-
-      navigation: {
-        nextEl: slider.querySelector('.custom-product-slider__next'),
-        prevEl: slider.querySelector('.custom-product-slider__prev'),
-      },
-
-      breakpoints: {
-        0: {
-          slidesPerView: 1.2,
-          spaceBetween: 40,
-          centeredSlides: false
+  if (typeof Swiper !== 'undefined') {
+    root.querySelectorAll('.custom-product-slider__swiper').forEach(function (slider) {
+      new Swiper(slider, {
+        slidesPerView: 1.2,
+        spaceBetween: 40,
+        loop: true,
+        speed: 600,
+        navigation: {
+          nextEl: slider.querySelector('.custom-product-slider__next'),
+          prevEl: slider.querySelector('.custom-product-slider__prev'),
         },
-        768: {
-          slidesPerView: 3,
-          centeredSlides: true
-        },
-        1024: {
-          slidesPerView: 3,
-          centeredSlides: true
+        breakpoints: {
+          0: { slidesPerView: 1.2, spaceBetween: 40, centeredSlides: false },
+          768: { slidesPerView: 3, centeredSlides: true },
+          1024: { slidesPerView: 3, centeredSlides: true }
         }
+      });
+    });
+  }
+
+  var tablist = root.querySelector('[role="tablist"]');
+  if (!tablist) return;
+  var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+
+  function activate(tab, setFocus) {
+    tabs.forEach(function (t) {
+      var selected = t === tab;
+      t.setAttribute('aria-selected', selected ? 'true' : 'false');
+      t.tabIndex = selected ? 0 : -1;
+    });
+    tabs.forEach(function (t) {
+      var panel = document.getElementById(t.getAttribute('aria-controls'));
+      if (!panel) return;
+      if (t === tab) {
+        panel.removeAttribute('hidden');
+        var sw = panel.querySelector('.swiper');
+        if (sw && sw.swiper) sw.swiper.update();
+      } else {
+        panel.setAttribute('hidden', '');
       }
     });
+    if (setFocus) tab.focus();
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () { activate(tab, false); });
   });
+
+  tablist.addEventListener('keydown', function (e) {
+    var idx = tabs.indexOf(document.activeElement);
+    if (idx === -1) return;
+    var next;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (idx + 1) % tabs.length;
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (idx - 1 + tabs.length) % tabs.length;
+    else if (e.key === 'Home') next = 0;
+    else if (e.key === 'End') next = tabs.length - 1;
+    else return;
+    e.preventDefault();
+    activate(tabs[next], true);
+  });
+})();
 </script>
 
 {% schema %}
 {
   "name": "[Custom] Product Slider",
   "enabled_on": {
-    "templates": ["product"]
+    "templates": ["index", "product"]
   },
   "settings": [
     {
@@ -392,15 +496,8 @@
       "default": 10
     },
     {
-      "type": "text",
-      "id": "button_label",
-      "label": "Button Label",
-      "default": "View All"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button Link"
+      "type": "paragraph",
+      "content": "Tabs appear when 2 or more Collection Tab blocks are added. A tab shows its image and/or label when set; with neither set, the collection title is used. With a single block, products display as a plain slider."
     },
     {
       "type": "header",

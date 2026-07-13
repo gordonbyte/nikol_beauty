@@ -166,7 +166,7 @@
               <div class="article__image">
                 <a class="article__image-link" href="{{ article.url }}" aria-label="{{ article.title | strip_html | escape }}">
                   {%- capture sizes -%}
-                    (min-width: 990px) calc((100vw - 100px) / {{ section.settings.grid }}), (min-width: 750px) calc((100vw - 60px) / 3), calc(100vw - 32px)
+                    (min-width: 990px) calc((min(100vw, 1100px) - 100px) / {{ section.settings.grid }}), (min-width: 750px) calc((100vw - 60px) / 3), calc(100vw - 32px)
                   {%- endcapture -%}
 
                   {%- capture attributes -%}

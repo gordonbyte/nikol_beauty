@@ -42,20 +42,7 @@
         </a>
       </h2>
     {%- endif -%}
-{% comment %}
-    {%- if section.settings.show_tag_nav -%}
-      <ul class="inline-nav capitalize">
-        <li {% if current_tags == blank %} class="inline-nav--active"{% endif %}>
-          <a href="{{ blog.url }}">{{ 'blogs.article.all' | t }}</a>
-        </li>
-        {%- for tag in blog.all_tags -%}
-          <li {% if current_tags contains tag %}class="inline-nav--active"{% endif %}>
-            {{ tag | link_to_tag: tag }}
-          </li>
-        {%- endfor -%}
-      </ul>
-    {%- endif -%}
-{% endcomment %}
+
     {%- unless template.suffix == 'youtube-blog' -%}
       <ul class="inline-nav capitalize">
         {% for link in linklists.blog-tags.links %}
@@ -149,8 +136,7 @@
               </p>
             {%- endif -%}
 
-            {% comment %}<p class="article__excerpt">Once you create a blog post, the content will appear here. It will display the first few lines of text here or a summary of the post that could be added from the Excerpt section in Blog posts editor.</p>
-{% endcomment %}
+            
             {%- if show_button -%}
               <div class="article__link">
                 <a href="#" class="btn btn--text" aria-label="{{ 'blogs.article.read_more' | t }}">
@@ -245,7 +231,7 @@
               </p>
             {%- endif -%}
 
-          {% comment %}  <p class="article__excerpt">{{ article.excerpt_or_content | strip_html | truncatewords: 30 }}</p>{% endcomment %}
+          
 
             {%- if show_button -%}
               <div class="article__link">
