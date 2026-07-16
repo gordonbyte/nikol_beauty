@@ -274,7 +274,7 @@
         {%- endif -%}
       {%- endif -%}
 
-      {%- if button_text != blank -%}
+      {%- if button_text != blank and button_link != blank -%}
         {%- liquid
           assign anim_class = ''
           assign anim_style = ''
@@ -294,7 +294,7 @@
           endif
         -%}
         <div class="feature-hero__button{{ anim_class }}" {{ anim_style }}>
-          <a class="btn {{ button_size }} {{ button_style }} {{ button_type }}" href="{{ button_link | default: '#!' }}">
+          <a class="btn {{ button_size }} {{ button_style }} {{ button_type }}" href="{{ button_link }}">
             <span>{{ button_text | escape }}</span>
             {%- if button_show_arrow -%}
               {%- render 'icon-arrow-right' -%}
@@ -349,7 +349,10 @@
           {%- liquid
             assign icon = block.settings.icon
             assign label = block.settings.label
-            assign icon_alt = icon.alt | default: label | default: 'feature icon'
+            assign icon_alt = ''
+            if label == blank
+              assign icon_alt = icon.alt | default: ''
+            endif
 
             assign anim_class = ''
             assign anim_style = ''

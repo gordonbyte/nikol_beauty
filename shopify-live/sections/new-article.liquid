@@ -1,3 +1,17 @@
+<style>
+  .article--single .article__comments-button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+</style>
+
 <section
   class="article--single section-padding"
   data-section-id="{{ section.id }}"
@@ -18,20 +32,22 @@
         </div>
         <h1 class="article-hero__title">{{ article.title }}</h1>
         {%- assign published_at = article.published_at | date: format: 'full_date' -%}    
-        <time datetime="{{ published_at }}">{{ published_at }}</time>
+        <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ published_at }}</time>
       </div>
+      {%- if section.settings.show_image and article.image -%}
       <div class="article-hero__right">
         <figure
           class="article-hero__image"
           style="--article-hero-aspect-ratio: {{ article.image.aspect_ratio | default: 1 }};"
         >
-          <img 
+          <img
             src="{{ article.image | image_url }}"
-            alt="{{ article.image | default: shop.name }}"
+            alt="{{ article.image.alt | default: article.title | strip_html | escape }}"
             loading="eager"
             />
           </figure>
       </div>
+      {%- endif -%}
     </div>
   </div>
 
@@ -72,9 +88,9 @@
      {%- if blog.comments_enabled? -%}
 
      <div class="article__comments">
-        <div class="js-toggle-comments article__comments-button">
+        <button type="button" class="js-toggle-comments article__comments-button">
             Comments({{ article.comments_count }}) <span class="divider"></span> <span class="article__comments-button-label">Join the conversation</span>
-        </div>
+        </button>
 
         <div class="comments-wrapper">
             <div class="comments-container">
@@ -97,13 +113,16 @@
                   {% endif %}
                   <div class="form-row">
                     <div class="form-field">
-                      <input type="text" id="comment_author" name="comment[author]" value="{{ form.author }}" placeholder="FIRST NAME *" />
+                      <label for="comment_author" class="visually-hidden">Name</label>
+                      <input type="text" id="comment_author" name="comment[author]" value="{{ form.author }}" placeholder="FIRST NAME *" autocomplete="name" />
                     </div>
                     <div class="form-field">
-                      <input type="text" id="comment_email" name="comment[email]" value="{{ form.email }}" placeholder="EMAIL ADDRESS *" />
+                      <label for="comment_email" class="visually-hidden">Email address</label>
+                      <input type="email" id="comment_email" name="comment[email]" value="{{ form.email }}" placeholder="EMAIL ADDRESS *" autocomplete="email" />
                     </div>
                   </div>
                   <div class="form-field">
+                    <label for="comment_body" class="visually-hidden">Comment</label>
                     <textarea id="comment_body" name="comment[body]" rows="3" placeholder="MESSAGE *" >{{ form.body }}</textarea>
                   </div>
 
@@ -193,7 +212,7 @@
 
             <div class="share">
               {%- assign share_url = article.url | prepend: request.origin -%}
-              <label class="share__label">Share</label>
+              <span class="share__label">Share</span>
               <a class="share__link" href="https://www.facebook.com/sharer.php?u={{ share_url }}">Facebook</a>
               <a class="share__link" href="https://twitter.com/intent/tweet?url={{ share_url }}">Twitter</a>
             </div>
@@ -203,22 +222,41 @@
     </div>
   </div>
 
-  <div class="related-articles">
-    <h2 class="related-articles__title">
-      Related <span>Posts</span>
-    </h2>
-    <div class="related-articles__inner">
-    {% assign currentHandle = article.handle %}
-      {% assign articlesFound = 0 %}
-      {% for addin in blogs[blog.handle].articles %}
-        {% unless addin.handle == currentHandle %}
-         {% render 'related-article', article: addin %}
-         {% assign articlesFound = articlesFound |plus: 1 %}
-         {% if articlesFound == 3 %}{% break %}{% endif %}
-        {% endunless %}
-      {% endfor %}
-    </div>
-  </div>
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when 'recent' -%}
+        <div class="related-articles" {{ block.shopify_attributes }}>
+          {%- liquid
+            assign related_heading = block.settings.title | default: 'Related Posts'
+            assign heading_words = related_heading | split: ' '
+            assign last_word = heading_words | last
+            assign lead_count = heading_words.size | minus: 1
+            assign lead_words = heading_words | slice: 0, lead_count | join: ' '
+          -%}
+          <h2 class="related-articles__title">
+            {%- if heading_words.size > 1 -%}
+              {{ lead_words }} <span>{{ last_word }}</span>
+            {%- else -%}
+              <span>{{ related_heading }}</span>
+            {%- endif -%}
+          </h2>
+          <div class="related-articles__inner">
+          {% assign currentHandle = article.handle %}
+            {% assign articlesFound = 0 %}
+            {% for addin in blogs[blog.handle].articles %}
+              {% unless addin.handle == currentHandle %}
+               {% render 'related-article', article: addin %}
+               {% assign articlesFound = articlesFound | plus: 1 %}
+               {% if articlesFound == 3 %}{% break %}{% endif %}
+              {% endunless %}
+            {% endfor %}
+          </div>
+        </div>
+
+      {%- when '@app' -%}
+        {%- render block -%}
+    {%- endcase -%}
+  {%- endfor -%}
 </section>
 <script type="application/ld+json">
 {
@@ -273,14 +311,18 @@
       },
       {
         "type": "recent",
-        "name": "Recent articles",
+        "name": "Related posts",
         "limit": 1,
         "settings": [
+          {
+            "type": "paragraph",
+            "content": "Shows the 3 most recent other posts from this blog. Remove this block to hide the strip."
+          },
           {
             "type": "text",
             "id": "title",
             "label": "Heading",
-            "default": "Recent articles"
+            "default": "Related Posts"
           }
         ]
       }

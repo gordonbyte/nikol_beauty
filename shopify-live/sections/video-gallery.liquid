@@ -22,21 +22,7 @@
 
 
 <section class="video-gallery-section">
-  {% comment %}
-  <!-- Tab Navigation -->
-  <div class="video-gallery-tabs">
-    <div class="video-gallery-tabs-container">
-      <div class="video-gallery-tab-navigation">
-        <button class="video-gallery-tab-button" data-tab="makeup-tutorials">
-          MAKEUP TUTORIALS
-        </button>
-        <button class="video-gallery-tab-button active" data-tab="fierceaging-series">
-          #FIERCEAGING SERIES
-        </button>
-      </div>
-    </div>
-  </div>
-  {% endcomment %}
+  
 
   <!-- Tab Content -->
   <div class="video-gallery-tab-content">
@@ -53,10 +39,15 @@
               </p>
             </div>
             <div class="video-gallery-hero-image">
-            
+
                 <div class="video-gallery-placeholder-image">
-                  <img src="https://cdn.shopify.com/s/files/1/0690/6347/5504/files/ff0702c8a19189bf469459f0bc045d95ba3f13b6.png?v=1753989319" 
-                       alt="Nikol Beauty Expert" >
+                  {%- if section.settings.hero_image != blank -%}
+                    <img src="{{ section.settings.hero_image | image_url: width: 1000 }}"
+                         alt="{{ section.settings.hero_image.alt | default: 'Nikol Beauty Expert' | escape }}">
+                  {%- else -%}
+                    <img src="https://cdn.shopify.com/s/files/1/0690/6347/5504/files/ff0702c8a19189bf469459f0bc045d95ba3f13b6.png?v=1753989319"
+                         alt="Nikol Beauty Expert">
+                  {%- endif -%}
                 </div>
 
             </div>
@@ -64,115 +55,7 @@
         </div>
       </div>
 
-      {% comment %}
-      <!-- Spotlight Section -->
-      <div class="video-gallery-spotlight-section">
-        <div class="video-gallery-container">
-          <div class="video-gallery-spotlight-header">
-            <h2 class="video-gallery-spotlight-title">Spotlight by Nikol</h2>
-            <p class="video-gallery-spotlight-subtitle">One bold video that empowers, uplifts, and proves beauty only gets better with age.</p>
-          </div>
-          
-          <div class="video-gallery-spotlight-content">
-            <div class="video-gallery-spotlight-video">
-              <div class="video-gallery-video-thumbnail-large">
-                {% if makeup_tutorials_video_id != blank %}
-                  <iframe 
-                    width="100%" 
-                    height="400" 
-                    src="https://www.youtube.com/embed/{{ makeup_tutorials_video_id }}" 
-                    title="Makeup Tutorials Featured Video"
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                  </iframe>
-                {% else %}
-                  <div class="video-gallery-placeholder-video">
-                    <p>Video URL not configured in metafields</p>
-                  </div>
-                {% endif %}
-              </div>
-            </div>
-            
-            <div class="video-gallery-spotlight-product">
-              <h4 class="video-gallery-featured-product-title">FEATURED PRODUCT</h4>
-              <div class="video-gallery-product-card">
-                {% if makeup_product %}
-                  <div class="video-gallery-product-image">
-                    <a href="{{ makeup_product.url }}" title="{{ makeup_product.title }}">
-                      <img src="{{ makeup_product.featured_image | img_url: '200x300' }}" alt="{{ makeup_product.title }}">
-                    </a>
-                  </div>
-                  <div class="video-gallery-product-info">
-                    <h5 class="video-gallery-product-name">
-                      <a href="{{ makeup_product.url }}" title="{{ makeup_product.title }}">{{ makeup_product.title | upcase }}</a>
-                    </h5>
-                    <p class="video-gallery-product-price">{{ makeup_product.price | money }}</p>
-                    {% assign makeup_variants_count = makeup_product.variants.size %}
-                    {% comment %} Check if product has variants or is a bundle {% endcomment %}
-                  
-
-                    {% if makeup_variants_count > 1 %}
-                      {% assign has_variants = true %}
-                    {% else %}
-                      {% assign has_variants = false %}
-                    {% endif %}
-
-
-                    {% if has_variants %}
-                      {% comment %} Show "View product" button for products with variants or bundles {% endcomment %}
-                      <a href="{{ makeup_product.url }}" class="video-gallery-view-product-btn">
-                        <svg class="video-gallery-view-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-                        </svg>
-                        View product
-                      </a>
-                      <p class="video-gallery-product-options">Available in {{ makeup_product.variants.size }} variants</p>
-                    {% else %}
-                      {% comment %} Show "Add to cart" button for simple products {% endcomment %}
-                      <form action="/cart/add" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="id" value="{{ makeup_product.variants.first.id }}">
-                        <button type="submit" class="video-gallery-add-to-cart-btn">
-                          <svg class="video-gallery-cart-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
-                          </svg>
-                          Add to cart
-                        </button>
-                      </form>
-                    {% endif %}
-                  </div>
-                {% else %}
-                  <div class="video-gallery-product-image">
-                    <img src="https://via.placeholder.com/200x300" alt="Featured Product">
-                  </div>
-                  <div class="video-gallery-product-info">
-                    <h5 class="video-gallery-product-name">FEATURED PRODUCT</h5>
-                    <p class="video-gallery-product-price">$19.00</p>
-                    <p class="video-gallery-product-options">Available in multiple colors</p>
-                    <a href="#" class="video-gallery-view-product-btn">
-                      <svg class="video-gallery-view-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-                      </svg>
-                      View product
-                    </a>
-                  </div>
-                {% endif %}
-              </div>
-              
-              <div class="video-gallery-video-description">
-                
-                <p class="video-gallery-video-desc-text">{{ makeup_tutorials_featured_product_description | default: "Discover Nikol's favorite makeup techniques and products that work for mature skin." }}</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="video-gallery-spotlight-quote">
-            <p>"Makeup isn't about hiding—it's about honoring who you are, right now."</p>
-            <cite>- Nikol</cite>
-          </div>
-        </div>
-      </div>
-      {% endcomment %}
+      
 
       <!-- Videos Grid Section -->
       <div class="video-gallery-videos-grid-section">
@@ -254,67 +137,12 @@
                   {% endif %}
                 {% endfor %}
                 
-                {% comment %} Store remaining videos data for JavaScript {% endcomment %}
                 <script>
                   window.tutorialsVideos = [];
-                  {% comment %} All videos are displayed initially, so no remaining videos {% endcomment %}
-                  {% assign remaining_count = 0 %}
-                  {% for video in videos.values %}
-                    {% if video.category == 'tutorials' %}
-                      {% assign remaining_count = remaining_count | plus: 1 %}
-                      {% if false %}
-                        {% assign video_url = video.video_url %}
-                        {% assign youtube_id = '' %}
-                        {% if video_url contains 'youtube.com/watch?v=' %}
-                          {% assign url_parts = video_url | split: 'v=' %}
-                          {% assign youtube_id = url_parts[1] | split: '&' | first %}
-                        {% elsif video_url contains 'youtu.be/' %}
-                          {% assign url_parts = video_url | split: 'youtu.be/' %}
-                          {% assign youtube_id = url_parts[1] | split: '?' | first %}
-                        {% endif %}
-                        {% if youtube_id == blank %}
-                          {% assign video_id_part = video_url | split: 'v=' | last %}
-                          {% assign youtube_id = video_id_part | split: '&' | first %}
-                        {% endif %}
-                        {% assign thumbnail_url = 'https://img.youtube.com/vi/' | append: youtube_id | append: '/0.jpg' %}
-                        {% if video.thumbnail != blank %}
-                          {% assign custom_thumb = video.thumbnail | image_url %}
-                          {% if custom_thumb != blank %}
-                            {% assign thumbnail_url = custom_thumb %}
-                          {% else %}
-                            {% assign thumbnail_url = video.thumbnail %}
-                          {% endif %}
-                        {% endif %}
-                        {% assign video_page_url = '/pages/beauty-tutorial-videos/' | append: video.handle %}
-                        {% if video.handle == blank %}
-                          {% assign fallback_handle = video.title | handleize %}
-                          {% assign video_page_url = '/pages/beauty-tutorial-videos/' | append: fallback_handle %}
-                        {% endif %}
-                        {% assign link_url = video_page_url %}
-                        {% if section.settings.use_youtube_links %}
-                          {% assign link_url = video.video_url %}
-                        {% endif %}
-                        
-                        window.tutorialsVideos.push({
-                          title: '{{ video.title }}',
-                          videoUrl: '{{ video.video_url }}',
-                          thumbnailUrl: '{{ thumbnail_url }}',
-                          linkUrl: '{{ link_url }}',
-                          useYouTubeLinks: {{ section.settings.use_youtube_links }}
-                        });
-                      {% endif %}
-                    {% endif %}
-                  {% endfor %}
                   window.tutorialsTotalCount = {{ tutorials_count }};
                   window.tutorialsDisplayedCount = {{ tutorials_count }};
                 </script>
             {% endif %}
-
-            {% for i in (0..5) %}
-             
-            {% endfor %}
-
-
 
 
           </div>
@@ -341,10 +169,15 @@
               </p>
             </div>
             <div class="video-gallery-hero-image">
-            
+
                 <div class="video-gallery-placeholder-image">
-                  <img src="https://cdn.shopify.com/s/files/1/0690/6347/5504/files/ff0702c8a19189bf469459f0bc045d95ba3f13b6.png?v=1753989319" 
-                       alt="Nikol Beauty Expert" >
+                  {%- if section.settings.fierceaging_hero_image != blank -%}
+                    <img src="{{ section.settings.fierceaging_hero_image | image_url: width: 1000 }}"
+                         alt="{{ section.settings.fierceaging_hero_image.alt | default: 'Nikol Beauty Expert' | escape }}">
+                  {%- else -%}
+                    <img src="https://cdn.shopify.com/s/files/1/0690/6347/5504/files/ff0702c8a19189bf469459f0bc045d95ba3f13b6.png?v=1753989319"
+                         alt="Nikol Beauty Expert">
+                  {%- endif -%}
                 </div>
 
             </div>
@@ -352,108 +185,7 @@
         </div>
       </div>
 
-      {% comment %}
-      <!-- Spotlight Section -->
-      <div class="video-gallery-spotlight-section">
-        <div class="video-gallery-container">
-          <div class="video-gallery-spotlight-header">
-            <h2 class="video-gallery-spotlight-title">Spotlight by Nikol</h2>
-            <p class="video-gallery-spotlight-subtitle">One bold video that empowers, uplifts, and proves beauty only gets better with age.</p>
-          </div>
-          
-          <div class="video-gallery-spotlight-content">
-            <div class="video-gallery-spotlight-video">
-              <div class="video-gallery-video-thumbnail-large">
-                {% if fierceaging_video_id != blank %}
-                  <iframe 
-                    width="100%" 
-                    height="400" 
-                    src="https://www.youtube.com/embed/{{ fierceaging_video_id }}" 
-                    title="Fierceaging Series Featured Video"
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                  </iframe>
-                {% else %}
-                  <div class="video-gallery-placeholder-video">
-                    <p>Video URL not configured in metafields</p>
-                  </div>
-                {% endif %}
-              </div>
-            </div>
-            
-            <div class="video-gallery-spotlight-product">
-              <h4 class="video-gallery-featured-product-title">FEATURED PRODUCT</h4>
-              <div class="video-gallery-product-card">
-                {% if fierceaging_product %}
-                  <div class="video-gallery-product-image">
-                    <a href="{{ fierceaging_product.url }}" title="{{ fierceaging_product.title }}">
-                      <img src="{{ fierceaging_product.featured_image | img_url: '200x300' }}" alt="{{ fierceaging_product.title }}">
-                    </a>
-                  </div>
-                  <div class="video-gallery-product-info">
-                    <h5 class="video-gallery-product-name">
-                      <a href="{{ fierceaging_product.url }}" title="{{ fierceaging_product.title }}">{{ fierceaging_product.title | upcase }}</a>
-                    </h5>
-                    <p class="video-gallery-product-price">{{ fierceaging_product.price | money }}</p>
-                    {% assign fierceaging_variants_count = fierceaging_product.variants.size %}
-                    {% comment %} Check if product has variants or is a bundle {% endcomment %}
-
-                    {% if fierceaging_variants_count > 1 %}
-                      {% assign has_variants = true %}
-                    {% else %}
-                      {% assign has_variants = false %}
-                    {% endif %}
-
-                    {% if has_variants %}
-                      {% comment %} Show "View product" button for products with variants or bundles {% endcomment %}
-                      <a href="{{ fierceaging_product.url }}" class="video-gallery-view-product-btn">
-                        <svg class="video-gallery-view-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-                        </svg>
-                        View product
-                      </a>
-                      <p class="video-gallery-product-options">Available in {{ fierceaging_product.variants.size }} variants</p>
-                    {% else %}
-                      {% comment %} Show "Add to cart" button for simple products {% endcomment %}
-                      <form action="/cart/add" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="id" value="{{ fierceaging_product.variants.first.id }}">
-                        <button type="submit" class="video-gallery-add-to-cart-btn">
-                          <svg class="video-gallery-cart-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
-                          </svg>
-                          Add to cart
-                        </button>
-                      </form>
-                    {% endif %}
-                  </div>
-                {% else %}
-                  <div class="video-gallery-product-image">
-                    <img src="https://via.placeholder.com/200x300" alt="Featured Product">
-                  </div>
-                  <div class="video-gallery-product-info">
-                    <h5 class="video-gallery-product-name">FEATURED PRODUCT</h5>
-                    <p class="video-gallery-product-price">$24.00</p>
-                    <p class="video-gallery-product-options">Available in multiple colors</p>
-                    <a href="#" class="video-gallery-view-product-btn">
-                      <svg class="video-gallery-view-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-                      </svg>
-                      View product
-                    </a>
-                  </div>
-                {% endif %}
-              </div>
-              
-              <div class="video-gallery-video-description">
-                <p class="video-gallery-video-desc-text">{{ fierceaging_featured_product_description | default: "Embrace your age with confidence. Discover beauty tips and tricks that celebrate who you are at every stage of life." }}</p>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-      {% endcomment %}
+      
 
       <!-- Videos Grid Section -->
       <div class="video-gallery-videos-grid-section">
@@ -541,65 +273,12 @@
                   {% endif %}
                 {% endfor %}
                 
-                {% comment %} Store remaining videos data for JavaScript {% endcomment %}
                 <script>
                   window.fierceagingVideos = [];
-                  {% comment %} All videos are displayed initially, so no remaining videos {% endcomment %}
-                  {% assign remaining_count = 0 %}
-                  {% for video in videos.values %}
-                    {% if video.category == 'fierceaging' %}
-                      {% assign remaining_count = remaining_count | plus: 1 %}
-                      {% if false %}
-                        {% assign video_url = video.video_url %}
-                        {% assign youtube_id = '' %}
-                        {% if video_url contains 'youtube.com/watch?v=' %}
-                          {% assign url_parts = video_url | split: 'v=' %}
-                          {% assign youtube_id = url_parts[1] | split: '&' | first %}
-                        {% elsif video_url contains 'youtu.be/' %}
-                          {% assign url_parts = video_url | split: 'youtu.be/' %}
-                          {% assign youtube_id = url_parts[1] | split: '?' | first %}
-                        {% endif %}
-                        {% if youtube_id == blank %}
-                          {% assign video_id_part = video_url | split: 'v=' | last %}
-                          {% assign youtube_id = video_id_part | split: '&' | first %}
-                        {% endif %}
-                        {% assign thumbnail_url = 'https://img.youtube.com/vi/' | append: youtube_id | append: '/0.jpg' %}
-                        {% if video.thumbnail != blank %}
-                          {% assign custom_thumb = video.thumbnail | image_url %}
-                          {% if custom_thumb != blank %}
-                            {% assign thumbnail_url = custom_thumb %}
-                          {% else %}
-                            {% assign thumbnail_url = video.thumbnail %}
-                          {% endif %}
-                        {% endif %}
-                        {% assign video_page_url = '/pages/beauty-tutorial-videos/' | append: video.handle %}
-                        {% if video.handle == blank %}
-                          {% assign fallback_handle = video.title | handleize %}
-                          {% assign video_page_url = '/pages/beauty-tutorial-videos/' | append: fallback_handle %}
-                        {% endif %}
-                        {% assign link_url = video_page_url %}
-                        {% if section.settings.use_youtube_links %}
-                          {% assign link_url = video.video_url %}
-                        {% endif %}
-                        
-                        window.fierceagingVideos.push({
-                          title: '{{ video.title }}',
-                          videoUrl: '{{ video.video_url }}',
-                          thumbnailUrl: '{{ thumbnail_url }}',
-                          linkUrl: '{{ link_url }}',
-                          useYouTubeLinks: {{ section.settings.use_youtube_links }}
-                        });
-                      {% endif %}
-                    {% endif %}
-                  {% endfor %}
                   window.fierceagingTotalCount = {{ fierceaging_count }};
                   window.fierceagingDisplayedCount = {{ fierceaging_count }};
                 </script>
             {% endif %}
-              
-             
-              
-             
           </div>
         </div>
       </div>
@@ -622,20 +301,31 @@
        <div class="video-gallery-hero-image">
         
             <div class="video-gallery-placeholder-image-bottom">
-              <img src="https://cdn.shopify.com/s/files/1/0690/6347/5504/files/39538559f69c049bdc2b8bd4030d701371ee1ea7.png?v=1753989326" alt="Nikol Beauty Expert">
+              {%- if section.settings.bottom_hero_image != blank -%}
+                <img src="{{ section.settings.bottom_hero_image | image_url: width: 1000 }}"
+                     alt="{{ section.settings.bottom_hero_image.alt | default: 'Nikol Beauty Expert' | escape }}">
+              {%- else -%}
+                <img src="https://cdn.shopify.com/s/files/1/0690/6347/5504/files/39538559f69c049bdc2b8bd4030d701371ee1ea7.png?v=1753989326" alt="Nikol Beauty Expert">
+              {%- endif -%}
             </div>
 
         </div>
 
         <div class="video-gallery-hero-text">
-          <h1 class="video-gallery-hero-title-bottom">Your Beauty Journey Starts Here</h1>
+          <h2 class="video-gallery-hero-title-bottom">{{ section.settings.bottom_title | default: "Your Beauty Journey Starts Here" }}</h2>
           <p class="video-gallery-hero-description">
-            Discover what makes you feel confident—Nikol's favorites are made to enhance your beauty, not cover it.
+            {{ section.settings.bottom_description | default: "Discover what makes you feel confident—Nikol's favorites are made to enhance your beauty, not cover it." }}
           </p>
           <div class="video-gallery-hero-buttons">
-            <a href="/collections/all" class="btn btn--primary btn--solid">
-              GO TO STORE
+            <a href="{{ section.settings.store_url | default: '/collections/all' }}" class="btn btn--primary btn--solid">
+              {{ section.settings.store_button_text | default: "GO TO STORE" }}
             </a>
+            {%- assign yt_url = section.settings.youtube_channel_url | strip -%}
+            {%- if yt_url != blank and yt_url != '#' -%}
+              <a href="{{ yt_url }}" class="btn btn--secondary btn--outline" target="_blank" rel="noopener">
+                VISIT YOUTUBE CHANNEL
+              </a>
+            {%- endif -%}
           </div>
         </div>
        
@@ -648,7 +338,6 @@
 
 
 <style>
-
 .videos-desc {
   display: flex;
   max-width: 800px;
@@ -657,7 +346,6 @@
   margin: 0 auto;
   padding: 1rem;
 }
-
 
 .video-gallery-section {
   background: #fff;
@@ -670,59 +358,8 @@
   padding: 0 40px;
 }
 
-{% comment %}
-/* Tab Navigation */
-.video-gallery-tabs {
-  background: #FCD0CD;
-  padding: 20px 0;
-  border-bottom: 1px solid #f8bbd9;
-  width: 100%;
-}
-
-.video-gallery-tabs-container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.video-gallery-tab-navigation {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-}
-
-.video-gallery-tab-button {
-  background: none;
-  border: none;
-  padding: 6px 20px;
-  font-size: 16px;
-  font-weight: 500;
-  color: #46413C;
-  cursor: pointer;
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-.video-gallery-tab-button.active {
-  color: #46413C;
-}
-
-.video-gallery-tab-button.active::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: #46413C;
-}
-
-.video-gallery-tab-button:hover {
-  color: #46413C;
-}
-{% endcomment %}
-
 /* Tab Content */
+
 .video-gallery-tab-panel {
   display: none;
 }
@@ -732,6 +369,7 @@
 }
 
 /* Hero Section */
+
 .video-gallery-hero-section {
   padding: 0px 0 0 0;
   width: 100%;
@@ -791,49 +429,6 @@
   margin-top: 0;
 }
 
-.video-gallery-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border-radius: 0;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.video-gallery-hero-text .video-gallery-hero-buttons .video-gallery-btn {
-  padding: 8px 18px;
-  font-size: 14px;
-  border-radius: 0;
-}
-
-.video-gallery-btn-primary {
-  background: #FCD0CD;
-  color: #333;
-}
-
-.video-gallery-btn-primary:hover {
-  background: #f8bbd9;
-}
-
-.video-gallery-btn-secondary {
-  background: none;
-  color: #e91e63;
-  text-decoration: none;
-}
-
-.video-gallery-btn-secondary:hover {
-  color: #c2185b;
-}
-
-.video-gallery-icon-youtube {
-  width: 16px;
-  height: 16px;
-}
-
 .video-gallery-hero-image {
   text-align: center;
 }
@@ -843,69 +438,6 @@
   height: auto;
 }
 
-
-/* Spotlight Section */
-.video-gallery-spotlight-section {
-  background: white;
-  padding: 20px 0 40px;
-  width: 100%;
-}
-
-.video-gallery-spotlight-header {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.video-gallery-spotlight-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.video-gallery-spotlight-subtitle {
-  font-size: 1.2rem;
-  color: #666;
-  line-height: 1.6;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.video-gallery-spotlight-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: start;
-  margin-bottom: 60px;
-}
-
-/* Video Thumbnail Large */
-.video-gallery-video-thumbnail-large {
-  position: relative;
-  width: 100%;
-  height: 400px;
-  overflow: hidden;
-  border-radius: 12px;
-}
-
-.video-gallery-video-thumbnail-large img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.video-gallery-placeholder-video {
-  width: 100%;
-  height: 400px;
-  background: #f5f5f5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  color: #666;
-  font-size: 16px;
-  text-align: center;
-}
 .video-gallery-placeholder-image {
   margin-bottom: -6px;
 }
@@ -913,221 +445,9 @@
 .video-gallery-placeholder-image-bottom {
   margin-bottom: -7px;
 }
-.video-gallery-video-overlay-large {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.video-gallery-video-thumbnail-large:hover .video-gallery-video-overlay-large {
-  opacity: 1;
-}
-
-.video-gallery-play-icon-large {
-  width: 64px;
-  height: 64px;
-}
-
-.video-gallery-video-title-overlay {
-  position: absolute;
-  left: 20px;
-  bottom: 20px;
-  color: #333;
-  background: none;
-}
-
-.video-gallery-video-title-overlay h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.2;
-  margin: 0;
-}
-
-/* Product Section */
-.video-gallery-featured-product-title {
-  font-size: 19px;
-  font-weight: 500;
-  color: #46413C;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 20px;
-}
-
-.video-gallery-product-card {
-  display: flex;
-  gap: 25px;
-  background: white;
-  padding: 20px;
-  margin-bottom: 30px;
-}
-
-.video-gallery-spotlight-section .video-gallery-product-card {
-  background: #F7F2ED;
-}
-
-
-.video-gallery-product-image {
-  flex-shrink: 0;
-}
-
-.video-gallery-product-image img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-}
-
-.video-gallery-product-info {
-  flex: 1;
-}
-
-.video-gallery-product-name {
-  font-size: 19px;
-  font-weight: 600;
-  color: #46413C;
-  margin-top: 14px;
-  padding: 0 10px;
-}
-
-.video-gallery-product-name a {
-  color: #333;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.video-gallery-product-name a:hover {
-  color: #ff6b6b;
-}
-
-.video-gallery-product-image a {
-  display: block;
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-  max-height: 150px;
-}
-
-.video-gallery-product-image a:hover {
-  opacity: 0.8;
-}
-
-.video-gallery-product-price {
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: #46413C;
-  margin-bottom: 11px;
-  margin-top: 15px;
-  padding: 0 10px;
-}
-
-.video-gallery-product-options {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 15px;
-  display: inline-block;
-  margin-left: 15px;
-}
-
-.video-gallery-view-product-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: white;
-  color: #333;
-  border: 1px solid #fce4ec;
-  padding: 10px 20px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  text-decoration: none;
-  margin-bottom: 15px;
-}
-
-.video-gallery-view-product-btn:hover {
-  background: #fce4ec;
-}
-
-.video-gallery-view-icon {
-  width: 16px;
-  height: 16px;
-}
-
-.video-gallery-add-to-cart-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: white;
-  color: #333;
-  border: 2px solid #fce4ec;
-  padding: 10px 20px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  margin-bottom: 15px;
-}
-
-.video-gallery-add-to-cart-btn:hover {
-  background: #fce4ec;
-}
-
-.video-gallery-cart-icon {
-  width: 16px;
-  height: 16px;
-}
-
-/* Video Description */
-.video-gallery-video-description {
-  background: none;
-  padding: 0;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-.video-gallery-video-desc-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 10px;
-  line-height: 1.4;
-}
-
-.video-gallery-video-desc-text {
-  font-size: 0.95rem;
-  color: #666;
-  line-height: 1.6;
-}
-
-/* Quote Section */
-.video-gallery-spotlight-quote {
-  text-align: left;
-  max-width: 700px;
-  margin: 0 auto;
-  background: white;
-  padding: 1rem;
-}
-
-.video-gallery-spotlight-quote p {
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: #333;
-  font-style: italic;
-  margin-bottom: 15px;
-  line-height: 1.4;
-}
-
-.video-gallery-spotlight-quote cite {
-  font-size: 1.1rem;
-  color: #666;
-  font-style: normal;
-}
 
 /* Videos Grid Section */
+
 .video-gallery-videos-grid-section {
   padding: 40px 0;
   background: #F7F2ED;
@@ -1143,6 +463,7 @@
 }
 
 /* Video Cards */
+
 .video-gallery-video-card {
   background: none;
   border-radius: 12px;
@@ -1208,99 +529,40 @@
   line-height: 1.4;
 }
 
-
-
-/* Tablet Design */
-@media (max-width: 1024px) and (min-width: 769px) {
-  .video-gallery-product-card {
-    align-items: center;
-  }
-  
-  .video-gallery-product-image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .video-gallery-product-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-}
-
 /* Responsive Design */
+
 @media (max-width: 768px) {
   .video-gallery-container {
     padding: 0 20px;
   }
-  
+
   .video-gallery-hero-content {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-  
+
   .video-gallery-hero-title {
     font-size: 2rem;
     display: block; /* Show FIERCEAGING Series title on mobile */
   }
-  
-  .video-gallery-tab-navigation {
-    gap: 20px;
-  }
-  
+
   .video-gallery-hero-buttons {
     flex-direction: column;
     align-items: center; /* Center buttons on mobile */
     justify-content: center;
     margin-bottom: 40px; /* Add space below buttons on mobile */
   }
-  
-  .video-gallery-spotlight-content {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  
-  .video-gallery-spotlight-title {
-    font-size: 2rem;
-  }
-  
-  .video-gallery-spotlight-quote blockquote {
-    font-size: 1.5rem;
-  }
-  
-  .video-gallery-product-card {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .video-gallery-product-image {
-    align-self: center;
-  }
-  
+
   .video-gallery-videos-grid {
     grid-template-columns: 1fr;
     row-gap: 48px;
     column-gap: 30px;
   }
-  
+
   .video-gallery-video-card {
     margin-bottom: 0;
   }
-  
-  .video-gallery-video-desc-text {
-    font-size: 1.2rem;
-    color: #666;
-    line-height: 1.6;
-    text-align: center; /* Center the text on mobile */
-  }
-  
-  .video-gallery-spotlight-section {
-    background: #F7F2ED;
-    padding: 20px 0 20px;
-    width: 100%;
-  }
-  
+
   .videos-desc {
     display: flex;
     max-width: 800px;
@@ -1311,69 +573,10 @@
     text-align: center; /* Center the text content */
   }
 
-  .video-gallery-product-image {
-    margin-top: 30px; /* Add space above product image on mobile */
-  }
-  
-  .video-gallery-spotlight-product {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .video-gallery-featured-product-title {
-    text-align: center;
-    width: 100%;
-  }
-  
-  .video-gallery-product-card {
-    width: 100%;
-    max-width: 100%;
-    align-items: center;
-  }
-  
-  .video-gallery-product-info {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .video-gallery-product-name {
-    text-align: center;
-  }
-  
-  .video-gallery-product-price {
-    text-align: center;
-  }
-  
-  .video-gallery-product-options {
-    text-align: center;
-    margin-left: 0;
-  }
-  
-  .video-gallery-add-to-cart-btn {
-    margin-bottom: 8px;
-  }
-  
-  .video-gallery-view-product-btn {
-    margin-bottom: 8px;
-  }
-  
-  .video-gallery-product-card {
-    margin-bottom: 15px;
-  }
-  
-  .video-gallery-video-description {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  
   .video-gallery-videos-grid-section {
     padding-top: 20px;
   }
-  
+
   .videos-desc {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
@@ -1381,6 +584,7 @@
 }
 
 /* Show More Button - Temporarily Hidden */
+
 .video-gallery-show-more-container {
   text-align: center;
   margin-top: 60px;
@@ -1404,111 +608,10 @@
 .video-gallery-show-more-btn:hover {
   background: #f8bbd9;
 }
-
-/* Bottom Hero Section */
-.video-gallery-bottom-hero {
-  background: #fff;
-  padding: 80px 0;
-  margin-top: 40px;
-}
-
-.video-gallery-bottom-hero-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 40px;
-}
-
-.video-gallery-bottom-image {
-  text-align: center;
-}
-
-.video-gallery-hero-portrait {
-  max-width: 400px;
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.video-gallery-bottom-hero-text {
-  text-align: left;
-}
-
-.video-gallery-bottom-hero-title {
-  font-family: Cormorant;
-  font-weight: 500;
-  font-size: 32px;
-  color: #8B4513;
-  margin-bottom: 20px;
-  line-height: 1.2;
-}
-
-.video-gallery-bottom-hero-description {
-  font-weight: 300;
-  font-size: 18px;
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 30px;
-}
-
-.video-gallery-bottom-hero-btn {
-  background: #FCD0CD;
-  color: #8B4513;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 0;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.video-gallery-bottom-hero-btn:hover {
-  background: #f8bbd9;
-}
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  {% comment %}
-  // Tab functionality for both MAKEUP TUTORIALS and FIERCE AGING SERIES tabs
-  const tabButtons = document.querySelectorAll('.video-gallery-tab-button');
-  const tabPanels = document.querySelectorAll('.video-gallery-tab-panel');
-
-  tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const targetTab = button.getAttribute('data-tab');
-      
-      // Remove active class from all buttons and panels
-      tabButtons.forEach(btn => btn.classList.remove('active'));
-      tabPanels.forEach(panel => panel.classList.remove('active'));
-      
-      // Add active class to clicked button and corresponding panel
-      button.classList.add('active');
-      document.getElementById(targetTab).classList.add('active');
-    });
-  });
-  {% endcomment %}
-
-  // Video cards now use anchor tags, so no need for custom click handlers
-  // The links will navigate to the individual video pages when "Publish entries as web pages" is active
-
-  // Add click handlers for spotlight videos
-  const spotlightVideos = document.querySelectorAll('.video-gallery-video-thumbnail-large');
-  spotlightVideos.forEach(video => {
-    video.addEventListener('click', function() {
-      const videoUrl = this.getAttribute('data-video-url');
-      if (videoUrl) {
-        window.open(videoUrl, '_blank');
-      }
-    });
-  });
 
   // Show More functionality for both tabs
   function loadMoreVideos(tabType) {
@@ -1665,6 +768,33 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       "type": "header",
+      "content": "Bottom Hero"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_hero_image",
+      "label": "Bottom Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "bottom_title",
+      "label": "Bottom Hero Title",
+      "default": "Your Beauty Journey Starts Here"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_description",
+      "label": "Bottom Hero Description",
+      "default": "Discover what makes you feel confident—Nikol's favorites are made to enhance your beauty, not cover it."
+    },
+    {
+      "type": "text",
+      "id": "store_button_text",
+      "label": "Store Button Text",
+      "default": "GO TO STORE"
+    },
+    {
+      "type": "header",
       "content": "Links"
     },
     {
@@ -1672,6 +802,10 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "store_url",
       "label": "Store URL",
       "info": "URL for the 'GO TO STORE' button"
+    },
+    {
+      "type": "paragraph",
+      "content": "The 'VISIT YOUTUBE CHANNEL' button only shows when a YouTube Channel URL is set."
     },
     {
       "type": "url",

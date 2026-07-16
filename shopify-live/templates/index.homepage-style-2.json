@@ -145,7 +145,7 @@
       }
     },
     "custom_collection_tabs_hgtKjT": {
-      "type": "custom-collection-tabs",
+      "type": "custom-product-slider",
       "blocks": {
         "collection_tab_gaMYhn": {
           "type": "collection_tab",
@@ -216,17 +216,16 @@
         "collection_tab_VpYXja",
         "collection_tab_MTWHqc"
       ],
-      "name": "[Custom] Collection Tabs",
+      "name": "[Custom] Product Slider",
       "settings": {
         "title": "Shop Best Sellers",
         "subtitle": "Our most-loved makeup for mature skin, designed to look natural and feel comfortable.",
         "products_limit": 10,
-        "button_label": "View All Best Sellers",
-        "button_link": "/collections/best-selling-products"
+        "background_color": "#F7F2ED66"
       }
     },
     "cw_videos_pDhphj": {
-      "type": "cw-videos",
+      "type": "custom-videos",
       "blocks": {
         "video_item_apEHR3": {
           "type": "video_item",
@@ -239,7 +238,7 @@
       "block_order": [
         "video_item_apEHR3"
       ],
-      "name": "CW Videos",
+      "name": "[Custom] Videos",
       "settings": {
         "title": "Real Stories From Women Who Switched to Nikol Beauty",
         "subtitle": "See how women in their 50s, 60s, and 70s use Nikol Beauty to look polished without fighting their skin.",
@@ -441,6 +440,7 @@
     },
     "custom_collection_banners_fCeq6M": {
       "type": "custom-collection-banners",
+      "name": "[Custom] Collection Banners",
       "blocks": {
         "collection_box_r3nckz": {
           "type": "collection_box",

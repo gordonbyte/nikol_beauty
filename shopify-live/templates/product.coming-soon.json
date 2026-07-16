@@ -9,11 +9,6 @@
  */
 {
   "sections": {
-    "zp-product-header-content": {
-      "type": "product-header-content-zipifypages",
-      "disabled": true,
-      "settings": {}
-    },
     "custom_guarantee_list_3jG9Xr": {
       "type": "custom-guarantee-list",
       "blocks": {
@@ -614,15 +609,6 @@
             "show_line": true,
             "padding_bottom": 20
           }
-        },
-        "live_shopping_by_channelize_io_shoppable_videos_playlist_9p4Dqf": {
-          "type": "shopify://apps/live-shopping-by-channelize-io/blocks/shoppable_videos_playlist/2ef74bbb-b54a-49b7-9ff5-a592ac3fd437",
-          "settings": {
-            "ch_shoppable_videos_playlist_size": "lg",
-            "ch_shoppable_videos_playlist_mini_player": "false",
-            "ch_shoppable_videos_playlist_navigation_type": "QUICK_OPEN",
-            "ch_shoppable_videos_playlist_custom_css": ""
-          }
         }
       },
       "block_order": [
@@ -673,8 +659,7 @@
         "code_dVeTYP",
         "divider_1",
         "icon_2",
-        "c8ecc06f-2f65-4c95-a44e-437c458f4787",
-        "live_shopping_by_channelize_io_shoppable_videos_playlist_9p4Dqf"
+        "c8ecc06f-2f65-4c95-a44e-437c458f4787"
       ],
       "custom_css": [
         ".gravity-button-wrapper {--gravity-button-width: unset;}"
@@ -684,7 +669,6 @@
         "image_layout": "thumbnails",
         "image_size": "normal",
         "show_cart_bar": true,
-        "enable_zoom": true,
         "enable_video_looping": false,
         "mobile_image_style": "slider",
         "padding_top": 90,
@@ -841,11 +825,6 @@
         "padding_bottom": 0
       }
     },
-    "zp-product-footer-content": {
-      "type": "product-footer-content-zipifypages",
-      "disabled": true,
-      "settings": {}
-    },
     "custom_steps_horizontal_48B6BD": {
       "type": "custom-steps-horizontal",
       "blocks": {
@@ -989,31 +968,18 @@
       }
     },
     "cw_videos_WcxwdJ": {
-      "type": "cw-videosv2",
-      "name": "CW Videos",
+      "type": "custom-videos",
+      "name": "[Custom] Videos",
       "settings": {
         "title": "What Women Are Saying",
         "subtitle": "See how women in their 50s, 60s, and 70s use Nikol Beauty to look polished without fighting their skin.",
         "button_label": "",
-        "button_link": ""
+        "button_link": "",
+        "enable_live_shopping_style": true
       }
     },
     "1771850328ecb59717": {
       "type": "apps",
-      "blocks": {
-        "live_shopping_by_channelize_io_shoppable_videos_playlist_HVMWCz": {
-          "type": "shopify://apps/live-shopping-by-channelize-io/blocks/shoppable_videos_playlist/2ef74bbb-b54a-49b7-9ff5-a592ac3fd437",
-          "settings": {
-            "ch_shoppable_videos_playlist_size": "lg",
-            "ch_shoppable_videos_playlist_mini_player": "false",
-            "ch_shoppable_videos_playlist_navigation_type": "QUICK_OPEN",
-            "ch_shoppable_videos_playlist_custom_css": ""
-          }
-        }
-      },
-      "block_order": [
-        "live_shopping_by_channelize_io_shoppable_videos_playlist_HVMWCz"
-      ],
       "settings": {
         "include_margins": false
       }
@@ -1154,7 +1120,6 @@
     },
     "custom_info_banner_Adm6cV": {
       "type": "custom-info-banner",
-      "name": "[Custom] Info Banner",
       "blocks": {
         "image_1": {
           "type": "media",
@@ -1197,7 +1162,15 @@
           }
         }
       },
-      "block_order": ["image_1", "rating_1", "heading_1", "price_1", "text_1", "button_1"],
+      "block_order": [
+        "image_1",
+        "rating_1",
+        "heading_1",
+        "price_1",
+        "text_1",
+        "button_1"
+      ],
+      "name": "[Custom] Info Banner",
       "settings": {
         "bg_image": "shopify://shop_images/steps-bg.jpg"
       }
@@ -1222,9 +1195,7 @@
       "settings": {
         "title": "Products you may also like",
         "subtitle": "",
-        "products_limit": 10,
-        "button_label": "View All Best Sellers",
-        "button_link": ""
+        "products_limit": 10
       }
     },
     "custom_newsletter_RMchwh": {
@@ -1240,13 +1211,11 @@
     }
   },
   "order": [
-    "zp-product-header-content",
     "custom_guarantee_list_3jG9Xr",
     "main",
     "faq",
     "shipping",
     "related",
-    "zp-product-footer-content",
     "custom_steps_horizontal_48B6BD",
     "custom_icon_features_fHrGm4",
     "custom_alternating_rows_abL96y",
