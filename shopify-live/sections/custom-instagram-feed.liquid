@@ -1,29 +1,23 @@
 <div class="instagram-feed">
 	<div class="instagram-feed__inner">
 		<div class="instagram-feed__top">
-			{%- if section.settings.title != blank -%}
-				<h2 class="instagram-feed__title">
-					{{ section.settings.title }}
-				</h2>
-			{%- endif -%}
-			{%- if section.settings.handle != blank and section.settings.link != blank -%}
-				<a
-					class="instagram-feed__handle desktop-only"
-					href="{{ section.settings.link }}"
-				>
-					{{ section.settings.handle }}
-				</a>
-			{%- endif -%}
-		</div>
-		<div id="insta-feed"></div>
-		{%- if section.settings.handle != blank and section.settings.link != blank -%}
-			<a
-				class="instagram-feed__handle mobile-only"
+			<h3 class="instagram-feed__title">
+				{{ section.settings.title }}
+			</h3>
+			<a 
+				class="instagram-feed__handle desktop-only"
 				href="{{ section.settings.link }}"
-			>
+				>
 				{{ section.settings.handle }}
 			</a>
-		{%- endif -%}
+		</div>
+		<div id="insta-feed"></div>
+		<a 
+			class="instagram-feed__handle mobile-only"
+			href="{{ section.settings.link }}"
+			>
+			{{ section.settings.handle }}
+		</a>
 	</div>
 </div>
 
@@ -52,7 +46,7 @@
       "label": "IG Link"
     }
   ],
-
+  
   "presets": [{
     "name": "[Custom] Instagram Feed",
     "category": "Image"

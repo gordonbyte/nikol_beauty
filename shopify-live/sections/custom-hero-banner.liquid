@@ -1,329 +1,375 @@
-{%- style -%}
-  #HeroBanner-{{ section.id }} {
-    --custom-hero-banner-feature-bg: {{ section.settings.feature_bg_color }};
-  }
-{%- endstyle -%}
-
 <style>
-.custom-hero-banner__section {
-  position: relative;
-  padding-top: 20px;
-  background-size: cover;
-  background-position: bottom;
+section.cw-banner-section {
+    background-size: cover;
+    background-position: bottom;
+    padding-top: 20px;
+    position: relative;
 }
 
-.custom-hero-banner__parent {
-  display: flex;
-  align-items: flex-end;
+.cw-banner-parent {
+    display: flex;
+    align-items: flex-end;
 }
 
-.custom-hero-banner__left {
-  width: 48%;
-  padding-top: 50px;
-  padding-left: 140px;
+.cw-banner-feature-list {
+    padding-bottom: 50px;
 }
 
-.custom-hero-banner__right {
-  width: 52%;
+.cw-banner-left {
+    padding-top: 50px;
 }
 
-.custom-hero-banner__image1 img {
-  width: 100%;
-  object-fit: contain;
+.cw-banner-left {
+    width: 48%;
+    padding-left: 140px;
 }
 
-.custom-hero-banner__image2 {
-  position: absolute;
-  right: 0;
-  bottom: -6%;
-  z-index: 1;
+.cw-banner-right {
+    width: 52%;
 }
 
-.custom-hero-banner__image2 img {
-  width: 100%;
-  max-width: 630px;
-  object-fit: contain;
+.cw-banner-image1 img {
+    width: 100%;
+    object-fit: contain;
 }
 
-.custom-hero-banner__rating {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.cw-banner-image2 img {
+    width: 100%;
+    max-width: 630px;
+    object-fit: contain;
 }
 
-.custom-hero-banner__rating-img {
-  display: flex;
+.cw-banner-image2 {
+    position: absolute;
+    right: 0;
+    bottom: -6%;
+    z-index: 1;
 }
 
-.custom-hero-banner__rating-img img {
-  max-width: 95px;
-  object-fit: contain;
+.cw-banner-star-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.custom-hero-banner__rating-text {
-  margin: 0;
-  color: var(--COLOR-TEXT);
-  font-size: var(--FONT-SIZE-BASE);
-  font-weight: 400;
+.cw-banner-star-img img {
+    max-width: 95px;
+    object-fit: contain;
 }
 
-.custom-hero-banner__rating-text strong {
-  font-weight: 700;
+.cw-banner-star-text {
+    color: #2A2724;
+    font-size: var(--FONT-SIZE-BASE);
+    font-weight: 400;
 }
 
-.custom-hero-banner__title {
-  margin: 0;
-  padding-top: 25px;
-  padding-bottom: 25px;
-  color: var(--COLOR-TEXT);
-  font-family: 'Cormorant';
-  font-size: 62px;
-  font-weight: 500;
-  line-height: 110%;
-  letter-spacing: -3px;
-  text-transform: capitalize;
+.cw-banner-star-text strong {
+    font-weight: 700;
 }
 
-.custom-hero-banner__description {
-  margin: 0;
-  color: var(--COLOR-TEXT);
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 140%;
+.cw-banner-star-img {
+    display: flex;
 }
 
-.custom-hero-banner__button {
-  padding: 35px 0;
+.cw-banner-title {
+    color: #2A2724;
+    font-size: 62px;
+    line-height: 110%;
+    font-family: 'Cormorant';
+    letter-spacing: -3px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    text-transform: capitalize;
+    font-weight: 500;
 }
 
-.custom-hero-banner__button a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  width: 100%;
-  max-width: 400px;
-  height: 60px;
-  background: var(--BTN-PRIMARY-BG-COLOR);
-  color: var(--BTN-PRIMARY-TEXT-COLOR);
-  font-family: var(--BTN-FONT-STACK);
-  font-size: var(--BTN-FONT-SIZE);
-  font-weight: 700;
-  letter-spacing: 0;
-  text-transform: uppercase;
+.cw-banner-description {
+    color: #2A2724;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 140%;
 }
 
-.custom-hero-banner__features {
-  display: flex;
-  gap: 50px;
-  margin: 0;
-  padding: 0 0 50px;
-  list-style: none;
+.cw-banner-button a {
+    display: flex;
+    align-items: center;
+    background: var(--BTN-PRIMARY-BG-COLOR);
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    height: 60px;
+    color: var(--BTN-PRIMARY-TEXT-COLOR);
+    font-family: var(--BTN-FONT-STACK);
+    text-transform: uppercase;
+    font-size: var(--BTN-FONT-SIZE);
+    letter-spacing: 0;
+    gap: 5px;
+    font-weight: 700;
 }
 
-.custom-hero-banner__desktop { display: block; }
-.custom-hero-banner__mobile { display: none; }
-
-.custom-hero-banner__feature {
-  text-align: center;
+.cw-banner-button {
+    padding: 35px 0px;
 }
 
-.custom-hero-banner__feature-icon img {
-  max-width: 80px;
-  object-fit: contain;
+.cw-banner-feature-list {
+    display: flex;
+    gap: 50px;
 }
 
-.custom-hero-banner__feature-label {
-  margin: 0;
-  padding-top: 5px;
-  color: var(--COLOR-TEXT);
-  font-size: var(--FONT-SIZE-BASE);
-  font-weight: 500;
-  line-height: 130%;
-  text-transform: capitalize;
+.cw-banner-desktop {
+    display: block;
+}
+
+.cw-banner-mobile {
+    display: none;
+}
+
+.cw-banner-feature-img img {max-width: 80px;object-fit: contain;}
+
+.cw-banner-feature-box {
+    text-align: center;
+}
+
+.cw-banner-feature-title {
+    font-weight: 500;
+    color: #2A2724;
+    font-size: var(--FONT-SIZE-BASE);
+    line-height: 130%;
+    padding-top: 5px;
+    text-transform: capitalize;
 }
 
 @media only screen and (max-width: 600px) {
-  .custom-hero-banner__desktop { display: none; }
-  .custom-hero-banner__mobile { display: block; }
+.cw-banner-desktop {
+    display: none;
+}
 
-  .custom-hero-banner__section {
-    padding-top: 15px;
-  }
+.cw-banner-mobile {
+    display: block;
+}
 
-  .custom-hero-banner__parent {
+.cw-banner-parent {
     flex-wrap: wrap;
     padding: 0 15px;
-  }
+}
 
-  .custom-hero-banner__left {
+.cw-banner-left {
     width: 100%;
-    padding: 0;
-    text-align: center;
-  }
+    padding-left: 0;
+}
 
-  .custom-hero-banner__right {
+.cw-banner-feature-img img {
+    max-width: 65px;
+}
+
+.cw-banner-feature-list {
+          gap: 30px;
+}
+
+.cw-banner-feature-title {
+    font-size: var(--FONT-SIZE-BASE);
+}
+
+.cw-banner-image2 img {
+           max-width: 290px;
+}
+
+.cw-banner-right {
     width: 100%;
-  }
+}
+section.cw-banner-section {
+    padding-top: 15px;
+}
 
-  .custom-hero-banner__rating {
+.cw-banner-star-img img {
+    max-width: 78px;
+}
+
+.cw-banner-star-text {
+    font-size: var(--FONT-SIZE-BASE);
+}
+
+.cw-banner-star-box {
     gap: 5px;
     justify-content: center;
-  }
+}
 
-  .custom-hero-banner__rating-img img {
-    max-width: 78px;
-  }
+.cw-banner-left {
+    text-align: center;
+}
 
-  .custom-hero-banner__rating-text {
-    font-size: var(--FONT-SIZE-BASE);
-  }
-
-  .custom-hero-banner__title {
+.cw-banner-title {
+    font-size: 34px;
     padding-top: 10px;
     padding-bottom: 10px;
-    font-size: 34px;
     letter-spacing: -2px;
-  }
+}
 
-  .custom-hero-banner__description {
-    max-width: 350px;
-    margin: 0 auto;
-    font-size: var(--FONT-SIZE-BASE);
-    line-height: 135%;
-  }
+.cw-banner-left {
+    padding: 0px;
+}
 
-  .custom-hero-banner__button {
-    padding: 15px 0;
-  }
-
-  .custom-hero-banner__button a {
+.cw-banner-button a {
     max-width: 100%;
     height: 50px;
-  }
+    font-size: var(--BTN-FONT-SIZE);
+}
 
-  .custom-hero-banner__image1 {
-    margin: -30px -15px 0;
-    line-height: 0;
-  }
+.cw-banner-button {
+    padding: 15px 0px;
+}
 
-  .custom-hero-banner__image1 img {
+.cw-banner-feature-list {
+    background: #F7F2ED66;
+    padding: 15px;
+    padding-top: 90px;
+            justify-content: center;
+}
+
+.cw-banner-image2 {
+    bottom: -12%;
+}
+.cw-banner-image1 img {
+    height: auto;
+}
+.cw-banner-description {
+    font-size: var(--FONT-SIZE-BASE);
+    line-height: 135%;
+    max-width: 350px;
+    margin: 0px auto;
+}
+
+.cw-banner-image1 img {
     width: 100%;
     max-width: 100%;
-    height: auto;
-  }
+}
 
-  .custom-hero-banner__image2 {
-    bottom: -12%;
-  }
+.cw-banner-image1 {
+    line-height: 0;
+    margin: 0px -15px;
+}
 
-  .custom-hero-banner__image2 img {
+.cw-banner-image2 img {
     max-width: 262px;
-  }
+}
 
-  .custom-hero-banner__features {
-    justify-content: center;
+.cw-banner-feature-list {
+    padding-top: 25px;
     gap: 50px;
-    padding: 25px 15px;
-    background: var(--custom-hero-banner-feature-bg);
-  }
+    padding-bottom:25px;
+}
 
-  .custom-hero-banner__feature-icon img {
-    max-width: 65px;
-  }
-
-  .custom-hero-banner__feature-label {
+.cw-banner-feature-title {
     max-width: 67px;
-    margin: 0 auto;
-  }
+    text-align: center;
+    margin: 0px auto;
+}
+
+
+.cw-banner-image1 {
+    margin-top: -30px;
+}
+
 }
 </style>
+<section
+  class="cw-banner-section"
+  style="background-image: url({{ section.settings.bg_image | img_url: 'master' }});"
+>
+  <div class="cw-banner-parent">
 
-<div id="HeroBanner-{{ section.id }}" class="custom-hero-banner">
-  <section
-    class="custom-hero-banner__section"
-    {%- if section.settings.bg_image != blank %} style="background-image: url({{ section.settings.bg_image | image_url: width: 3000 }});"{% endif -%}
-  >
-    <div class="custom-hero-banner__parent">
+  
+    <div class="cw-banner-left">
 
-      <div class="custom-hero-banner__left">
-
-        <div class="custom-hero-banner__rating">
-          {%- if section.settings.star_image != blank -%}
-            <span class="custom-hero-banner__rating-img">
-              {{ section.settings.star_image | image_url: width: 190 | image_tag: alt: '', loading: 'lazy' }}
-            </span>
-          {%- endif -%}
-          <p class="custom-hero-banner__rating-text">{{ section.settings.star_text }}</p>
-        </div>
-
-        {%- if section.settings.title != blank -%}
-          <h1 class="custom-hero-banner__title">{{ section.settings.title }}</h1>
-        {%- endif -%}
-
-        {%- if section.settings.description != blank -%}
-          <p class="custom-hero-banner__description">{{ section.settings.description }}</p>
-        {%- endif -%}
-
-        {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
-          <div class="custom-hero-banner__button">
-            <a href="{{ section.settings.button_link }}">
-              {{ section.settings.button_text }}
-              <svg width="22" height="13" viewBox="0 0 22 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                <path d="M0.843262 5.36644C0.377534 5.36644 -1.22974e-05 5.74399 -1.23382e-05 6.20972C-1.23789e-05 6.67544 0.377534 7.05299 0.843262 7.05299L0.843262 6.20972L0.843262 5.36644ZM21.4395 6.806C21.7689 6.47668 21.7689 5.94275 21.4395 5.61343L16.073 0.24687C15.7437 -0.0824491 15.2097 -0.0824491 14.8804 0.24687C14.5511 0.576189 14.5511 1.11012 14.8804 1.43944L19.6507 6.20972L14.8804 10.98C14.5511 11.3093 14.5511 11.8432 14.8804 12.1726C15.2097 12.5019 15.7437 12.5019 16.073 12.1726L21.4395 6.806ZM0.843262 6.20972L0.843262 7.05299L20.8433 7.05299L20.8433 6.20972L20.8433 5.36644L0.843262 5.36644L0.843262 6.20972Z" fill="currentColor"/>
-              </svg>
-            </a>
+   
+      <div class="cw-banner-star-box">
+        {% if section.settings.star_image %}
+          <div class="cw-banner-star-img">
+            <img src="{{ section.settings.star_image | img_url: 'master' }}" alt="">
           </div>
-        {%- endif -%}
-
-        <div class="custom-hero-banner__desktop">
-          <ul class="custom-hero-banner__features">
-            {%- for block in section.blocks -%}
-              <li class="custom-hero-banner__feature" {{ block.shopify_attributes }}>
-                {%- if block.settings.feature_icon != blank -%}
-                  <span class="custom-hero-banner__feature-icon">
-                    {{ block.settings.feature_icon | image_url: width: 160 | image_tag: alt: '', loading: 'lazy' }}
-                  </span>
-                {%- endif -%}
-                <div class="custom-hero-banner__feature-label">{{ block.settings.feature_title }}</div>
-              </li>
-            {%- endfor -%}
-          </ul>
+        {% endif %}
+        <div class="cw-banner-star-text">
+          {{ section.settings.star_text }}
         </div>
-
       </div>
 
-      <div class="custom-hero-banner__right">
-        {%- if section.settings.right_image_1 != blank -%}
-          <div class="custom-hero-banner__image1">
-            {{ section.settings.right_image_1 | image_url: width: 1200 | image_tag: widths: '300, 500, 700, 900, 1100, 1300', sizes: '(min-width: 601px) 52vw, 100vw', loading: 'eager', fetchpriority: 'high' }}
-          </div>
-        {%- endif -%}
-
-        {%- if section.settings.right_image_2 != blank -%}
-          <div class="custom-hero-banner__image2">
-            {{ section.settings.right_image_2 | image_url: width: 1260 | image_tag: widths: '260, 300, 500, 630, 900, 1260', sizes: '(min-width: 601px) 630px, 290px', loading: 'eager' }}
-          </div>
-        {%- endif -%}
+    
+      <div class="cw-banner-title">
+        {{ section.settings.title }}
       </div>
+
+  
+      <div class="cw-banner-description">
+        {{ section.settings.description }}
+      </div>
+
+
+      {% if section.settings.button_text != blank %}
+        <div class="cw-banner-button">
+          <a href="{{ section.settings.button_link }}">
+            {{ section.settings.button_text }} <svg width="22" height="13" viewBox="0 0 22 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.843262 5.36644C0.377534 5.36644 -1.22974e-05 5.74399 -1.23382e-05 6.20972C-1.23789e-05 6.67544 0.377534 7.05299 0.843262 7.05299L0.843262 6.20972L0.843262 5.36644ZM21.4395 6.806C21.7689 6.47668 21.7689 5.94275 21.4395 5.61343L16.073 0.24687C15.7437 -0.0824491 15.2097 -0.0824491 14.8804 0.24687C14.5511 0.576189 14.5511 1.11012 14.8804 1.43944L19.6507 6.20972L14.8804 10.98C14.5511 11.3093 14.5511 11.8432 14.8804 12.1726C15.2097 12.5019 15.7437 12.5019 16.073 12.1726L21.4395 6.806ZM0.843262 6.20972L0.843262 7.05299L20.8433 7.05299L20.8433 6.20972L20.8433 5.36644L0.843262 5.36644L0.843262 6.20972Z" fill="white"/>
+</svg>
+
+          </a>
+        </div>
+      {% endif %}
+
+      <div class="cw-banner-desktop">
+      <div class="cw-banner-feature-list">
+        {% for block in section.blocks %}
+          <div class="cw-banner-feature-box">
+            {% if block.settings.feature_icon %}
+              <div class="cw-banner-feature-img">
+                <img src="{{ block.settings.feature_icon | img_url: 'master' }}" alt="">
+              </div>
+            {% endif %}
+            <div class="cw-banner-feature-title">
+              {{ block.settings.feature_title }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+</div>
+
 
     </div>
-  </section>
 
-  <div class="custom-hero-banner__mobile">
-    <ul class="custom-hero-banner__features">
-      {%- for block in section.blocks -%}
-        <li class="custom-hero-banner__feature" {{ block.shopify_attributes }}>
-          {%- if block.settings.feature_icon != blank -%}
-            <span class="custom-hero-banner__feature-icon">
-              {{ block.settings.feature_icon | image_url: width: 160 | image_tag: alt: '', loading: 'lazy' }}
-            </span>
-          {%- endif -%}
-          <div class="custom-hero-banner__feature-label">{{ block.settings.feature_title }}</div>
-        </li>
-      {%- endfor -%}
-    </ul>
+ 
+    <div class="cw-banner-right">
+
+      {% if section.settings.right_image_1 %}
+        <div class="cw-banner-image1">
+          <img src="{{ section.settings.right_image_1 | img_url: 'master' }}" alt="">
+        </div>
+      {% endif %}
+
+      {% if section.settings.right_image_2 %}
+        <div class="cw-banner-image2">
+          <img src="{{ section.settings.right_image_2 | img_url: 'master' }}" alt="">
+        </div>
+      {% endif %}
+
+    </div>
+
   </div>
+ 
+</section>
+  <div class="cw-banner-mobile">
+      <div class="cw-banner-feature-list">
+        {% for block in section.blocks %}
+          <div class="cw-banner-feature-box">
+            {% if block.settings.feature_icon %}
+              <div class="cw-banner-feature-img">
+                <img src="{{ block.settings.feature_icon | img_url: 'master' }}" alt="">
+              </div>
+            {% endif %}
+            <div class="cw-banner-feature-title">
+              {{ block.settings.feature_title }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
 </div>
 
 {% schema %}
@@ -331,10 +377,10 @@
   "name": "[Custom] Hero Banner",
   "settings": [
     {
-      "type": "image_picker",
-      "id": "bg_image",
-      "label": "Background Image"
-    },
+  "type": "image_picker",
+  "id": "bg_image",
+  "label": "Background Image"
+},
     {
       "type": "image_picker",
       "id": "star_image",
@@ -375,16 +421,6 @@
       "type": "image_picker",
       "id": "right_image_2",
       "label": "Right Image 2"
-    },
-    {
-      "type": "header",
-      "content": "Colors"
-    },
-    {
-      "type": "color",
-      "id": "feature_bg_color",
-      "label": "Mobile feature bar background",
-      "default": "#F7F2ED"
     }
   ],
   "blocks": [
@@ -413,3 +449,5 @@
   ]
 }
 {% endschema %}
+
+

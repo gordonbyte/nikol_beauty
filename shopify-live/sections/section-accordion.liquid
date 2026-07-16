@@ -164,17 +164,17 @@
                             {{ form.errors | default_errors }}
 
                             <div class="custom-form__block">
-                              <label for="Form-{{ section_block_id }}-{{ forloop.index0 }}" class="visually-hidden">{{ field_name }}</label>
-                              <input type="text" class="contactFormText field" id="Form-{{ section_block_id }}-{{ forloop.index0 }}" name="contact[{{ field_name | handleize }}]" placeholder="{{ field_name }}" autocomplete="name" autocapitalize="words" value="" required>
+                              <label for="Form-{{ section.id }}-{{ forloop.index0 }}" class="visually-hidden">{{ field_name }}</label>
+                              <input type="text" class="contactFormText field" id="Form-{{ section_block_id }}-{{ forloop.index0 }}" name="contact[{{ field_name | handleize }}]" placeholder="{{ field_name }}" autocapitalize="words" value="" required>
                             </div>
 
                             <div class="custom-form__block">
-                              <label for="{{ section_block_id }}-contactFormEmail" class="visually-hidden">{{ field_email }}</label>
-                              <input type="email" id="{{ section_block_id }}-contactFormEmail" class="contactFormEmail field" name="contact[email]" placeholder="{{ field_email }}" autocomplete="email" autocorrect="off" autocapitalize="off" required>
+                              <label for="contactFormEmail" class="visually-hidden">{{ field_email }}</label>
+                              <input type="email" id="{{ section_block_id }}-contactFormEmail" class="contactFormEmail field" name="contact[email]" placeholder="{{ field_email }}" autocorrect="off" autocapitalize="off" required>
                             </div>
 
                             <div class="custom-form__block">
-                              <label for="{{ section_block_id }}-ContactFormMessage" class="visually-hidden">{{ field_message }}</label>
+                              <label for="ContactFormMessage" class="visually-hidden">{{ field_message }}</label>
                               <textarea rows="10" id="{{ section_block_id }}-ContactFormMessage" class="contactFormMessage field" name="contact[body]" placeholder="{{ field_message }}"></textarea>
                             </div>
 

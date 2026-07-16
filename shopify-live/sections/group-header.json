@@ -37,6 +37,7 @@
       "block_order": [
         "text_Mr6GH8"
       ],
+      "disabled": true,
       "settings": {
         "show_border": false,
         "layout": "slider",
@@ -46,8 +47,8 @@
         "marquee_speed": 100,
         "message_spacing": 10,
         "text_size": 2,
-        "bg_color": "#14448A",
-        "color": "#FFFFFF",
+        "bg_color": "#14448a",
+        "color": "#ffffff",
         "overlay_color": "#000000",
         "overlay_opacity": 0,
         "padding_top": 0,
@@ -87,8 +88,8 @@
         "transparent_videos": true,
         "secondary_menu_linklist": "",
         "tertiary_menu_linklist": "",
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_top": 15,
+        "padding_bottom": 15
       }
     }
   },

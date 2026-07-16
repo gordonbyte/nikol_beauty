@@ -61,6 +61,13 @@
                                                                                     {% endif %}
     
     <!-- End Noindex tag for tag pages -->
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    >
 
 {% if template == 'index' %}
   {%- comment -%}
@@ -76,8 +83,8 @@
 
 
 
-    {{ 'theme.min.css' | asset_url | preload_tag: as: 'style' }}
-     {{ 'main.min.css' | asset_url | preload_tag: as: 'style' }}
+    {{ 'theme.css' | asset_url | preload_tag: as: 'style' }}
+     {{ 'main.css' | asset_url | preload_tag: as: 'style' }}
     {{ 'swiper.css' | asset_url | preload_tag: as: 'style' }}
     {{ 'vendor.js' | asset_url | preload_tag: as: 'script' }}
     {{ 'theme.js' | asset_url | preload_tag: as: 'script' }}
@@ -206,14 +213,17 @@
 
     {% render 'css-variables' %}
 
-    {{ 'theme.min.css' | asset_url | stylesheet_tag: preload: true }}
-    {{ 'main.min.css' | asset_url | stylesheet_tag: preload: true }}
-    <link rel="stylesheet" href="{{ 'swiper.css' | asset_url }}" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="{{ 'swiper.css' | asset_url }}"></noscript>
+    {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'main.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'swiper.css' | asset_url | stylesheet_tag: preload: true }}
+    
+
+    {{ 'styles.css' | asset_url | stylesheet_tag: preload: true }}
 
   
 
 {% unless template.name == 'index' %}
+    <link rel="stylesheet" href="{{ 'selectboxit.css' | asset_url }}">
     <link rel="stylesheet" href="{{ 'jquery.fancybox.min.css' | asset_url }}">
 {% endunless %}
 
@@ -406,21 +416,25 @@
   Paste INSIDE the <head>...
 
 
+
+
+
+
+
+
+
 {% include 'store-credit-launcher' %}
-
-
-
-
-
 </head> block, anywhere before 
 
 
+
+
+
+
+
+
+
 {% include 'store-credit-launcher' %}
-
-
-
-
-
 </head>.
   ============================================================
 {%- endcomment -%}
@@ -445,7 +459,6 @@
     };
     window.__productIdFromTemplate = {{ product.id | json }};
     window.__plpCollectionIdFromTemplate = {{ collection.id | json }};
-    {%- if shop.permanent_domain == 'nikolbeauty.myshopify.com' -%}
     window.igProductData = (function() {
       const data = {};
       {%- if template.name == 'collection' -%}
@@ -471,15 +484,12 @@
       {%- endif -%}
       return data;
     })();
-    {%- endif -%}
   </script>
-  {%- if shop.permanent_domain == 'nikolbeauty.myshopify.com' -%}
   <script type="module" fetchpriority="high" src="https://cdn.intelligems.io/esm/fec7d9978c20/bundle.js" data-em-disable async></script>
-  {%- endif -%}
   
 
 
-{% include 'store-credit-launcher' %}
+
   {%- comment -%} Global container width + responsive show/hide utilities (uniform site-wide) {%- endcomment -%}
   <style>
     .page-width { max-width: 1350px; margin: 0 auto; padding: 0 40px; }
@@ -496,6 +506,8 @@
 
 
 
+
+{% include 'store-credit-launcher' %}
 </head>
   <body
     id="{{ page_title | handle }}"
@@ -531,6 +543,8 @@
       </main>
     </div>
 
+    {% sections 'group-pre-footer' %}
+    
     {% section 'custom-footer' %}
     
     
@@ -563,14 +577,16 @@
       defer
     ></script>
 
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" defer></script>
   <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
 
    
 
    <!-- Custom CD Scripts -->
-  <script src="{{ 'main.min.js' | asset_url }}" defer></script>
+  <script src="{{ 'main.js' | asset_url }}" defer></script>
 
     {% unless template.name == 'index' %}
+        <script src="{{ 'selectboxit.js' | asset_url }}" defer></script>
         <script src="{{ 'jquery.fancybox.min.js' | asset_url }}" defer></script>
         <script src="{{ 'shuffle.min.js' | asset_url }}" defer></script>
         <!-- Yotpo Rewards Code -->
@@ -605,6 +621,8 @@ window.igData?.user.assignTestGroup("595abf02-a359-4f60-8936-160a08f53a88",
 console.log('Cart drawer opened. window.igCartOpened =',window.igCartOpened)
 })
 </script>
+
+
 
 
 

@@ -25,6 +25,9 @@
   {% endunless %}
 
   {% if image_background %}
+    .footer-group { background: none; }
+    .footer-group .footer__image { background-color: var(--bg); }
+
     .footer-sections [data-section-type] {
       position: relative;
       z-index: 1;

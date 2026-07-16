@@ -8,9 +8,9 @@
     <div class="about-quote-image__right">
       <div class="about-quote-image__copy">
         <figure class="about-header__image">  
-          <img
+          <img 
             src="{{ section.settings.image | image_url }}"
-            alt="{{ section.settings.image.alt | default: shop.name | strip_html | escape }}"
+            alt="{{ section.settings.image | default: shop.name }}"
             loading="eager"
             />
           </figure>

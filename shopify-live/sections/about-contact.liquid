@@ -2,17 +2,17 @@
   <div class="about-contact__inner">
     <div class="about-contact__left">
       <figure class="about-contact__image">  
-        <img
+        <img 
           src="{{ section.settings.image | image_url }}"
-          alt="{{ section.settings.image.alt | default: section.settings.title | default: shop.name | strip_html | escape }}"
+          alt="{{ section.settings.image | default: shop.name }}"
           loading="eager"
           />
         </figure>
     </div>
     <div class="about-contact__right">
-      <h2 class="about-contact__title">
+      <div class="about-contact__title">
         {{ section.settings.title }}
-      </h2>
+      </div>
 
     	<div class="about-contact__copy">
         {{ section.settings.copy }} 
@@ -29,26 +29,31 @@
 
         <div class="about-contact__row">
           <div class="custom-form__block">
-            <label for="AboutContact-first-{{ section.id }}" class="visually-hidden">First name</label>
-            <input type="text" class="contactFormText field" id="AboutContact-first-{{ section.id }}" name="contact[first_name]" placeholder="FIRST NAME*" autocomplete="given-name" autocapitalize="words" value="" required/>
+            <input type="text" class="contactFormText field" id="" name="contact[first_name]" placeholder="FIRST NAME*" autocapitalize="words" value=""  required/>
           </div>
           <div class="custom-form__block">
-            <label for="AboutContact-last-{{ section.id }}" class="visually-hidden">Last name</label>
-            <input type="text" class="contactFormText field" id="AboutContact-last-{{ section.id }}" name="contact[last_name]" placeholder="LAST NAME*" autocomplete="family-name" autocapitalize="words" value="" required/>
+            <input type="text" class="contactFormText field" id="" name="contact[last_name]" placeholder="LAST NAME*" autocapitalize="words" value=""  required/>
           </div>
         </div>
 
         <div class="about-contact__row">
           <div class="custom-form__block">
-            <label for="AboutContact-email-{{ section.id }}" class="visually-hidden">Email address</label>
-            <input type="email" class="contactFormEmail field" id="AboutContact-email-{{ section.id }}" name="contact[email]" placeholder="EMAIL ADDRESS*" autocomplete="email" autocorrect="off" autocapitalize="off" required/>
+            <input type="email" class="contactFormEmail field" id="" name="contact[email]" placeholder="EMAIL ADDRESS*" autocorrect="off" autocapitalize="off" required/>
           </div>
+
+<!--           <div class="">
+            <fieldset class="custom-form__block custom-form__block--group">
+              <select id="reason" class="contactFormSelect field" name="contact[reason]">
+                  <option value="employment">Employment</option>
+                  <option value="Meet Nikol">Meet Nikol</option>
+              </select>
+            </fieldset>
+          </div> -->
         </div>
 
         <div class="about-contact__row">
           <div class="custom-form__block">
-            <label for="AboutContact-message-{{ section.id }}" class="visually-hidden">Message</label>
-            <textarea rows="3" id="AboutContact-message-{{ section.id }}" class="contactFormMessage field" name="contact[body]" placeholder="MESSAGE*" required></textarea>
+            <textarea rows="3" id="" class="contactFormMessage field" name="contact[body]" placeholder="MESSAGE*" required></textarea>
           </div>
         </div>
 
@@ -64,6 +69,13 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    $("#reason").selectBoxIt();
+  })
+
+</script>
 
 {% schema %}
 {

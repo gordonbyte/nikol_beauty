@@ -12,10 +12,8 @@
             
               <a href="{{ product.url }}" class="review-product-card">
                 <div class="product-image">
-<img
-  src="{{ product.featured_image | image_url: width: 300 }}"
-  srcset="{{ product.featured_image | image_url: width: 150 }} 150w, {{ product.featured_image | image_url: width: 300 }} 300w, {{ product.featured_image | image_url: width: 450 }} 450w"
-  sizes="145px"
+<img 
+  src="{{ product.featured_image | image_url: width: 400 }}"
   alt="{{ product.featured_image.alt | escape }}"
   loading="lazy"
   decoding="async"
@@ -28,7 +26,7 @@
                 {% comment %} {{ product.metafields.reviews.rating.value }} {% endcomment %}
                 {% if product.metafields.custom.product_review %}
                   {% assign review_content = product.metafields.custom.product_review  %}
-                  {{ review_content | metafield_tag | replace: '<h6', '<p class="review-author"' | replace: '</h6>', '</p>' }}
+                  {{ review_content | metafield_tag }}
                 {% else %}
                   No review available.
                 {% endif %}

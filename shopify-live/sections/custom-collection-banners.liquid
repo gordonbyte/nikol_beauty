@@ -1,116 +1,116 @@
 <style>
-.custom-collection-banners {
+section.cw-main-collections-section {
     background-size: cover;
     background-position: bottom;
     padding-top: 80px;
     padding-bottom: 40px;
 }
 
-.custom-collection-banners__media img {
+.cw-main-collections-image img {
     width: 100%;
 }
 
-.custom-collection-banners__header {
+.cw-main-collections-header {
     text-align: center;
 }
 
-.custom-collection-banners__title {
-    color: var(--COLOR-TEXT);
+.cw-main-collections-heading {
+    color: #2A2724;
+    font-size: 56px;
     line-height: 110%;
-    font-family: var(--FONT-STACK-HEADING);
+    font-family: 'Cormorant';
     letter-spacing: -3px;
     font-weight: 500;
-    margin: 0;
     text-transform: capitalize;
 }
 
-.custom-collection-banners__subtitle {
-    color: var(--COLOR-TEXT);
-    font-family: var(--FONT-STACK-BODY);
-    font-size: var(--FONT-SIZE-BASE);
-    margin: 0;
+.cw-main-collections-subheading {
+    color: #2A2724;
+    font-family: 'Inter';
+    font-size: 20px;
     padding-top: 20px;
     padding-bottom: 40px;
 }
 
-.custom-collection-banners__list {
+.cw-main-collections-parent {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 15px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
 }
 
-.custom-collection-banners__item {
+.cw-main-collections-box {
     width: 32.3%;
 }
 
-.custom-collection-banners__item-title {
-    color: var(--COLOR-TEXT);
-    font-family: var(--FONT-STACK-HEADING);
+.cw-main-collections-title {
+    color: #2A2724;
+    font-size: 36px;
+    font-family: 'Cormorant';
     font-weight: 400;
-    margin: 0;
     padding-bottom: 5px;
 }
 
-.custom-collection-banners__shop {
-    color: var(--BTN-PRIMARY-BG-COLOR);
+.cw-main-collections-shop {
+    color: #D34270;
     font-size: var(--FONT-SIZE-BASE);
     display: flex;
     align-items: center;
     gap: 8px;
     font-weight: 700;
-    font-family: var(--FONT-STACK-HEADING);
+    font-family: 'Cormorant';
     text-decoration: underline;
 }
 
-.custom-collection-banners__link {
+.cw-main-collections-box a {
     position: relative;
-    display: block;
 }
 
-.custom-collection-banners__content {
+.cw-main-collections-content {
     position: absolute;
     top: 30%;
     left: 21px;
 }
-.custom-collection-banners__list .custom-collection-banners__item:last-child .custom-collection-banners__content {
+.cw-main-collections-parent .cw-main-collections-box:last-child .cw-main-collections-content {
     top: 20%;
 }
-.custom-collection-banners__list .custom-collection-banners__item:last-child .custom-collection-banners__item-title {
+.cw-main-collections-parent .cw-main-collections-box:last-child .cw-main-collections-title {
     width: 50%;
 }
 @media only screen and (max-width: 600px) {
-.custom-collection-banners {
+section.cw-main-collections-section {
     padding-top: 40px;
 }
 
-.custom-collection-banners__list {
+.cw-main-collections-parent {
     flex-wrap: wrap;
 }
 
-.custom-collection-banners__item {
+.cw-main-collections-box {
     width: 100%;
 }
 
-.custom-collection-banners__item-title {
+.cw-main-collections-title {
+    font-size: 32px;
     line-height: 90%;
 }
 
-.custom-collection-banners__shop {
+.cw-main-collections-shop {
     font-size: var(--FONT-SIZE-BASE);
 }
 
-.custom-collection-banners__subtitle {
+.cw-main-collections-heading {
+    font-size: 34px;
+}
+
+.cw-main-collections-subheading {
     font-size: var(--FONT-SIZE-BASE);
     line-height: 135%;
     padding-top: 15px;
     padding-bottom: 30px;
 }
 
-.custom-collection-banners__header {
+.cw-main-collections-header {
     padding: 0 15px;
 }
 
@@ -118,84 +118,67 @@
 }
     </style>
 
-{%- assign heading_id = 'CustomCollBanners-title-' | append: section.id -%}
-
 <section
-  class="custom-collection-banners"
-  {% if section.settings.title != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
+  class="cw-main-collections-section"
   {% if section.settings.bg_image != blank %}
     style="background-image: url('{{ section.settings.bg_image | img_url: 'master' }}');"
   {% endif %}
 >
   <div class="page-width">
-    <div class="custom-collection-banners__header">
+ <div class="cw-main-collections-header">
       {% if section.settings.title != blank %}
-        <h2 id="{{ heading_id }}" class="custom-collection-banners__title heading-size-11">
+        <div class="cw-main-collections-heading">
           {{ section.settings.title }}
-        </h2>
+        </div>
       {% endif %}
 
       {% if section.settings.subtitle != blank %}
-        <p class="custom-collection-banners__subtitle">
+        <div class="cw-main-collections-subheading">
           {{ section.settings.subtitle }}
-        </p>
+        </div>
       {% endif %}
     </div>
-
     {% if section.blocks.size > 0 %}
-      <ul class="custom-collection-banners__list" role="list">
+      <div class="cw-main-collections-parent">
 
         {% for block in section.blocks %}
-          {%- capture box_inner -%}
-            <div class="custom-collection-banners__media">
-              {% if block.settings.image_desktop != blank %}
-                <img
-                  src="{{ block.settings.image_desktop | img_url: 'master' }}"
-                  alt=""
-                  loading="lazy"
-                  class="cw-desktop">
-              {% endif %}
-              {% if block.settings.image_mobile != blank %}
-                <img
-                  src="{{ block.settings.image_mobile | img_url: 'master' }}"
-                  alt=""
-                  loading="lazy"
-                  class="cw-mobile">
-              {% endif %}
-            </div>
+          <div class="cw-main-collections-box" {{ block.shopify_attributes }}>
+            <a
+              href="{{ block.settings.link }}"
+              class="cw-main-collections-link"
+            >
 
-            <div class="custom-collection-banners__content">
+             
+                <div class="cw-main-collections-image">
+                  <img
+                    src="{{ block.settings.image_desktop | img_url: 'master' }}"
+                    alt="{{ block.settings.title | escape }}" class="cw-desktop">
+                      <img
+                    src="{{ block.settings.image_mobile | img_url: 'master' }}"
+                    alt="{{ block.settings.title | escape }}" class="cw-mobile">
+                </div>
+             
+<div class="cw-main-collections-content">
               {% if block.settings.title != blank %}
-                <h3 class="custom-collection-banners__item-title heading-size-8">
+                <div class="cw-main-collections-title">
                   {{ block.settings.title }}
-                </h3>
+                </div>
               {% endif %}
 
               {% if block.settings.shop_text != blank %}
-                <span class="custom-collection-banners__shop">
-                  {{ block.settings.shop_text }}
-                  <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                    <path d="M0.779541 4.96159C0.348967 4.96159 -8.18591e-05 5.31064 -8.18968e-05 5.74121C-8.19344e-05 6.17178 0.348967 6.52083 0.779541 6.52083L0.779541 5.74121L0.779541 4.96159ZM16.3308 6.29249C16.6353 5.98803 16.6353 5.4944 16.3308 5.18994L11.3693 0.228446C11.0649 -0.0760165 10.5712 -0.0760165 10.2668 0.228445C9.96231 0.532907 9.96231 1.02654 10.2668 1.331L14.677 5.74121L10.2668 10.1514C9.96231 10.4559 9.96231 10.9495 10.2668 11.254C10.5712 11.5584 11.0649 11.5584 11.3693 11.254L16.3308 6.29249ZM0.779541 5.74121L0.779541 6.52083L15.7795 6.52084L15.7795 5.74121L15.7795 4.96159L0.779541 4.96159L0.779541 5.74121Z" fill="currentColor"/>
-                  </svg>
-                </span>
+                <div class="cw-main-collections-shop">
+                  {{ block.settings.shop_text }} <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.779541 4.96159C0.348967 4.96159 -8.18591e-05 5.31064 -8.18968e-05 5.74121C-8.19344e-05 6.17178 0.348967 6.52083 0.779541 6.52083L0.779541 5.74121L0.779541 4.96159ZM16.3308 6.29249C16.6353 5.98803 16.6353 5.4944 16.3308 5.18994L11.3693 0.228446C11.0649 -0.0760165 10.5712 -0.0760165 10.2668 0.228445C9.96231 0.532907 9.96231 1.02654 10.2668 1.331L14.677 5.74121L10.2668 10.1514C9.96231 10.4559 9.96231 10.9495 10.2668 11.254C10.5712 11.5584 11.0649 11.5584 11.3693 11.254L16.3308 6.29249ZM0.779541 5.74121L0.779541 6.52083L15.7795 6.52084L15.7795 5.74121L15.7795 4.96159L0.779541 4.96159L0.779541 5.74121Z" fill="#D34270"/>
+</svg>
+
+                </div>
               {% endif %}
             </div>
-          {%- endcapture -%}
-
-          <li class="custom-collection-banners__item" {{ block.shopify_attributes }}>
-            {% if block.settings.link != blank %}
-              <a class="custom-collection-banners__link" href="{{ block.settings.link }}">
-                {{ box_inner }}
-              </a>
-            {% else %}
-              <div class="custom-collection-banners__link">
-                {{ box_inner }}
-              </div>
-            {% endif %}
-          </li>
+            </a>
+          </div>
         {% endfor %}
 
-      </ul>
+      </div>
     {% endif %}
 
   </div>

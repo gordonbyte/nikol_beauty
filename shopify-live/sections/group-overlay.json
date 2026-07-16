@@ -50,6 +50,13 @@
             "pin_to_bottom": false
           }
         },
+        "upsell-products": {
+          "type": "upsell-products",
+          "settings": {
+            "upsell_auto_open": true,
+            "pin_to_bottom": false
+          }
+        },
         "checkout-buttons": {
           "type": "checkout-buttons",
           "settings": {
@@ -64,6 +71,7 @@
         "title",
         "free-shipping",
         "products",
+        "upsell-products",
         "checkout-buttons"
       ],
       "settings": {}

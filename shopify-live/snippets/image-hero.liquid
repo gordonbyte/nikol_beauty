@@ -35,7 +35,7 @@
   assign modifier = modifier | default: ''
   assign widths_default = '180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 1950, 2100, 2260, 2450, 2700, 3000, 3350, 3750, 4100, 4450, 4800, 5150, 5500, 5760'
   assign widths = widths | default: widths_default
-  assign alt = alt | default: image.alt | default: image_desktop.alt | default: image_mobile.alt | default: ''
+  assign alt = alt | default: image.alt
   assign alt = alt | escape
   assign preload = preload | default: nil
   assign fetchpriority = fetchpriority | default: nil
@@ -150,7 +150,7 @@
           }}
         </picture>
       {%- elsif image contains 'blank.svg' or image == blank -%}
-        <img src="{{ 'blank.svg' | asset_url }}" loading="lazy" class="is-loading" alt="">
+        <img src="{{ 'blank.svg' | asset_url }}" loading="lazy" class="is-loading">
       {%- else -%}
         {{ image | image_url: width: width | image_tag:
           loading: loading,

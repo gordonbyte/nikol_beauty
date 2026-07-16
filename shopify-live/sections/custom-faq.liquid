@@ -1,206 +1,160 @@
-{%- style -%}
-  #Faq-{{ section.id }} {
-    --custom-faq-bg: {{ section.settings.background_color }};
-    --custom-faq-border: {{ section.settings.border_color }};
-  }
-{%- endstyle -%}
-
 <style>
-.custom-faq {
-  background: var(--custom-faq-bg);
-  color: var(--COLOR-TEXT);
+.cw-faq-section {
+  background: #F7F2ED66;
   padding: 80px 0;
 }
 
-.custom-faq__header {
+.cw-faq-header {
   text-align: center;
   margin-bottom: 50px;
 }
 
-.custom-faq__title {
-  margin: 0;
+.cw-faq-title {
   font-size: 56px;
   font-weight: 500;
   line-height: 110%;
   letter-spacing: -0.02em;
   font-family: 'Cormorant';
+  color: #2A2724;
 }
 
-.custom-faq__subtitle {
-  margin: 0;
+.cw-faq-subtitle {
   font-size: 20px;
   line-height: 140%;
   letter-spacing: -0.02em;
   font-weight: 400;
+  color: #2A2724;
   padding-top: 15px;
 }
 
-.custom-faq__list {
+.cw-faq-parent {
   max-width: 700px;
   margin: 0 auto;
 }
 
-.custom-faq__item {
-  border-bottom: 1px solid var(--custom-faq-border);
+.cw-faq-item {
+    border-bottom: 1px solid #2A272433;
 }
 
-.custom-faq__question {
-  margin: 0;
-  font-weight: 400;
-}
-
-.custom-faq__trigger {
+.cw-faq-question {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
-  width: 100%;
-  padding: 20px 0;
-  background: transparent;
-  border: 0;
   cursor: pointer;
-  text-align: left;
-  text-transform: capitalize;
-  color: inherit;
-  font: inherit;
+  padding: 20px 0;
+ text-transform: capitalize;
 }
 
-.custom-faq__trigger:focus-visible {
-  outline: 2px solid var(--COLOR-TEXT);
-  outline-offset: 3px;
-}
-
-.custom-faq__q-text {
+.cw-faq-q-text {
   font-size: 26px;
   line-height: 110%;
   letter-spacing: -0.02em;
   font-weight: 500;
+  color: #2A2724;
   font-family: 'Cormorant';
 }
 
-.custom-faq__icon {
-  flex-shrink: 0;
-  line-height: 0;
-}
-
-.custom-faq__icon img {
+.cw-faq-icon img {
   width: 18px;
   display: none;
 }
 
-.custom-faq__item:not(.is-open) .custom-faq__icon-plus {
+.cw-faq-item:not(.active) .cw-faq-plus {
   display: block;
 }
 
-.custom-faq__item.is-open .custom-faq__icon-minus {
+.cw-faq-item.active .cw-faq-minus {
   display: block;
 }
 
-.custom-faq__answer {
+.cw-faq-answer {
+  display: none;
   padding-bottom: 20px;
   font-size: var(--FONT-SIZE-BASE);
   line-height: 150%;
   font-weight: 400;
+  color: #2A2724;
+}
+
+.cw-faq-item.active .cw-faq-answer {
+  display: block;
 }
 
 @media only screen and (max-width: 600px) {
-  .custom-faq {
+section.cw-faq-section {
     padding: 40px 0;
-  }
-
-  .custom-faq__title {
-    font-size: 34px;
-  }
-
-  .custom-faq__subtitle {
-    font-size: var(--FONT-SIZE-BASE);
-  }
-
-  .custom-faq__header {
-    margin-bottom: 20px;
-  }
-
-  .custom-faq__trigger {
-    gap: 20px;
-  }
-
-  .custom-faq__q-text {
-    font-size: 22px;
-  }
-
-  .custom-faq__answer {
-    font-size: var(--FONT-SIZE-BASE);
-    padding-right: 20px;
-  }
 }
-</style>
 
-<section class="custom-faq" id="Faq-{{ section.id }}" aria-labelledby="custom-faq-title-{{ section.id }}">
+.cw-faq-title {
+    font-size: 34px;
+}
+
+.cw-faq-subtitle {
+    font-size: var(--FONT-SIZE-BASE);
+}
+
+.cw-faq-header {
+    margin-bottom: 20px;
+}
+
+.cw-faq-question {
+    gap: 20px;
+}
+.cw-faq-q-text {
+    font-size: 22px;
+}
+
+.cw-faq-answer {
+    font-size: var(--FONT-SIZE-BASE);
+        padding-right: 20px;
+}
+}
+    </style>
+
+<section class="cw-faq-section" id="Faq-{{ section.id }}">
   <div class="page-width">
 
-    {%- if section.settings.title != blank or section.settings.subtitle != blank -%}
-      <div class="custom-faq__header">
-        {%- if section.settings.title != blank -%}
-          <h2 class="custom-faq__title" id="custom-faq-title-{{ section.id }}">{{ section.settings.title }}</h2>
-        {%- endif -%}
-        {%- if section.settings.subtitle != blank -%}
-          <p class="custom-faq__subtitle">{{ section.settings.subtitle }}</p>
-        {%- endif -%}
-      </div>
-    {%- endif -%}
+ 
+    <div class="cw-faq-header">
+      <div class="cw-faq-title">{{ section.settings.title }}</div>
+      <div class="cw-faq-subtitle">{{ section.settings.subtitle }}</div>
+    </div>
 
-    <div class="custom-faq__list">
+ 
+    <div class="cw-faq-parent">
+
       {% for block in section.blocks %}
-        {%- assign panel_id = 'custom-faq-panel-' | append: section.id | append: '-' | append: forloop.index -%}
-        {%- assign trigger_id = 'custom-faq-trigger-' | append: section.id | append: '-' | append: forloop.index -%}
-        <div class="custom-faq__item{% if forloop.first %} is-open{% endif %}" {{ block.shopify_attributes }}>
-          <h3 class="custom-faq__question">
-            <button
-              type="button"
-              class="custom-faq__trigger"
-              id="{{ trigger_id }}"
-              aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}"
-              aria-controls="{{ panel_id }}"
-            >
-              <span class="custom-faq__q-text">{{ block.settings.question }}</span>
+        <div class="cw-faq-item {% if forloop.first %}active{% endif %}">
+          <div class="cw-faq-question">
+            <div class="cw-faq-q-text">
+              {{ block.settings.question }}
+            </div>
 
-              <span class="custom-faq__icon" aria-hidden="true">
-                {% if section.settings.plus_icon != blank %}
-                  <img
-                    class="custom-faq__icon-plus"
-                    src="{{ section.settings.plus_icon | img_url: 'master' }}"
-                    alt=""
-                    width="18"
-                    height="18"
-                    loading="lazy"
-                  >
-                {% endif %}
+            <div class="cw-faq-icon">
+              {% if section.settings.plus_icon != blank %}
+                <img
+                  class="cw-faq-plus"
+                  src="{{ section.settings.plus_icon | img_url: 'master' }}"
+                  alt="plus"
+                >
+              {% endif %}
 
-                {% if section.settings.minus_icon != blank %}
-                  <img
-                    class="custom-faq__icon-minus"
-                    src="{{ section.settings.minus_icon | img_url: 'master' }}"
-                    alt=""
-                    width="18"
-                    height="18"
-                    loading="lazy"
-                  >
-                {% endif %}
-              </span>
-            </button>
-          </h3>
+              {% if section.settings.minus_icon != blank %}
+                <img
+                  class="cw-faq-minus"
+                  src="{{ section.settings.minus_icon | img_url: 'master' }}"
+                  alt="minus"
+                >
+              {% endif %}
+            </div>
+          </div>
 
-          <div
-            class="custom-faq__answer"
-            id="{{ panel_id }}"
-            role="region"
-            aria-labelledby="{{ trigger_id }}"
-            {% unless forloop.first %}hidden{% endunless %}
-          >
+          <div class="cw-faq-answer">
             {{ block.settings.answer }}
           </div>
         </div>
       {% endfor %}
+
     </div>
   </div>
 </section>
@@ -209,32 +163,20 @@
 document.addEventListener("DOMContentLoaded", function () {
   var root = document.getElementById("Faq-{{ section.id }}");
   if (!root) return;
-  var items = root.querySelectorAll(".custom-faq__item");
+  var items = root.querySelectorAll(".cw-faq-item");
 
   items.forEach(function (item) {
-    var trigger = item.querySelector(".custom-faq__trigger");
-    var panel = item.querySelector(".custom-faq__answer");
-    if (!trigger || !panel) return;
-
-    trigger.addEventListener("click", function () {
-      var willOpen = !item.classList.contains("is-open");
-
+    item.querySelector(".cw-faq-question").addEventListener("click", function () {
       items.forEach(function (other) {
-        if (other === item) return;
-        other.classList.remove("is-open");
-        var otherTrigger = other.querySelector(".custom-faq__trigger");
-        var otherPanel = other.querySelector(".custom-faq__answer");
-        if (otherTrigger) otherTrigger.setAttribute("aria-expanded", "false");
-        if (otherPanel) otherPanel.hidden = true;
+        if (other !== item) {
+          other.classList.remove("active");
+        }
       });
-
-      item.classList.toggle("is-open", willOpen);
-      trigger.setAttribute("aria-expanded", willOpen ? "true" : "false");
-      panel.hidden = !willOpen;
+      item.classList.toggle("active");
     });
   });
 });
-</script>
+    </script>
 
 {% schema %}
 {
@@ -251,26 +193,6 @@ document.addEventListener("DOMContentLoaded", function () {
       "id": "subtitle",
       "label": "Subtitle",
       "default": "Everything you need to know."
-    },
-    {
-      "type": "header",
-      "content": "Colors"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Section background",
-      "default": "#F7F2ED"
-    },
-    {
-      "type": "color",
-      "id": "border_color",
-      "label": "Divider color",
-      "default": "#CEC9C5"
-    },
-    {
-      "type": "header",
-      "content": "Icons"
     },
     {
       "type": "image_picker",
