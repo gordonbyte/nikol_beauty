@@ -197,30 +197,7 @@
                 {% if current_variant.available %}
                   {{ form | payment_button }}
                 {% endif %}
-                {% comment %}
-                {% if current_variant.available %}
-                    <button type="button" class="shopify-payment-button__button shopify-payment-button__button--unbranded" data-buy-now>
-                        Buy now
-                    </button>
-                      <script>
-                        document.querySelector('[data-buy-now]').addEventListener('click', () => {
-                          let addToCartForm = document.querySelector('form[action$="/cart/add"]');
-                          let formData = new FormData(addToCartForm);
-                          fetch(window.Shopify.routes.root + 'cart/add.js', {
-                            method: 'POST',
-                            body: formData
-                          })
-                          .then(response => {
-                            window.location.href = '/checkout';
-                            return response.json();
-                          })
-                          .catch((error) => {
-                            console.error('Error:', error);
-                          });
-                        });
-                      </script>
-                  {% endif %}
-                {% endcomment %}
+                
               </div>
             {%- endif -%}
           {%- endif -%}

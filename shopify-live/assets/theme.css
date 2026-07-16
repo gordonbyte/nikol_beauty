@@ -23317,6 +23317,10 @@ dialog.is-loading .loader {
   padding: 0;
 }
 
+.highlights__item .image-wrapper img {
+  object-fit: cover;
+}
+
 
 .highlights__item__background {
   position: relative;

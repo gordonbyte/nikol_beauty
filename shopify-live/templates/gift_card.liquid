@@ -28,7 +28,7 @@
 
     {%- render 'css-variables' -%}
 
-    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {{ 'theme.min.css' | asset_url | stylesheet_tag }}
 
     <script src="{{ 'vendor/qrcode.js' | shopify_asset_url }}" defer="defer"></script>
 
@@ -37,7 +37,7 @@
 
   <body class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '/', '-' | split: '.' }}">
     <div class="container" data-site-container>
-      {%- section 'gift-card.liquid' -%}
+      {%- section 'gift-card' -%}
 
       <!-- CONTENT -->
       <div class="main-content">

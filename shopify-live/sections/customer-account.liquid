@@ -75,11 +75,11 @@
             <table>
               <thead>
                 <tr>
-                  <th class="order-number">{{ 'customer.orders.order_number' | t }}</th>
-                  <th class="date">{{ 'customer.orders.date' | t }}</th>
-                  <th class="payment-status">{{ 'customer.orders.payment_status' | t }}</th>
-                  <th class="fulfillment-status">{{ 'customer.orders.fulfillment_status' | t }}</th>
-                  <th class="total">{{ 'customer.orders.total' | t }}</th>
+                  <th scope="col" class="order-number">{{ 'customer.orders.order_number' | t }}</th>
+                  <th scope="col" class="date">{{ 'customer.orders.date' | t }}</th>
+                  <th scope="col" class="payment-status">{{ 'customer.orders.payment_status' | t }}</th>
+                  <th scope="col" class="fulfillment-status">{{ 'customer.orders.fulfillment_status' | t }}</th>
+                  <th scope="col" class="total">{{ 'customer.orders.total' | t }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -90,7 +90,7 @@
                     </td>
                     <td class="date"><span class="note">
                       <span>{{ order.created_at | date: format: 'full_date' }}</span>
-                    </td>
+                    </span></td>
                     <td class="payment-status">
                       <span>{{ order.financial_status_label }}</span>
                       {% if order.cancelled %}

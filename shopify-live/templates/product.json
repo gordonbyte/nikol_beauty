@@ -6,13 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */
-{
+ */{
   "sections": {
-    "zp-product-header-content": {
-      "type": "product-header-content-zipifypages",
-      "settings": {}
-    },
     "main": {
       "type": "product",
       "blocks": {
@@ -380,10 +375,6 @@
         "padding_bottom": 0
       }
     },
-    "zp-product-footer-content": {
-      "type": "product-footer-content-zipifypages",
-      "settings": {}
-    },
     "177628004852077364": {
       "type": "apps",
       "blocks": {
@@ -406,7 +397,6 @@
     }
   },
   "order": [
-    "zp-product-header-content",
     "main",
     "section_custom_code_cbKEGN",
     "faq",
@@ -414,7 +404,6 @@
     "16904264243ceba35b",
     "image_grid_MeXLj9",
     "related",
-    "zp-product-footer-content",
     "177628004852077364"
   ]
 }

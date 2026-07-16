@@ -9,60 +9,7 @@ window.addEventListener('load', (event) => {
 });
 
 
-document.addEventListener("DOMContentLoaded", () => {
-  const upsellButton = document.querySelector(".bcsell-upsell-btn");
-  const quantityCounter = document.querySelector("quantity-counter");
-  if (upsellButton && quantityCounter) {
-    upsellButton.addEventListener("click", () => {
-
-      setTimeout(() => {
-        quantityCounter.updateCart();
-      }, 500);
-    });
-  } 
-});
-
-$(document).ready( () => {
-	  /* Hero slider */
-    let sliderMain = document.querySelectorAll('.hero-slider .swiper-container')
-    let sliderPagination  = document.querySelectorAll('.hero-slider .swiper-pagination')
-    let sliderNext  = document.querySelectorAll('.hero-slider .swiper-next')
-    let sliderPrev = document.querySelectorAll('.hero-slider .swiper-prev')
-
-    let mainArray  = [];
-
-    sliderMain.forEach(function(element, i) {
-      mainArray.push(
-        new Swiper(element, {
-          spaceBetween: 0,
-          loop: false,
-          slidesPerView: 1,
-          freeMode: false,
-          watchSlidesVisibility: true,
-          navigation: {
-            nextEl: sliderNext[i],
-            prevEl: sliderPrev[i]
-          },
-          on: {
-            init: function(){
-              let self = this;
-              setTimeout(function(){
-                self.update();
-              }, 100)
-            },
-          },
-        })
-      );
-    });
-
-    $('.hero-slider__title').mouseover(function() {
-    	$(this).parent().parent().addClass('hover')
-    })
-
-    $('.hero-slider__title').mouseout(function() {
-    	$(this).parent().parent().removeClass('hover')
-    })
-
+document.addEventListener('DOMContentLoaded', () => {
     /* Testimonials slider */
     let sliderTestimonials = document.querySelectorAll('.testimonials .swiper-container')
     let sliderTestimonialsNext  = document.querySelectorAll('.testimonials .swiper-next')
@@ -125,7 +72,7 @@ $(document).ready( () => {
     });
 
 
-  
+
     /* review product swiper */
     let swiperReview = document.querySelectorAll('.review-cards .swiper-container')
 
@@ -139,12 +86,12 @@ $(document).ready( () => {
           slidesPerView: 1,
           watchSlidesVisibility: true,
           autoplay: {
-            delay: 66000, 
-            disableOnInteraction: false, 
+            delay: 66000,
+            disableOnInteraction: false,
           },
           pagination: {
-            el: '.swiper-pagination', 
-            clickable: true, 
+            el: '.swiper-pagination',
+            clickable: true,
           },
           breakpoints: {
             768: {
@@ -165,23 +112,26 @@ $(document).ready( () => {
     });
 
 
-  
+
     // Testimonials
 
-    $('.testimonials__content').each(function(){
-      console.log($(this).height() )
-      if($(this).height() < 180) {
-        $(this).next().addClass('hidden')
-      }
-    })
+    document.querySelectorAll('.testimonials__content').forEach(function(content) {
+      const overlay = content.nextElementSibling;
+      if (!overlay) return;
 
-    $('.testimonials__content').on('scroll', function() {
-      let $overlay = $(this).next();
-      if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
-        $overlay.addClass('hidden')
-      } else {
-        $overlay.removeClass('hidden')
+      const styles = getComputedStyle(content);
+      const contentHeight = content.clientHeight - parseFloat(styles.paddingTop) - parseFloat(styles.paddingBottom);
+      if (contentHeight < 180) {
+        overlay.classList.add('hidden')
       }
+
+      content.addEventListener('scroll', function() {
+        if (content.scrollTop + content.clientHeight >= content.scrollHeight) {
+          overlay.classList.add('hidden')
+        } else {
+          overlay.classList.remove('hidden')
+        }
+      })
     })
 
     // Videos hub
@@ -194,11 +144,16 @@ $(document).ready( () => {
         itemSelector: '.video-product-hub',
       });
 
-      $('.js-filter-button').click(function() {
-        $('.js-filter-button').removeClass('active');
-        $(this).addClass('active');
+      const filterButtons = document.querySelectorAll('.js-filter-button');
+      filterButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+          filterButtons.forEach(function(other) {
+            other.classList.remove('active');
+          });
+          button.classList.add('active');
 
-        shuffleInstance.filter($(this).data('category'));
+          shuffleInstance.filter(button.dataset.category);
+        })
       })
 
 
@@ -207,23 +162,24 @@ $(document).ready( () => {
 
       if(fragment) {
         var link = document.querySelector('a[href="'+fragment+'"]');
-        link.click();
+        if(link) {
+          link.click();
 
-        var offset = 150; // Padding value (adjust as needed)
+          var offset = 150; // Padding value (adjust as needed)
 
-        setTimeout(function() {
-          
-          var targetElement = document.getElementById('videos_list');
-          var targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-          var adjustedPosition = targetPosition - offset;
+          setTimeout(function() {
 
-          window.scrollTo({ top: adjustedPosition, behavior: 'smooth' });
+            var targetElement = document.getElementById('videos_list');
+            var targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+            var adjustedPosition = targetPosition - offset;
 
-  
-        }, 100)
-        
+            window.scrollTo({ top: adjustedPosition, behavior: 'smooth' });
+
+
+          }, 100)
+        }
       }
-    }  
+    }
 
     /* Testimonials slider */
     let sliderProducts = document.querySelectorAll('.video-product-hub .swiper-container')
@@ -257,51 +213,24 @@ $(document).ready( () => {
     });
 
     // Comments
-    $('.js-toggle-comments').click(function() {
+    document.querySelectorAll('.js-toggle-comments').forEach(function(button) {
+      button.addEventListener('click', function() {
 
-      const label = $(this).find('.article__comments-button-label');
+        const label = button.querySelector('.article__comments-button-label');
 
-      $(this).toggleClass('active')
-      $(this).next().toggleClass('active')
+        button.classList.toggle('active')
+        if (button.nextElementSibling) {
+          button.nextElementSibling.classList.toggle('active')
+        }
 
-      if($(this).hasClass('active')) {
-        label.text('Leave the conversation')
-      } else {
-        label.text('Join the conversation')
-      }
+        if (label) {
+          if (button.classList.contains('active')) {
+            label.textContent = 'Leave the conversation'
+          } else {
+            label.textContent = 'Join the conversation'
+          }
+        }
+      })
     })
 
-    const $aboutPage = $('#about')
-
-    if($aboutPage.length) {
-      const $headerWrapper = $('.header__wrapper')
-      const pageHeight = window.innerHeight;
-
-      window.onscroll = function() {
-        var scrollLimit = 100;
-        if (window.scrollY >= pageHeight) {
-          // alert("x")
-          $headerWrapper.css('position', 'fixed');
-        } else {
-          $headerWrapper.css('position', 'relative')
-        }
-      };
-
-    }
-
-    function toggleButton() {
-      var checkbox = document.getElementById("agree_cart");
-      var button = document.getElementById("checkout_button");
-
-      if (checkbox.checked) {
-        button.disabled = false;
-      } else {
-        button.disabled = true;
-      }
-    }
-
-    var checkbox = document.getElementById("agree_cart");
-    if (checkbox) {
-      checkbox.addEventListener("click", toggleButton);
-    }
 })

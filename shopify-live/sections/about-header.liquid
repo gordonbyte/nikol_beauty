@@ -13,17 +13,17 @@
   <div class="about-header__inner">
     <div class="about-header__left">
       <figure class="about-header__image">  
-        <img 
+        <img
           src="{{ section.settings.image | image_url }}"
-          alt="{{ section.settings.image | default: shop.name }}"
+          alt="{{ section.settings.image.alt | default: section.settings.title | default: shop.name | strip_html | escape }}"
           loading="eager"
           />
         </figure>
     </div>
     <div class="about-header__right">
-      <div class="about-header__title mobile-only">
+      <h1 class="about-header__title mobile-only">
         {{ section.settings.title }}
-      </div>
+      </h1>
 
     	<div class="about-header__copy">
         {{ section.settings.copy }} 

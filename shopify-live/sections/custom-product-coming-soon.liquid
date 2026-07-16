@@ -1410,67 +1410,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
- <script>
-document.addEventListener("DOMContentLoaded", function() {
-
-  const addBtn = document.getElementById("custom-add-to-cart");
-  const qtyWrapper = document.querySelector(".custom-qty-wrapper");
-  const minusBtn = document.querySelector(".qty-minus");
-  const plusBtn = document.querySelector(".qty-plus");
-  const input = document.querySelector(".custom-qty-input");
-
-  // These elements belong to an optional custom qty/ATC UI that isn't present on this
-  // template. Bail out cleanly when they're missing to avoid a null TypeError.
-  if (!addBtn || !qtyWrapper || !minusBtn || !plusBtn || !input) return;
-
-  // Show quantity on Add to Cart click
-  addBtn.addEventListener("click", function() {
-    addBtn.style.display = "none";
-    qtyWrapper.style.display = "flex";
-  });
-
-  function updateCart(quantity) {
-    const cartInput = document.querySelector(".cart__quantity-field");
-    if (!cartInput) return;
-
-    const lineItemKey = cartInput.dataset.id;
-
-    fetch('/cart/change.js', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        id: lineItemKey,
-        quantity: quantity
-      })
-    })
-    .then(res => res.json())
-    .then(() => {
-      cartInput.value = quantity;
-      document.dispatchEvent(new CustomEvent('cart:refresh'));
-    });
-  }
-
-  plusBtn.addEventListener("click", function() {
-    let value = parseInt(input.value) || 1;
-    value++;
-    input.value = value;
-    updateCart(value);
-  });
-
-  minusBtn.addEventListener("click", function() {
-    let value = parseInt(input.value) || 1;
-    if (value > 1) {
-      value--;
-      input.value = value;
-      updateCart(value);
-    }
-  });
-
-});
-</script>
-
-
-
 {% schema %}
   {
     "name": "[Custom] Coming Soon",
@@ -1534,12 +1473,6 @@ document.addEventListener("DOMContentLoaded", function() {
         "type": "header",
         "content": "Media",
         "info": "Learn more about [media types](https://help.shopify.com/manual/products/product-media)"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_zoom",
-        "label": "Enable zoom",
-        "default": true
       },
       {
         "type": "checkbox",

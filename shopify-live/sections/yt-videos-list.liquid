@@ -6,6 +6,26 @@
     {% assign second = "even" %}
   {% endif %}
   
+<style>
+  .videos-list .swiper-prev,
+  .videos-list .swiper-next {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    line-height: 0;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+
 <div class="videos-list">
   <div class="videos-list__inner" id="videos_list">
     {%- for block in section.blocks -%}
@@ -19,7 +39,7 @@
         >
         <div class="video-product-hub__inner {% if thecycle == 'odd' %} video-product-hub__inner--reverse {% endif %}">
           <div class="video-product-hub__product">
-            {% if block.settings.slider_title %}<div><h5>{{ block.settings.slider_title }}</h5></div>{% endif %}
+            {% if block.settings.slider_title %}<div><h2 class="h5">{{ block.settings.slider_title }}</h2></div>{% endif %}
             <div class="swiper-container">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -47,13 +67,13 @@
                 {% endif %}
               </div>
 
-              <div class="swiper-prev">
-                <img src="{{ 'slider-prev.png' | asset_url }}"/>
-              </div>
+              <button type="button" class="swiper-prev" aria-label="Previous products">
+                <img src="{{ 'slider-prev.png' | asset_url }}" alt=""/>
+              </button>
 
-              <div class="swiper-next">
-                <img src="{{ 'slider-next.png' | asset_url }}"/>
-              </div>
+              <button type="button" class="swiper-next" aria-label="Next products">
+                <img src="{{ 'slider-next.png' | asset_url }}" alt=""/>
+              </button>
             </div>
             
           </div>

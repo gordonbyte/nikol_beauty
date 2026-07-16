@@ -69,7 +69,7 @@
 
 
       <div class="account-main">
-        <header role="banner" class="account-header">
+        <header class="account-header">
           <h2>{{ 'customer.addresses.title' | t }}</h2>
           <button type="button" class="btn btn--solid btn--primary address-new-toggle">
             <span>{{ 'customer.addresses.add_new' | t }}</span>
@@ -195,7 +195,7 @@
             <div id="EditAddress_{{ address.id }}" class="hidden">
               <hr>
               {%- form 'customer_address', address -%}
-                <h4 class="h4--body">{{ 'customer.addresses.edit_address' | t }}</h2>
+                <h4 class="h4--body">{{ 'customer.addresses.edit_address' | t }}</h4>
 
                 <div class="grid grid--2">
                   <div class="grid__item">
