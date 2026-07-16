@@ -75,7 +75,7 @@
               {{ block.shopify_attributes }}
             >
               <label for="Form-{{ section.id }}-{{ forloop.index0 }}" class="visually-hidden">{{ block.settings.title }}</label>
-              <input type="email" class="contactFormEmail field" id="Form-{{ section.id }}-{{ forloop.index0 }}" name="contact[email]" placeholder="{{ block.settings.title }}" autocomplete="email" autocorrect="off" autocapitalize="off" {{ required }}>
+              <input type="email" class="contactFormEmail field" id="Form-{{ section.id }}-{{ forloop.index0 }}" name="contact[email]" placeholder="{{ block.settings.title }}" autocorrect="off" autocapitalize="off" {{ required }}>
             </div>
 
           {%- when 'body' -%}
@@ -119,7 +119,7 @@
               {{ block.shopify_attributes }}
             >
               <label for="Form-{{ section.id }}-{{ forloop.index0 }}" class="visually-hidden">{{ block.settings.title }}</label>
-              <input type="tel" id="Form-{{ section.id }}-{{ forloop.index0 }}" class="contactFormPhone field" name="contact[telephone]" placeholder="{{ block.settings.title }}" autocomplete="tel" value="" {{ required }}>
+              <input type="tel" id="Form-{{ section.id }}-{{ forloop.index0 }}" class="contactFormPhone field" name="contact[telephone]" placeholder="{{ block.settings.title }}" value="" {{ required }}>
             </div>
 
           {%- when 'formHeading' -%}
@@ -251,7 +251,7 @@
           data-aos-order="{{ animation_order }}"
         >
           <label for="contactFormEmail" class="visually-hidden">{{ 'contact.form.email' | t }}</label>
-          <input type="email" id="contactFormEmail" class="contactFormEmail field" name="contact[email]" placeholder="{{ 'contact.form.email' | t }}" autocomplete="email" autocorrect="off" autocapitalize="off" required>
+          <input type="email" id="contactFormEmail" class="contactFormEmail field" name="contact[email]" placeholder="{{ 'contact.form.email' | t }}" autocorrect="off" autocapitalize="off" required>
         </div>
       {%- endunless -%}
 

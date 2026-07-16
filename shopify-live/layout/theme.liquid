@@ -416,21 +416,25 @@
   Paste INSIDE the <head>...
 
 
+
+
+
+
+
+
+
 {% include 'store-credit-launcher' %}
-
-
-
-
-
 </head> block, anywhere before 
 
 
+
+
+
+
+
+
+
 {% include 'store-credit-launcher' %}
-
-
-
-
-
 </head>.
   ============================================================
 {%- endcomment -%}
@@ -485,7 +489,7 @@
   
 
 
-{% include 'store-credit-launcher' %}
+
   {%- comment -%} Global container width + responsive show/hide utilities (uniform site-wide) {%- endcomment -%}
   <style>
     .page-width { max-width: 1350px; margin: 0 auto; padding: 0 40px; }
@@ -502,6 +506,8 @@
 
 
 
+
+{% include 'store-credit-launcher' %}
 </head>
   <body
     id="{{ page_title | handle }}"
@@ -537,6 +543,8 @@
       </main>
     </div>
 
+    {% sections 'group-pre-footer' %}
+    
     {% section 'custom-footer' %}
     
     
@@ -613,6 +621,8 @@ window.igData?.user.assignTestGroup("595abf02-a359-4f60-8936-160a08f53a88",
 console.log('Cart drawer opened. window.igCartOpened =',window.igCartOpened)
 })
 </script>
+
+
 
 
 

@@ -989,10 +989,9 @@
       }
     },
     "cw_videos_WcxwdJ": {
-      "type": "custom-videos",
-      "name": "[Custom] Videos",
+      "type": "cw-videosv2",
+      "name": "CW Videos",
       "settings": {
-        "enable_live_shopping_style": true,
         "title": "What Women Are Saying",
         "subtitle": "See how women in their 50s, 60s, and 70s use Nikol Beauty to look polished without fighting their skin.",
         "button_label": "",

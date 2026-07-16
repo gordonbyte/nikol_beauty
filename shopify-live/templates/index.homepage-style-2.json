@@ -226,7 +226,7 @@
       }
     },
     "cw_videos_pDhphj": {
-      "type": "custom-videos",
+      "type": "cw-videos",
       "blocks": {
         "video_item_apEHR3": {
           "type": "video_item",
@@ -239,7 +239,7 @@
       "block_order": [
         "video_item_apEHR3"
       ],
-      "name": "[Custom] Videos",
+      "name": "CW Videos",
       "settings": {
         "title": "Real Stories From Women Who Switched to Nikol Beauty",
         "subtitle": "See how women in their 50s, 60s, and 70s use Nikol Beauty to look polished without fighting their skin.",
@@ -441,7 +441,6 @@
     },
     "custom_collection_banners_fCeq6M": {
       "type": "custom-collection-banners",
-      "name": "[Custom] Collection Banners",
       "blocks": {
         "collection_box_r3nckz": {
           "type": "collection_box",

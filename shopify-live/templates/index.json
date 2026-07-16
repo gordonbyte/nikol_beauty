@@ -56,8 +56,8 @@
         "image_w3NqUL": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/4th_hero_1950x700_png.png",
-            "mobile_image": "shopify://shop_images/4th_hero_400x660_mobile.png_2.png",
+            "image": "shopify://shop_images/Banner_for_Mobile_June.png",
+            "mobile_image": "shopify://shop_images/Updated_again_for_Mobile.png",
             "overlay_opacity": 0,
             "overlay_color": "#000000",
             "show_overlay_text": false,

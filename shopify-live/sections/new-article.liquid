@@ -1,17 +1,3 @@
-<style>
-  .article--single .article__comments-button {
-    display: block;
-    width: 100%;
-    text-align: left;
-    background: none;
-    border: 0;
-    padding: 0;
-    font: inherit;
-    color: inherit;
-    cursor: pointer;
-  }
-</style>
-
 <section
   class="article--single section-padding"
   data-section-id="{{ section.id }}"
@@ -32,16 +18,16 @@
         </div>
         <h1 class="article-hero__title">{{ article.title }}</h1>
         {%- assign published_at = article.published_at | date: format: 'full_date' -%}    
-        <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ published_at }}</time>
+        <time datetime="{{ published_at }}">{{ published_at }}</time>
       </div>
       <div class="article-hero__right">
         <figure
           class="article-hero__image"
           style="--article-hero-aspect-ratio: {{ article.image.aspect_ratio | default: 1 }};"
         >
-          <img
+          <img 
             src="{{ article.image | image_url }}"
-            alt="{{ article.image.alt | default: article.title | strip_html | escape }}"
+            alt="{{ article.image | default: shop.name }}"
             loading="eager"
             />
           </figure>
@@ -86,9 +72,9 @@
      {%- if blog.comments_enabled? -%}
 
      <div class="article__comments">
-        <button type="button" class="js-toggle-comments article__comments-button">
+        <div class="js-toggle-comments article__comments-button">
             Comments({{ article.comments_count }}) <span class="divider"></span> <span class="article__comments-button-label">Join the conversation</span>
-        </button>
+        </div>
 
         <div class="comments-wrapper">
             <div class="comments-container">
@@ -111,16 +97,13 @@
                   {% endif %}
                   <div class="form-row">
                     <div class="form-field">
-                      <label for="comment_author" class="visually-hidden">Name</label>
-                      <input type="text" id="comment_author" name="comment[author]" value="{{ form.author }}" placeholder="FIRST NAME *" autocomplete="name" />
+                      <input type="text" id="comment_author" name="comment[author]" value="{{ form.author }}" placeholder="FIRST NAME *" />
                     </div>
                     <div class="form-field">
-                      <label for="comment_email" class="visually-hidden">Email address</label>
-                      <input type="email" id="comment_email" name="comment[email]" value="{{ form.email }}" placeholder="EMAIL ADDRESS *" autocomplete="email" />
+                      <input type="text" id="comment_email" name="comment[email]" value="{{ form.email }}" placeholder="EMAIL ADDRESS *" />
                     </div>
                   </div>
                   <div class="form-field">
-                    <label for="comment_body" class="visually-hidden">Comment</label>
                     <textarea id="comment_body" name="comment[body]" rows="3" placeholder="MESSAGE *" >{{ form.body }}</textarea>
                   </div>
 
@@ -210,7 +193,7 @@
 
             <div class="share">
               {%- assign share_url = article.url | prepend: request.origin -%}
-              <span class="share__label">Share</span>
+              <label class="share__label">Share</label>
               <a class="share__link" href="https://www.facebook.com/sharer.php?u={{ share_url }}">Facebook</a>
               <a class="share__link" href="https://twitter.com/intent/tweet?url={{ share_url }}">Twitter</a>
             </div>
