@@ -763,50 +763,6 @@
 
 <div class="header__backfill" data-header-backfill></div>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Nikol Beauty",
-  "url": "https://nikolbeauty.com",
-  "logo": "https://nikolbeauty.com/cdn/shop/files/Nikol_logo.png?v=1712979254&width=115",
-  "description": "Professional beauty products by Nikol Johnson, Licensed Esthetician with 16+ years experience. High-performance mascara, skincare & makeup loved by 1.1M+ subscribers.",
-  "founder": {
-    "@type": "Person",
-    "name": "Nikol Johnson",
-    "jobTitle": "Licensed Esthetician & Founder"
-  },
-  "sameAs": [
-    "https://www.youtube.com/@NikolJohnson",
-    "https://www.instagram.com/nikoljohnson",
-    "https://www.facebook.com/nikolbeauty",
-    "https://www.tiktok.com/@nikoljohnson",
-    "https://www.pinterest.com/nikolbeauty"
-  ],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "email": "hello@nikolbeauty.com",
-    "contactType": "customer service"
-  }
-}
-</script>
-
-{%- if template.name == 'index' -%}
-  {%- assign potential_action_target = shop.url | append: "/search?q={search_term_string}" -%}
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      "name": {{ shop.name | json }},
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {{ potential_action_target | json }},
-        "query-input": "required name=search_term_string"
-      },
-      "url": {{ shop.url | append: page.url | json }}
-    }
-  </script>
-{%- endif -%}
 
 {% schema %}
 {

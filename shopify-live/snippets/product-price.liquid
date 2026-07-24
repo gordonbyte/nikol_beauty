@@ -52,6 +52,10 @@
         assign promo_original_display = current_variant.price | money
       endif
     endif
+
+    # Per-discount styling written by the Discount Sync app; fall back to global settings.
+    assign promo_badge_bg = product.metafields.custom.promo_badge_bg.value | default: settings.promo_badge_bg_color
+    assign promo_price_color = product.metafields.custom.promo_price_color.value | default: settings.promo_badge_bg_color
   endif
 
   assign show_promo_markup = false
@@ -73,8 +77,8 @@
     <div class="product__price{% if has_units %} product__price--has-units{% endif %}{% if promo_sale_price_display != blank %} product__price--promo{% endif %}" data-price-wrapper>
       {%- if show_promo_markup -%}
         <span class="promo-old-price" data-promo-old>{{ promo_original_display }}</span>
-        <span class="promo-new-price" data-promo-new style="color: {{ settings.promo_badge_bg_color }};">{{ promo_sale_price_display }}</span>
-        <span class="promo-on-sale-pill" data-promo-pill style="background: {{ settings.promo_badge_bg_color }};">On Sale</span>
+        <span class="promo-new-price" data-promo-new style="color: {{ promo_price_color }};">{{ promo_sale_price_display }}</span>
+        <span class="promo-on-sale-pill" data-promo-pill style="background: {{ promo_badge_bg }};">On Sale</span>
       {%- endif -%}
       <span data-product-price {% if current_variant.compare_at_price > current_variant.price %} class="product__price--sale"{% endif %}>
         {%- if current_variant.price == 0 -%}

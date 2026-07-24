@@ -3,13 +3,11 @@
   Nikol Beauty - GEO supplementary structured data
   Added: 2026-05-07 (GEO Audit)
 
-  Adds Organization, Person, WebSite+SearchAction, AggregateRating,
-  FAQPage, ItemList, BlogPosting, AboutPage. Does NOT replace
-  Shopify's default Product JSON-LD or BreadcrumbList in theme.liquid.
-
-  Junip metafields (verified on /products/actually-i-can):
-    product.metafields.junip.rating_average
-    product.metafields.junip.rating_count
+  Adds Organization, Person, WebSite+SearchAction,
+  FAQPage, ItemList, AboutPage. Does NOT replace
+  the theme's Product JSON-LD (in the product sections — which carry
+  the Junip aggregateRating via snippets/product-jsonld-rating.liquid)
+  or BreadcrumbList in theme.liquid.
   ============================================================
 {%- endcomment -%}
 
@@ -29,6 +27,7 @@
       "name": {{ shop.name | json }},
       "url": "{{ brand_url }}",
       "logo": { "@type": "ImageObject", "url": "{{ 'logo.png' | asset_url | prepend: 'https:' }}" },
+      "description": "Professional beauty products by Nikol Johnson, Licensed Esthetician with 16+ years experience. High-performance mascara, skincare & makeup loved by 1.1M+ subscribers.",
       "founder": { "@id": "{{ founder_id }}" },
       "sameAs": [
         "https://www.youtube.com/@nikoljohnson",
@@ -50,10 +49,17 @@
       "@type": "Person",
       "@id": "{{ founder_id }}",
       "name": "Nikol Johnson",
+      "url": "{{ brand_url }}/pages/about",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/nikolbeauty_photo.jpg?v=1784905827",
+        "width": 1000,
+        "height": 1000
+      },
       "jobTitle": "Licensed Esthetician, On-Air Beauty Expert, Multi-Media Makeup Artist",
       "description": "Founder of Nikol Beauty and Fresh Beauty Studio (2006). Licensed Esthetician with 16+ years experience. 2.2M+ social followers, 233M+ YouTube views.",
       "alumniOf": "FORD Models",
-      "knowsAbout": ["Beauty","Skincare","Makeup","Mature Skin","Pro-Aging","Esthetics","Color Theory"],
+      "knowsAbout": ["Beauty","Skincare","Makeup","Mature Skin","Pro-Aging","Licensed Esthetics","Color Theory","Mascara","Professional Makeup Application","Anti-Aging Skincare","Beauty Tutorials"],
       "worksFor": { "@id": "{{ org_id }}" },
       "sameAs": [
         "https://www.youtube.com/@nikoljohnson",
@@ -78,23 +84,6 @@
     }
 
     {%- if request.page_type == 'product' and product != blank -%}
-      {%- if product.metafields.junip.rating_average and product.metafields.junip.rating_count and product.metafields.junip.rating_count > 0 -%}
-        ,
-        {
-          "@type": "Product",
-          "@id": "{{ canonical_url }}#product",
-          "url": "{{ canonical_url }}",
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "{{ product.metafields.junip.rating_average | times: 1.0 | round: 2 }}",
-            "ratingCount": {{ product.metafields.junip.rating_count }},
-            "reviewCount": {{ product.metafields.junip.rating_count }},
-            "bestRating": "5",
-            "worstRating": "1"
-          }
-        }
-      {%- endif -%}
-
       {%- assign faq_items = '' -%}
       {%- for i in (1..6) -%}
         {%- assign tk = 'instruction_title_' | append: i -%}
@@ -132,21 +121,6 @@
             { "@type": "ListItem", "position": {{ forloop.index }}, "url": "{{ shop.url }}{{ prod.url }}", "name": {{ prod.title | json }} }
           {%- endfor -%}
         ]
-      }
-    {%- endif -%}
-
-    {%- if request.page_type == 'article' and article != blank -%}
-      ,
-      {
-        "@type": "BlogPosting",
-        "@id": "{{ canonical_url }}#article",
-        "url": "{{ canonical_url }}",
-        "headline": {{ article.title | json }},
-        "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
-        "dateModified": "{{ article.updated_at | default: article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
-        "author": { "@id": "{{ founder_id }}" },
-        "publisher": { "@id": "{{ org_id }}" }
-        {%- if article.image -%},"image": "{{ article.image | image_url: width: 1600 | prepend: 'https:' }}"{%- endif -%}
       }
     {%- endif -%}
 

@@ -9804,7 +9804,7 @@
       }
 
       bindEventListeners() {
-        if (this.initialized) return;
+        if (this.initialized || !this.productMediaList) return;
 
         this.productMediaList.addEventListener('mousedown', this.handleMouseDown);
         this.productMediaList.addEventListener('mouseleave', this.handleMouseLeave);
@@ -9899,7 +9899,7 @@
 
       // When changing from Mobile do Desktop view
       resetScrollPosition() {
-        if (this.productMediaList.scrollLeft !== 0) {
+        if (this.productMediaList && this.productMediaList.scrollLeft !== 0) {
           this.productMediaList.scrollLeft = 0;
         }
       }
@@ -10745,7 +10745,7 @@
                 scrollTo(selectedImageTop);
               }
 
-              if (!isDesktopView && !this.productImages.hasAttribute(attributes$e.faderMobile)) {
+              if (!isDesktopView && this.productMediaList && !this.productImages.hasAttribute(attributes$e.faderMobile)) {
                 this.productMediaList.scrollTo({
                   left: selectedImage.offsetLeft,
                 });

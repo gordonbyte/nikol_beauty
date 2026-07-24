@@ -236,10 +236,6 @@
           "title_subscribe": "Let's Get this beauty started.",
           "footer_title_1": "Policies",
           "footer_menu_1": "footer",
-          "footer_title_2": "",
-          "footer_menu_2": "",
-          "footer_title_3": "",
-          "footer_menu_3": "",
           "contact_title": "Get in touch",
           "contact_info": "<a href=\"mailto:Hello@nikolbeauty.com\">Hello@nikolbeauty.com</a>",
           "contact_phone": "954-537-1772"
@@ -272,11 +268,6 @@
       },
       "11989736685688860011": {
         "type": "shopify://apps/easy-variant-images/blocks/embed_via/bfecabd5-49af-4d37-8214-f0f4649f4cb3",
-        "disabled": false,
-        "settings": {}
-      },
-      "3138269044488530766": {
-        "type": "shopify://apps/uppromote-affiliate/blocks/core-script/64c32457-930d-4cb9-9641-e24c0d9cf1f4",
         "disabled": false,
         "settings": {}
       },
@@ -345,6 +336,11 @@
       },
       "2200952712151285029": {
         "type": "shopify://apps/microsoft-clarity/blocks/brandAgents_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": true,
+        "settings": {}
+      },
+      "3138269044488530766": {
+        "type": "shopify://apps/uppromote-affiliate/blocks/core-script/64c32457-930d-4cb9-9641-e24c0d9cf1f4",
         "disabled": true,
         "settings": {}
       }

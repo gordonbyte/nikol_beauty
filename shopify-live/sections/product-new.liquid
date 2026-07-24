@@ -1075,6 +1075,7 @@ navigation:{nextEl:'.cw-main-next',prevEl:'.cw-main-prev'}
       ],
     {%- endif %}
     "description": {{ product.description | strip_html | json }},
+    {%- render 'product-jsonld-rating', product: product -%}
     {%- if current_variant.sku != blank -%}
       "sku": {{ current_variant.sku | json }},
     {%- endif -%}

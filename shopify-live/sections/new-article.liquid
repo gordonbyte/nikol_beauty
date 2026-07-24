@@ -264,28 +264,17 @@
   "@type": "Article",
   "headline": "{{ article.title | escape }}",
   "description": "{{ article.excerpt_or_content | strip_html | truncate: 160 | escape }}",
+  {%- if article.image -%}
   "image": "{{ article.image | image_url: width: 1200 }}",
+  {%- endif -%}
   "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
   "dateModified": "{{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "{{ canonical_url }}"
   },
-  "author": {
-    "@type": "Person",
-    "name": "Nikol Johnson",
-    "jobTitle": "Licensed Esthetician",
-    "url": "https://nikolbeauty.com/pages/about"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Nikol Beauty",
-    "url": "https://nikolbeauty.com",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://nikolbeauty.com/cdn/shop/files/Nikol_logo.png?v=1712979254&width=115"
-    }
-  }
+  "author": { "@id": "{{ shop.url }}#nikol-johnson" },
+  "publisher": { "@id": "{{ shop.url }}#organization" }
 }
 </script>
 

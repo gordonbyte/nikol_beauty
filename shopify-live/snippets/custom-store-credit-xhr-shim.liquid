@@ -1,0 +1,34 @@
+<script>
+  (function () {
+    var safeGetJSON = function (url, cb) {
+      var x = new XMLHttpRequest();
+      x.open('GET', url, true);
+      x.onload = function () {
+        var data = null;
+        try { data = JSON.parse(x.responseText); } catch (e) {}
+        if (cb) cb(x.status === 200 ? null : x.status, data);
+      };
+      x.send();
+    };
+    var hook = function (obj) {
+      if (!obj || typeof obj !== 'object') return obj;
+      try {
+        Object.defineProperty(obj, 'getJSON', {
+          configurable: true,
+          enumerable: true,
+          get: function () { return safeGetJSON; },
+          set: function () {}
+        });
+      } catch (e) {}
+      return obj;
+    };
+    var current = hook(window.StoreCredit);
+    try {
+      Object.defineProperty(window, 'StoreCredit', {
+        configurable: true,
+        get: function () { return current; },
+        set: function (v) { current = hook(v); }
+      });
+    } catch (e) {}
+  })();
+</script>

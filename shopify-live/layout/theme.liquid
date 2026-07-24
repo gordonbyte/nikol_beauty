@@ -383,7 +383,7 @@
     };
 </script>
 
-{% include 'store-credit-launcher' %}
+
 
   {%- comment -%} Global container width + responsive show/hide utilities (uniform site-wide) {%- endcomment -%}
 <style>
@@ -398,6 +398,12 @@
     }
 </style>
 
+<script type="text/javascript">if(typeof window.hulkappsWishlist === 'undefined') {
+                            window.hulkappsWishlist = {};
+                        }
+                        window.hulkappsWishlist.baseURL = '/apps/advanced-wishlist/api';
+                        window.hulkappsWishlist.hasAppBlockSupport = '1';
+                        </script>
 </head>
 
   <body id="{{ page_title | handle }}"
@@ -486,6 +492,8 @@
   })
 </script>
 
+
 {% include 'store-credit-launcher' %}
+{% render 'custom-store-credit-xhr-shim' %}
 </body>
 </html>

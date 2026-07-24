@@ -2425,6 +2425,73 @@ legend.quantity__legend {
   white-space: nowrap;
 }
 
+/* ------------------------------------------------------------------ */
+/* Promo badge style 2: glossy corner ribbon (top-left, mirrored).    */
+/* Color comes from --promo-ribbon-color (per-discount, set inline);  */
+/* gloss/shading are color-neutral white/black gradient overlays so   */
+/* the ribbon works in any badge color.                               */
+/* ------------------------------------------------------------------ */
+.product-item__image .promo-ribbon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 110px;
+  height: 110px;
+  overflow: hidden;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.product-item__image .promo-ribbon__band {
+  display: block;
+  position: absolute;
+  top: 26px;
+  left: -38px;
+  width: 160px;
+  padding: 6px 0;
+  transform: rotate(-45deg);
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  background-color: var(--promo-ribbon-color, #14448A);
+  /* gloss: dark edge -> light center -> dark edge, over the base color */
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.22) 0%, rgba(255, 255, 255, 0.16) 51%, rgba(0, 0, 0, 0.3) 100%);
+  box-shadow:
+    inset 0 0 0 2px #00000059,
+    inset 0 0 0 3px #fff6,
+    0 10px 6px -7px #00000047;
+}
+
+/* diagonal glare sweeping across the band */
+.product-item__image .promo-ribbon__band:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -18px;
+  right: 22px;
+  width: 12px;
+  height: 60px;
+  transform: rotate(-45deg);
+  background: linear-gradient(to left, rgba(255, 255, 255, 0) 1%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0) 100%);
+}
+
+@media only screen and (max-width: 768px) {
+  .product-item__image .promo-ribbon {
+    width: 96px;
+    height: 96px;
+  }
+  .product-item__image .promo-ribbon__band {
+    top: 21px;
+    left: -40px;
+    font-size: 12px;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .product-item__image .promo-box {
     top: 8px;

@@ -717,7 +717,7 @@
       {
         "type": "header",
         "content": "Promo % badge",
-        "info": "Add the tag 'promo-20' to a product (the number = percent off) to show a '20% OFF' bubble on its card. Keep the tagged products in sync with your automatic discount's product list."
+        "info": "Add the tag 'promo-20' to a product (the number = percent off) to show a '20% OFF' bubble on its card. These colors are the defaults; the Discount Sync app can override the badge color, sale-price color, and badge text per discount (via product metafields custom.promo_badge_bg / promo_price_color / promo_badge_text)."
       },
       {
         "type": "checkbox",

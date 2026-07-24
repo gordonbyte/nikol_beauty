@@ -321,6 +321,18 @@
         assign promo_parts = product_tags | split: 'promo-'
         assign promo_percent = promo_parts[1] | split: ',' | first | strip
       endif
+
+      # Per-discount styling written by the Discount Sync app; falls back to the
+      # global promo settings / default wording when the metafields are absent.
+      assign promo_badge_bg = product.metafields.custom.promo_badge_bg.value | default: settings.promo_badge_bg_color
+      assign promo_price_color = product.metafields.custom.promo_price_color.value | default: settings.promo_badge_bg_color
+      assign promo_off_word = 'products.product.off' | t
+      assign promo_default_text = '{n}% ' | append: promo_off_word
+      assign promo_badge_text = product.metafields.custom.promo_badge_text.value | default: promo_default_text
+      assign promo_badge_label = promo_badge_text | replace: '{n}', promo_percent
+      assign promo_badge_lines = promo_badge_label | split: '{br}'
+      assign promo_badge_style = product.metafields.custom.promo_badge_style.value | default: 'circle'
+      assign promo_ribbon_label = promo_badge_lines | join: ' '
     endif
   -%}
 
@@ -345,12 +357,21 @@
   {%- endif -%}
 
   {%- if promo_percent != blank and sold_out == false -%}
-    <span class="promo-box"
-      style="background: {{ settings.promo_badge_bg_color }}; color: {{ settings.promo_badge_text_color }};"
-      data-aos="fade"
-      data-aos-delay="{{ aos_delay }}"
-      data-aos-duration="{{ aos_duration }}"
-      data-aos-anchor="{{ aos_anchor }}">{% if promo_up_to %}<span class="promo-box__line">Up to</span>{% endif %}<span class="promo-box__line">{{ promo_percent }}% {{ 'products.product.off' | t }}</span></span>
+    {%- if promo_badge_style == 'ribbon' -%}
+      <span class="promo-ribbon"
+        style="--promo-ribbon-color: {{ promo_badge_bg }}; color: {{ settings.promo_badge_text_color }};"
+        data-aos="fade"
+        data-aos-delay="{{ aos_delay }}"
+        data-aos-duration="{{ aos_duration }}"
+        data-aos-anchor="{{ aos_anchor }}"><span class="promo-ribbon__band">{% if promo_up_to %}Up to {% endif %}{{ promo_ribbon_label }}</span></span>
+    {%- else -%}
+      <span class="promo-box"
+        style="background: {{ promo_badge_bg }}; color: {{ settings.promo_badge_text_color }};"
+        data-aos="fade"
+        data-aos-delay="{{ aos_delay }}"
+        data-aos-duration="{{ aos_duration }}"
+        data-aos-anchor="{{ aos_anchor }}">{% if promo_up_to %}<span class="promo-box__line">Up to</span>{% endif %}{% for promo_line in promo_badge_lines %}<span class="promo-box__line">{{ promo_line | strip }}</span>{% endfor %}</span>
+    {%- endif -%}
   {%- endif -%}
 
   {%- if settings.quickview_enable and current_variant -%}
@@ -631,13 +652,13 @@
           {{ product_price_min }}
         {%- endif -%}
       </span>
-      <span class="promo-new-price" style="color: {{ settings.promo_badge_bg_color }};">
+      <span class="promo-new-price" style="color: {{ promo_price_color }};">
         {% if product.price_varies or promo_up_to %}
           <small>{{ 'products.general.from' | t | downcase }}</small>
         {% endif %}
         {{ promo_sale_price_display }}
       </span>
-      <span class="promo-on-sale-pill" style="background: {{ settings.promo_badge_bg_color }};">On Sale</span>
+      <span class="promo-on-sale-pill" style="background: {{ promo_badge_bg }};">On Sale</span>
     {%- else -%}
       <span class="new-price">
         {% if product.price_varies %}
