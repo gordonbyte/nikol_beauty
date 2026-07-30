@@ -29,5 +29,5 @@ node_modules/
 /scripts/
 /.github/
 
-# Local project docs / config — kept local
-/CLAUDE.md
+# CLAUDE.md is tracked on purpose: it carries Claude's cross-machine operating
+# instructions (Jira conventions, daily-schedule procedure) per Randell, 2026-07-29.

@@ -404,6 +404,9 @@
                         window.hulkappsWishlist.baseURL = '/apps/advanced-wishlist/api';
                         window.hulkappsWishlist.hasAppBlockSupport = '1';
                         </script>
+
+
+{% include 'store-credit-launcher' %}
 </head>
 
   <body id="{{ page_title | handle }}"
@@ -493,7 +496,10 @@
 </script>
 
 
-{% include 'store-credit-launcher' %}
+
 {% render 'custom-store-credit-xhr-shim' %}
+
+
+{% include 'store-credit-launcher' %}
 </body>
 </html>

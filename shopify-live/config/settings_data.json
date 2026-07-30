@@ -338,11 +338,6 @@
         "type": "shopify://apps/microsoft-clarity/blocks/brandAgents_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
         "disabled": true,
         "settings": {}
-      },
-      "3138269044488530766": {
-        "type": "shopify://apps/uppromote-affiliate/blocks/core-script/64c32457-930d-4cb9-9641-e24c0d9cf1f4",
-        "disabled": true,
-        "settings": {}
       }
     }
   },
