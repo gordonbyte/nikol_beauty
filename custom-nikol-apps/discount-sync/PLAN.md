@@ -89,8 +89,13 @@ any pushes/installs on the live store.
 - Deliverable: test-results doc in the app folder + changelog entry.
 
 ## Phase 5 — Enhancements (each optional, user-prioritized)
-- **Amount-off discounts**: convert to per-variant effective % (amount ÷ variant price), rounding
-  policy TBD; per-item vs per-order ambiguity documented; skip nonsensical results.
+- **Amount-off discounts**: ✅ BUILT 2026-07-31 (KAN-74 decision), EXACT-$ display per Randell.
+  Per-ITEM amount-off (appliesOnEachItem) → per-variant metafield `custom.promo_amount` +
+  `promo-amt-<x>` / `promo-amt-up-to-<x>` tags; the theme (3 snippets, amount pathway added
+  same day) shows "$x OFF" badges and computes the exact sale price (price − amount, clamp 0).
+  The floor(%) conversion survives internally only, for winner selection/conflict math.
+  Per-ORDER amount-off stays supported:false (cannot be expressed honestly per item).
+  Sub-1%-effective and unpriced variants are skipped. Testing: KAN-59 matrix, before Aug-5 deploy.
 - **Sale collection automation**: additional tag (e.g. `on-sale`) driving an automated
   "Sale" collection page while any discount is live.
 - **Sale end countdown**: write `endsAt` to a metafield so the theme can show "ends in…" (would

@@ -1,4 +1,4 @@
-# Theme promo display contract (audited 2026-07-20)
+# Theme promo display contract (audited 2026-07-20; amount-off pathway added 2026-07-31)
 
 What the app must write for the theme's existing promo display to work. Verified in the
 current live theme (mirrored in shopify-dev). All display is gated on the merchant-controlled
@@ -34,6 +34,25 @@ has that field set in the app. The theme reads each with a fallback:
 - Styling is product-level (winning discount) — a product split across two discounts shows the
   higher-%'s styling for all variants. Colors are validated to a hex pattern app-side.
 
+## Amount-off pathway (added 2026-07-31, KAN-74)
+
+Per-item amount-off discounts display the exact dollar amount, not a percent:
+
+- Per-variant metafield `custom.promo_amount` (number_decimal, PRODUCTVARIANT, PUBLIC_READ,
+  definition on dev: gid://shopify/MetafieldDefinition/230449316146) = dollars off per item.
+  **Takes precedence over `custom.promo_percent`** when both are present on a variant
+  (the app writes only one; a type switch deletes the other key in the same sync).
+- Tags for cards / single-variant products: `promo-amt-<x>` (uniform) /
+  `promo-amt-up-to-<maxAmt>` (mixed). Parse order in all three snippets:
+  `promo-amt-up-to-` → `promo-amt-` → `promo-up-to-` → `promo-` (amt first, since
+  `contains 'promo-'` also matches the amt forms).
+- Price math is EXACT: sale = price − amount×100 cents, clamped at 0 (amount ≥ price = free).
+  Cards use price_min − amount.
+- Badge: `{n}` renders as `$<x>`; default wording `$<x> OFF` (localized off-word).
+  "Up to" prefix preserved for the up-to form. Custom `promo_badge_text` still applies verbatim.
+- Percent-vs-amount tag choice per product = the winning discount's value type; the up-to
+  amount is the LARGEST dollar amount among amount-winning variants.
+
 ## Write rules (per targeted product)
 
 - **Single-variant product** → product tag only:
@@ -47,7 +66,7 @@ has that field set in the app. The theme reads each with a fallback:
 
 ## Clear rules (sale end / untrack / discount deleted / uninstall)
 
-- DELETE the `custom.promo_percent` metafields (`metafieldsDelete`) — theme checks
+- DELETE the `custom.promo_percent` AND `custom.promo_amount` metafields (`metafieldsDelete`) — theme checks
   `!= blank`, so a lingering `0` would still be "blank-false" but pollutes data; July-4th
   undo used delete. Never write `false`/`0` to clear.
 - REMOVE the `promo-*` tags (`tagsRemove`).

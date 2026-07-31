@@ -34,6 +34,8 @@ import { syncShop, isDiscountActive } from "../services/sync.server";
 // shown as placeholders so a blank field == "use the theme default".
 const DEFAULT_BADGE_BG = "#14448A";
 const DEFAULT_BADGE_TEXT = "{n}% OFF";
+// Amount-off discounts: theme default is "$x OFF" ({n} renders as "$x").
+const DEFAULT_BADGE_TEXT_AMOUNT = "{n} OFF";
 
 export const loader = async ({ request }) => {
   const { admin, session } = await authenticate.admin(request);
@@ -406,7 +408,12 @@ export default function Index() {
                     )}
                     {d.tracked && <Badge tone="info">Tracked</Badge>}
                     {!d.supported && (
-                      <Badge tone="attention">Amount-off — not supported</Badge>
+                      <Badge tone="attention">
+                        Amount-off per order — not supported
+                      </Badge>
+                    )}
+                    {d.supported && d.valueType === "amount" && (
+                      <Badge tone="info">Amount-off — exact $ display</Badge>
                     )}
                   </InlineStack>
                 </IndexTable.Cell>
@@ -423,8 +430,16 @@ export default function Index() {
                         background: d.badgeBg || DEFAULT_BADGE_BG,
                       }}
                     >
-                      {(d.badgeText || DEFAULT_BADGE_TEXT)
-                        .replace("{n}", String(Math.round(d.value || 0)))
+                      {(d.badgeText ||
+                        (d.valueType === "amount"
+                          ? DEFAULT_BADGE_TEXT_AMOUNT
+                          : DEFAULT_BADGE_TEXT))
+                        .replace(
+                          "{n}",
+                          d.valueType === "amount"
+                            ? `$${Number(d.value || 0)}`
+                            : String(Math.round(d.value || 0)),
+                        )
                         .split("{br}")
                         .map((line) => line.trim())
                         .join(" ")}

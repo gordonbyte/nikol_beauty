@@ -7,11 +7,14 @@
  * out of the same recompute → diff → apply path.
  *
  * What gets written (the theme contract — see THEME-CONTRACT.md):
- *   Multi-variant products:  per-variant metafield custom.promo_percent
- *                            (number_integer) + a product tag for cards
+ *   Multi-variant products:  per-variant metafield + a product tag for cards.
+ *     Percent-winning variants: custom.promo_percent (number_integer)
+ *     Amount-winning variants:  custom.promo_amount (number_decimal, dollars
+ *     off per item — the theme shows "$x OFF" and computes the exact price)
  *   Single-variant products: product tag only
- *   Tag form: promo-<n> when every variant carries the same n,
- *             promo-up-to-<max> otherwise
+ *   Tag form: percent promo-<n> / promo-up-to-<max>;
+ *             amount  promo-amt-<x> / promo-amt-up-to-<maxAmt>
+ *             (form chosen by the product's winning discount's value type)
  *   Clearing: metafieldsDelete + tagsRemove — never zeros.
  */
 
@@ -62,8 +65,14 @@ export function isDiscountActive(discount, now = new Date()) {
 async function loadAppliedState(shop) {
   const row = await prisma.appliedState.findUnique({ where: { shop } });
   const parsed = row ? JSON.parse(row.state) : {};
+  // Legacy states stored a bare percent number per variant; the current
+  // shape is { pct } or { amt } (amount-off, dollars per item).
+  const variants = {};
+  for (const [id, entry] of Object.entries(parsed.variants ?? {})) {
+    variants[id] = typeof entry === "number" ? { pct: entry } : entry;
+  }
   return {
-    variants: parsed.variants ?? {},
+    variants,
     tags: parsed.tags ?? {},
     styles: parsed.styles ?? {},
     conflicts: parsed.conflicts ?? [],
@@ -87,17 +96,32 @@ async function saveAppliedState(shop, state) {
   });
 }
 
+// "5" not "5.00", "7.5" not "7.50" — tag + metafield formatting for amounts.
+function formatAmount(value) {
+  return String(Number(value));
+}
+
 /**
  * Build the desired writes from the computed variant/product state.
- * Returns { variants: {variantId: pct}, tags: {productId: tag},
+ * Returns { variants: {variantId: {pct} | {amt}}, tags: {productId: tag},
  *           styles: {productId: {promo_badge_bg?, promo_price_color?, promo_badge_text?}} }.
+ *
+ * A variant whose winning discount is amount-off gets { amt: dollars } →
+ * custom.promo_amount (theme shows "$x OFF" and computes the exact price);
+ * percent winners get { pct } → custom.promo_percent. The product tag form
+ * follows the product's winning discount's value type.
  *
  * Styling is product-level and comes from the "winning" discount for that
  * product (the one behind its highest covered %). Only non-null style fields
  * are included, so a discount left on theme defaults writes no style metafields.
  */
-function buildDesiredWrites(variantPct, products, variantDiscount, styleByDiscount, conflictedVariants) {
+function buildDesiredWrites(variantPct, products, variantDiscount, styleByDiscount, conflictedVariants, discountById) {
   const desired = { variants: {}, tags: {}, styles: {} };
+
+  const discountFor = (variantId) =>
+    discountById?.get(variantDiscount.get(variantId)) ?? null;
+  const isAmountWinner = (variantId) =>
+    discountFor(variantId)?.valueType === "amount";
 
   for (const product of products.values()) {
     const covered = product.variantIds.filter((id) => variantPct.has(id));
@@ -116,20 +140,7 @@ function buildDesiredWrites(variantPct, products, variantDiscount, styleByDiscou
       covered.length === product.variantIds.length &&
       pcts.every((p) => p === pcts[0]);
 
-    // Tag (drives collection cards; sole signal for single-variant PDPs).
-    desired.tags[product.id] =
-      product.variantIds.length === 1 || uniform
-        ? `promo-${maxPct}`
-        : `promo-up-to-${maxPct}`;
-
-    // Per-variant metafields only matter on multi-variant products.
-    if (product.variantIds.length > 1) {
-      for (const variantId of covered) {
-        desired.variants[variantId] = variantPct.get(variantId);
-      }
-    }
-
-    // Styling from the discount behind this product's highest covered %.
+    // Product-level winner (highest covered %) decides the tag form.
     let winnerId = null;
     let winnerPct = -1;
     for (const id of covered) {
@@ -139,6 +150,40 @@ function buildDesiredWrites(variantPct, products, variantDiscount, styleByDiscou
         winnerId = variantDiscount.get(id);
       }
     }
+    const winnerDiscount = discountById?.get(winnerId) ?? null;
+
+    // Tag (drives collection cards; sole signal for single-variant PDPs).
+    if (winnerDiscount?.valueType === "amount") {
+      // "Up to" uses the LARGEST dollar amount among amount-winning variants
+      // (which may differ from the highest-% winner's own amount).
+      const amounts = covered
+        .filter((id) => isAmountWinner(id))
+        .map((id) => discountFor(id).value);
+      const maxAmt = Math.max(...amounts);
+      const uniformAmt =
+        covered.length === product.variantIds.length &&
+        covered.every((id) => isAmountWinner(id)) &&
+        amounts.every((a) => a === amounts[0]);
+      desired.tags[product.id] =
+        product.variantIds.length === 1 || uniformAmt
+          ? `promo-amt-${formatAmount(maxAmt)}`
+          : `promo-amt-up-to-${formatAmount(maxAmt)}`;
+    } else {
+      desired.tags[product.id] =
+        product.variantIds.length === 1 || uniform
+          ? `promo-${maxPct}`
+          : `promo-up-to-${maxPct}`;
+    }
+
+    // Per-variant metafields only matter on multi-variant products.
+    if (product.variantIds.length > 1) {
+      for (const variantId of covered) {
+        desired.variants[variantId] = isAmountWinner(variantId)
+          ? { amt: Number(formatAmount(discountFor(variantId).value)) }
+          : { pct: variantPct.get(variantId) };
+      }
+    }
+
     const style = winnerId ? styleByDiscount.get(winnerId) : null;
     if (style) {
       const s = {};
@@ -173,24 +218,58 @@ async function applyDiff(admin, applied, desired, { dryRun = false } = {}) {
     tagsRemove: [],
   };
 
-  // Variant metafields
-  for (const [variantId, pct] of Object.entries(desired.variants)) {
-    if (applied.variants[variantId] !== pct) {
+  // Variant metafields — each variant carries EITHER promo_percent ({pct})
+  // OR promo_amount ({amt}); a type switch sets the new key and deletes the
+  // old one in the same pass.
+  for (const [variantId, entry] of Object.entries(desired.variants)) {
+    const prev = applied.variants[variantId] ?? {};
+    if (entry.pct !== undefined && prev.pct !== entry.pct) {
       ops.metafieldsSet.push({
         ownerId: variantId,
         namespace: "custom",
         key: "promo_percent",
         type: "number_integer",
-        value: String(pct),
+        value: String(entry.pct),
       });
     }
-  }
-  for (const variantId of Object.keys(applied.variants)) {
-    if (!(variantId in desired.variants)) {
+    if (entry.amt !== undefined && prev.amt !== entry.amt) {
+      ops.metafieldsSet.push({
+        ownerId: variantId,
+        namespace: "custom",
+        key: "promo_amount",
+        type: "number_decimal",
+        value: String(entry.amt),
+      });
+    }
+    if (prev.pct !== undefined && entry.pct === undefined) {
       ops.metafieldsDelete.push({
         ownerId: variantId,
         namespace: "custom",
         key: "promo_percent",
+      });
+    }
+    if (prev.amt !== undefined && entry.amt === undefined) {
+      ops.metafieldsDelete.push({
+        ownerId: variantId,
+        namespace: "custom",
+        key: "promo_amount",
+      });
+    }
+  }
+  for (const [variantId, prev] of Object.entries(applied.variants)) {
+    if (variantId in desired.variants) continue;
+    if (prev.pct !== undefined) {
+      ops.metafieldsDelete.push({
+        ownerId: variantId,
+        namespace: "custom",
+        key: "promo_percent",
+      });
+    }
+    if (prev.amt !== undefined) {
+      ops.metafieldsDelete.push({
+        ownerId: variantId,
+        namespace: "custom",
+        key: "promo_amount",
       });
     }
   }
@@ -409,6 +488,7 @@ export async function syncShop(admin, shop, { dryRun = false } = {}) {
       activeWinner,
       styleByDiscount,
       liveConflictVariants,
+      metaById,
     );
 
     // Enrich with product context + a stable key for ignore/dismiss.
