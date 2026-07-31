@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Note that some adapters may set a maximum length for the String type by default, please ensure your strings are long
+// enough when changing adapters.
+// See https://www.prisma.io/docs/orm/reference/prisma-schema-reference#string for more information
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.sqlite"
+}
+
+model Session {
+  id                  String    @id
+  shop                String
+  state               String
+  isOnline            Boolean   @default(false)
+  scope               String?
+  expires             DateTime?
+  accessToken         String
+  userId              BigInt?
+  firstName           String?
+  lastName            String?
+  email               String?
+  accountOwner        Boolean   @default(false)
+  locale              String?
+  collaborator        Boolean?  @default(false)
+  emailVerified       Boolean?  @default(false)
+  refreshToken        String?
+  refreshTokenExpires DateTime?
+}
+
+model TrackedDiscount {
+  id              String   @id @default(cuid())
+  shop            String
+  discountId      String   // Shopify GID of the automatic discount
+  title           String   @default("")
+  isActive        Boolean  @default(false)
+  valueType       String?  // "percentage" | "amount"
+  value           Float?   // 20 (20%) or 10.0 ($10 off)
+  currency        String?  // set for amount-off discounts
+  badgeBg         String?  // per-discount badge/pill bg color (hex); null = theme default
+  priceColor      String?  // per-discount sale-price text color (hex); null = theme default
+  badgeText       String?  // per-discount badge text template with {n}; null = "{n}% OFF"
+  badgeStyle      String?  // per-discount badge shape: "ribbon"; null = circle (default)
+  appliedProducts String   @default("[]") // JSON: [{id, handle}]
+  updatedAt       DateTime @updatedAt
+  createdAt       DateTime @default(now())
+
+  @@unique([shop, discountId], name: "shop_discountId")
+}
+
+model AppliedState {
+  shop      String   @id
+  state     String   @default("{}") // JSON: { variants: {variantId: pct}, tags: {productId: tag} }
+  updatedAt DateTime @updatedAt
+}

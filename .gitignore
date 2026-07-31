@@ -29,5 +29,15 @@ node_modules/
 /scripts/
 /.github/
 
+# Custom apps (custom-nikol-apps/) — secrets and local build artifacts stay out
+custom-nikol-apps/**/.env
+custom-nikol-apps/**/.env.*
+custom-nikol-apps/**/.shopify/
+custom-nikol-apps/**/.shopify.lock
+custom-nikol-apps/**/build/
+custom-nikol-apps/**/.cache/
+custom-nikol-apps/**/*.sqlite
+custom-nikol-apps/**/*.sqlite-journal
+
 # CLAUDE.md is tracked on purpose: it carries Claude's cross-machine operating
 # instructions (Jira conventions, daily-schedule procedure) per Randell, 2026-07-29.
