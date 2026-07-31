@@ -65,6 +65,19 @@
   font-size: var(--FONT-SIZE-BASE);
 }
 
+.custom-newsletter__message {
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  color: #fff;
+  font-family: 'Inter';
+  font-size: var(--FONT-SIZE-BASE);
+  border: 1px solid #fff;
+}
+
+.custom-newsletter__message--error {
+  font-weight: 600;
+}
+
 @media only screen and (max-width: 600px) {
   .custom-newsletter {
     padding: 50px 0;
@@ -107,9 +120,21 @@
       </div>
 
       <div class="custom-newsletter__right">
-        <form method="post" action="/contact#contact_form" accept-charset="UTF-8" class="custom-newsletter__form">
-          <input type="hidden" name="form_type" value="customer">
-          <input type="hidden" name="utf8" value="✓">
+        {%- assign newsletter_form_id = 'CustomNewsletter-' | append: section.id -%}
+        {%- form 'customer', class: 'custom-newsletter__form', id: newsletter_form_id -%}
+          {%- if form.posted_successfully? -%}
+            <p class="custom-newsletter__message custom-newsletter__message--success" id="newsletter-success-{{ section.id }}" tabindex="-1" autofocus>
+              {{ 'general.newsletter_form.thank_you' | t }}
+            </p>
+          {%- endif -%}
+
+          {%- if form.errors -%}
+            <p class="custom-newsletter__message custom-newsletter__message--error" id="newsletter-error-{{ section.id }}">
+              {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
+            </p>
+          {%- endif -%}
+
+          <input type="hidden" name="contact[accepts_marketing]" value="true">
 
           <div class="custom-newsletter__input-wrap">
             <input
@@ -118,6 +143,15 @@
               class="custom-newsletter__input"
               placeholder="{{ section.settings.placeholder_text }}"
               aria-label="Email address"
+              autocorrect="off"
+              autocapitalize="off"
+              {% if form.errors %}
+                autofocus
+                aria-invalid="true"
+                aria-describedby="newsletter-error-{{ section.id }}"
+              {% elsif form.posted_successfully? %}
+                aria-describedby="newsletter-success-{{ section.id }}"
+              {% endif %}
               required
             >
           </div>
@@ -143,7 +177,7 @@
               {{ section.settings.note_text }}
             </div>
           {%- endif -%}
-        </form>
+        {%- endform -%}
       </div>
 
     </div>
