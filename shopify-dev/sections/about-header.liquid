@@ -1,7 +1,8 @@
 <div class="about-header site-about-header-wrapper">
   <style>
     .about-header {
-      background-image: url({{ 'about-header-bg.png' | asset_url }})
+      background-image: url({{ 'about-header-bg.png' | asset_url }});
+      background-color: {{ section.settings.bg_color | default: '#FCC9C6' }};
     }
 
     @media (max-width: 786px) {
@@ -56,6 +57,12 @@
       "id": "copy",
       "label": "Copy",
       "default": "<p>Lorem ipsum</p>"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FCC9C6"
     }
   ],
   "presets": [{

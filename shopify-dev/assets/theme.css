@@ -19450,7 +19450,7 @@ body.is-focused .subcollection__item:focus-within .image-overlay-bottom {
 
 .pagination-custom__page {
   margin: 0 8px;
-  color: #fcc9c6;
+  color: var(--COLOR-PRIMARY, #fcc9c6);
   display: block;
   padding: 4px 8px;
   transition: color .3s ease;
@@ -24159,10 +24159,10 @@ body.has-header-sticky .timeline {
 /*! ============ Add any custom styles below this line ================== */
 
 .navlink--toplevel {
-  --link-hover: #fcc9c6 !important;
+  --link-hover: var(--COLOR-NAV-LINK-HOVER, #fcc9c6) !important;
 }
 .header__dropdown {
-  --link-hover: #fcc9c6 !important;
+  --link-hover: var(--COLOR-NAV-LINK-HOVER, #fcc9c6) !important;
 }
 
 .product-quick-add__images .lazy-image {
@@ -24203,7 +24203,7 @@ body.has-header-sticky .timeline {
 
 .product-item .badge-box, .product-item .sale-box {
     font-size: 10px !important;
-    background: #FCC9C6;
+    background: var(--COLOR-SALE-BG, #FCC9C6);
     right: 12px;
     left: unset;
     height: 65px !important;

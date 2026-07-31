@@ -98,6 +98,12 @@
       },
       {
         "type": "color",
+        "id": "menu_link_hover_color",
+        "label": "Links hover",
+        "default": "#fcc9c6"
+      },
+      {
+        "type": "color",
         "id": "submenu_bg_color",
         "label": "Dropdown background",
         "default": "#ffffff"
