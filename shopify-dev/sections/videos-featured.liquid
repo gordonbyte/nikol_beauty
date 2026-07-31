@@ -1,0 +1,56 @@
+<div class="videos-featured site-videos-featured-wrapper">
+  <div class="videos-featured__inner">
+	   	<div class="videos-featured__content">
+	      {% render 'yt-video-content', video_url: section.settings.video_url, title: section.settings.title %}
+	    </div>
+	    <div class="videos-featured__video">
+	      {% render 'yt-video', video_url: section.settings.video_url, image: section.settings.image, title: section.settings.title, hide_content: true %}
+	    </div>
+
+      <a class="videos-featured__link desktop-only" href="{{ section.settings.youtube_link }}">
+        Subscribe to my youtube channel
+      </a>
+
+      <div class="videos-featured__subscribe mobile-only">
+        <div class="videos-featured__subscribe-title">
+          Subscribe to my youtube channel
+        </div>
+
+        <a class="cta" href="{{ section.settings.youtube_link }}">
+          Subscribe now
+        </a>
+      </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured Video",
+  "settings": [
+    {
+      "type": "url",
+      "label": "Youtube video URL",
+      "id": "video_url"
+    },
+    {
+      "type": "image_picker",
+      "label": "Image",
+      "id": "image"
+    },
+    {
+      "type": "text",
+      "label": "Title",
+      "id": "title"
+    },
+    {
+      "type": "url",
+      "label": "Youtube Channel link",
+      "id": "youtube_link"
+    }
+  ],
+  "presets": [{
+    "name": "Featured Video",
+    "category": "Image"
+  }]
+}
+{% endschema %}

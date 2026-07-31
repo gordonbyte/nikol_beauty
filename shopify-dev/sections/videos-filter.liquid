@@ -1,0 +1,74 @@
+<div class="videos-filter site-videos-filter-wrapper">
+  <div class="videos-filter__inner desktop-only">
+    <a class="js-filter-button active" data-category="all" href="#all">
+        All
+    </a>
+    {%- for block in section.blocks -%}
+      <a class="js-filter-button" data-category="{{ block.settings.category }}" href="#{{ block.settings.category }}">
+        {{ block.settings.title }}
+      </a>
+    {%- endfor -%}
+  </div>
+
+  <div class="videos-filter__inner mobile-only">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <a class="js-filter-button active" data-category="all" href="#all">
+              All
+          </a>
+        </div>
+        {%- for block in section.blocks -%}
+          <div class="swiper-slide">
+            <a 
+                class="js-filter-button" 
+                data-category="{{ block.settings.category }}" 
+                href="#{{ block.settings.category }}"
+                >
+              {{ block.settings.title }}
+            </a>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Videos Filter",
+  "settings": [
+    
+  ],
+  "blocks": [
+    {
+      "type": "filter",
+      "name": "Filter",
+      "settings": [
+        {
+          "type": "text",
+          "label": "Title",
+          "id": "title"
+        },
+        {
+          "type": "select",
+          "id": "category",
+          "label": "Category",
+          "default": "makeup",
+          "options": [
+            { "value": "makeup", "label": "Makeup" },
+            { "value": "skin-care", "label": "Skin Care" },
+            { "value": "haircare", "label": "Haircare" },
+            { "value": "style", "label": "Style" },
+            { "value": "fierce-aging", "label": "Fierce Aging" }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Videos Filter",
+    "category": "Image"
+  }]
+}
+{% endschema %}

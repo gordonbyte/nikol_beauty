@@ -1,0 +1,831 @@
+{% assign videos = shop.metaobjects['beauty_tutorial_videos'] %}
+
+{% comment %} Read metafields from the current page {% endcomment %}
+{% assign fierceaging_video_url = page.metafields.custom.fierceaging_series_video %}
+{% assign fierceaging_featured_product = page.metafields.custom.fierceaging_series_featured_product %}
+{% assign fierceaging_featured_product_description = page.metafields.custom.fierceaging_series_featured_product_description %}
+{% assign makeup_tutorials_video_url = page.metafields.custom.makeup_tutorials_video %}
+{% assign makeup_tutorials_featured_product = page.metafields.custom.makeup_tutorials_featured_product %}
+{% assign makeup_tutorials_featured_product_description = page.metafields.custom.makeup_tutorials_featured_product_description %}
+
+
+
+{% comment %} Extract YouTube video IDs using the same simple approach as beauty_tutorial_videos.liquid {% endcomment %}
+{% assign fierceaging_video_id = fierceaging_video_url | split: 'v=' | last %}
+{% assign makeup_tutorials_video_id = makeup_tutorials_video_url | split: 'v=' | last %}
+
+
+
+{% comment %} Get product information from metafields {% endcomment %}
+{% assign fierceaging_product = fierceaging_featured_product.value %}
+{% assign makeup_product = makeup_tutorials_featured_product.value %}
+
+
+<section class="video-gallery-section">
+  
+
+  <!-- Tab Content -->
+  <div class="video-gallery-tab-content">
+    <!-- Makeup Tutorials Tab -->
+    <div class="video-gallery-tab-panel" id="makeup-tutorials">
+      <!-- Hero Section -->
+      <div class="video-gallery-hero-section">
+        <div class="video-gallery-container">
+          <div class="video-gallery-hero-content">
+            <div class="video-gallery-hero-text">
+              <h1 class="video-gallery-hero-title">{{ section.settings.makeup_title | default: "Discover Nikol's Favorite Products in Action" }}</h1>
+              <p class="video-gallery-hero-description">
+                {{ section.settings.makeup_description | default: "Join Nikol as she shares real makeup tips, tutorials, and honest reviews—because beauty doesn't stop at 50, it just gets better." }}
+              </p>
+            </div>
+            <div class="video-gallery-hero-image">
+
+                <div class="video-gallery-placeholder-image">
+                  {%- if section.settings.hero_image != blank -%}
+                    <img src="{{ section.settings.hero_image | image_url: width: 1000 }}"
+                         alt="{{ section.settings.hero_image.alt | default: 'Nikol Beauty Expert' | escape }}">
+                  {%- else -%}
+                    <img src="https://cdn.shopify.com/s/files/1/0690/6347/5504/files/ff0702c8a19189bf469459f0bc045d95ba3f13b6.png?v=1753989319"
+                         alt="Nikol Beauty Expert">
+                  {%- endif -%}
+                </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <!-- Videos Grid Section -->
+      <div class="video-gallery-videos-grid-section">
+        <div class="video-gallery-container">
+          <div class="video-gallery-videos-grid" id="makeup-tutorials-videos-grid">
+            <!-- Video Grid Content -->
+            
+                        {% if videos %}
+                {% comment %} Count total videos for tutorials category {% endcomment %}
+                {% assign tutorials_count = 0 %}
+                {% for video in videos.values %}
+                  {% if video.category == 'tutorials' %}
+                    {% assign tutorials_count = tutorials_count | plus: 1 %}
+                  {% endif %}
+                {% endfor %}
+
+                {% comment %} Display all videos {% endcomment %}
+                {% for video in videos.values %}
+                  {% comment %} Filter videos by category "tutorials" {% endcomment %}
+                  {% if video.category == 'tutorials' %}
+                      {% comment %} Extract YouTube video ID from URL {% endcomment %}
+                      {% assign video_url = video.video_url %}
+                      {% assign youtube_id = '' %}
+                      
+                      {% comment %} Extract YouTube ID using a more reliable method {% endcomment %}
+                      {% if video_url contains 'youtube.com/watch?v=' %}
+                        {% assign url_parts = video_url | split: 'v=' %}
+                        {% assign youtube_id = url_parts[1] | split: '&' | first %}
+                      {% elsif video_url contains 'youtu.be/' %}
+                        {% assign url_parts = video_url | split: 'youtu.be/' %}
+                        {% assign youtube_id = url_parts[1] | split: '?' | first %}
+                      {% endif %}
+                      
+                      {% comment %} Fallback extraction method {% endcomment %}
+                      {% if youtube_id == blank %}
+                        {% assign video_id_part = video_url | split: 'v=' | last %}
+                        {% assign youtube_id = video_id_part | split: '&' | first %}
+                      {% endif %}
+                      
+                      {% comment %} Create thumbnail URL: prefer metafield thumbnail, fallback to YouTube {% endcomment %}
+                      {% assign thumbnail_url = 'https://img.youtube.com/vi/' | append: youtube_id | append: '/0.jpg' %}
+                      {% if video.thumbnail != blank %}
+                        {% assign custom_thumb = video.thumbnail | image_url %}
+                        {% if custom_thumb != blank %}
+                          {% assign thumbnail_url = custom_thumb %}
+                        {% else %}
+                          {% assign thumbnail_url = video.thumbnail %}
+                        {% endif %}
+                      {% endif %}
+                      
+                      {% comment %} Create the video page URL when "Publish entries as web pages" is active {% endcomment %}
+                      {% assign video_page_url = '/pages/beauty-tutorial-videos/' | append: video.handle %}
+                      
+                      {% comment %} If handle is empty, create a fallback URL using the title {% endcomment %}
+                      {% if video.handle == blank %}
+                        {% assign fallback_handle = video.title | handleize %}
+                        {% assign video_page_url = '/pages/beauty-tutorial-videos/' | append: fallback_handle %}
+                      {% endif %}
+                      
+                      {% comment %} Choose between video page URL or YouTube URL based on settings {% endcomment %}
+                      {% assign link_url = video_page_url %}
+                      {% if section.settings.use_youtube_links %}
+                        {% assign link_url = video.video_url %}
+                      {% endif %}
+                      
+                      <a href="{{ link_url }}" class="video-gallery-video-card" data-video-url="{{ video.video_url }}" {% if section.settings.use_youtube_links %}target="_blank"{% endif %}>
+                        <div class="video-gallery-video-thumbnail">
+                          <img src="{{ thumbnail_url }}" alt="{{ video.title }}" loading="lazy">
+                          <div class="video-gallery-video-overlay">
+                            <svg class="video-gallery-play-icon" width="48" height="48" viewBox="0 0 24 24" fill="white">
+                              <path d="M8 5v14l11-7z"/>
+                            </svg>
+                          </div>
+                        </div>
+                        <div class="video-gallery-video-info">
+                          <h3 class="video-gallery-video-title">{{ video.title }}</h3>
+                        </div>
+                      </a>
+                  {% endif %}
+                {% endfor %}
+                
+                <script>
+                  window.tutorialsVideos = [];
+                  window.tutorialsTotalCount = {{ tutorials_count }};
+                  window.tutorialsDisplayedCount = {{ tutorials_count }};
+                </script>
+            {% endif %}
+
+
+          </div>
+             <!-- Show More Button -->
+              <div class="video-gallery-show-more-container">
+                <button class="video-gallery-show-more-btn" id="tutorials-show-more-btn" data-tab="tutorials">
+                  SHOW MORE
+                </button>
+              </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fierceaging Series Tab -->
+    <div class="video-gallery-tab-panel active" id="fierceaging-series">
+      <!-- Hero Section -->
+      <div class="video-gallery-hero-section">
+        <div class="video-gallery-container">
+          <div class="video-gallery-hero-content">
+            <div class="video-gallery-hero-text">
+              <h1 class="video-gallery-hero-title">{{ section.settings.fierceaging_title | default: "#FIERCEAGING Series" }}</h1>
+              <p class="video-gallery-hero-description">
+                {{ section.settings.fierceaging_description | default: "Embrace aging with confidence and style. Discover tips, tricks, and inspiration for looking and feeling your best at every age." }}
+              </p>
+            </div>
+            <div class="video-gallery-hero-image">
+
+                <div class="video-gallery-placeholder-image">
+                  {%- if section.settings.fierceaging_hero_image != blank -%}
+                    <img src="{{ section.settings.fierceaging_hero_image | image_url: width: 1000 }}"
+                         alt="{{ section.settings.fierceaging_hero_image.alt | default: 'Nikol Beauty Expert' | escape }}">
+                  {%- else -%}
+                    <img src="https://cdn.shopify.com/s/files/1/0690/6347/5504/files/ff0702c8a19189bf469459f0bc045d95ba3f13b6.png?v=1753989319"
+                         alt="Nikol Beauty Expert">
+                  {%- endif -%}
+                </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <!-- Videos Grid Section -->
+      <div class="video-gallery-videos-grid-section">
+
+        <div class="videos-desc">
+            <h3>Real Stories, Real Beauty</h3>
+            <p>From career changes to confidence rediscovered—each episode is a tribute to the fearless beauty of aging.  Browse past features and feel inspired to embrace every season of your life with grace, humor, and bold lipstick.</p>
+        </div>
+
+        <div class="video-gallery-container">
+          <div class="video-gallery-videos-grid" id="fierceaging-series-videos-grid">
+            <!-- Video Grid Content for Fierceaging Series -->
+            
+            {% if videos %}
+                {% comment %} Count total videos for fierceaging category {% endcomment %}
+                {% assign fierceaging_count = 0 %}
+                {% for video in videos.values %}
+                  {% if video.category == 'fierceaging' %}
+                    {% assign fierceaging_count = fierceaging_count | plus: 1 %}
+                  {% endif %}
+                {% endfor %}
+
+                {% comment %} Display all videos {% endcomment %}
+                {% for video in videos.values %}
+                  {% comment %} Filter videos by category "fierceaging" {% endcomment %}
+                  {% if video.category == 'fierceaging' %}
+                      {% comment %} Extract YouTube video ID from URL {% endcomment %}
+                      {% assign video_url = video.video_url %}
+                      {% assign youtube_id = '' %}
+                      
+                      {% comment %} Extract YouTube ID using a more reliable method {% endcomment %}
+                      {% if video_url contains 'youtube.com/watch?v=' %}
+                        {% assign url_parts = video_url | split: 'v=' %}
+                        {% assign youtube_id = url_parts[1] | split: '&' | first %}
+                      {% elsif video_url contains 'youtu.be/' %}
+                        {% assign url_parts = video_url | split: 'youtu.be/' %}
+                        {% assign youtube_id = url_parts[1] | split: '?' | first %}
+                      {% endif %}
+                      
+                      {% comment %} Fallback extraction method {% endcomment %}
+                      {% if youtube_id == blank %}
+                        {% assign video_id_part = video_url | split: 'v=' | last %}
+                        {% assign youtube_id = video_id_part | split: '&' | first %}
+                      {% endif %}
+                      
+                      {% comment %} Create thumbnail URL: prefer metafield thumbnail, fallback to YouTube {% endcomment %}
+                      {% assign thumbnail_url = 'https://img.youtube.com/vi/' | append: youtube_id | append: '/0.jpg' %}
+                      {% if video.thumbnail != blank %}
+                        {% assign custom_thumb = video.thumbnail | image_url %}
+                        {% if custom_thumb != blank %}
+                          {% assign thumbnail_url = custom_thumb %}
+                        {% else %}
+                          {% assign thumbnail_url = video.thumbnail %}
+                        {% endif %}
+                      {% endif %}
+                      
+                      {% comment %} Create the video page URL when "Publish entries as web pages" is active {% endcomment %}
+                      {% assign video_page_url = '/pages/beauty-tutorial-videos/' | append: video.handle %}
+                      
+                      {% comment %} If handle is empty, create a fallback URL using the title {% endcomment %}
+                      {% if video.handle == blank %}
+                        {% assign fallback_handle = video.title | handleize %}
+                        {% assign video_page_url = '/pages/beauty-tutorial-videos/' | append: fallback_handle %}
+                      {% endif %}
+                      
+                      {% comment %} Choose between video page URL or YouTube URL based on settings {% endcomment %}
+                      {% assign link_url = video_page_url %}
+                      {% if section.settings.use_youtube_links %}
+                        {% assign link_url = video.video_url %}
+                      {% endif %}
+                      
+                      <a href="{{ link_url }}" class="video-gallery-video-card" data-video-url="{{ video.video_url }}" {% if section.settings.use_youtube_links %}target="_blank"{% endif %}>
+                        <div class="video-gallery-video-thumbnail">
+                          <img src="{{ thumbnail_url }}" alt="{{ video.title }}" loading="lazy">
+                          <div class="video-gallery-video-overlay">
+                            <svg class="video-gallery-play-icon" width="48" height="48" viewBox="0 0 24 24" fill="white">
+                              <path d="M8 5v14l11-7z"/>
+                            </svg>
+                          </div>
+                        </div>
+                        <div class="video-gallery-video-info">
+                          <h3 class="video-gallery-video-title">{{ video.title }}</h3>
+                        </div>
+                      </a>
+                  {% endif %}
+                {% endfor %}
+                
+                <script>
+                  window.fierceagingVideos = [];
+                  window.fierceagingTotalCount = {{ fierceaging_count }};
+                  window.fierceagingDisplayedCount = {{ fierceaging_count }};
+                </script>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+               <!-- Show More Button -->
+              <div class="video-gallery-show-more-container">
+                <button class="video-gallery-show-more-btn" id="fierceaging-show-more-btn" data-tab="fierceaging">
+                  SHOW MORE
+                </button>
+              </div>
+    </div>
+  </div>
+</section>
+
+<section>
+
+  <div class="video-gallery-hero-section">
+    <div class="video-gallery-container">
+      <div class="video-gallery-hero-content">
+       <div class="video-gallery-hero-image">
+        
+            <div class="video-gallery-placeholder-image-bottom">
+              {%- if section.settings.bottom_hero_image != blank -%}
+                <img src="{{ section.settings.bottom_hero_image | image_url: width: 1000 }}"
+                     alt="{{ section.settings.bottom_hero_image.alt | default: 'Nikol Beauty Expert' | escape }}">
+              {%- else -%}
+                <img src="https://cdn.shopify.com/s/files/1/0690/6347/5504/files/39538559f69c049bdc2b8bd4030d701371ee1ea7.png?v=1753989326" alt="Nikol Beauty Expert">
+              {%- endif -%}
+            </div>
+
+        </div>
+
+        <div class="video-gallery-hero-text">
+          <h2 class="video-gallery-hero-title-bottom">{{ section.settings.bottom_title | default: "Your Beauty Journey Starts Here" }}</h2>
+          <p class="video-gallery-hero-description">
+            {{ section.settings.bottom_description | default: "Discover what makes you feel confident—Nikol's favorites are made to enhance your beauty, not cover it." }}
+          </p>
+          <div class="video-gallery-hero-buttons">
+            <a href="{{ section.settings.store_url | default: '/collections/all' }}" class="btn btn--primary btn--solid">
+              {{ section.settings.store_button_text | default: "GO TO STORE" }}
+            </a>
+            {%- assign yt_url = section.settings.youtube_channel_url | strip -%}
+            {%- if yt_url != blank and yt_url != '#' -%}
+              <a href="{{ yt_url }}" class="btn btn--secondary btn--outline" target="_blank" rel="noopener">
+                VISIT YOUTUBE CHANNEL
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<style>
+.videos-desc {
+  display: flex;
+  max-width: 800px;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.video-gallery-section {
+  background: #fff;
+  width: 100%;
+}
+
+.video-gallery-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Tab Content */
+
+.video-gallery-tab-panel {
+  display: none;
+}
+
+.video-gallery-tab-panel.active {
+  display: block !important;
+}
+
+/* Hero Section */
+
+.video-gallery-hero-section {
+  padding: 0px 0 0 0;
+  width: 100%;
+}
+
+.video-gallery-hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.video-gallery-hero-title {
+  font-family: Cormorant;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 29px;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  background: #FCC9C6;
+  padding: 15px 20px;
+  border-radius: 0;
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.video-gallery-hero-title-bottom {
+  font-family: Cormorant;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 29px;
+  color: #333;
+  margin-bottom: 25px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+
+.video-gallery-hero-description {
+  font-weight: 300;
+  font-style: Light;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.video-gallery-hero-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0;
+}
+
+.video-gallery-hero-image {
+  text-align: center;
+}
+
+.video-gallery-hero-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.video-gallery-placeholder-image {
+  margin-bottom: -6px;
+}
+
+.video-gallery-placeholder-image-bottom {
+  margin-bottom: -7px;
+}
+
+/* Videos Grid Section */
+
+.video-gallery-videos-grid-section {
+  padding: 40px 0;
+  background: #F7F2ED;
+  width: 100%;
+}
+
+.video-gallery-videos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 48px;
+  column-gap: 30px;
+  margin-top: 40px;
+}
+
+/* Video Cards */
+
+.video-gallery-video-card {
+  background: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: none;
+  transition: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+
+.video-gallery-video-card:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.video-gallery-video-thumbnail {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.video-gallery-video-thumbnail img {
+  width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: middle;
+}
+
+.video-gallery-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.video-gallery-video-card:hover .video-gallery-video-overlay {
+  opacity: 1;
+}
+
+.video-gallery-play-icon {
+  width: 48px;
+  height: 48px;
+}
+
+.video-gallery-video-info {
+  padding: 15px 0;
+}
+
+.video-gallery-video-title {
+  font-size: 19px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+  .video-gallery-container {
+    padding: 0 20px;
+  }
+
+  .video-gallery-hero-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .video-gallery-hero-title {
+    font-size: 2rem;
+    display: block; /* Show FIERCEAGING Series title on mobile */
+  }
+
+  .video-gallery-hero-buttons {
+    flex-direction: column;
+    align-items: center; /* Center buttons on mobile */
+    justify-content: center;
+    margin-bottom: 40px; /* Add space below buttons on mobile */
+  }
+
+  .video-gallery-videos-grid {
+    grid-template-columns: 1fr;
+    row-gap: 48px;
+    column-gap: 30px;
+  }
+
+  .video-gallery-video-card {
+    margin-bottom: 0;
+  }
+
+  .videos-desc {
+    display: flex;
+    max-width: 800px;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding: 3rem;
+    text-align: center; /* Center the text content */
+  }
+
+  .video-gallery-videos-grid-section {
+    padding-top: 20px;
+  }
+
+  .videos-desc {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+/* Show More Button - Temporarily Hidden */
+
+.video-gallery-show-more-container {
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  padding: 40px 0;
+  display: none;
+}
+
+.video-gallery-show-more-btn {
+  background: #FCD0CD;
+  color: #46413C;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 0;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.video-gallery-show-more-btn:hover {
+  background: #f8bbd9;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  // Show More functionality for both tabs
+  function loadMoreVideos(tabType) {
+    let videosArray, totalCount, currentDisplayed, gridId, buttonId;
+    
+    if (tabType === 'tutorials') {
+      videosArray = window.tutorialsVideos;
+      totalCount = window.tutorialsTotalCount;
+      currentDisplayed = window.tutorialsDisplayedCount;
+      gridId = 'makeup-tutorials-videos-grid';
+      buttonId = 'tutorials-show-more-btn';
+    } else if (tabType === 'fierceaging') {
+      videosArray = window.fierceagingVideos;
+      totalCount = window.fierceagingTotalCount;
+      currentDisplayed = window.fierceagingDisplayedCount;
+      gridId = 'fierceaging-series-videos-grid';
+      buttonId = 'fierceaging-show-more-btn';
+    }
+    
+    const grid = document.getElementById(gridId);
+    const button = document.getElementById(buttonId);
+    
+    if (!grid || !button || !videosArray) return;
+    
+    // Calculate how many videos to load (6 at a time)
+    const videosToLoad = Math.min(6, videosArray.length);
+    const startIndex = currentDisplayed - 6; // Videos already displayed
+    
+    // Load videos
+    for (let i = 0; i < videosToLoad; i++) {
+      const videoData = videosArray[startIndex + i];
+      if (videoData) {
+        const videoCard = createVideoCard(videoData);
+        grid.appendChild(videoCard);
+      }
+    }
+    
+    // Update counters
+    if (tabType === 'tutorials') {
+      window.tutorialsDisplayedCount += videosToLoad;
+    } else if (tabType === 'fierceaging') {
+      window.fierceagingDisplayedCount += videosToLoad;
+    }
+    
+    // Remove videos from array
+    videosArray.splice(0, videosToLoad);
+    
+    // Hide button if no more videos
+    if (videosArray.length === 0) {
+      button.style.display = 'none';
+    }
+  }
+  
+  function createVideoCard(videoData) {
+    const link = document.createElement('a');
+    link.href = videoData.linkUrl;
+    link.className = 'video-gallery-video-card';
+    link.setAttribute('data-video-url', videoData.videoUrl);
+    if (videoData.useYouTubeLinks) {
+      link.setAttribute('target', '_blank');
+    }
+    
+    link.innerHTML = `
+      <div class="video-gallery-video-thumbnail">
+        <img src="${videoData.thumbnailUrl}" alt="${videoData.title}" loading="lazy">
+        <div class="video-gallery-video-overlay">
+          <svg class="video-gallery-play-icon" width="48" height="48" viewBox="0 0 24 24" fill="white">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="video-gallery-video-info">
+        <h3 class="video-gallery-video-title">${videoData.title}</h3>
+      </div>
+    `;
+    
+    return link;
+  }
+  
+  // Add click handlers for Show More buttons for both tabs
+  const showMoreButtons = document.querySelectorAll('.video-gallery-show-more-btn');
+  showMoreButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const tabType = this.getAttribute('data-tab');
+      loadMoreVideos(tabType);
+    });
+  });
+  
+  // Hide Show More buttons if no videos to load
+  if (window.tutorialsVideos && window.tutorialsVideos.length === 0) {
+    const tutorialsButton = document.getElementById('tutorials-show-more-btn');
+    if (tutorialsButton) tutorialsButton.style.display = 'none';
+  }
+  
+  if (window.fierceagingVideos && window.fierceagingVideos.length === 0) {
+    const fierceagingButton = document.getElementById('fierceaging-show-more-btn');
+    if (fierceagingButton) fierceagingButton.style.display = 'none';
+  }
+  
+
+});
+</script>
+
+
+
+
+
+
+{% schema %}
+{
+  "name": "Video Gallery",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Makeup Tutorials Tab"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image for Makeup Tutorials"
+    },
+    {
+      "type": "text",
+      "id": "makeup_title",
+      "label": "Hero Title",
+      "default": "Discover Nikol's Favorite Products in Action"
+    },
+    {
+      "type": "textarea",
+      "id": "makeup_description",
+      "label": "Hero Description",
+      "default": "Join Nikol as she shares real makeup tips, tutorials, and honest reviews—because beauty doesn't stop at 50, it just gets better."
+    },
+    {
+      "type": "header",
+      "content": "Fierceaging Series Tab"
+    },
+    {
+      "type": "image_picker",
+      "id": "fierceaging_hero_image",
+      "label": "Hero Image for Fierceaging Series"
+    },
+    {
+      "type": "text",
+      "id": "fierceaging_title",
+      "label": "Fierceaging Hero Title",
+      "default": "#FIERCEAGING Series"
+    },
+    {
+      "type": "textarea",
+      "id": "fierceaging_description",
+      "label": "Fierceaging Hero Description",
+      "default": "Embrace aging with confidence and style. Discover tips, tricks, and inspiration for looking and feeling your best at every age."
+    },
+    {
+      "type": "header",
+      "content": "Bottom Hero"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_hero_image",
+      "label": "Bottom Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "bottom_title",
+      "label": "Bottom Hero Title",
+      "default": "Your Beauty Journey Starts Here"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_description",
+      "label": "Bottom Hero Description",
+      "default": "Discover what makes you feel confident—Nikol's favorites are made to enhance your beauty, not cover it."
+    },
+    {
+      "type": "text",
+      "id": "store_button_text",
+      "label": "Store Button Text",
+      "default": "GO TO STORE"
+    },
+    {
+      "type": "header",
+      "content": "Links"
+    },
+    {
+      "type": "url",
+      "id": "store_url",
+      "label": "Store URL",
+      "info": "URL for the 'GO TO STORE' button"
+    },
+    {
+      "type": "paragraph",
+      "content": "The 'VISIT YOUTUBE CHANNEL' button only shows when a YouTube Channel URL is set."
+    },
+    {
+      "type": "url",
+      "id": "youtube_channel_url",
+      "label": "YouTube Channel URL",
+      "info": "URL for the 'VISIT YOUTUBE CHANNEL' button"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_youtube_links",
+      "label": "Use YouTube Links Instead of Video Pages",
+      "default": false,
+      "info": "When checked, video cards will link directly to YouTube. When unchecked, they will link to individual video pages (requires 'Publish entries as web pages' to be active)."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Gallery",
+      "category": "Video"
+    }
+  ]
+}
+{% endschema %}

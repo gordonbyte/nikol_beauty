@@ -1,0 +1,111 @@
+{%- liquid
+  assign title_subscribe = section.settings.title_subscribe
+  assign title_1 = section.settings.footer_title_1
+  assign contact_title = section.settings.contact_title
+  assign contact_info = section.settings.contact_info
+  assign contact_phone = section.settings.contact_phone
+  assign menu_1 = section.settings.footer_menu_1
+-%}
+
+<footer class="footer site-footer-wrapper">
+  <div class="footer__inner">
+    <div class="footer__subscribe">
+      <h2 class="footer__subscribe-title">
+        {{ title_subscribe }}
+      </h2>
+
+      {% render 'klaviyo-form' %}
+    </div>
+    <div class="footer__right">
+
+      <div class="footer__menus">
+        <div class="footer__menu">
+          <h3 class="footer__title">
+            {{ title_1 }}
+          </h3>
+          <div class="footer__links">
+            {%- for link in linklists[menu_1].links -%}
+              <a href="{{ link.url }}">
+                {{ link.title }}
+              </a>
+            {%- endfor -%}
+          </div>
+        </div>
+
+        <div class="footer__menu">
+          <a href="/pages/about#contact">
+            <h3 class="footer__title">
+              {{ contact_title }}
+            </h3>
+          </a>
+          <div class="footer__contact">
+            {{ contact_info }}
+
+            {% if contact_phone %}
+              <a class="footer__tel" href="tel:{{ contact_phone }}">
+                Tel: {{ contact_phone }}
+              </a>
+            {% endif %}
+          </div>
+
+          <div class="desktop-only">
+            <br>
+          </div>
+
+          <div class="footer__social">
+            {%- assign social_accounts = 'Instagram, Facebook, Twitter, TikTok, Pinterest, Tumblr, YouTube, Vimeo, Linkedin, Snapchat, Feed' | split: ', ' -%}
+            <ul class="social">
+              {%- render 'social-icon-fontawesome' for social_accounts as social -%}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__copyright-social">
+        <div class="footer__copyright desktop-only">
+          © {{ "now" | date: "%Y" }} Nikol Beauty
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "[Custom] Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_subscribe",
+      "label": "Title Subscribe",
+      "default": "Let's Get this beauty started."
+    },
+    {
+      "type": "text",
+      "id": "footer_title_1",
+      "label": "Title"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu_1",
+      "label": "Link List",
+      "info": "This menu won't show dropdown items."
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact Title"
+    },
+    {
+      "type": "textarea",
+      "id": "contact_info",
+      "label": "Contact Info"
+    },
+    {
+      "type": "text",
+      "id": "contact_phone",
+      "label": "Contact Phone"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,289 @@
+{%- style -%}
+  #IconFeatures-{{ section.id }} {
+    --custom-icon-features-bg: {{ section.settings.background_color }};
+  }
+{%- endstyle -%}
+
+<style>
+.custom-icon-features {
+  background: var(--custom-icon-features-bg);
+}
+
+.custom-icon-features__container {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  width: 100%;
+}
+
+.custom-icon-features__content {
+  width: 50%;
+  padding-left: 200px;
+}
+
+.custom-icon-features__heading {
+  margin: 0;
+  color: var(--COLOR-TEXT);
+  font-size: 56px;
+  font-weight: 500;
+  line-height: 110%;
+  letter-spacing: -1px;
+}
+
+.custom-icon-features__subtitle {
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 140%;
+}
+
+.custom-icon-features__feature-inner {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  max-width: 600px;
+  margin-bottom: 35px;
+}
+
+.custom-icon-features__feature-icon img {
+  max-width: 130px;
+  object-fit: contain;
+}
+
+.custom-icon-features__feature-text h3 {
+  color: var(--COLOR-TEXT);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 120%;
+}
+
+.custom-icon-features__feature-text p {
+  margin: 0;
+  color: var(--COLOR-TEXT);
+  font-family: 'Inter', sans-serif;
+  font-size: var(--FONT-SIZE-BASE);
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.custom-icon-features__image {
+  width: 50%;
+}
+
+.custom-icon-features__image img {
+  width: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.custom-icon-features__button a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  height: 60px;
+  background: var(--BTN-PRIMARY-BG-COLOR);
+  color: var(--BTN-PRIMARY-TEXT-COLOR);
+  font-family: var(--BTN-FONT-STACK);
+  font-size: var(--BTN-FONT-SIZE);
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1600px) {
+  .custom-icon-features__content {
+    padding-left: 80px;
+  }
+  .custom-icon-features__heading {
+    font-size: 52px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .custom-icon-features {
+    padding-bottom: 50px;
+  }
+  .custom-icon-features__container {
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+  .custom-icon-features__content {
+    width: 100%;
+    padding: 0 15px;
+  }
+  .custom-icon-features__image {
+    width: 100%;
+  }
+  .custom-icon-features__image img {
+    max-width: 100%;
+    height: 450px;
+    object-fit: cover;
+  }
+  .custom-icon-features__heading {
+    font-size: 33px;
+    text-align: center;
+  }
+  .custom-icon-features__subtitle {
+    padding-top: 0;
+    font-size: var(--FONT-SIZE-BASE);
+    text-align: center;
+  }
+  .custom-icon-features__feature-icon img {
+    max-width: 100px;
+  }
+  .custom-icon-features__feature-inner {
+    gap: 15px;
+  }
+  .custom-icon-features__feature-text h3 {
+    font-size: 23px;
+  }
+  .custom-icon-features__feature-text p {
+    font-size: var(--FONT-SIZE-BASE);
+  }
+  .custom-icon-features__button a {
+    font-size: var(--BTN-FONT-SIZE);
+  }
+}
+</style>
+
+<section class="custom-icon-features" id="IconFeatures-{{ section.id }}">
+  <div class="custom-icon-features__container">
+
+    <div class="custom-icon-features__content">
+
+      {%- if section.settings.heading != blank -%}
+        {%- assign heading_html = section.settings.heading | replace: '<p>', '' | replace: '</p>', '' -%}
+        <h2 class="custom-icon-features__heading">{{ heading_html }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.subheading != blank -%}
+        <p class="custom-icon-features__subtitle">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+
+      {%- for block in section.blocks -%}
+        <div class="custom-icon-features__feature" {{ block.shopify_attributes }}>
+          <div class="custom-icon-features__feature-inner">
+            {%- if block.settings.icon != blank -%}
+              <span class="custom-icon-features__feature-icon">
+                {{ block.settings.icon | image_url: width: 260 | image_tag: alt: '', loading: 'lazy' }}
+              </span>
+            {%- endif -%}
+            <div class="custom-icon-features__feature-text">
+              {%- if block.settings.title != blank -%}
+                <h3>{{ block.settings.title }}</h3>
+              {%- endif -%}
+              {%- if block.settings.text != blank -%}
+                <p>{{ block.settings.text }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+
+      {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
+        <div class="custom-icon-features__button">
+          <a href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
+        </div>
+      {%- endif -%}
+
+    </div>
+
+    <div class="custom-icon-features__image">
+      {%- if section.settings.main_image != blank -%}
+        {{ section.settings.main_image | image_url: width: 1000 | image_tag: widths: '300, 500, 700, 900, 1100', sizes: '(min-width: 601px) 50vw, 100vw', loading: 'lazy' }}
+      {%- endif -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "[Custom] Icon Features",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Made With Skin-Safe<br>Ingredients You Can Trust</p>"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sub Heading",
+      "default": "Formulated to feel comfortable on mature and sensitive skin."
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Right Side Image"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "GET YOURS NOW →"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#FCFAF8"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Feature Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature Title",
+          "default": "Feature title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Feature Description",
+          "default": "Feature description here."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "[Custom] Icon Features",
+      "blocks": [
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" }
+      ]
+    }
+  ]
+}
+{% endschema %}

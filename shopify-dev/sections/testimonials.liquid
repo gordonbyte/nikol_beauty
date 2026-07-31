@@ -1,0 +1,88 @@
+<div 
+  class="testimonials" 
+  data-section-id="{{ section.id }}" 
+  data-section-type="testimonials"
+  >
+  <div class="testimonials__inner">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        {%- for testimonial in section.blocks -%}
+          <div class="swiper-slide">
+            <div class="testimonials__title">
+              {{ testimonial.settings.title }}  
+            </div>
+            <div class="testimonials__subtitle">
+              {{ testimonial.settings.subtitle }}  
+            </div>
+            <div class="testimonials__content-wrapper">
+              <div class="testimonials__content">
+                {{ testimonial.settings.content }}  
+              </div>
+              <div class="testimonials__overlay js-overlay"></div>
+            </div>
+            <div class="testimonials__author">
+              {{ testimonial.settings.author }}  
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="testimonials__navigation">
+        <div class="swiper-next">
+          <img src="{{ 'right.svg' | asset_url }}" alt="next" />
+        </div>
+        <div class="swiper-prev">
+          <img src="{{ 'left.svg' | asset_url }}" alt="previous" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "class": "section-testimonials",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Testimonials"
+    }
+  ],
+  "blocks": [
+      {
+        "type": "testimonial",
+        "name": "Testimonial",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Lorem ipsum"
+          },
+          {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle",
+            "default": "Lorem ipsum"
+          },
+          {
+            "type": "richtext",
+            "id": "content",
+            "label": "Content",
+            "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non est ista, inquam, Piso, magna dissensio. Invidiosum nomen est, infame, suspectum.</p>"
+          },
+          {
+            "type": "text",
+            "id": "author",
+            "label": "Author",
+            "default": "Lorem ipsum"
+          }
+        ]
+      }
+  ],
+  "presets": [{
+    "name": "Testimonials",
+    "category": "Image"
+  }]
+}
+{% endschema %}

@@ -1,0 +1,178 @@
+  {% if section.settings.position_reverse == true  %}
+    {% assign first = "even" %}
+    {% assign second = "odd" %}
+  {% else %}
+    {% assign first = "odd" %}
+    {% assign second = "even" %}
+  {% endif %}
+  
+<style>
+  .videos-list .swiper-prev,
+  .videos-list .swiper-next {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    line-height: 0;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+
+<div class="videos-list">
+  <div class="videos-list__inner" id="videos_list">
+    {%- for block in section.blocks -%}
+      {% capture thecycle %}
+          {% cycle first, second %}
+      {% endcapture %}
+      {% assign thecycle = thecycle | strip %}
+      <div 
+        class="video-product-hub {% if thecycle == "odd" %} video-product-hub--reverse {% endif %} " 
+        data-groups='["all", "{{ block.settings.category }}"]'
+        >
+        <div class="video-product-hub__inner {% if thecycle == 'odd' %} video-product-hub__inner--reverse {% endif %}">
+          <div class="video-product-hub__product">
+            {% if block.settings.slider_title %}<div><h2 class="h5">{{ block.settings.slider_title }}</h2></div>{% endif %}
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  {% render 'product-grid-item', product: block.settings.product %}
+                </div>
+                {% if block.settings.product_2 != blank %}
+                  <div class="swiper-slide">
+                    {% render 'product-grid-item', product: block.settings.product_2 %}
+                  </div>
+                {% endif %}
+                {% if block.settings.product_3 != blank %}
+                  <div class="swiper-slide">
+                    {% render 'product-grid-item', product: block.settings.product_3 %}
+                  </div>
+                {% endif %}
+                {% if block.settings.product_4 != blank %}
+                  <div class="swiper-slide">
+                    {% render 'product-grid-item', product: block.settings.product_4 %}
+                  </div>
+                {% endif %}
+                {% if block.settings.product_5 != blank %}
+                  <div class="swiper-slide">
+                    {% render 'product-grid-item', product: block.settings.product_5 %}
+                  </div>
+                {% endif %}
+              </div>
+
+              <button type="button" class="swiper-prev" aria-label="Previous products">
+                <img src="{{ 'slider-prev.png' | asset_url }}" alt=""/>
+              </button>
+
+              <button type="button" class="swiper-next" aria-label="Next products">
+                <img src="{{ 'slider-next.png' | asset_url }}" alt=""/>
+              </button>
+            </div>
+            
+          </div>
+          <div class="video-product-hub__video">
+            {% render 'yt-video', video_url: block.settings.video_url, image: block.settings.image, title: block.settings.title %}
+          </div>
+        </div>
+      </div>
+    {%- endfor -%}
+
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Videos List",
+  "class": "section-videos-list",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Videos List"
+    },
+    {
+      "type": "checkbox",
+      "id": "position_reverse",
+      "label": "Reverse?",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "url",
+          "label": "Youtube video URL",
+          "id": "video_url"
+        },
+        {
+          "type": "text",
+          "label": "Video Title",
+          "id": "title"
+        },
+        {
+          "type": "image_picker",
+          "label": "Video Cover",
+          "id": "image"
+        },
+        {
+          "type": "text",
+          "label": "Product Slider Title",
+          "id": "slider_title"
+        },
+        {
+          "type": "product",
+          "label": "Product",
+          "id": "product"
+        },
+        {
+          "type": "product",
+          "label": "Product 2",
+          "id": "product_2"
+        },
+        {
+          "type": "product",
+          "label": "Product 3",
+          "id": "product_3"
+        },
+        {
+          "type": "product",
+          "label": "Product 4",
+          "id": "product_4"
+        },
+        {
+          "type": "product",
+          "label": "Product 5",
+          "id": "product_5"
+        },
+        {
+          "type": "select",
+          "id": "category",
+          "label": "Category",
+          "default": "makeup",
+          "options": [
+            { "value": "makeup", "label": "Makeup" },
+            { "value": "skin-care", "label": "Skin Care" },
+            { "value": "haircare", "label": "Haircare" },
+            { "value": "style", "label": "Style" },
+            { "value": "fierce-aging", "label": "Fierce Aging" }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Videos List",
+    "category": "Image"
+  }]
+}
+{% endschema %}

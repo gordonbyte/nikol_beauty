@@ -1,0 +1,603 @@
+{% if section.blocks.size > 0 %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+{% endif %}
+<style>
+.custom-customer-reviews {
+    padding: 80px 0px;
+}
+
+.custom-customer-reviews__header {
+    text-align: center;
+}
+
+.custom-customer-reviews__title {
+    color: var(--COLOR-TEXT);
+    line-height: 110%;
+    font-family: var(--FONT-STACK-HEADING);
+    letter-spacing: -3px;
+    font-weight: 500;
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.custom-customer-reviews__subtitle {
+    color: var(--COLOR-TEXT);
+    font-family: var(--FONT-STACK-BODY);
+    font-size: var(--FONT-SIZE-BASE);
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.custom-customer-reviews__slide {
+    background: var(--COLOR-BG);
+    padding: 20px;
+    text-align: center;
+}
+
+.custom-customer-reviews__stars img {
+    max-width: 125px;
+    object-fit: contain;
+}
+
+.custom-customer-reviews__quote-icon img {
+    max-width: 25px;
+}
+
+.custom-customer-reviews__quote-icon {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.custom-customer-reviews__review-title {
+    color: var(--COLOR-TEXT);
+    line-height: 110%;
+    font-weight: 500;
+    font-family: var(--FONT-STACK-HEADING);
+    text-transform: capitalize;
+    min-height: 90px;
+    margin: 0;
+}
+
+.custom-customer-reviews__review-text {
+    font-family: var(--FONT-STACK-BODY);
+    color: var(--COLOR-TEXT);
+    font-weight: 400;
+    font-size: var(--FONT-SIZE-BASE);
+    line-height: 150%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--cr-lines, 4);
+    overflow: hidden;
+}
+
+.custom-customer-reviews__review-text.is-expanded {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+}
+
+.custom-customer-reviews__toggle {
+    display: inline-block;
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 4px 0 0;
+    color: var(--COLOR-TEXT);
+    font-family: var(--FONT-STACK-BODY);
+    font-size: var(--FONT-SIZE-BASE);
+    font-style: italic;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.custom-customer-reviews__toggle:focus-visible {
+    outline: 2px solid var(--COLOR-TEXT);
+    outline-offset: 2px;
+}
+
+.custom-customer-reviews__author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.custom-customer-reviews__buyer img {
+    max-width: 110px;
+}
+
+.custom-customer-reviews__author-name {
+    font-family: var(--FONT-STACK-BODY);
+    font-weight: 400;
+    font-style: normal;
+    color: var(--COLOR-TEXT);
+    font-size: var(--FONT-SIZE-BASE);
+}
+
+.custom-customer-reviews__buyer {
+    display: flex;
+}
+
+.custom-customer-reviews__product-img img {
+    width: 100%;
+    height: 70px;
+    object-fit: contain;
+}
+
+.custom-customer-reviews__product-link {
+    display: flex;
+    align-items: center;
+    background: #F8F3EF;
+    padding: 8px 15px;
+    gap: 10px;
+    justify-content: space-between;
+    text-decoration: none;
+}
+
+.custom-customer-reviews__product-cart img {
+    max-width: 35px;
+    object-fit: contain;
+}
+
+.custom-customer-reviews__product-mid {
+    text-align: left;
+}
+
+.custom-customer-reviews__product-title {
+    color: var(--COLOR-TEXT);
+    font-weight: 500;
+    font-size: var(--FONT-SIZE-BASE);
+    font-family: var(--FONT-STACK-HEADING);
+    text-transform: capitalize;
+}
+
+.custom-customer-reviews__product-price {
+    color: var(--COLOR-TEXT);
+}
+
+.custom-customer-reviews__swiper {
+    padding: 0 !important;
+}
+
+.custom-customer-reviews__nav {
+    background: none;
+    border: 0;
+    padding: 0;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.custom-customer-reviews__next {
+    right: 10%;
+}
+
+.custom-customer-reviews__prev {
+    left: 10%;
+}
+
+.custom-customer-reviews__pagination {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.custom-customer-reviews__pagination span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background: #45413B;
+}
+
+.custom-customer-reviews__pagination span.swiper-pagination-bullet {
+    border: 1.33px solid #45413B59;
+    background: transparent;
+    opacity: 1;
+    width: 15px;
+    height: 15px;
+}
+
+.custom-customer-reviews__nav:focus-visible,
+.custom-customer-reviews__product-link:focus-visible {
+    outline: 2px solid var(--COLOR-TEXT);
+    outline-offset: 2px;
+}
+
+@media only screen and (max-width: 600px) {
+.custom-customer-reviews__swiper {
+    padding: 0 40px !important;
+}
+.custom-customer-reviews {
+    padding: 40px 0px;
+}
+
+.custom-customer-reviews__header {
+    padding: 0 15px;
+}
+
+.custom-customer-reviews__subtitle {
+    line-height: 135%;
+    padding-top: 15px;
+    padding-bottom: 30px;
+}
+
+.custom-customer-reviews__prev svg {
+    width: 30px;
+}
+
+.custom-customer-reviews__prev {
+    top: 93%;
+}
+
+.custom-customer-reviews__pagination {
+    margin-top: 0px;
+    position: absolute;
+    bottom: 10px !important;
+}
+
+.custom-customer-reviews__swiper .swiper-wrapper {
+    padding-bottom: 70px;
+}
+
+.custom-customer-reviews__next {
+    top: 93%;
+}
+
+.custom-customer-reviews__next svg {
+    width: 30px;
+}
+
+.custom-customer-reviews__stars img {
+    max-width: 105px;
+}
+
+.custom-customer-reviews__review-title {
+    min-height: auto;
+    padding-bottom: 15px;
+}
+
+.custom-customer-reviews__buyer img {
+    max-width: 95px;
+}
+
+.custom-customer-reviews__product-title {
+    line-height: 110%;
+}
+
+.custom-customer-reviews__product-link {
+    padding: 8px 8px;
+}
+
+.custom-customer-reviews__slide {
+    padding: 20px 15px;
+}
+}
+
+    </style>
+
+{%- assign heading_id = 'CustomerReviews-' | append: section.id | append: '-title' -%}
+
+<section
+  class="custom-customer-reviews"
+  id="CustomerReviews-{{ section.id }}"
+  {% if section.settings.title != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
+  style="background: {{ section.settings.bg_color }}; --cr-lines: {{ section.settings.review_lines }};"
+>
+  <div class="page-width">
+    <div class="custom-customer-reviews__header">
+      {% if section.settings.title != blank %}
+        <h2 id="{{ heading_id }}" class="custom-customer-reviews__title heading-size-11">
+          {{ section.settings.title }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.subtitle != blank %}
+        <p class="custom-customer-reviews__subtitle">
+          {{ section.settings.subtitle }}
+        </p>
+      {% endif %}
+    </div>
+
+    <div class="custom-customer-reviews__inner">
+
+      <div class="swiper custom-customer-reviews__swiper">
+        <div class="swiper-wrapper">
+
+          {% for block in section.blocks %}
+            <article class="swiper-slide custom-customer-reviews__slide" {{ block.shopify_attributes }}>
+
+              {% if block.settings.stars != blank %}
+                <div class="custom-customer-reviews__stars">
+                  <img src="{{ block.settings.stars | img_url: 'master' }}" alt="" loading="lazy">
+                </div>
+              {% endif %}
+
+              {% if block.settings.quote_icon != blank %}
+                <div class="custom-customer-reviews__quote-icon">
+                  <img src="{{ block.settings.quote_icon | img_url: 'master' }}" alt="" loading="lazy">
+                </div>
+              {% endif %}
+
+              {% if block.settings.title != blank %}
+                <h3 class="custom-customer-reviews__review-title heading-size-7">
+                  {{ block.settings.title }}
+                </h3>
+              {% endif %}
+
+              {% if block.settings.description != blank %}
+                <blockquote class="custom-customer-reviews__review-text" id="CustomerReviews-{{ section.id }}-quote-{{ block.id }}">
+                  {{ block.settings.description }}
+                </blockquote>
+                <button type="button" class="custom-customer-reviews__toggle" aria-expanded="false" aria-controls="CustomerReviews-{{ section.id }}-quote-{{ block.id }}" hidden>Show more</button>
+              {% endif %}
+
+              {% if block.settings.author != blank or block.settings.buyer_icon != blank %}
+                <div class="custom-customer-reviews__author">
+                  {% if block.settings.author != blank %}
+                    <cite class="custom-customer-reviews__author-name">
+                      {{ block.settings.author }}
+                    </cite>
+                  {% endif %}
+
+                  {% if block.settings.buyer_icon != blank %}
+                    <span class="custom-customer-reviews__buyer">
+                      <img src="{{ block.settings.buyer_icon | img_url: 'master' }}" alt="Verified buyer" loading="lazy">
+                    </span>
+                  {% endif %}
+                </div>
+              {% endif %}
+
+              {% if block.settings.product != blank %}
+                {% assign product = all_products[block.settings.product] %}
+                <div class="custom-customer-reviews__product">
+                  <a href="{{ product.url }}" class="custom-customer-reviews__product-link">
+
+                    <div class="custom-customer-reviews__product-img">
+                      {% if product.featured_image != blank %}
+                        <img src="{{ product.featured_image | img_url: 'master' }}" alt="" loading="lazy">
+                      {% endif %}
+                    </div>
+
+                    <div class="custom-customer-reviews__product-mid">
+                      <div class="custom-customer-reviews__product-title">
+                        {{ product.title }}
+                      </div>
+                      <div class="custom-customer-reviews__product-price">
+                        {{ product.price | money }}
+                      </div>
+                    </div>
+
+                    {% if block.settings.cart_icon != blank %}
+                      <div class="custom-customer-reviews__product-cart">
+                        <img src="{{ block.settings.cart_icon | img_url: 'master' }}" alt="" loading="lazy">
+                      </div>
+                    {% endif %}
+
+                  </a>
+                </div>
+              {% endif %}
+
+            </article>
+          {% endfor %}
+
+        </div>
+
+        <button type="button" class="custom-customer-reviews__nav custom-customer-reviews__prev" aria-label="Previous reviews">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <rect width="48" height="48" rx="24" fill="#45413B"></rect>
+            <path d="M28.8 30.8872C28.8 30.8294 28.7855 30.7618 28.7566 30.6847C28.7277 30.6075 28.6939 30.5496 28.6554 30.511L22.1493 24.0001L28.6554 17.518C28.6939 17.4601 28.7277 17.3974 28.7566 17.3299C28.7855 17.2624 28.8 17.1997 28.8 17.1418C28.8 17.0647 28.7855 16.9923 28.7566 16.9248C28.7277 16.8573 28.6939 16.7946 28.6554 16.7367L27.8168 15.9264C27.759 15.8686 27.6963 15.8252 27.6289 15.7962C27.5614 15.7673 27.4987 15.7528 27.4409 15.7528C27.3638 15.7528 27.2915 15.7673 27.224 15.7962C27.1566 15.8252 27.1036 15.8686 27.065 15.9264L19.3445 23.6239C19.306 23.6817 19.2722 23.7444 19.2433 23.812C19.2144 23.8795 19.2 23.9422 19.2 24.0001C19.2 24.0772 19.2144 24.1496 19.2433 24.2171C19.2722 24.2846 19.306 24.3377 19.3445 24.3762L27.065 32.1026C27.1036 32.1412 27.1566 32.175 27.224 32.2039C27.2915 32.2328 27.3638 32.2473 27.4409 32.2473C27.4987 32.2473 27.5614 32.2328 27.6289 32.2039C27.6963 32.175 27.759 32.1412 27.8168 32.1026L28.6554 31.2634C28.6939 31.2248 28.7277 31.1718 28.7566 31.1043C28.7855 31.0367 28.8 30.9644 28.8 30.8872Z" fill="white"></path>
+          </svg>
+        </button>
+        <button type="button" class="custom-customer-reviews__nav custom-customer-reviews__next" aria-label="Next reviews">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <rect width="48" height="48" rx="24" fill="#45413B"></rect>
+            <path d="M19.2 17.1129C19.2 17.1708 19.2145 17.2383 19.2434 17.3155C19.2723 17.3926 19.3061 17.4505 19.3446 17.4891L25.8507 24.0001L19.3446 30.4821C19.3061 30.54 19.2723 30.6027 19.2434 30.6702C19.2145 30.7377 19.2 30.8004 19.2 30.8583C19.2 30.9355 19.2145 31.0078 19.2434 31.0753C19.2723 31.1429 19.3061 31.2056 19.3446 31.2634L20.1832 32.0737C20.241 32.1316 20.3037 32.175 20.3711 32.2039C20.4386 32.2328 20.5013 32.2473 20.5591 32.2473C20.6362 32.2473 20.7085 32.2328 20.776 32.2039C20.8434 32.175 20.8964 32.1316 20.935 32.0737L28.6555 24.3763C28.694 24.3184 28.7278 24.2557 28.7567 24.1882C28.7856 24.1206 28.8 24.0579 28.8 24.0001C28.8 23.9229 28.7856 23.8506 28.7567 23.783C28.7278 23.7155 28.694 23.6625 28.6555 23.6239L20.935 15.8975C20.8964 15.8589 20.8434 15.8252 20.776 15.7962C20.7085 15.7673 20.6362 15.7528 20.5591 15.7528C20.5013 15.7528 20.4386 15.7673 20.3711 15.7962C20.3037 15.8252 20.241 15.8589 20.1832 15.8975L19.3446 16.7367C19.3061 16.7753 19.2723 16.8283 19.2434 16.8959C19.2145 16.9634 19.2 17.0357 19.2 17.1129Z" fill="white"></path>
+          </svg>
+        </button>
+
+        <div class="custom-customer-reviews__pagination"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("#CustomerReviews-{{ section.id }} .custom-customer-reviews__swiper").forEach(function (el) {
+    new Swiper(el, {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      centeredSlides: false,
+      loop: true,
+      speed: {{ section.settings.scroll_speed }},
+      {% if section.settings.autoplay %}autoplay: {
+        delay: {{ section.settings.autoplay_delay | times: 1000 }},
+        disableOnInteraction: false
+      },{% endif %}
+      navigation: {
+        nextEl: el.querySelector(".custom-customer-reviews__next"),
+        prevEl: el.querySelector(".custom-customer-reviews__prev")
+      },
+      pagination: {
+        el: el.querySelector(".custom-customer-reviews__pagination"),
+        clickable: true
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1
+        },
+        768: {
+          slidesPerView: 2
+        },
+        1024: {
+          slidesPerView: {{ section.settings.slides_per_view }}
+        }
+      }
+    });
+  });
+
+  var reviewsRoot = document.getElementById("CustomerReviews-{{ section.id }}");
+  if (reviewsRoot) {
+    // Reveal the "Show more" toggle only where the clamped review overflows
+    // (runs after layout so it also covers Swiper's loop clones).
+    requestAnimationFrame(function () {
+      reviewsRoot.querySelectorAll(".custom-customer-reviews__review-text").forEach(function (q) {
+        var btn = q.nextElementSibling;
+        if (!btn || !btn.classList.contains("custom-customer-reviews__toggle")) return;
+        if (q.scrollHeight - q.clientHeight > 1) btn.hidden = false;
+      });
+    });
+
+    // Expand / collapse via delegation (works for cloned slides too).
+    reviewsRoot.addEventListener("click", function (e) {
+      var btn = e.target.closest(".custom-customer-reviews__toggle");
+      if (!btn || !reviewsRoot.contains(btn)) return;
+      var q = btn.previousElementSibling;
+      if (!q) return;
+      var expanded = q.classList.toggle("is-expanded");
+      btn.setAttribute("aria-expanded", expanded ? "true" : "false");
+      btn.textContent = expanded ? "Show less" : "Show more";
+    });
+  }
+});
+</script>
+
+
+{% schema %}
+{
+  "name": "[Custom] Customer Reviews",
+    "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section background",
+      "default": "#F7F2ED"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "What Our Customers Say"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Real reviews from happy customers."
+    },
+    {
+      "type": "range",
+      "id": "review_lines",
+      "label": "Max review lines",
+      "info": "Longer reviews are truncated to this many lines with a Show more link.",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Carousel"
+    },
+    {
+      "type": "range",
+      "id": "slides_per_view",
+      "label": "Reviews shown (desktop)",
+      "info": "How many reviews are visible before the arrows. Tablet shows 2, mobile shows 1.",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll speed",
+      "min": 100,
+      "max": 3000,
+      "step": 100,
+      "unit": "ms",
+      "default": 600
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Auto scroll",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_delay",
+      "label": "Auto scroll timer",
+      "info": "Seconds each review stays before advancing (when Auto scroll is on).",
+      "min": 1,
+      "max": 15,
+      "step": 1,
+      "unit": "s",
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Customer Review",
+      "settings": [
+        {
+  "type": "product",
+  "id": "product",
+  "label": "Select Product"
+},
+        {
+          "type": "image_picker",
+          "id": "stars",
+          "label": "Stars Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "quote_icon",
+          "label": "Quote Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Review Title",
+          "default": "Great product"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Review Text"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name",
+          "default": "Customer Name"
+        },
+        {
+          "type": "image_picker",
+          "id": "buyer_icon",
+          "label": "Verified Buyer Icon"
+        },
+        {
+          "type": "image_picker",
+          "id": "cart_icon",
+          "label": "Cart Icon"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "[Custom] Customer Reviews"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,18 @@
+{%- comment -%}
+  Junip review stars for the main Product JSON-LD (rendered inside the
+  Product object, after "description"). Prints nothing when the product
+  has no reviews; trailing comma stays inside the guard so JSON is valid
+  either way. Single source of truth — rendered by product.liquid,
+  product-new.liquid, custom-product-coming-soon.liquid,
+  custom-product-waitlist.liquid.
+{%- endcomment -%}
+{%- if product.metafields.junip.rating_average and product.metafields.junip.rating_count and product.metafields.junip.rating_count > 0 -%}
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{ product.metafields.junip.rating_average | times: 1.0 | round: 2 }}",
+    "ratingCount": {{ product.metafields.junip.rating_count }},
+    "reviewCount": {{ product.metafields.junip.rating_count }},
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+{%- endif -%}

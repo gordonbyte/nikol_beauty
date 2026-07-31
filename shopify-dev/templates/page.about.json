@@ -1,0 +1,84 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "subheading": "",
+        "subheading_size": 3,
+        "show_title": true,
+        "heading_size": 8,
+        "show_content": true,
+        "text_size": 4,
+        "align_text": "text-left",
+        "width": "wrapper",
+        "bg_color": "",
+        "color": "",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "about_header_geqgfy": {
+      "type": "about-header",
+      "settings": {
+        "title": "Meet Nikol",
+        "image": "shopify://shop_images/Nikol_Chanel_2.png",
+        "copy": "<p>On-Air Beauty Expert, Licensed Esthetician, and multi-media makeup artist Nikol Johnson rocked the beauty world when she decided to liberate her gray hair at thirty-nine. Breaking the beauty rules for Nikol came with a little hesitation. In the world of beauty where being young and wrinkle-free is Queen, how would the world react to a woman willingly letting her hair go gray and just turning forty? Working as a FORD model since the age of fifteen and being told by the industry to be everything but herself Nikol decided to OWN HER BEAUTY and let the gray out.</p>"
+      }
+    },
+    "about_two_columns_Np7rMY": {
+      "type": "about-two-columns",
+      "settings": {
+        "column_1": "<p>Prior to Nikol’s gray hair journey, Nikol was a regional sales manager and educator for top skincare lines and traveled the country opening spas and building brand awareness. Nikol launched Fresh Beauty Studio in 2006 and spent sixteen years creating gorgeous faces at her boutique makeup and skin care studio. </p>",
+        "column_2": "<p>Runner-up in 2016 People’s Magazine Natural Beauty Search, Nikol knew she was on to something big by helping women embrace their unique gray hair journey and beauty. One of Nikol’s fastest-growing YouTube video series created in March 2019 is called Fierce Aging. The series started out featuring four different women representing ages from the fifties to eighties. “How to Do Your Makeup in Your 70’s” went viral and has over 2.6 million views. What is so special about this milestone is that the video featured Nikol’s Mother.</p>"
+      }
+    },
+    "about_quote_image_fBGNBi": {
+      "type": "about-quote-image",
+      "settings": {
+        "quote": "<p>“Inspired by effortless beauty and modern design, the goal is to create the perfect color-focused edits of today’s makeup essentials.”</p>",
+        "image": "shopify://shop_images/Nikol_Dior_website.png"
+      }
+    },
+    "subscribe_form_dJRigy": {
+      "type": "subscribe-form",
+      "settings": {
+        "title": "Let's get this beauty started."
+      }
+    },
+    "about_text_grid_bdFEqd": {
+      "type": "about-text-grid",
+      "settings": {
+        "text_1": "<p>As a niche beauty and style digital creator, Nikol has built a community of over 2.2 million followers across her social platforms and amasses 233 million views on her YouTube channel. Her beauty, style and wellness content reaches hundreds of thousands of women seeking a fresh perspective in the evolving shift from anti-aging to pro-aging. Nikol has completed collaborations with Caudalie, Pantene, M.M. LaFleur, St. John, Elemis, La Mer, Estee Lauder, and HSN to name a few.</p>",
+        "text_2": "<p>Nikol is based out of South Florida and is slightly obsessed with her two French Bulldogs.</p>",
+        "text_3": ""
+      }
+    },
+    "about_contact_izJQVL": {
+      "type": "about-contact",
+      "settings": {
+        "title": "Get in touch",
+        "copy": "<p>Fill Out The Form Below and we will get in touch within 48 hours.</p>",
+        "image": "shopify://shop_images/contact.jpg"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "about_header_geqgfy",
+    "about_two_columns_Np7rMY",
+    "about_quote_image_fBGNBi",
+    "subscribe_form_dJRigy",
+    "about_text_grid_bdFEqd",
+    "about_contact_izJQVL"
+  ]
+}

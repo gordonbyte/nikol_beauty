@@ -1,0 +1,28 @@
+<div class="yt-video">
+  <div class="yt-video__wrapper">
+    <figure class="yt-video__image">
+      <img
+        src="{{ image | image_url }}"
+        alt="{{ image.alt | default: title | default: shop.name | strip_html | escape }}"
+        loading="eager"
+        />
+    </figure>
+    <a class="yt-video__overlay" href="{{ video_url }}" data-fancybox aria-label="Play video{% if title != blank %}: {{ title | strip_html | escape }}{% endif %}">
+      <img src="{{ 'icon-play.svg' | asset_url }}" alt="">
+    </a>
+  </div>
+
+  {% if hide_content != true %}
+    <div class="yt-video__content">
+      <h3 class="yt-video__title">
+        <a href="{{ video_url }}" data-fancybox>
+          {{ title }}
+        </a>
+      </h3>
+
+      <a class="link" href="{{ video_url }}" data-fancybox>
+        Watch now
+      </a>
+    </div>
+  {% endif %}
+</div>

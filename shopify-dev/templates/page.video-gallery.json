@@ -1,0 +1,25 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "video-gallery",
+      "settings": {
+        "makeup_title": "Discover Nikol's Favorite Products in Action",
+        "makeup_description": "Join Nikol as she shares real makeup tips, tutorials, and honest reviews—because beauty doesn't stop at 50, it just gets better.",
+        "fierceaging_title": "#FIERCEAGING Series",
+        "fierceaging_description": "Embrace aging with confidence and style. Discover tips, tricks, and inspiration for looking and feeling your best at every age.",
+        "store_url": "/collections/all",
+        "youtube_channel_url": "#"
+      }
+    }
+  },
+  "order": ["main"]
+}

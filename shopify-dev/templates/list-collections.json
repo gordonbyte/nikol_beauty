@@ -1,0 +1,239 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "list-collections",
+      "disabled": true,
+      "settings": {
+        "display_type": "all",
+        "title": "Collections",
+        "grid": 4,
+        "rows": 1,
+        "layout_mobile": "slider",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "section_collection_e9xECT": {
+      "type": "section-collection",
+      "settings": {
+        "heading": "EYES",
+        "description": "",
+        "layout": "center",
+        "link_text": "",
+        "link_url": "",
+        "button_type": "btn--primary",
+        "button_size": "",
+        "button_style": "btn--solid",
+        "show_arrow": false,
+        "featured_collection": "eyes",
+        "layout_desktop": "grid",
+        "grid": 4,
+        "rows": 8,
+        "width": "wrapper",
+        "layout_mobile": "slider",
+        "bg_color": "",
+        "color": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": ""
+      }
+    },
+    "section_collection_RT4WKP": {
+      "type": "section-collection",
+      "settings": {
+        "heading": "LASHES",
+        "description": "",
+        "layout": "center",
+        "link_text": "",
+        "link_url": "",
+        "button_type": "btn--primary",
+        "button_size": "",
+        "button_style": "btn--solid",
+        "show_arrow": false,
+        "featured_collection": "lashes",
+        "layout_desktop": "grid",
+        "grid": 4,
+        "rows": 3,
+        "width": "wrapper",
+        "layout_mobile": "slider",
+        "bg_color": "",
+        "color": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": ""
+      }
+    },
+    "section_collection_BtAzAC": {
+      "type": "section-collection",
+      "settings": {
+        "heading": "LIPS",
+        "description": "",
+        "layout": "center",
+        "link_text": "",
+        "link_url": "",
+        "button_type": "btn--primary",
+        "button_size": "",
+        "button_style": "btn--solid",
+        "show_arrow": false,
+        "featured_collection": "lips",
+        "layout_desktop": "grid",
+        "grid": 4,
+        "rows": 8,
+        "width": "wrapper",
+        "layout_mobile": "slider",
+        "bg_color": "",
+        "color": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": ""
+      }
+    },
+    "section_collection_GaRcKM": {
+      "type": "section-collection",
+      "settings": {
+        "heading": "face",
+        "description": "",
+        "layout": "center",
+        "link_text": "",
+        "link_url": "",
+        "button_type": "btn--primary",
+        "button_size": "",
+        "button_style": "btn--solid",
+        "show_arrow": false,
+        "featured_collection": "face",
+        "layout_desktop": "grid",
+        "grid": 4,
+        "rows": 7,
+        "width": "wrapper",
+        "layout_mobile": "slider",
+        "bg_color": "",
+        "color": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": ""
+      }
+    },
+    "section_collection_bjU89a": {
+      "type": "section-collection",
+      "settings": {
+        "heading": "BRUSHES & BUNDLES",
+        "description": "",
+        "layout": "center",
+        "link_text": "",
+        "link_url": "",
+        "button_type": "btn--primary",
+        "button_size": "",
+        "button_style": "btn--solid",
+        "show_arrow": false,
+        "featured_collection": "brushes-tools",
+        "layout_desktop": "grid",
+        "grid": 4,
+        "rows": 7,
+        "width": "wrapper",
+        "layout_mobile": "slider",
+        "bg_color": "",
+        "color": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": ""
+      }
+    },
+    "section_collection_ExynGf": {
+      "type": "section-collection",
+      "settings": {
+        "heading": "EYEBROWS",
+        "description": "",
+        "layout": "center",
+        "link_text": "",
+        "link_url": "",
+        "button_type": "btn--primary",
+        "button_size": "",
+        "button_style": "btn--solid",
+        "show_arrow": false,
+        "featured_collection": "brows",
+        "layout_desktop": "grid",
+        "grid": 4,
+        "rows": 3,
+        "width": "wrapper",
+        "layout_mobile": "slider",
+        "bg_color": "",
+        "color": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": ""
+      }
+    },
+    "section_double_8dcNcA": {
+      "type": "section-double",
+      "blocks": {
+        "heading_znT7XG": {
+          "type": "heading",
+          "settings": {
+            "title": "Gift cards",
+            "text_size": 8,
+            "padding_bottom": 16
+          }
+        },
+        "text_8bQFAD": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Give the gift of beauty with Nikol Beauty Gift Cards! Perfect for birthdays, special events, or as a heartfelt thank you, our gift cards allow your favorite beauty lover to choose from our luxurious range of products. Whether they're searching for the latest makeup must-haves or makeup essentials, a Nikol Beauty Gift Card ensures they get exactly what they desire. </p>",
+            "text_size": 3,
+            "text_style": "font-heading",
+            "padding_bottom": 16
+          }
+        },
+        "buttons_x4rWyQ": {
+          "type": "buttons",
+          "settings": {
+            "button_text": "SHOP NOW",
+            "button_url": "https://nikolbeauty.com/products/nikol-beauty-gift-card",
+            "button_type": "btn--primary",
+            "button_size": "",
+            "button_style": "btn--solid",
+            "show_arrow": false,
+            "padding_bottom": 16
+          }
+        }
+      },
+      "block_order": [
+        "heading_znT7XG",
+        "text_8bQFAD",
+        "buttons_x4rWyQ"
+      ],
+      "settings": {
+        "layout": "",
+        "height": "image-height",
+        "mobile_height": "screen-height-one-half--mobile",
+        "width": "wrapper",
+        "image_1": "shopify://shop_images/NikolBeauty_800x800px_USE.webp",
+        "image_width": "one-half",
+        "text_alignment": "text-left",
+        "reverse_blocks": false,
+        "bg_color": "",
+        "color": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_collection_e9xECT",
+    "section_collection_RT4WKP",
+    "section_collection_BtAzAC",
+    "section_collection_GaRcKM",
+    "section_collection_bjU89a",
+    "section_collection_ExynGf",
+    "section_double_8dcNcA"
+  ]
+}

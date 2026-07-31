@@ -1,0 +1,168 @@
+{%- style -%}
+  #GuaranteeList-{{ section.id }} {
+    --custom-guarantee-list-bg: {{ section.settings.background_color }};
+  }
+{%- endstyle -%}
+
+<style>
+.custom-guarantee-list__bar {
+  background: var(--custom-guarantee-list-bg);
+  padding: 17px 0;
+}
+
+.custom-guarantee-list__desktop { display: block; }
+.custom-guarantee-list__mobile { display: none; }
+
+.custom-guarantee-list__items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.custom-guarantee-list__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 25%;
+  font-family: 'Inter';
+  font-size: var(--FONT-SIZE-BASE);
+  font-weight: 400;
+  color: var(--COLOR-TEXT);
+  text-transform: capitalize;
+}
+
+.custom-guarantee-list__icon {
+  width: auto;
+  height: 24px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+@media only screen and (max-width: 600px) {
+  .custom-guarantee-list__desktop { display: none; }
+  .custom-guarantee-list__mobile { display: block; }
+
+  .custom-guarantee-list__marquee { overflow: hidden; }
+
+  .custom-guarantee-list__track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    animation: custom-guarantee-list-scroll 20s linear infinite;
+  }
+
+  .custom-guarantee-list__track .custom-guarantee-list__box {
+    width: auto;
+    padding-right: 30px;
+  }
+
+  .custom-guarantee-list__track .custom-guarantee-list__icon { height: 22px; }
+
+  @keyframes custom-guarantee-list-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .custom-guarantee-list__track {
+      animation: none;
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px 25px;
+    }
+    .custom-guarantee-list__track [aria-hidden="true"] { display: none; }
+  }
+}
+</style>
+
+<div id="GuaranteeList-{{ section.id }}" class="custom-guarantee-list">
+
+  <div class="custom-guarantee-list__bar custom-guarantee-list__desktop">
+    <div class="page-width">
+      <ul class="custom-guarantee-list__items">
+        {%- for block in section.blocks -%}
+          <li class="custom-guarantee-list__box" {{ block.shopify_attributes }}>
+            {%- if block.settings.feature_icon != blank -%}
+              {{ block.settings.feature_icon | image_url: width: 120 | image_tag: class: 'custom-guarantee-list__icon', alt: '', loading: 'lazy' }}
+            {%- endif -%}
+            <span class="custom-guarantee-list__text">{{ block.settings.feature_text }}</span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+
+  <div class="custom-guarantee-list__bar custom-guarantee-list__mobile">
+    <div class="page-width">
+      <div class="custom-guarantee-list__marquee">
+        <ul class="custom-guarantee-list__track">
+          {%- for block in section.blocks -%}
+            <li class="custom-guarantee-list__box" {{ block.shopify_attributes }}>
+              {%- if block.settings.feature_icon != blank -%}
+                {{ block.settings.feature_icon | image_url: width: 120 | image_tag: class: 'custom-guarantee-list__icon', alt: '', loading: 'lazy' }}
+              {%- endif -%}
+              <span class="custom-guarantee-list__text">{{ block.settings.feature_text }}</span>
+            </li>
+          {%- endfor -%}
+          {%- for block in section.blocks -%}
+            <li class="custom-guarantee-list__box" aria-hidden="true">
+              {%- if block.settings.feature_icon != blank -%}
+                {{ block.settings.feature_icon | image_url: width: 120 | image_tag: class: 'custom-guarantee-list__icon', alt: '', loading: 'lazy' }}
+              {%- endif -%}
+              <span class="custom-guarantee-list__text">{{ block.settings.feature_text }}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "[Custom] Guarantee List",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#F8F3EF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Guarantee Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "feature_icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "feature_text",
+          "label": "Text",
+          "default": "Free Shipping & Returns"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "[Custom] Guarantee List",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

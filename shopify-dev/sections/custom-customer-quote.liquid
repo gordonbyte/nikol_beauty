@@ -1,0 +1,184 @@
+<style>
+.custom-customer-quote {
+  position: relative;
+  padding: 30px 0;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin-top: -10px;
+  background-size: cover;
+}
+
+.custom-customer-quote__inner {
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.custom-customer-quote__stars img {
+  max-width: 126px;
+  object-fit: contain;
+}
+
+.custom-customer-quote__quote {
+  font-size: var(--FONT-SIZE-BASE);
+  line-height: 140%;
+  color: var(--COLOR-TEXT);
+  margin: 25px 0;
+  padding: 0;
+  border: 0;
+  font-weight: 400;
+  font-family: var(--FONT-STACK-BODY);
+}
+
+.custom-customer-quote__author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.custom-customer-quote__author-name {
+  font-size: var(--FONT-SIZE-BASE);
+  color: var(--COLOR-TEXT);
+  font-weight: 400;
+  font-style: normal;
+  font-family: var(--FONT-STACK-BODY);
+}
+
+.custom-customer-quote__buyer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.custom-customer-quote__buyer img {
+  max-width: 14px;
+}
+
+.custom-customer-quote__buyer-text {
+  font-size: var(--FONT-SIZE-BASE);
+  color: var(--COLOR-TEXT);
+  font-family: var(--FONT-STACK-BODY);
+  font-weight: 400;
+}
+
+@media only screen and (max-width: 600px) {
+.custom-customer-quote {
+    margin-top: 0px;
+    padding: 25px 0;
+    background-position: center;
+    background-size: cover;
+}
+
+.custom-customer-quote__quote {
+    line-height: 150%;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.custom-customer-quote__author {
+    flex-wrap: wrap;
+}
+
+.custom-customer-quote__author-name {
+    width: 100%;
+}
+
+.custom-customer-quote__stars img {
+    max-width: 105px;
+}
+}
+
+    </style>
+
+<section
+  class="custom-customer-quote"
+  aria-label="Customer review"
+  {% if section.settings.bg_image %}style="background-image: url({{ section.settings.bg_image | img_url: 'master' }});"{% endif %}
+>
+  <div class="page-width">
+
+    <figure class="custom-customer-quote__inner">
+
+      {% if section.settings.star_image %}
+        <div class="custom-customer-quote__stars">
+          <img src="{{ section.settings.star_image | img_url: 'master' }}" alt="" loading="lazy">
+        </div>
+      {% endif %}
+
+      {% if section.settings.review_text != blank %}
+        <blockquote class="custom-customer-quote__quote">
+          {{ section.settings.review_text }}
+        </blockquote>
+      {% endif %}
+
+      {% if section.settings.author_name != blank or section.settings.buyer_image %}
+        <figcaption class="custom-customer-quote__author">
+
+          {% if section.settings.author_name != blank %}
+            <cite class="custom-customer-quote__author-name">
+              {{ section.settings.author_name }}
+            </cite>
+          {% endif %}
+
+          {% if section.settings.buyer_image %}
+            <span class="custom-customer-quote__buyer">
+              <img src="{{ section.settings.buyer_image | img_url: 'master' }}" alt="" loading="lazy">
+              <span class="custom-customer-quote__buyer-text">
+                {{ section.settings.buyer_text }}
+              </span>
+            </span>
+          {% endif %}
+
+        </figcaption>
+      {% endif %}
+
+    </figure>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "[Custom] Customer Quote",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "star_image",
+      "label": "Star Image"
+    },
+    {
+      "type": "textarea",
+      "id": "review_text",
+      "label": "Review Text"
+    },
+    {
+      "type": "text",
+      "id": "author_name",
+      "label": "Author Name"
+    },
+    {
+      "type": "image_picker",
+      "id": "buyer_image",
+      "label": "Verified Buyer Image"
+    },
+    {
+      "type": "text",
+      "id": "buyer_text",
+      "label": "Buyer Label",
+      "default": "Verified Buyer"
+    }
+  ],
+  "presets": [
+    {
+      "name": "[Custom] Customer Quote"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,876 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "subheading": "",
+        "subheading_size": 3,
+        "show_title": false,
+        "heading_size": 8,
+        "show_content": true,
+        "text_size": 4,
+        "align_text": "text-center",
+        "width": "wrapper",
+        "bg_color": "",
+        "color": "",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "section_custom_code_3YKDiW": {
+      "type": "section-custom-code",
+      "disabled": true,
+      "settings": {
+        "code": "",
+        "width": "wrapper",
+        "bg_color": "",
+        "color": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_guarantee_list_yG9DMk": {
+      "type": "custom-guarantee-list",
+      "blocks": {
+        "feature_Tdc9Ap": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/feature1.png",
+            "feature_text": "Free US Shipping Over $125"
+          }
+        },
+        "feature_3Yk7TY": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/feature2.png",
+            "feature_text": "Loved by 12,000+ Women"
+          }
+        },
+        "feature_aFfr3H": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/feature3.png",
+            "feature_text": "Clinically Proven Products"
+          }
+        },
+        "feature_TKmXbc": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/feature4.png",
+            "feature_text": "Designed for Mature Skin"
+          }
+        }
+      },
+      "block_order": [
+        "feature_Tdc9Ap",
+        "feature_3Yk7TY",
+        "feature_aFfr3H",
+        "feature_TKmXbc"
+      ],
+      "name": "[Custom] Guarantee List",
+      "settings": {}
+    },
+    "custom_hero_banner_WBDkbD": {
+      "type": "custom-hero-banner",
+      "blocks": {
+        "feature_bKjMwD": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/banner-usp1.png",
+            "feature_title": "Cruelty-Free"
+          }
+        },
+        "feature_BbW6RQ": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/banner-usp2.png",
+            "feature_title": "Esthetician-<br>Approved"
+          }
+        },
+        "feature_TVUCTW": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/banner-usp3.png",
+            "feature_title": "Paraben-Free"
+          }
+        },
+        "feature_ctVcCw": {
+          "type": "feature",
+          "disabled": true,
+          "settings": {
+            "feature_icon": "shopify://shop_images/banner-usp4.png",
+            "feature_title": "Gluten-Free"
+          }
+        }
+      },
+      "block_order": [
+        "feature_bKjMwD",
+        "feature_BbW6RQ",
+        "feature_TVUCTW",
+        "feature_ctVcCw"
+      ],
+      "name": "[Custom] Hero Banner",
+      "settings": {
+        "bg_image": "shopify://shop_images/banner-desktop.jpg",
+        "star_image": "shopify://shop_images/Stars_Container.png",
+        "star_text": "<strong>4.76/5</strong> stars | <strong>12,000+</strong> happy women",
+        "title": "Clean Makeup That Looks Natural on Mature Skin",
+        "description": "Thoughtfully formulated to enhance your features and match your skin tone without feeling heavy, or making you look overdone.",
+        "button_text": "Shop Our Best Sellers",
+        "button_link": "/collections/best-selling-products",
+        "right_image_1": "shopify://shop_images/banner-girl.png",
+        "right_image_2": "shopify://shop_images/banner-cosmetic.png"
+      }
+    },
+    "custom_customer_quote_C4ELiX": {
+      "type": "custom-customer-quote",
+      "name": "[Custom] Customer Quote",
+      "settings": {
+        "bg_image": "shopify://shop_images/reviews-banner.jpg",
+        "star_image": "shopify://shop_images/Stars_Container.png",
+        "review_text": "“I absolutely love my BB Créme makeup. It stays nice all day. Doesn’t look cakey and covers great! I have loved all of the products from Nicole Beauty. I’ll be buying more! Thank you for your products and I enjoy the You Tube presentations.\"",
+        "author_name": "- Janet S.",
+        "buyer_image": "shopify://shop_images/Vector.png",
+        "buyer_text": "Verified Buyer"
+      }
+    },
+    "custom_collection_tabs_hgtKjT": {
+      "type": "custom-product-slider",
+      "blocks": {
+        "collection_tab_gaMYhn": {
+          "type": "collection_tab",
+          "settings": {
+            "tab_image": "shopify://shop_images/tabimg1.png",
+            "tab_label": "Lips",
+            "collection": "lips",
+            "button_label": "View All Best Sellers",
+            "button_link": "shopify://collections/lips"
+          }
+        },
+        "collection_tab_Uza3Hx": {
+          "type": "collection_tab",
+          "settings": {
+            "tab_image": "shopify://shop_images/tabimg2.png",
+            "tab_label": "Lashes",
+            "collection": "lashes",
+            "button_label": "View All Best Sellers",
+            "button_link": "shopify://collections/lashes"
+          }
+        },
+        "collection_tab_aWwjFn": {
+          "type": "collection_tab",
+          "settings": {
+            "tab_image": "shopify://shop_images/tabimg3.png",
+            "tab_label": "Eyes",
+            "collection": "eyes",
+            "button_label": "View All Best Sellers",
+            "button_link": "shopify://collections/eyes"
+          }
+        },
+        "collection_tab_yHerBt": {
+          "type": "collection_tab",
+          "settings": {
+            "tab_image": "shopify://shop_images/tabimg4.png",
+            "tab_label": "Face",
+            "collection": "face",
+            "button_label": "View All Best Sellers",
+            "button_link": "shopify://collections/face"
+          }
+        },
+        "collection_tab_VpYXja": {
+          "type": "collection_tab",
+          "settings": {
+            "tab_image": "shopify://shop_images/tabimg5.png",
+            "tab_label": "Eyebrows",
+            "collection": "brows",
+            "button_label": "View All Best Sellers",
+            "button_link": "shopify://collections/brows"
+          }
+        },
+        "collection_tab_MTWHqc": {
+          "type": "collection_tab",
+          "settings": {
+            "tab_image": "shopify://shop_images/tabimg6.png",
+            "tab_label": "Brushes & Tools",
+            "collection": "brushes-tools",
+            "button_label": "View All Best Sellers",
+            "button_link": "shopify://collections/brushes-tools"
+          }
+        }
+      },
+      "block_order": [
+        "collection_tab_gaMYhn",
+        "collection_tab_Uza3Hx",
+        "collection_tab_aWwjFn",
+        "collection_tab_yHerBt",
+        "collection_tab_VpYXja",
+        "collection_tab_MTWHqc"
+      ],
+      "name": "[Custom] Product Slider",
+      "settings": {
+        "title": "Shop Best Sellers",
+        "subtitle": "Our most-loved makeup for mature skin, designed to look natural and feel comfortable.",
+        "products_limit": 10,
+        "background_color": "#F7F2ED66"
+      }
+    },
+    "cw_videos_pDhphj": {
+      "type": "custom-videos",
+      "blocks": {
+        "video_item_apEHR3": {
+          "type": "video_item",
+          "settings": {
+            "poster": "shopify://shop_images/cw-video2.jpg",
+            "video": "https://cdn.shopify.com/videos/c/o/v/ae2db6afb5684799aa4d29cbdfdf8ffe.mp4"
+          }
+        }
+      },
+      "block_order": [
+        "video_item_apEHR3"
+      ],
+      "name": "[Custom] Videos",
+      "settings": {
+        "title": "Real Stories From Women Who Switched to Nikol Beauty",
+        "subtitle": "See how women in their 50s, 60s, and 70s use Nikol Beauty to look polished without fighting their skin.",
+        "button_label": "Watch all tutorials",
+        "button_link": "/pages/video-gallery"
+      }
+    },
+    "custom_info_banner_makeup": {
+      "type": "custom-info-banner",
+      "blocks": {
+        "heading_makeup": {
+          "type": "heading",
+          "settings": {
+            "heading": "Makeup Developed by Licensed Esthetician",
+            "padding_top": 5,
+            "padding_bottom": 10
+          }
+        },
+        "text_sub_makeup": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Most makeup was created for young skin. That’s why it often settles into lines, looks heavy, or just doesn’t sit right as skin changes.</p>",
+            "padding_top": 10,
+            "padding_bottom": 5
+          }
+        },
+        "text_desc_makeup": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our founder, <strong>Nikol Johnson-Sanchez</strong>, started running into the same issues herself after years working as a licensed esthetician and makeup artist. She realized the problem wasn't technique, it was that the formulas simply weren't made for mature skin.</p><p>So she created Nikol Beauty. Makeup designed to feel lightweight, blend easily, and actually match your skin tone and undertone.</p>",
+            "padding_top": 5,
+            "padding_bottom": 5
+          }
+        },
+        "media_makeup": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "media_position": "right",
+            "media_padding": 0,
+            "media_width": 50,
+            "image_desktop": "shopify://shop_images/mkd1.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "heading_makeup",
+        "text_sub_makeup",
+        "text_desc_makeup",
+        "media_makeup"
+      ],
+      "name": "[Custom] Info Banner",
+      "settings": {
+        "bg_image": "shopify://shop_images/makup-bg.jpg"
+      }
+    },
+    "custom_steps_vertical_iXrHGd": {
+      "type": "custom-steps-vertical",
+      "blocks": {
+        "step_pJCrXd": {
+          "type": "step",
+          "settings": {
+            "image_position": "left",
+            "image": "shopify://shop_images/new-step1.jpg",
+            "title": "Choose What Suits Your Skin",
+            "content": "Start with best sellers or take the quick quiz to find products matched to your skin, undertone, and preferences without trial and error."
+          }
+        },
+        "step_K7jYb3": {
+          "type": "step",
+          "settings": {
+            "image_position": "right",
+            "image": "shopify://shop_images/new-step2.jpg",
+            "title": "Apply With Confidence",
+            "content": "Follow our simple YouTube guides and product demos to avoid common mistakes that make makeup look heavy or creased."
+          }
+        },
+        "step_kgHwKM": {
+          "type": "step",
+          "settings": {
+            "image_position": "left",
+            "image": "shopify://shop_images/new-step3.jpg",
+            "title": "Feel Confident Wearing It",
+            "content": "Enjoy makeup that feels lightweight, looks natural, and stays flattering throughout the day, without settling into lines or feeling like too much."
+          }
+        }
+      },
+      "block_order": [
+        "step_pJCrXd",
+        "step_K7jYb3",
+        "step_kgHwKM"
+      ],
+      "name": "[Custom] Steps Vertical",
+      "settings": {
+        "title": "Natural, Polished Makeup in 3 Simple Steps",
+        "subtitle": "There’s no creasing, heaviness, guesswork, or fighting your skin.",
+        "button_label": "Shop Our Best Sellers",
+        "button_link": "/collections/best-selling-products"
+      }
+    },
+    "custom_benefits_4gzPy4": {
+      "type": "custom-benefits",
+      "blocks": {
+        "benefit_4G8Die": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shopify://shop_images/benefit1.png",
+            "title": "Skin-Like Finish That Stays Fresh",
+            "text": "Flexible pigments move with your skin to stay smooth, not creased."
+          }
+        },
+        "benefit_7C34Ff": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shopify://shop_images/benefit2.png",
+            "title": "Made to Match Your Undertone",
+            "text": "Carefully balanced shades that complement cool, warm, and neutral undertones."
+          }
+        },
+        "benefit_q3e4HD": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shopify://shop_images/benefit3.png",
+            "title": "Tested For Mature Skin",
+            "text": "Tested to blend smoothly and feel gentle on mature, sensitive skin."
+          }
+        },
+        "benefit_9gK7pP": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shopify://shop_images/benefit4.png",
+            "title": "Clean, Skin-Respecting Formulas",
+            "text": "Paraben-free, cruelty-free, and esthetician-approved for aging skin."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_4G8Die",
+        "benefit_7C34Ff",
+        "benefit_q3e4HD",
+        "benefit_9gK7pP"
+      ],
+      "name": "[Custom] Benefits",
+      "settings": {
+        "title": "Why Thousands Of Women Are Switching To Nikol Beauty",
+        "description": "It’s lightweight, natural-looking, and made for mature skin."
+      }
+    },
+    "custom_info_banner_quiz": {
+      "type": "custom-info-banner",
+      "blocks": {
+        "media_quiz": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "media_position": "left",
+            "media_padding": 0,
+            "media_width": 65,
+            "image_desktop": "shopify://shop_images/step-pair.jpg"
+          }
+        },
+        "heading_quiz": {
+          "type": "heading",
+          "settings": {
+            "heading": "Not Sure Which Products to Choose or Pair?"
+          }
+        },
+        "text_quiz": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Take our free 1-minute quiz and we’ll recommend the Nikol Beauty products that work best for your skin, undertone (cool, warm, or neutral), routine, and preferences.</p>"
+          }
+        },
+        "button_quiz": {
+          "type": "button",
+          "settings": {
+            "button_text": "TAKE OUR QUIZ",
+            "button_link": "shopify://pages/the-makeup-quiz"
+          }
+        },
+        "icon_note_quiz": {
+          "type": "icon_note",
+          "settings": {
+            "icon": "shopify://shop_images/Group.png",
+            "text": "Takes 1 minute",
+            "alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "media_quiz",
+        "heading_quiz",
+        "text_quiz",
+        "button_quiz",
+        "icon_note_quiz"
+      ],
+      "name": "[Custom] Info Banner",
+      "settings": {}
+    },
+    "custom_collection_banners_fCeq6M": {
+      "type": "custom-collection-banners",
+      "name": "[Custom] Collection Banners",
+      "blocks": {
+        "collection_box_r3nckz": {
+          "type": "collection_box",
+          "settings": {
+            "image_desktop": "shopify://shop_images/category-desk1.png",
+            "image_mobile": "shopify://shop_images/category-mob1.png",
+            "title": "Lashes",
+            "shop_text": "SHOP NOW",
+            "link": "shopify://collections/lashes"
+          }
+        },
+        "collection_box_hMxcwi": {
+          "type": "collection_box",
+          "settings": {
+            "image_desktop": "shopify://shop_images/category-desk2.png",
+            "image_mobile": "shopify://shop_images/category-mob2.png",
+            "title": "Eyes",
+            "shop_text": "SHOP NOW",
+            "link": "shopify://collections/eyes"
+          }
+        },
+        "collection_box_HefT4E": {
+          "type": "collection_box",
+          "settings": {
+            "image_desktop": "shopify://shop_images/category-desk3.png",
+            "image_mobile": "shopify://shop_images/category-mob3.png",
+            "title": "Lips",
+            "shop_text": "SHOP NOW",
+            "link": "shopify://collections/lips"
+          }
+        },
+        "collection_box_ErJwKi": {
+          "type": "collection_box",
+          "settings": {
+            "image_desktop": "shopify://shop_images/category-desk4.png",
+            "image_mobile": "shopify://shop_images/category-mob4.png",
+            "title": "Face",
+            "shop_text": "SHOP NOW",
+            "link": "shopify://collections/face"
+          }
+        },
+        "collection_box_hzWAkn": {
+          "type": "collection_box",
+          "settings": {
+            "image_desktop": "shopify://shop_images/category-desk5.png",
+            "image_mobile": "shopify://shop_images/category-mob5.png",
+            "title": "Eyebrows",
+            "shop_text": "SHOP NOW",
+            "link": "shopify://collections/brows"
+          }
+        },
+        "collection_box_XYX87B": {
+          "type": "collection_box",
+          "settings": {
+            "image_desktop": "shopify://shop_images/category-desk6.png",
+            "image_mobile": "shopify://shop_images/category-mob6.png",
+            "title": "Brushes & Tools",
+            "shop_text": "SHOP NOW",
+            "link": "shopify://collections/brushes-tools"
+          }
+        }
+      },
+      "block_order": [
+        "collection_box_r3nckz",
+        "collection_box_hMxcwi",
+        "collection_box_HefT4E",
+        "collection_box_ErJwKi",
+        "collection_box_hzWAkn",
+        "collection_box_XYX87B"
+      ],
+      "name": "[Custom] Collection Banners",
+      "settings": {
+        "bg_image": "shopify://shop_images/cl-bg.jpg",
+        "title": "Shop by Category",
+        "subtitle": "Find the products you need most that look natural and feel comfortable on mature skin."
+      }
+    },
+    "custom_customer_reviews_w84Rig": {
+      "type": "custom-customer-reviews",
+      "blocks": {
+        "review_qwBeDr": {
+          "type": "review",
+          "settings": {
+            "product": "nikol-cosmetics-waterproof-eyeliner",
+            "stars": "shopify://shop_images/Stars_Container_82c332b9-2b5c-4baf-baf7-3c3e60a20c92.png",
+            "quote_icon": "shopify://shop_images/left-quote_1_2.png",
+            "title": "Beautiful eyeliners",
+            "description": "I have both the Dark Chocolate and the Plum eyeliners. They are beautiful, rich colors. They glide on without tugging at your eyes yet they do not smudge or transfer. I’ve replaced other waterproof eyeliners I had purchased from other brands with these. They are spectacular.",
+            "author": "Vicki J",
+            "buyer_icon": "shopify://shop_images/Frame_1484583009.png",
+            "cart_icon": "shopify://shop_images/Button.png"
+          }
+        },
+        "review_ragXir": {
+          "type": "review",
+          "settings": {
+            "product": "mascara-intense-curling-volumizing",
+            "stars": "shopify://shop_images/Stars_Container_82c332b9-2b5c-4baf-baf7-3c3e60a20c92.png",
+            "quote_icon": "shopify://shop_images/left-quote_1_2.png",
+            "title": "My Favorite Mascara",
+            "description": "I have several decades-worth of experience buying and wearing mascara, and without a doubt, this is the best mascara I have ever worn. My lashes look fuller and longer without clumping; it goes on and comes off cleanly (important for a contact wearer), and it is so lightweight that I forget that I am wearing any eye makeup.",
+            "author": "Marney Elliott",
+            "buyer_icon": "shopify://shop_images/Frame_1484583009.png",
+            "cart_icon": "shopify://shop_images/Button.png"
+          }
+        },
+        "review_jQRqpV": {
+          "type": "review",
+          "settings": {
+            "product": "just-peachy-color-corrector",
+            "stars": "shopify://shop_images/Stars_Container_82c332b9-2b5c-4baf-baf7-3c3e60a20c92.png",
+            "quote_icon": "shopify://shop_images/left-quote_1_2.png",
+            "title": "Works really well",
+            "description": "I just bought another tube! This really works very well under the concealer and the serum foundation. I have always had dark circles and found it hard to make that part of my face look normal with just a concealer. This does the job for me! Will continue to use. Hoping this product remains on Nikol’s line!",
+            "author": "Dee",
+            "buyer_icon": "shopify://shop_images/Frame_1484583009.png",
+            "cart_icon": "shopify://shop_images/Button.png"
+          }
+        },
+        "review_N76n8e": {
+          "type": "review",
+          "settings": {
+            "product": "lux-brush-soap",
+            "stars": "shopify://shop_images/Stars_Container_82c332b9-2b5c-4baf-baf7-3c3e60a20c92.png",
+            "quote_icon": "shopify://shop_images/left-quote_1_2.png",
+            "title": "Clean Brushes Finally!",
+            "description": "Excelent quality and value! Love the soap and the tin it comes in with the built-in scrubber. My brushes have never been so clean even washing them with other cleaning products. I will definitely purchase again and maybe even the travel size.",
+            "author": "Carol Nuun",
+            "buyer_icon": "shopify://shop_images/Frame_1484583009.png",
+            "cart_icon": "shopify://shop_images/Button.png"
+          }
+        },
+        "review_GRzm4n": {
+          "type": "review",
+          "settings": {
+            "product": "bb-cream",
+            "stars": "shopify://shop_images/Stars_Container_82c332b9-2b5c-4baf-baf7-3c3e60a20c92.png",
+            "quote_icon": "shopify://shop_images/left-quote_1_2.png",
+            "title": "Glowing",
+            "description": "I love the BB Cream. I finally decided to try it out and I am in love. It felt light on my skin and provided good coverage. Made my skin glow! Thanks Nikol! FYI - I am 65 with an olive skin.",
+            "author": "Jane Morales",
+            "buyer_icon": "shopify://shop_images/Frame_1484583009.png",
+            "cart_icon": "shopify://shop_images/Button.png"
+          }
+        },
+        "review_VgUw8N": {
+          "type": "review",
+          "settings": {
+            "product": "actually-i-can",
+            "stars": "shopify://shop_images/Stars_Container_82c332b9-2b5c-4baf-baf7-3c3e60a20c92.png",
+            "quote_icon": "shopify://shop_images/left-quote_1_2.png",
+            "title": "Beautiful color",
+            "description": "The color was just what I had expected, love it. Great lipstick, will purchase again.All of Nikols products do exactly everything she says they will do, and I LOVE that!",
+            "author": "Antoinette Schue-Hoy",
+            "buyer_icon": "shopify://shop_images/Frame_1484583009.png",
+            "cart_icon": "shopify://shop_images/Button.png"
+          }
+        },
+        "review_fyEtMV": {
+          "type": "review",
+          "settings": {
+            "product": "new-blush-palette-ageless",
+            "stars": "shopify://shop_images/Stars_Container_82c332b9-2b5c-4baf-baf7-3c3e60a20c92.png",
+            "quote_icon": "shopify://shop_images/left-quote_1_2.png",
+            "title": "Ballerina Rose - The perfect blush palette",
+            "description": "All the colors in the Ballerina Rose palette are beautiful, they blend like a dream, very pigmented and lasts all day. Truly the best blush palette I've owned. Another great product of the many you've developed for us mature women. Thank you Nicole!",
+            "author": "Marilyn V",
+            "buyer_icon": "shopify://shop_images/Frame_1484583009.png",
+            "cart_icon": "shopify://shop_images/Button.png"
+          }
+        }
+      },
+      "block_order": [
+        "review_qwBeDr",
+        "review_ragXir",
+        "review_jQRqpV",
+        "review_N76n8e",
+        "review_GRzm4n",
+        "review_VgUw8N",
+        "review_fyEtMV"
+      ],
+      "name": "[Custom] Customer Reviews",
+      "settings": {
+        "title": "Loved By Thousands Of Women",
+        "subtitle": "Real reviews from women who switched to Nikol Beauty."
+      }
+    },
+    "custom_faq_Pwzh8K": {
+      "type": "custom-faq",
+      "blocks": {
+        "faq_p6yLEr": {
+          "type": "faq",
+          "settings": {
+            "question": "Is Nikol Beauty makeup really made for mature skin?",
+            "answer": "Yes. Every product is specifically formulated, tested, and demonstrated on mature women (40–70+). Our formulas are designed to move with skin as it changes, instead of settling into lines or emphasizing texture."
+          }
+        },
+        "faq_iq6GFe": {
+          "type": "faq",
+          "settings": {
+            "question": "Will this makeup  Skin-Like Finish That Stays Fresh or look heavy?",
+            "answer": "No. Nikol uses lightweight, flexible pigments that blend smoothly and build gradually. The result is natural-looking coverage that stays flattering without creasing, caking, or feeling heavy."
+          }
+        },
+        "faq_XChmkc": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I know which shade or undertone is right for me?",
+            "answer": "If you’re unsure whether you’re cool, warm, or neutral, our free 1-minute quiz will guide you to the best shades for your skin. Each recommendation is based on undertone, preferences, and how makeup typically wears on mature skin, so you don’t have to guess."
+          }
+        },
+        "faq_q6DnGD": {
+          "type": "faq",
+          "settings": {
+            "question": "I don’t wear much makeup anymore. Is this still for me?",
+            "answer": "Absolutely. Nikol is designed for women who want to look polished and put-together without wearing “a full face.” Many customers say it’s the first makeup they’ve felt comfortable wearing again."
+          }
+        },
+        "faq_UJWmUc": {
+          "type": "faq",
+          "settings": {
+            "question": "How is this different from other clean beauty brands?",
+            "answer": "Most makeup, including clean brands, is still created and tested on young skin. Nikol is developed by a licensed esthetician and tested on real mature skin from the start, not adjusted later."
+          }
+        },
+        "faq_LaKCM9": {
+          "type": "faq",
+          "settings": {
+            "question": "Do I need special techniques or tools to apply it?",
+            "answer": "No. The formulas are intentionally easy to use. We also provide simple video demos that show exactly how to apply each product on mature skin, so you don’t have to guess."
+          }
+        },
+        "faq_XUEXQn": {
+          "type": "faq",
+          "settings": {
+            "question": "Is Nikol Beauty makeup safe for sensitive skin?",
+            "answer": "Yes. Our products are paraben-free, cruelty-free, and esthetician-approved. They’re designed to feel comfortable on aging and sensitive skin."
+          }
+        },
+        "faq_bdyYMG": {
+          "type": "faq",
+          "settings": {
+            "question": "What if I’m not sure which products to choose?",
+            "answer": "Take our free 1-minute quiz. We’ll recommend products based on your skin, routine, and preferences, no trial and error."
+          }
+        },
+        "faq_ftYxJY": {
+          "type": "faq",
+          "settings": {
+            "question": "Which products should I pair together?",
+            "answer": "You don’t need to figure that out yourself. Our products are designed to work seamlessly together, and we show you exactly which ones pair best through our quiz, product pages, and short video demos. Each recommendation is based on your skin, undertone, and routine, so everything works naturally without guesswork.\nChat with or email our customer service at <a href=\"mailto:hello@nikolbeauty.com\">hello@nikolbeauty.com</a>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_p6yLEr",
+        "faq_iq6GFe",
+        "faq_XChmkc",
+        "faq_q6DnGD",
+        "faq_UJWmUc",
+        "faq_LaKCM9",
+        "faq_XUEXQn",
+        "faq_bdyYMG",
+        "faq_ftYxJY"
+      ],
+      "name": "[Custom] FAQ",
+      "settings": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Everything you need to know about Nikol Beauty.",
+        "plus_icon": "shopify://shop_images/FAQ-plus.png",
+        "minus_icon": "shopify://shop_images/FAQ-minus.png"
+      }
+    },
+    "custom_guarantee_list_Nc6MQh": {
+      "type": "custom-guarantee-list",
+      "blocks": {
+        "feature_WmLCWt": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/feature1.png",
+            "feature_text": "Free US Shipping Over $125"
+          }
+        },
+        "feature_BBcH6U": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/feature2.png",
+            "feature_text": "Loved by 12,000+ Women"
+          }
+        },
+        "feature_z8qjmF": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/feature3.png",
+            "feature_text": "Clinically Proven Products"
+          }
+        },
+        "feature_JT7Um8": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/feature4.png",
+            "feature_text": "Designed for Mature Skin"
+          }
+        }
+      },
+      "block_order": [
+        "feature_WmLCWt",
+        "feature_BBcH6U",
+        "feature_z8qjmF",
+        "feature_JT7Um8"
+      ],
+      "name": "[Custom] Guarantee List",
+      "settings": {}
+    },
+    "custom_info_banner_bPCMH4": {
+      "type": "custom-info-banner",
+      "name": "[Custom] Info Banner",
+      "blocks": {
+        "image_1": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "media_position": "left",
+            "media_padding": 0,
+            "image_desktop": "shopify://shop_images/looks.jpg",
+            "image_mobile": "shopify://shop_images/happy-senior-friends-looking-each-other_1.jpg"
+          }
+        },
+        "rating_1": {
+          "type": "rating",
+          "settings": {
+            "star_image": "shopify://shop_images/Stars_Container.png",
+            "star_text": "<strong>4.76/5</strong> stars | <strong>12,000+</strong> happy women"
+          }
+        },
+        "heading_1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Stop Wearing Makeup That Makes You Look Older"
+          }
+        },
+        "text_1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Get makeup designed for mature skin that makes you feel confident without fighting your skin, redoing your makeup, or looking overdone.</p>"
+          }
+        },
+        "button_1": {
+          "type": "button",
+          "settings": {
+            "button_text": "Shop Our Best Sellers",
+            "button_link": "/collections/best-selling-products"
+          }
+        }
+      },
+      "block_order": ["image_1", "rating_1", "heading_1", "text_1", "button_1"],
+      "settings": {
+        "bg_image": "shopify://shop_images/banner-bottom-bg.jpg"
+      }
+    },
+    "custom_info_banner_P4hRaz": {
+      "type": "custom-info-banner",
+      "name": "[Custom] Info Banner",
+      "blocks": {
+        "media_1": {
+          "type": "media",
+          "settings": {
+            "media_type": "blog",
+            "media_position": "right",
+            "media_padding": 0,
+            "blog": "news",
+            "blog_limit": 6,
+            "blog_overlay": 35
+          }
+        },
+        "heading_1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Beauty Advice from a Licensed Esthetician"
+          }
+        },
+        "text_1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Read our articles and get straightforward makeup advice designed for mature skin, so you know what works, how to use it, and when to keep things simple.</p>"
+          }
+        },
+        "button_1": {
+          "type": "button",
+          "settings": {
+            "button_text": "VIEW ALL BLOGS",
+            "button_link": "/blogs/news"
+          }
+        }
+      },
+      "block_order": ["media_1", "heading_1", "text_1", "button_1"],
+      "settings": {
+        "bg_image": "shopify://shop_images/advice-bg.jpg"
+      }
+    },
+    "custom_newsletter_aN7Bpn": {
+      "type": "custom-newsletter",
+      "name": "[Custom] Newsletter",
+      "settings": {
+        "bg_image": "shopify://shop_images/form-bg.jpg",
+        "title": "Let's Get this <br> beauty started.",
+        "placeholder_text": "Email Address...",
+        "button_text": "SUBSCRIBE NOW",
+        "note_text": "Your information is safe and secure with us"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_custom_code_3YKDiW",
+    "custom_guarantee_list_yG9DMk",
+    "custom_hero_banner_WBDkbD",
+    "custom_customer_quote_C4ELiX",
+    "custom_collection_tabs_hgtKjT",
+    "cw_videos_pDhphj",
+    "custom_info_banner_makeup",
+    "custom_steps_vertical_iXrHGd",
+    "custom_benefits_4gzPy4",
+    "custom_info_banner_quiz",
+    "custom_collection_banners_fCeq6M",
+    "custom_customer_reviews_w84Rig",
+    "custom_faq_Pwzh8K",
+    "custom_guarantee_list_Nc6MQh",
+    "custom_info_banner_bPCMH4",
+    "custom_info_banner_P4hRaz",
+    "custom_newsletter_aN7Bpn"
+  ]
+}

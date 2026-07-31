@@ -1,0 +1,280 @@
+{%- style -%}
+  #Videos-{{ section.id }} {
+    --custom-videos-bg: {{ section.settings.background_color }};
+  }
+{%- endstyle -%}
+
+<style>
+.custom-videos {
+  padding: 80px 0;
+  background: var(--custom-videos-bg);
+}
+
+.custom-videos__parent {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.custom-videos__header {
+  text-align: center;
+}
+
+.custom-videos__title {
+  margin: 0;
+  color: var(--COLOR-TEXT);
+  font-family: 'Cormorant';
+  font-size: 56px;
+  font-weight: 500;
+  line-height: 110%;
+  letter-spacing: -3px;
+  text-transform: capitalize;
+}
+
+.custom-videos__subtitle {
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  color: var(--COLOR-TEXT);
+  font-family: 'Inter';
+  font-size: 20px;
+}
+
+.custom-videos__video {
+  width: 100%;
+  height: 560px;
+}
+
+.custom-videos__btn-wrap {
+  padding: 0;
+  padding-top: 50px;
+  text-align: center;
+}
+
+.custom-videos__btn-wrap a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  max-width: 400px;
+  height: 60px;
+  margin: 0 auto;
+  background: var(--BTN-PRIMARY-BG-COLOR);
+  color: var(--BTN-PRIMARY-TEXT-COLOR);
+  font-family: var(--BTN-FONT-STACK);
+  font-size: var(--BTN-FONT-SIZE);
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+@media only screen and (max-width: 600px) {
+  .custom-videos {
+    padding: 40px 15px;
+  }
+
+  .custom-videos__video {
+    height: 220px;
+  }
+
+  .custom-videos__title {
+    font-size: 34px;
+  }
+
+  .custom-videos__subtitle {
+    font-size: var(--FONT-SIZE-BASE);
+    line-height: 135%;
+    padding-top: 15px;
+    padding-bottom: 30px;
+  }
+
+  .custom-videos__btn-wrap {
+    padding: 0 15px;
+    padding-top: 30px;
+  }
+
+  .custom-videos__btn-wrap a {
+    max-width: 100%;
+    height: 50px;
+    font-size: var(--BTN-FONT-SIZE);
+  }
+}
+</style>
+
+{%- if section.settings.enable_live_shopping_style -%}
+<style>
+div#shopify-block-AclUxZk1VTjlqdjNDe__live_shopping_by_channelize_io_shoppable_videos_playlist_HVMWCz channelize_shoppable_videos_playlist_widget {
+    background: #FCC9C6;
+}
+
+.product__content div#shopify-block-ANExramlTbWZ2RG5TR__live_shopping_by_channelize_io_shoppable_videos_playlist_9p4Dqf-1 {
+    display: none !important;
+}
+
+.cw-bb-pvideo-section.cw-desktop {
+    width: 100% !important;
+}
+
+.cw-bb-pvideo-container {
+    width: 100% !important;
+}
+
+.ch-shoppable-video__list__header__md {
+    display: none !important;
+}
+
+.ch-shoppable-video__list__header__lg {
+    display: none !important;
+}
+
+.custom-videos {
+    padding-bottom: 0px !important;
+}
+
+div#shopify-block-ARm9XTUZHZFV1WGhCV__live_shopping_by_channelize_io_shoppable_videos_playlist_HVMWCz .ch-shoppable-video__list {
+    padding-bottom: 80px !important;
+}
+
+@media only screen and (max-width: 600px) {
+.custom-videos {
+    padding: 40px 0px 20px;
+}
+div#shopify-block-ARm9XTUZHZFV1WGhCV__live_shopping_by_channelize_io_shoppable_videos_playlist_HVMWCz .ch-shoppable-video__list {
+    padding-bottom: 40px !important;
+}
+}
+</style>
+{%- endif -%}
+
+<section class="custom-videos" id="Videos-{{ section.id }}">
+  <div class="page-width">
+    <div class="custom-videos__parent">
+
+      <div class="custom-videos__header">
+        {%- if section.settings.title != blank -%}
+          <h2 class="custom-videos__title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}
+          <p class="custom-videos__subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="custom-videos__slider-wrap">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.video != blank -%}
+            <div class="custom-videos__slide" {{ block.shopify_attributes }}>
+              <div class="custom-videos__box">
+                <video
+                  class="custom-videos__video"
+                  {% if block.settings.poster != blank %}poster="{{ block.settings.poster | image_url: width: 1400 }}"{% endif %}
+                  muted
+                  playsinline
+                  loop
+                  controls
+                >
+                  <source src="{{ block.settings.video }}" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+        <div class="custom-videos__btn-wrap">
+          <a href="{{ section.settings.button_link }}">
+            {{ section.settings.button_label }}
+            <svg width="22" height="13" viewBox="0 0 22 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <path d="M0.843262 5.36644C0.377534 5.36644 0 5.74399 0 6.20972C0 6.67544 0.377534 7.05299 0.843262 7.05299H20.8433C21.309 7.05299 21.6866 6.67544 21.6866 6.20972C21.6866 5.74399 21.309 5.36644 20.8433 5.36644H0.843262ZM21.4395 6.806C21.7689 6.47668 21.7689 5.94275 21.4395 5.61343L16.073 0.24687C15.7437 -0.0824491 15.2097 -0.0824491 14.8804 0.24687C14.5511 0.576189 14.5511 1.11012 14.8804 1.43944L19.6507 6.20972L14.8804 10.98C14.5511 11.3093 14.5511 11.8432 14.8804 12.1726C15.2097 12.5019 15.7437 12.5019 16.073 12.1726L21.4395 6.806Z" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "[Custom] Videos",
+  "enabled_on": {
+    "templates": ["index", "product"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Featured Videos"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "See the products in action."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#FCC9C6"
+    },
+    {
+      "type": "header",
+      "content": "Live Shopping (Channelize)"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_live_shopping_style",
+      "label": "Enable Live Shopping widget styling",
+      "info": "Only for pages that use the Channelize.io shoppable-videos app blocks (e.g. the coming-soon product template).",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video_item",
+      "name": "Video Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "poster",
+          "label": "Video Poster Image"
+        },
+        {
+          "type": "textarea",
+          "id": "video",
+          "label": "Video URL (MP4)"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "[Custom] Videos",
+      "blocks": [
+        { "type": "video_item" },
+        { "type": "video_item" },
+        { "type": "video_item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

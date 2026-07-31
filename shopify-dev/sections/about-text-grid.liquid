@@ -1,0 +1,44 @@
+<div class="about-text-grid site-about-text-grid-wrapper">
+  <div class="about-text-grid__inner">
+    <div class="about-text-grid__left">
+      <div class="about-text-grid__copy">
+        {{ section.settings.text_1 }}
+      </div>
+      <div class="about-text-grid__copy">
+        {{ section.settings.text_2 }}
+      </div>
+    </div>
+    <div class="about-text-grid__right">
+      <div class="about-text-grid__copy">
+        {{ section.settings.text_3 }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About Text Grid",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text_1",
+      "label": "Text 1"
+    },
+    {
+      "type": "richtext",
+      "id": "text_2",
+      "label": "Text 2"
+    },
+    {
+      "type": "richtext",
+      "id": "text_3",
+      "label": "Text 3"
+    }
+  ],
+  "presets": [{
+    "name": "About Text Grid",
+    "category": "Image"
+  }]
+}
+{% endschema %}

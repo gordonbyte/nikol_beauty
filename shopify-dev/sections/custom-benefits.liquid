@@ -1,0 +1,233 @@
+<style>
+.custom-benefits {
+    padding: 100px 0;
+}
+
+.custom-benefits__title {
+    text-align: center;
+    line-height: 110%;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    color: var(--COLOR-TEXT);
+    margin: 0;
+    font-family: var(--FONT-STACK-HEADING);
+}
+
+.custom-benefits__subtitle {
+    text-align: center;
+    font-size: var(--FONT-SIZE-BASE);
+    line-height: 140%;
+    letter-spacing: 0px;
+    font-weight: 400;
+    color: var(--COLOR-TEXT);
+    margin: 0;
+    padding-top: 15px;
+    font-family: var(--FONT-STACK-BODY);
+}
+
+.custom-benefits__list {
+    width: 100%;
+    display: flex;
+    gap: 45px;
+    padding: 60px 0 0;
+    margin: 0;
+    list-style: none;
+    justify-content: center;
+}
+
+.custom-benefits__icon img {
+    max-width: 90px;
+    object-fit: contain;
+}
+
+.custom-benefits__icon {
+    text-align: center;
+}
+
+.custom-benefits__item-title {
+    text-align: center;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    color: var(--COLOR-TEXT);
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: var(--FONT-STACK-HEADING);
+    text-transform: capitalize;
+}
+
+.custom-benefits__item-text {
+    text-align: center;
+    font-size: var(--FONT-SIZE-BASE);
+    line-height: 150%;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    color: var(--COLOR-TEXT);
+    margin: 0;
+    font-family: var(--FONT-STACK-BODY);
+}
+
+.custom-benefits__item {
+    width: 25%;
+}
+
+@media only screen and (max-width: 600px) {
+	.custom-benefits {
+    padding: 40px 0px;
+}
+
+.custom-benefits__title {
+    letter-spacing: -0.02em;
+}
+
+.custom-benefits__subtitle {
+    font-size: var(--FONT-SIZE-BASE);
+}
+
+.custom-benefits__list {
+    flex-wrap: wrap;
+    gap: 0px;
+    justify-content: space-between;
+        padding-top: 30px;
+}
+
+.custom-benefits__item {
+    width: 47%;
+}
+
+.custom-benefits__item-title {
+    text-align: start;
+}
+
+.custom-benefits__icon {
+    text-align: start;
+}
+
+.custom-benefits__item-text {
+    text-align: start;
+    font-size: var(--FONT-SIZE-BASE);
+}
+
+.custom-benefits__icon img {
+    max-width: 55px;
+}
+}
+    </style>
+
+{%- assign heading_id = 'CustomBenefits-title-' | append: section.id -%}
+
+<section
+  class="custom-benefits"
+  {% if section.settings.title != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
+  style="background: {{ section.settings.bg_color }};"
+>
+  <div class="page-width">
+
+    <div class="custom-benefits__inner">
+
+      {% if section.settings.title != blank %}
+        <h2 id="{{ heading_id }}" class="custom-benefits__title heading-size-11">
+          {{ section.settings.title }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <p class="custom-benefits__subtitle">
+          {{ section.settings.description }}
+        </p>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <ul class="custom-benefits__list" role="list">
+          {% for block in section.blocks %}
+            <li class="custom-benefits__item" {{ block.shopify_attributes }}>
+
+              {% if block.settings.icon != blank %}
+                <div class="custom-benefits__icon">
+                  <img
+                    src="{{ block.settings.icon | img_url: 'master' }}"
+                    alt=""
+                    loading="lazy"
+                  >
+                </div>
+              {% endif %}
+
+              {% if block.settings.title != blank %}
+                <h3 class="custom-benefits__item-title heading-size-6">
+                  {{ block.settings.title }}
+                </h3>
+              {% endif %}
+
+              {% if block.settings.text != blank %}
+                <p class="custom-benefits__item-text">
+                  {{ block.settings.text }}
+                </p>
+              {% endif %}
+
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+    </div>
+
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "[Custom] Benefits",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section background",
+      "default": "#F7F2ED66"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Why You'll Love It"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Section Description",
+      "default": "The benefits at a glance."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Benefit title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Benefit description goes here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "[Custom] Benefits"
+    }
+  ]
+}
+{% endschema %}

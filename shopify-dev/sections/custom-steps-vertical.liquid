@@ -1,0 +1,309 @@
+{%- style -%}
+  #StepsVertical-{{ section.id }} {
+    --custom-steps-vertical-box-bg: {{ section.settings.background_color }};
+  }
+{%- endstyle -%}
+
+<style>
+.custom-steps-vertical {
+  padding: 80px 0;
+}
+
+.custom-steps-vertical__header {
+  text-align: center;
+}
+
+.custom-steps-vertical__heading {
+  margin: 0;
+  color: var(--COLOR-TEXT);
+  font-family: 'Cormorant';
+  font-size: 56px;
+  font-weight: 500;
+  line-height: 110%;
+  letter-spacing: -3px;
+  text-transform: capitalize;
+}
+
+.custom-steps-vertical__subheading {
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 0;
+  color: var(--COLOR-TEXT);
+  font-family: 'Inter';
+  font-size: 20px;
+}
+
+.custom-steps-vertical__parent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 70px;
+}
+
+.custom-steps-vertical__box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+  width: 100%;
+  height: 450px;
+  margin-top: 110px;
+  padding-left: 60px;
+  background: var(--custom-steps-vertical-box-bg);
+}
+
+.custom-steps-vertical__image {
+  width: 39%;
+}
+
+.custom-steps-vertical__image img {
+  height: auto;
+  width: 100%;
+  max-width: 470px;
+}
+
+.custom-steps-vertical__content {
+  width: 37%;
+}
+
+.custom-steps-vertical__title {
+  margin: 0;
+  color: var(--COLOR-TEXT);
+  font-family: 'Cormorant';
+  font-size: 56px;
+  line-height: 110%;
+  letter-spacing: -3px;
+  text-transform: capitalize;
+}
+
+.custom-steps-vertical__text {
+  padding-top: 30px;
+  color: var(--COLOR-TEXT);
+  font-family: 'Inter';
+  font-size: 20px;
+  line-height: 150%;
+}
+
+.custom-steps-vertical__btn a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  max-width: 400px;
+  height: 60px;
+  margin: 0 auto;
+  background: var(--BTN-PRIMARY-BG-COLOR);
+  color: var(--BTN-PRIMARY-TEXT-COLOR);
+  font-family: var(--BTN-FONT-STACK);
+  font-size: var(--BTN-FONT-SIZE);
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+@media only screen and (max-width: 600px) {
+  .custom-steps-vertical {
+    padding: 40px 0;
+  }
+
+  .custom-steps-vertical__heading {
+    font-size: 34px;
+  }
+
+  .custom-steps-vertical__subheading {
+    font-size: var(--FONT-SIZE-BASE);
+    line-height: 135%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .custom-steps-vertical__box {
+    flex-wrap: wrap;
+    gap: 20px;
+    height: auto;
+    margin-top: 10px;
+    padding: 10px;
+  }
+
+  .custom-steps-vertical__image {
+    width: 100%;
+    order: -1;
+  }
+
+  .custom-steps-vertical__image img {
+    max-width: 100%;
+  }
+
+  .custom-steps-vertical__content {
+    width: 100%;
+  }
+
+  .custom-steps-vertical__title {
+    font-size: 26px;
+    letter-spacing: -2px;
+  }
+
+  .custom-steps-vertical__text {
+    font-size: var(--FONT-SIZE-BASE);
+    line-height: 135%;
+    padding-top: 15px;
+  }
+
+  .custom-steps-vertical__parent {
+    gap: 20px;
+    margin-bottom: 25px;
+  }
+
+  .custom-steps-vertical__btn a {
+    max-width: 100%;
+    height: 50px;
+    margin: 0 auto;
+  }
+}
+</style>
+
+<section class="custom-steps-vertical" id="StepsVertical-{{ section.id }}">
+  <div class="page-width">
+
+    <div class="custom-steps-vertical__header">
+      {%- if section.settings.title != blank -%}
+        <h2 class="custom-steps-vertical__heading">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subtitle != blank -%}
+        <p class="custom-steps-vertical__subheading">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="custom-steps-vertical__parent">
+
+      {%- for block in section.blocks -%}
+        <div class="custom-steps-vertical__box custom-steps-vertical__box--{{ block.settings.image_position }}" {{ block.shopify_attributes }}>
+
+          {%- if block.settings.image_position == 'left' and block.settings.image != blank -%}
+            <div class="custom-steps-vertical__image">
+              {{ block.settings.image | image_url: width: 940 | image_tag: widths: '300, 470, 700, 940', sizes: '470px', loading: 'lazy', alt: '' }}
+            </div>
+          {%- endif -%}
+
+          <div class="custom-steps-vertical__content">
+            {%- if block.settings.title != blank -%}
+              <h3 class="custom-steps-vertical__title">{{ block.settings.title }}</h3>
+            {%- endif -%}
+
+            {%- if block.settings.content != blank -%}
+              <div class="custom-steps-vertical__text">{{ block.settings.content }}</div>
+            {%- endif -%}
+          </div>
+
+          {%- if block.settings.image_position == 'right' and block.settings.image != blank -%}
+            <div class="custom-steps-vertical__image">
+              {{ block.settings.image | image_url: width: 940 | image_tag: widths: '300, 470, 700, 940', sizes: '470px', loading: 'lazy', alt: '' }}
+            </div>
+          {%- endif -%}
+
+        </div>
+      {%- endfor -%}
+
+    </div>
+
+    {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+      <div class="custom-steps-vertical__btn">
+        <a href="{{ section.settings.button_link }}">
+          {{ section.settings.button_label }}
+          <svg width="22" height="13" viewBox="0 0 22 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M0.843262 5.36644C0.377534 5.36644 -1.22974e-05 5.74399 -1.23382e-05 6.20972C-1.23789e-05 6.67544 0.377534 7.05299 0.843262 7.05299L0.843262 6.20972L0.843262 5.36644ZM21.4395 6.806C21.7689 6.47668 21.7689 5.94275 21.4395 5.61343L16.073 0.24687C15.7437 -0.0824491 15.2097 -0.0824491 14.8804 0.24687C14.5511 0.576189 14.5511 1.11012 14.8804 1.43944L19.6507 6.20972L14.8804 10.98C14.5511 11.3093 14.5511 11.8432 14.8804 12.1726C15.2097 12.5019 15.7437 12.5019 16.073 12.1726L21.4395 6.806ZM0.843262 6.20972L0.843262 7.05299L20.8433 7.05299L20.8433 6.20972L20.8433 5.36644L0.843262 5.36644L0.843262 6.20972Z" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "[Custom] Steps Vertical",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Real Stories From Women Who Switched To Nikol"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "See how women in their 50s, 60s, and 70s use Nikol to look polished without fighting their skin."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "View All Best Sellers"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Step background",
+      "default": "#F7F2ED"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Image Position",
+          "default": "left",
+          "options": [
+            { "value": "left", "label": "Image Left" },
+            { "value": "right", "label": "Image Right" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Step Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Choose What Suits Your Skin"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content",
+          "default": "Start with best sellers or take the quick quiz to find products matched to your skin, undertone, and preferences without trial and error."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "[Custom] Steps Vertical",
+      "blocks": [
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step" }
+      ]
+    }
+  ]
+}
+{% endschema %}

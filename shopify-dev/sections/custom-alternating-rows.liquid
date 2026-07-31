@@ -1,0 +1,472 @@
+{% comment %}
+  TODO (future improvement): convert these alternating image/text rows into a
+  slider/carousel — that's the better design direction for this section.
+{% endcomment %}
+<style>
+.custom-alternating-rows {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 90px 0;
+}
+
+.custom-alternating-rows__title {
+    text-align: center;
+    line-height: 110%;
+    letter-spacing: -1px;
+    font-weight: 500;
+    max-width: 900px;
+    margin: 0 auto;
+    color: var(--COLOR-TEXT);
+    font-family: var(--FONT-STACK-HEADING);
+}
+
+.custom-alternating-rows__subtitle {
+    text-align: center;
+    font-size: var(--FONT-SIZE-BASE);
+    line-height: 140%;
+    font-weight: 400;
+    color: var(--COLOR-TEXT);
+    margin: 0;
+    padding-top: 20px;
+    font-family: var(--FONT-STACK-BODY);
+}
+
+.custom-alternating-rows__rows {
+    margin-top: 50px;
+}
+
+.custom-alternating-rows__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 25px;
+    gap: 60px;
+    background: var(--COLOR-BG);
+    margin-bottom: 40px;
+}
+
+.custom-alternating-rows__media {
+    width: 50%;
+}
+
+.custom-alternating-rows__body {
+    width: 50%;
+    padding-right: 60px;
+}
+
+.custom-alternating-rows__media img {
+    max-width: 610px;
+    object-fit: contain;
+}
+
+.custom-alternating-rows__row-title {
+    line-height: 110%;
+    letter-spacing: -1px;
+    font-weight: 500;
+    color: var(--COLOR-TEXT);
+    margin: 0;
+    font-family: var(--FONT-STACK-HEADING);
+}
+
+.custom-alternating-rows__row-text {
+    font-size: var(--FONT-SIZE-BASE);
+    line-height: 140%;
+    font-weight: 400;
+    color: var(--COLOR-TEXT);
+    margin: 0;
+    padding-top: 20px;
+    font-family: var(--FONT-STACK-BODY);
+}
+
+.custom-alternating-rows__review {
+    margin: 20px 0 0;
+}
+
+.custom-alternating-rows__stars img {
+    max-width: 95px;
+    object-fit: contain;
+}
+
+.custom-alternating-rows__quote {
+    font-size: var(--FONT-SIZE-BASE);
+    line-height: 150%;
+    font-weight: 400;
+    color: var(--COLOR-TEXT);
+    margin: 0;
+    padding-top: 5px;
+    font-family: var(--FONT-STACK-BODY);
+}
+
+.custom-alternating-rows__author {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.custom-alternating-rows__author-name {
+    font-size: var(--FONT-SIZE-BASE);
+    line-height: 150%;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--COLOR-TEXT);
+    font-family: var(--FONT-STACK-BODY);
+}
+
+.custom-alternating-rows__verified {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.custom-alternating-rows__verified img {
+    max-width: 14px;
+    object-fit: contain;
+}
+
+.custom-alternating-rows__verified-text {
+    font-size: var(--FONT-SIZE-BASE);
+    line-height: 150%;
+    font-weight: 400;
+    color: var(--COLOR-TEXT);
+    font-family: var(--FONT-STACK-BODY);
+}
+
+.custom-alternating-rows__cta-link {
+    display: flex;
+    background: var(--BTN-PRIMARY-BG-COLOR);
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    height: 60px;
+    margin: 0 auto;
+    font-size: var(--BTN-FONT-SIZE);
+    line-height: 26px;
+    letter-spacing: 0;
+    font-weight: 700;
+    color: var(--BTN-PRIMARY-TEXT-COLOR);
+    font-family: var(--BTN-FONT-STACK);
+    cursor: pointer;
+}
+
+.custom-alternating-rows__row--reverse {
+    flex-direction: row-reverse;
+}
+
+.custom-alternating-rows__row--reverse .custom-alternating-rows__body {
+    padding-right: 0;
+    padding-left: 60px;
+}
+
+@media only screen and (max-width: 600px) {
+.custom-alternating-rows {
+    padding: 50px 0;
+}
+
+.custom-alternating-rows__subtitle {
+    font-size: var(--FONT-SIZE-BASE);
+    padding-top: 15px;
+}
+
+.custom-alternating-rows__row {
+    padding: 15px;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.custom-alternating-rows__media {
+    width: 100%;
+}
+
+.custom-alternating-rows__media img {
+    max-width: 100%;
+}
+
+.custom-alternating-rows__body {
+    width: 100%;
+    padding: 0;
+}
+
+.custom-alternating-rows__row-text {
+    padding-top: 10px;
+    font-size: var(--FONT-SIZE-BASE);
+}
+
+.custom-alternating-rows__row--reverse .custom-alternating-rows__body {
+    padding-left: 0;
+}
+
+.custom-alternating-rows__review {
+    padding-left: 15px;
+    margin-top: 15px;
+}
+
+.custom-alternating-rows__quote {
+    font-size: var(--FONT-SIZE-BASE);
+}
+
+.custom-alternating-rows__stars img {
+    max-width: 85px;
+}
+
+.custom-alternating-rows__cta-link {
+    font-size: var(--BTN-FONT-SIZE);
+}
+
+.custom-alternating-rows__author-name {
+    font-size: var(--FONT-SIZE-BASE);
+}
+
+.custom-alternating-rows__verified-text {
+    font-size: var(--FONT-SIZE-BASE);
+}
+
+.custom-alternating-rows__verified img {
+    max-width: 12px;
+}
+}
+</style>
+
+{%- assign heading_id = 'CustomAltRows-title-' | append: section.id -%}
+
+<section
+  class="custom-alternating-rows"
+  {% if section.settings.title != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
+  {% if section.settings.bg_image %}style="background-image: url({{ section.settings.bg_image | img_url: 'master' }});"{% endif %}
+>
+  <div class="page-width">
+
+    <div class="custom-alternating-rows__inner">
+
+      {% if section.settings.title != blank %}
+        <h2 id="{{ heading_id }}" class="custom-alternating-rows__title heading-size-11">
+          {{ section.settings.title }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <p class="custom-alternating-rows__subtitle">
+          {{ section.settings.description }}
+        </p>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <div class="custom-alternating-rows__rows">
+
+          {% for block in section.blocks %}
+            <div
+              class="custom-alternating-rows__row{% if block.settings.image_position == 'right' %} custom-alternating-rows__row--reverse{% endif %}"
+              {{ block.shopify_attributes }}
+            >
+
+              {% if block.settings.image %}
+                <div class="custom-alternating-rows__media">
+                  <img
+                    src="{{ block.settings.image | img_url: 'master' }}"
+                    alt="{{ block.settings.image_alt | default: block.settings.title | strip_html | escape }}"
+                    loading="lazy"
+                  >
+                </div>
+              {% endif %}
+
+              <div class="custom-alternating-rows__body">
+
+                {% if block.settings.title != blank %}
+                  <h3 class="custom-alternating-rows__row-title heading-size-9">
+                    {{ block.settings.title }}
+                  </h3>
+                {% endif %}
+
+                {% if block.settings.text != blank %}
+                  <p class="custom-alternating-rows__row-text">
+                    {{ block.settings.text }}
+                  </p>
+                {% endif %}
+
+                {% if block.settings.show_review %}
+                  <figure class="custom-alternating-rows__review">
+
+                    {% if block.settings.stars %}
+                      <div class="custom-alternating-rows__stars">
+                        <img
+                          src="{{ block.settings.stars | img_url: 'master' }}"
+                          alt="{{ block.settings.stars_alt | strip_html | escape }}"
+                          loading="lazy"
+                        >
+                      </div>
+                    {% endif %}
+
+                    {% if block.settings.review_text != blank %}
+                      <blockquote class="custom-alternating-rows__quote">
+                        {{ block.settings.review_text }}
+                      </blockquote>
+                    {% endif %}
+
+                    {% if block.settings.author != blank or block.settings.verified_text != blank %}
+                      <figcaption class="custom-alternating-rows__author">
+                        {% if block.settings.author != blank %}
+                          <cite class="custom-alternating-rows__author-name">
+                            {{ block.settings.author }}
+                          </cite>
+                        {% endif %}
+
+                        {% if block.settings.verified_text != blank %}
+                          <span class="custom-alternating-rows__verified">
+                            {% if block.settings.verified_icon %}
+                              <img
+                                src="{{ block.settings.verified_icon | img_url: 'master' }}"
+                                alt=""
+                                loading="lazy"
+                              >
+                            {% endif %}
+                            <span class="custom-alternating-rows__verified-text">
+                              {{ block.settings.verified_text }}
+                            </span>
+                          </span>
+                        {% endif %}
+                      </figcaption>
+                    {% endif %}
+
+                  </figure>
+                {% endif %}
+
+              </div>
+            </div>
+          {% endfor %}
+
+        </div>
+      {% endif %}
+
+      {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+        <div class="custom-alternating-rows__cta">
+          <a class="custom-alternating-rows__cta-link" href="{{ section.settings.button_link }}">
+            {{ section.settings.button_text }}
+          </a>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "[Custom] Alternating Rows",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Main Title"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Main Description"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "GET YOURS NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content_box",
+      "name": "Content Box",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image alt text (accessibility)",
+          "info": "Describe the image for screen readers and SEO. If left blank, the Box Title is used."
+        },
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Image Position",
+          "default": "left",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Box Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Box Description"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_review",
+          "label": "Show Review Box",
+          "default": false
+        },
+        {
+          "type": "image_picker",
+          "id": "stars",
+          "label": "Stars Image"
+        },
+        {
+          "type": "text",
+          "id": "stars_alt",
+          "label": "Star rating alt text",
+          "info": "Read by screen readers in place of the stars image (e.g. \"5 out of 5 stars\"). Leave blank to treat the stars as decorative.",
+          "default": "5 out of 5 stars"
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review Text"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name"
+        },
+        {
+          "type": "image_picker",
+          "id": "verified_icon",
+          "label": "Verified Tick Icon"
+        },
+        {
+          "type": "text",
+          "id": "verified_text",
+          "label": "Verified Text",
+          "default": "Verified Buyer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "[Custom] Alternating Rows"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,67 @@
+<div class="review-cards review-cards-wrapper">
+  <div class="wrapper">
+  
+    <h2 class="review-section-title">Customers Love for Nikol Beauty</h2>
+    
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        {%- for block in section.blocks -%}
+          {% assign product = all_products[block.settings.product] %}
+          <div class="swiper-slide">
+            <div class="review-wrapper">
+            
+              <a href="{{ product.url }}" class="review-product-card">
+                <div class="product-image">
+<img
+  src="{{ product.featured_image | image_url: width: 300 }}"
+  srcset="{{ product.featured_image | image_url: width: 150 }} 150w, {{ product.featured_image | image_url: width: 300 }} 300w, {{ product.featured_image | image_url: width: 450 }} 450w"
+  sizes="145px"
+  alt="{{ product.featured_image.alt | escape }}"
+  loading="lazy"
+  decoding="async"
+>
+                </div>
+                <div class="product-title">{{ product.title }}</div>
+                <div class="product-price">{{ product.price | money }}</div>
+              </a>
+              <div class="review-product-text">
+                {% comment %} {{ product.metafields.reviews.rating.value }} {% endcomment %}
+                {% if product.metafields.custom.product_review %}
+                  {% assign review_content = product.metafields.custom.product_review  %}
+                  {{ review_content | metafield_tag | replace: '<h6', '<p class="review-author"' | replace: '</h6>', '</p>' }}
+                {% else %}
+                  No review available.
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Review Swiper Cards",
+    "settings": [],
+    "blocks": [
+    {
+      "type": "review-card-product",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "product",
+          "label": "Product",
+          "id": "product"
+        }
+      ]
+    }
+    ],
+  "presets": [{
+    "name": "Review Swiper",
+    "category": "Product"
+  }]
+  }
+{% endschema %}

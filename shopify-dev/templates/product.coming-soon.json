@@ -1,0 +1,1231 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_guarantee_list_3jG9Xr": {
+      "type": "custom-guarantee-list",
+      "blocks": {
+        "feature_wHLh43": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/feature1.png",
+            "feature_text": "Free US Shipping Over $125"
+          }
+        },
+        "feature_XgayAk": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/feature2.png",
+            "feature_text": "Loved by 12,000+ Women"
+          }
+        },
+        "feature_yWHCEE": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/feature3.png",
+            "feature_text": "Clinically Proven Products"
+          }
+        },
+        "feature_jExeC6": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/feature4.png",
+            "feature_text": "Designed for Mature Skin"
+          }
+        }
+      },
+      "block_order": [
+        "feature_wHLh43",
+        "feature_XgayAk",
+        "feature_yWHCEE",
+        "feature_jExeC6"
+      ],
+      "name": "[Custom] Guarantee List",
+      "settings": {}
+    },
+    "main": {
+      "type": "custom-product-coming-soon",
+      "blocks": {
+        "code_QTP4Qc": {
+          "type": "rating_summary",
+          "settings": {
+            "rating_image_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/Stars_Container_a8ef23fa-4cb0-442a-aebc-8875c6ae38e3.png?v=1771227398",
+            "rating_image_alt": "4.76 out of 5 stars",
+            "rating_text": "4.76/5",
+            "review_count_text": "12,000+",
+            "summary_suffix": "happy women",
+            "link_url": "#judgeme_product_reviews",
+            "anchor_id": "pro-scroll",
+            "padding_bottom": 16
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "subheading_option": "breadcrumb",
+            "text_size": 6,
+            "padding_bottom": 8
+          }
+        },
+        "badges_8GMAqL": {
+          "type": "badges",
+          "settings": {
+            "sale_badge": false,
+            "product_badges": true,
+            "padding_bottom": 14
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "padding_bottom": 16
+          }
+        },
+        "code_CtMwbx": {
+          "type": "payment_details",
+          "settings": {
+            "installment_text": "Pay in 2 interest-free installments of $21.50 with",
+            "payment_logo_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/Img_-_Shop_Pay.png?v=1771238348",
+            "payment_logo_alt": "Shop Pay",
+            "learn_more_text": "Learn more",
+            "learn_more_url": "#",
+            "description": "<p>An esthetician-approved BB Creme for mature skin that evens tone without settling into lines or feeling thick. It softens redness and uneven areas without that \"too much makeup\" look.</p>",
+            "feature_1": "Reduces shine without making skin look dull",
+            "feature_2": "Stays comfortable around the nose and mouth",
+            "feature_3": "Formulated with clinically proven ingredients (no sulfates or parabens)",
+            "padding_bottom": 16
+          }
+        },
+        "code_7R8Abt": {
+          "type": "color_picker",
+          "settings": {
+            "label": "Choose Color:",
+            "option_name": "Color",
+            "padding_bottom": 16
+          }
+        },
+        "color_swatch_fair": {
+          "type": "color_swatch_item",
+          "settings": {
+            "option_value": "Fair",
+            "image_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/color1.png?v=1771406447",
+            "image_alt": "Fair color swatch"
+          }
+        },
+        "color_swatch_light": {
+          "type": "color_swatch_item",
+          "settings": {
+            "option_value": "Light",
+            "image_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/color2.png?v=1771406635",
+            "image_alt": "Light color swatch"
+          }
+        },
+        "color_swatch_light_medium": {
+          "type": "color_swatch_item",
+          "settings": {
+            "option_value": "Light-Medium",
+            "image_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/color3.png?v=1771406638",
+            "image_alt": "Light-Medium color swatch"
+          }
+        },
+        "color_swatch_tan": {
+          "type": "color_swatch_item",
+          "settings": {
+            "option_value": "Tan",
+            "image_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/color4.png?v=1771406644",
+            "image_alt": "Tan color swatch"
+          }
+        },
+        "variants": {
+          "type": "variants",
+          "settings": {
+            "info_page": "",
+            "size_chart_style": "text",
+            "subscriptions_enable_selectors": false,
+            "padding_bottom": 16
+          }
+        },
+        "5e95bd58-e59e-42dc-a60a-763c3d4df302": {
+          "type": "shopify://apps/se-wishlist-engine/blocks/Product-Page/8f7c0857-8e71-463d-a168-8e133094753b",
+          "settings": {}
+        },
+        "bundle_item_beginner_1": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Beginner Beauty Bundle",
+            "item_title": "Eye Primer",
+            "item_price": "$26.00",
+            "item_url": "https://nikolbeauty.com/products/eye-primer",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/EyePrimerCorrectweb_7b4b0199-b97f-4840-a5a4-cec9fbb8fabf.png?v=1694481704",
+            "image_alt": "Eye Primer",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_beginner_2": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Beginner Beauty Bundle",
+            "item_title": "Volume Up Mascara",
+            "item_price": "$24.00",
+            "item_url": "https://nikolbeauty.com/products/mascara-intense-curling-volumizing",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/products/mascara-3.png?v=1681859081",
+            "image_alt": "Volume Up Mascara",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_beginner_3": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Beginner Beauty Bundle",
+            "item_title": "Clear Brow Mascara",
+            "item_price": "$18.00",
+            "item_url": "https://nikolbeauty.com/products/brow-fixx",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/ClearbrowmascropenWhitebackgrnd.png?v=1713815770",
+            "image_alt": "Clear Brow Mascara",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_beginner_4": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Beginner Beauty Bundle",
+            "item_title": "Rose Lip Balm",
+            "item_price": "$23.00",
+            "item_url": "https://nikolbeauty.com/products/vitamin-e-treatment",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/Nikol_Lip_Balm_1000x1000_10480f31-34b5-4c3f-aebf-5fa1d1968ffe.jpg?v=1717778629",
+            "image_alt": "Rose Lip Balm",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_beginner_5": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Beginner Beauty Bundle",
+            "item_title": "Skinny Brow Pencil",
+            "item_price": "$19.00",
+            "item_url": "https://nikolbeauty.com/products/skinny-brow-pencil",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/darkblondepencilopen.png?v=1713815894",
+            "image_alt": "Skinny Brow Pencil",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_beginner_6": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Beginner Beauty Bundle",
+            "item_title": "Nikol Beauty Precision Eyebrow Stencils",
+            "item_price": "$12.00",
+            "item_url": "https://nikolbeauty.com/products/nikol-cosmetics-precision-eyebrow-stencils",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/browstencilspackWEB.jpg?v=1713970786",
+            "image_alt": "Nikol Beauty Precision Eyebrow Stencils",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_beginner_7": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Beginner Beauty Bundle",
+            "item_title": "Creamy Concealer",
+            "item_price": "$30.00",
+            "item_url": "https://nikolbeauty.com/products/custom-concealer-trio-in-buffed-cool",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/Fairconcealerpose1.jpg?v=1712459737",
+            "image_alt": "Creamy Concealer",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_1": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "Eye Primer",
+            "item_price": "$26.00",
+            "item_url": "https://nikolbeauty.com/products/eye-primer",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/EyePrimerCorrectweb_7b4b0199-b97f-4840-a5a4-cec9fbb8fabf.png?v=1694481704",
+            "image_alt": "Eye Primer",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_2": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "BB Créme",
+            "item_price": "$43.00",
+            "item_url": "https://nikolbeauty.com/products/bb-cream",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/BBCreamclosedsmudgeFAIR_8939951c-d391-41fe-9d03-221c7bf807dc.png?v=1713502273",
+            "image_alt": "BB Créme",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_3": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "NikRay Shiny Velvet Cream Lipstick",
+            "item_price": "$22.00",
+            "item_url": "https://nikolbeauty.com/products/nikray-lipstick",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/Nikraylipbullets100x1000.jpg?v=1717016566",
+            "image_alt": "NikRay Shiny Velvet Cream Lipstick",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_4": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "Rose Lip Balm",
+            "item_price": "$23.00",
+            "item_url": "https://nikolbeauty.com/products/vitamin-e-treatment",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/Nikol_Lip_Balm_1000x1000_10480f31-34b5-4c3f-aebf-5fa1d1968ffe.jpg?v=1717778629",
+            "image_alt": "Rose Lip Balm",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_5": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "Waterproof Lip Liner in Cameo",
+            "item_price": "$20.00",
+            "item_url": "https://nikolbeauty.com/products/lip-liners-waterproof?variant=44969137897776",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/CAMEOLIPlinerSMDGE_57de92e6-0376-49fb-aa28-f21b3c3e09a6.png?v=1705541207",
+            "image_alt": "Waterproof Lip Liner in Cameo",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_6": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "Cream Blush Stick",
+            "item_price": "$23.00",
+            "item_url": "https://nikolbeauty.com/products/lip-and-cheek-cream",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/PalmBeachopenwhitebackground.png?v=1705530314",
+            "image_alt": "Cream Blush Stick",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_7": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "Volume Up Mascara",
+            "item_price": "$24.00",
+            "item_url": "https://nikolbeauty.com/products/mascara-intense-curling-volumizing",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/products/mascara-3.png?v=1681859081",
+            "image_alt": "Volume Up Mascara",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_8": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "Essential Makeup Brush Kit",
+            "item_price": "$75.00",
+            "item_url": "https://nikolbeauty.com/products/travel-makeup-brushes",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/products/website-1.png?v=1681859046",
+            "image_alt": "Essential Makeup Brush Kit",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_9": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "Skinny Brow Pencil",
+            "item_price": "$19.00",
+            "item_url": "https://nikolbeauty.com/products/skinny-brow-pencil",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/darkblondepencilopen.png?v=1713815894",
+            "image_alt": "Skinny Brow Pencil",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_bestsellers_10": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "The Best Seller Beauty Bundle",
+            "item_title": "Nikol Beauty Precision Brow Stencils",
+            "item_price": "$12.00",
+            "item_url": "https://nikolbeauty.com/products/nikol-cosmetics-precision-eyebrow-stencils",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/browstencilspackWEB.jpg?v=1713970786",
+            "image_alt": "Nikol Beauty Precision Brow Stencils",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_complexion_1": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Perfect Complexion Bundle",
+            "item_title": "Fiercely Smooth Face Primer",
+            "item_price": "$36.00",
+            "item_url": "https://nikolbeauty.com/products/fiercely-smooth-face-primer?_pos=1&_psq=fier&_ss=e&_v=1.0",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/faceprimerweb.png?v=1690576338",
+            "image_alt": "Fiercely Smooth Face Primer",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_complexion_2": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Perfect Complexion Bundle",
+            "item_title": "Creamy Concealer",
+            "item_price": "$30.00",
+            "item_url": "https://nikolbeauty.com/products/custom-concealer-trio-in-buffed-cool",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/Fairconcealerpose1.jpg?v=1712459737",
+            "image_alt": "Creamy Concealer",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_complexion_3": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Perfect Complexion Bundle",
+            "item_title": "Eye Primer",
+            "item_price": "$26.00",
+            "item_url": "https://nikolbeauty.com/products/eye-primer",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/EyePrimerCorrectweb_7b4b0199-b97f-4840-a5a4-cec9fbb8fabf.png?v=1694481704",
+            "image_alt": "Eye Primer",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_complexion_4": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Perfect Complexion Bundle",
+            "item_title": "BB Créme",
+            "item_price": "$43.00",
+            "item_url": "https://nikolbeauty.com/products/bb-cream",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/BBCreamclosedsmudgeFAIR_8939951c-d391-41fe-9d03-221c7bf807dc.png?v=1713502273",
+            "image_alt": "BB Créme",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_corrector_1": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Color Corrector Collection",
+            "item_title": "No Redness Color Corrector",
+            "item_price": "$25.00",
+            "item_url": "https://nikolbeauty.com/products/no-redness-beauty-stix?pr_prod_strat=jac&pr_rec_id=4df8ce154&pr_rec_pid=8295033176368&pr_ref_pid=8295035076912&pr_seq=uniform",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/products/No-Redness-squiggle-website.png?v=1681859085",
+            "image_alt": "No Redness Color Corrector",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_corrector_2": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Color Corrector Collection",
+            "item_title": "Just Peachy Color Corrector",
+            "item_price": "$25.00",
+            "item_url": "https://nikolbeauty.com/products/just-peachy-color-corrector?pr_prod_strat=jac&pr_rec_id=49f436554&pr_rec_pid=8295033536816&pr_ref_pid=8295033176368&pr_seq=uniform",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/products/Just-Peachy-wtih-Swatch.png?v=1681859093",
+            "image_alt": "Just Peachy Color Corrector",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_holiday_1": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Holiday Glow Up",
+            "item_title": "Naughty Nancy 3-Well Eyeshadow Palette",
+            "item_price": "$45.00",
+            "item_url": "https://nikolbeauty.com/products/naughty-nancy-eye-shadow-palette-limited-edition?_pos=1&_sid=f49cbf15f&_ss=r",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/NaughtNancyforWeb.png?v=1692763472",
+            "image_alt": "Naughty Nancy 3-Well Eyeshadow Palette",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_holiday_2": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Holiday Glow Up",
+            "item_title": "Pretty Smart Lipstick",
+            "item_price": "$22.00",
+            "item_url": "https://nikolbeauty.com/products/pretty-smart-lipstick?_pos=1&_sid=9b04a9fa4&_ss=r",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/PrettySmartlipbullets100x1000_1.jpg?v=1717015683",
+            "image_alt": "Pretty Smart Lipstick",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_holiday_3": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Holiday Glow Up",
+            "item_title": "Volume Up Mascara",
+            "item_price": "$24.00",
+            "item_url": "https://nikolbeauty.com/products/mascara-intense-curling-volumizing?_pos=1&_sid=da745983f&_ss=r",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/products/mascara-3.png?v=1681859081",
+            "image_alt": "Volume Up Mascara",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_holiday_4": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Holiday Glow Up",
+            "item_title": "\"Rose All Day\" Water-Proof Lip Liner Pencil",
+            "item_price": "$20.00",
+            "item_url": "https://nikolbeauty.com/products/lip-liners-waterproof?_pos=1&_psq=rose+all&_ss=e&_v=1.0&variant=44969137865008",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/RoseallDLIPlinerSMDGE.png?v=1724441733",
+            "image_alt": "\"Rose All Day\" Water-Proof Lip Liner Pencil",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_holiday_5": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Holiday Glow Up",
+            "item_title": "Good Vibes Lip Gloss",
+            "item_price": "$19.00",
+            "item_url": "https://nikolbeauty.com/products/good-vibes-lip-gloss?_pos=1&_sid=a229518e8&_ss=r",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/products/Good-Vibes.png?v=1681859065",
+            "image_alt": "Good Vibes Lip Gloss",
+            "padding_bottom": 16
+          }
+        },
+        "bundle_item_holiday_6": {
+          "type": "bundle_item",
+          "settings": {
+            "heading": "Included products",
+            "show_for_product_titles": "Holiday Glow Up",
+            "item_title": "Free Holiday Pink Velvet Makeup Bag",
+            "item_price": "",
+            "item_url": "",
+            "item_image_url": "https://nikolbeauty.com/cdn/shop/files/GIftWithPurchase2.jpg?v=1731644905",
+            "image_alt": "Free Holiday Pink Velvet Makeup Bag",
+            "padding_bottom": 16
+          }
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {
+            "show_quantity": true,
+            "show_payment_button": true,
+            "show_gift_card_recipient": false,
+            "padding_bottom": 32
+          }
+        },
+        "upsell_76CJ9x": {
+          "type": "upsell",
+          "settings": {
+            "upsell_product": "",
+            "upsell_product_list": [],
+            "bg_color": "",
+            "padding_bottom": 16
+          }
+        },
+        "tabs": {
+          "type": "tab_richtext",
+          "settings": {
+            "show_read_more": true,
+            "style": "accordions",
+            "title_1": "INGREDIENTS",
+            "raw_content_1": "<p>This BB Creme is made with skin-safe ingredients chosen to sit comfortably on mature, sensitive skin and wear evenly throughout the day.</p><p>There are no sulfates or parabens. All ingredients are cruelty-free.</p><h3><strong>Full ingredient list</strong></h3><p>Ingredients may vary slightly by shade.</p><p><strong>Fair:</strong></p><p>Aqua (Water), Neopentyl Glycol Dicaprylate/Dicaprate, Coconut Alkanes, Talc, Butylene Glycol, Titanium Dioxide (CI 77891), Cetyl PEG/PPG-10/1 Dimethicone, Isononyl Isononanoate, Silica, Squalane, Disteardimonium Hectorite, HDI/Trimethylol Hexyllactone Crosspolymer, Isododecane, Cetyl Diglyceryl Tris(Trimethylsiloxy)silylethyl Dimethicone, Glycerin, Phenoxyethanol, Coco-Caprylate/Caprate, Hydrogen Dimethicone, Dimethiconol, Sodium Dehydroacetate, Trimethylsiloxysilicate, Shea Butter (Butyrospermum Parkii), Iron Oxides (CI 77491, CI 77492, CI 77499), Terminalia Ferdinandiana Fruit Extract, Trisodium Ethylenediamine Disuccinate, Aluminum Hydroxide, Hyaluronic Acid, Tropolone, Pentaerythrityl Tetra-Di-T-Butyl Hydroxyhydrocinnamate</p><p><strong>Light / Light-Medium / Tan:</strong></p><p>Same base formula with adjusted mineral pigments for shade matching.</p><h3><strong>What’s inside (in plain language)</strong></h3><ul><li><strong>Hydration support<br/></strong>Ingredients like glycerin and hyaluronic acid help keep skin from feeling tight or dry during wear.</li><li><strong>Skin-softening oils and emollients<br/></strong>Squalane, coconut-derived alkanes, and shea butter help the product spread smoothly and reduce the look of dryness or texture.</li><li><strong>Mineral pigments for even tone<br/></strong>Titanium dioxide and iron oxides help even out redness and discoloration without covering natural skin.</li><li><strong>Lightweight texture ingredients<br/></strong>Silica and talc help keep the finish balanced, so skin doesn’t look greasy or overly matte.</li></ul><p><strong>Stability and preservation</strong>Used in low amounts to keep the formula safe, fresh, and suitable for daily use.<br/><br/></p>",
+            "title_2": "BENEFITS",
+            "raw_content_2": "<p><strong>&gt; Evens Tone Without Hiding Your Skin</strong></p><p>Helps reduce redness and uneven areas while freckles and natural texture stay visible.</p><p><strong>&gt; Wears Evenly As the Day Goes On</strong></p><p>Holds together instead of separating, patching, or breaking up around the nose and mouth.</p><p><strong>&gt; Comfortable on Mature, Sensitive Skin</strong></p><p>Designed to avoid that tight, dry feeling that can show up a few hours after application.</p><p><strong>&gt; Easy to Apply Without Precision Tools</strong></p><p>Spreads smoothly with fingers or a brush without pulling at the skin.</p><p><strong>&gt; Made With Skin-Safe Ingredients </strong></p><p>Formulated without sulfates or parabens, using ingredients chosen to sit calmly on aging skin.</p><p><strong>&gt; Created by Licensed Esthetician Nikol Johnson-Sanchez</strong></p><p>Developed by someone who works hands-on with mature skin every day, not in a lab testing on twenty-year-olds.</p>",
+            "title_3": "SHIPPING & RETURNS",
+            "raw_content_3": "<p>Orders ship via <strong>USPS</strong> within the United States and to <strong>Canada</strong>.</p><p>U.S. orders typically arrive in <strong>5–7 business days</strong>. Canadian orders may take <strong>10–20 days</strong>.</p><p>You’ll receive an <strong>email confirmation</strong> after placing your order, and a text message if you’ve signed up for SMS alerts.</p><p>All sales are <strong>final</strong>. If an item arrives damaged, please contact our support team within <strong>48 hours of delivery</strong> and include photos of the issue along with your invoice so we can assist.<br/><br/></p>",
+            "title_4": "",
+            "raw_content_4": "",
+            "title_5": "",
+            "raw_content_5": "",
+            "padding_bottom": 0
+          }
+        },
+        "code_dVeTYP": {
+          "type": "testimonial_card",
+          "settings": {
+            "star_image": "shopify://shop_images/Stars_Container_a8ef23fa-4cb0-442a-aebc-8875c6ae38e3.png",
+            "star_image_url": "",
+            "star_image_alt": "Review Stars",
+            "quote": "<p>“I think this is my favourite product. I also gave the creme to my aunty, who is 86 years young. She asked me what i was using. She absolutely loves it.”</p>",
+            "author_name": "C.M.",
+            "show_verified": true,
+            "verified_icon_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/verify.png?v=1771227398",
+            "verified_icon_alt": "Verified Buyer",
+            "verified_text": "Verified Buyer",
+            "padding_bottom": 16
+          }
+        },
+        "divider_1": {
+          "type": "divider",
+          "settings": {
+            "show_line": true,
+            "padding_bottom": 16
+          }
+        },
+        "icon_2": {
+          "type": "icon",
+          "settings": {
+            "icon_name": "icon-truck",
+            "icon_size": 20,
+            "icon_color": "#545454",
+            "title": "Free domestic shipping on orders over $125",
+            "text_size": 3,
+            "width": "full",
+            "padding_bottom": 16
+          }
+        },
+        "c8ecc06f-2f65-4c95-a44e-437c458f4787": {
+          "type": "divider",
+          "settings": {
+            "show_line": true,
+            "padding_bottom": 20
+          }
+        }
+      },
+      "block_order": [
+        "code_QTP4Qc",
+        "title",
+        "badges_8GMAqL",
+        "price",
+        "code_CtMwbx",
+        "code_7R8Abt",
+        "color_swatch_fair",
+        "color_swatch_light",
+        "color_swatch_light_medium",
+        "color_swatch_tan",
+        "variants",
+        "5e95bd58-e59e-42dc-a60a-763c3d4df302",
+        "bundle_item_beginner_1",
+        "bundle_item_beginner_2",
+        "bundle_item_beginner_3",
+        "bundle_item_beginner_4",
+        "bundle_item_beginner_5",
+        "bundle_item_beginner_6",
+        "bundle_item_beginner_7",
+        "bundle_item_bestsellers_1",
+        "bundle_item_bestsellers_2",
+        "bundle_item_bestsellers_3",
+        "bundle_item_bestsellers_4",
+        "bundle_item_bestsellers_5",
+        "bundle_item_bestsellers_6",
+        "bundle_item_bestsellers_7",
+        "bundle_item_bestsellers_8",
+        "bundle_item_bestsellers_9",
+        "bundle_item_bestsellers_10",
+        "bundle_item_complexion_1",
+        "bundle_item_complexion_2",
+        "bundle_item_complexion_3",
+        "bundle_item_complexion_4",
+        "bundle_item_corrector_1",
+        "bundle_item_corrector_2",
+        "bundle_item_holiday_1",
+        "bundle_item_holiday_2",
+        "bundle_item_holiday_3",
+        "bundle_item_holiday_4",
+        "bundle_item_holiday_5",
+        "bundle_item_holiday_6",
+        "buttons",
+        "upsell_76CJ9x",
+        "tabs",
+        "code_dVeTYP",
+        "divider_1",
+        "icon_2",
+        "c8ecc06f-2f65-4c95-a44e-437c458f4787"
+      ],
+      "custom_css": [
+        ".gravity-button-wrapper {--gravity-button-width: unset;}"
+      ],
+      "settings": {
+        "product_sticky_enable": true,
+        "image_layout": "thumbnails",
+        "image_size": "normal",
+        "show_cart_bar": true,
+        "enable_video_looping": false,
+        "mobile_image_style": "slider",
+        "padding_top": 90,
+        "padding_bottom": 30
+      }
+    },
+    "faq": {
+      "type": "section-accordion",
+      "blocks": {
+        "faq-1": {
+          "type": "text",
+          "settings": {
+            "title": "{{ product.metafields.custom.instruction_title_1.value }}",
+            "text": "<p>{{ product.metafields.custom.instruction_content_1 | metafield_tag }}</p>"
+          }
+        },
+        "faq-2": {
+          "type": "text",
+          "settings": {
+            "title": "{{ product.metafields.custom.instruction_title_2.value }}",
+            "text": "<p>{{ product.metafields.custom.instruction_content_2 | metafield_tag }}</p>"
+          }
+        },
+        "faq-3": {
+          "type": "text",
+          "settings": {
+            "title": "{{ product.metafields.custom.instruction_title_3.value }}",
+            "text": "<p>{{ product.metafields.custom.instruction_content_3 | metafield_tag }}</p>"
+          }
+        },
+        "faq-4": {
+          "type": "text",
+          "settings": {
+            "title": "{{ product.metafields.custom.instruction_title_4.value }}",
+            "text": "<p>{{ product.metafields.custom.instruction_content_4 | metafield_tag }}</p>"
+          }
+        },
+        "text_7p3LzB": {
+          "type": "text",
+          "settings": {
+            "title": "{{ product.metafields.custom.instruction_title_5.value }}",
+            "text": "<p>{{ product.metafields.custom.instruction_content_5 | metafield_tag }}</p>"
+          }
+        },
+        "text_CtHeTB": {
+          "type": "text",
+          "settings": {
+            "title": "{{ product.metafields.custom.instruction_title_6.value }}",
+            "text": "<p>{{ product.metafields.custom.instruction_content_6 | metafield_tag }}</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq-1",
+        "faq-2",
+        "faq-3",
+        "faq-4",
+        "text_7p3LzB",
+        "text_CtHeTB"
+      ],
+      "disabled": true,
+      "settings": {
+        "default_open": false,
+        "title": "Beauty Instructions",
+        "show_icon": false,
+        "icon_name": "icon-award",
+        "icon_size": 20,
+        "icon_color": "#545454",
+        "bg_color": "",
+        "color": "",
+        "border_color": "",
+        "width": "wrapper",
+        "padding_top": 30,
+        "padding_bottom": 0
+      }
+    },
+    "shipping": {
+      "type": "section-accordion",
+      "blocks": {
+        "773999a0-fb7a-4fd9-939e-ca8384865ead": {
+          "type": "text",
+          "settings": {
+            "title": "How and Where Do You Ship?",
+            "text": "<p>We ship via USPS both domestically and to Canada. Please allow for 5-7 business days for domestic orders and 10-20 days for Canadian orders. </p>"
+          }
+        },
+        "96877b66-d369-457c-8c4c-44efa5ee5539": {
+          "type": "text",
+          "settings": {
+            "title": "Do You Ship Internationally?",
+            "text": "<p>We currently ship to the USA and CANADA by USPS first class shipping or my Priority Mail depending on package weight. We are working on shipping to other countries in the near future. We will update our website and announce on Social Media when we open up to more countries. Thank you for your patience.</p>"
+          }
+        },
+        "3c4ab1ec-afd3-4012-a2a8-583fbd898df6": {
+          "type": "text",
+          "settings": {
+            "title": "Do You Take Returns?",
+            "text": "<p>We are unable to offer refunds, returns, or exchanges. All sales are final.<br/>In the unlikely event that a product arrives damaged, you must contact our customer support within 48 hours of receipt of your shipment. Customers must include photos of the issue and a screenshot of the invoice that came inside their order.</p>"
+          }
+        },
+        "95abfb85-0fbd-43ca-a99f-e118cce87d37": {
+          "type": "text",
+          "settings": {
+            "title": "How Do I Know My Order Was Received?",
+            "text": "<p>You will receive an email confirmation and text message (if you signed up for SMS alerts) with an order number from Fresh Beauty Studio at the time your order is placed detailing all items you ordered.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "773999a0-fb7a-4fd9-939e-ca8384865ead",
+        "96877b66-d369-457c-8c4c-44efa5ee5539",
+        "3c4ab1ec-afd3-4012-a2a8-583fbd898df6",
+        "95abfb85-0fbd-43ca-a99f-e118cce87d37"
+      ],
+      "disabled": true,
+      "settings": {
+        "default_open": false,
+        "title": "Shipping & Returns",
+        "show_icon": false,
+        "icon_name": "icon-award",
+        "icon_size": 20,
+        "icon_color": "#545454",
+        "bg_color": "",
+        "color": "",
+        "border_color": "",
+        "width": "wrapper",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "related": {
+      "type": "related",
+      "blocks": {
+        "related_EVyf4K": {
+          "type": "related",
+          "settings": {
+            "product_recommendations_heading": "Recommended Products",
+            "limit": 3
+          }
+        }
+      },
+      "block_order": [
+        "related_EVyf4K"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_tabs": false,
+        "heading_alignment": "text-center",
+        "heading_size": 7,
+        "bg_color": "",
+        "color": "rgba(0,0,0,0)",
+        "border_color": "",
+        "padding_top": 30,
+        "padding_bottom": 0
+      }
+    },
+    "custom_steps_horizontal_48B6BD": {
+      "type": "custom-steps-horizontal",
+      "blocks": {
+        "step_mENXfG": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/img-step1.png",
+            "title": "Choose Your Shade With Confidence",
+            "description": "Select your preferred shade using our clear Warm and Cool tone labels, designed to make finding your match easy and stress-free."
+          }
+        },
+        "step_r4FKV3": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/img-step2.png",
+            "title": "Apply Lightly Where You Need It",
+            "description": "Use your fingers, brush, or sponge to blend gently into the skin. Start with a small amount and build coverage only where you want it."
+          }
+        },
+        "step_MzWHCr": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/img-step3.png",
+            "title": "Wear It Comfortably All Day",
+            "description": "Your skin looks even and natural, without creasing into lines or feeling tight as the day goes on."
+          }
+        }
+      },
+      "block_order": [
+        "step_mENXfG",
+        "step_r4FKV3",
+        "step_MzWHCr"
+      ],
+      "name": "[Custom] Steps Horizontal",
+      "settings": {
+        "heading": "Natural, Polished Skin In 3 Simple Steps",
+        "subheading": "Here’s exactly how Nikol Beauty BB Creme works:",
+        "button_text": "GET YOURS NOW →",
+        "button_link": "#buynow"
+      }
+    },
+    "custom_icon_features_fHrGm4": {
+      "type": "custom-icon-features",
+      "blocks": {
+        "feature_KEJe4m": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/ingredients-1.png",
+            "title": "Cruelty-Free",
+            "text": "Never tested on animals. Made with ethical manufacturing partners."
+          }
+        },
+        "feature_Edhg8N": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1707480804.png",
+            "title": "Paraben-Free & Sulfate-Free",
+            "text": "Made without parabens and sulfates to help reduce irritation with daily wear."
+          }
+        },
+        "feature_dh8RrV": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Group_1707480803.png",
+            "title": "Esthetician-Approved",
+            "text": "Reviewed and tested by licensed skincare professionals for use on mature skin."
+          }
+        }
+      },
+      "block_order": [
+        "feature_KEJe4m",
+        "feature_Edhg8N",
+        "feature_dh8RrV"
+      ],
+      "name": "[Custom] Icon Features",
+      "settings": {
+        "heading": "<p>Made With Skin-Safe<br/>Ingredients You Can Trust</p>",
+        "subheading": "Formulated to feel comfortable on mature and sensitive skin.",
+        "main_image": "shopify://shop_images/ingredients-img.png",
+        "button_text": "GET YOURS NOW →",
+        "button_link": "#buynow"
+      }
+    },
+    "custom_alternating_rows_abL96y": {
+      "type": "custom-alternating-rows",
+      "blocks": {
+        "content_box_gh38Xn": {
+          "type": "content_box",
+          "settings": {
+            "image": "shopify://shop_images/switched-1.png",
+            "image_position": "left",
+            "title": "Evens Skin Tone Without Looking Heavy or Masked",
+            "text": "Softens redness and uneven tone while letting freckles and natural texture show through.",
+            "show_review": false,
+            "review_text": "",
+            "author": "",
+            "verified_text": "Verified Buyer"
+          }
+        },
+        "content_box_WxJCUi": {
+          "type": "content_box",
+          "settings": {
+            "image": "shopify://shop_images/switched-2.png",
+            "image_position": "right",
+            "title": "Won’t Settle Into Fine Lines or Creases",
+            "text": "It’s designed specifically for mature skin, so it moves with your face instead of settling into lines as the day goes on.",
+            "show_review": true,
+            "stars": "shopify://shop_images/Stars_Container_a8ef23fa-4cb0-442a-aebc-8875c6ae38e3.png",
+            "review_text": "“I think this is my favourite product. I also gave the creme to my aunty, who is 86 years young. She asked me what i was using. She absolutely loves it.”",
+            "author": "C.M.",
+            "verified_icon": "shopify://shop_images/verify.png",
+            "verified_text": "Verified Buyer"
+          }
+        },
+        "content_box_9RJgUG": {
+          "type": "content_box",
+          "settings": {
+            "image": "shopify://shop_images/switched-3.png",
+            "image_position": "left",
+            "title": "Feels Comfortable and Natural on the Skin",
+            "text": "Comfortable for everyday wear without that tight, dry feeling heavier makeup can cause.",
+            "show_review": false,
+            "review_text": "",
+            "author": "",
+            "verified_text": "Verified Buyer"
+          }
+        }
+      },
+      "block_order": [
+        "content_box_gh38Xn",
+        "content_box_WxJCUi",
+        "content_box_9RJgUG"
+      ],
+      "name": "[Custom] Alternating Rows",
+      "settings": {
+        "bg_image": "shopify://shop_images/switched-bg.jpg",
+        "title": "Why Thousands of Mature Women Switched to Nikol beauty BB Creme",
+        "description": "It fixes uneven tone without settling, caking, or masking the skin.",
+        "button_text": "GET YOURS NOW →",
+        "button_link": "#buynow"
+      }
+    },
+    "cw_videos_WcxwdJ": {
+      "type": "custom-videos",
+      "name": "[Custom] Videos",
+      "settings": {
+        "title": "What Women Are Saying",
+        "subtitle": "See how women in their 50s, 60s, and 70s use Nikol Beauty to look polished without fighting their skin.",
+        "button_label": "",
+        "button_link": "",
+        "enable_live_shopping_style": true
+      }
+    },
+    "1771850328ecb59717": {
+      "type": "apps",
+      "settings": {
+        "include_margins": false
+      }
+    },
+    "16904264243ceba35b": {
+      "type": "apps",
+      "custom_css": [],
+      "settings": {
+        "include_margins": false
+      }
+    },
+    "custom_faq_QtK7h3": {
+      "type": "custom-faq",
+      "blocks": {
+        "faq_gA3VtR": {
+          "type": "faq",
+          "settings": {
+            "question": "Is this BB Creme really made for mature skin?",
+            "answer": "Yes. It was developed by licensed esthetician Nikol Johnson-Sanchez specifically for women 40+ whose skin has changed. The formula is designed to wear evenly on skin that creases more easily, feels drier, or reacts poorly to heavier makeup."
+          }
+        },
+        "faq_49QHp8": {
+          "type": "faq",
+          "settings": {
+            "question": "Will this settle into fine lines or pores?",
+            "answer": "No. The texture is designed to stay flexible on the skin instead of drying down stiff. It holds together throughout the day rather than collecting in expression lines, pores, or around the nose and mouth."
+          }
+        },
+        "faq_7ntjTx": {
+          "type": "faq",
+          "settings": {
+            "question": "How much coverage does it give?",
+            "answer": "Light to light-medium. It evens tone and softens redness without covering freckles or natural texture. You can build slightly in areas you want more coverage, but it’s meant to still look like skin."
+          }
+        },
+        "faq_nUpBQY": {
+          "type": "faq",
+          "settings": {
+            "question": "Will it feel heavy or tight after a few hours?",
+            "answer": "No. The formula includes hydrating and skin-softening ingredients to help avoid that tight, dry feeling that often shows up later in the day with traditional base products."
+          }
+        },
+        "faq_9DX3k7": {
+          "type": "faq",
+          "settings": {
+            "question": "Is this safe for sensitive skin?",
+            "answer": "Yes. It’s made without sulfates or parabens and uses ingredients selected to sit calmly on mature, sensitive skin. Many customers with easily irritated skin use it comfortably for everyday wear."
+          }
+        },
+        "faq_9W4BQQ": {
+          "type": "faq",
+          "settings": {
+            "question": "Do I need special tools to apply it?",
+            "answer": "No. You can apply it with your fingers, a brush, or a sponge. It spreads easily without tugging, so there’s no need for precision tools or complicated techniques."
+          }
+        },
+        "faq_r6GhFp": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I choose the right shade?",
+            "answer": "Shades are labeled by depth and undertone (warm or cool) to make choosing easier. If you’re unsure, our quick quiz can help guide you based on your skin tone and preferences."
+          }
+        },
+        "faq_qmicbe": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I wear this every day?",
+            "answer": "Yes. It’s designed for daily use when you want your skin to look even and put together without spending time layering, fixing, or reapplying."
+          }
+        },
+        "faq_8yGXxe": {
+          "type": "faq",
+          "settings": {
+            "question": "What if my product arrives damaged?",
+            "answer": "If your order arrives damaged, contact our support team within 48 hours of delivery with photos and your invoice so we can assist."
+          }
+        }
+      },
+      "block_order": [
+        "faq_gA3VtR",
+        "faq_49QHp8",
+        "faq_7ntjTx",
+        "faq_nUpBQY",
+        "faq_9DX3k7",
+        "faq_9W4BQQ",
+        "faq_r6GhFp",
+        "faq_qmicbe",
+        "faq_8yGXxe"
+      ],
+      "name": "[Custom] FAQ",
+      "settings": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Everything you need to know before trying Nikol Beauty BB Creme.",
+        "plus_icon": "shopify://shop_images/FAQ-plus.png",
+        "minus_icon": "shopify://shop_images/FAQ-minus.png"
+      }
+    },
+    "custom_guarantee_list_qxiYQE": {
+      "type": "custom-guarantee-list",
+      "blocks": {
+        "feature_YGc7h6": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/feature1.png",
+            "feature_text": "Free US Shipping Over $125"
+          }
+        },
+        "feature_kXX4yg": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/feature2.png",
+            "feature_text": "Loved by 12,000+ Women"
+          }
+        },
+        "feature_TwnmT7": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/feature3.png",
+            "feature_text": "Clinically Proven Products"
+          }
+        },
+        "feature_BxnkDJ": {
+          "type": "feature",
+          "settings": {
+            "feature_icon": "shopify://shop_images/feature4.png",
+            "feature_text": "Designed for Mature Skin"
+          }
+        }
+      },
+      "block_order": [
+        "feature_YGc7h6",
+        "feature_kXX4yg",
+        "feature_TwnmT7",
+        "feature_BxnkDJ"
+      ],
+      "name": "[Custom] Guarantee List",
+      "settings": {}
+    },
+    "custom_info_banner_Adm6cV": {
+      "type": "custom-info-banner",
+      "blocks": {
+        "image_1": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "media_position": "left",
+            "media_padding": 0,
+            "image_desktop": "shopify://shop_images/wearing-img.png",
+            "image_mobile": "shopify://shop_images/wearing-img.png"
+          }
+        },
+        "rating_1": {
+          "type": "rating",
+          "settings": {
+            "star_image": "shopify://shop_images/Stars_Container_a8ef23fa-4cb0-442a-aebc-8875c6ae38e3.png",
+            "star_text": "<strong>4.76/5</strong> stars | <strong>12,000+</strong> happy women"
+          }
+        },
+        "heading_1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Stop Wearing Makeup That Makes You Look Older"
+          }
+        },
+        "price_1": {
+          "type": "price",
+          "settings": {}
+        },
+        "text_1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Switch to a BB Creme made for mature skin that stays comfortable and looks like real skin all day.</p>"
+          }
+        },
+        "button_1": {
+          "type": "button",
+          "settings": {
+            "button_text": "GET YOURS NOW →",
+            "button_link": "#buynow"
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "rating_1",
+        "heading_1",
+        "price_1",
+        "text_1",
+        "button_1"
+      ],
+      "name": "[Custom] Info Banner",
+      "settings": {
+        "bg_image": "shopify://shop_images/steps-bg.jpg"
+      }
+    },
+    "custom_product_slider_CByXCN": {
+      "type": "custom-product-slider",
+      "blocks": {
+        "collection_tab_qhCjbJ": {
+          "type": "collection_tab",
+          "settings": {
+            "tab_label": "Lips",
+            "collection": "lips",
+            "button_label": "View All Best Sellers",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_tab_qhCjbJ"
+      ],
+      "name": "[Custom] Product Slider",
+      "settings": {
+        "title": "Products you may also like",
+        "subtitle": "",
+        "products_limit": 10
+      }
+    },
+    "custom_newsletter_RMchwh": {
+      "type": "custom-newsletter",
+      "name": "[Custom] Newsletter",
+      "settings": {
+        "bg_image": "shopify://shop_images/form-bg.jpg",
+        "title": "Let's Get this <br> beauty started.",
+        "placeholder_text": "Email Address...",
+        "button_text": "SUBSCRIBE NOW",
+        "note_text": "Your information is safe and secure with us"
+      }
+    }
+  },
+  "order": [
+    "custom_guarantee_list_3jG9Xr",
+    "main",
+    "faq",
+    "shipping",
+    "related",
+    "custom_steps_horizontal_48B6BD",
+    "custom_icon_features_fHrGm4",
+    "custom_alternating_rows_abL96y",
+    "cw_videos_WcxwdJ",
+    "1771850328ecb59717",
+    "16904264243ceba35b",
+    "custom_faq_QtK7h3",
+    "custom_guarantee_list_qxiYQE",
+    "custom_info_banner_Adm6cV",
+    "custom_product_slider_CByXCN",
+    "custom_newsletter_RMchwh"
+  ]
+}

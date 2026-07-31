@@ -1,0 +1,36 @@
+<div class="about-two-columns site-about-two-columns-wrapper">
+  <div class="about-two-columns__inner">
+    <div class="about-two-columns__left">
+      <div class="about-two-columns__copy">
+        {{ section.settings.column_1 }}
+      </div>
+    </div>
+    <div class="about-two-columns__right">
+      <div class="about-two-columns__copy">
+        {{ section.settings.column_2 }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About Two Columns",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "column_1",
+      "label": "Column 1"
+    },
+    {
+      "type": "richtext",
+      "id": "column_2",
+      "label": "Column 2"
+    }
+  ],
+  "presets": [{
+    "name": "About Two Columns",
+    "category": "Image"
+  }]
+}
+{% endschema %}

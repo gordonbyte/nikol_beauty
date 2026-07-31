@@ -1,0 +1,66 @@
+<div class="about-header site-about-header-wrapper">
+  <style>
+    .about-header {
+      background-image: url({{ 'about-header-bg.png' | asset_url }})
+    }
+
+    @media (max-width: 786px) {
+      .about-header {
+        background-image: url({{ 'about-header-bg-mobile.png' | asset_url }})
+      }    
+    }
+  </style>
+  <div class="about-header__inner">
+    <div class="about-header__left">
+      <figure class="about-header__image">  
+        <img
+          src="{{ section.settings.image | image_url }}"
+          alt="{{ section.settings.image.alt | default: section.settings.title | default: shop.name | strip_html | escape }}"
+          loading="eager"
+          />
+        </figure>
+    </div>
+    <div class="about-header__right">
+      <h1 class="about-header__title mobile-only">
+        {{ section.settings.title }}
+      </h1>
+
+    	<div class="about-header__copy">
+        {{ section.settings.copy }} 
+      </div>
+
+      <h1 class="about-header__title desktop-only">
+        {{ section.settings.title }}
+      </h1>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "About Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "richtext",
+      "id": "copy",
+      "label": "Copy",
+      "default": "<p>Lorem ipsum</p>"
+    }
+  ],
+  "presets": [{
+    "name": "About Header",
+    "category": "Image"
+  }]
+}
+{% endschema %}
