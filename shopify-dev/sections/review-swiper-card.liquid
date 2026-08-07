@@ -1,7 +1,7 @@
-<div class="review-cards review-cards-wrapper">
+<div class="review-cards review-cards-wrapper" data-autoplay-speed="{{ section.settings.autoplay_speed | default: 10 }}">
   <div class="wrapper">
   
-    <h2 class="review-section-title">Customers Love for Nikol Beauty</h2>
+    <h2 class="review-section-title">{{ section.settings.title | default: "Customers Love for Nikol Beauty" }}</h2>
     
     <div class="swiper-container">
       <div class="swiper-wrapper">
@@ -39,13 +39,35 @@
       </div>
       <div class="swiper-pagination"></div>
     </div>
+
+    <button type="button" class="review-autoplay-toggle" data-review-autoplay-toggle aria-label="Pause review rotation">
+      <svg class="review-autoplay-toggle__pause" width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true" focusable="false"><rect x="2" y="1" width="3.5" height="12" rx="1"/><rect x="8.5" y="1" width="3.5" height="12" rx="1"/></svg>
+      <svg class="review-autoplay-toggle__play" width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3 1.5v11a1 1 0 0 0 1.52.86l8.5-5.5a1 1 0 0 0 0-1.72l-8.5-5.5A1 1 0 0 0 3 1.5z"/></svg>
+    </button>
   </div>
 </div>
 
 {% schema %}
   {
     "name": "Review Swiper Cards",
-    "settings": [],
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Customers Love for Nikol Beauty"
+      },
+      {
+        "type": "range",
+        "id": "autoplay_speed",
+        "label": "Auto-rotate speed",
+        "min": 3,
+        "max": 20,
+        "step": 1,
+        "unit": "s",
+        "default": 10
+      }
+    ],
     "blocks": [
     {
       "type": "review-card-product",

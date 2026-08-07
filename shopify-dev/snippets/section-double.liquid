@@ -153,7 +153,7 @@
         class="brick__slider"
         data-slider
         data-dots="{{ settings.dots_style }}"
-        data-options='{"pageDots": true, "prevNextButtons": true, "autoPlay": 4000, "pauseAutoPlayOnHover": false}'
+        data-options='{"pageDots": true, "prevNextButtons": true, "autoPlay": false}'
       >
         {%- for block in section.blocks -%}
           {%- liquid
@@ -234,7 +234,7 @@
             data-slider
             data-slider-fullwidth
             data-dots="{{ settings.dots_style }}"
-            data-options='{"watchCSS": true, "pageDots": false, "prevNextButtons": false, "autoPlay": 4000, "pauseAutoPlayOnHover": false}'
+            data-options='{"watchCSS": true, "pageDots": false, "prevNextButtons": false, "autoPlay": false}'
           {% endif %}>
 
           {{ section_images }}
@@ -251,7 +251,7 @@
                 data-slider="BrickSlider--{{ section.id }}"
                 data-slider-desktop
                 data-dots="{{ settings.dots_style }}"
-                data-options='{"watchCSS": true, "wrapAround": true, "pageDots": true, "prevNextButtons": false, "autoPlay": 4000, "pauseAutoPlayOnHover": false }'
+                data-options='{"watchCSS": true, "wrapAround": true, "pageDots": true, "prevNextButtons": false, "autoPlay": false}'
               {% endif %}>
 
               {%- if accordion_blocks.size > 0 -%}

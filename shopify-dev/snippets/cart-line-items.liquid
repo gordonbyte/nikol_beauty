@@ -49,10 +49,6 @@
               {{- line_item.product.title | strip_html -}}
             </a>
           </h4>
-          <div style="display: none;" class='jdgm-widget' data-id='{{ line_item.product.id }}'>
-            {{ line_item.product.metafields.judgeme.badge }}
-          </div>
-
           <div class="cart__item__meta">
             {%- assign properties_html = '' -%}
             {%- assign property_size = line_item.properties | size -%}

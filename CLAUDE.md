@@ -26,12 +26,18 @@ This repo holds two Shopify themes for **Nikol Beauty**:
 All of nikolbeauty.com is tracked as ONE Jira project: **KAN "NikolBeauty"** on `nikolbeauty.atlassian.net` (Atlassian connector; cloudId `31e24658-3776-4270-8e59-71526723b457`). Follow these conventions for every task Claude creates or updates:
 
 **Epics (fixed streams — don't create new ones without asking):**
-- KAN-1 `Promotions - Sales Campaigns` · KAN-2 `Dev - Tooling & Apps` · KAN-3 `Site - Bugs & Fixes` · KAN-4 `Site - Improvements & Redesigns` · KAN-5 `Marketing - Email & Analytics`
+- KAN-1 `Promotions - Sales Campaigns` · KAN-2 `Dev - Tooling & Apps` · KAN-3 `Site - Bugs & Fixes` · KAN-4 `Site - Improvements & Redesigns` · KAN-5 `Marketing - Email & Analytics` · KAN-119 `Live Sync - Dev changes pending live` (teal)
 
-**Every sale/promo task gets 8 subtasks** (naming `<Short name>: <action>`, due dates relative to the sale window):
-1. Decide sale colors (~2 days before start) 2. Create discount (day before) 3. Enable "Multiple can apply per order" on the product discount (with discount creation) 4. Create hero banner (start day) 5. Create popup (start day) 6. Disable Roses at checkout / Yotpo (start day) 7. Remove discount (day after end) 8. Re-enable Roses at checkout / Yotpo (day after end)
+**Live Sync rule (STANDING DIRECTIVE, 2026-07-30):** EVERY time anything is done on the DEV store that also needs doing on live (admin content, settings, metafields, theme, app config), create a detailed task under KAN-119 IN THE SAME SESSION, UNPROMPTED — never wait to be asked. Step-by-step replication instructions, label `live-sync`, subtasks when multiple parts. The dev task closes when dev is done; the Live Sync task closes only when applied AND verified on live. Randell applies live changes on his own schedule.
+
+**Every sale/promo task gets 10 subtasks** (naming `<Short name>: <action>`, due dates relative to the sale window):
+1. Decide sale colors (~2 days before start) 2. Create discount (day before) 3. Enable "Multiple can apply per order" on the product discount (with discount creation) 4. Create hero banner (start day) 5. Create popup (start day) 6. Edit mobile app banner + announcement banner on mobile (start day) 7. Disable Roses at checkout / Yotpo (start day) 8. Remove discount (day after end) 9. Re-enable Roses at checkout / Yotpo (day after end) 10. Remove sale banners + popup — hero, popup, mobile app + announcement (day after end)
 
 **Issue format:** verb-first titles (promos: `Promo: <Name> (<Mon D-D>)`); description = `**Goal:** / **Details:** / **Done when:** / **Estimate:** ~Xh`; ALSO set the Original estimate field (`timetracking: {originalEstimate: "2h"}` — works even though createmeta doesn't list it); priority ladder: Highest = revenue/live at risk today · High = time-bound prep or shopper-visible bugs · Medium = planned work · Low = no deadline. Open questions = task with label `question` + Blocks link, not an epic.
+
+**Completion-record rule (STANDING DIRECTIVE, 2026-07-30):** when completing ANY task, append an `## OUTCOME — what was actually done` section to its description (original Goal stays above it): actual root cause if it differed from the hypothesis, ALL work performed including extra/beyond-scope work, iteration dead-ends worth knowing, verification performed, pointers (changelog, follow-up task keys), estimate vs actual. Comments = dated progress log; description = final accurate record.
+
+**Randell's working hours:** Mon-Fri 9am-5pm ET, 1h lunch = ~7 productive hours/day; NO weekends. Never set weekend due dates (shift to adjacent weekday); cap daily plans at ~5-6h of scheduled work to leave buffer.
 
 **Randell's standing priorities (set 2026-07-29):**
 1. **Sale promotions run High and escalate as their date approaches** — keep this updated continuously: Medium while >1 month out → High within ~2 weeks of the sale start → Highest from ~3 days before start through teardown. Never let a promo sit below where its date warrants.

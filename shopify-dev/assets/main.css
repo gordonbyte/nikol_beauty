@@ -1146,6 +1146,12 @@ align-items: center;
 .about-quote-image {
   background-color: #fcfaf8;
   padding: 4rem 0 0; }
+  .about-quote-image__copy blockquote {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: inherit;
+    line-height: inherit; }
   @media (max-width: 785px) {
     .about-quote-image {
       background-color: #FCFAF8;
@@ -1585,7 +1591,7 @@ align-items: center;
     border-color: #F7F2ED; }
 
 .collection .popout__toggle span:not(.filter-count) {
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0; }
 
 @media (min-width: 786px) {
@@ -1593,6 +1599,15 @@ align-items: center;
     background-color: transparent; }
     .collection__sidebar__slider::after {
       background-color: none; } }
+
+.collection__sidebar__slider {
+  border-right-width: 0; }
+
+.collection-image-with-title .hero__content {
+  padding-top: 24px;
+  padding-bottom: 24px; }
+  .collection-image-with-title .hero__content .hero__title:last-child {
+    margin-bottom: 0; }
 
 .collection__sidebar .sidebar__item label {
   font-size: 12px;
@@ -1732,11 +1747,16 @@ align-items: center;
     padding-right: 0; }
   .product-item .price {
     font-size: var(--FONT-SIZE-BASE);
-    font-weight: 300;
-    color: #46413C; 
+    font-weight: 500;
+    color: var(--COLOR-CARD-PRICE, var(--text));
     margin: 10px 10px}
   .product-item .new-price {
-    color: #46413C; }
+    color: var(--COLOR-CARD-PRICE, var(--text)); }
+  .product-item .price.sale .new-price {
+    color: var(--COLOR-CARD-SALE-PRICE, var(--COLOR-SALE)); }
+  .product-item .old-price {
+    font-size: 0.85em;
+    margin-right: 6px; }
   .product-item__image .sale-box {
     background-color: #F7F2ED;
     color: #46413C; }
@@ -1981,7 +2001,12 @@ align-items: center;
       width: 30%; } }
 
 .cart-bar__product__title {
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  font-family: var(--FONT-STACK-HEADING);
+  font-style: var(--FONT-STYLE-HEADING);
+  letter-spacing: var(--LETTER-SPACING-HEADING);
+  line-height: 1.2;
+  font-size: calc(var(--font-6) * var(--FONT-ADJUST-HEADING)); }
 
 .cart-bar__product__price span {
   font-size: 14px; }
@@ -2200,8 +2225,46 @@ legend.quantity__legend {
 }
 
 .review-cards .swiper-pagination-bullet-active {
-  background: #46413D; 
-  opacity: 1; 
+  background: #46413D;
+  opacity: 1;
+}
+
+.review-cards .wrapper {
+  position: relative;
+}
+.review-autoplay-toggle {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid #F1D2D9;
+  border-radius: 50%;
+  background: transparent;
+  color: #46413D;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.review-autoplay-toggle:hover {
+  border-color: #46413D;
+}
+.review-autoplay-toggle:focus-visible {
+  outline: 2px solid #46413D;
+  outline-offset: 2px;
+}
+.review-autoplay-toggle__play {
+  display: none;
+}
+.review-autoplay-toggle.is-paused .review-autoplay-toggle__play {
+  display: block;
+}
+.review-autoplay-toggle.is-paused .review-autoplay-toggle__pause {
+  display: none;
 }
 
 .summer-essentials .product-item__image {
@@ -2570,3 +2633,53 @@ legend.quantity__legend {
   border-radius: 999px;
   white-space: nowrap;
 }
+
+.accordion__title .accordion__heading {
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  margin: 0;
+  display: inline;
+}
+
+.theme__header {
+  border-bottom: 1px solid var(--hairline);
+}
+
+/* KAN-143 TRIAL: stock Broadcast collection toolbar (boxed hairlines) — DELETE from here to END marker to revert */
+.collection__nav {
+  background: var(--COLOR-BG);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+.collection__nav .popout--group .popout__toggle,
+.collection__nav .popout--sort .popout__toggle {
+  border-color: var(--hairline);
+}
+/* END KAN-143 TRIAL */
+
+.header__desktop .header__dropdown .navlink--child > .navtext {
+  font-size: 15px;
+}
+.header__desktop .header__dropdown .navlink--grandchild > .navtext {
+  font-size: 18px;
+}
+
+.filter-group__heading {
+  font-size: 14px;
+}
+
+.collection-image-with-title .hero__content--transparent {
+  background-color: #fff;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.collection-image-with-title .collection__title--no-image {
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+  .collection-image-with-title .collection__title--no-image .hero__title:last-child {
+    margin-bottom: 0; }

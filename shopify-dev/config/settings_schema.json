@@ -59,6 +59,19 @@
         "default": "#d20000"
       },
       {
+        "type": "color",
+        "id": "card_price_color",
+        "label": "Product card price",
+        "default": "#564646"
+      },
+      {
+        "type": "color",
+        "id": "card_sale_price_color",
+        "label": "Product card sale price",
+        "default": "#d34270",
+        "info": "Current price on discounted items in product cards"
+      },
+      {
         "type": "checkbox",
         "id": "high_contrast",
         "label": "Increase contrast",

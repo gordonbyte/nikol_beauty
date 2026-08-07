@@ -8,9 +8,13 @@
       <div class="image-grid__item">
         <figure class="image-grid__image">
           <img
-            src="{{ gridItem.settings.image | image_url }}"
+            src="{{ gridItem.settings.image | image_url: width: 800 }}"
+            srcset="{{ gridItem.settings.image | image_url: width: 400 }} 400w, {{ gridItem.settings.image | image_url: width: 600 }} 600w, {{ gridItem.settings.image | image_url: width: 800 }} 800w, {{ gridItem.settings.image | image_url: width: 1200 }} 1200w"
+            sizes="(max-width: 749px) 100vw, 570px"
+            width="{{ gridItem.settings.image.width }}"
+            height="{{ gridItem.settings.image.height }}"
             alt="{{ gridItem.settings.image.alt | default: gridItem.settings.title | strip_html | escape }}"
-            loading="eager"
+            loading="lazy"
             />
         </figure>
         <a class="image-grid__overlay"{% if gridItem.settings.link != blank %} href="{{ gridItem.settings.link }}"{% endif %}>

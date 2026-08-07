@@ -7,18 +7,22 @@
 	      {% render 'yt-video', video_url: section.settings.video_url, image: section.settings.image, title: section.settings.title, hide_content: true %}
 	    </div>
 
-      <a class="videos-featured__link desktop-only" href="{{ section.settings.youtube_link }}">
-        Subscribe to my youtube channel
-      </a>
+      {%- if section.settings.youtube_link != blank -%}
+        <a class="videos-featured__link desktop-only" href="{{ section.settings.youtube_link }}">
+          Subscribe to my youtube channel
+        </a>
+      {%- endif -%}
 
       <div class="videos-featured__subscribe mobile-only">
         <div class="videos-featured__subscribe-title">
           Subscribe to my youtube channel
         </div>
 
-        <a class="cta" href="{{ section.settings.youtube_link }}">
-          Subscribe now
-        </a>
+        {%- if section.settings.youtube_link != blank -%}
+          <a class="cta" href="{{ section.settings.youtube_link }}">
+            Subscribe now
+          </a>
+        {%- endif -%}
       </div>
   </div>
 </div>

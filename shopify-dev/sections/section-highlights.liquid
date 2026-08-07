@@ -127,15 +127,9 @@
                 {%- render 'image' image: block.settings.image, sizes: sizes -%}
               {%- endif -%}
             </div>
-{% if section.id == 'template--22389875638576__c6d81760-def0-4e5f-b937-2fb253e43af0' %}
-  <div class="product-information">
-     <p class="highlights__item__content">{{ block.settings.heading }}</p> 
-  </div>
-  {% else %}
             <div class="highlights__item__content body-size-6 {% if blocks_style == 'button' %} caps{% endif %}">
               <p>{{ block.settings.heading }}</p>
             </div>
-  {% endif %}
           {%- if link != blank -%}
             </a>
           {%- else -%}

@@ -79,14 +79,20 @@ document.addEventListener('DOMContentLoaded', () => {
     let reviewSlidersArray  = [];
 
     swiperReview.forEach(function(element, i) {
-      reviewSlidersArray.push(
-        new Swiper(element, {
+      const reviewSection = element.closest('.review-cards');
+      const reviewSpeed = (parseInt(reviewSection && reviewSection.dataset.autoplaySpeed, 10) || 10) * 1000;
+      const reviewReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const reviewSwiper = new Swiper(element, {
           spaceBetween: 20,
           loop: true,
           slidesPerView: 1,
           watchSlidesVisibility: true,
+          // Auto-rotates at the section's "Auto-rotate speed" setting; the
+          // pause/play toggle is the WCAG 2.2.2 control. Reduced-motion
+          // users start paused.
           autoplay: {
-            delay: 66000,
+            delay: reviewSpeed,
             disableOnInteraction: false,
           },
           pagination: {
@@ -104,10 +110,31 @@ document.addEventListener('DOMContentLoaded', () => {
               let self = this;
               setTimeout(function(){
                 self.update();
+                if (reviewReducedMotion) self.autoplay.stop();
               }, 100)
             },
           },
-        })
+        });
+
+      const reviewToggle = reviewSection && reviewSection.querySelector('[data-review-autoplay-toggle]');
+      if (reviewToggle) {
+        const setToggleState = function (playing) {
+          reviewToggle.classList.toggle('is-paused', !playing);
+          reviewToggle.setAttribute('aria-label', playing ? 'Pause review rotation' : 'Play review rotation');
+        };
+        setToggleState(!reviewReducedMotion);
+        reviewToggle.addEventListener('click', function () {
+          if (reviewToggle.classList.contains('is-paused')) {
+            reviewSwiper.autoplay.start();
+            setToggleState(true);
+          } else {
+            reviewSwiper.autoplay.stop();
+            setToggleState(false);
+          }
+        });
+      }
+
+      reviewSlidersArray.push(reviewSwiper
       );
     });
 
@@ -149,8 +176,10 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', function() {
           filterButtons.forEach(function(other) {
             other.classList.remove('active');
+            other.removeAttribute('aria-current');
           });
           button.classList.add('active');
+          button.setAttribute('aria-current', 'true');
 
           shuffleInstance.filter(button.dataset.category);
         })
@@ -233,4 +262,71 @@ document.addEventListener('DOMContentLoaded', () => {
       })
     })
 
-})
+});
+
+// ARIA tab semantics for Broadcast tab UIs (related-products tabs, product
+// description tabs): stock theme.js only swaps CSS classes, so assistive
+// tech never hears the tab roles or the selected state.
+(function () {
+  function enhanceTabs() {
+    document.querySelectorAll('[data-tabs-holder]').forEach(function (holder, index) {
+      var tabs = holder.querySelectorAll('.tab-link');
+      var panels = holder.querySelectorAll('.tab-content');
+      if (!tabs.length || !panels.length) return;
+
+      var list = holder.querySelector('.tabs');
+      if (list) list.setAttribute('role', 'tablist');
+
+      var uid = 'aria-tabs-' + index;
+
+      tabs.forEach(function (tab) {
+        var i = tab.getAttribute('data-tab');
+        tab.setAttribute('role', 'tab');
+        if (!tab.id) tab.id = uid + '-tab-' + i;
+        tab.setAttribute('aria-controls', uid + '-panel-' + i);
+        tab.setAttribute('aria-selected', tab.classList.contains('current') ? 'true' : 'false');
+      });
+
+      panels.forEach(function (panel) {
+        var i = panel.getAttribute('data-tab-index');
+        if (i === null) {
+          var match = panel.className.match(/tab-content-(\d+)/);
+          i = match ? match[1] : null;
+        }
+        if (i === null) return;
+        panel.setAttribute('role', 'tabpanel');
+        if (!panel.id) panel.id = uid + '-panel-' + i;
+        panel.setAttribute('aria-labelledby', uid + '-tab-' + i);
+      });
+
+      holder.addEventListener('click', function (event) {
+        if (!event.target.closest('.tab-link')) return;
+        setTimeout(function () {
+          tabs.forEach(function (tab) {
+            tab.setAttribute('aria-selected', tab.classList.contains('current') ? 'true' : 'false');
+          });
+        }, 0);
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', enhanceTabs);
+  } else {
+    enhanceTabs();
+  }
+})();
+
+// The PDP title rating badge pointed at Judge.me's long-gone reviews anchor
+// (and theme.js's scroll-to module ignores links and isn't registered on the
+// product section anyway) — scroll it to the Junip reviews block instead.
+(function () {
+  document.addEventListener('click', function (event) {
+    var badge = event.target.closest('.product__badge-link');
+    if (!badge) return;
+    var reviews = document.querySelector('.junip-product-review, [id*="junip_product_review"]');
+    if (!reviews) return;
+    event.preventDefault();
+    reviews.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+})();

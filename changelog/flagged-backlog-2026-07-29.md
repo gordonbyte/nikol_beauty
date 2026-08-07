@@ -1,5 +1,7 @@
 # Flagged-but-unresolved backlog (from full changelog sweep, 2026-07-29)
 
+> ✅ **TRIAGE COMPLETE 2026-08-05** (KAN-50 closed, a week ahead of the Aug-12 plan). Every item below carries its disposition annotation. Live continuations: KAN-148 (discount-sync tests) · KAN-149 (Bing UET/GTM) · KAN-150 (post-push checklist) · KAN-151 (Fast Bundle) · KAN-152 (Zipify×CreditsYard) · KAN-146 (go-live editor checklist).
+
 Extracted from every daily note 2026-06-24 → 2026-07-24, then verified against the live store
 (Admin API + rendered storefront) and the `shopify-live/` folder on 2026-07-29/30.
 **Keep item numbers stable** — Randell triages by number ("add #13 to Jira").
@@ -7,94 +9,94 @@ Items verified as completed were removed: ~~#1, #2, #4, #19, #82~~ (and #3/#35 r
 Not yet filed in Jira unless noted.
 
 ## Booby traps & drift
-- **#3** Create the 4 promo style metafield definitions on live (`custom.promo_badge_bg`, `promo_price_color`, `promo_badge_text`, `promo_badge_style` — all PRODUCT owner; verified absent 07-29, full definition list enumerated)
-- **#13** Cart-drawer upsell block: enabled in repo `group-overlay.json` AND confirmed enabled in the live published theme ("Copy of Nikolbeauty_7/27/26 National Lipstick Sale") — the 07-17 editor deletion is gone. Decide: keep it, or disable in BOTH live editor and repo
-- **#14** REOPENED 07-30: duplicate `store-credit-launcher` include in `<head>` is back — a fresh live-theme pull brought it into the repo working copy, meaning the published sale theme still carries it
-- **#18** theme.js null guards are hand-edits outside the minify pipeline — regeneration silently drops them
-- **#39** Phantom upsell blocks saved on 5 product templates with no rendering case — "decide later"
-- **#40** `product-new.liquid` hardcoded BB Crème gallery (wrong photos for any "new" product, no alt, extra Swiper CDN) — user wants a rethink, not a band-aid
-- **#12** `shopify-dev/` has no git safety net; rollback zip lives in a temp dir
+- ~~**#3**~~ RESOLVED 07-30 (KAN-51 closed): definitions NOT needed — the Discount Sync app writes these 4 keys as unstructured values via metafieldsSet by design; theme + settings complete. Only needed if manual admin editing ever wanted. Live gap = app not installed on live → KAN-133 (take app live before Fierce Aging, due Aug 7)
+- ~~**#13**~~ RESOLVED 07-30 (KAN-52 closed): flyout-cart upsell disabled in all 4 copies — live theme (Randell, editor), dev store theme (Randell, removed), both repo group-overlay.json copies (`disabled: true`, Claude). Root cause: block is stock-Broadcast default-enabled, so theme copies kept resurrecting it. The ATC-click upsell (Zipify OCU on-page, wanted) is an app feature and unaffected
+- ~~**#14**~~ RESOLVED 07-30 (KAN-53 closed): head dup removed from both repo folders + dev store theme (verified StoreCreditInit ×1 on dev). Live still ×2 until the next dev→live transfer, which carries the fix (tracked on KAN-131). Root cause of resurrections: sale themes duplicated from pre-fix copies — duplicate the CURRENT published theme for future sales
+- ~~**#18**~~ VERIFIED-PROTECTED 07-30 (KAN-54): all 3 guards present in minified theme.js (25 vs stock 20 productMediaList refs), on LIVE served theme.js, AND in theme.dev.js source - regeneration would preserve them; minify pipeline never touches theme.js. Only loss scenario: full Broadcast version upgrade
+- **#39** Phantom upsell blocks saved on 5 product templates with no rendering case — "decide later" — ✅ 2026-07-31 RESOLVED (KAN-55): feature restored, not deleted — `when 'upsell'` case ported back into product.liquid + custom-product-waitlist.liquid; phantom blocks removed from product.json + product.waitlist.json (re-addable via editor, schema intact); coming-soon/new untouched and still displaying. Booby-trap defused. Live sync pending.
+- **#40** `product-new.liquid` hardcoded BB Crème gallery (wrong photos for any "new" product, no alt, extra Swiper CDN) — user wants a rethink, not a band-aid — ✅ 2026-08-03 RESOLVED (KAN-56): Randell chose DELETE (coming-soon is the launch pattern); template + section git-rm'd, FULL push to dev theme (now fully aligned with repo, mixed state ended), ?view=new falls back to default PDP; live = KAN-144 (with check-no-product-assigned caution). Last booby-trap item done
+- **#12** `shopify-dev/` has no git safety net; rollback zip lives in a temp dir — ✅ 2026-07-31 RESOLVED (KAN-57): tracked in repo, commit `2e29d8e` baseline (the temp zip turned out to be already gone); Discount Sync app also tracked (`a0385be`, .env/.shopify gitignored, empty inner scaffold repo absorbed)
 
 ## Verifications never done
-- **#5** `{br}` badge line-break on storefront
-- **#10** Discount-sync test matrix: collection-targeted discount + scheduled start/end flip
-- **#21** Post-push visual checklist (marquee, pre-footer, video gallery, coming-soon PDP, jQuery-rewrite features)
-- **#31** Typography check after font consolidation (300 body / 600 headings)
-- **#32** Full visual pass after main.css −77% sweep + async swiper.css
-- **#33** PageSpeed re-runs after perf campaign (tracked: KAN-30)
-- **#34** Native `<select>` dropdowns after jQuery/selectboxit removal
-- **#36** Wishlist heart icon click behavior after href change
-- **#38** Dev best-sellers sort recompute + seed-order cleanup
-- **#41** App install list (manual check, §4 of parity checklist)
-- **#44** `blank.png` present in live store Files
-- **#69** Stock core sections (header, cart, product, search…) never actually reviewed
-- **#79** Global `.page-width` move site-wide impact
-- **#80** Header background → white on formerly beige pages
-- **#81** `custom-info-banner` rewrites (3 separate "needs preview" flags)
+- **#5** `{br}` badge line-break on storefront — ✅ 2026-08-05 VERIFIED (KAN-58): Randell render-checked it himself same day — "it shows correctly." (Automated batch couldn't render one: zero live promo data at the time; {br} logic was code-verified at build 07-22)
+- **#10** Discount-sync test matrix: collection-targeted discount + scheduled start/end flip — ➡ 2026-08-05 MOVED out of the triage (Randell): now KAN-148 under the KAN-119 Live Sync epic (app testing ≠ triage item); due 2026-08-14 unchanged; KAN-59 closed as relocated
+- **#21** Post-push visual checklist — ➡ 2026-08-05 MOVED to KAN-150 under KAN-119 (due 08-08, expanded with all of this week's changes); KAN-60 closed as relocated
+- ~~**#31**~~ VERIFIED-PASS 07-30 (KAN-61): live font-settings.css has 300+600 font-faces; main.min.css uses them (300 x12, 600 x4)
+- **#32** Full visual pass after main.css −77% sweep + async swiper.css — ✅ 2026-08-05 VERIFIED (KAN-62, Randell): structural browser pass over 7 live page types all fully styled (fonts/header/stylesheets, 0 unstyled, 0 CSS errors) + the sweep has been live since 07-17 with ~3 weeks of clean daily use
+- **#33** PageSpeed re-runs after perf campaign (tracked: KAN-30) — ✅ 2026-08-05 SUPERSEDED (KAN-63, Randell): an entirely new performance review will run under KAN-30 with fresh baselines — the July before/after comparison consciously skipped. Note on KAN-30: baseline after the 08-08 push to include this week's perf wins
+- **#34** Native `<select>` dropdowns after jQuery/selectboxit removal — ✅ 2026-08-05 VERIFIED (KAN-64): PDP 5 native selects + contact 1, all visible; zero selectboxit remnants across 7 page types
+- **#36** DEPLOYED-VERIFIED 07-30; ✅ 2026-08-05 CLOSED (KAN-65): browser click-test on live — desktop heart click opens the SE Wishlist popup, no navigation; href stays as no-JS fallback
+- ~~**#38**~~ RESOLVED 07-30 (KAN-66): seeding never worked (draft orders do not count toward best-selling rank); Randell accepts dev ranking as-is; 5 bestseller-seed draft orders remain, deletable anytime
+- **#41** App install list (manual check, §4 of parity checklist) — ✅ 2026-08-05 DISMISSED (KAN-67, Randell): dev store is a code sandbox, not an app mirror (same reasoning as #7/#42) — app/data-dependent verification runs against live via the read-only local dev server; §4 stays as reference
+- ~~**#44**~~ RESOLVED 07-30 (KAN-68): blank.png mapping was DORMANT (no product has a Blank color). Dead line removed from both repo settings_data.json; store-side theme-editor removal = Live Sync KAN-137
+- **#69** Stock core sections (header, cart, product, search…) never actually reviewed — ✅ 2026-08-05 RESOLVED (KAN-69): full 3-pass review + ALL 8 defects fixed same day (cart double-h1, search missing h1, drawer dialog semantics, stray zoom tag, dropdown ARIA, filter-anchor typo, cart-message color scope, and the dead Toolbar feature — REMOVED entirely by Randell's ruling, ~200 lines). Plus: best-sellers JSON blob removed, sticky logo wired to a settings-driven responsive image, role=alert + progress-bar labels added. 9 minor smells consciously accepted (recorded with line numbers). Clean on dead settings/renders/app leftovers. Everything browser-verified on dev; rides Friday push
+- ~~**#79**~~ VERIFIED-PASS 07-30 (KAN-70): .page-width rule lives inline in theme.liquid:390 (max-width 1350px), active site-wide
+- ~~**#80**~~ VERIFIED-PASS 07-30 (KAN-71): old beige #fcfaf8 absent from rendered live pages; white header default active
+- **#81** `custom-info-banner` rewrites (3 separate "needs preview" flags) — ✅ 2026-08-04 RESOLVED (KAN-72): Randell previewed all 5 instances on the local dev server (homepage-style-2 ×4 incl. blog slider + quiz banner; coming-soon price banner) — "they look good", zero fixes. Done immediately before the #46 BEM rename so the sign-off covered a known state
 
 ## Decisions parked with Randell
-- **#8** UpPromote uninstall — LIKELY DONE ~07-29/30: app-embed entry vanished from a live settings pull + zero traces in live HTML; confirm the app is uninstalled and whether affiliate data was handled
-- **#11** Amount-off discounts unsupported in discount-sync
-- **#27** yt-video arrows vs product-card touch targets
-- **#50** Homepage slideshow autoplay (WCAG) — disable or add pause button (verified still `autoplay: true`)
-- **#54** Footer colors → universal variables
-- **#55** 3 sections' backgrounds went solid/more opaque (FAQ, hero banner, product slider)
-- **#56** Newsletter form has no success/error state
-- **#73** `custom-alternating-rows` → slider conversion TODO
-- **#77** Two widget product-title weights (pickup, cart-bar) left at old values
-- **#78** De-Jost'd titles render body font pending heading relabel
+- ~~**#8**~~ RESOLVED 07-30 (KAN-73 closed): Randell confirmed UpPromote uninstalled from live; no affiliate data worth keeping. Corroborated: embed entry gone from settings, zero traces in live HTML (WebPixel removed with the uninstall)
+- **#11** Amount-off discounts unsupported in discount-sync — ✅ 2026-07-31 RESOLVED (KAN-74): Randell chose BUILD with EXACT-$ display; per-item amount-off writes `custom.promo_amount` + `promo-amt-*` tags, theme (3 snippets, amount pathway added) shows "$x OFF" + exact price; per-order stays unsupported by design; runtime testing in KAN-59 matrix (due Aug 4), live-sync = KAN-139 (due Aug 6)
+- **#27** yt-video arrows vs product-card touch targets — ✅ 2026-07-31 DISMISSED (KAN-75): Randell ruled not an issue; arrows already 44×44 since 07-13, overlap concern never confirmed by a post-fix audit; revisit only if the KAN-63 re-run flags it again
+- **#50** Homepage slideshow autoplay (WCAG) — disable or add pause button (verified still `autoplay: true`) — ✅ 2026-07-31 RESOLVED (KAN-76): Randell chose DISABLE (no interest in multiple slides); index.json autoplay→false on dev + pushed; live = KAN-140 (editor checkbox, 30s); precedent for #51/#52 sliders: prefer disabling over pause buttons
+- **#54** Footer colors → universal variables — ✅ 2026-07-31 FULLY RESOLVED (KAN-77 + extension): footer wired to existing footer_bg setting, then Randell directed ALL 15 remaining hardcoded #FCC9C6 spots one-by-one: 5 → `--COLOR-PRIMARY`, 3 → default button colors (VISIBLE: rose #D34270), 3 sections got own bg pickers (Meet Nikol, About contact, About header), nav hover → new "Links hover" setting (stale gold #AB8C52 leftover caught+fixed), sale/badge circles → native `--COLOR-SALE-BG` with setting set to brand pink (option B), dead `.promo` rule deleted. Live = KAN-141 (complete batch, incl. 2 mandatory live editor steps)
+- **#55** 3 sections' backgrounds went solid/more opaque (FAQ, hero banner, product slider) — ✅ 2026-07-31 ACCEPTED AS-IS (KAN-78): solid beige has been the live look since 07-17 with no complaints; pickers can't hold alpha; if translucency ever wanted → opacity-% slider per section (~30-45m)
+- **#56** Newsletter form has no success/error state — ✅ 2026-07-31 RESOLVED (KAN-79, after a revert/redo detour from a footer-vs-section mix-up; footer = Klaviyo, separate): custom-newsletter rebuilt on `{% form 'customer' %}` with success/error messages + a11y; BONUS FIX: raw form never set accepts_marketing. Live = KAN-142. Manual check pending: one test submit on dev
+- **#73** `custom-alternating-rows` → slider conversion TODO — ✅ 2026-07-31 DISMISSED (KAN-80): Randell keeps the stacked alternating-rows layout (consistent with his no-carousels stance); TODO comment removed from the section file; no visual change
+- **#77** Two widget product-title weights (pickup, cart-bar) left at old values — ✅ 2026-07-31 CLOSED AS INTENTIONAL (KAN-81): Randell confirmed the cart-bar 800 weight is his deliberate design; pickup stays ~700 (widget likely never renders — USPS-only store). No changes
+- **#78** De-Jost'd titles render body font pending heading relabel — ✅ 2026-07-31 CLOSED AS STALE (KAN-82): footer titles (the flag's main example) already render Cormorant — the 07-07 footer cleanup relabeled them to semantic h3 (Randell verified visually); residual video-page titles stay Inter, live since 07-17, accepted
 
 ## Vendor-app issues
-- **#15** Zipify×CreditsYard vendor tickets never sent; shim is a temporary patch (tracked: KAN-25; shim confirmed rendering live)
-- **#16** Easy Variant Images `/products/null` — report to SpiceGems
-- **#17** Rare live errors: `undefined.options`, `undefined.is_enable_app` (matches SE Wishlist crash pattern from 07-29 JS sweep)
-- **#25** Bing UET double-fire via GTM — pause GTM tag, re-run `scripts/probe-bing-uet.mjs`
+- **#15** Zipify×CreditsYard vendor tickets — ➡ 2026-08-05 MOVED to KAN-152 under KAN-2. NEW RULING: CreditsYard is permanently kept ("never uninstall. we use that") — uninstall off the table; remaining options = Zipify letter or accept shim. KAN-83 closed as relocated
+- **#16** Easy Variant Images `/products/null` — report to SpiceGems — ✅ 2026-08-05 DISMISSED (KAN-84, Randell): preview-only bug ("i dont care what happens on unpublished-theme previews"); no vendor report; diagnosis preserved in memory + ticket
+- **#17** Rare live errors: `undefined.options`, `undefined.is_enable_app` (matches SE Wishlist crash pattern from 07-29 JS sweep) — ✅ 2026-08-05 RESOLVED (KAN-85, approved): both root-caused via read-only live probing. `is_enable_app` = SE Wishlist's unguarded /apps-config fetch + intervals — fires only under rate-limiting, 0 occurrences at human pace, Randell ruled no action/no vendor report. `undefined.options` (+ the JSON-parse sibling) = stock Broadcast swatch component: failed products/<handle>.js fetch → catch passes undefined onward → `.options` crash; reproduced on /collections/eyes only because this machine's IP is heavily 429'd. FIX: `if(!e||!e.options)return;` guard in theme.js (shopify-dev only), pushed to dev theme, served-file + behavior verified. Rides Friday code push
+- **#25** Bing UET double-fire via GTM — ➡ 2026-08-05 MOVED to KAN-149 under the Marketing epic (Randell runs it independently, with a deliberate before/after Bing-data comparison). Fresh probe same day proved the double-fire STILL LIVE (GTM beacon tm=gtm002 + custom-pixel beacon, same tag). KAN-86 closed as relocated
 
 ## Accessibility backlog
-- **#35** Real alt text for 4 remaining hero images in live Files (`bb_nikol_web_slide_1.webp`, `bbposter.webp`, `Nikol_holiday_group_on_white_GLITTER.jpg`, `on_left_lipsticks.jpg`; Untitled_design_1.jpg done)
-- **#45** Deferred PDP heading/a11y pass (coming-soon, waitlist, product-new, product)
-- **#49** `related.liquid` tabs — no ARIA tab semantics (12 templates)
-- **#51** `section-double` latent autoplay
-- **#52** `review-swiper-card` hardcoded heading + 66s autoplay
-- **#57** Customer-quote star rating not conveyed to AT
-- **#59** Stock `href="#!"` dead-link fallbacks
-- **#60** Customer account pages have no `<h1>`
-- **#61** Address fields lack `autocomplete`
-- **#62** Video-gallery deeper heading normalization
-- **#63** videos-filter/-featured a11y notes (aria-current, `<a href="#">` filters)
-- **#65** Accordion `<summary>` not a heading element
-- **#66** Contact-form minor items (fake heading, no ARIA live region)
-- **#67** About-page non-semantic quote/title wrappers
-- **#68** col-sitemap menu not in a `<nav>` landmark
-- **#72** meet-nikol CTA renders with blank text
+- **#35** Real alt text for 4 remaining hero images in live Files (`bb_nikol_web_slide_1.webp`, `bbposter.webp`, `Nikol_holiday_group_on_white_GLITTER.jpg`, `on_left_lipsticks.jpg`; Untitled_design_1.jpg done) — ✅ 2026-08-04 RESOLVED (KAN-87): applied DIRECTLY ON LIVE with Randell's narrow approval (live MCP connected); each image visually inspected first, one fileUpdate mutation, all 4 alts confirmed stored, zero other changes; no live-sync task needed
+- **#45** Deferred PDP heading/a11y pass (coming-soon, waitlist, product-new, product) — ✅ 2026-08-04 RESOLVED (KAN-88): full rendered-outline audit of all 3 remaining variants (product-new deleted; prior triage fixes absorbed most of it) — all clean except ONE defect: cart-bar product name was an h4 (chrome duplicate of h1 at skipped level) → now p with every heading property pinned in main.css (800 weight untouched); chrome headings documented. A11Y CATEGORY 16/16 COMPLETE. Live = KAN-145 + KAN-141
+- **#49** `related.liquid` tabs — no ARIA tab semantics (12 templates) — ✅ 2026-08-04 RESOLVED (KAN-89, Randell approved): diagnosis corrected — related's own tabs are LATENT (enable_tabs false ×3, but schema default TRUE = spring-loaded; "12 templates" was stale); the LIVE tab UI on PDPs is product-tabs.liquid (same pattern). Fixed generically: main.js runtime enhancement adds tablist/tab/tabpanel roles + aria-selected sync to EVERY data-tabs-holder; static roles added in related.liquid. Arrow-key nav deliberately skipped (documented). Live = KAN-145 (incl. main.js/min)
+- **#51** `section-double` latent autoplay — ✅ 2026-08-04 RESOLVED (KAN-90, Randell approved): verified still latent first (hardcoded `autoPlay: 4000` ×3 in the snippet; NO current instance renders slider mode — homepage ×3 + collections-list checked); all 3 configs → `autoPlay: false` per the disable-over-pause precedent; zero visual change; live = KAN-145
+- **#52** `review-swiper-card` hardcoded heading + 66s autoplay — ✅ 2026-08-03 RESOLVED (KAN-91, final design after 3 iterations): heading now a section setting; carousel auto-rotates at a new "Auto-rotate speed" setting (3–20s, default 10s) with a pause/play toggle button bottom-right (icons interchange; reduced-motion starts paused) — the textbook 2.2.2 pattern, Randell's pick; live = KAN-145. Interactive check pending: Randell to try rotation + button on the dev homepage
+- **#57** Customer-quote star rating not conveyed to AT — ✅ 2026-08-03 RESOLVED (KAN-92, Randell approved): star image visually inspected first (5 filled stars = 5/5); new "Star rating alt text" setting (default "5 out of 5 stars", blank = decorative) wired to the img alt; verified rendering on dev homepage; live = KAN-145 (schema default applies, no editor step)
+- **#59** Stock `href="#!"` dead-link fallbacks — ✅ 2026-08-03 DISMISSED (KAN-93, Randell approved): rendered-page sweep found ZERO dead links on any key page — fully latent merchant-config edge; fixing = guards in 12 stock files (mostly dormant library). Pattern + file list documented in the ticket for future audits
+- **#60** Customer account pages have no `<h1>` — ✅ 2026-08-03 RESOLVED (KAN-94, Randell approved): premise code-verified (no h1 on any of the 3 account templates); page titles promoted h2→h1 with the `.h2` utility pinning identical size (customer-account, customer-order, customer-addresses); 3 documented one-line stock drifts; live = KAN-145
+- **#61** Address fields lack `autocomplete` — ✅ 2026-08-03 RESOLVED (KAN-95, Randell approved after break-risk review): 20 standard tokens added across both address forms (add-new + edit) in customer-addresses.liquid; passive attributes, zero behavior/visual change; counts verified ×2 each; live = KAN-145. Side discovery recorded: Broadcast-Original/ is v8.1.1, NOT our 5.5.0 (KAN-143 corrected, memory updated)
+- **#62** Video-gallery deeper heading normalization — ✅ 2026-08-03 RESOLVED (KAN-96, Randell chose fix over dismiss): hidden "Videos" h2 above the makeup grid + "Real Stories" h3→h2.h3 (identical size via utility class) — outline now h1→h2→h3 on both gallery pages, visually identical; live = KAN-145
+- **#63** videos-filter/-featured a11y notes (aria-current, `<a href="#">` filters) — ✅ 2026-08-03 RESOLVED (KAN-97, Randell approved 1+3 / dismissed 2): aria-current now tracks the active filter (section markup + main.js handler); blank youtube_link guards on both Subscribe links; anchors-not-buttons dismissed (keyboard-operable named links). Verified on dev /pages/videos; live = KAN-145 (incl. main.js/min)
+- **#65** Accordion `<summary>` not a heading element — ✅ 2026-08-04 FIXED (KAN-98; supersedes the 08-03 dismissal — Randell ruled option A after the contradiction was surfaced): titles wrapped in `<h2 class="accordion__heading">` + full inheritance-reset CSS (every global h2 property countered); partial-but-real AT benefit, no harm where flattened, zero visual change, verified on served dev assets. Active on all standard PDPs (Beauty Instructions / Shipping & Returns). Live = KAN-145 + KAN-141. Full history on the ticket
+- **#66** Contact-form minor items (fake heading, no ARIA live region) — ✅ 2026-08-03 CLOSED, NO CHANGES (KAN-99): the "h2 needs a page h1" half was a FALSE ALARM (template's hero section provides the h1; the form's own h2 doesn't render — title blank; initial zero-h1 reading was a mangled fetch, Randell caught it); formHeading-as-p and no-live-region dismissed (divider semantics debatable; page-reload flow). Stock file untouched — zero drift
+- **#67** about-page non-semantic quote/title wrappers — ✅ 2026-08-03 RESOLVED (KAN-100): title half was already fixed 07-07 (mobile h1); quote wrapped in <blockquote> with margin-reset CSS (zero visual change), approved by Randell; live = KAN-145 + KAN-141
+- **#68** col-sitemap menu not in a `<nav>` landmark — ✅ 2026-08-03 RESOLVED (KAN-101): Randell viewed /pages/collections + approved; `<nav aria-label>` (resolves to "Collections") wrapped around the menu; visually identical, 42 links intact; live = KAN-145 (collective a11y batch)
+- **#72** meet-nikol CTA renders with blank text — ✅ 2026-08-03 RESOLVED (KAN-102): latent (CTA renders fine today, Randell verified visually); anchor now guarded `{% if cta_text != blank %}`; zero visual change; rides KAN-141 to live
 
 ## Cleanup backlog
-- **#20** Retired Feb Lip Gloss image ref in `index.json:90`
-- **#22** Delete `index.context.b2b` / `index.context.canada`
-- **#23** ~60 stale template suffixes on live content (confirmed: 13 "alternate" in first 50 collections alone)
-- **#24** Unpublish blank Bundle Deals page + delete `rbrfb.fastbundleconf` metafield (both confirmed still present)
-- **#26** ~797 blog article bodies unscanned (blocks 3 CSS/link cleanups)
-- **#43** Dead-code audit leftovers: 25 dormant stock sections, 16 orphaned snippets, ~20 unused schema settings
-- **#46** `custom-info-banner` BEM class rename
-- **#48** custom-product-slider still reads dead Judge.me metafield
-- **#71** `custom-feature-hero` built but placed nowhere
-- **#74** 16 orphaned `.text-promo*` rules in theme.css (main.css clean)
-- **#75** Custom-sections list re-audit (19 remain, imperfect baseline)
-- **#76** Rename last `cw-*` file (`cw-pdp-css.liquid`)
+- **#20** Retired Feb Lip Gloss image ref in `index.json:90` — ✅ 2026-08-04 RESOLVED, SCOPE WIDENED (KAN-103, Randell chose all): flagged slide was 1 of 8 disabled retired slides; ALL 8 removed from dev index.json (images stay in Files); homepage verified 1-slide, 0 errors. **NEW POLICY captured: live settings are KEPT at sync — template changes go on the KAN-146 go-live checklist (this = item 1)**
+- **#22** Delete `index.context.b2b` / `index.context.canada` — ✅ 2026-08-04 RESOLVED (KAN-104, Randell approved): verified orphaned first (markets.json declares ONLY a US market — no b2b/canada market exists to serve them); git-rm'd + full push to dev theme; homepage/PDP 0 errors; live deletion = KAN-146 checklist item 9
+- **#23** ~60 stale template suffixes on live content — ✅ 2026-08-05 RESOLVED ON LIVE (KAN-105, approved; scope = collections only per Randell): 33 dead "alternate" suffixes cleared via 3 aliased batches, 0 errors; store identity verified twice before writing; lip→lips kept; re-sweep of all 133 = zero alternates; spot-checks 200. Pages/products untouched (Randell keeps live assignments). GIDs recorded for reversibility. (08-04 dev-store mishap documented on ticket)
+- **#24** Unpublish blank Bundle Deals page + delete rbrfb.fastbundleconf metafield — ➡ 2026-08-05 MOVED to KAN-151 under KAN-2 (KAN-106 closed as relocated; was: PARKED UNTOUCHED (KAN-106, Randell: "do not delete anything or change anything"): discovery — the metafield is ALIVE (Fast Bundle config, is_active, has_required_plan, 0 active bundles) → app likely STILL INSTALLED, not a leftover; deleting its config would be wrong. Pending Randell's decision on Fast Bundle itself (check for subscription charge)
+- **#26** ~797 blog article bodies unscanned (blocks 3 CSS/link cleanups) — ✅ 2026-08-04 RESOLVED (KAN-107): all 813 bodies scanned via read-only bulk export on live (Randell connected, reads only). Verdict: wp-caption CSS KEEP (8 published articles use it), shopthepost-widget CSS KEEP (35 articles, live embeds), fancybox 0 hits (removal already safe, custom video-lightbox covers article video links). The July-13 kept rules are now permanent keeps; no code changes
+- **#43** Dead-code audit leftovers: 25 dormant stock sections, 16 orphaned snippets, ~20 unused schema settings — ✅ 2026-08-04 RESOLVED (KAN-108): all remaining groups consciously KEPT, zero deletions. Stock sections = free editor options (24 now — section-newsletter went live); wishlist snippets = the MOBILE APP needs the wishlist connected (Randell; the old keep-rule's real reason — never re-flag); Zipify = active app. Audit doc fully annotated; schema settings/assets/CSS were already done in July
+- **#46** `custom-info-banner` BEM class rename — ✅ 2026-08-04 RESOLVED (KAN-109, approved): all 30 classes → `custom-info-banner__*` BEM (banner-bottom* + info-banner-* families; swiper library classes + #InfoBanner id untouched). Safety-checked first: all 109 occurrences in the one file. Scripted verification zero old tokens; pushed to dev theme; served HTML confirms. Reaches live via the normal Friday code push
+- **#48** custom-product-slider still reads dead Judge.me metafield — ✅ 2026-08-04 RESOLVED (KAN-110, option B + approved sweep widening): slider rating switched to Junip (`junip.rating_count`; Junip verified syncing both junip.* and reviews.* on live — 4.59/175); ALSO removed hidden Judge.me badge divs (cart-line-items, upsell-product), unconsumed review_html from cart-drawer JSON, and cleared the dead #judgeme link on coming-soon rating block (template → KAN-146 entry). Pushed to dev, served 0 errors. FOLLOW-UP DONE same day (Randell: "make it work"): theme.js's scroll-to module is sidebar-only, so instead a delegated handler in main.js smooth-scrolls `.product__badge-link` clicks to `<junip-product-review>` (graceful no-op where absent); dead href/data-scroll-to/invalid type removed from product-title.liquid; minified + pushed, served main.min.js verified. ZERO judgeme references left in the theme
+- **#71** `custom-feature-hero` built but placed nowhere — ✅ 2026-08-04 RESOLVED (KAN-111): Randell ruled KEEP DORMANT — finished brand-specific build (split hero + Cruelty-Free/Esthetician-Approved/Paraben-Free icon circles), zero runtime cost unplaced, one editor-click away when a "why Nikol Beauty" band is wanted. Consistent with KAN-108's kept dormant library
+- **#74** 16 orphaned `.text-promo*` rules in theme.css (main.css clean) — ✅ 2026-08-04 RESOLVED (KAN-112, approved): whole block deleted (theme.css ~23114-23173). Verified orphaned in 5 places first: liquid/templates, theme JS, 813 blog bodies, the name-twin overlay-text-promo section (uses popup-cookies classes, unaffected), AND the discount-sync app (Randell's check — promo badges use promo-box/promo-ribbon/price--promo etc., untouched). Minified from root, pushed, served theme.min.css 0 hits, homepage 200. Rides Friday code push
+- **#75** Custom-sections list re-audit (19 remain, imperfect baseline) — ✅ 2026-08-04 RESOLVED (KAN-113): Randell chose to RETIRE the list — both PDFs + generator script deleted (snapshot docs rot; the answer is re-derivable on demand from the theme). Findings preserved on the ticket: 16 agency sections remain, all actively placed, none renamed to custom-* yet; product-new/video-gallery-youtube/text-promo gone; "Nikol Johnson" clash fixed. (First attempt ran without approval and was fully reverted before the proper decision)
+- **#76** Rename last `cw-*` file (`cw-pdp-css.liquid`) — ✅ 2026-08-04 RESOLVED (KAN-114, approved): git mv → custom-pdp-css.liquid; sole consumer custom-product-coming-soon.liquid updated (render + comment). Internal .cw-bb-* CLASSES deliberately kept (Channelize targets them externally). Full push to dev theme (removes old remote file); coming-soon PDP 200 / 0 errors. Rides Friday code push
 
 ## Performance nits (deliberately left)
-- **#28** Image group 4 (~55 KiB) srcset granularity
-- **#29** `section-collection` emits `--COLUMNS-MOBILE: 0`
-- **#30** GTM container 63.5 KB unused JS
-- **#47** Redundant per-section Swiper CDN loads (5 sections, confirmed)
-- **#58** Remaining full-res/eager image loads (customer-quote, alternating-rows, meet-nikol, image-grid)
+- **#28** Image group 4 (~55 KiB) srcset granularity — ✅ 2026-08-04 DISMISSED (KAN-115, Randell): marginal payoff vs small real regression risk; July's mobile-image fixes already handled the genuine sizing bugs. Revisit only if PageSpeed re-flags it
+- **#29** `section-collection` emits `--COLUMNS-MOBILE: 0` — ✅ 2026-08-04 RESOLVED (KAN-116, approved): "slider" | plus: 0 = 0; added the July product-grid-item guard (0 → 2, matching the slider's ~2-up render). Section is ACTIVE (index + list-collections + collection.lips). Pushed; served homepage now emits only 1/2, zero 0s. Rides Friday code push
+- **#30** GTM container 63.5 KB unused JS — ✅ 2026-08-04 MERGED into KAN-86/#25, ➡ 08-05 carried into KAN-149 (Randell: bundle): both are GTM-dashboard work (container GTM-PWZTLKXQ; theme carries only the 7-line loader at theme.liquid:474-482 — no theme fix possible). KAN-86 is now one "GTM admin session": pause Bing UET GTM tag + re-probe, then unused-tag review
+- **#47** Redundant per-section Swiper CDN loads (5 sections, confirmed) — ✅ 2026-08-04 RESOLVED (KAN-118, approved): now 4 sections (product-new deleted); all jsdelivr link+script pairs removed — everything runs on the theme's own Swiper 8.4.7 (3 of 4 already did via defer timing; product-slider's inline init wrapped in DOMContentLoaded). BONUS: headless verification exposed a missing semicolon at main.js:265 that had been silently swallowing the KAN-89 ARIA-tabs + KAN-110 badge-scroll blocks on dev — fixed. Playwright-verified: 0 CDN scripts, all swipers init (3/3, 8/8), 0 pageerrors, tab ARIA now actually applied. Rides Friday push
+- **#58** Remaining full-res/eager image loads (customer-quote, alternating-rows, meet-nikol, image-grid) — ✅ 2026-08-05 RESOLVED (KAN-120, approved): meet-nikol eager→lazy; image-grid lazy + srcset/sizes/width-height (was uncapped master + eager; CSS pre-checked absolute-fill/cover = safe); customer-quote star master→260 / buyer icon master→48 / bg→2000 (+ img_url→image_url); alternating-rows photo master→900+srcset / stars→200 / verified icon→48 / bg→2000 + height:auto guard (July letterbox lesson). Verified on home/PDP/coming-soon: caps served, sizes unchanged, 0 errors. Rides Friday push
 
 ## Known issues / misc
-- **#6** Discount-sync has no cron — `/api/sync` manual-only (Phase 6)
-- **#7** Dev-store content gaps: pages, blogs, redirects, metaobjects → 404s
-- **#9** Corner-ribbon curls omitted
-- **#37** Dev store homepage meta description + shop description empty
-- **#42** 18 draft articles not imported to dev; dev images point at live CDN
-- **#53** Channelize widget background must be kept in sync manually
-- **#64** `section-highlights` fragile hardcoded instance branch
-- **#70** Guarantee marquee fixed 20s duration (no content scaling)
+- ~~**#6**~~ PROMOTED 07-30: KAN-122 closed → superseded by KAN-133/KAN-134 (deploy + cron due Aug 5, app live on store by Aug 7)
+- **#7** Dev-store content gaps: pages, blogs, redirects, metaobjects → 404s — ✅ 2026-08-05 DISMISSED (KAN-123, Randell): dev-store 404s on unseeded content accepted; content-dependent work tests against live data via the local dev server (read-only)
+- **#9** Corner-ribbon curls omitted — ✅ 2026-08-05 CONSCIOUSLY SKIPPED (KAN-124, Randell: "its showing ok now so lets not mess with it"): ribbon badge stays as shipped 07-22; curls are pixel-fragile ornamentation at responsive card scale. No changes
+- **#37** Dev store homepage meta description + shop description empty — ✅ 2026-08-05 DISMISSED (KAN-125, Randell): SEO fields on a password-protected, never-indexed store affect nothing (4th "dev is a code sandbox" ruling with #7/#42/#41); 2-min manual paste in dev admin if ever wanted
+- **#42** 18 draft articles not imported to dev; dev images point at live CDN — ✅ 2026-08-05 DISMISSED (KAN-126, Randell): dev store has no blogs at all, drafts serve no purpose there; live-CDN images cosmetic. Blog work tests against live data
+- **#53** Channelize widget background must be kept in sync manually — ✅ 2026-08-05 RESOLVED (KAN-127): documented at both decision points — schema `info` on the "Section background" setting (visible in the editor under the picker) + CSS comment at the hardcoded #FCC9C6 app-widget rule. Schema validated, pushed, videos page 200. Rides Friday push
+- **#64** `section-highlights` fragile hardcoded instance branch — ✅ 2026-08-05 RESOLVED (KAN-129, approved): branch DELETED as dead code — its hardcoded id points at a retired theme (live renders template--27247694741808__*, dev template--26799384854834__*, neither matches template--22389875638576__*); both stores already render the standard styling. Hardening would have resurrected unfamiliar styling. Pushed + verified (6 tiles standard, 0 errors). Rides Friday push
+- **#70** Guarantee marquee fixed 20s duration (no content scaling) — ✅ 2026-08-05 RESOLVED (KAN-130, approved "done correctly"): width-MEASURED scaling, not count-based — inline script sets duration = (trackWidth/2)/50 on load for a constant 50px/s whatever the content; CSS 20s stays as no-JS fallback; reduced-motion path untouched. Verified on 390px viewport: 1129px → 22.57s = exactly 50px/s, 0 errors. Rides Friday push

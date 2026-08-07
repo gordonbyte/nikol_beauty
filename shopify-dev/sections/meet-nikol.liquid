@@ -13,7 +13,7 @@
           width="{{ section.settings.image.width }}"
           height="{{ section.settings.image.height }}"
           alt="{{ section.settings.image.alt | default: shop.name }}"
-          loading="eager"
+          loading="lazy"
           >
       </figure>
     </div>
@@ -25,9 +25,11 @@
         <div class="meet-nikol__copy">
           {{ section.settings.copy }}
         </div>
-        <a href="{{ section.settings.cta_link }}" class="link">
-          {{ section.settings.cta_text }}
-        </a>
+        {%- if section.settings.cta_text != blank -%}
+          <a href="{{ section.settings.cta_link }}" class="link">
+            {{ section.settings.cta_text }}
+          </a>
+        {%- endif -%}
       </div>
     </div>
   </div>

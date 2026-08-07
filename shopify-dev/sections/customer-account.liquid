@@ -69,7 +69,7 @@
 
 
       <div class="account-main">
-        <h2 class="page__heading">{{ 'customer.orders.title' | t }}</h2>
+        <h1 class="page__heading h2">{{ 'customer.orders.title' | t }}</h1>
         {% paginate customer.orders by 20 %}
           {% if customer.orders.size != 0 %}
             <table>

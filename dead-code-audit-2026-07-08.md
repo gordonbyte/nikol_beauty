@@ -16,19 +16,19 @@ Method: scripted scan of every file in `shopify-live/` (124 sections, 175 snippe
 | sections/custom-feature-hero.liquid | 702 lines | Built + polished, awaiting placement |
 | sections/custom-instagram-feed.liquid | 62 lines | Kept deliberately after pre-footer group removal (2026-07-06) |
 
-### A3. Dormant stock Broadcast library (25) — unplaced but editor-insertable
+### A3. Dormant stock Broadcast library (25) — unplaced but editor-insertable — ✅ 2026-08-04 CONSCIOUSLY KEPT (KAN-108): zero runtime cost while unplaced; they're the merchant's future editor options; deleting only creates drift from stock Broadcast. UPDATE: section-newsletter is no longer dormant (placed in a template with the coming-soon newsletter work) — 24 remain dormant.
 featured-posts (259L), overlay-text-promo (287L), section-accordion-group (330L), section-anchor-logo (73L), section-announcement (355L), section-before-after (259L), section-blog (396L), section-collections-list-hover (283L), section-collections-list (386L), section-countdown-timer (550L), section-divider (101L), section-map (312L), section-multicolumn (618L), section-newsletter (656L), section-press-logos (319L), section-product (216L), section-products-image (335L), section-recent-products (140L), section-reviews (378L), section-sidebar (282L), section-tab-collections (700L), section-text-row (334L), section-text-with-products (572L), section-timeline (489L), section-video (272L).
 Standard theme library — merchants can insert them in the editor. Only worth deleting if you decide to trim the library.
 
 ### A4. App-owned (1)
 sections/index-content-zipifypages.liquid (12L) — Zipify.
 
-## B. Orphaned snippets — 16 files (all app-owned / keep-rule; zero theme-built orphans)
+## B. Orphaned snippets — 16 files (all app-owned / keep-rule; zero theme-built orphans) — ✅ 2026-08-04 ALL CONSCIOUSLY KEPT (KAN-108). Wishlist reason finally established (Randell): the MOBILE APP uses the wishlist and needs it connected to work properly — orphaned-in-storefront ≠ dead. NEVER delete or re-flag wishlist files. Zipify snippets kept (app active).
 - **HulkApps wishlist (5) — DO NOT DELETE per standing directive:** hulkapps-wishlist-account-btn (4L), -cart-btn (28L), -collection-btn (12L), -header-icon (28L), -saveforlater-allitems (53L)
 - **Zooomy (2) — keep per wishlist rule:** ZooomyListWishlistColl (2L), ZooomyListWishlistProduct (4L)
 - **Zipify (9) — app-owned:** best-value-horizontal-view (58L), best-value-offer-view (47L), best-value-view (44L), collection-content (4L), offer-box-view (61L), product-content (4L), product-view (35L), recharge-subscription-view (43L), three-products-view (28L)
 
-### B2. Snippets alive only via dormant stock sections (2)
+### B2. Snippets alive only via dormant stock sections (2) — ✅ 2026-08-04 KEPT with A3 (their parent sections stay)
 - snippets/brick-products.liquid ← only section-products-image (dormant stock)
 - snippets/collection-grid-item.liquid ← only section-collections-list (dormant stock)
 
@@ -69,8 +69,8 @@ sections/index-content-zipifypages.liquid (12L) — Zipify.
 | sections/new-article.liquid | 2 | ✅ 2026-07-08: both WIRED — show_image gates the hero photo (+ blank-src bug fix); the Related Posts strip became the `recent` block (heading editable, removable, @app functional); template block titles migrated |
 | sections/custom-product-coming-soon.liquid | 1 | ✅ 2026-07-08: REMOVED — schema-only checkbox, no zoom code exists in the bespoke gallery (build zoom in the future PDP pass if wanted) |
 | sections/cart-drawer.liquid | 1 | ✅ 2026-07-08: REMOVED per user decision (tested on /cart, chose no drawer upsells) — phantom block type deleted from drawer schema; saved block removed from group-overlay.json (mirroring the user's editor deletion so a push can't resurrect it). Cart PAGE's working upsell untouched. |
-| sections/product.liquid | 1 | 🔍 VERIFIED 2026-07-08: **phantom block** — no `when 'upsell'` case exists in the body at all (agency removed it; product-new/coming-soon still have theirs). Saved upsell blocks on product.json/fastbundle/free-products/lipstick templates render nothing. Wiring = porting the case from product-new → upsell UI would APPEAR on live PDPs → defer to PDP pass as a feature-restoration decision. |
-| sections/custom-product-waitlist.liquid | 1 | 🔍 VERIFIED 2026-07-08: same phantom-block situation as product.liquid (no `when 'upsell'` case; waitlist.json's saved upsell block is invisible). Defer to PDP pass. |
+| sections/product.liquid | 1 | ✅ RESOLVED 2026-07-31 (KAN-55): `when 'upsell'` case RESTORED (plain product-new variant); phantom block instance DELETED from product.json (feature now one editor-click away, powered by theme.upsell metafields on ~88% of products). Also note: product-new.liquid + product.new.json were DELETED entirely 2026-08-03 (KAN-56). |
+| sections/custom-product-waitlist.liquid | 1 | ✅ RESOLVED 2026-07-31 (KAN-55): `when 'upsell'` case restored; phantom block deleted from product.waitlist.json. |
 | sections/section-double.liquid | 0 confirmed | (collection.* fields are dynamic-read — false alarm) |
 
 ## G. Dead in-file CSS classes — ✅ RESOLVED 2026-07-08 (3 files edited; list re-verified against post-#1–#4 code first)

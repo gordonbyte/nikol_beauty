@@ -692,6 +692,9 @@
       </span>
       <span class="promo-on-sale-pill" style="background: {{ promo_badge_bg }};">On Sale</span>
     {%- else -%}
+      {% if product.compare_at_price > product.price %}
+        <span class="old-price">{{ product_compare_at_price }}</span>
+      {% endif %}
       <span class="new-price">
         {% if product.price_varies %}
           <small>{{ 'products.general.from' | t }}</small>
@@ -702,16 +705,9 @@
           {{ product_price_min }}
         {%- endif -%}
       </span>
-      {% if product.compare_at_price > product.price %}
-        <span class="old-price">{{ product_compare_at_price }}</span>
-      {% endif %}
     {%- endif -%}
   {% else %}
-    {%- if product.handle == '10x-mirror' -%}
-      <span class="sold-out sold-out--notify" style="color:#d34270 !important;">Notify me when it goes live</span>
-    {%- else -%}
-      <span class="sold-out">{{ 'products.product.sold_out' | t }}</span>
-    {%- endif -%}
+    <span class="sold-out">{{ 'products.product.sold_out' | t }}</span>
   {% endif %}
 </span>
 {% if current_variant.unit_price %}

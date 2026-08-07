@@ -212,6 +212,10 @@
 /* === Product sale color ===*/
 --COLOR-SALE: {{ settings.sale_color }};
 
+/* === Product card price colors ===*/
+--COLOR-CARD-PRICE: {{ settings.card_price_color | default: settings.text_color }};
+--COLOR-CARD-SALE-PRICE: {{ settings.card_sale_price_color | default: settings.sale_color }};
+
 /* === Gray background on Product grid items ===*/
 {%- if settings.show_gray_bg -%}
   --filter-bg: .97;

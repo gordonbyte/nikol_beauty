@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
-<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-
 {%- style -%}
   #ProductSlider-{{ section.id }} {
     --custom-product-slider-bg: {{ section.settings.background_color }};
@@ -342,7 +339,7 @@
                       </a>
                     </div>
 
-                    {%- if product.metafields.judgeme.badge -%}
+                    {%- if product.metafields.junip.rating_count > 0 -%}
                       <div class="custom-product-slider__rating">
                         <span class="custom-product-slider__stars" aria-hidden="true">
                           <svg width="74" height="14" viewBox="0 0 74 14" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
@@ -353,7 +350,7 @@
                             <path d="M66.5684 0L68.2123 5.35983L73.5684 5.34752L69.2284 8.64777L70.8946 14L66.5684 10.6798L62.2421 14L63.9084 8.64777L59.5684 5.34752L64.9244 5.35983L66.5684 0Z" fill="#FB6D00"/>
                           </svg>
                         </span>
-                        <span class="custom-product-slider__review-count">{{ product.metafields.judgeme.badge | split: "data-number-of-reviews='" | last | split: "'" | first | default: "0" }} <span class="visually-hidden">reviews</span></span>
+                        <span class="custom-product-slider__review-count">{{ product.metafields.junip.rating_count }} <span class="visually-hidden">reviews</span></span>
                       </div>
                     {%- endif -%}
 
@@ -404,7 +401,8 @@
   var root = document.getElementById('ProductSlider-{{ section.id }}');
   if (!root) return;
 
-  if (typeof Swiper !== 'undefined') {
+  function initSliders() {
+    if (typeof Swiper === 'undefined') return;
     root.querySelectorAll('.custom-product-slider__swiper').forEach(function (slider) {
       new Swiper(slider, {
         slidesPerView: 1.2,
@@ -422,6 +420,11 @@
         }
       });
     });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSliders);
+  } else {
+    initSliders();
   }
 
   var tablist = root.querySelector('[role="tablist"]');

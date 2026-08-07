@@ -1,10 +1,4 @@
-<!-- Swiper CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-  {% render 'cw-pdp-css' %}
+  {% render 'custom-pdp-css' %}
 
 {%- comment -%} Review-card styles (self-contained; previously inherited from the alternating-rows section) {%- endcomment -%}
 <style>
@@ -190,7 +184,7 @@
   }
 
   /* Sticky gallery — template-agnostic replacement for the section-ID-hardcoded
-     rules in cw-pdp-css.liquid, so it works regardless of which template renders custom-product-coming-soon. */
+     rules in custom-pdp-css.liquid, so it works regardless of which template renders custom-product-coming-soon. */
   #Product--{{ section.id }} .product__page > .cw-new-popup-kl {
     position: sticky;
     top: 100px;

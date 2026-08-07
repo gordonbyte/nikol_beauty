@@ -31,12 +31,6 @@
   if buybutton_setting
     assign btn_atc_class = 'btn--outline'
   endif
-
-  assign custom_oos_handle = '10x-mirror'
-  assign show_custom_oos_button = false
-  if product.handle == custom_oos_handle and product.available == false
-    assign show_custom_oos_button = true
-  endif
 -%}
 
 {%- capture quantity_selector -%}
@@ -102,12 +96,6 @@
   {%- endif -%}
 {%- endcapture -%}
 
-{%- if show_custom_oos_button -%}
-  <style>
-    .nm-portal, .product__submit__item, .wishlist-engine { display: none !important; }
-  </style>
-{%- endif -%}
-
 <div class="product__block product__block--buttons block-padding"
   {{ block_style }}
   {{ block.shopify_attributes }}
@@ -138,41 +126,6 @@
 
         </div>
         <div class="product__buttons-row">
-          {%- if show_custom_oos_button -%}
-          <div
-            class="prelaunch-notify"
-            id="CustomOosNotify-{{ unique }}"
-            data-oos-notify
-            data-klaviyo-key="TqzBWX"
-            data-klaviyo-list="R9z9N3"
-            data-product-title="{{ product.title | escape }}"
-            data-product-handle="{{ product.handle }}"
-            data-success="Thanks! We'll email you when it launches."
-            data-error="Something went wrong. Please try again."
-          >
-            <button
-              type="button"
-              class="cta cta--solid prelaunch-notify__trigger"
-              data-notify-trigger
-              {% if customer %}data-email="{{ customer.email }}"{% endif %}
-            >Notify me when it goes live</button>
-
-            {%- comment -%} Uses a div (not a form) to avoid nesting inside the product form {%- endcomment -%}
-            <div class="prelaunch-notify__form" data-notify-form hidden>
-              <input
-                type="email"
-                class="prelaunch-notify__email"
-                data-notify-email
-                placeholder="Enter your email"
-                autocomplete="email"
-                required
-              >
-              <button type="button" class="cta cta--solid prelaunch-notify__submit" data-notify-submit>Notify me</button>
-            </div>
-
-            <p class="prelaunch-notify__msg" data-notify-msg hidden role="status" aria-live="polite"></p>
-          </div>
-          {%- else -%}
           <button
             type="submit"
             name="add"
@@ -200,7 +153,6 @@
                 
               </div>
             {%- endif -%}
-          {%- endif -%}
         </div>
 
         </div>
@@ -209,152 +161,3 @@
   </product-form>
 </div>
 
-{%- if show_custom_oos_button -%}
-{%- style -%}
-  /* Entrance "life" for the notify component */
-  #CustomOosNotify-{{ unique }} { animation: customOosNotifyIn 0.5s ease both; }
-  @keyframes customOosNotifyIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-  /* Shared, prominent button styling for the trigger + submit */
-  #CustomOosNotify-{{ unique }} .prelaunch-notify__trigger,
-  #CustomOosNotify-{{ unique }} .prelaunch-notify__submit {
-    border-radius: 0;
-    font-weight: 700;
-    font-size: 1.1em;
-    letter-spacing: 0.02em;
-    padding: 16px 28px;
-    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, opacity 0.18s ease;
-  }
-  #CustomOosNotify-{{ unique }} .prelaunch-notify__trigger { width: 100%; }
-  #CustomOosNotify-{{ unique }} .prelaunch-notify__trigger:hover,
-  #CustomOosNotify-{{ unique }} .prelaunch-notify__submit:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
-  #CustomOosNotify-{{ unique }} .prelaunch-notify__trigger:active,
-  #CustomOosNotify-{{ unique }} .prelaunch-notify__submit:active { transform: translateY(0); box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
-
-  #CustomOosNotify-{{ unique }} .prelaunch-notify__form:not([hidden]) { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; animation: customOosNotifyIn 0.35s ease both; }
-  #CustomOosNotify-{{ unique }} .prelaunch-notify__email {
-    flex: 1 1 220px; min-width: 0;
-    padding: 14px 16px;
-    border: 2px solid #000;
-    border-radius: 0;
-    font: inherit;
-    transition: box-shadow 0.18s ease;
-  }
-  #CustomOosNotify-{{ unique }} .prelaunch-notify__email:focus { outline: none; box-shadow: 0 0 0 3px rgba(0,0,0,0.15); }
-  #CustomOosNotify-{{ unique }} .prelaunch-notify__submit { flex: 0 0 auto; }
-  #CustomOosNotify-{{ unique }} .prelaunch-notify__msg { margin-top: 10px; font-size: var(--FONT-SIZE-BASE); font-weight: 600; }
-  #CustomOosNotify-{{ unique }} .prelaunch-notify__msg.is-error { color: #b00020; }
-  #CustomOosNotify-{{ unique }} .prelaunch-notify__msg.is-success { color: #1a7f5a; }
-
-  /* Mobile (~425px): stack the submit below the field, full width, matched height */
-  @media (max-width: 425px) {
-    #CustomOosNotify-{{ unique }} .prelaunch-notify__form:not([hidden]) { flex-direction: column; align-items: stretch; gap: 10px; }
-    #CustomOosNotify-{{ unique }} .prelaunch-notify__email,
-    #CustomOosNotify-{{ unique }} .prelaunch-notify__submit {
-      flex: 0 0 auto;
-      width: 100%;
-      height: 54px;
-      box-sizing: border-box;
-    }
-    #CustomOosNotify-{{ unique }} .prelaunch-notify__submit {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 20px;
-    }
-  }
-
-  /* Respect reduced-motion preferences */
-  @media (prefers-reduced-motion: reduce) {
-    #CustomOosNotify-{{ unique }},
-    #CustomOosNotify-{{ unique }} .prelaunch-notify__form:not([hidden]) { animation: none; }
-    #CustomOosNotify-{{ unique }} .prelaunch-notify__trigger,
-    #CustomOosNotify-{{ unique }} .prelaunch-notify__submit { transition: none; }
-    #CustomOosNotify-{{ unique }} .prelaunch-notify__trigger:hover,
-    #CustomOosNotify-{{ unique }} .prelaunch-notify__submit:hover { transform: none; box-shadow: none; }
-  }
-{%- endstyle -%}
-<script>
-  (function () {
-    var root = document.getElementById('CustomOosNotify-{{ unique }}');
-    if (!root) return;
-
-    var key = root.getAttribute('data-klaviyo-key');
-    var listId = root.getAttribute('data-klaviyo-list');
-    var productTitle = root.getAttribute('data-product-title');
-    var productHandle = root.getAttribute('data-product-handle');
-    var successText = root.getAttribute('data-success');
-    var errorText = root.getAttribute('data-error');
-
-    var trigger = root.querySelector('[data-notify-trigger]');
-    var form = root.querySelector('[data-notify-form]');
-    var emailInput = root.querySelector('[data-notify-email]');
-    var submitBtn = root.querySelector('[data-notify-submit]');
-    var msg = root.querySelector('[data-notify-msg]');
-    var loggedInEmail = trigger ? trigger.getAttribute('data-email') : null;
-
-    function showMsg(text, ok) {
-      if (!msg) return;
-      msg.textContent = text;
-      msg.hidden = false;
-      msg.classList.remove('is-error', 'is-success');
-      msg.classList.add(ok ? 'is-success' : 'is-error');
-    }
-
-    function done() {
-      if (trigger) trigger.hidden = true;
-      if (form) form.hidden = true;
-      showMsg(successText, true);
-    }
-
-    function subscribe(email) {
-      if (!key || !listId) { showMsg('Notify list is not configured yet.', false); return; }
-      var payload = {
-        data: {
-          type: 'subscription',
-          attributes: {
-            profile: {
-              data: {
-                type: 'profile',
-                attributes: {
-                  email: email,
-                  properties: { 'Waitlist Product': productTitle, 'Waitlist Handle': productHandle }
-                }
-              }
-            }
-          },
-          relationships: { list: { data: { type: 'list', id: listId } } }
-        }
-      };
-      fetch('https://a.klaviyo.com/client/subscriptions/?company_id=' + encodeURIComponent(key), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', revision: '2024-10-15' },
-        body: JSON.stringify(payload)
-      })
-        .then(function (r) { if (r.status === 202 || r.ok) { done(); } else { showMsg(errorText, false); } })
-        .catch(function () { showMsg(errorText, false); });
-    }
-
-    function handleSubmit() {
-      var email = (emailInput && emailInput.value || '').trim();
-      if (!email) return;
-      subscribe(email);
-    }
-
-    if (trigger) {
-      trigger.addEventListener('click', function () {
-        if (loggedInEmail) { subscribe(loggedInEmail); }
-        else if (form) { form.hidden = false; trigger.hidden = true; if (emailInput) emailInput.focus(); }
-      });
-    }
-    if (submitBtn) {
-      submitBtn.addEventListener('click', function (e) { e.preventDefault(); handleSubmit(); });
-    }
-    if (emailInput) {
-      emailInput.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') { e.preventDefault(); handleSubmit(); }
-      });
-    }
-  })();
-</script>
-{%- endif -%}

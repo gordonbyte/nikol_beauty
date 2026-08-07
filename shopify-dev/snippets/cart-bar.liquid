@@ -129,7 +129,7 @@
       {%- endif -%}
 
       <div class="cart-bar__info__text">
-        <h4 class="cart-bar__product__title">{{ product.title | strip_html }}</h4>
+        <p class="cart-bar__product__title">{{ product.title | strip_html }}</p>
 
         <div class="h5--body cart-bar__product__price product__price{% if promo_sale_price_display != blank %} product__price--promo{% endif %}" data-price-wrapper>
           {%- if show_promo_markup -%}
