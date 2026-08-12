@@ -368,20 +368,6 @@
     },
     "177628004852077364": {
       "type": "apps",
-      "blocks": {
-        "junip_junip_product_review_bNeiRT": {
-          "type": "shopify://apps/junip/blocks/junip-product-review/dc14f5a8-ed15-41b1-ad08-cfba23f9789b",
-          "settings": {
-            "product": "{{product}}",
-            "title": "",
-            "alignment": "center",
-            "sortOrder": "mostRecent"
-          }
-        }
-      },
-      "block_order": [
-        "junip_junip_product_review_bNeiRT"
-      ],
       "settings": {
         "include_margins": false
       }

@@ -13,11 +13,11 @@
           width="{{ section.settings.image.width }}"
           height="{{ section.settings.image.height }}"
           alt="{{ section.settings.image.alt | default: shop.name }}"
-          loading="eager"
+          loading="lazy"
           >
       </figure>
     </div>
-    <div class="meet-nikol__right" style="background-image: url({{ 'meet-nikol-bg.png' | asset_url }})">
+    <div class="meet-nikol__right" style="background-image: url({{ 'meet-nikol-bg.png' | asset_url }}); background-color: {{ section.settings.bg_color | default: '#FCC9C6' }}">
       <div class="meet-nikol__text">
         <h2 class="meet-nikol__title">
           {{ section.settings.title }}  
@@ -25,9 +25,11 @@
         <div class="meet-nikol__copy">
           {{ section.settings.copy }}
         </div>
-        <a href="{{ section.settings.cta_link }}" class="link">
-          {{ section.settings.cta_text }}
-        </a>
+        {%- if section.settings.cta_text != blank -%}
+          <a href="{{ section.settings.cta_link }}" class="link">
+            {{ section.settings.cta_text }}
+          </a>
+        {%- endif -%}
       </div>
     </div>
   </div>
@@ -52,6 +54,12 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Panel background color",
+      "default": "#FCC9C6"
     },
     {
       "type": "richtext",

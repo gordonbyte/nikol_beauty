@@ -210,14 +210,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    /* Testimonials slider */
+    /* Video product sliders — init deferred until scrolled near view */
     let sliderProducts = document.querySelectorAll('.video-product-hub .swiper-container')
     let sliderProductsNext  = document.querySelectorAll('.video-product-hub .swiper-next')
     let sliderProductssPrev = document.querySelectorAll('.video-product-hub .swiper-prev')
 
     let productsSlidersArray  = [];
 
-    sliderProducts.forEach(function(element, i) {
+    function initProductSlider(element, i) {
       productsSlidersArray.push(
         new Swiper(element, {
           spaceBetween: 0,
@@ -239,7 +239,24 @@ document.addEventListener('DOMContentLoaded', () => {
           },
         })
       );
-    });
+    }
+
+    if ('IntersectionObserver' in window) {
+      let productSliderObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          productSliderObserver.unobserve(entry.target);
+          let i = Array.prototype.indexOf.call(sliderProducts, entry.target);
+          initProductSlider(entry.target, i);
+        });
+      }, { rootMargin: '200px 0px' });
+
+      sliderProducts.forEach(function(element) {
+        productSliderObserver.observe(element);
+      });
+    } else {
+      sliderProducts.forEach(initProductSlider);
+    }
 
     // Comments
     document.querySelectorAll('.js-toggle-comments').forEach(function(button) {

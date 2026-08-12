@@ -11,9 +11,6 @@
   "sections": {
     "hero": {
       "type": "collection-image-with-title",
-      "custom_css": [
-        ".hero__content.hero__content--transparent {padding-top: 20px !important; padding-bottom: 0px !important;}"
-      ],
       "settings": {
         "show_title": true,
         "show_description": false,
@@ -54,7 +51,7 @@
             "text": "{{ collection.description }}",
             "text_size": 4,
             "text_style": "font-body",
-            "padding_bottom": 10
+            "padding_bottom": 0
           }
         }
       },
@@ -67,8 +64,8 @@
         "align_text": "text-left",
         "bg_color": "",
         "color": "",
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_top": 24,
+        "padding_bottom": 24
       }
     },
     "main": {
@@ -100,7 +97,7 @@
             "text": "{{ collection.metafields.custom.bottom_description | metafield_tag }}",
             "text_size": 4,
             "text_style": "font-body",
-            "padding_bottom": 16
+            "padding_bottom": 0
           }
         }
       },
@@ -113,8 +110,8 @@
         "align_text": "text-left",
         "bg_color": "",
         "color": "",
-        "padding_top": 0,
-        "padding_bottom": 100
+        "padding_top": 24,
+        "padding_bottom": 44
       }
     }
   },

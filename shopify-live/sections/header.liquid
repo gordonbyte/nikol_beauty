@@ -16,7 +16,6 @@
   assign menu_height_medium_default = 42
   assign menu_height_mobile_default = 42
   assign header_icons_height = 34
-  assign toolbar_height = 0
 
   assign transparent_header = false
   if template contains 'collection' and collection.image and section.settings.transparent_collection
@@ -89,14 +88,6 @@
   if tertiary_menu_linklist != blank and linklists[tertiary_menu_linklist].links.size > 0
     assign tertiary_menu_height = 12 | times: settings.type_nav_size | times: 0.01 | times: 1.2 | plus: 32
     assign header_height_mobile = header_height_mobile | plus: tertiary_menu_height
-  endif
-
-  if toolbar_block
-    assign toolbar_height = 36 | times: settings.type_nav_size | times: 0.01
-
-    assign header_height = header_height | plus: toolbar_height
-    assign header_height_medium = header_height_medium | plus: toolbar_height
-    assign header_height_mobile = header_height_mobile | plus: toolbar_height
   endif
 
   assign cart_item_count = cart.item_count
@@ -190,148 +181,6 @@
   {%- endunless -%}
 {%- endstyle -%}
 
-{%- capture toolbar -%}
-  {%- comment -%} Header Toolbar block {%- endcomment -%}
-
-{%- liquid
-  assign show_toolbar = false
-  assign show_utilities = false
-  assign show_toolbar_menu = false
-
-  assign block = toolbar_block
-  if block
-    assign show_toolbar = true
-    assign text = block.settings.text
-    assign menu = block.settings.menu
-    assign menu_links = linklists[menu].links
-    assign languages = false
-    assign countries = false
-    assign show_locale_selector = block.settings.show_locale_selector
-    assign show_country_selector = block.settings.show_country_selector
-    assign show_country_name = block.settings.show_country_name
-    assign show_country_flag = block.settings.show_country_flag
-    assign show_toolbar_socials = block.settings.show_social_links
-    assign show_toolbar_gift_card = block.settings.show_gift_card
-    assign bg_color = block.settings.bg_color
-    assign text_color = block.settings.color
-    assign show_border = block.settings.show_border
-    assign border_opacity = block.settings.border_opacity | times: 0.01
-    assign root_url = routes.root_url
-    if root_url != '/'
-      assign root_url = root_url | append: '/'
-    endif
-
-    if menu_links.size > 0
-      assign show_toolbar_menu = true
-    endif
-
-
-    if show_locale_selector and localization.available_languages.size > 1
-      assign languages = true
-    endif
-
-    if show_country_selector and localization.available_countries.size > 1
-      assign countries = true
-    endif
-
-    if languages or countries or show_toolbar_socials or show_toolbar_gift_card
-      assign show_utilities = true
-    endif
-
-    capture style
-      if bg_color != 'rgba(0,0,0,0)' and bg_color != blank
-        echo '--bg: ' | append: bg_color | append: ';'
-      else
-        echo '--bg: transparent;'
-      endif
-
-      if text_color != 'rgba(0,0,0,0)' and text_color != blank
-        echo '--text: ' | append: text_color | append: ';'
-      endif
-
-      if show_border
-        echo '--border-opacity: ' | append: border_opacity  | append: ';'
-      endif
-    endcapture
-  endif
--%}
-
-{%- capture toolbar_menu -%}
-  {%- if show_toolbar_menu -%}
-    {%- for link in menu_links -%}
-      <a href="{{ link.url }}" class="navlink navlink--toplevel">{{ link.title }}</a>
-    {%- endfor -%}
-  {%- endif -%}
-{%- endcapture -%}
-
-{%- capture gift_card_link -%}
-  <div class="toolbar__utility">
-    <a class="gift-card-link" href="{{ root_url }}products/{{ 'layout.header.gift_card_url' | t }}">{{ 'layout.header.gift_card' | t }}</a>
-  </div>
-{%- endcapture -%}
-
-{%- capture utilities -%}
-  {%- if show_utilities -%}
-    {%- if show_toolbar_socials -%}
-      <div class="toolbar__utility">
-        {%- render 'social-icons' -%}
-      </div>
-    {%- endif -%}
-
-    {%- if show_toolbar_gift_card -%}
-      {{ gift_card_link }}
-    {%- endif -%}
-
-    {%- if languages or countries -%}
-      <div class="toolbar__utility">
-        {%- render 'localization' unique: block.id, show_locale_selector: show_locale_selector, show_country_selector: show_country_selector, show_country_flag: show_country_flag, show_country_name: show_country_name, class: 'header' -%}
-      </div>
-    {%- endif -%}
-  {%- endif -%}
-{%- endcapture -%}
-
-{%- if show_toolbar -%}
-  {%- if show_utilities or text != blank -%}
-    <div class="toolbar{% if show_border %} has-border{% endif %}"
-      {% if style != blank %}
-        style="{{ style }}"
-      {% endif %}
-      data-header-toolbar
-      {{ block.shopify_attributes }}>
-      <div class="wrapper--full-padded">
-        <div class="toolbar__inner{% if text == blank %} desktop{% endif %}">
-          {%- if show_toolbar_menu or text != blank -%}
-            <ticker-bar class="toolbar__text">
-              <div data-ticker-frame class="toolbar__text__frame">
-                <div data-ticker-scale class="toolbar__text__ticker announcement__scale ticker--unloaded">
-                  <div data-ticker-text class="announcement__text">
-                    {%- if text != blank -%}
-                      <div class="toolbar__text">{{ text }}</div>
-                    {%- endif -%}
-
-                    {%- if show_toolbar_menu -%}
-                      <div class="toolbar__menu desktop">
-                        {{ toolbar_menu }}
-                      </div>
-                    {%- endif -%}
-                  </div>
-                </div>
-              </div>
-            </ticker-bar>
-          {%- endif -%}
-
-          {%- if show_utilities -%}
-            <div class="toolbar__utilities desktop">
-              {{ utilities }}
-            </div>
-          {%- endif -%}
-        </div>
-      </div>
-    </div>
-  {%- endif -%}
-{%- endif -%}
-{%- endcapture -%}
-
 {%- capture logos -%}
   {%- if transparent_header and transparent_logo != blank and logo != blank -%}
     {%- assign has_transparent_logo = true -%}
@@ -395,38 +244,26 @@
   assign header_popouts = false
 
   assign show_locale_selector = section.settings.show_locale_selector
-  assign show_locale_selector_toolbar = toolbar_block.settings.show_locale_selector
 
   assign show_country_selector = section.settings.show_country_selector
-  assign show_country_selector_toolbar = toolbar_block.settings.show_country_selector
 
   assign show_country_name = section.settings.show_country_name
-  assign show_country_name_toolbar = toolbar_block.settings.show_country_name
 
   assign show_country_flag = section.settings.show_country_flag
-  assign show_country_flag_toolbar = toolbar_block.settings.show_country_flag
 
   if show_locale_selector and localization.available_languages.size > 1
     assign languages = true
-  endif
-
-  if show_locale_selector_toolbar and localization.available_languages.size > 1
-    assign languages_toolbar = true
   endif
 
   if show_country_selector and localization.available_countries.size > 1
     assign countries = true
   endif
 
-  if show_country_selector_toolbar and localization.available_countries.size > 1
-    assign countries_toolbar = true
-  endif
-
   if languages or countries
     assign header_popouts = true
   endif
 
-  if languages or languages_toolbar or countries or countries_toolbar
+  if languages or countries
     assign header_popouts_mobile = true
   endif
 -%}
@@ -493,7 +330,7 @@
       </div>
     {%- endif -%}
     <div class="header__mobile__button">
-      <a href="{{ routes.cart_url }}" class="navlink {{ navlink_cart_classes }}" data-cart-toggle>
+      <a href="{{ routes.cart_url }}" class="navlink {{ navlink_cart_classes }}"{% if template.name != 'cart' %} aria-haspopup="dialog" aria-controls="cart-drawer"{% endif %} data-cart-toggle>
         {{ cart_status }}
       </a>
     </div>
@@ -562,7 +399,7 @@
     {%- endif -%}
 
     <div class="header__desktop__button">
-      <a href="{{ routes.cart_url }}" class="navlink {{ navlink_cart_classes }}" title="{{ 'cart.general.title' | t }}" data-cart-toggle>
+      <a href="{{ routes.cart_url }}" class="navlink {{ navlink_cart_classes }}" title="{{ 'cart.general.title' | t }}"{% if template.name != 'cart' %} aria-haspopup="dialog" aria-controls="cart-drawer"{% endif %} data-cart-toggle>
         {{ cart_status }}
       </a>
     </div>
@@ -590,9 +427,7 @@
       <header class="drawer__head">
         <button class="drawer__close"
           data-drawer-toggle="hamburger"
-          aria-label="{{ 'general.accessibility.show_menu' | t }}"
-          aria-haspopup="true"
-          aria-expanded="true"
+          aria-label="{{ 'general.accessibility.close' | t }}"
           aria-controls="header-menu">
 
           {%- render 'icon-cancel' -%}
@@ -627,22 +462,10 @@
           </div>
         </div>
 
-        {%- if show_toolbar_menu or header_popouts_mobile or show_toolbar_gift_card or show_socials -%}
+        {%- if header_popouts_mobile or show_socials -%}
           {%- comment -%} Add 200ms for all top level hamburger menu elements {%- endcomment -%}
           <div class="drawer__bottom{% unless show_socials %} mobile{% endunless %}">
-            {%- if show_toolbar_menu -%}
-              {%- assign animation_delay = item_animation_delay | plus: animation_delay_increment -%}
-              <div class="drawer__bottom__row drawer__bottom__row--menu mobile"
-                data-animation="{{ animation_name }}"
-                data-animation-delay="{{ animation_delay }}"
-                data-animation-duration="{{ animation_duration }}">
-                <div class="toolbar__menu">
-                  {{ toolbar_menu }}
-                </div>
-              </div>
-            {%- endif -%}
-
-            {%- if header_popouts_mobile or show_toolbar_gift_card -%}
+            {%- if header_popouts_mobile -%}
               {%- liquid
                 assign animation_delay = animation_delay | plus: animation_delay_increment
                 assign unique = section.id | append: '-header-mobile'
@@ -653,22 +476,13 @@
                 data-animation-delay="{{ animation_delay }}"
                 data-animation-duration="{{ animation_duration }}">
                 {%- if header_popouts_mobile -%}
-                  {%- liquid
-                    assign show_locale_selector = show_locale_selector | default: show_locale_selector_toolbar
-                    assign show_country_selector = show_country_selector | default: show_country_selector_toolbar
-                    assign show_country_flag = show_country_flag | default: show_country_flag_toolbar
-                    assign show_country_name = show_country_name | default: show_country_name_toolbar
-                  -%}
                   {%- render 'localization' unique: unique, show_locale_selector: show_locale_selector, show_country_selector: show_country_selector, show_country_flag: show_country_flag, show_country_name: show_country_name, class: 'header', unique: unique, short_country_name: true -%}
                 {%- endif -%}
 
-                {%- if show_toolbar_gift_card -%}
-                  {{ gift_card_link }}
-                {%- endif -%}
               </div>
             {%- endif -%}
 
-            {%- if show_socials or show_toolbar_socials -%}
+            {%- if show_socials -%}
               {%- assign animation_delay = animation_delay | plus: animation_delay_increment -%}
               <div class="drawer__bottom__row drawer__bottom__row--socials"
                 data-animation="{{ animation_name }}"
@@ -697,10 +511,6 @@
 
   <header class="theme__header{% if show_separator_line %} has-border{% endif %}" role="banner" data-header-height data-aos="fade">
 
-    {%- if toolbar != blank -%}
-      {{ toolbar }}
-    {%- endif -%}
-
     <div class="section-padding">
       <div class="header__mobile">
         {{ minimal }}
@@ -718,16 +528,15 @@
             </div>
           {%- when 'logo_center_menu_left' -%}
              <div class="header__desktop__upper header__desktop__upper--reverse" data-takes-space-wrapper>
-
-            
-
               <div data-child-takes-space class="header__desktop__bar__l">
                 {{ logos }}
-                <div 
-               
-                  class="header__desktop__bar__sticky-logo">
-                  <a href="/">
-                    <img src="{{ 'logo-2.png' | asset_url }}" alt="logo" />    
+                <div class="header__desktop__bar__sticky-logo">
+                  <a href="{{ routes.root_url }}">
+                    {%- if section.settings.sticky_logo -%}
+                      {%- render 'image' image: section.settings.sticky_logo, width: 300, widths: '150, 200, 300', sizes: '150px' -%}
+                    {%- else -%}
+                      <img src="{{ 'logo-2.png' | asset_url }}" alt="{{ shop.name }}" />
+                    {%- endif -%}
                   </a>
                 </div>
               </div>
@@ -790,6 +599,12 @@
         { "value": "drawer", "label": "Mobile drawer menu"},
         { "value": "logo_center_menu_left", "label": "Logo center menu left"}
       ]
+    },
+    {
+      "type": "image_picker",
+      "id": "sticky_logo",
+      "label": "Sticky logo",
+      "info": "Shown in the \"Logo center menu left\" style when the header is stuck. Falls back to the logo-2.png theme asset if empty."
     },
     {
       "type": "checkbox",
@@ -1125,112 +940,6 @@
           "type": "color",
           "id": "text_color",
           "label": "Text"
-        }
-      ]
-    },
-    {
-      "name": "Toolbar",
-      "type": "toolbar",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "text",
-          "label": "Text",
-          "default": "<p>Toolbar</p>"
-        },
-        {
-          "type": "link_list",
-          "id": "menu",
-          "label": "Menu",
-          "info": "These menus won't show dropdown items."
-        },
-        {
-          "type": "checkbox",
-          "id": "show_border",
-          "label": "Show border",
-          "default": false
-        },
-        {
-          "type": "range",
-          "id": "border_opacity",
-          "label": "Border opacity",
-          "unit": "%",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "default": 50
-        },
-        {
-          "type": "header",
-          "content": "Social media icons"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_social_links",
-          "label": "Show social icons",
-          "info": "Edit your social settings and accounts in [Theme settings](/admin/themes/current/editor?context=theme)",
-          "default": false
-        },
-        {
-          "type": "header",
-          "content": "Gift card"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_gift_card",
-          "label": "Show gift card",
-          "default": false
-        },
-        {
-          "type": "header",
-          "content": "Language selector",
-          "info": "To add a language, go to your [language settings.](/admin/settings/languages)"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_locale_selector",
-          "label": "Show language selector",
-          "default": true
-        },
-        {
-          "type": "header",
-          "content": "Country/Region selector",
-          "info": "To add a country/region, go to your [markets settings](/admin/settings/markets)."
-        },
-        {
-          "type": "checkbox",
-          "id": "show_country_selector",
-          "label": "Show country/region selector",
-          "default": true
-        },
-        {
-          "type": "checkbox",
-          "id": "show_country_name",
-          "label": "Show country name",
-          "default": false
-        },
-        {
-          "type": "checkbox",
-          "id": "show_country_flag",
-          "label": "Show country flag",
-          "default": true
-        },
-        {
-          "type": "header",
-          "content": "Colors"
-        },
-        {
-          "type": "color",
-          "id": "bg_color",
-          "label": "Background",
-          "default": "#FAFAFA"
-        },
-        {
-          "type": "color",
-          "id": "color",
-          "label": "Text",
-          "default": "#333333"
         }
       ]
     }

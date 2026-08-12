@@ -59,6 +59,19 @@
         "default": "#d20000"
       },
       {
+        "type": "color",
+        "id": "card_price_color",
+        "label": "Product card price",
+        "default": "#564646"
+      },
+      {
+        "type": "color",
+        "id": "card_sale_price_color",
+        "label": "Product card sale price",
+        "default": "#d34270",
+        "info": "Current price on discounted items in product cards"
+      },
+      {
         "type": "checkbox",
         "id": "high_contrast",
         "label": "Increase contrast",
@@ -95,6 +108,12 @@
         "id": "menu_link_color",
         "label": "Links",
         "default": "#282C2E"
+      },
+      {
+        "type": "color",
+        "id": "menu_link_hover_color",
+        "label": "Links hover",
+        "default": "#fcc9c6"
       },
       {
         "type": "color",

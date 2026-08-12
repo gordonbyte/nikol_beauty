@@ -103,6 +103,9 @@
 
 {%- if section.settings.enable_live_shopping_style -%}
 <style>
+/* Must match the "Section background" setting (default #FCC9C6). The Channelize
+   widget is a separate app-owned DOM node that can't read the section's scoped
+   variable — if the setting changes, update this value by hand. */
 div#shopify-block-AclUxZk1VTjlqdjNDe__live_shopping_by_channelize_io_shoppable_videos_playlist_HVMWCz channelize_shoppable_videos_playlist_widget {
     background: #FCC9C6;
 }
@@ -233,7 +236,8 @@ div#shopify-block-ARm9XTUZHZFV1WGhCV__live_shopping_by_channelize_io_shoppable_v
       "type": "color",
       "id": "background_color",
       "label": "Section background",
-      "default": "#FCC9C6"
+      "default": "#FCC9C6",
+      "info": "The Channelize live-shopping widget's background is hardcoded to match this color in the section code — if you change this, the widget's value must be updated by hand or it will stand out."
     },
     {
       "type": "header",

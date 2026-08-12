@@ -140,15 +140,6 @@
             "color": "#212121",
             "padding_bottom": 16
           }
-        },
-        "upsell_76CJ9x": {
-          "type": "upsell",
-          "settings": {
-            "upsell_product": "",
-            "upsell_product_list": [],
-            "bg_color": "",
-            "padding_bottom": 16
-          }
         }
       },
       "block_order": [
@@ -165,8 +156,7 @@
         "icon_1",
         "icon_2",
         "c8ecc06f-2f65-4c95-a44e-437c458f4787",
-        "dc8a9295-1097-4bdc-b170-cdb20ac30a8f",
-        "upsell_76CJ9x"
+        "dc8a9295-1097-4bdc-b170-cdb20ac30a8f"
       ],
       "custom_css": [
         ".gravity-button-wrapper {--gravity-button-width: unset;}"

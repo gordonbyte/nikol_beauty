@@ -127,6 +127,23 @@
 
 </div>
 
+<script>
+  (function () {
+    var track = document.querySelector('#GuaranteeList-{{ section.id }} .custom-guarantee-list__track');
+    if (!track) return;
+    /* Constant 50px/s regardless of item count or text length; the CSS 20s is the no-JS fallback. */
+    function scaleDuration() {
+      var distance = track.scrollWidth / 2;
+      if (distance > 0) track.style.animationDuration = (distance / 50) + 's';
+    }
+    if (document.readyState === 'complete') {
+      scaleDuration();
+    } else {
+      window.addEventListener('load', scaleDuration);
+    }
+  })();
+</script>
+
 {% schema %}
 {
   "name": "[Custom] Guarantee List",

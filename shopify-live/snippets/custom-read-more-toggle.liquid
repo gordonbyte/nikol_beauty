@@ -1,0 +1,58 @@
+<style>
+  .collection-desc__more summary,
+  button.show-more {
+    display: inline-block;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  button.show-more {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+  }
+  .collection-desc__more summary {
+    list-style: none;
+  }
+  .collection-desc__more summary::-webkit-details-marker {
+    display: none;
+  }
+  .collection-desc__more summary .less-label {
+    display: none;
+  }
+  .collection-desc__more[open] summary .more-label {
+    display: none;
+  }
+  .collection-desc__more[open] summary .less-label {
+    display: inline;
+  }
+  .collection-desc__more summary:focus-visible,
+  button.show-more:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+</style>
+<script>
+  (function () {
+    document.querySelectorAll('button.show-more').forEach(function (btn) {
+      if (btn.dataset.smBound) return;
+      btn.dataset.smBound = '1';
+      var content = btn.previousElementSibling;
+      if (!content || !content.classList.contains('show-more-content')) {
+        btn.hidden = true;
+        return;
+      }
+      btn.setAttribute('aria-expanded', 'false');
+      btn.addEventListener('click', function () {
+        var open = content.style.display !== 'none';
+        content.style.display = open ? 'none' : 'block';
+        btn.textContent = open ? 'Read More' : 'Read Less';
+        btn.setAttribute('aria-expanded', String(!open));
+      });
+    });
+  })();
+</script>

@@ -3,8 +3,7 @@
   Product object, after "description"). Prints nothing when the product
   has no reviews; trailing comma stays inside the guard so JSON is valid
   either way. Single source of truth — rendered by product.liquid,
-  product-new.liquid, custom-product-coming-soon.liquid,
-  custom-product-waitlist.liquid.
+  custom-product-coming-soon.liquid.
 {%- endcomment -%}
 {%- if product.metafields.junip.rating_average and product.metafields.junip.rating_count and product.metafields.junip.rating_count > 0 -%}
   "aggregateRating": {

@@ -18,11 +18,14 @@
   endif
 
   # Promo sale price — mirrors product-price.liquid so the cart bar matches the main price.
-  #  - 1 variant  -> 'promo-<n>' / 'promo-up-to-<n>' product tag.
-  #  - >1 variant -> per-variant metafield custom.promo_percent.
+  #  - 1 variant  -> percent: 'promo-<n>' / 'promo-up-to-<n>' tag;
+  #                  amount:  'promo-amt-<x>' / 'promo-amt-up-to-<x>' tag (dollars off).
+  #  - >1 variant -> per-variant metafields; custom.promo_amount (exact dollars off)
+  #    takes precedence over custom.promo_percent.
   # On variant change, the script in product-price.liquid updates every [data-promo-new]
   # in the section (the cart bar included), so no extra JS is needed here.
   assign promo_percent = ''
+  assign promo_amount = ''
   assign promo_sale_price_display = ''
   assign promo_original_display = ''
   assign promo_multi = false
@@ -31,7 +34,13 @@
   if settings.promo_badge_enable and product.available
     if product.variants.size == 1
       assign promo_tags = product.tags | join: ',' | append: ','
-      if promo_tags contains 'promo-up-to-'
+      if promo_tags contains 'promo-amt-up-to-'
+        assign promo_parts = promo_tags | split: 'promo-amt-up-to-'
+        assign promo_amount = promo_parts[1] | split: ',' | first | strip
+      elsif promo_tags contains 'promo-amt-'
+        assign promo_parts = promo_tags | split: 'promo-amt-'
+        assign promo_amount = promo_parts[1] | split: ',' | first | strip
+      elsif promo_tags contains 'promo-up-to-'
         assign promo_parts = promo_tags | split: 'promo-up-to-'
         assign promo_percent = promo_parts[1] | split: ',' | first | strip
       elsif promo_tags contains 'promo-'
@@ -40,17 +49,35 @@
       endif
     else
       assign promo_multi = true
+      assign promo_amount = current_variant.metafields.custom.promo_amount.value
       assign promo_percent = current_variant.metafields.custom.promo_percent.value
       for v in product.variants
+        assign va = v.metafields.custom.promo_amount.value
         assign vp = v.metafields.custom.promo_percent.value
-        if vp != blank and vp > 0
+        if va != blank and va > 0
+          assign has_any_promo = true
+          break
+        elsif vp != blank and vp > 0
           assign has_any_promo = true
           break
         endif
       endfor
     endif
 
-    if promo_percent != blank and current_variant.price > 0
+    if promo_amount != blank and current_variant.price > 0
+      assign promo_amount_cents = promo_amount | times: 100.0 | round
+      assign promo_sale_price = current_variant.price | minus: promo_amount_cents
+      if promo_sale_price < 0
+        assign promo_sale_price = 0
+      endif
+      if settings.currency_code_enable
+        assign promo_sale_price_display = promo_sale_price | money_with_currency
+        assign promo_original_display = current_variant.price | money_with_currency
+      else
+        assign promo_sale_price_display = promo_sale_price | money
+        assign promo_original_display = current_variant.price | money
+      endif
+    elsif promo_percent != blank and current_variant.price > 0
       assign promo_discount_amount = current_variant.price | times: promo_percent | divided_by: 100
       assign promo_sale_price = current_variant.price | minus: promo_discount_amount
       if settings.currency_code_enable
@@ -102,7 +129,7 @@
       {%- endif -%}
 
       <div class="cart-bar__info__text">
-        <h4 class="cart-bar__product__title">{{ product.title | strip_html }}</h4>
+        <p class="cart-bar__product__title">{{ product.title | strip_html }}</p>
 
         <div class="h5--body cart-bar__product__price product__price{% if promo_sale_price_display != blank %} product__price--promo{% endif %}" data-price-wrapper>
           {%- if show_promo_markup -%}

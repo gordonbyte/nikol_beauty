@@ -26,13 +26,8 @@
 {%- assign media_width = primary_media.settings.media_width | default: 50 -%}
 {%- assign content_width = 100 | minus: media_width -%}
 
-{%- if use_slider -%}
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-{%- endif -%}
-
 <style>
-.banner-bottom-main {
+.custom-info-banner__main {
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -43,7 +38,7 @@
 
 /* Media absolutely fills its half so it never stretches the content rows
    (content blocks keep their natural heights — no gaps). */
-.banner-bottom-media {
+.custom-info-banner__media {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -51,69 +46,69 @@
     width: calc(50% - 50px);
 }
 
-.banner-bottom-content {
+.custom-info-banner__content {
     grid-column: 2;
     min-width: 0;
 }
 
-.banner-bottom-main.media-right .banner-bottom-media {
+.custom-info-banner__main.custom-info-banner__main--media-right .custom-info-banner__media {
     left: auto;
     right: 0;
 }
 
-.banner-bottom-main.media-right .banner-bottom-content {
+.custom-info-banner__main.custom-info-banner__main--media-right .custom-info-banner__content {
     grid-column: 1;
 }
 
-.banner-bottom-media > .banner-bottom-left-image,
-.banner-bottom-media > .info-banner-swiper {
+.custom-info-banner__media > .custom-info-banner__image,
+.custom-info-banner__media > .custom-info-banner__swiper {
     height: 100%;
 }
 
-.banner-bottom-left-image {
+.custom-info-banner__image {
     height: 100%;
 }
 
-.banner-bottom-left-image img {
+.custom-info-banner__image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.info-banner-img-desktop {
+.custom-info-banner__img-desktop {
     display: block;
 }
 
-.info-banner-img-mobile {
+.custom-info-banner__img-mobile {
     display: none;
 }
 
-.info-banner-star-box {
+.custom-info-banner__star-box {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.info-banner-star-img {
+.custom-info-banner__star-img {
     display: flex;
 }
 
-.info-banner-star-img img {
+.custom-info-banner__star-img img {
     max-width: 95px;
     object-fit: contain;
 }
 
-.info-banner-star-text {
+.custom-info-banner__star-text {
     color: var(--COLOR-TEXT);
     font-size: var(--FONT-SIZE-BASE);
     font-weight: 400;
 }
 
-.info-banner-star-text strong {
+.custom-info-banner__star-text strong {
     font-weight: 700;
 }
 
-.info-banner-title {
+.custom-info-banner__title {
     margin: 0;
     color: var(--COLOR-TEXT);
     font-size: 62px;
@@ -124,14 +119,14 @@
     font-weight: 500;
 }
 
-.info-banner-description {
+.custom-info-banner__description {
     color: var(--COLOR-TEXT);
     font-weight: 400;
     font-size: 20px;
     line-height: 140%;
 }
 
-.info-banner-price {
+.custom-info-banner__price {
     font-size: 24px;
     line-height: 135%;
     font-weight: 400;
@@ -139,7 +134,7 @@
     font-family: Inter, sans-serif;
 }
 
-.info-banner-button a {
+.custom-info-banner__button a {
     display: flex;
     align-items: center;
     background: var(--BTN-PRIMARY-BG-COLOR);
@@ -157,7 +152,7 @@
 }
 
 /* Slider (image carousel + blog feed) */
-.info-banner-swiper {
+.custom-info-banner__swiper {
     width: 100%;
     height: 100%;
     box-sizing: border-box;
@@ -165,50 +160,50 @@
     padding-bottom: 34px;
 }
 
-.info-banner-swiper .swiper-wrapper,
-.info-banner-swiper .swiper-slide {
+.custom-info-banner__swiper .swiper-wrapper,
+.custom-info-banner__swiper .swiper-slide {
     height: 100%;
 }
 
-.info-banner-swiper .swiper-pagination-bullet {
+.custom-info-banner__swiper .swiper-pagination-bullet {
     background: var(--COLOR-TEXT);
     opacity: 0.35;
 }
 
-.info-banner-swiper .swiper-pagination-bullet-active {
+.custom-info-banner__swiper .swiper-pagination-bullet-active {
     background: var(--BTN-PRIMARY-BG-COLOR);
     opacity: 1;
 }
 
 /* Blog feed cards (content overlays the image; fills the column height) */
-.info-banner-blog-card {
+.custom-info-banner__blog-card {
     position: relative;
     overflow: hidden;
     height: 100%;
 }
 
-.info-banner-blog-image {
+.custom-info-banner__blog-image {
     position: relative;
     display: block;
     line-height: 0;
     height: 100%;
 }
 
-.info-banner-blog-image img {
+.custom-info-banner__blog-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
 
-.info-banner-blog-overlay {
+.custom-info-banner__blog-overlay {
     position: absolute;
     inset: 0;
     background: #000;
     pointer-events: none;
 }
 
-.info-banner-blog-body {
+.custom-info-banner__blog-body {
     position: absolute;
     left: 0;
     right: 0;
@@ -218,14 +213,14 @@
     text-align: left;
 }
 
-.info-banner-blog-meta {
+.custom-info-banner__blog-meta {
     font-size: var(--FONT-SIZE-BASE);
     color: #fff;
     font-family: 'Inter', sans-serif;
     padding-bottom: 8px;
 }
 
-.info-banner-blog-title {
+.custom-info-banner__blog-title {
     margin: 0;
     display: block;
     font-size: 28px;
@@ -236,19 +231,19 @@
     text-decoration: none;
 }
 
-.info-banner-blog-title a {
+.custom-info-banner__blog-title a {
     color: inherit;
     text-decoration: none;
 }
 
-.info-banner-blog-link {
+.custom-info-banner__blog-link {
     color: #fff;
     font-weight: 700;
     font-family: 'Inter', sans-serif;
     text-decoration: none;
 }
 
-.info-banner-blog-placeholder {
+.custom-info-banner__blog-placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -264,30 +259,30 @@
 }
 
 /* Icon Note (icon + short caption, e.g. "Takes 1 minute") */
-.info-banner-note {
+.custom-info-banner__note {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.info-banner-note--left {
+.custom-info-banner__note--left {
     justify-content: flex-start;
 }
 
-.info-banner-note--center {
+.custom-info-banner__note--center {
     justify-content: center;
 }
 
-.info-banner-note--right {
+.custom-info-banner__note--right {
     justify-content: flex-end;
 }
 
-.info-banner-note-icon {
+.custom-info-banner__note-icon {
     max-width: 25px;
     object-fit: contain;
 }
 
-.info-banner-note-text {
+.custom-info-banner__note-text {
     color: var(--COLOR-TEXT);
     font-size: var(--FONT-SIZE-BASE);
     font-family: 'Inter';
@@ -295,108 +290,108 @@
 
 
 @media only screen and (max-width: 600px) {
-.banner-bottom {
+.custom-info-banner {
     padding: 0 !important;
 }
 
 /* Single column: every block stacks in its placed (block) order */
-.banner-bottom-main {
+.custom-info-banner__main {
     grid-template-columns: 1fr !important;
     column-gap: 0;
 }
 
-.banner-bottom-media,
-.banner-bottom-content,
-.banner-bottom-main.media-right .banner-bottom-media,
-.banner-bottom-main.media-right .banner-bottom-content {
+.custom-info-banner__media,
+.custom-info-banner__content,
+.custom-info-banner__main.custom-info-banner__main--media-right .custom-info-banner__media,
+.custom-info-banner__main.custom-info-banner__main--media-right .custom-info-banner__content {
     grid-column: 1 !important;
     grid-row: auto !important;
 }
 
-.banner-bottom-media {
+.custom-info-banner__media {
     position: static;
     width: auto;
 }
 
-.banner-bottom-content {
+.custom-info-banner__content {
     text-align: center;
     padding: 0 15px;
 }
 
-.info-banner-img-desktop {
+.custom-info-banner__img-desktop {
     display: none;
 }
 
-.info-banner-img-mobile {
+.custom-info-banner__img-mobile {
     display: block;
 }
 
-.info-banner-star-box {
+.custom-info-banner__star-box {
     gap: 5px;
     justify-content: center;
 }
 
-.info-banner-star-img img {
+.custom-info-banner__star-img img {
     max-width: 78px;
 }
 
-.info-banner-star-text {
+.custom-info-banner__star-text {
     font-size: var(--FONT-SIZE-BASE);
 }
 
-.info-banner-title {
+.custom-info-banner__title {
     font-size: 34px;
     letter-spacing: -2px;
 }
 
-.info-banner-description {
+.custom-info-banner__description {
     font-size: var(--FONT-SIZE-BASE);
     line-height: 135%;
     max-width: 350px;
     margin: 0px auto;
 }
 
-.info-banner-price {
+.custom-info-banner__price {
     font-size: 20px;
 }
 
-.info-banner-button a {
+.custom-info-banner__button a {
     max-width: 100%;
     height: 50px;
     font-size: var(--BTN-FONT-SIZE);
 }
 
 /* Reset desktop fill-heights on mobile */
-.banner-bottom-media > .banner-bottom-left-image,
-.banner-bottom-media > .info-banner-swiper,
-.info-banner-swiper,
-.info-banner-swiper .swiper-wrapper,
-.info-banner-swiper .swiper-slide,
-.banner-bottom-left-image,
-.info-banner-blog-card,
-.info-banner-blog-image {
+.custom-info-banner__media > .custom-info-banner__image,
+.custom-info-banner__media > .custom-info-banner__swiper,
+.custom-info-banner__swiper,
+.custom-info-banner__swiper .swiper-wrapper,
+.custom-info-banner__swiper .swiper-slide,
+.custom-info-banner__image,
+.custom-info-banner__blog-card,
+.custom-info-banner__blog-image {
     height: auto;
 }
 
-.banner-bottom-left-image img {
+.custom-info-banner__image img {
     height: auto;
     object-fit: cover;
 }
 
-.info-banner-blog-image img {
+.custom-info-banner__blog-image img {
     height: auto;
     aspect-ratio: 1 / 1;
 }
 
-.info-banner-blog-title {
+.custom-info-banner__blog-title {
     font-size: 22px;
 }
 
-.info-banner-note-icon {
+.custom-info-banner__note-icon {
     max-width: 20px;
 }
 
-.info-banner-note-text {
+.custom-info-banner__note-text {
     font-size: var(--FONT-SIZE-BASE);
 }
 }
@@ -406,43 +401,43 @@
 <style>
 {%- comment -%} Adjustable media / content split (desktop only; mobile always stacks full-width). Set on the first Media block. {%- endcomment -%}
 @media only screen and (min-width: 601px) {
-  #InfoBanner-{{ section.id }} .banner-bottom-main {
+  #InfoBanner-{{ section.id }} .custom-info-banner__main {
     grid-template-columns: {% if media_position == 'right' %}{{ content_width }}fr {{ media_width }}fr{% else %}{{ media_width }}fr {{ content_width }}fr{% endif %};
   }
-  #InfoBanner-{{ section.id }} .banner-bottom-media {
+  #InfoBanner-{{ section.id }} .custom-info-banner__media {
     width: calc((100% - 100px) * {{ media_width | divided_by: 100.0 }});
   }
 }
 </style>
 
-<section id="InfoBanner-{{ section.id }}" class="banner-bottom" style="background-image: url({{ section.settings.bg_image | img_url: 'master' }});{% if section.settings.bg_color != blank %} background-color: {{ section.settings.bg_color }};{% endif %} padding: {{ media_padding }}px; box-sizing: border-box;">
+<section id="InfoBanner-{{ section.id }}" class="custom-info-banner" style="background-image: url({{ section.settings.bg_image | img_url: 'master' }});{% if section.settings.bg_color != blank %} background-color: {{ section.settings.bg_color }};{% endif %} padding: {{ media_padding }}px; box-sizing: border-box;">
   <div class="page-width">
-  <div class="banner-bottom-main {% if media_position == 'right' %}media-right{% endif %}">
+  <div class="custom-info-banner__main {% if media_position == 'right' %}custom-info-banner__main--media-right{% endif %}">
     {%- assign media_rendered = false -%}
     {%- for block in section.blocks -%}
       {%- case block.type -%}
 
         {%- when 'media' -%}
           {%- unless media_rendered -%}
-            <div class="banner-bottom-media">
+            <div class="custom-info-banner__media">
               {%- if blog_media != blank -%}
                 {%- assign blog_obj = blogs[blog_media.settings.blog] -%}
                 {%- if blog_obj != blank and blog_obj.articles.size > 0 -%}
-                  <div class="info-banner-blog-swiper info-banner-swiper swiper" {{ blog_media.shopify_attributes }}>
+                  <div class="custom-info-banner__blog-swiper custom-info-banner__swiper swiper" {{ blog_media.shopify_attributes }}>
                     <div class="swiper-wrapper">
                       {%- for article in blog_obj.articles limit: blog_media.settings.blog_limit -%}
                         <div class="swiper-slide">
-                          <div class="info-banner-blog-card">
+                          <div class="custom-info-banner__blog-card">
                             {%- if article.image -%}
-                              <a href="{{ article.url }}" class="info-banner-blog-image">
+                              <a href="{{ article.url }}" class="custom-info-banner__blog-image">
                                 <img src="{{ article.image | img_url: 'master' }}" alt="{{ article.title | escape }}" loading="lazy">
-                                <span class="info-banner-blog-overlay" style="opacity: {{ blog_media.settings.blog_overlay | times: 0.01 }};"></span>
+                                <span class="custom-info-banner__blog-overlay" style="opacity: {{ blog_media.settings.blog_overlay | times: 0.01 }};"></span>
                               </a>
                             {%- endif -%}
-                            <div class="info-banner-blog-body">
-                              <div class="info-banner-blog-meta">{{ article.content | strip_html | size | divided_by: 200 }} min read</div>
-                              <h3 class="info-banner-blog-title"><a href="{{ article.url }}">{{ article.title }}</a></h3>
-                              <a href="{{ article.url }}" class="info-banner-blog-link">Read more &rarr;</a>
+                            <div class="custom-info-banner__blog-body">
+                              <div class="custom-info-banner__blog-meta">{{ article.content | strip_html | size | divided_by: 200 }} min read</div>
+                              <h3 class="custom-info-banner__blog-title"><a href="{{ article.url }}">{{ article.title }}</a></h3>
+                              <a href="{{ article.url }}" class="custom-info-banner__blog-link">Read more &rarr;</a>
                             </div>
                           </div>
                         </div>
@@ -451,21 +446,21 @@
                     <div class="swiper-pagination"></div>
                   </div>
                 {%- else -%}
-                  <div class="info-banner-blog-placeholder" {{ blog_media.shopify_attributes }}>
+                  <div class="custom-info-banner__blog-placeholder" {{ blog_media.shopify_attributes }}>
                     <span>Assign a blog in this Media block to display posts here.</span>
                   </div>
                 {%- endif -%}
 
               {%- elsif image_count > 1 -%}
-                <div class="info-banner-media-swiper info-banner-swiper swiper">
+                <div class="custom-info-banner__media-swiper custom-info-banner__swiper swiper">
                   <div class="swiper-wrapper">
                     {%- for b in media_blocks -%}
                       {%- unless b.settings.media_type == 'blog' -%}
                         {%- assign mobile_img = b.settings.image_mobile | default: b.settings.image_desktop -%}
                         <div class="swiper-slide" {{ b.shopify_attributes }}>
-                          <div class="banner-bottom-left-image">
-                            {%- if b.settings.image_desktop -%}<img src="{{ b.settings.image_desktop | img_url: 'master' }}" alt="" class="info-banner-img-desktop">{%- endif -%}
-                            {%- if mobile_img -%}<img src="{{ mobile_img | img_url: 'master' }}" alt="" class="info-banner-img-mobile">{%- endif -%}
+                          <div class="custom-info-banner__image">
+                            {%- if b.settings.image_desktop -%}<img src="{{ b.settings.image_desktop | img_url: 'master' }}" alt="" class="custom-info-banner__img-desktop">{%- endif -%}
+                            {%- if mobile_img -%}<img src="{{ mobile_img | img_url: 'master' }}" alt="" class="custom-info-banner__img-mobile">{%- endif -%}
                           </div>
                         </div>
                       {%- endunless -%}
@@ -476,9 +471,9 @@
 
               {%- elsif image_count == 1 -%}
                 {%- assign mobile_img = first_image.settings.image_mobile | default: first_image.settings.image_desktop -%}
-                <div class="banner-bottom-left-image" {{ first_image.shopify_attributes }}>
-                  {%- if first_image.settings.image_desktop -%}<img src="{{ first_image.settings.image_desktop | img_url: 'master' }}" alt="" class="info-banner-img-desktop">{%- endif -%}
-                  {%- if mobile_img -%}<img src="{{ mobile_img | img_url: 'master' }}" alt="" class="info-banner-img-mobile">{%- endif -%}
+                <div class="custom-info-banner__image" {{ first_image.shopify_attributes }}>
+                  {%- if first_image.settings.image_desktop -%}<img src="{{ first_image.settings.image_desktop | img_url: 'master' }}" alt="" class="custom-info-banner__img-desktop">{%- endif -%}
+                  {%- if mobile_img -%}<img src="{{ mobile_img | img_url: 'master' }}" alt="" class="custom-info-banner__img-mobile">{%- endif -%}
                 </div>
               {%- endif -%}
             </div>
@@ -486,46 +481,46 @@
           {%- endunless -%}
 
         {%- when 'rating' -%}
-          <div class="banner-bottom-content" {{ block.shopify_attributes }} style="padding-top: {{ block.settings.padding_top | default: 5 }}px; padding-bottom: {{ block.settings.padding_bottom | default: 5 }}px;">
+          <div class="custom-info-banner__content" {{ block.shopify_attributes }} style="padding-top: {{ block.settings.padding_top | default: 5 }}px; padding-bottom: {{ block.settings.padding_bottom | default: 5 }}px;">
             {%- if block.settings.star_image or block.settings.star_text != blank -%}
-              <div class="info-banner-star-box">
+              <div class="custom-info-banner__star-box">
                 {%- if block.settings.star_image -%}
-                  <div class="info-banner-star-img">
+                  <div class="custom-info-banner__star-img">
                     <img src="{{ block.settings.star_image | img_url: 'master' }}" alt="">
                   </div>
                 {%- endif -%}
                 {%- if block.settings.star_text != blank -%}
-                  <div class="info-banner-star-text">{{ block.settings.star_text }}</div>
+                  <div class="custom-info-banner__star-text">{{ block.settings.star_text }}</div>
                 {%- endif -%}
               </div>
             {%- endif -%}
           </div>
 
         {%- when 'heading' -%}
-          <div class="banner-bottom-content" {{ block.shopify_attributes }} style="padding-top: {{ block.settings.padding_top | default: 5 }}px; padding-bottom: {{ block.settings.padding_bottom | default: 5 }}px;">
+          <div class="custom-info-banner__content" {{ block.shopify_attributes }} style="padding-top: {{ block.settings.padding_top | default: 5 }}px; padding-bottom: {{ block.settings.padding_bottom | default: 5 }}px;">
             {%- if block.settings.heading != blank -%}
-              <h2 class="info-banner-title">{{ block.settings.heading }}</h2>
+              <h2 class="custom-info-banner__title">{{ block.settings.heading }}</h2>
             {%- endif -%}
           </div>
 
         {%- when 'price' -%}
-          <div class="banner-bottom-content" {{ block.shopify_attributes }} style="padding-top: {{ block.settings.padding_top | default: 5 }}px; padding-bottom: {{ block.settings.padding_bottom | default: 5 }}px;">
+          <div class="custom-info-banner__content" {{ block.shopify_attributes }} style="padding-top: {{ block.settings.padding_top | default: 5 }}px; padding-bottom: {{ block.settings.padding_bottom | default: 5 }}px;">
             {%- if product -%}
-              <div class="info-banner-price">{{ product.price | money }}</div>
+              <div class="custom-info-banner__price">{{ product.price | money }}</div>
             {%- endif -%}
           </div>
 
         {%- when 'text' -%}
-          <div class="banner-bottom-content" {{ block.shopify_attributes }} style="padding-top: {{ block.settings.padding_top | default: 5 }}px; padding-bottom: {{ block.settings.padding_bottom | default: 5 }}px;">
+          <div class="custom-info-banner__content" {{ block.shopify_attributes }} style="padding-top: {{ block.settings.padding_top | default: 5 }}px; padding-bottom: {{ block.settings.padding_bottom | default: 5 }}px;">
             {%- if block.settings.text != blank -%}
-              <div class="info-banner-description">{{ block.settings.text }}</div>
+              <div class="custom-info-banner__description">{{ block.settings.text }}</div>
             {%- endif -%}
           </div>
 
         {%- when 'button' -%}
-          <div class="banner-bottom-content" {{ block.shopify_attributes }} style="padding-top: {{ block.settings.padding_top | default: 5 }}px; padding-bottom: {{ block.settings.padding_bottom | default: 5 }}px;">
+          <div class="custom-info-banner__content" {{ block.shopify_attributes }} style="padding-top: {{ block.settings.padding_top | default: 5 }}px; padding-bottom: {{ block.settings.padding_bottom | default: 5 }}px;">
             {%- if block.settings.button_text != blank -%}
-              <div class="info-banner-button">
+              <div class="custom-info-banner__button">
                 <a href="{% if block.settings.button_link != blank %}{{ block.settings.button_link }}{% elsif product %}{{ product.url }}{% endif %}">
                   {{ block.settings.button_text }}
                 </a>
@@ -534,14 +529,14 @@
           </div>
 
         {%- when 'icon_note' -%}
-          <div class="banner-bottom-content" {{ block.shopify_attributes }} style="padding-top: {{ block.settings.padding_top | default: 5 }}px; padding-bottom: {{ block.settings.padding_bottom | default: 5 }}px;">
+          <div class="custom-info-banner__content" {{ block.shopify_attributes }} style="padding-top: {{ block.settings.padding_top | default: 5 }}px; padding-bottom: {{ block.settings.padding_bottom | default: 5 }}px;">
             {%- if block.settings.icon != blank or block.settings.text != blank -%}
-              <div class="info-banner-note info-banner-note--{{ block.settings.alignment | default: 'left' }}">
+              <div class="custom-info-banner__note custom-info-banner__note--{{ block.settings.alignment | default: 'left' }}">
                 {%- if block.settings.icon != blank -%}
-                  <img class="info-banner-note-icon" src="{{ block.settings.icon | img_url: 'master' }}" alt="">
+                  <img class="custom-info-banner__note-icon" src="{{ block.settings.icon | img_url: 'master' }}" alt="">
                 {%- endif -%}
                 {%- if block.settings.text != blank -%}
-                  <span class="info-banner-note-text">{{ block.settings.text }}</span>
+                  <span class="custom-info-banner__note-text">{{ block.settings.text }}</span>
                 {%- endif -%}
               </div>
             {%- endif -%}
@@ -556,7 +551,7 @@
 {%- if use_slider -%}
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll("#InfoBanner-{{ section.id }} .info-banner-swiper").forEach(function (el) {
+  document.querySelectorAll("#InfoBanner-{{ section.id }} .custom-info-banner__swiper").forEach(function (el) {
     new Swiper(el, {
       slidesPerView: 1,
       loop: true,

@@ -86,6 +86,7 @@ const STYLE_METAFIELDS = {
   priceColor: "promo_price_color",
   badgeText: "promo_badge_text",
   badgeStyle: "promo_badge_style", // "ribbon"; absent = theme default circle
+  shadowColor: "promo_ribbon_shadow", // ribbon box-shadow base color; absent = theme default (black)
 };
 
 async function saveAppliedState(shop, state) {
@@ -191,6 +192,7 @@ function buildDesiredWrites(variantPct, products, variantDiscount, styleByDiscou
       if (style.priceColor) s[STYLE_METAFIELDS.priceColor] = style.priceColor;
       if (style.badgeText) s[STYLE_METAFIELDS.badgeText] = style.badgeText;
       if (style.badgeStyle && style.badgeStyle !== "circle") s[STYLE_METAFIELDS.badgeStyle] = style.badgeStyle;
+      if (style.shadowColor) s[STYLE_METAFIELDS.shadowColor] = style.shadowColor;
       if (Object.keys(s).length) desired.styles[product.id] = s;
     }
   }
@@ -408,6 +410,7 @@ export async function syncShop(admin, shop, { dryRun = false } = {}) {
         priceColor: t.priceColor,
         badgeText: t.badgeText,
         badgeStyle: t.badgeStyle,
+        shadowColor: t.shadowColor,
       },
     ]),
   );

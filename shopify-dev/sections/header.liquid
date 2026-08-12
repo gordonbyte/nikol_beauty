@@ -145,6 +145,12 @@
   {%- endif -%}
 {%- endif -%}
 
+{%- if logo != blank -%}
+  {%- capture logo_preload_srcset -%}{% render 'image-srcset', image: logo, widths: logo_widths %}{%- endcapture -%}
+  {%- assign logo_preload_height = logo_width_2x | divided_by: logo_denom -%}
+  <link rel="preload" as="image" href="{{ logo | image_url: width: logo_width_2x, height: logo_preload_height }}" imagesrcset="{{ logo_preload_srcset }}" imagesizes="{{ logo_sizes }}" fetchpriority="high">
+{%- endif -%}
+
 {%- style -%}
   :root {
     --HEADER-HEIGHT: {{ header_height }}px;

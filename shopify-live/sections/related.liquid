@@ -75,9 +75,9 @@
           data-aos-order="1">
           <div class="grid__heading-holder">
             <div class="grid__heading-actions">
-              <ul class="tabs {{ heading_alignment }}" data-scrollbar data-scrollbar-slider>
+              <ul class="tabs {{ heading_alignment }}" role="tablist" data-scrollbar data-scrollbar-slider>
                 {%- if related -%}
-                  <li class="tab-link tab-link-0 current" data-tab="0" tabindex="0">
+                  <li class="tab-link tab-link-0 current" role="tab" aria-selected="true" data-tab="0" tabindex="0">
                     {%- if related_title -%}
                       <span>{{ related_title }}</span>
                     {%- endif -%}
@@ -85,7 +85,7 @@
                 {%- endif -%}
 
                 {%- if recent -%}
-                  <li class="tab-link tab-link-1 tab-link__recent{% if related == nil %} current{% endif %}" data-tab="1" tabindex="0">
+                  <li class="tab-link tab-link-1 tab-link__recent{% if related == nil %} current{% endif %}" role="tab" aria-selected="{% if related == nil %}true{% else %}false{% endif %}" data-tab="1" tabindex="0">
                     {%- if recent_title -%}
                       <span>{{ recent_title }}</span>
                     {%- endif -%}

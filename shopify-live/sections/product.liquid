@@ -216,10 +216,6 @@
               <div class="product__photo product__photo--blank product__slide"></div>
             </div>
           {%- endif -%}
-
-          {%- if section.settings.enable_zoom -%}
-            </zoom-images>
-          {%- endif -%}
         </product-images>
 
         <div class="product__content" id="buynow">
@@ -450,6 +446,32 @@
   <div {{ block.shopify_attributes }}></div>
 {%- endif -%}
 
+                  {%- when 'upsell' -%}
+                    {%- assign upsell_product = product.metafields.theme.upsell.value | default: block.settings.upsell_product -%}
+                    {%- assign upsell_product_List = product.metafields.theme.upsell_list.value | default: block.settings.upsell_product_list -%}
+
+                    {%- if upsell_product != blank or upsell_product_List != blank or request.design_mode -%}
+                      <div class="product__block product__upsell block-padding" {{ block.shopify_attributes }} {{ block_style }}>
+                        {%- assign upsell_title = 'products.general.upsell_title' | t -%}
+
+                        <p class="product-upsell__holder__title">{{ upsell_title }}</p>
+
+                        {%- if upsell_product == blank and upsell_product_List == blank -%}
+                          {%- render 'upsell-product' -%}
+                        {%- else -%}
+                          {%- if upsell_product != blank -%}
+                            {%- render 'upsell-product', upsell_product: upsell_product -%}
+                          {%- endif -%}
+
+                          {%- if upsell_product_List != blank -%}
+                            {%- for upsell_product in upsell_product_List -%}
+                              {%- render 'upsell-product', upsell_product: upsell_product -%}
+                            {%- endfor -%}
+                          {%- endif -%}
+                        {%- endif -%}
+                      </div>
+                    {%- endif -%}
+
                   {%- when 'pickup' -%}
                     <pickup-availability class="product__block product__pickup block-padding" data-store-availability-container="{{ current_variant.id }}" {{ block.shopify_attributes }} {{ block_style }}></pickup-availability>
 
@@ -596,7 +618,7 @@
 
     {%- when 'dropdown' -%}
       {%- capture line_item_options -%}
-        <ul id="{{ unique }}-select-{{ option.name | handle }}" class="select-popout__list" data-popout-list data-scroll-lock-scrollable>
+        <ul id="{{ unique }}-select-{{ block.id }}" class="select-popout__list" data-popout-list data-scroll-lock-scrollable>
           {%- assign has_selected = false -%}
           {%- assign selected_value = '' -%}
 
@@ -627,7 +649,7 @@
       {%- endcapture -%}
 
       {%- if has_selected -%}
-        <span class="radio__legend">
+        <span class="radio__legend" id="{{ unique }}-select-{{ block.id }}-label">
           <span class="radio__legend__label">{{ block.settings.label | escape_once }}</span>
         </span>
 
@@ -635,8 +657,8 @@
           <button type="button"
             class="select-popout__toggle"
             aria-expanded="false"
-            aria-controls="{{ unique }}-select-{{ option.name | handle }}"
-            aria-labelledby="{{ unique }}-select-{{ option.name | handle }}-label"
+            aria-controls="{{ unique }}-select-{{ block.id }}"
+            aria-labelledby="{{ unique }}-select-{{ block.id }}-label"
             data-popout-toggle>
             <span data-popout-toggle-text>{{ selected_value }}</span>
             {%- render 'icon-nav-arrow-down' -%}

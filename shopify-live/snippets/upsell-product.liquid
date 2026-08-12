@@ -62,13 +62,6 @@
           {%- else -%}
             <a href="{{ upsell_product.url }}">
               <p class="product-upsell__title h3">{{ upsell_product.title | strip_html }}</p>
-              <div
-                style="display: none;"
-                class='jdgm-widget'
-                data-id='{{ upsell_product.id }}'>
-                {{ upsell_product.metafields.judgeme.badge }}
-              </div>
-
               {%- if upsell_product.variants.size == 1 and upsell_variant.title != 'Default Title' -%}
                 <p class="product-upsell__variant-title h4">{{ upsell_variant.title | replace: '/', '<span>&nbsp;</span>' }}</p>
               {%- endif -%}

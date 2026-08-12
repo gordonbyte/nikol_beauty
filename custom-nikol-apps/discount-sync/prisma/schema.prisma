@@ -46,6 +46,7 @@ model TrackedDiscount {
   priceColor      String?  // per-discount sale-price text color (hex); null = theme default
   badgeText       String?  // per-discount badge text template with {n}; null = "{n}% OFF"
   badgeStyle      String?  // per-discount badge shape: "ribbon"; null = circle (default)
+  shadowColor     String?  // per-discount ribbon box-shadow base color (hex); null = theme default (black)
   appliedProducts String   @default("[]") // JSON: [{id, handle}]
   updatedAt       DateTime @updatedAt
   createdAt       DateTime @default(now())

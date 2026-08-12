@@ -109,7 +109,7 @@
     </span>
 
     {%- if show_progress_bar -%}
-      <progress class="free-shipping__progress-bar" data-progress-bar value="{{ percent }}" max="100"></progress>
+      <progress class="free-shipping__progress-bar" aria-label="{{ 'cart.general.free_shipping_progress' | t }}" data-progress-bar value="{{ percent }}" max="100"></progress>
     {%- endif -%}
 
     <div class="confetti">
@@ -138,7 +138,7 @@
   data-section-type="cart"
   data-cart-page>
   <div class="cart__empty" data-cart-empty>
-    <h1
+    <p
       class="cart__title"
       data-animation="{{ animation_name }}"
       data-animation-duration="{{ animation_duration }}"
@@ -146,7 +146,7 @@
       {%- assign animation_cart_empty_delay = animation_cart_empty_delay | plus: animation_delay_increment -%}
     >
       {{- 'cart.general.title' | t -}}
-    </h1>
+    </p>
 
     <p
       data-animation="{{ animation_name }}"
@@ -233,7 +233,7 @@
           </a>
         </div>
 
-        <div class="cart__errors" data-cart-errors>
+        <div class="cart__errors" role="alert" data-cart-errors>
           <div class="cart__errors__inner">
             <h5 class="cart__errors__heading">{{- 'cart.general.limit_message' | t -}}</h5>
 
@@ -372,7 +372,7 @@
                   {%- render block -%}
 
                 {%- when 'cart-message' -%}
-                  {%- assign custom_message_color = section.settings.cart_custom_message_color -%}
+                  {%- assign custom_message_color = block.settings.cart_custom_message_color -%}
                   {%- capture style -%}
                     {%- unless custom_message_color == 'rgba(0,0,0,0)' or custom_message_color == blank -%}
                       --text: {{ custom_message_color }};

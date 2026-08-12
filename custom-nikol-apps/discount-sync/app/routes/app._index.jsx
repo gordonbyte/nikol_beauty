@@ -66,6 +66,7 @@ export const loader = async ({ request }) => {
           priceColor: t?.priceColor ?? null,
           badgeText: t?.badgeText ?? null,
           badgeStyle: t?.badgeStyle ?? null,
+          shadowColor: t?.shadowColor ?? null,
         };
       })
       // Schedule order: latest start date first (upcoming on top, expired at the bottom).
@@ -125,6 +126,7 @@ export const action = async ({ request }) => {
       priceColor: normColor(form.get("priceColor")),
       badgeText: normText(form.get("badgeText")),
       badgeStyle: form.get("badgeStyle") === "ribbon" ? "ribbon" : null,
+      shadowColor: normColor(form.get("shadowColor")),
     };
     await prisma.trackedDiscount.upsert({
       where: {
@@ -204,6 +206,7 @@ export default function Index() {
   const [price, setPrice] = useState("");
   const [text, setText] = useState("");
   const [shape, setShape] = useState("circle");
+  const [shadow, setShadow] = useState("");
 
   const openStyle = (d) => {
     setEditing(d);
@@ -211,6 +214,7 @@ export default function Index() {
     setPrice(d.priceColor ?? "");
     setText(d.badgeText ?? "");
     setShape(d.badgeStyle ?? "circle");
+    setShadow(d.shadowColor ?? "");
   };
   const closeStyle = () => setEditing(null);
   const saveStyle = () => {
@@ -223,6 +227,7 @@ export default function Index() {
         priceColor: price,
         badgeText: text,
         badgeStyle: shape,
+        shadowColor: shadow,
       },
       { method: "post" },
     );
@@ -540,6 +545,14 @@ export default function Index() {
                   onChange={setBg}
                   helpText="Background of the collection-card badge and the “On Sale” pill. Blank = theme default."
                 />
+                {shape === "ribbon" && (
+                  <ColorField
+                    label="Ribbon shadow color"
+                    value={shadow}
+                    onChange={setShadow}
+                    helpText="Base color of the ribbon's edge and drop shadow. Blank = default black shading."
+                  />
+                )}
                 <ColorField
                   label="Sale-price color"
                   value={price}

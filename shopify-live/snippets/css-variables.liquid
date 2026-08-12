@@ -212,6 +212,10 @@
 /* === Product sale color ===*/
 --COLOR-SALE: {{ settings.sale_color }};
 
+/* === Product card price colors ===*/
+--COLOR-CARD-PRICE: {{ settings.card_price_color | default: settings.text_color }};
+--COLOR-CARD-SALE-PRICE: {{ settings.card_sale_price_color | default: settings.sale_color }};
+
 /* === Gray background on Product grid items ===*/
 {%- if settings.show_gray_bg -%}
   --filter-bg: .97;
@@ -250,6 +254,7 @@
 --COLOR-MENU-BG: {{ settings.menu_bg_color }};
 --COLOR-MENU-LINK: {{ settings.menu_link_color }};
 --COLOR-MENU-LINK-HOVER: {{ settings.menu_link_color | color_modify: 'alpha', hover_opacity }};
+--COLOR-NAV-LINK-HOVER: {{ settings.menu_link_hover_color | default: '#fcc9c6' }};
 --COLOR-SUBMENU-BG: {{ settings.submenu_bg_color }};
 --COLOR-SUBMENU-LINK: {{ settings.submenu_link_color }};
 --COLOR-SUBMENU-LINK-HOVER: {{ settings.submenu_link_color | color_modify: 'alpha', hover_opacity }};

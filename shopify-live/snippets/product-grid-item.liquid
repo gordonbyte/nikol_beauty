@@ -304,16 +304,26 @@
     endunless
 
     comment
-      Promo % badge: reads a product tag.
-        promo-20        -> "20% OFF" (all variants get the same 20%)
-        promo-up-to-30  -> "UP TO 30% OFF" (variants get different %; tag the
-                           HIGHER number). Price is calculated off this %.
+      Promo badge: reads a product tag.
+        percent  promo-20            -> "20% OFF" (all variants get the same 20%)
+                 promo-up-to-30      -> "UP TO 30% OFF" (variants differ; tag the
+                                        HIGHER number). Price is calculated off this %.
+        amount   promo-amt-5         -> "$5 OFF" (every variant gets $5 off per item)
+                 promo-amt-up-to-10  -> "UP TO $10 OFF". Price is price_min - amount.
       Purely visual — the actual discount is applied by Shopify at checkout.
     endcomment
     assign promo_percent = ''
+    assign promo_amount = ''
     assign promo_up_to = false
     if settings.promo_badge_enable
-      if product_tags contains 'promo-up-to-'
+      if product_tags contains 'promo-amt-up-to-'
+        assign promo_up_to = true
+        assign promo_parts = product_tags | split: 'promo-amt-up-to-'
+        assign promo_amount = promo_parts[1] | split: ',' | first | strip
+      elsif product_tags contains 'promo-amt-'
+        assign promo_parts = product_tags | split: 'promo-amt-'
+        assign promo_amount = promo_parts[1] | split: ',' | first | strip
+      elsif product_tags contains 'promo-up-to-'
         assign promo_up_to = true
         assign promo_parts = product_tags | split: 'promo-up-to-'
         assign promo_percent = promo_parts[1] | split: ',' | first | strip
@@ -327,9 +337,16 @@
       assign promo_badge_bg = product.metafields.custom.promo_badge_bg.value | default: settings.promo_badge_bg_color
       assign promo_price_color = product.metafields.custom.promo_price_color.value | default: settings.promo_badge_bg_color
       assign promo_off_word = 'products.product.off' | t
-      assign promo_default_text = '{n}% ' | append: promo_off_word
+      if promo_amount != blank
+        # Amount badge: {n} renders as "$<x>", default wording "$<x> OFF".
+        assign promo_default_text = '{n} ' | append: promo_off_word
+        assign promo_n_display = '$' | append: promo_amount
+      else
+        assign promo_default_text = '{n}% ' | append: promo_off_word
+        assign promo_n_display = promo_percent
+      endif
       assign promo_badge_text = product.metafields.custom.promo_badge_text.value | default: promo_default_text
-      assign promo_badge_label = promo_badge_text | replace: '{n}', promo_percent
+      assign promo_badge_label = promo_badge_text | replace: '{n}', promo_n_display
       assign promo_badge_lines = promo_badge_label | split: '{br}'
       assign promo_badge_style = product.metafields.custom.promo_badge_style.value | default: 'circle'
       assign promo_ribbon_label = promo_badge_lines | join: ' '
@@ -356,7 +373,11 @@
       data-aos-anchor="{{ aos_anchor }}">{{ 'products.product.on_sale' | t }}</span>
   {%- endif -%}
 
-  {%- if promo_percent != blank and sold_out == false -%}
+  {%- assign has_promo_badge = false -%}
+  {%- if promo_percent != blank or promo_amount != blank -%}
+    {%- assign has_promo_badge = true -%}
+  {%- endif -%}
+  {%- if has_promo_badge and sold_out == false -%}
     {%- if promo_badge_style == 'ribbon' -%}
       <span class="promo-ribbon"
         style="--promo-ribbon-color: {{ promo_badge_bg }}; color: {{ settings.promo_badge_text_color }};"
@@ -631,7 +652,18 @@
     is NOT reduced here). Display estimate — checkout may round by a cent.
   endcomment
   assign promo_sale_price_display = ''
-  if promo_percent != blank
+  if promo_amount != blank
+    assign promo_amount_cents = promo_amount | times: 100.0 | round
+    assign promo_sale_price = product.price_min | minus: promo_amount_cents
+    if promo_sale_price < 0
+      assign promo_sale_price = 0
+    endif
+    if settings.currency_code_enable
+      assign promo_sale_price_display = promo_sale_price | money_with_currency
+    else
+      assign promo_sale_price_display = promo_sale_price | money
+    endif
+  elsif promo_percent != blank
     assign promo_discount_amount = product.price_min | times: promo_percent | divided_by: 100
     assign promo_sale_price = product.price_min | minus: promo_discount_amount
     if settings.currency_code_enable
@@ -660,6 +692,9 @@
       </span>
       <span class="promo-on-sale-pill" style="background: {{ promo_badge_bg }};">On Sale</span>
     {%- else -%}
+      {% if product.compare_at_price > product.price %}
+        <span class="old-price">{{ product_compare_at_price }}</span>
+      {% endif %}
       <span class="new-price">
         {% if product.price_varies %}
           <small>{{ 'products.general.from' | t }}</small>
@@ -670,16 +705,9 @@
           {{ product_price_min }}
         {%- endif -%}
       </span>
-      {% if product.compare_at_price > product.price %}
-        <span class="old-price">{{ product_compare_at_price }}</span>
-      {% endif %}
     {%- endif -%}
   {% else %}
-    {%- if product.handle == '10x-mirror' -%}
-      <span class="sold-out sold-out--notify" style="color:#d34270 !important;">Notify me when it goes live</span>
-    {%- else -%}
-      <span class="sold-out">{{ 'products.product.sold_out' | t }}</span>
-    {%- endif -%}
+    <span class="sold-out">{{ 'products.product.sold_out' | t }}</span>
   {% endif %}
 </span>
 {% if current_variant.unit_price %}

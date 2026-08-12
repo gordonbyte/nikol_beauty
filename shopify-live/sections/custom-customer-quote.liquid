@@ -95,7 +95,7 @@
 <section
   class="custom-customer-quote"
   aria-label="Customer review"
-  {% if section.settings.bg_image %}style="background-image: url({{ section.settings.bg_image | img_url: 'master' }});"{% endif %}
+  {% if section.settings.bg_image %}style="background-image: url({{ section.settings.bg_image | image_url: width: 2000 }});"{% endif %}
 >
   <div class="page-width">
 
@@ -103,7 +103,7 @@
 
       {% if section.settings.star_image %}
         <div class="custom-customer-quote__stars">
-          <img src="{{ section.settings.star_image | img_url: 'master' }}" alt="" loading="lazy">
+          <img src="{{ section.settings.star_image | image_url: width: 260 }}" alt="{{ section.settings.star_alt | escape }}" loading="lazy">
         </div>
       {% endif %}
 
@@ -124,7 +124,7 @@
 
           {% if section.settings.buyer_image %}
             <span class="custom-customer-quote__buyer">
-              <img src="{{ section.settings.buyer_image | img_url: 'master' }}" alt="" loading="lazy">
+              <img src="{{ section.settings.buyer_image | image_url: width: 48 }}" alt="" loading="lazy">
               <span class="custom-customer-quote__buyer-text">
                 {{ section.settings.buyer_text }}
               </span>
@@ -152,6 +152,13 @@
       "type": "image_picker",
       "id": "star_image",
       "label": "Star Image"
+    },
+    {
+      "type": "text",
+      "id": "star_alt",
+      "label": "Star rating alt text",
+      "default": "5 out of 5 stars",
+      "info": "Announced by screen readers. Leave blank if the stars are purely decorative."
     },
     {
       "type": "textarea",
