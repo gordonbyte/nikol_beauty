@@ -2,9 +2,12 @@
   <div class="yt-video__wrapper">
     <figure class="yt-video__image">
       <img
-        src="{{ image | image_url }}"
+        src="{{ image | image_url: width: 800 }}"
+        srcset="{{ image | image_url: width: 400 }} 400w, {{ image | image_url: width: 600 }} 600w, {{ image | image_url: width: 800 }} 800w, {{ image | image_url: width: 1000 }} 1000w, {{ image | image_url: width: 1200 }} 1200w"
+        sizes="(max-width: 785px) 100vw, 50vw"
         alt="{{ image.alt | default: title | default: shop.name | strip_html | escape }}"
-        loading="eager"
+        loading="{{ loading | default: 'lazy' }}"
+        {% if loading == 'eager' %}fetchpriority="high"{% endif %}
         />
     </figure>
     <a class="yt-video__overlay" href="{{ video_url }}" data-fancybox aria-label="Play video{% if title != blank %}: {{ title | strip_html | escape }}{% endif %}">

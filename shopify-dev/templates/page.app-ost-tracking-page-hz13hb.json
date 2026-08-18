@@ -11,6 +11,64 @@
   "sections": {
     "e5112141-4ec6-4f10-91e2-914dba0d1961": {
       "type": "app-ost-container-grid",
+      "blocks": {
+        "e5de6322-e637-47d4-b4f7-4f9a30a969d5": {
+          "type": "shopify://apps/order-status-tracker/blocks/announce-bar/66c7eba3-dd2f-4580-9aa0-f17552f0b971",
+          "disabled": true,
+          "settings": {
+            "announce": "<p><strong>Big news</strong>! We're excited to announce...</p>",
+            "crossable": true,
+            "startDate": "",
+            "endDate": "",
+            "rightToLeft": false,
+            "textColor": "#000000",
+            "bgColor": "#f3f3f3",
+            "linkColor": "#ffffff",
+            "linkHoverColor": "#ffffff",
+            "cssStyle": "#ost-announce-bar .ost-announce-icon, .message-bar-container {\n                        border-radius: 0px !important;\n                    }"
+          }
+        },
+        "order_status_tracker_search_bar_jbP4L7": {
+          "type": "shopify://apps/order-status-tracker/blocks/search-bar/66c7eba3-dd2f-4580-9aa0-f17552f0b971",
+          "settings": {
+            "searchTitle": "Track your order",
+            "buttonLabel": "",
+            "SearchPlaceHolder": "Enter order number, email or tracking number",
+            "SearchErrorMsg": "",
+            "rightToLeft": false,
+            "titleColor": "#000000",
+            "buttonLabelColor": "#212121",
+            "buttonBgColor": "#fcc9c6",
+            "buttonBgHoverColor": "#fcc9c6",
+            "formBGColor": "#dfdfdf",
+            "timelineColor": "#fcc9c6",
+            "showFormBGColor": true,
+            "cssStyle": ".ost-store-info-main {\nbackground-image: url('https://cdn.shopify.com/s/files/1/0690/6347/5504/files/bb_banner_4500_x1500_d3181b39-a277-4ac1-a4b6-90489090504b.jpg');\nborder-radius: 20px;\nbackground-size: cover;\n    background-repeat: no-repeat;\n    background-position: center;\npadding-top: 84px;\nmargin-top: 20px;\n}\n\n.ost-btn {\nborder-radius: 20px\n}\n.ost-tracking-input-section{\nbackground-color: white !important;\nheight: 200px;\nwidth: 47%;\npadding-right: 10px;\npadding-left: 10px;\nborder-radius: 20px;\n}\n\n.ost-input{\nborder-radius: 20px;\nbackground-color: white;\n}"
+          }
+        },
+        "82a34888-d2ba-45d0-9bc9-da976e93e68b": {
+          "type": "shopify://apps/order-status-tracker/blocks/cross-sells/66c7eba3-dd2f-4580-9aa0-f17552f0b971",
+          "settings": {
+            "header": "",
+            "viewAllTitle": "",
+            "viewAllLink": "",
+            "listSource": "pick-collection",
+            "pickProducts": [],
+            "pickCollection": "best-sellers",
+            "pickLink": "",
+            "layout": "slider",
+            "numOfItems": 20,
+            "rightToLeft": false,
+            "textColor": "#000000",
+            "cssStyle": "#ost-product-list, .ost-product-img {\n                        border-radius: 0px !important;\n                    }"
+          }
+        }
+      },
+      "block_order": [
+        "e5de6322-e637-47d4-b4f7-4f9a30a969d5",
+        "order_status_tracker_search_bar_jbP4L7",
+        "82a34888-d2ba-45d0-9bc9-da976e93e68b"
+      ],
       "settings": {
         "visibility": "all_the_time",
         "columns_mobile": 1,

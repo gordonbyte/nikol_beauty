@@ -78,7 +78,16 @@
         "feature_TKmXbc"
       ],
       "name": "[Custom] Guarantee List",
-      "settings": {}
+      "settings": {
+        "background_color": "#F8F3EF",
+        "border_top_thickness": 0,
+        "border_top_color": "#f7f2ed",
+        "border_bottom_thickness": 0,
+        "border_bottom_color": "#f7f2ed",
+        "text_color": "",
+        "text_size": 18,
+        "text_weight": "400"
+      }
     },
     "custom_hero_banner_WBDkbD": {
       "type": "custom-hero-banner",
@@ -129,7 +138,8 @@
         "button_text": "Shop Our Best Sellers",
         "button_link": "/collections/best-selling-products",
         "right_image_1": "shopify://shop_images/banner-girl.png",
-        "right_image_2": "shopify://shop_images/banner-cosmetic.png"
+        "right_image_2": "shopify://shop_images/banner-cosmetic.png",
+        "feature_bg_color": "#f7f2ed"
       }
     },
     "custom_customer_quote_C4ELiX": {
@@ -138,6 +148,7 @@
       "settings": {
         "bg_image": "shopify://shop_images/reviews-banner.jpg",
         "star_image": "shopify://shop_images/Stars_Container.png",
+        "star_alt": "5 out of 5 stars",
         "review_text": "“I absolutely love my BB Créme makeup. It stays nice all day. Doesn’t look cakey and covers great! I have loved all of the products from Nicole Beauty. I’ll be buying more! Thank you for your products and I enjoy the You Tube presentations.\"",
         "author_name": "- Janet S.",
         "buyer_image": "shopify://shop_images/Vector.png",
@@ -221,7 +232,7 @@
         "title": "Shop Best Sellers",
         "subtitle": "Our most-loved makeup for mature skin, designed to look natural and feel comfortable.",
         "products_limit": 10,
-        "background_color": "#F7F2ED66"
+        "background_color": "#f7f2ed66"
       }
     },
     "cw_videos_pDhphj": {
@@ -243,7 +254,9 @@
         "title": "Real Stories From Women Who Switched to Nikol Beauty",
         "subtitle": "See how women in their 50s, 60s, and 70s use Nikol Beauty to look polished without fighting their skin.",
         "button_label": "Watch all tutorials",
-        "button_link": "/pages/video-gallery"
+        "button_link": "/pages/video-gallery",
+        "background_color": "#fcc9c6",
+        "enable_live_shopping_style": false
       }
     },
     "custom_info_banner_makeup": {
@@ -278,9 +291,12 @@
           "settings": {
             "media_type": "image",
             "media_position": "right",
-            "media_padding": 0,
+            "media_padding": 80,
             "media_width": 50,
-            "image_desktop": "shopify://shop_images/mkd1.jpg"
+            "image_desktop": "shopify://shop_images/mkd1.jpg",
+            "blog": "",
+            "blog_limit": 6,
+            "blog_overlay": 35
           }
         }
       },
@@ -292,7 +308,8 @@
       ],
       "name": "[Custom] Info Banner",
       "settings": {
-        "bg_image": "shopify://shop_images/makup-bg.jpg"
+        "bg_image": "shopify://shop_images/makup-bg.jpg",
+        "bg_color": ""
       }
     },
     "custom_steps_vertical_iXrHGd": {
@@ -336,7 +353,8 @@
         "title": "Natural, Polished Makeup in 3 Simple Steps",
         "subtitle": "There’s no creasing, heaviness, guesswork, or fighting your skin.",
         "button_label": "Shop Our Best Sellers",
-        "button_link": "/collections/best-selling-products"
+        "button_link": "/collections/best-selling-products",
+        "background_color": "#f7f2ed"
       }
     },
     "custom_benefits_4gzPy4": {
@@ -383,6 +401,7 @@
       ],
       "name": "[Custom] Benefits",
       "settings": {
+        "bg_color": "#f7f2ed66",
         "title": "Why Thousands Of Women Are Switching To Nikol Beauty",
         "description": "It’s lightweight, natural-looking, and made for mature skin."
       }
@@ -395,28 +414,37 @@
           "settings": {
             "media_type": "image",
             "media_position": "left",
-            "media_padding": 0,
+            "media_padding": 80,
             "media_width": 65,
-            "image_desktop": "shopify://shop_images/step-pair.jpg"
+            "image_desktop": "shopify://shop_images/step-pair.jpg",
+            "blog": "",
+            "blog_limit": 6,
+            "blog_overlay": 35
           }
         },
         "heading_quiz": {
           "type": "heading",
           "settings": {
-            "heading": "Not Sure Which Products to Choose or Pair?"
+            "heading": "Not Sure Which Products to Choose or Pair?",
+            "padding_top": 5,
+            "padding_bottom": 5
           }
         },
         "text_quiz": {
           "type": "text",
           "settings": {
-            "text": "<p>Take our free 1-minute quiz and we’ll recommend the Nikol Beauty products that work best for your skin, undertone (cool, warm, or neutral), routine, and preferences.</p>"
+            "text": "<p>Take our free 1-minute quiz and we’ll recommend the Nikol Beauty products that work best for your skin, undertone (cool, warm, or neutral), routine, and preferences.</p>",
+            "padding_top": 5,
+            "padding_bottom": 5
           }
         },
         "button_quiz": {
           "type": "button",
           "settings": {
             "button_text": "TAKE OUR QUIZ",
-            "button_link": "shopify://pages/the-makeup-quiz"
+            "button_link": "shopify://pages/the-makeup-quiz",
+            "padding_top": 5,
+            "padding_bottom": 5
           }
         },
         "icon_note_quiz": {
@@ -424,7 +452,9 @@
           "settings": {
             "icon": "shopify://shop_images/Group.png",
             "text": "Takes 1 minute",
-            "alignment": "left"
+            "alignment": "left",
+            "padding_top": 5,
+            "padding_bottom": 5
           }
         }
       },
@@ -436,11 +466,12 @@
         "icon_note_quiz"
       ],
       "name": "[Custom] Info Banner",
-      "settings": {}
+      "settings": {
+        "bg_color": ""
+      }
     },
     "custom_collection_banners_fCeq6M": {
       "type": "custom-collection-banners",
-      "name": "[Custom] Collection Banners",
       "blocks": {
         "collection_box_r3nckz": {
           "type": "collection_box",
@@ -624,8 +655,14 @@
       ],
       "name": "[Custom] Customer Reviews",
       "settings": {
+        "bg_color": "#f7f2ed",
         "title": "Loved By Thousands Of Women",
-        "subtitle": "Real reviews from women who switched to Nikol Beauty."
+        "subtitle": "Real reviews from women who switched to Nikol Beauty.",
+        "review_lines": 4,
+        "slides_per_view": 3,
+        "scroll_speed": 600,
+        "autoplay": false,
+        "autoplay_delay": 4
       }
     },
     "custom_faq_Pwzh8K": {
@@ -710,6 +747,8 @@
       "settings": {
         "title": "Frequently Asked Questions",
         "subtitle": "Everything you need to know about Nikol Beauty.",
+        "background_color": "#f7f2ed",
+        "border_color": "#cec9c5",
         "plus_icon": "shopify://shop_images/FAQ-plus.png",
         "minus_icon": "shopify://shop_images/FAQ-minus.png"
       }
@@ -753,64 +792,92 @@
         "feature_JT7Um8"
       ],
       "name": "[Custom] Guarantee List",
-      "settings": {}
+      "settings": {
+        "background_color": "#F8F3EF",
+        "border_top_thickness": 0,
+        "border_top_color": "#f7f2ed",
+        "border_bottom_thickness": 0,
+        "border_bottom_color": "#f7f2ed",
+        "text_color": "",
+        "text_size": 18,
+        "text_weight": "400"
+      }
     },
     "custom_info_banner_bPCMH4": {
       "type": "custom-info-banner",
-      "name": "[Custom] Info Banner",
       "blocks": {
         "image_1": {
           "type": "media",
           "settings": {
             "media_type": "image",
             "media_position": "left",
-            "media_padding": 0,
+            "media_padding": 70,
+            "media_width": 50,
             "image_desktop": "shopify://shop_images/looks.jpg",
-            "image_mobile": "shopify://shop_images/happy-senior-friends-looking-each-other_1.jpg"
+            "image_mobile": "shopify://shop_images/happy-senior-friends-looking-each-other_1.jpg",
+            "blog": "",
+            "blog_limit": 6,
+            "blog_overlay": 35
           }
         },
         "rating_1": {
           "type": "rating",
           "settings": {
             "star_image": "shopify://shop_images/Stars_Container.png",
-            "star_text": "<strong>4.76/5</strong> stars | <strong>12,000+</strong> happy women"
+            "star_text": "<strong>4.76/5</strong> stars | <strong>12,000+</strong> happy women",
+            "padding_top": 5,
+            "padding_bottom": 5
           }
         },
         "heading_1": {
           "type": "heading",
           "settings": {
-            "heading": "Stop Wearing Makeup That Makes You Look Older"
+            "heading": "Stop Wearing Makeup That Makes You Look Older",
+            "padding_top": 5,
+            "padding_bottom": 5
           }
         },
         "text_1": {
           "type": "text",
           "settings": {
-            "text": "<p>Get makeup designed for mature skin that makes you feel confident without fighting your skin, redoing your makeup, or looking overdone.</p>"
+            "text": "<p>Get makeup designed for mature skin that makes you feel confident without fighting your skin, redoing your makeup, or looking overdone.</p>",
+            "padding_top": 5,
+            "padding_bottom": 5
           }
         },
         "button_1": {
           "type": "button",
           "settings": {
             "button_text": "Shop Our Best Sellers",
-            "button_link": "/collections/best-selling-products"
+            "button_link": "/collections/best-selling-products",
+            "padding_top": 5,
+            "padding_bottom": 5
           }
         }
       },
-      "block_order": ["image_1", "rating_1", "heading_1", "text_1", "button_1"],
+      "block_order": [
+        "image_1",
+        "rating_1",
+        "heading_1",
+        "text_1",
+        "button_1"
+      ],
+      "name": "[Custom] Info Banner",
       "settings": {
-        "bg_image": "shopify://shop_images/banner-bottom-bg.jpg"
+        "bg_image": "shopify://shop_images/banner-bottom-bg.jpg",
+        "bg_color": ""
       }
     },
     "custom_info_banner_P4hRaz": {
       "type": "custom-info-banner",
-      "name": "[Custom] Info Banner",
       "blocks": {
         "media_1": {
           "type": "media",
           "settings": {
             "media_type": "blog",
             "media_position": "right",
-            "media_padding": 0,
+            "media_padding": 80,
+            "media_width": 50,
             "blog": "news",
             "blog_limit": 6,
             "blog_overlay": 35
@@ -819,26 +886,39 @@
         "heading_1": {
           "type": "heading",
           "settings": {
-            "heading": "Beauty Advice from a Licensed Esthetician"
+            "heading": "Beauty Advice from a Licensed Esthetician",
+            "padding_top": 5,
+            "padding_bottom": 5
           }
         },
         "text_1": {
           "type": "text",
           "settings": {
-            "text": "<p>Read our articles and get straightforward makeup advice designed for mature skin, so you know what works, how to use it, and when to keep things simple.</p>"
+            "text": "<p>Read our articles and get straightforward makeup advice designed for mature skin, so you know what works, how to use it, and when to keep things simple.</p>",
+            "padding_top": 5,
+            "padding_bottom": 5
           }
         },
         "button_1": {
           "type": "button",
           "settings": {
             "button_text": "VIEW ALL BLOGS",
-            "button_link": "/blogs/news"
+            "button_link": "/blogs/news",
+            "padding_top": 5,
+            "padding_bottom": 5
           }
         }
       },
-      "block_order": ["media_1", "heading_1", "text_1", "button_1"],
+      "block_order": [
+        "media_1",
+        "heading_1",
+        "text_1",
+        "button_1"
+      ],
+      "name": "[Custom] Info Banner",
       "settings": {
-        "bg_image": "shopify://shop_images/advice-bg.jpg"
+        "bg_image": "shopify://shop_images/advice-bg.jpg",
+        "bg_color": ""
       }
     },
     "custom_newsletter_aN7Bpn": {

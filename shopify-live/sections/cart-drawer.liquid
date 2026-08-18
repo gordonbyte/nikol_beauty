@@ -331,6 +331,7 @@
 
     assign free_shipping_message = free_shipping_text | replace: '||amount||', left_to_spend
     assign qualified_shipping_message = 'cart.general.qualified_shipping_message' | t
+    assign qualified_shipping_message = qualified_shipping_message | replace: 'Congratulations!', "<span class='free-shipping__congrats'>Congratulations!</span>" | replace: 'free shipping', "<span class='free-shipping__highlight'>free shipping</span>"
 
     capture free_shipping_classes
       if is_cart_drawer
@@ -371,7 +372,11 @@
     </span>
 
     {%- if show_progress_bar -%}
-      <progress class="free-shipping__progress-bar" aria-label="{{ 'cart.general.free_shipping_progress' | t }}" data-progress-bar value="{{ percent }}" max="100"></progress>
+      <div class="free-shipping__track" data-truck-track>
+        <progress class="free-shipping__progress-bar" aria-label="{{ 'cart.general.free_shipping_progress' | t }}" data-progress-bar value="{{ percent }}" max="100"></progress>
+        <span class="free-shipping__truck" data-shipping-truck>{% render 'custom-icon-shipping-truck' %}</span>
+        <span class="free-shipping__trophy">{% render 'custom-icon-shipping-trophy' %}</span>
+      </div>
     {%- endif -%}
 
     <div class="confetti">

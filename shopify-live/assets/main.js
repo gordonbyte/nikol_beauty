@@ -210,14 +210,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    /* Testimonials slider */
+    /* Video product sliders — init deferred until scrolled near view */
     let sliderProducts = document.querySelectorAll('.video-product-hub .swiper-container')
     let sliderProductsNext  = document.querySelectorAll('.video-product-hub .swiper-next')
     let sliderProductssPrev = document.querySelectorAll('.video-product-hub .swiper-prev')
 
     let productsSlidersArray  = [];
 
-    sliderProducts.forEach(function(element, i) {
+    function initProductSlider(element, i) {
       productsSlidersArray.push(
         new Swiper(element, {
           spaceBetween: 0,
@@ -239,7 +239,24 @@ document.addEventListener('DOMContentLoaded', () => {
           },
         })
       );
-    });
+    }
+
+    if ('IntersectionObserver' in window) {
+      let productSliderObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          productSliderObserver.unobserve(entry.target);
+          let i = Array.prototype.indexOf.call(sliderProducts, entry.target);
+          initProductSlider(entry.target, i);
+        });
+      }, { rootMargin: '200px 0px' });
+
+      sliderProducts.forEach(function(element) {
+        productSliderObserver.observe(element);
+      });
+    } else {
+      sliderProducts.forEach(initProductSlider);
+    }
 
     // Comments
     document.querySelectorAll('.js-toggle-comments').forEach(function(button) {
@@ -328,5 +345,138 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!reviews) return;
     event.preventDefault();
     reviews.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+})();
+
+// Cart drawer free-shipping truck (KAN-31): every time the drawer opens, the
+// progress bar refills from 0 to the cart's percentage with the truck riding
+// the leading edge. theme.js writes the real percent into the <progress>
+// element; we capture it as the drive-in target and take over the rendering
+// (the theme's own scaleX/width transitions are disabled in main.css so bar
+// and truck stay locked frame-by-frame).
+(function () {
+  var DURATION = 1200;
+  var raf = null;
+  var lastValue = null;
+
+  function getParts() {
+    var wrap = document.querySelector('.drawer__message.free-shipping');
+    if (!wrap) return null;
+    var bar = wrap.querySelector('[data-progress-bar]');
+    var truck = wrap.querySelector('[data-shipping-truck]');
+    if (!bar || !truck) return null;
+    return { wrap: wrap, bar: bar, truck: truck };
+  }
+
+  // Unitless fraction of the bar's width; the CSS multiplies it against the
+  // bar's actual length (100% - 9px) so the wheel stays on the fill edge.
+  function clampPos(percent) {
+    return (Math.max(5, Math.min(100, percent)) / 100).toFixed(4);
+  }
+
+  function paint(parts, value) {
+    parts.bar.value = value;
+    parts.truck.style.setProperty('--truck-frac', clampPos(value));
+    parts.truck.classList.toggle('show-trophy', value >= 99.9);
+    parts.wrap.classList.toggle('confetti-go', value >= 99.9);
+    lastValue = value;
+  }
+
+  function pulseAmount(parts) {
+    var amount = parts.wrap.querySelector('[data-left-to-spend]');
+    if (!amount) return;
+    amount.classList.remove('is-pulsing');
+    void amount.offsetWidth;
+    amount.classList.add('is-pulsing');
+  }
+
+  function currentTarget(parts) {
+    var stored = parseFloat(parts.bar.dataset.truckTarget);
+    var value = isNaN(stored) ? parseFloat(parts.bar.value) : stored;
+    if (isNaN(value)) value = 0;
+    return Math.max(0, Math.min(100, value));
+  }
+
+  function animateTo(parts, target, from, duration) {
+    from = typeof from === 'number' ? from : 0;
+    duration = duration || DURATION;
+    if (raf) cancelAnimationFrame(raf);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      paint(parts, target);
+      return;
+    }
+    var start = null;
+    paint(parts, from);
+    function frame(ts) {
+      if (start === null) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      paint(parts, from + (target - from) * eased);
+      raf = p < 1 ? requestAnimationFrame(frame) : null;
+    }
+    raf = requestAnimationFrame(frame);
+  }
+
+  function driveIn() {
+    var parts = getParts();
+    if (!parts) return;
+    // The drawer's own slide-in + content reveal takes ~half a second; pulse
+    // after it so the pulse is actually visible.
+    setTimeout(function () {
+      pulseAmount(parts);
+    }, 600);
+    // The theme opens the drawer before its own cart refresh lands, so the
+    // <progress> value can be one update behind — fetch the real total.
+    var limit = parseFloat(parts.wrap.getAttribute('data-free-shipping-limit'));
+    var rate = (window.Shopify && window.Shopify.currency && parseFloat(window.Shopify.currency.rate)) || 1;
+    var limitCents = limit * 100 * rate;
+    fetch('/cart.js', { headers: { Accept: 'application/json' } })
+      .then(function (response) { return response.json(); })
+      .then(function (cart) {
+        var target = limitCents > 0 ? Math.min((cart.total_price / limitCents) * 100, 100) : 100;
+        parts.bar.dataset.truckTarget = target;
+        animateTo(parts, target);
+      })
+      .catch(function () {
+        animateTo(parts, currentTarget(parts));
+      });
+  }
+
+  function syncTarget() {
+    if (raf !== null) return;
+    var parts = getParts();
+    if (!parts) return;
+    parts.bar.dataset.truckTarget = parts.bar.value;
+    var value = parseFloat(parts.bar.value) || 0;
+    parts.truck.style.setProperty('--truck-frac', clampPos(value));
+    parts.truck.classList.toggle('show-trophy', value >= 99.9);
+    parts.wrap.classList.toggle('confetti-go', value >= 99.9);
+  }
+
+  document.addEventListener('theme:cart-drawer:open', function () {
+    requestAnimationFrame(driveIn);
+  });
+  document.addEventListener('theme:cart:load', syncTarget);
+  document.addEventListener('DOMContentLoaded', syncTarget);
+
+  // In-drawer quantity changes/removals: the theme rebuilds the drawer and
+  // writes the new percent into the fresh <progress> — glide bar and truck
+  // from the previous value to the new one (setTimeout lets the theme's
+  // synchronous rebuild finish first).
+  document.addEventListener('theme:cart:change', function () {
+    setTimeout(function () {
+      if (raf !== null) return;
+      var parts = getParts();
+      if (!parts) return;
+      var target = Math.max(0, Math.min(100, parseFloat(parts.bar.value) || 0));
+      parts.bar.dataset.truckTarget = target;
+      var from = lastValue === null ? target : lastValue;
+      if (Math.abs(target - from) < 0.5) {
+        paint(parts, target);
+        return;
+      }
+      pulseAmount(parts);
+      animateTo(parts, target, from, 500);
+    }, 0);
   });
 })();

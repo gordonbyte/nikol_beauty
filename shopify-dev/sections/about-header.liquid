@@ -1,14 +1,7 @@
 <div class="about-header site-about-header-wrapper">
   <style>
     .about-header {
-      background-image: url({{ 'about-header-bg.png' | asset_url }});
       background-color: {{ section.settings.bg_color | default: '#FCC9C6' }};
-    }
-
-    @media (max-width: 786px) {
-      .about-header {
-        background-image: url({{ 'about-header-bg-mobile.png' | asset_url }})
-      }    
     }
   </style>
   <div class="about-header__inner">
@@ -22,17 +15,13 @@
         </figure>
     </div>
     <div class="about-header__right">
-      <h1 class="about-header__title mobile-only">
+      <h1 class="about-header__title">
         {{ section.settings.title }}
       </h1>
 
     	<div class="about-header__copy">
-        {{ section.settings.copy }} 
+        {{ section.settings.copy }}
       </div>
-
-      <h1 class="about-header__title desktop-only">
-        {{ section.settings.title }}
-      </h1>
     </div>
   </div>
 </div>

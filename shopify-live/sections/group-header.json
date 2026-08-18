@@ -17,8 +17,8 @@
         "text_Mr6GH8": {
           "type": "text",
           "settings": {
-            "text": "<p>4th of July Sale Up to <strong>50% OFF</strong></p>",
-            "link": "https://nikolbeauty.com/collections/best-sellers",
+            "text": "<p>Free <strong>US</strong> Shipping Over <strong>$125</strong></p>",
+            "link": "shopify://collections/national-fierce-aging-day",
             "target_url_enabled": false,
             "target_url": "",
             "target_referrer_enabled": false,
@@ -47,8 +47,8 @@
         "marquee_speed": 100,
         "message_spacing": 10,
         "text_size": 2,
-        "bg_color": "#14448a",
-        "color": "#ffffff",
+        "bg_color": "#F8F3EF",
+        "color": "#44403F",
         "overlay_color": "#000000",
         "overlay_opacity": 0,
         "padding_top": 0,

@@ -4,7 +4,7 @@
 	      {% render 'yt-video-content', video_url: section.settings.video_url, title: section.settings.title %}
 	    </div>
 	    <div class="videos-featured__video">
-	      {% render 'yt-video', video_url: section.settings.video_url, image: section.settings.image, title: section.settings.title, hide_content: true %}
+	      {% render 'yt-video', video_url: section.settings.video_url, image: section.settings.image, title: section.settings.title, hide_content: true, loading: 'eager' %}
 	    </div>
 
       {%- if section.settings.youtube_link != blank -%}

@@ -1,11 +1,20 @@
 {%- liquid
+  assign design = section.settings.footer_design | default: 'original'
   assign title_subscribe = section.settings.title_subscribe
   assign title_1 = section.settings.footer_title_1
   assign contact_title = section.settings.contact_title
   assign contact_info = section.settings.contact_info
   assign contact_phone = section.settings.contact_phone
   assign menu_1 = section.settings.footer_menu_1
+  assign shop_menu = section.settings.footer_menu_shop
+  assign help_menu = section.settings.footer_menu_help | default: menu_1
+  assign shop_title = section.settings.shop_title | default: 'Shop'
+  assign help_title = section.settings.help_title | default: 'Help & Policies'
+  assign hours_text = section.settings.hours_text
+  assign social_accounts = 'Instagram, Facebook, Twitter, TikTok, Pinterest, Tumblr, YouTube, Vimeo, Linkedin, Snapchat, Feed' | split: ', '
 -%}
+
+{%- if design == 'original' -%}
 
 <footer class="footer site-footer-wrapper">
   <div class="footer__inner">
@@ -53,7 +62,6 @@
           </div>
 
           <div class="footer__social">
-            {%- assign social_accounts = 'Instagram, Facebook, Twitter, TikTok, Pinterest, Tumblr, YouTube, Vimeo, Linkedin, Snapchat, Feed' | split: ', ' -%}
             <ul class="social">
               {%- render 'social-icon-fontawesome' for social_accounts as social -%}
             </ul>
@@ -70,10 +78,245 @@
   </div>
 </footer>
 
+{%- else -%}
+
+{% style %}
+  /* Shared base for the three redesigns (elderly-friendly: 16px+ links,
+     sentence case, dark hover + underline, generous touch targets, visible
+     copyright on all devices). Background keeps the site footer color. */
+  .nbf {
+    background-color: var(--COLOR-FOOTER-BG, #FCC9C6);
+    position: relative;
+    z-index: 100;
+    padding: 56px 0 28px;
+    line-height: 1.65;
+  }
+  .nbf__inner { max-width: 1180px; margin: 0 auto; padding: 0 30px; }
+  .nbf__sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  .nbf address { font-style: normal; }
+  .nbf a { text-decoration: none; color: inherit; }
+  .nbf a:hover { color: #000 !important; text-decoration: underline; text-underline-offset: 3px; }
+  .nbf a:focus-visible { outline: 3px solid #45413B; outline-offset: 3px; border-radius: 2px; }
+  .nbf__heading {
+    font-weight: 600;
+    font-size: 17px;
+    margin: 0 0 10px;
+    letter-spacing: 0.02em;
+  }
+  .nbf__links { display: flex; flex-direction: column; align-items: flex-start; margin: 0; padding: 0; list-style: none; }
+  .nbf__links li { margin: 0; }
+  .nbf__links a { display: inline-block; font-size: 16px; padding: 6px 0; }
+  .nbf__contact { font-size: 16px; }
+  .nbf__contact a { display: inline-block; padding: 4px 0; }
+  .nbf__phone {
+    display: inline-block;
+    font-size: 22px;
+    font-weight: 700;
+    padding: 6px 0 !important;
+  }
+  .nbf__hours { font-size: 15px; margin: 6px 0 0; }
+  .nbf__social .social { display: flex; gap: 18px; margin: 14px 0 0; padding: 0; list-style: none; }
+  .nbf__social .social-link { font-size: 24px; }
+  .nbf__subscribe-title {
+    font-size: 26px;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    margin: 0 0 12px;
+  }
+  .nbf__bottom {
+    border-top: 1px solid rgba(70, 65, 60, 0.25);
+    margin-top: 44px;
+    padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 14px;
+  }
+  .nbf__copyright { font-size: 14px; }
+  .nbf__payments { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .nbf__payments svg { height: 26px; width: auto; }
+
+  /* ---------- Design 1: Centered & airy ---------- */
+  .nbf--d1 { text-align: center; }
+  .nbf--d1 .nbf__subscribe { max-width: 560px; margin: 0 auto 36px; }
+  .nbf--d1 .nbf__linkrow { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2px 0; margin: 0 auto 30px; padding: 0; list-style: none; max-width: 900px; }
+  .nbf--d1 .nbf__linkrow li { display: flex; align-items: center; margin: 0; }
+  .nbf--d1 .nbf__linkrow li + li::before { content: "·" / ""; padding: 0 14px; opacity: 0.5; }
+  .nbf--d1 .nbf__linkrow a { display: inline-block; font-size: 18px; padding: 8px 2px; }
+  .nbf--d1 .nbf__contact { font-size: 18px; }
+  .nbf--d1 .nbf__phone { font-size: 26px; }
+  .nbf--d1 .nbf__social { margin-top: 20px; }
+  .nbf--d1 .nbf__social .social { justify-content: center; }
+  .nbf--d1 .nbf__social .social-link { font-size: 28px; }
+  .nbf--d1 .nbf__bottom { justify-content: center; text-align: center; }
+
+  /* ---------- Design 2: Links with contact card ---------- */
+  .nbf--d2 .nbf__subscribe { max-width: 560px; margin: 0 0 40px; }
+  .nbf--d2 .nbf__grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: start; }
+  @media (max-width: 785px) { .nbf--d2 .nbf__grid { grid-template-columns: 1fr; } }
+  .nbf--d2 .nbf__links a { font-size: 18px; padding: 8px 0; display: block; }
+  .nbf--d2 .nbf__links { columns: 2; display: block; }
+  .nbf--d2 .nbf__links li { break-inside: avoid; }
+  @media (max-width: 520px) { .nbf--d2 .nbf__links { columns: 1; } }
+  .nbf--d2 .nbf__card {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(70, 65, 60, 0.15);
+    border-radius: 14px;
+    padding: 26px 24px;
+    text-align: center;
+  }
+  .nbf--d2 .nbf__card .nbf__heading { font-size: 20px; }
+  .nbf--d2 .nbf__card .nbf__contact { font-size: 17px; }
+  .nbf--d2 .nbf__phone { font-size: 26px; }
+  .nbf--d2 .nbf__card .nbf__social { margin-top: 14px; }
+  .nbf--d2 .nbf__card .nbf__social .social { justify-content: center; }
+  .nbf--d2 .nbf__card .nbf__social .social-link { font-size: 26px; }
+
+  /* ---------- Design 3: Large & simple ---------- */
+  .nbf--d3 .nbf__grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; }
+  @media (max-width: 785px) { .nbf--d3 .nbf__grid { grid-template-columns: 1fr; } }
+  .nbf--d3 .nbf__links a { font-size: 18px; padding: 8px 0; }
+  .nbf--d3 .nbf__links { columns: 2; display: block; }
+  .nbf--d3 .nbf__links li { break-inside: avoid; }
+  .nbf--d3 .nbf__links a { display: block; }
+  @media (max-width: 520px) { .nbf--d3 .nbf__links { columns: 1; } }
+  .nbf--d3 .nbf__contact { font-size: 18px; margin-top: 26px; }
+  .nbf--d3 .nbf__phone { font-size: 26px; }
+  .nbf--d3 .nbf__social .social-link { font-size: 28px; }
+  .nbf--d3 .nbf__bottom { justify-content: center; text-align: center; }
+{% endstyle %}
+
+{%- capture footer_links_combined -%}
+  {%- if shop_menu != blank -%}
+    {%- for link in linklists[shop_menu].links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}
+  {%- endif -%}
+  {%- for link in linklists[help_menu].links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}
+{%- endcapture -%}
+
+{%- capture contact_block -%}
+  <address class="nbf__contact">
+    {{ contact_info }}
+    {%- if contact_phone -%}
+      <br><a class="nbf__phone" href="tel:{{ contact_phone }}">{{ contact_phone }}</a>
+    {%- endif -%}
+    {%- if hours_text != blank -%}
+      <p class="nbf__hours">{{ hours_text }}</p>
+    {%- endif -%}
+  </address>
+{%- endcapture -%}
+
+{%- capture bottom_bar -%}
+  <div class="nbf__bottom">
+    <small class="nbf__copyright">© {{ "now" | date: "%Y" }} Nikol Beauty. All rights reserved.</small>
+    {%- if section.settings.show_payment_icons -%}
+      <div class="nbf__payments">
+        <span class="nbf__sr-only">Accepted payment methods:</span>
+        {%- for type in shop.enabled_payment_types -%}
+          {{ type | payment_type_svg_tag }}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+{%- endcapture -%}
+
+{%- if design == 'design1' -%}
+<footer class="nbf nbf--d1 site-footer-wrapper">
+  <div class="nbf__inner">
+    <div class="nbf__subscribe">
+      <h2 class="nbf__subscribe-title">{{ title_subscribe }}</h2>
+      {% render 'klaviyo-form' %}
+    </div>
+    <nav aria-label="Footer links">
+      <ul class="nbf__linkrow">
+        {{ footer_links_combined }}
+      </ul>
+    </nav>
+    <h2 class="nbf__sr-only">Contact us</h2>
+    {{ contact_block }}
+    <div class="nbf__social">
+      <ul class="social">
+        {%- render 'social-icon-fontawesome' for social_accounts as social -%}
+      </ul>
+    </div>
+    {{ bottom_bar }}
+  </div>
+</footer>
+
+{%- elsif design == 'design2' -%}
+<footer class="nbf nbf--d2 site-footer-wrapper">
+  <div class="nbf__inner">
+    <div class="nbf__subscribe">
+      <h2 class="nbf__subscribe-title">{{ title_subscribe }}</h2>
+      {% render 'klaviyo-form' %}
+    </div>
+    <div class="nbf__grid">
+      <nav aria-labelledby="nbf-links-heading">
+        <h3 class="nbf__heading" id="nbf-links-heading">{{ help_title }}</h3>
+        <ul class="nbf__links">
+          {{ footer_links_combined }}
+        </ul>
+      </nav>
+      <div class="nbf__card">
+        <h3 class="nbf__heading">{{ contact_title | default: "We're here to help" }}</h3>
+        {{ contact_block }}
+        <div class="nbf__social">
+          <ul class="social">
+            {%- render 'social-icon-fontawesome' for social_accounts as social -%}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {{ bottom_bar }}
+  </div>
+</footer>
+
+{%- else -%}
+<footer class="nbf nbf--d3 site-footer-wrapper">
+  <div class="nbf__inner">
+    <div class="nbf__grid">
+      <div class="nbf__col">
+        <h2 class="nbf__subscribe-title">{{ title_subscribe }}</h2>
+        {% render 'klaviyo-form' %}
+        <h3 class="nbf__sr-only">Contact us</h3>
+        {{ contact_block }}
+        <div class="nbf__social">
+          <ul class="social">
+            {%- render 'social-icon-fontawesome' for social_accounts as social -%}
+          </ul>
+        </div>
+      </div>
+      <nav class="nbf__col" aria-labelledby="nbf-links-heading">
+        <h3 class="nbf__heading" id="nbf-links-heading">{{ help_title }}</h3>
+        <ul class="nbf__links">
+          {{ footer_links_combined }}
+        </ul>
+      </nav>
+    </div>
+    {{ bottom_bar }}
+  </div>
+</footer>
+{%- endif -%}
+
+{%- endif -%}
+
 {% schema %}
 {
   "name": "[Custom] Footer",
   "settings": [
+    {
+      "type": "select",
+      "id": "footer_design",
+      "label": "Footer design",
+      "options": [
+        { "value": "original", "label": "Original (current)" },
+        { "value": "design1", "label": "Design 1 — Centered & airy" },
+        { "value": "design2", "label": "Design 2 — Links with contact card" },
+        { "value": "design3", "label": "Design 3 — Large & simple" }
+      ],
+      "default": "original"
+    },
     {
       "type": "text",
       "id": "title_subscribe",
@@ -83,13 +326,41 @@
     {
       "type": "text",
       "id": "footer_title_1",
-      "label": "Title"
+      "label": "Title (original design)"
     },
     {
       "type": "link_list",
       "id": "footer_menu_1",
-      "label": "Link List",
+      "label": "Link List (original design)",
       "info": "This menu won't show dropdown items."
+    },
+    {
+      "type": "header",
+      "content": "New designs (1–3)"
+    },
+    {
+      "type": "text",
+      "id": "shop_title",
+      "label": "Shop column title",
+      "default": "Shop"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu_shop",
+      "label": "Shop menu",
+      "info": "Optional. Shown as its own column in designs 1–2, merged into the link list in design 3."
+    },
+    {
+      "type": "text",
+      "id": "help_title",
+      "label": "Help column title",
+      "default": "Help & Policies"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu_help",
+      "label": "Help menu",
+      "info": "Falls back to the original design's link list if unset."
     },
     {
       "type": "text",
@@ -105,6 +376,18 @@
       "type": "text",
       "id": "contact_phone",
       "label": "Contact Phone"
+    },
+    {
+      "type": "text",
+      "id": "hours_text",
+      "label": "Customer service hours",
+      "default": "Monday–Friday, 9am–5pm ET"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment icons (designs 1–3)",
+      "default": true
     }
   ]
 }

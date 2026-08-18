@@ -233,6 +233,7 @@
         "type": "custom-footer",
         "custom_css": [],
         "settings": {
+          "footer_design": "design2",
           "title_subscribe": "Let's Get this beauty started.",
           "footer_title_1": "Policies",
           "footer_menu_1": "footer",
@@ -244,8 +245,25 @@
     },
     "content_for_index": [],
     "blocks": {
+      "11349500561483629931": {
+        "type": "shopify://apps/ReStock/blocks/app-embed/b399b727-6c85-44fc-9e21-63114bd72054",
+        "disabled": false,
+        "settings": {}
+      },
       "855628211100114053": {
         "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
+        "disabled": false,
+        "settings": {}
+      },
+      "10605408327587305396": {
+        "type": "shopify://apps/eg-auto-add-to-cart/blocks/app-embed/0f7d4f74-1e89-4820-aec4-6564d7e535d2",
+        "disabled": false,
+        "settings": {
+          "version": "v3"
+        }
+      },
+      "8194784159926722659": {
+        "type": "shopify://apps/gg-product-page-slider-gallery/blocks/app-embed-block/09c0440b-b921-435c-a2f5-3fc8f53b0424",
         "disabled": false,
         "settings": {}
       },
@@ -256,6 +274,11 @@
       },
       "17676059084223943535": {
         "type": "shopify://apps/triplewhale/blocks/triple_pixel_snippet/483d496b-3f1a-4609-aea7-8eee3b6b7a2a",
+        "disabled": false,
+        "settings": {}
+      },
+      "2786716548061469553": {
+        "type": "shopify://apps/axon/blocks/app-embed/baa0f014-62ea-462f-a8aa-a94befb1cbad",
         "disabled": false,
         "settings": {}
       },
@@ -271,16 +294,41 @@
           "allowed_templates": ""
         }
       },
-      "14198427981142892921": {
-        "type": "shopify://apps/se-wishlist-engine/blocks/app-embed/8f7c0857-8e71-463d-a168-8e133094753b",
+      "2567389343055140935": {
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
+      },
+      "3999180998444345382": {
+        "type": "shopify://apps/convert-experiences/blocks/convert-tracking/2eacdd19-b384-4180-b32c-b323a6d9e27e",
+        "disabled": true,
+        "settings": {}
+      },
+      "16017602894386113438": {
+        "type": "shopify://apps/junip/blocks/junip-store-key/dc14f5a8-ed15-41b1-ad08-cfba23f9789b",
         "disabled": false,
         "settings": {
-          "wishlist_unfill_icon": "",
-          "wishlist_fill_icon": ""
+          "enablePreviewMode": true
+        }
+      },
+      "6159598353363395418": {
+        "type": "shopify://apps/google-youtube/blocks/store_widget/14ec7bd0-ac77-49a9-9417-90752398bdff",
+        "disabled": true,
+        "settings": {
+          "widget_position": "LEFT_BOTTOM",
+          "side_margin": 36,
+          "bottom_margin": 36,
+          "mobile_side_margin": 16,
+          "mobile_bottom_margin": 46
         }
       },
       "1877152918344802950": {
         "type": "shopify://apps/intelligems-a-b-testing/blocks/intelligems-script/fa83b64c-0c77-4c0c-b4b2-b94b42f5ef19",
+        "disabled": true,
+        "settings": {}
+      },
+      "2200952712151285029": {
+        "type": "shopify://apps/microsoft-clarity/blocks/brandAgents_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
         "disabled": true,
         "settings": {}
       }

@@ -2683,3 +2683,205 @@ legend.quantity__legend {
 }
   .collection-image-with-title .collection__title--no-image .hero__title:last-child {
     margin-bottom: 0; }
+
+/* Product-card review stars (KAN-154) */
+.product-item__rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 10px 4px;
+}
+
+.product-item__rating-stars {
+  position: relative;
+  display: inline-block;
+  width: 74px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.product-item__rating-svg {
+  display: block;
+  width: 74px;
+  height: 14px;
+  max-width: none;
+}
+
+.product-item__rating-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 14px;
+  overflow: hidden;
+}
+
+.product-item__rating-count {
+  font-size: 13px;
+  line-height: 1;
+  opacity: 0.75;
+}
+
+/* Cart drawer free-shipping truck (KAN-31) */
+.drawer__message .free-shipping__track {
+  position: relative;
+  width: 100%;
+  padding-top: 35px;
+}
+
+.drawer__message .free-shipping__default-message {
+  font-size: 14px;
+  text-align: center;
+  margin: auto;
+}
+
+.drawer__message.free-shipping [data-left-to-spend] {
+  font-weight: 700;
+  color: #ff51a0;
+  display: inline-block;
+}
+
+@keyframes free-shipping-amount-pulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+.drawer__message.free-shipping [data-left-to-spend].is-pulsing {
+  animation: free-shipping-amount-pulse 0.6s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer__message.free-shipping [data-left-to-spend].is-pulsing {
+    animation: none;
+  }
+}
+
+.drawer__message.free-shipping .free-shipping__highlight {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.drawer__message.free-shipping .free-shipping__success-message {
+  text-align: center;
+  margin: auto;
+  font-size: 14px;
+}
+
+.drawer__message.free-shipping .free-shipping__highlight {
+  display: block;
+}
+
+.free-shipping__congrats {
+  font-weight: 700;
+  color: #fab735;
+}
+
+.free-shipping__truck {
+  position: absolute;
+  bottom: -10px;
+  left: calc(var(--truck-frac, 0.05) * (100% - 9px));
+  transform: translateX(-87%);
+  width: 64px;
+  height: 64px;
+  pointer-events: none;
+}
+
+.free-shipping__truck svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff) drop-shadow(0 1px 0 #fff) drop-shadow(0 -1px 0 #fff);
+}
+
+.free-shipping__truck {
+  transition: opacity 0.3s ease;
+}
+
+.free-shipping__truck.show-trophy {
+  opacity: 0;
+}
+
+.free-shipping__trophy {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 36px;
+  height: 36px;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.4);
+  transform-origin: bottom center;
+  transition: opacity 0.35s ease 0.15s, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s;
+}
+
+.free-shipping__trophy svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff) drop-shadow(0 1px 0 #fff) drop-shadow(0 -1px 0 #fff);
+}
+
+.free-shipping__truck.show-trophy + .free-shipping__trophy {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .free-shipping__truck,
+  .free-shipping__trophy {
+    transition: none;
+  }
+}
+
+/* Confetti: hold the theme's is-success burst until the truck reaches the end
+   (JS adds .confetti-go at arrival), and originate it at the bar's end. */
+.drawer__message.free-shipping {
+  position: relative;
+}
+
+.drawer__message.free-shipping .confetti {
+  top: auto;
+  left: auto;
+  right: 10px;
+  bottom: 18px;
+}
+
+.drawer__message.free-shipping.is-success:not(.confetti-go) .confetti__dot {
+  transition: none;
+}
+
+.drawer__message.free-shipping.is-success:not(.confetti-go) .confetti__dot:before,
+.drawer__message.free-shipping.is-success:not(.confetti-go) .confetti__dot:after {
+  transform: scale(0);
+  opacity: 1;
+  top: 0;
+  left: 0;
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer__message.free-shipping .confetti__dot,
+  .drawer__message.free-shipping .confetti__dot:before,
+  .drawer__message.free-shipping .confetti__dot:after {
+    transition: none;
+  }
+}
+
+.drawer__message .free-shipping__track .free-shipping__progress-bar {
+  margin-top: 0;
+  width: calc(100% - 9px);
+  --progress-value: linear-gradient(to right, #ff8ec2, #ff51a0 60%, #e6247f);
+}
+
+.drawer__message .free-shipping__progress-bar::-webkit-progress-value {
+  transform: none !important;
+  transition: none !important;
+}
+
+@-moz-document url-prefix() {
+  .drawer__message .free-shipping__progress-bar::-moz-progress-bar {
+    transform: none !important;
+    transition: none !important;
+  }
+}

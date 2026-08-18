@@ -1,12 +1,19 @@
 {%- style -%}
   #GuaranteeList-{{ section.id }} {
-    --custom-guarantee-list-bg: {{ section.settings.background_color }};
+    --custom-guarantee-list-bg: {{ section.settings.background_color | default: '#F8F3EF' }};
+    --custom-guarantee-list-border-top: {{ section.settings.border_top_thickness }}px solid {{ section.settings.border_top_color }};
+    --custom-guarantee-list-border-bottom: {{ section.settings.border_bottom_thickness }}px solid {{ section.settings.border_bottom_color }};
+    --custom-guarantee-list-text-color: {{ section.settings.text_color | default: 'var(--COLOR-TEXT)' }};
+    --custom-guarantee-list-text-size: {{ section.settings.text_size }}px;
+    --custom-guarantee-list-text-weight: {{ section.settings.text_weight }};
   }
 {%- endstyle -%}
 
 <style>
 .custom-guarantee-list__bar {
   background: var(--custom-guarantee-list-bg);
+  border-top: var(--custom-guarantee-list-border-top);
+  border-bottom: var(--custom-guarantee-list-border-bottom);
   padding: 17px 0;
 }
 
@@ -29,9 +36,9 @@
   gap: 10px;
   width: 25%;
   font-family: 'Inter';
-  font-size: var(--FONT-SIZE-BASE);
-  font-weight: 400;
-  color: var(--COLOR-TEXT);
+  font-size: var(--custom-guarantee-list-text-size);
+  font-weight: var(--custom-guarantee-list-text-weight);
+  color: var(--custom-guarantee-list-text-color);
   text-transform: capitalize;
 }
 
@@ -149,10 +156,84 @@
   "name": "[Custom] Guarantee List",
   "settings": [
     {
-      "type": "color",
+      "type": "color_background",
       "id": "background_color",
       "label": "Section background",
+      "info": "Solid color or gradient",
       "default": "#F8F3EF"
+    },
+    {
+      "type": "header",
+      "content": "Top border"
+    },
+    {
+      "type": "range",
+      "id": "border_top_thickness",
+      "label": "Thickness",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "border_top_color",
+      "label": "Color",
+      "default": "#F7F2ED"
+    },
+    {
+      "type": "header",
+      "content": "Bottom border"
+    },
+    {
+      "type": "range",
+      "id": "border_bottom_thickness",
+      "label": "Thickness",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "border_bottom_color",
+      "label": "Color",
+      "default": "#F7F2ED"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "info": "Leave empty to use the theme text color"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "text_weight",
+      "label": "Text weight",
+      "options": [
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Semibold (600)" },
+        { "value": "700", "label": "Bold (700)" }
+      ],
+      "default": "400"
     }
   ],
   "blocks": [

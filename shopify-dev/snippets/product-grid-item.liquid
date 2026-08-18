@@ -619,6 +619,8 @@ assign promo_ribbon_shadow = product.metafields.custom.promo_ribbon_shadow.value
       <a class="product-link" href="{{ product_url }}" data-product-link="{{ product_url }}">
         <p class="product-item__title">{{ product.title | strip_html | escape }}</p>
 
+        {% render 'custom-product-rating', product: product %}
+
         <div class="product-item__price__holder{% if has_siblings %} has-siblings{% endif %}">
           {%- if has_siblings or product_item_cutline != blank -%}
             {%- assign cutline_color = settings.cutline_color -%}

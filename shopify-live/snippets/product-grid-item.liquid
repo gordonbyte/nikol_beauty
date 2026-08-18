@@ -349,6 +349,7 @@
       assign promo_badge_label = promo_badge_text | replace: '{n}', promo_n_display
       assign promo_badge_lines = promo_badge_label | split: '{br}'
       assign promo_badge_style = product.metafields.custom.promo_badge_style.value | default: 'circle'
+assign promo_ribbon_shadow = product.metafields.custom.promo_ribbon_shadow.value | default: '#000000'
       assign promo_ribbon_label = promo_badge_lines | join: ' '
     endif
   -%}
@@ -380,7 +381,7 @@
   {%- if has_promo_badge and sold_out == false -%}
     {%- if promo_badge_style == 'ribbon' -%}
       <span class="promo-ribbon"
-        style="--promo-ribbon-color: {{ promo_badge_bg }}; color: {{ settings.promo_badge_text_color }};"
+        style="--promo-ribbon-color: {{ promo_badge_bg }}; --promo-ribbon-shadow-color: {{ promo_ribbon_shadow }}; color: {{ settings.promo_badge_text_color }};"
         data-aos="fade"
         data-aos-delay="{{ aos_delay }}"
         data-aos-duration="{{ aos_duration }}"
@@ -617,6 +618,8 @@
     <div class="product-item__info">
       <a class="product-link" href="{{ product_url }}" data-product-link="{{ product_url }}">
         <p class="product-item__title">{{ product.title | strip_html | escape }}</p>
+
+        {% render 'custom-product-rating', product: product %}
 
         <div class="product-item__price__holder{% if has_siblings %} has-siblings{% endif %}">
           {%- if has_siblings or product_item_cutline != blank -%}

@@ -19,6 +19,7 @@
     "header_link": "#212121",
     "menu_bg_color": "#ffffff",
     "menu_link_color": "#212121",
+    "menu_link_hover_color": "#fcc9c6",
     "submenu_bg_color": "#ffffff",
     "submenu_link_color": "#212121",
     "menu_transparent_color": "#ffffff",
@@ -62,7 +63,7 @@
     "show_cutline": true,
     "color_swatches": true,
     "swatch_style": "circle",
-    "swatch_color_list": "Black: #000000\nWhite: #fafafa\nBlank: blank.png\nUnapologetic: #B63B51\nOrganza: #982837\nCameo: #A94545\nRose All Day: #E7858C\nBerry: #942E52\nClear: #EDF4F7\nDark Blonde: #986552\nTaupe: #946A56\nBrownie: #5A3328\nSoft Gray: #575457\nBlonde: #AD8B72\nMilk Chocolate: #6E4931\nCocoa: #503724\nPalm Beach: #E87962\nSt. Barths: #FD9E9F\nParis: #D44568\nCoconut Row Bronzer: #B77E56\nMed: #E3C6A4\nMetallic silver: #E0DEDB\nCharcoal: #393D47\nDark Chocolate: #5C3D31\nSilk: #AE6A61\nDeep Green: #434838\nDark brown: #4d3b1d\nJet black: #272727",
+    "swatch_color_list": "Black: #000000\nWhite: #fafafa\nUnapologetic: #B63B51\nOrganza: #982837\nCameo: #A94545\nRose All Day: #E7858C\nBerry: #942E52\nClear: #EDF4F7\nDark Blonde: #986552\nTaupe: #946A56\nBrownie: #5A3328\nSoft Gray: #575457\nBlonde: #AD8B72\nMilk Chocolate: #6E4931\nCocoa: #503724\nPalm Beach: #E87962\nSt. Barths: #FD9E9F\nParis: #D44568\nCoconut Row Bronzer: #B77E56\nMed: #E3C6A4\nMetallic silver: #E0DEDB\nCharcoal: #393D47\nDark Chocolate: #5C3D31\nSilk: #AE6A61\nDeep Green: #434838\nDark brown: #4d3b1d\nJet black: #272727",
     "favicon": "shopify://shop_images/N_Fav__2x_1.jpg",
     "free_shipping_limit": "125",
     "enable_accept_terms": true,
@@ -70,7 +71,6 @@
     "link_hover_color": "#bcb2a8",
     "header_link_hover": "#AB8C52",
     "show_logo_bg": false,
-    "menu_link_hover_color": "#fcc9c6",
     "submenu_link_hover_color": "#AB8C52",
     "footer_link_hover": "#212121",
     "checkout_logo_position": "left",
@@ -233,6 +233,7 @@
         "type": "custom-footer",
         "custom_css": [],
         "settings": {
+          "footer_design": "design2",
           "title_subscribe": "Let's Get this beauty started.",
           "footer_title_1": "Policies",
           "footer_menu_1": "footer",
@@ -308,14 +309,6 @@
         "disabled": false,
         "settings": {
           "enablePreviewMode": true
-        }
-      },
-      "14198427981142892921": {
-        "type": "shopify://apps/se-wishlist-engine/blocks/app-embed/8f7c0857-8e71-463d-a168-8e133094753b",
-        "disabled": false,
-        "settings": {
-          "wishlist_unfill_icon": "",
-          "wishlist_fill_icon": ""
         }
       },
       "6159598353363395418": {

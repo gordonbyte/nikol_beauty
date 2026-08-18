@@ -1,0 +1,37 @@
+{%- comment -%}
+  Junip star rating for product cards (KAN-154). Renders nothing when the
+  product has no reviews. Accurate partial fill from junip.rating_average
+  (same metafields as product-jsonld-rating.liquid). Star artwork matches
+  the custom-product-slider stars (#FB6D00).
+
+  Usage: {% render 'custom-product-rating', product: product %}
+{%- endcomment -%}
+{%- liquid
+  assign rating_count = product.metafields.junip.rating_count | times: 1
+  assign rating_avg = product.metafields.junip.rating_average | times: 1.0
+-%}
+{%- if rating_count > 0 and rating_avg > 0 -%}
+  {%- assign rating_percent = rating_avg | divided_by: 5.0 | times: 100.0 | at_most: 100 | round: 1 -%}
+  <span class="product-item__rating">
+    <span class="visually-hidden">Rated {{ rating_avg | round: 1 }} out of 5 stars, {{ rating_count }} review{% if rating_count != 1 %}s{% endif %}</span>
+    <span class="product-item__rating-stars" aria-hidden="true">
+      <svg class="product-item__rating-svg" width="74" height="14" viewBox="0 0 74 14" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
+        <path d="M7 0L8.64397 5.35983L14 5.34752L9.66 8.64777L11.3262 14L7 10.6798L2.67376 14L4.34 8.64777L0 5.34752L5.35603 5.35983L7 0Z" fill="#DDD6CF"/>
+        <path d="M21.8921 0L23.5361 5.35983L28.8921 5.34752L24.5521 8.64777L26.2183 14L21.8921 10.6798L17.5659 14L19.2321 8.64777L14.8921 5.34752L20.2481 5.35983L21.8921 0Z" fill="#DDD6CF"/>
+        <path d="M36.7842 0L38.4282 5.35983L43.7842 5.34752L39.4442 8.64777L41.1104 14L36.7842 10.6798L32.4579 14L34.1242 8.64777L29.7842 5.34752L35.1402 5.35983L36.7842 0Z" fill="#DDD6CF"/>
+        <path d="M51.6763 0L53.3202 5.35983L58.6763 5.34752L54.3363 8.64777L56.0025 14L51.6763 10.6798L47.35 14L49.0163 8.64777L44.6763 5.34752L50.0323 5.35983L51.6763 0Z" fill="#DDD6CF"/>
+        <path d="M66.5684 0L68.2123 5.35983L73.5684 5.34752L69.2284 8.64777L70.8946 14L66.5684 10.6798L62.2421 14L63.9084 8.64777L59.5684 5.34752L64.9244 5.35983L66.5684 0Z" fill="#DDD6CF"/>
+      </svg>
+      <span class="product-item__rating-fill" style="width: {{ rating_percent }}%">
+        <svg class="product-item__rating-svg" width="74" height="14" viewBox="0 0 74 14" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
+          <path d="M7 0L8.64397 5.35983L14 5.34752L9.66 8.64777L11.3262 14L7 10.6798L2.67376 14L4.34 8.64777L0 5.34752L5.35603 5.35983L7 0Z" fill="#FB6D00"/>
+          <path d="M21.8921 0L23.5361 5.35983L28.8921 5.34752L24.5521 8.64777L26.2183 14L21.8921 10.6798L17.5659 14L19.2321 8.64777L14.8921 5.34752L20.2481 5.35983L21.8921 0Z" fill="#FB6D00"/>
+          <path d="M36.7842 0L38.4282 5.35983L43.7842 5.34752L39.4442 8.64777L41.1104 14L36.7842 10.6798L32.4579 14L34.1242 8.64777L29.7842 5.34752L35.1402 5.35983L36.7842 0Z" fill="#FB6D00"/>
+          <path d="M51.6763 0L53.3202 5.35983L58.6763 5.34752L54.3363 8.64777L56.0025 14L51.6763 10.6798L47.35 14L49.0163 8.64777L44.6763 5.34752L50.0323 5.35983L51.6763 0Z" fill="#FB6D00"/>
+          <path d="M66.5684 0L68.2123 5.35983L73.5684 5.34752L69.2284 8.64777L70.8946 14L66.5684 10.6798L62.2421 14L63.9084 8.64777L59.5684 5.34752L64.9244 5.35983L66.5684 0Z" fill="#FB6D00"/>
+        </svg>
+      </span>
+    </span>
+    <span class="product-item__rating-count" aria-hidden="true">({{ rating_count }})</span>
+  </span>
+{%- endif -%}

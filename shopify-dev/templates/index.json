@@ -15,24 +15,28 @@
         "feature_xJYGMx": {
           "type": "feature",
           "settings": {
+            "feature_icon": "shopify://shop_images/feature1.png",
             "feature_text": "Free US Shipping Over $125"
           }
         },
         "feature_nXLrNQ": {
           "type": "feature",
           "settings": {
+            "feature_icon": "shopify://shop_images/feature2.png",
             "feature_text": "Loved by 12,000+ Women"
           }
         },
         "feature_kY68HR": {
           "type": "feature",
           "settings": {
+            "feature_icon": "shopify://shop_images/feature3.png",
             "feature_text": "Shipping Internationally"
           }
         },
         "feature_M6ymJU": {
           "type": "feature",
           "settings": {
+            "feature_icon": "shopify://shop_images/feature4.png",
             "feature_text": "Designed for Mature Skin"
           }
         }
@@ -45,14 +49,14 @@
       ],
       "name": "[Custom] Guarantee List",
       "settings": {
-        "background_color": "linear-gradient(90deg, rgba(255, 84, 185, 1), rgba(255, 81, 160, 1) 100%)",
-        "border_top_thickness": 5,
-        "border_top_color": "#F6F6C9",
+        "background_color": "linear-gradient(90deg, rgba(248, 243, 239, 1), rgba(248, 243, 239, 1) 98%)",
+        "border_top_thickness": 0,
+        "border_top_color": "#f6f6c9",
         "border_bottom_thickness": 0,
-        "border_bottom_color": "#f7f2ed",
-        "text_color": "#FFFFFF",
+        "border_bottom_color": "#F8F3EF",
+        "text_color": "#212121",
         "text_size": 18,
-        "text_weight": "500"
+        "text_weight": "400"
       }
     },
     "f46cddd5-0a2f-417e-9dd8-66e002167481": {
@@ -61,8 +65,8 @@
         "image_w3NqUL": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/Fierce_Aging_Day_website_hero_2000x719_png.png",
-            "mobile_image": "shopify://shop_images/Fierce_Aging_Day_website_hero_mobile_1950x951_png.png",
+            "image": "shopify://shop_images/New_Banner_June_desktop.png",
+            "mobile_image": "shopify://shop_images/Banner_for_Mobile_June.png",
             "overlay_opacity": 0,
             "overlay_color": "#000000",
             "show_overlay_text": false,
@@ -75,7 +79,7 @@
             "bg_color": "",
             "color": "#ffffff",
             "first_button_text": "",
-            "first_button_link": "shopify://collections/best-sellers",
+            "first_button_link": "shopify://collections/national-fierce-aging-day",
             "first_button_type": "btn--primary",
             "first_button_size": "",
             "first_button_style": "btn--solid",
@@ -108,18 +112,21 @@
         "feature_z4wnQM": {
           "type": "feature",
           "settings": {
+            "feature_icon": "shopify://shop_images/banner-usp1.png",
             "feature_title": "Cruelty-Free"
           }
         },
         "feature_VCPwCj": {
           "type": "feature",
           "settings": {
+            "feature_icon": "shopify://shop_images/banner-usp2.png",
             "feature_title": "Esthetician-<br>Approved"
           }
         },
         "feature_PNPhB8": {
           "type": "feature",
           "settings": {
+            "feature_icon": "shopify://shop_images/banner-usp3.png",
             "feature_title": "Paraben-Free"
           }
         },
@@ -127,6 +134,7 @@
           "type": "feature",
           "disabled": true,
           "settings": {
+            "feature_icon": "shopify://shop_images/banner-usp4.png",
             "feature_title": "Gluten-Free"
           }
         }
@@ -140,11 +148,14 @@
       "disabled": true,
       "name": "[Custom] Hero Banner",
       "settings": {
+        "bg_image": "shopify://shop_images/banner-desktop.jpg",
+        "star_image": "shopify://shop_images/Stars_Container.png",
         "star_text": "<strong>4.76/5</strong> stars | <strong>12,000+</strong> happy women",
         "title": "Clean Makeup That Looks Natural on Mature Skin",
         "description": "Thoughtfully formulated to enhance your features and match your skin tone without settling into fine lines, feeling heavy, or making you look overdone.",
         "button_text": "Shop Our Best Sellers",
         "button_link": "/collections/best-selling-products",
+        "right_image_1": "shopify://shop_images/Frame_2085670276_2.webp",
         "feature_bg_color": "#f7f2ed"
       }
     },
@@ -152,9 +163,12 @@
       "type": "custom-customer-quote",
       "name": "[Custom] Customer Quote",
       "settings": {
+        "bg_image": "shopify://shop_images/reviews-banner.jpg",
+        "star_image": "shopify://shop_images/Stars_Container.png",
         "star_alt": "5 out of 5 stars",
         "review_text": "“I absolutely love my BB Créme makeup. It stays nice all day. Doesn’t look cakey and covers great! I have loved all of the products from Nicole Beauty. I’ll be buying more! Thank you for your products and I enjoy the You Tube presentations.\"",
         "author_name": "- Janet S.",
+        "buyer_image": "shopify://shop_images/Vector.png",
         "buyer_text": "Verified Buyer"
       }
     },
@@ -205,8 +219,10 @@
       "settings": {
         "height": "image-height",
         "width": "wrapper--full",
+        "image_1": "shopify://shop_images/bb_nikol_web_slide_1.webp",
         "link": "",
         "mobile_height": "image-height--mobile",
+        "mobile_image": "shopify://shop_images/bbposter.webp",
         "flex_align_desktop": "align--bottom-center-desktop",
         "flex_align_mobile": "align--bottom-right-mobile",
         "overlay_opacity": 0,
@@ -271,6 +287,7 @@
           "settings": {
             "heading": "Lips",
             "url": "shopify://collections/lips",
+            "image": "shopify://shop_images/BEACHHouseBULLET.jpg",
             "color": "",
             "bg_color": "#f0f0f0",
             "border_color": ""
@@ -281,6 +298,7 @@
           "settings": {
             "heading": "Face",
             "url": "shopify://collections/face",
+            "image": "shopify://shop_images/BBCreamclosedsmudgeFAIR_7f3885a9-305f-4243-be32-85d4632ecde2.png",
             "color": "",
             "bg_color": "#f0f0f0",
             "border_color": ""
@@ -430,6 +448,7 @@
       "type": "meet-nikol",
       "settings": {
         "title": "Meet Nikol",
+        "image": "shopify://shop_images/imgtag.webp",
         "bg_color": "#fcc9c6",
         "copy": "<p>On-Air Beauty Expert, Licensed Esthetician, and multi-media makeup artist Nikol Johnson-Sanchez rocked the beauty world when she decided to liberate her gray hair at thirty-nine.</p>",
         "cta_text": "Read More",
@@ -444,6 +463,7 @@
           "settings": {
             "video_url": "https://youtu.be/grJYkzo96rY",
             "title": "THE REVERSE LIP LINER TRICK WITH MY MOTHER",
+            "image": "shopify://shop_images/VideoFile.webp",
             "slider_title": "FEATURED PRODUCTS",
             "product": "nikol-cosmetics-waterproof-eyeliner",
             "product_2": "fresh-beauty-studio-eye-shadow-palette",
@@ -467,6 +487,7 @@
       "settings": {
         "video_url": "https://youtu.be/grJYkzo96rY",
         "product": "actually-i-can",
+        "image": "shopify://shop_images/Mom_video_cover.png",
         "title": "The Reverse Lip Liner Trick with My Mother"
       }
     },
@@ -506,6 +527,7 @@
         "height": "image-height",
         "mobile_height": "image-height--mobile",
         "width": "wrapper",
+        "image_1": "shopify://shop_images/Untitled_design_13.webp",
         "image_width": "one-half",
         "text_alignment": "text-center",
         "reverse_blocks": false,
@@ -533,7 +555,8 @@
             "button_type": "btn--primary",
             "button_size": "btn--large",
             "button_style": "btn--solid",
-            "show_arrow": true
+            "show_arrow": true,
+            "image": "shopify://shop_images/rose_lip_Balm_fa44125a-cf60-4869-affd-43e30016d76d.jpg"
           }
         },
         "text_slide_qgQxGB": {
@@ -551,7 +574,8 @@
             "button_type": "btn--primary",
             "button_size": "",
             "button_style": "btn--solid",
-            "show_arrow": true
+            "show_arrow": true,
+            "image": "shopify://shop_images/lipstick.jpg"
           }
         },
         "text_slide_DjLchx": {
@@ -569,7 +593,8 @@
             "button_type": "btn--primary",
             "button_size": "",
             "button_style": "btn--solid",
-            "show_arrow": true
+            "show_arrow": true,
+            "image": "shopify://shop_images/aic_2.jpg"
           }
         }
       },
@@ -584,6 +609,7 @@
         "height": "screen-height-full",
         "mobile_height": "screen-height-full--mobile",
         "width": "wrapper--full",
+        "image_1": "shopify://shop_images/rose_lip_Balm_fa44125a-cf60-4869-affd-43e30016d76d.jpg",
         "image_width": "one-half",
         "text_alignment": "text-center",
         "bg_color": "#f8f2ed",
@@ -695,6 +721,7 @@
           "settings": {
             "title": "Clean Beauty",
             "text_color": "white",
+            "image": "shopify://shop_images/image-grid-1.jpg",
             "link": "shopify://collections/lip-gloss"
           }
         },
@@ -703,6 +730,7 @@
           "settings": {
             "title": "BB Cream",
             "text_color": "black",
+            "image": "shopify://shop_images/image-grid-2.jpg",
             "link": "shopify://products/bb-cream"
           }
         }
@@ -748,6 +776,7 @@
         "height": "image-height",
         "mobile_height": "image-height--mobile",
         "width": "wrapper",
+        "image_1": "shopify://shop_images/nikol_brows.png",
         "image_width": "one-half",
         "text_alignment": "text-left",
         "reverse_blocks": false,
@@ -810,6 +839,7 @@
         "height": "image-height",
         "mobile_height": "image-height--mobile",
         "width": "wrapper",
+        "image_1": "shopify://shop_images/Nikol_new_blog_post.png",
         "image_width": "one-half",
         "text_alignment": "text-center",
         "reverse_blocks": false,
@@ -841,6 +871,7 @@
       "settings": {
         "height": "image-height",
         "width": "wrapper--full",
+        "image_1": "shopify://shop_images/Nikol_holiday_group_on_white_GLITTER.jpg",
         "link": "",
         "mobile_height": "image-height--mobile",
         "flex_align_desktop": "align--middle-center-desktop",
@@ -891,6 +922,8 @@
       "settings": {
         "height": "screen-height-three-quarters",
         "width": "wrapper--full",
+        "image_1": "shopify://shop_images/on_left_lipsticks.jpg",
+        "image_2": "shopify://shop_images/Untitled_design_1.jpg",
         "link": "",
         "mobile_height": "screen-height-three-quarters--mobile",
         "flex_align_desktop": "align--middle-center-desktop",

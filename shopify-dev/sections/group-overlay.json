@@ -39,7 +39,7 @@
         "free-shipping": {
           "type": "free-shipping",
           "settings": {
-            "message": "You are ||amount|| away from free shipping.",
+            "message": "You are ||amount|| away from <span class='free-shipping__highlight'>free shipping</span>",
             "free_shipping_gradient": "",
             "pin_to_bottom": false
           }
