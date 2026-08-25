@@ -28,7 +28,7 @@
 
 .custom-faq__subtitle {
   margin: 0;
-  font-size: 20px;
+  font-size: clamp(var(--FONT-SIZE-BASE), 0.47vw + 15.2px, 20px);
   line-height: 140%;
   letter-spacing: -0.02em;
   font-weight: 400;
@@ -103,6 +103,67 @@
   font-weight: 400;
 }
 
+/* Animated open/close: grid-rows 0fr -> 1fr; collapsed answers are
+   visibility-hidden so they leave the tab order and screen-reader tree. */
+.custom-faq__collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+}
+
+.custom-faq__item.is-open .custom-faq__collapse {
+  grid-template-rows: 1fr;
+}
+
+.custom-faq__collapse .custom-faq__answer {
+  min-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.custom-faq__item.is-open .custom-faq__answer {
+  visibility: visible;
+}
+
+.custom-faq.anim-ready .custom-faq__collapse {
+  transition: grid-template-rows 0.4s ease;
+}
+
+.custom-faq.anim-ready .custom-faq__collapse .custom-faq__answer {
+  transition: visibility 0s 0.4s;
+}
+
+.custom-faq.anim-ready .custom-faq__item.is-open .custom-faq__answer {
+  transition: visibility 0s 0s;
+}
+
+.custom-faq__icon {
+  transition: transform 0.3s ease;
+}
+
+@media (hover: hover) {
+  .custom-faq__trigger:hover .custom-faq__icon {
+    transform: scale(1.2);
+  }
+}
+
+/* Scroll-in reveal: initial hidden states apply ONLY once JS adds anim-ready,
+   so content stays visible without JS and under reduced motion. */
+.custom-faq.anim-ready .custom-faq__title,
+.custom-faq.anim-ready .custom-faq__subtitle,
+.custom-faq.anim-ready .custom-faq__item {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.custom-faq.anim-ready.is-inview .custom-faq__title,
+.custom-faq.anim-ready.is-inview .custom-faq__subtitle,
+.custom-faq.anim-ready.is-inview .custom-faq__item {
+  opacity: 1;
+  transform: none;
+}
+
 @media only screen and (max-width: 600px) {
   .custom-faq {
     padding: 40px 0;
@@ -110,10 +171,6 @@
 
   .custom-faq__title {
     font-size: 34px;
-  }
-
-  .custom-faq__subtitle {
-    font-size: var(--FONT-SIZE-BASE);
   }
 
   .custom-faq__header {
@@ -190,14 +247,15 @@
             </button>
           </h3>
 
-          <div
-            class="custom-faq__answer"
-            id="{{ panel_id }}"
-            role="region"
-            aria-labelledby="{{ trigger_id }}"
-            {% unless forloop.first %}hidden{% endunless %}
-          >
-            {{ block.settings.answer }}
+          <div class="custom-faq__collapse">
+            <div
+              class="custom-faq__answer"
+              id="{{ panel_id }}"
+              role="region"
+              aria-labelledby="{{ trigger_id }}"
+            >
+              {{ block.settings.answer }}
+            </div>
           </div>
         </div>
       {% endfor %}
@@ -223,17 +281,44 @@ document.addEventListener("DOMContentLoaded", function () {
         if (other === item) return;
         other.classList.remove("is-open");
         var otherTrigger = other.querySelector(".custom-faq__trigger");
-        var otherPanel = other.querySelector(".custom-faq__answer");
         if (otherTrigger) otherTrigger.setAttribute("aria-expanded", "false");
-        if (otherPanel) otherPanel.hidden = true;
       });
 
       item.classList.toggle("is-open", willOpen);
       trigger.setAttribute("aria-expanded", willOpen ? "true" : "false");
-      panel.hidden = !willOpen;
     });
   });
 });
+</script>
+
+<script>
+  (function () {
+    var root = document.getElementById('Faq-{{ section.id }}');
+    if (!root) return;
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.theme && window.theme.settings && window.theme.settings.enableAnimations === false) return;
+
+    var targets = root.querySelectorAll('.custom-faq__title, .custom-faq__subtitle, .custom-faq__item');
+    if (!targets.length) return;
+
+    targets.forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i * 0.12, 0.96) + 's';
+    });
+
+    root.classList.add('anim-ready');
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          root.classList.add('is-inview');
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.15 });
+
+    observer.observe(root);
+  })();
 </script>
 
 {% schema %}

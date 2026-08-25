@@ -34,11 +34,17 @@
   font-size: 20px;
 }
 
+.custom-product-slider__tabs-overflow {
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+}
+
 .custom-product-slider__tabs {
   display: flex;
-  justify-content: center;
+  width: max-content;
+  margin: 0 auto 62px;
+  padding: 8px 0;
   gap: 40px;
-  margin-bottom: 70px;
 }
 
 .custom-product-slider__tab {
@@ -49,11 +55,8 @@
   color: inherit;
   text-align: center;
   cursor: pointer;
-  opacity: 0.8;
-}
-
-.custom-product-slider__tab[aria-selected="true"] {
-  opacity: 1;
+  flex-shrink: 0;
+  scroll-snap-align: center;
 }
 
 .custom-product-slider__tab-img {
@@ -61,15 +64,71 @@
 }
 
 .custom-product-slider__tab-img img {
-  max-width: 90px;
-  object-fit: contain;
+  box-sizing: border-box;
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 4px;
+  border: 1px solid #f6bed2;
+  border-color: color-mix(in srgb, var(--BTN-PRIMARY-BG-COLOR) 30%, white);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.custom-product-slider__tab[aria-selected="true"] .custom-product-slider__tab-img img {
+  border-width: 2px;
+  border-color: var(--BTN-PRIMARY-BG-COLOR);
+}
+
+@media (hover: hover) {
+  .custom-product-slider__tab:hover .custom-product-slider__tab-img img {
+    transform: scale(1.08);
+    border-color: var(--BTN-PRIMARY-BG-COLOR);
+  }
+
+  .custom-product-slider__tab:hover .custom-product-slider__tab-label::after {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-product-slider__tab,
+  .custom-product-slider__tab-img img,
+  .custom-product-slider__tab-label::after {
+    transition: none;
+  }
+
+  .custom-product-slider__tab:hover .custom-product-slider__tab-img img {
+    transform: none;
+  }
 }
 
 .custom-product-slider__tab-label {
   display: block;
+  width: fit-content;
+  margin-inline: auto;
+  position: relative;
   padding-top: 5px;
   color: var(--COLOR-TEXT);
   font-size: var(--FONT-SIZE-BASE);
+}
+
+.custom-product-slider__tab-label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.35s ease, background 0.35s ease;
+}
+
+.custom-product-slider__tab[aria-selected="true"] .custom-product-slider__tab-label::after {
+  transform: scaleX(1);
+  background: var(--BTN-PRIMARY-BG-COLOR);
 }
 
 .custom-product-slider__panel {
@@ -80,47 +139,195 @@
   display: none;
 }
 
-.custom-product-slider__swiper {
-  padding: 0 280px !important;
+/* Tab switch: the incoming collection fades up into place */
+@keyframes cps-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-.custom-product-slider__arrow {
+.custom-product-slider__panel.is-entering {
+  animation: cps-panel-in 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.custom-product-slider__content {
+  overflow: hidden;
+}
+
+.custom-product-slider__slider {
+  position: relative;
+}
+
+/* edge fades: solid section-background at each end dissolving inward — end cards
+   slide under them ("into the page") and the arrows float on the solid zone
+   (desktop only, only when the row actually loops/scrolls) */
+@media only screen and (min-width: 1200px) {
+  .custom-product-slider__slider.is-scrollable::before,
+  .custom-product-slider__slider.is-scrollable::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 260px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* the section bg setting can be translucent (e.g. #f7f2ed66) — layer it over the
+     page background so the solid zone truly hides the cards underneath */
+  .custom-product-slider__slider.is-scrollable::before {
+    left: 0;
+    background:
+      linear-gradient(to right, var(--custom-product-slider-bg) 30%, transparent),
+      linear-gradient(to right, var(--COLOR-BG, #fff) 30%, transparent);
+  }
+
+  .custom-product-slider__slider.is-scrollable::after {
+    right: 0;
+    background:
+      linear-gradient(to left, var(--custom-product-slider-bg) 30%, transparent),
+      linear-gradient(to left, var(--COLOR-BG, #fff) 30%, transparent);
+  }
+}
+
+/* Dark-circle arrows (own buttons — Swiper drives them via navigation config) */
+.custom-product-slider__nav {
   position: absolute;
-  top: 50%;
-  z-index: 1;
-  padding: 0;
-  background: transparent;
+  top: 38%;
+  transform: translateY(-50%);
+  z-index: 3;
+  background: none;
   border: 0;
+  padding: 0;
   line-height: 0;
   cursor: pointer;
 }
 
-.custom-product-slider__arrow.custom-product-slider__prev {
-  left: 10%;
+.custom-product-slider__nav--prev {
+  left: 40px;
 }
 
-.custom-product-slider__arrow.custom-product-slider__next {
-  right: 10%;
+.custom-product-slider__nav--next {
+  right: 40px;
 }
 
-.custom-product-slider__review-count {
-  color: var(--COLOR-TEXT);
-  font-size: var(--FONT-SIZE-BASE);
-  font-weight: 400;
-  font-family: 'Inter';
+.custom-product-slider__nav svg {
+  transition: transform 0.3s ease;
+}
+
+@media (hover: hover) {
+  .custom-product-slider__nav:hover svg {
+    transform: scale(1.08);
+  }
+}
+
+.custom-product-slider__nav:focus-visible {
+  outline: 2px solid var(--COLOR-TEXT);
+  outline-offset: 2px;
+}
+
+/* only relevant when a row is too short to loop */
+.custom-product-slider__nav.swiper-button-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+@media only screen and (max-width: 749px) {
+  .custom-product-slider__nav--prev {
+    left: 10px;
+  }
+
+  .custom-product-slider__nav--next {
+    right: 10px;
+  }
+
+  .custom-product-slider__nav svg {
+    width: 36px;
+    height: 36px;
+  }
 }
 
 .custom-product-slider__rating {
-  padding-bottom: 10px;
+  padding-top: 8px;
+  padding-bottom: 5px;
+}
+
+.custom-product-slider__rating .product-item__rating {
+  margin: 0;
+}
+
+.custom-product-slider__rating .product-item__rating-stars {
+  width: 100px;
+  height: 17px;
+}
+
+.custom-product-slider__rating .product-item__rating-svg {
+  width: 90px;
+  height: 17px;
+  overflow: visible;
+}
+
+.custom-product-slider__rating .product-item__rating-fill {
+  height: 17px;
+}
+
+.custom-product-slider__rating .product-item__rating-svg path:nth-of-type(2) { transform: translateX(2px); }
+.custom-product-slider__rating .product-item__rating-svg path:nth-of-type(3) { transform: translateX(4px); }
+.custom-product-slider__rating .product-item__rating-svg path:nth-of-type(4) { transform: translateX(6px); }
+.custom-product-slider__rating .product-item__rating-svg path:nth-of-type(5) { transform: translateX(8px); }
+
+.custom-product-slider__rating .product-item__rating-count {
+  opacity: 1;
+  color: var(--COLOR-TEXT);
 }
 
 .custom-product-slider__img a {
   display: block;
+  position: relative;
+  /* transparent product PNGs render on white like the white-backdrop product photos */
+  background: #fff;
+}
+
+.custom-product-slider__img-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+@media (hover: hover) {
+  .custom-product-slider__item:hover .custom-product-slider__img-hover {
+    opacity: 1;
+  }
+
+  /* true crossfade: the base image fades OUT as the hover image fades in —
+     otherwise it shows through the hover PNG's transparent areas.
+     Scoped via :has so single-image products never fade to nothing. */
+  .custom-product-slider__item:hover .custom-product-slider__img a:has(.custom-product-slider__img-hover) img:not(.custom-product-slider__img-hover) {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-product-slider__img-hover,
+  .custom-product-slider__img a img {
+    transition: none;
+  }
 }
 
 .custom-product-slider__img a img {
   width: 100%;
   height: auto;
+  transition: opacity 0.35s ease;
 }
 
 .custom-product-slider__product-title {
@@ -129,7 +336,7 @@
   color: var(--COLOR-TEXT);
   font-family: 'Cormorant';
   font-size: 26px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 120%;
 }
 
@@ -163,36 +370,44 @@
   letter-spacing: 0;
   text-transform: uppercase;
   text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.custom-product-slider__btn-wrap a:focus-visible {
+  background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+}
+
+@media (hover: hover) {
+  .custom-product-slider__btn-wrap a:hover {
+    background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+  }
+
+  .custom-product-slider__btn-wrap a svg {
+    transition: transform 0.5s ease;
+    transform: translateZ(0);
+  }
+
+  .custom-product-slider__btn-wrap a:hover svg {
+    transform: translate3d(5px, 0, 0);
+  }
 }
 
 .custom-product-slider__tab:focus-visible,
-.custom-product-slider__arrow:focus-visible,
 .custom-product-slider__btn-wrap a:focus-visible,
 .custom-product-slider__img a:focus-visible {
   outline: 2px solid var(--COLOR-TEXT);
   outline-offset: 2px;
 }
 
-.custom-product-slider .swiper-backface-hidden .swiper-slide {
-  max-width: 300px;
-}
 
 @media only screen and (max-width: 600px) {
   .custom-product-slider__tabs-overflow {
-    overflow: auto;
     padding: 0 15px;
   }
 
-  .custom-product-slider__swiper {
-    padding: 0 0 !important;
-  }
-
   .custom-product-slider__tabs {
-    overflow: auto;
-    width: 570px;
-    justify-content: flex-start;
     gap: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 7px;
   }
 
   .custom-product-slider {
@@ -212,11 +427,12 @@
   }
 
   .custom-product-slider__tab-img img {
-    max-width: 75px;
+    width: 75px;
+    height: 75px;
   }
 
   .custom-product-slider__tab-label {
-    font-size: var(--FONT-SIZE-BASE);
+    font-size: 14px;
     padding-top: 3px;
   }
 
@@ -236,22 +452,6 @@
 
   .custom-product-slider__rating {
     padding-bottom: 5px;
-  }
-
-  .custom-product-slider__arrow.custom-product-slider__next {
-    right: 3%;
-  }
-
-  .custom-product-slider__arrow.custom-product-slider__next svg {
-    width: 30px;
-  }
-
-  .custom-product-slider__arrow.custom-product-slider__prev {
-    left: 3%;
-  }
-
-  .custom-product-slider__arrow.custom-product-slider__prev svg {
-    width: 30px;
   }
 
   .custom-product-slider .custom-product-slider__header {
@@ -327,30 +527,24 @@
         >
 
           {%- if tab_collection != blank -%}
-            <div class="swiper custom-product-slider__swiper">
+            <div class="custom-product-slider__slider swiper" data-cps-swiper>
               <div class="swiper-wrapper">
 
                 {%- for product in tab_collection.products limit: section.settings.products_limit -%}
                   <div class="swiper-slide custom-product-slider__item">
 
-                    <div class="custom-product-slider__img">
+                    <div class="custom-product-slider__img" data-product-image>
                       <a href="{{ product.url }}">
-                        {{ product.featured_image | image_url: width: 400 | image_tag: widths: '200, 300, 400, 600', sizes: '300px', loading: 'lazy', alt: product.title }}
+                        {{ product.featured_image | image_url: width: 400 | image_tag: widths: '200, 300, 400, 600', sizes: '(min-width: 750px) 30vw, 90vw', loading: 'lazy', alt: product.title }}
+                        {%- if product.images[1] -%}
+                          {{ product.images[1] | image_url: width: 400 | image_tag: widths: '200, 300, 400, 600', sizes: '(min-width: 750px) 30vw, 90vw', loading: 'lazy', alt: '', class: 'custom-product-slider__img-hover' }}
+                        {%- endif -%}
                       </a>
                     </div>
 
                     {%- if product.metafields.junip.rating_count > 0 -%}
                       <div class="custom-product-slider__rating">
-                        <span class="custom-product-slider__stars" aria-hidden="true">
-                          <svg width="74" height="14" viewBox="0 0 74 14" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
-                            <path d="M7 0L8.64397 5.35983L14 5.34752L9.66 8.64777L11.3262 14L7 10.6798L2.67376 14L4.34 8.64777L0 5.34752L5.35603 5.35983L7 0Z" fill="#FB6D00"/>
-                            <path d="M21.8921 0L23.5361 5.35983L28.8921 5.34752L24.5521 8.64777L26.2183 14L21.8921 10.6798L17.5659 14L19.2321 8.64777L14.8921 5.34752L20.2481 5.35983L21.8921 0Z" fill="#FB6D00"/>
-                            <path d="M36.7842 0L38.4282 5.35983L43.7842 5.34752L39.4442 8.64777L41.1104 14L36.7842 10.6798L32.4579 14L34.1242 8.64777L29.7842 5.34752L35.1402 5.35983L36.7842 0Z" fill="#FB6D00"/>
-                            <path d="M51.6763 0L53.3202 5.35983L58.6763 5.34752L54.3363 8.64777L56.0025 14L51.6763 10.6798L47.35 14L49.0163 8.64777L44.6763 5.34752L50.0323 5.35983L51.6763 0Z" fill="#FB6D00"/>
-                            <path d="M66.5684 0L68.2123 5.35983L73.5684 5.34752L69.2284 8.64777L70.8946 14L66.5684 10.6798L62.2421 14L63.9084 8.64777L59.5684 5.34752L64.9244 5.35983L66.5684 0Z" fill="#FB6D00"/>
-                          </svg>
-                        </span>
-                        <span class="custom-product-slider__review-count">{{ product.metafields.junip.rating_count }} <span class="visually-hidden">reviews</span></span>
+                        {% render 'custom-product-rating', product: product %}
                       </div>
                     {%- endif -%}
 
@@ -363,19 +557,20 @@
 
               </div>
 
-              <button type="button" class="custom-product-slider__arrow custom-product-slider__prev" aria-label="Previous products">
+              <button type="button" class="custom-product-slider__nav custom-product-slider__nav--prev" aria-label="Previous products">
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                  <rect width="48" height="48" rx="24" fill="#45413B"/>
-                  <path d="M28.8 30.8872C28.8 30.8294 28.7855 30.7618 28.7566 30.6847C28.7277 30.6075 28.6939 30.5496 28.6554 30.511L22.1493 24.0001L28.6554 17.518C28.6939 17.4601 28.7277 17.3974 28.7566 17.3299C28.7855 17.2624 28.8 17.1997 28.8 17.1418C28.8 17.0647 28.7855 16.9923 28.7566 16.9248C28.7277 16.8573 28.6939 16.7946 28.6554 16.7367L27.8168 15.9264C27.759 15.8686 27.6963 15.8252 27.6289 15.7962C27.5614 15.7673 27.4987 15.7528 27.4409 15.7528C27.3638 15.7528 27.2915 15.7673 27.224 15.7962C27.1566 15.8252 27.1036 15.8686 27.065 15.9264L19.3445 23.6239C19.306 23.6817 19.2722 23.7444 19.2433 23.812C19.2144 23.8795 19.2 23.9422 19.2 24.0001C19.2 24.0772 19.2144 24.1496 19.2433 24.2171C19.2722 24.2846 19.306 24.3377 19.3445 24.3762L27.065 32.1026C27.1036 32.1412 27.1566 32.175 27.224 32.2039C27.2915 32.2328 27.3638 32.2473 27.4409 32.2473C27.4987 32.2473 27.5614 32.2328 27.6289 32.2039C27.6963 32.175 27.759 32.1412 27.8168 32.1026L28.6554 31.2634C28.6939 31.2248 28.7277 31.1718 28.7566 31.1043C28.7855 31.0367 28.8 30.9644 28.8 30.8872Z" fill="white"/>
+                  <rect width="48" height="48" rx="24" fill="#45413B"></rect>
+                  <path d="M28.8 30.8872C28.8 30.8294 28.7855 30.7618 28.7566 30.6847C28.7277 30.6075 28.6939 30.5496 28.6554 30.511L22.1493 24.0001L28.6554 17.518C28.6939 17.4601 28.7277 17.3974 28.7566 17.3299C28.7855 17.2624 28.8 17.1997 28.8 17.1418C28.8 17.0647 28.7855 16.9923 28.7566 16.9248C28.7277 16.8573 28.6939 16.7946 28.6554 16.7367L27.8168 15.9264C27.759 15.8686 27.6963 15.8252 27.6289 15.7962C27.5614 15.7673 27.4987 15.7528 27.4409 15.7528C27.3638 15.7528 27.2915 15.7673 27.224 15.7962C27.1566 15.8252 27.1036 15.8686 27.065 15.9264L19.3445 23.6239C19.306 23.6817 19.2722 23.7444 19.2433 23.812C19.2144 23.8795 19.2 23.9422 19.2 24.0001C19.2 24.0772 19.2144 24.1496 19.2433 24.2171C19.2722 24.2846 19.306 24.3377 19.3445 24.3762L27.065 32.1026C27.1036 32.1412 27.1566 32.175 27.224 32.2039C27.2915 32.2328 27.3638 32.2473 27.4409 32.2473C27.4987 32.2473 27.5614 32.2328 27.6289 32.2039C27.6963 32.175 27.759 32.1412 27.8168 32.1026L28.6554 31.2634C28.6939 31.2248 28.7277 31.1718 28.7566 31.1043C28.7855 31.0367 28.8 30.9644 28.8 30.8872Z" fill="white"></path>
                 </svg>
               </button>
-              <button type="button" class="custom-product-slider__arrow custom-product-slider__next" aria-label="Next products">
+              <button type="button" class="custom-product-slider__nav custom-product-slider__nav--next" aria-label="Next products">
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                  <rect width="48" height="48" rx="24" fill="#45413B"/>
-                  <path d="M19.2 17.1129C19.2 17.1708 19.2145 17.2383 19.2434 17.3155C19.2723 17.3926 19.3061 17.4505 19.3446 17.4891L25.8507 24.0001L19.3446 30.4821C19.3061 30.54 19.2723 30.6027 19.2434 30.6702C19.2145 30.7377 19.2 30.8004 19.2 30.8583C19.2 30.9355 19.2145 31.0078 19.2434 31.0753C19.2723 31.1429 19.3061 31.2056 19.3446 31.2634L20.1832 32.0737C20.241 32.1316 20.3037 32.175 20.3711 32.2039C20.4386 32.2328 20.5013 32.2473 20.5591 32.2473C20.6362 32.2473 20.7085 32.2328 20.776 32.2039C20.8434 32.175 20.8964 32.1316 20.935 32.0737L28.6555 24.3763C28.694 24.3184 28.7278 24.2557 28.7567 24.1882C28.7856 24.1206 28.8 24.0579 28.8 24.0001C28.8 23.9229 28.7856 23.8506 28.7567 23.783C28.7278 23.7155 28.694 23.6625 28.6555 23.6239L20.935 15.8975C20.8964 15.8589 20.8434 15.8252 20.776 15.7962C20.7085 15.7673 20.6362 15.7528 20.5591 15.7528C20.5013 15.7528 20.4386 15.7673 20.3711 15.7962C20.3037 15.8252 20.241 15.8589 20.1832 15.8975L19.3446 16.7367C19.3061 16.7753 19.2723 16.8283 19.2434 16.8959C19.2145 16.9634 19.2 17.0357 19.2 17.1129Z" fill="white"/>
+                  <rect width="48" height="48" rx="24" fill="#45413B"></rect>
+                  <path d="M19.2 17.1129C19.2 17.1708 19.2145 17.2383 19.2434 17.3155C19.2723 17.3926 19.3061 17.4505 19.3446 17.4891L25.8507 24.0001L19.3446 30.4821C19.3061 30.54 19.2723 30.6027 19.2434 30.6702C19.2145 30.7377 19.2 30.8004 19.2 30.8583C19.2 30.9355 19.2145 31.0078 19.2434 31.0753C19.2723 31.1429 19.3061 31.2056 19.3446 31.2634L20.1832 32.0737C20.241 32.1316 20.3037 32.175 20.3711 32.2039C20.4386 32.2328 20.5013 32.2473 20.5591 32.2473C20.6362 32.2473 20.7085 32.2328 20.776 32.2039C20.8434 32.175 20.8964 32.1316 20.935 32.0737L28.6555 24.3763C28.694 24.3184 28.7278 24.2557 28.7567 24.1882C28.7856 24.1206 28.8 24.0579 28.8 24.0001C28.8 23.9229 28.7856 23.8506 28.7567 23.783C28.7278 23.7155 28.694 23.6625 28.6555 23.6239L20.935 15.8975C20.8964 15.8589 20.8434 15.8252 20.776 15.7962C20.7085 15.7673 20.6362 15.7528 20.5591 15.7528C20.5013 15.7528 20.4386 15.7673 20.3711 15.7962C20.3037 15.8252 20.241 15.8589 20.1832 15.8975L19.3446 16.7367C19.3061 16.7753 19.2723 16.8283 19.2434 16.8959C19.2145 16.9634 19.2 17.0357 19.2 17.1129Z" fill="white"></path>
                 </svg>
               </button>
             </div>
+
           {%- endif -%}
 
           {%- if block.settings.button_label != blank and block.settings.button_link != blank -%}
@@ -401,30 +596,55 @@
   var root = document.getElementById('ProductSlider-{{ section.id }}');
   if (!root) return;
 
-  function initSliders() {
+  // Continuous (looping) slider per panel. Looping needs more slides than the
+  // widest per-view count (5); shorter rows center instead and keep end-stops.
+  function setupSwiper(el) {
+    if (!el) return;
+    if (el.swiper) { el.swiper.update(); return; }
     if (typeof Swiper === 'undefined') return;
-    root.querySelectorAll('.custom-product-slider__swiper').forEach(function (slider) {
-      new Swiper(slider, {
-        slidesPerView: 1.2,
-        spaceBetween: 40,
-        loop: true,
-        speed: 600,
-        navigation: {
-          nextEl: slider.querySelector('.custom-product-slider__next'),
-          prevEl: slider.querySelector('.custom-product-slider__prev'),
-        },
-        breakpoints: {
-          0: { slidesPerView: 1.2, spaceBetween: 40, centeredSlides: false },
-          768: { slidesPerView: 3, centeredSlides: true },
-          1024: { slidesPerView: 3, centeredSlides: true }
-        }
-      });
+    var slideCount = el.querySelectorAll('.swiper-slide').length;
+    var canLoop = slideCount > 5;
+    if (canLoop) el.classList.add('is-scrollable');
+    new Swiper(el, {
+      slidesPerView: 1.2,
+      spaceBetween: 20,
+      loop: canLoop,
+      centerInsufficientSlides: true,
+      navigation: {
+        prevEl: el.querySelector('.custom-product-slider__nav--prev'),
+        nextEl: el.querySelector('.custom-product-slider__nav--next')
+      },
+      breakpoints: {
+        750: { slidesPerView: 3, spaceBetween: 40 },
+        990: { slidesPerView: 4, spaceBetween: 40 },
+        1200: { slidesPerView: 5, spaceBetween: 40 }
+      }
     });
   }
+
+  function initVisiblePanels() {
+    root.querySelectorAll('.custom-product-slider__panel:not([hidden]) [data-cps-swiper]').forEach(setupSwiper);
+  }
+
+  // Lazy init: build the Swiper only when the section approaches the viewport,
+  // keeping its layout work out of the page-load critical path.
+  function armLazyInit() {
+    if (!('IntersectionObserver' in window)) { initVisiblePanels(); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          io.disconnect();
+          initVisiblePanels();
+        }
+      });
+    }, { rootMargin: '600px 0px' });
+    io.observe(root);
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initSliders);
+    document.addEventListener('DOMContentLoaded', armLazyInit);
   } else {
-    initSliders();
+    armLazyInit();
   }
 
   var tablist = root.querySelector('[role="tablist"]');
@@ -442,8 +662,14 @@
       if (!panel) return;
       if (t === tab) {
         panel.removeAttribute('hidden');
-        var sw = panel.querySelector('.swiper');
-        if (sw && sw.swiper) sw.swiper.update();
+        panel.querySelectorAll('[data-cps-swiper]').forEach(setupSwiper);
+        var animOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+          !(window.theme && window.theme.settings && window.theme.settings.enableAnimations === false);
+        if (animOk) {
+          panel.classList.remove('is-entering');
+          void panel.offsetWidth;
+          panel.classList.add('is-entering');
+        }
       } else {
         panel.setAttribute('hidden', '');
       }

@@ -5,6 +5,7 @@
 
 .custom-benefits__title {
     text-align: center;
+    font-size: 56px;
     line-height: 110%;
     letter-spacing: -0.02em;
     font-weight: 500;
@@ -37,6 +38,7 @@
 
 .custom-benefits__icon img {
     max-width: 90px;
+    height: auto;
     object-fit: contain;
 }
 
@@ -72,12 +74,42 @@
     width: 25%;
 }
 
+/* Scroll-in reveal: initial hidden states apply ONLY once JS adds anim-ready,
+   so content stays visible without JS and under reduced motion. */
+.custom-benefits.anim-ready .custom-benefits__title,
+.custom-benefits.anim-ready .custom-benefits__subtitle,
+.custom-benefits.anim-ready .custom-benefits__item {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.custom-benefits.anim-ready.is-inview .custom-benefits__title,
+.custom-benefits.anim-ready.is-inview .custom-benefits__subtitle,
+.custom-benefits.anim-ready.is-inview .custom-benefits__item {
+    opacity: 1;
+    transform: none;
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .custom-benefits__list {
+    flex-wrap: wrap;
+    gap: 30px 0;
+    justify-content: space-between;
+  }
+
+  .custom-benefits__item {
+    width: 47%;
+  }
+}
+
 @media only screen and (max-width: 600px) {
 	.custom-benefits {
     padding: 40px 0px;
 }
 
 .custom-benefits__title {
+    font-size: 34px;
     letter-spacing: -0.02em;
 }
 
@@ -87,9 +119,9 @@
 
 .custom-benefits__list {
     flex-wrap: wrap;
-    gap: 0px;
+    gap: 25px 0px;
     justify-content: space-between;
-        padding-top: 30px;
+    padding-top: 30px;
 }
 
 .custom-benefits__item {
@@ -119,6 +151,7 @@
 
 <section
   class="custom-benefits"
+  id="Benefits-{{ section.id }}"
   {% if section.settings.title != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
   style="background: {{ section.settings.bg_color }};"
 >
@@ -143,10 +176,20 @@
           {% for block in section.blocks %}
             <li class="custom-benefits__item" {{ block.shopify_attributes }}>
 
-              {% if block.settings.icon != blank %}
+              {% if block.settings.svg_icon != blank and block.settings.svg_icon != 'none' %}
                 <div class="custom-benefits__icon">
                   <img
-                    src="{{ block.settings.icon | img_url: 'master' }}"
+                    src="{{ block.settings.svg_icon | prepend: 'custom-benefit-' | append: '.svg' | asset_url }}"
+                    alt=""
+                    width="180"
+                    height="180"
+                    loading="lazy"
+                  >
+                </div>
+              {% elsif block.settings.icon != blank %}
+                <div class="custom-benefits__icon">
+                  <img
+                    src="{{ block.settings.icon | img_url: '180x' }}"
                     alt=""
                     loading="lazy"
                   >
@@ -175,6 +218,35 @@
   </div>
 </section>
 
+<script>
+  (function () {
+    var root = document.getElementById('Benefits-{{ section.id }}');
+    if (!root) return;
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.theme && window.theme.settings && window.theme.settings.enableAnimations === false) return;
+
+    var targets = root.querySelectorAll('.custom-benefits__title, .custom-benefits__subtitle, .custom-benefits__item');
+    if (!targets.length) return;
+
+    targets.forEach(function (el, i) {
+      el.style.transitionDelay = (i * 0.12) + 's';
+    });
+
+    root.classList.add('anim-ready');
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          root.classList.add('is-inview');
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.15 });
+
+    observer.observe(root);
+  })();
+</script>
 
 {% schema %}
 {
@@ -204,6 +276,20 @@
       "type": "benefit",
       "name": "Benefit Item",
       "settings": [
+        {
+          "type": "select",
+          "id": "svg_icon",
+          "label": "Icon (SVG)",
+          "info": "Takes priority over the uploaded icon image.",
+          "default": "none",
+          "options": [
+            { "value": "none", "label": "None / use uploaded image" },
+            { "value": "skin-finish", "label": "Skin-like finish (sparkles)" },
+            { "value": "undertone-match", "label": "Undertone match (face)" },
+            { "value": "tested-mature-skin", "label": "Tested for mature skin (person + check)" },
+            { "value": "clean-formulas", "label": "Clean formulas (book)" }
+          ]
+        },
         {
           "type": "image_picker",
           "id": "icon",

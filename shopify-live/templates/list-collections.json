@@ -22,6 +22,12 @@
         "padding_bottom": 32
       }
     },
+    "custom_collections_picker": {
+      "type": "custom-collections-picker",
+      "settings": {
+        "enable": true
+      }
+    },
     "section_collection_e9xECT": {
       "type": "section-collection",
       "settings": {
@@ -228,6 +234,7 @@
   },
   "order": [
     "main",
+    "custom_collections_picker",
     "section_collection_e9xECT",
     "section_collection_RT4WKP",
     "section_collection_BtAzAC",

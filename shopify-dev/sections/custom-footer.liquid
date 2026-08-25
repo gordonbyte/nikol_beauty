@@ -156,7 +156,7 @@
   .nbf--d2 .nbf__subscribe { max-width: 560px; margin: 0 0 40px; }
   .nbf--d2 .nbf__grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: start; }
   @media (max-width: 785px) { .nbf--d2 .nbf__grid { grid-template-columns: 1fr; } }
-  .nbf--d2 .nbf__links a { font-size: 18px; padding: 8px 0; display: block; }
+  .nbf--d2 .nbf__links a { font-size: 18px; padding: 5px 0; display: block; }
   .nbf--d2 .nbf__links { columns: 2; display: block; }
   .nbf--d2 .nbf__links li { break-inside: avoid; }
   @media (max-width: 520px) { .nbf--d2 .nbf__links { columns: 1; } }
@@ -170,7 +170,8 @@
   .nbf--d2 .nbf__card .nbf__heading { font-size: 20px; }
   .nbf--d2 .nbf__card .nbf__contact { font-size: 17px; }
   .nbf--d2 .nbf__phone { font-size: 26px; }
-  .nbf--d2 .nbf__card .nbf__social { margin-top: 14px; }
+  .nbf--d2 .nbf__card .nbf__social { margin-top: 8px; }
+  .nbf--d2 .nbf__card .nbf__social .social { margin-top: 0; }
   .nbf--d2 .nbf__card .nbf__social .social { justify-content: center; }
   .nbf--d2 .nbf__card .nbf__social .social-link { font-size: 26px; }
 
@@ -380,8 +381,7 @@
     {
       "type": "text",
       "id": "hours_text",
-      "label": "Customer service hours",
-      "default": "Monday–Friday, 9am–5pm ET"
+      "label": "Customer service hours"
     },
     {
       "type": "checkbox",

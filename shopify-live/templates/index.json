@@ -112,6 +112,7 @@
         "feature_z4wnQM": {
           "type": "feature",
           "settings": {
+            "svg_icon": "cruelty-free",
             "feature_icon": "shopify://shop_images/banner-usp1.png",
             "feature_title": "Cruelty-Free"
           }
@@ -119,13 +120,15 @@
         "feature_VCPwCj": {
           "type": "feature",
           "settings": {
+            "svg_icon": "esthetician-approved",
             "feature_icon": "shopify://shop_images/banner-usp2.png",
-            "feature_title": "Esthetician-<br>Approved"
+            "feature_title": "Esthetician-Approved"
           }
         },
         "feature_PNPhB8": {
           "type": "feature",
           "settings": {
+            "svg_icon": "paraben-free",
             "feature_icon": "shopify://shop_images/banner-usp3.png",
             "feature_title": "Paraben-Free"
           }
@@ -149,7 +152,6 @@
       "name": "[Custom] Hero Banner",
       "settings": {
         "bg_image": "shopify://shop_images/banner-desktop.jpg",
-        "star_image": "shopify://shop_images/Stars_Container.png",
         "star_text": "<strong>4.76/5</strong> stars | <strong>12,000+</strong> happy women",
         "title": "Clean Makeup That Looks Natural on Mature Skin",
         "description": "Thoughtfully formulated to enhance your features and match your skin tone without settling into fine lines, feeling heavy, or making you look overdone.",
@@ -164,7 +166,6 @@
       "name": "[Custom] Customer Quote",
       "settings": {
         "bg_image": "shopify://shop_images/reviews-banner.jpg",
-        "star_image": "shopify://shop_images/Stars_Container.png",
         "star_alt": "5 out of 5 stars",
         "review_text": "“I absolutely love my BB Créme makeup. It stays nice all day. Doesn’t look cakey and covers great! I have loved all of the products from Nicole Beauty. I’ll be buying more! Thank you for your products and I enjoy the You Tube presentations.\"",
         "author_name": "- Janet S.",

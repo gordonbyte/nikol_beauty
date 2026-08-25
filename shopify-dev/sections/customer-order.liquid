@@ -53,16 +53,19 @@
 
   <div class="mobile">
     <collapsible-elements>
-      <details data-collapsible>
+      <details data-collapsible open="true">
         <summary data-collapsible-trigger>
           <p class="account-sidebar__title strong">
             {{ 'customer.account.title' | t }}
 
-            {%- render 'icon-plus' -%}
-            {%- render 'icon-minus' -%}
+            <span class="account-sidebar__state" aria-hidden="true">
+              <span class="account-sidebar__state-closed">Tap to open</span>
+              <span class="account-sidebar__state-open">Tap to close</span>
+              <svg class="account-sidebar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" focusable="false"><path d="M3 5.5L8 10.5L13 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
           </p>
         </summary>
-        <div data-collapsible-body>
+        <div data-collapsible-body style="height: auto">
           <div data-collapsible-content>
             {{ links }}
           </div>

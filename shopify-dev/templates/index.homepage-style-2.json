@@ -95,6 +95,7 @@
         "feature_bKjMwD": {
           "type": "feature",
           "settings": {
+            "svg_icon": "cruelty-free",
             "feature_icon": "shopify://shop_images/banner-usp1.png",
             "feature_title": "Cruelty-Free"
           }
@@ -102,13 +103,15 @@
         "feature_BbW6RQ": {
           "type": "feature",
           "settings": {
+            "svg_icon": "esthetician-approved",
             "feature_icon": "shopify://shop_images/banner-usp2.png",
-            "feature_title": "Esthetician-<br>Approved"
+            "feature_title": "Esthetician-Approved"
           }
         },
         "feature_TVUCTW": {
           "type": "feature",
           "settings": {
+            "svg_icon": "paraben-free",
             "feature_icon": "shopify://shop_images/banner-usp3.png",
             "feature_title": "Paraben-Free"
           }
@@ -131,7 +134,6 @@
       "name": "[Custom] Hero Banner",
       "settings": {
         "bg_image": "shopify://shop_images/banner-desktop.jpg",
-        "star_image": "shopify://shop_images/Stars_Container.png",
         "star_text": "<strong>4.76/5</strong> stars | <strong>12,000+</strong> happy women",
         "title": "Clean Makeup That Looks Natural on Mature Skin",
         "description": "Thoughtfully formulated to enhance your features and match your skin tone without feeling heavy, or making you look overdone.",
@@ -147,7 +149,6 @@
       "name": "[Custom] Customer Quote",
       "settings": {
         "bg_image": "shopify://shop_images/reviews-banner.jpg",
-        "star_image": "shopify://shop_images/Stars_Container.png",
         "star_alt": "5 out of 5 stars",
         "review_text": "“I absolutely love my BB Créme makeup. It stays nice all day. Doesn’t look cakey and covers great! I have loved all of the products from Nicole Beauty. I’ll be buying more! Thank you for your products and I enjoy the You Tube presentations.\"",
         "author_name": "- Janet S.",
@@ -161,7 +162,7 @@
         "collection_tab_gaMYhn": {
           "type": "collection_tab",
           "settings": {
-            "tab_image": "shopify://shop_images/tabimg1.png",
+            "tab_image": "shopify://shop_images/tabimg1-clean.png",
             "tab_label": "Lips",
             "collection": "lips",
             "button_label": "View All Best Sellers",
@@ -171,7 +172,7 @@
         "collection_tab_Uza3Hx": {
           "type": "collection_tab",
           "settings": {
-            "tab_image": "shopify://shop_images/tabimg2.png",
+            "tab_image": "shopify://shop_images/tabimg2-clean.png",
             "tab_label": "Lashes",
             "collection": "lashes",
             "button_label": "View All Best Sellers",
@@ -181,7 +182,7 @@
         "collection_tab_aWwjFn": {
           "type": "collection_tab",
           "settings": {
-            "tab_image": "shopify://shop_images/tabimg3.png",
+            "tab_image": "shopify://shop_images/tabimg3-clean.png",
             "tab_label": "Eyes",
             "collection": "eyes",
             "button_label": "View All Best Sellers",
@@ -191,7 +192,7 @@
         "collection_tab_yHerBt": {
           "type": "collection_tab",
           "settings": {
-            "tab_image": "shopify://shop_images/tabimg4.png",
+            "tab_image": "shopify://shop_images/tabimg4-clean.png",
             "tab_label": "Face",
             "collection": "face",
             "button_label": "View All Best Sellers",
@@ -201,7 +202,7 @@
         "collection_tab_VpYXja": {
           "type": "collection_tab",
           "settings": {
-            "tab_image": "shopify://shop_images/tabimg5.png",
+            "tab_image": "shopify://shop_images/tabimg5-clean.png",
             "tab_label": "Eyebrows",
             "collection": "brows",
             "button_label": "View All Best Sellers",
@@ -211,7 +212,7 @@
         "collection_tab_MTWHqc": {
           "type": "collection_tab",
           "settings": {
-            "tab_image": "shopify://shop_images/tabimg6.png",
+            "tab_image": "shopify://shop_images/tabimg6-clean.png",
             "tab_label": "Brushes & Tools",
             "collection": "brushes-tools",
             "button_label": "View All Best Sellers",
@@ -296,7 +297,8 @@
             "image_desktop": "shopify://shop_images/mkd1.jpg",
             "blog": "",
             "blog_limit": 6,
-            "blog_overlay": 35
+            "blog_overlay": 35,
+            "media_fit": "contain"
           }
         }
       },
@@ -363,33 +365,33 @@
         "benefit_4G8Die": {
           "type": "benefit",
           "settings": {
-            "icon": "shopify://shop_images/benefit1.png",
             "title": "Skin-Like Finish That Stays Fresh",
-            "text": "Flexible pigments move with your skin to stay smooth, not creased."
+            "text": "Flexible pigments move with your skin to stay smooth, not creased.",
+            "svg_icon": "skin-finish"
           }
         },
         "benefit_7C34Ff": {
           "type": "benefit",
           "settings": {
-            "icon": "shopify://shop_images/benefit2.png",
             "title": "Made to Match Your Undertone",
-            "text": "Carefully balanced shades that complement cool, warm, and neutral undertones."
+            "text": "Carefully balanced shades that complement cool, warm, and neutral undertones.",
+            "svg_icon": "undertone-match"
           }
         },
         "benefit_q3e4HD": {
           "type": "benefit",
           "settings": {
-            "icon": "shopify://shop_images/benefit3.png",
             "title": "Tested For Mature Skin",
-            "text": "Tested to blend smoothly and feel gentle on mature, sensitive skin."
+            "text": "Tested to blend smoothly and feel gentle on mature, sensitive skin.",
+            "svg_icon": "tested-mature-skin"
           }
         },
         "benefit_9gK7pP": {
           "type": "benefit",
           "settings": {
-            "icon": "shopify://shop_images/benefit4.png",
             "title": "Clean, Skin-Respecting Formulas",
-            "text": "Paraben-free, cruelty-free, and esthetician-approved for aging skin."
+            "text": "Paraben-free, cruelty-free, and esthetician-approved for aging skin.",
+            "svg_icon": "clean-formulas"
           }
         }
       },
@@ -419,7 +421,8 @@
             "image_desktop": "shopify://shop_images/step-pair.jpg",
             "blog": "",
             "blog_limit": 6,
-            "blog_overlay": 35
+            "blog_overlay": 35,
+            "media_fit": "contain"
           }
         },
         "heading_quiz": {
@@ -450,11 +453,11 @@
         "icon_note_quiz": {
           "type": "icon_note",
           "settings": {
-            "icon": "shopify://shop_images/Group.png",
             "text": "Takes 1 minute",
-            "alignment": "left",
+            "alignment": "center",
             "padding_top": 5,
-            "padding_bottom": 5
+            "padding_bottom": 5,
+            "show_icon": true
           }
         }
       },
@@ -556,91 +559,84 @@
           "type": "review",
           "settings": {
             "product": "nikol-cosmetics-waterproof-eyeliner",
-            "stars": "shopify://shop_images/Stars_Container_82c332b9-2b5c-4baf-baf7-3c3e60a20c92.png",
-            "quote_icon": "shopify://shop_images/left-quote_1_2.png",
             "title": "Beautiful eyeliners",
             "description": "I have both the Dark Chocolate and the Plum eyeliners. They are beautiful, rich colors. They glide on without tugging at your eyes yet they do not smudge or transfer. I’ve replaced other waterproof eyeliners I had purchased from other brands with these. They are spectacular.",
             "author": "Vicki J",
             "buyer_icon": "shopify://shop_images/Frame_1484583009.png",
-            "cart_icon": "shopify://shop_images/Button.png"
+            "show_quote_icon": true,
+            "show_cart_icon": true
           }
         },
         "review_ragXir": {
           "type": "review",
           "settings": {
             "product": "mascara-intense-curling-volumizing",
-            "stars": "shopify://shop_images/Stars_Container_82c332b9-2b5c-4baf-baf7-3c3e60a20c92.png",
-            "quote_icon": "shopify://shop_images/left-quote_1_2.png",
             "title": "My Favorite Mascara",
             "description": "I have several decades-worth of experience buying and wearing mascara, and without a doubt, this is the best mascara I have ever worn. My lashes look fuller and longer without clumping; it goes on and comes off cleanly (important for a contact wearer), and it is so lightweight that I forget that I am wearing any eye makeup.",
             "author": "Marney Elliott",
             "buyer_icon": "shopify://shop_images/Frame_1484583009.png",
-            "cart_icon": "shopify://shop_images/Button.png"
+            "show_quote_icon": true,
+            "show_cart_icon": true
           }
         },
         "review_jQRqpV": {
           "type": "review",
           "settings": {
             "product": "just-peachy-color-corrector",
-            "stars": "shopify://shop_images/Stars_Container_82c332b9-2b5c-4baf-baf7-3c3e60a20c92.png",
-            "quote_icon": "shopify://shop_images/left-quote_1_2.png",
             "title": "Works really well",
             "description": "I just bought another tube! This really works very well under the concealer and the serum foundation. I have always had dark circles and found it hard to make that part of my face look normal with just a concealer. This does the job for me! Will continue to use. Hoping this product remains on Nikol’s line!",
             "author": "Dee",
             "buyer_icon": "shopify://shop_images/Frame_1484583009.png",
-            "cart_icon": "shopify://shop_images/Button.png"
+            "show_quote_icon": true,
+            "show_cart_icon": true
           }
         },
         "review_N76n8e": {
           "type": "review",
           "settings": {
             "product": "lux-brush-soap",
-            "stars": "shopify://shop_images/Stars_Container_82c332b9-2b5c-4baf-baf7-3c3e60a20c92.png",
-            "quote_icon": "shopify://shop_images/left-quote_1_2.png",
             "title": "Clean Brushes Finally!",
             "description": "Excelent quality and value! Love the soap and the tin it comes in with the built-in scrubber. My brushes have never been so clean even washing them with other cleaning products. I will definitely purchase again and maybe even the travel size.",
             "author": "Carol Nuun",
             "buyer_icon": "shopify://shop_images/Frame_1484583009.png",
-            "cart_icon": "shopify://shop_images/Button.png"
+            "show_quote_icon": true,
+            "show_cart_icon": true
           }
         },
         "review_GRzm4n": {
           "type": "review",
           "settings": {
             "product": "bb-cream",
-            "stars": "shopify://shop_images/Stars_Container_82c332b9-2b5c-4baf-baf7-3c3e60a20c92.png",
-            "quote_icon": "shopify://shop_images/left-quote_1_2.png",
             "title": "Glowing",
             "description": "I love the BB Cream. I finally decided to try it out and I am in love. It felt light on my skin and provided good coverage. Made my skin glow! Thanks Nikol! FYI - I am 65 with an olive skin.",
             "author": "Jane Morales",
             "buyer_icon": "shopify://shop_images/Frame_1484583009.png",
-            "cart_icon": "shopify://shop_images/Button.png"
+            "show_quote_icon": true,
+            "show_cart_icon": true
           }
         },
         "review_VgUw8N": {
           "type": "review",
           "settings": {
             "product": "actually-i-can",
-            "stars": "shopify://shop_images/Stars_Container_82c332b9-2b5c-4baf-baf7-3c3e60a20c92.png",
-            "quote_icon": "shopify://shop_images/left-quote_1_2.png",
             "title": "Beautiful color",
             "description": "The color was just what I had expected, love it. Great lipstick, will purchase again.All of Nikols products do exactly everything she says they will do, and I LOVE that!",
             "author": "Antoinette Schue-Hoy",
             "buyer_icon": "shopify://shop_images/Frame_1484583009.png",
-            "cart_icon": "shopify://shop_images/Button.png"
+            "show_quote_icon": true,
+            "show_cart_icon": true
           }
         },
         "review_fyEtMV": {
           "type": "review",
           "settings": {
             "product": "new-blush-palette-ageless",
-            "stars": "shopify://shop_images/Stars_Container_82c332b9-2b5c-4baf-baf7-3c3e60a20c92.png",
-            "quote_icon": "shopify://shop_images/left-quote_1_2.png",
             "title": "Ballerina Rose - The perfect blush palette",
             "description": "All the colors in the Ballerina Rose palette are beautiful, they blend like a dream, very pigmented and lasts all day. Truly the best blush palette I've owned. Another great product of the many you've developed for us mature women. Thank you Nicole!",
             "author": "Marilyn V",
             "buyer_icon": "shopify://shop_images/Frame_1484583009.png",
-            "cart_icon": "shopify://shop_images/Button.png"
+            "show_quote_icon": true,
+            "show_cart_icon": true
           }
         }
       },
@@ -659,7 +655,7 @@
         "title": "Loved By Thousands Of Women",
         "subtitle": "Real reviews from women who switched to Nikol Beauty.",
         "review_lines": 4,
-        "slides_per_view": 3,
+        "slides_per_view": 5,
         "scroll_speed": 600,
         "autoplay": false,
         "autoplay_delay": 4
@@ -817,16 +813,17 @@
             "image_mobile": "shopify://shop_images/happy-senior-friends-looking-each-other_1.jpg",
             "blog": "",
             "blog_limit": 6,
-            "blog_overlay": 35
+            "blog_overlay": 35,
+            "media_fit": "contain"
           }
         },
         "rating_1": {
           "type": "rating",
           "settings": {
-            "star_image": "shopify://shop_images/Stars_Container.png",
             "star_text": "<strong>4.76/5</strong> stars | <strong>12,000+</strong> happy women",
             "padding_top": 5,
-            "padding_bottom": 5
+            "padding_bottom": 5,
+            "star_rating": 4.8
           }
         },
         "heading_1": {
@@ -880,7 +877,8 @@
             "media_width": 50,
             "blog": "news",
             "blog_limit": 6,
-            "blog_overlay": 35
+            "blog_overlay": 35,
+            "media_fit": "contain"
           }
         },
         "heading_1": {

@@ -2,7 +2,28 @@
   #HeroBanner-{{ section.id }} {
     --custom-hero-banner-feature-bg: {{ section.settings.feature_bg_color }};
   }
+  {%- if section.settings.bg_image != blank %}
+  #HeroBanner-{{ section.id }} .custom-hero-banner__section {
+    background-image: url({{ section.settings.bg_image | image_url: width: 1000 }});
+  }
+  @media only screen and (min-width: 601px) {
+    #HeroBanner-{{ section.id }} .custom-hero-banner__section {
+      background-image: url({{ section.settings.bg_image | image_url: width: 1600 }});
+    }
+  }
+  @media only screen and (min-width: 1025px) {
+    #HeroBanner-{{ section.id }} .custom-hero-banner__section {
+      background-image: url({{ section.settings.bg_image | image_url: width: 3000 }});
+    }
+  }
+  {%- endif %}
 {%- endstyle -%}
+
+{%- if section.settings.bg_image != blank -%}
+  <link rel="preload" as="image" href="{{ section.settings.bg_image | image_url: width: 1000 }}" media="(max-width: 600px)" fetchpriority="high">
+  <link rel="preload" as="image" href="{{ section.settings.bg_image | image_url: width: 1600 }}" media="(min-width: 601px) and (max-width: 1024px)" fetchpriority="high">
+  <link rel="preload" as="image" href="{{ section.settings.bg_image | image_url: width: 3000 }}" media="(min-width: 1025px)" fetchpriority="high">
+{%- endif -%}
 
 <style>
 .custom-hero-banner__section {
@@ -14,35 +35,78 @@
 
 .custom-hero-banner__parent {
   display: flex;
-  align-items: flex-end;
+  align-items: stretch;
 }
 
 .custom-hero-banner__left {
   width: 48%;
   padding-top: 50px;
-  padding-left: 140px;
+  padding-left: clamp(24px, 13.8vw - 59px, 140px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .custom-hero-banner__right {
   width: 52%;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.custom-hero-banner__image1 {
+  width: 100%;
+  line-height: 0;
 }
 
 .custom-hero-banner__image1 img {
   width: 100%;
+  min-width: 680px;
+  height: auto;
   object-fit: contain;
+  display: block;
 }
 
 .custom-hero-banner__image2 {
   position: absolute;
   right: 0;
-  bottom: -6%;
+  bottom: 0;
   z-index: 1;
+  line-height: 0;
+  /* 17.9% = products below the silver bag's bottom edge in the artwork;
+     keeps the bag's bottom on the section line at any rendered size */
+  transform: translateY(17.9%);
 }
 
 .custom-hero-banner__image2 img {
   width: 100%;
-  max-width: 630px;
+  max-width: clamp(262px, 43.8vw - 1px, 630px);
+  height: auto;
   object-fit: contain;
+  display: block;
+}
+
+/* Page-load entrance: woman fades up first, the makeup bag follows on a delay.
+   Hidden start states only apply once JS adds imgs-ready — no-JS safe.
+   The bag's delayed animation lives on the INNER wrapper so it never touches
+   the outer wrapper's positional translateY(17.9%). */
+@keyframes hero-img-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.custom-hero-banner.imgs-ready .custom-hero-banner__image1 {
+  animation: hero-img-in 0.9s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.custom-hero-banner.imgs-ready .custom-hero-banner__image2-inner {
+  animation: hero-img-in 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.5s both;
 }
 
 .custom-hero-banner__rating {
@@ -51,19 +115,50 @@
   gap: 8px;
 }
 
-.custom-hero-banner__rating-img {
-  display: flex;
+@media only screen and (max-width: 1024px) {
+  .custom-hero-banner__rating {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .custom-hero-banner__button {
+    padding: 15px 0;
+  }
+
+  .custom-hero-banner__button a {
+    height: 45px;
+    font-size: 16px;
+  }
+
+  .custom-hero-banner__features {
+    padding: 0 0 20px;
+  }
 }
 
-.custom-hero-banner__rating-img img {
-  max-width: 95px;
-  object-fit: contain;
+.custom-hero-banner__rating-img {
+  display: inline-block;
+  position: relative;
+  line-height: 0;
+}
+
+.custom-hero-banner__rating-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.custom-hero-banner__rating-img svg {
+  width: 95px;
+  height: auto;
 }
 
 .custom-hero-banner__rating-text {
   margin: 0;
   color: var(--COLOR-TEXT);
-  font-size: var(--FONT-SIZE-BASE);
+  font-size: clamp(16px, 1vw + 3.6px, 18px);
   font-weight: 400;
 }
 
@@ -73,21 +168,21 @@
 
 .custom-hero-banner__title {
   margin: 0;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding-top: clamp(10px, 1.7vw, 25px);
+  padding-bottom: clamp(10px, 1.7vw, 25px);
   color: var(--COLOR-TEXT);
   font-family: 'Cormorant';
-  font-size: 62px;
+  font-size: clamp(34px, 4vw + 4px, 62px);
   font-weight: 500;
   line-height: 110%;
-  letter-spacing: -3px;
+  letter-spacing: clamp(-3px, -0.15vw - 1.1px, -2px);
   text-transform: capitalize;
 }
 
 .custom-hero-banner__description {
   margin: 0;
   color: var(--COLOR-TEXT);
-  font-size: 20px;
+  font-size: clamp(16px, 1vw + 6px, 20px);
   font-weight: 400;
   line-height: 140%;
 }
@@ -111,11 +206,31 @@
   font-weight: 700;
   letter-spacing: 0;
   text-transform: uppercase;
+  transition: background 0.3s ease;
+}
+
+.custom-hero-banner__button a:focus-visible {
+  background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+}
+
+@media (hover: hover) {
+  .custom-hero-banner__button a:hover {
+    background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+  }
+
+  .custom-hero-banner__button a svg {
+    transition: transform 0.5s ease;
+    transform: translateZ(0);
+  }
+
+  .custom-hero-banner__button a:hover svg {
+    transform: translate3d(5px, 0, 0);
+  }
 }
 
 .custom-hero-banner__features {
   display: flex;
-  gap: 50px;
+  gap: clamp(24px, 3.5vw, 50px);
   margin: 0;
   padding: 0 0 50px;
   list-style: none;
@@ -129,7 +244,8 @@
 }
 
 .custom-hero-banner__feature-icon img {
-  max-width: 80px;
+  width: clamp(56px, 4vw + 20px, 80px);
+  height: clamp(56px, 4vw + 20px, 80px);
   object-fit: contain;
 }
 
@@ -137,10 +253,11 @@
   margin: 0;
   padding-top: 5px;
   color: var(--COLOR-TEXT);
-  font-size: var(--FONT-SIZE-BASE);
+  font-size: clamp(13px, 1.47vw - 0.2px, 18px);
   font-weight: 500;
   line-height: 130%;
   text-transform: capitalize;
+  width: auto;
 }
 
 @media only screen and (max-width: 600px) {
@@ -168,22 +285,15 @@
 
   .custom-hero-banner__rating {
     gap: 5px;
-    justify-content: center;
+    align-items: center;
   }
 
-  .custom-hero-banner__rating-img img {
-    max-width: 78px;
+  .custom-hero-banner__rating-img svg {
+    width: 78px;
   }
 
   .custom-hero-banner__rating-text {
     font-size: var(--FONT-SIZE-BASE);
-  }
-
-  .custom-hero-banner__title {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 34px;
-    letter-spacing: -2px;
   }
 
   .custom-hero-banner__description {
@@ -203,18 +313,20 @@
   }
 
   .custom-hero-banner__image1 {
-    margin: -30px -15px 0;
+    margin: 0;
     line-height: 0;
   }
 
   .custom-hero-banner__image1 img {
     width: 100%;
     max-width: 100%;
+    min-width: 0;
     height: auto;
   }
 
   .custom-hero-banner__image2 {
-    bottom: -12%;
+    bottom: -25px;
+    transform: none;
   }
 
   .custom-hero-banner__image2 img {
@@ -223,50 +335,76 @@
 
   .custom-hero-banner__features {
     justify-content: center;
-    gap: 50px;
-    padding: 25px 15px;
+    gap: 20px;
+    padding: 40px 15px 20px;
     background: var(--custom-hero-banner-feature-bg);
   }
 
-  .custom-hero-banner__feature-icon img {
-    max-width: 65px;
-  }
-
   .custom-hero-banner__feature-label {
-    max-width: 67px;
     margin: 0 auto;
+    font-size: 14px;
   }
 }
 </style>
 
 <div id="HeroBanner-{{ section.id }}" class="custom-hero-banner">
-  <section
-    class="custom-hero-banner__section"
-    {%- if section.settings.bg_image != blank %} style="background-image: url({{ section.settings.bg_image | image_url: width: 3000 }});"{% endif -%}
-  >
+  <section class="custom-hero-banner__section">
     <div class="custom-hero-banner__parent">
 
       <div class="custom-hero-banner__left">
 
-        <div class="custom-hero-banner__rating">
-          {%- if section.settings.star_image != blank -%}
-            <span class="custom-hero-banner__rating-img">
-              {{ section.settings.star_image | image_url: width: 190 | image_tag: alt: '', loading: 'lazy' }}
+        {%- assign animation_anchor = '#HeroBanner-' | append: section.id -%}
+        <div class="custom-hero-banner__rating"
+          data-aos="hero"
+          data-aos-anchor="{{ animation_anchor }}"
+          data-aos-order="1">
+          {%- liquid
+            assign star_rating = section.settings.star_rating | times: 1.0 | at_most: 5.0 | at_least: 0.0
+            assign star_percent = star_rating | divided_by: 5.0 | times: 100.0 | round: 1
+          -%}
+          <span class="custom-hero-banner__rating-img">
+            <svg xmlns="http://www.w3.org/2000/svg" width="190" height="36" viewBox="0 0 190 36" fill="#DDD6CF" aria-hidden="true" focusable="false">
+              <defs>
+                <path id="HeroStar-{{ section.id }}" d="M 0 -18 L 4.04 -5.56 L 17.12 -5.56 L 6.53 2.12 L 10.58 14.56 L 0 6.88 L -10.58 14.56 L -6.53 2.12 L -17.12 -5.56 L -4.04 -5.56 Z"/>
+              </defs>
+              <use href="#HeroStar-{{ section.id }}" transform="translate(19 19.7)"/>
+              <use href="#HeroStar-{{ section.id }}" transform="translate(57 19.7)"/>
+              <use href="#HeroStar-{{ section.id }}" transform="translate(95 19.7)"/>
+              <use href="#HeroStar-{{ section.id }}" transform="translate(133 19.7)"/>
+              <use href="#HeroStar-{{ section.id }}" transform="translate(171 19.7)"/>
+            </svg>
+            <span class="custom-hero-banner__rating-fill" style="width: {{ star_percent }}%">
+              <svg xmlns="http://www.w3.org/2000/svg" width="190" height="36" viewBox="0 0 190 36" fill="#FB6D00" aria-hidden="true" focusable="false">
+                <use href="#HeroStar-{{ section.id }}" transform="translate(19 19.7)"/>
+                <use href="#HeroStar-{{ section.id }}" transform="translate(57 19.7)"/>
+                <use href="#HeroStar-{{ section.id }}" transform="translate(95 19.7)"/>
+                <use href="#HeroStar-{{ section.id }}" transform="translate(133 19.7)"/>
+                <use href="#HeroStar-{{ section.id }}" transform="translate(171 19.7)"/>
+              </svg>
             </span>
-          {%- endif -%}
+          </span>
           <p class="custom-hero-banner__rating-text">{{ section.settings.star_text }}</p>
         </div>
 
         {%- if section.settings.title != blank -%}
-          <h1 class="custom-hero-banner__title">{{ section.settings.title }}</h1>
+          <h1 class="custom-hero-banner__title"
+            data-aos="hero"
+            data-aos-anchor="{{ animation_anchor }}"
+            data-aos-order="2">{{ section.settings.title }}</h1>
         {%- endif -%}
 
         {%- if section.settings.description != blank -%}
-          <p class="custom-hero-banner__description">{{ section.settings.description }}</p>
+          <p class="custom-hero-banner__description"
+            data-aos="hero"
+            data-aos-anchor="{{ animation_anchor }}"
+            data-aos-order="3">{{ section.settings.description }}</p>
         {%- endif -%}
 
         {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
-          <div class="custom-hero-banner__button">
+          <div class="custom-hero-banner__button"
+            data-aos="hero"
+            data-aos-anchor="{{ animation_anchor }}"
+            data-aos-order="4">
             <a href="{{ section.settings.button_link }}">
               {{ section.settings.button_text }}
               <svg width="22" height="13" viewBox="0 0 22 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
@@ -276,16 +414,23 @@
           </div>
         {%- endif -%}
 
-        <div class="custom-hero-banner__desktop">
+        <div class="custom-hero-banner__desktop"
+          data-aos="hero"
+          data-aos-anchor="{{ animation_anchor }}"
+          data-aos-order="5">
           <ul class="custom-hero-banner__features">
             {%- for block in section.blocks -%}
               <li class="custom-hero-banner__feature" {{ block.shopify_attributes }}>
-                {%- if block.settings.feature_icon != blank -%}
+                {%- if block.settings.svg_icon != blank and block.settings.svg_icon != 'none' -%}
+                  <span class="custom-hero-banner__feature-icon">
+                    <img src="{{ block.settings.svg_icon | prepend: 'custom-usp-' | append: '.svg' | asset_url }}" alt="" width="160" height="160" loading="lazy">
+                  </span>
+                {%- elsif block.settings.feature_icon != blank -%}
                   <span class="custom-hero-banner__feature-icon">
                     {{ block.settings.feature_icon | image_url: width: 160 | image_tag: alt: '', loading: 'lazy' }}
                   </span>
                 {%- endif -%}
-                <div class="custom-hero-banner__feature-label">{{ block.settings.feature_title }}</div>
+                <div class="custom-hero-banner__feature-label">{{ block.settings.feature_title | replace: '<br>', ' ' | replace: '<br/>', ' ' | replace: '<br />', ' ' }}</div>
               </li>
             {%- endfor -%}
           </ul>
@@ -296,13 +441,15 @@
       <div class="custom-hero-banner__right">
         {%- if section.settings.right_image_1 != blank -%}
           <div class="custom-hero-banner__image1">
-            {{ section.settings.right_image_1 | image_url: width: 1200 | image_tag: widths: '300, 500, 700, 900, 1100, 1300', sizes: '(min-width: 601px) 52vw, 100vw', loading: 'eager', fetchpriority: 'high' }}
+            {{ section.settings.right_image_1 | image_url: width: 1200 | image_tag: widths: '300, 500, 700, 800, 900, 1100, 1300', sizes: '(min-width: 1310px) 52vw, (min-width: 601px) 680px, 100vw', loading: 'eager', fetchpriority: 'high', alt: section.settings.right_image_1_alt }}
           </div>
         {%- endif -%}
 
         {%- if section.settings.right_image_2 != blank -%}
           <div class="custom-hero-banner__image2">
-            {{ section.settings.right_image_2 | image_url: width: 1260 | image_tag: widths: '260, 300, 500, 630, 900, 1260', sizes: '(min-width: 601px) 630px, 290px', loading: 'eager' }}
+            <div class="custom-hero-banner__image2-inner">
+              {{ section.settings.right_image_2 | image_url: width: 1260 | image_tag: widths: '260, 300, 460, 500, 630, 900, 1260', sizes: '(min-width: 601px) 43.8vw, 262px', loading: 'eager', alt: section.settings.right_image_2_alt }}
+            </div>
           </div>
         {%- endif -%}
       </div>
@@ -314,17 +461,31 @@
     <ul class="custom-hero-banner__features">
       {%- for block in section.blocks -%}
         <li class="custom-hero-banner__feature" {{ block.shopify_attributes }}>
-          {%- if block.settings.feature_icon != blank -%}
+          {%- if block.settings.svg_icon != blank and block.settings.svg_icon != 'none' -%}
+            <span class="custom-hero-banner__feature-icon">
+              <img src="{{ block.settings.svg_icon | prepend: 'custom-usp-' | append: '.svg' | asset_url }}" alt="" width="160" height="160" loading="lazy">
+            </span>
+          {%- elsif block.settings.feature_icon != blank -%}
             <span class="custom-hero-banner__feature-icon">
               {{ block.settings.feature_icon | image_url: width: 160 | image_tag: alt: '', loading: 'lazy' }}
             </span>
           {%- endif -%}
-          <div class="custom-hero-banner__feature-label">{{ block.settings.feature_title }}</div>
+          <div class="custom-hero-banner__feature-label">{{ block.settings.feature_title | replace: '<br>', ' ' | replace: '<br/>', ' ' | replace: '<br />', ' ' }}</div>
         </li>
       {%- endfor -%}
     </ul>
   </div>
 </div>
+
+<script>
+  (function () {
+    var root = document.getElementById('HeroBanner-{{ section.id }}');
+    if (!root) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.theme && window.theme.settings && window.theme.settings.enableAnimations === false) return;
+    root.classList.add('imgs-ready');
+  })();
+</script>
 
 {% schema %}
 {
@@ -336,9 +497,11 @@
       "label": "Background Image"
     },
     {
-      "type": "image_picker",
-      "id": "star_image",
-      "label": "Star Image"
+      "type": "text",
+      "id": "star_rating",
+      "label": "Star rating (0-5)",
+      "info": "Controls how much of the stars are filled",
+      "default": "4.76"
     },
     {
       "type": "textarea",
@@ -372,9 +535,22 @@
       "label": "Right Image 1"
     },
     {
+      "type": "text",
+      "id": "right_image_1_alt",
+      "label": "Right Image 1 alt text",
+      "info": "Describe the image for screen readers and SEO",
+      "default": "Mature woman with silver hair wearing natural-looking makeup, holding a red lipstick"
+    },
+    {
       "type": "image_picker",
       "id": "right_image_2",
       "label": "Right Image 2"
+    },
+    {
+      "type": "text",
+      "id": "right_image_2_alt",
+      "label": "Right Image 2 alt text",
+      "default": "Nikol Beauty makeup products with a silver cosmetic bag"
     },
     {
       "type": "header",
@@ -392,6 +568,19 @@
       "type": "feature",
       "name": "Feature Item",
       "settings": [
+        {
+          "type": "select",
+          "id": "svg_icon",
+          "label": "SVG icon",
+          "info": "Overrides the image icon below",
+          "options": [
+            { "value": "none", "label": "None (use image)" },
+            { "value": "cruelty-free", "label": "Cruelty-free (bunny heart)" },
+            { "value": "esthetician-approved", "label": "Esthetician-approved (woman + check)" },
+            { "value": "paraben-free", "label": "Paraben-free (flask + leaf)" }
+          ],
+          "default": "none"
+        },
         {
           "type": "image_picker",
           "id": "feature_icon",

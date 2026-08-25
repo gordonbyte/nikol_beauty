@@ -48,16 +48,19 @@
 
   <div class="mobile">
     <collapsible-elements>
-      <details data-collapsible>
+      <details data-collapsible open="true">
         <summary data-collapsible-trigger>
           <p class="account-sidebar__title strong">
             {{ 'customer.account.title' | t }}
 
-            {%- render 'icon-plus' -%}
-            {%- render 'icon-minus' -%}
+            <span class="account-sidebar__state" aria-hidden="true">
+              <span class="account-sidebar__state-closed">Tap to open</span>
+              <span class="account-sidebar__state-open">Tap to close</span>
+              <svg class="account-sidebar__chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" focusable="false"><path d="M3 5.5L8 10.5L13 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
           </p>
         </summary>
-        <div data-collapsible-body>
+        <div data-collapsible-body style="height: auto">
           <div data-collapsible-content>
             {{ links }}
           </div>
@@ -69,10 +72,13 @@
 
 
       <div class="account-main">
+        {%- if customer.first_name != blank -%}
+          <p class="account-welcome">Welcome back, {{ customer.first_name }}</p>
+        {%- endif -%}
         <h1 class="page__heading h2">{{ 'customer.orders.title' | t }}</h1>
         {% paginate customer.orders by 20 %}
           {% if customer.orders.size != 0 %}
-            <table>
+            <table class="account-orders-table">
               <thead>
                 <tr>
                   <th scope="col" class="order-number">{{ 'customer.orders.order_number' | t }}</th>
@@ -85,13 +91,13 @@
               <tbody>
                 {% for order in customer.orders %}
                   <tr class="{% cycle 'odd', 'even' %} {% if order.cancelled %}cancelled_order{% endif %}">
-                    <td class="order-number">
+                    <td class="order-number" data-label="{{ 'customer.orders.order_number' | t }}">
                       <span>{{ order.name | link_to: order.customer_url }}</span>
                     </td>
-                    <td class="date"><span class="note">
+                    <td class="date" data-label="{{ 'customer.orders.date' | t }}"><span class="note">
                       <span>{{ order.created_at | date: format: 'full_date' }}</span>
                     </span></td>
-                    <td class="payment-status">
+                    <td class="payment-status" data-label="{{ 'customer.orders.payment_status' | t }}">
                       <span>{{ order.financial_status_label }}</span>
                       {% if order.cancelled %}
                         {% assign order_cancelled_at = order.cancelled_at | date: format: 'full_date_and_time' %}
@@ -102,10 +108,10 @@
                         </p>
                       {% endif %}
                     </td>
-                    <td class="fulfillment-status">
+                    <td class="fulfillment-status" data-label="{{ 'customer.orders.fulfillment_status' | t }}">
                       <span>{{ order.fulfillment_status_label }}</span>
                     </td>
-                    <td class="total">
+                    <td class="total" data-label="{{ 'customer.orders.total' | t }}">
                       <span class="total money">
                         {%- if order.total_price == 0 -%}
                           {{ 'general.money.free' | t }}
@@ -119,7 +125,10 @@
               </tbody>
             </table>
           {% else %}
-            <p>{{ 'customer.orders.none' | t }}</p>
+            <div class="account-empty">
+              <p>{{ 'customer.orders.none' | t }}</p>
+              <a href="/collections/best-selling-products" class="btn btn--primary btn--solid"><span>Shop Our Best Sellers</span></a>
+            </div>
           {% endif %}
 
           {% render 'pagination', paginate: paginate %}

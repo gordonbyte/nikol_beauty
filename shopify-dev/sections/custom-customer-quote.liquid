@@ -1,7 +1,8 @@
 <style>
 .custom-customer-quote {
   position: relative;
-  padding: 30px 0;
+  /* padding tracks the hero products-image overhang (~4.5vw, 65px max) + 20px gap */
+  padding: clamp(45px, 4.52vw + 20px, 85px) 0;
   background-position: bottom;
   background-repeat: no-repeat;
   overflow: hidden;
@@ -15,9 +16,9 @@
   margin: 0 auto;
 }
 
-.custom-customer-quote__stars img {
-  max-width: 126px;
-  object-fit: contain;
+.custom-customer-quote__stars svg {
+  width: 126px;
+  height: auto;
 }
 
 .custom-customer-quote__quote {
@@ -66,7 +67,7 @@
 @media only screen and (max-width: 600px) {
 .custom-customer-quote {
     margin-top: 0px;
-    padding: 25px 0;
+    padding: 45px 0;
     background-position: center;
     background-size: cover;
 }
@@ -85,8 +86,8 @@
     width: 100%;
 }
 
-.custom-customer-quote__stars img {
-    max-width: 105px;
+.custom-customer-quote__stars svg {
+    width: 105px;
 }
 }
 
@@ -101,10 +102,21 @@
 
     <figure class="custom-customer-quote__inner">
 
-      {% if section.settings.star_image %}
-        <div class="custom-customer-quote__stars">
-          <img src="{{ section.settings.star_image | image_url: width: 260 }}" alt="{{ section.settings.star_alt | escape }}" loading="lazy">
-        </div>
+      {% if section.settings.show_stars %}
+      <div class="custom-customer-quote__stars">
+        <svg xmlns="http://www.w3.org/2000/svg" width="190" height="36" viewBox="0 0 190 36" fill="#FB6D00"
+          {% if section.settings.star_alt != blank %}role="img" aria-label="{{ section.settings.star_alt | escape }}"{% else %}aria-hidden="true"{% endif %}
+          focusable="false">
+          <defs>
+            <path id="QuoteStar-{{ section.id }}" d="M 0 -18 L 4.04 -5.56 L 17.12 -5.56 L 6.53 2.12 L 10.58 14.56 L 0 6.88 L -10.58 14.56 L -6.53 2.12 L -17.12 -5.56 L -4.04 -5.56 Z"/>
+          </defs>
+          <use href="#QuoteStar-{{ section.id }}" transform="translate(19 19.7)"/>
+          <use href="#QuoteStar-{{ section.id }}" transform="translate(57 19.7)"/>
+          <use href="#QuoteStar-{{ section.id }}" transform="translate(95 19.7)"/>
+          <use href="#QuoteStar-{{ section.id }}" transform="translate(133 19.7)"/>
+          <use href="#QuoteStar-{{ section.id }}" transform="translate(171 19.7)"/>
+        </svg>
+      </div>
       {% endif %}
 
       {% if section.settings.review_text != blank %}
@@ -117,9 +129,9 @@
         <figcaption class="custom-customer-quote__author">
 
           {% if section.settings.author_name != blank %}
-            <cite class="custom-customer-quote__author-name">
+            <span class="custom-customer-quote__author-name">
               {{ section.settings.author_name }}
-            </cite>
+            </span>
           {% endif %}
 
           {% if section.settings.buyer_image %}
@@ -149,9 +161,10 @@
       "label": "Background Image"
     },
     {
-      "type": "image_picker",
-      "id": "star_image",
-      "label": "Star Image"
+      "type": "checkbox",
+      "id": "show_stars",
+      "label": "Show stars",
+      "default": true
     },
     {
       "type": "text",

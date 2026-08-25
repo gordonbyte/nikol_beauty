@@ -25,8 +25,22 @@
 {%- assign media_padding = primary_media.settings.media_padding | default: 0 -%}
 {%- assign media_width = primary_media.settings.media_width | default: 50 -%}
 {%- assign content_width = 100 | minus: media_width -%}
+{%- assign media_fit = primary_media.settings.media_fit | default: 'cover' -%}
+{%- assign media_fit_position = primary_media.settings.media_fit_position | default: 'center' -%}
 
 <style>
+.custom-info-banner__sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 .custom-info-banner__main {
     position: relative;
     display: grid;
@@ -90,12 +104,22 @@
 }
 
 .custom-info-banner__star-img {
-    display: flex;
+    display: inline-block;
+    position: relative;
+    line-height: 0;
 }
 
-.custom-info-banner__star-img img {
-    max-width: 95px;
-    object-fit: contain;
+.custom-info-banner__star-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.custom-info-banner__star-img svg {
+    width: 95px;
+    height: auto;
 }
 
 .custom-info-banner__star-text {
@@ -122,7 +146,7 @@
 .custom-info-banner__description {
     color: var(--COLOR-TEXT);
     font-weight: 400;
-    font-size: 20px;
+    font-size: clamp(var(--FONT-SIZE-BASE), 0.47vw + 15.2px, 20px);
     line-height: 140%;
 }
 
@@ -149,6 +173,50 @@
     letter-spacing: 0;
     gap: 5px;
     font-weight: 700;
+    transition: background 0.3s ease;
+}
+
+.custom-info-banner__button a:focus-visible {
+    background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+}
+
+@media (hover: hover) {
+  .custom-info-banner__button a:hover {
+    background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+  }
+
+  .custom-info-banner__button a svg {
+    transition: transform 0.5s ease;
+    transform: translateZ(0);
+  }
+
+  .custom-info-banner__button a:hover svg {
+    transform: translate3d(5px, 0, 0);
+  }
+}
+
+/* Scroll-in reveal: initial hidden states apply ONLY once JS adds anim-ready,
+   so content stays visible without JS and under reduced motion. */
+.custom-info-banner.anim-ready .custom-info-banner__media,
+.custom-info-banner.anim-ready .custom-info-banner__content {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.custom-info-banner.anim-ready .custom-info-banner__image img {
+    transform: scale(1.05);
+    transition: transform 1.1s ease 0.1s;
+}
+
+.custom-info-banner.anim-ready.is-inview .custom-info-banner__media,
+.custom-info-banner.anim-ready.is-inview .custom-info-banner__content {
+    opacity: 1;
+    transform: none;
+}
+
+.custom-info-banner.anim-ready.is-inview .custom-info-banner__image img {
+    transform: scale(1);
 }
 
 /* Slider (image carousel + blog feed) */
@@ -278,8 +346,9 @@
 }
 
 .custom-info-banner__note-icon {
-    max-width: 25px;
-    object-fit: contain;
+    width: 25px;
+    height: auto;
+    flex-shrink: 0;
 }
 
 .custom-info-banner__note-text {
@@ -289,7 +358,18 @@
 }
 
 
+/* Phone type sizes match .custom-videos__title / .custom-videos__subtitle */
 @media only screen and (max-width: 600px) {
+.custom-info-banner__title {
+    font-size: 34px;
+}
+
+.custom-info-banner__description {
+    line-height: 135%;
+}
+}
+
+@media only screen and (max-width: 1024px) {
 .custom-info-banner {
     padding: 0 !important;
 }
@@ -327,29 +407,20 @@
 }
 
 .custom-info-banner__star-box {
+    flex-direction: column;
+    align-items: center;
     gap: 5px;
     justify-content: center;
 }
 
-.custom-info-banner__star-img img {
-    max-width: 78px;
+.custom-info-banner__star-img svg {
+    width: 78px;
 }
 
 .custom-info-banner__star-text {
     font-size: var(--FONT-SIZE-BASE);
 }
 
-.custom-info-banner__title {
-    font-size: 34px;
-    letter-spacing: -2px;
-}
-
-.custom-info-banner__description {
-    font-size: var(--FONT-SIZE-BASE);
-    line-height: 135%;
-    max-width: 350px;
-    margin: 0px auto;
-}
 
 .custom-info-banner__price {
     font-size: 20px;
@@ -388,7 +459,7 @@
 }
 
 .custom-info-banner__note-icon {
-    max-width: 20px;
+    width: 20px;
 }
 
 .custom-info-banner__note-text {
@@ -399,18 +470,39 @@
     </style>
 
 <style>
-{%- comment -%} Adjustable media / content split (desktop only; mobile always stacks full-width). Set on the first Media block. {%- endcomment -%}
-@media only screen and (min-width: 601px) {
+{%- comment -%} Adjustable media / content split (desktop >1024px only; mobile and tablet stack full-width). Set on the first Media block. {%- endcomment -%}
+@media only screen and (min-width: 1025px) {
   #InfoBanner-{{ section.id }} .custom-info-banner__main {
     grid-template-columns: {% if media_position == 'right' %}{{ content_width }}fr {{ media_width }}fr{% else %}{{ media_width }}fr {{ content_width }}fr{% endif %};
   }
   #InfoBanner-{{ section.id }} .custom-info-banner__media {
     width: calc((100% - 100px) * {{ media_width | divided_by: 100.0 }});
   }
+
+{% if media_fit == 'natural' %}
+  {%- comment -%} Natural: media joins the grid flow so the image's own height can
+     grow the banner (the default absolute positioning pins it to the content height). {%- endcomment -%}
+  #InfoBanner-{{ section.id }} .custom-info-banner__media {
+    position: static;
+    width: auto;
+  }
+  #InfoBanner-{{ section.id }} .custom-info-banner__media > .custom-info-banner__image,
+  #InfoBanner-{{ section.id }} .custom-info-banner__image {
+    height: auto;
+  }
+  #InfoBanner-{{ section.id }} .custom-info-banner__image img {
+    height: auto;
+  }
+{% else %}
+  #InfoBanner-{{ section.id }} .custom-info-banner__image img {
+    object-fit: {{ media_fit }};
+    object-position: {{ media_fit_position }};
+  }
+{% endif %}
 }
 </style>
 
-<section id="InfoBanner-{{ section.id }}" class="custom-info-banner" style="background-image: url({{ section.settings.bg_image | img_url: 'master' }});{% if section.settings.bg_color != blank %} background-color: {{ section.settings.bg_color }};{% endif %} padding: {{ media_padding }}px; box-sizing: border-box;">
+<section id="InfoBanner-{{ section.id }}" class="custom-info-banner" style="{% if section.settings.bg_image %}background-image: url({{ section.settings.bg_image | img_url: '2000x' }});{% endif %}{% if section.settings.bg_color != blank %} background-color: {{ section.settings.bg_color }};{% endif %} padding: {{ media_padding }}px; box-sizing: border-box;">
   <div class="page-width">
   <div class="custom-info-banner__main {% if media_position == 'right' %}custom-info-banner__main--media-right{% endif %}">
     {%- assign media_rendered = false -%}
@@ -429,15 +521,15 @@
                         <div class="swiper-slide">
                           <div class="custom-info-banner__blog-card">
                             {%- if article.image -%}
-                              <a href="{{ article.url }}" class="custom-info-banner__blog-image">
-                                <img src="{{ article.image | img_url: 'master' }}" alt="{{ article.title | escape }}" loading="lazy">
+                              <a href="{{ article.url }}" class="custom-info-banner__blog-image" aria-hidden="true" tabindex="-1">
+                                <img src="{{ article.image | img_url: '900x' }}" alt="" loading="lazy">
                                 <span class="custom-info-banner__blog-overlay" style="opacity: {{ blog_media.settings.blog_overlay | times: 0.01 }};"></span>
                               </a>
                             {%- endif -%}
                             <div class="custom-info-banner__blog-body">
-                              <div class="custom-info-banner__blog-meta">{{ article.content | strip_html | size | divided_by: 200 }} min read</div>
+                              <div class="custom-info-banner__blog-meta">{{ article.content | strip_html | size | divided_by: 1100 | at_least: 1 }} min read</div>
                               <h3 class="custom-info-banner__blog-title"><a href="{{ article.url }}">{{ article.title }}</a></h3>
-                              <a href="{{ article.url }}" class="custom-info-banner__blog-link">Read more &rarr;</a>
+                              <a href="{{ article.url }}" class="custom-info-banner__blog-link">Read more<span class="custom-info-banner__sr-only"> about {{ article.title | escape }}</span> <span aria-hidden="true">&rarr;</span></a>
                             </div>
                           </div>
                         </div>
@@ -456,11 +548,16 @@
                   <div class="swiper-wrapper">
                     {%- for b in media_blocks -%}
                       {%- unless b.settings.media_type == 'blog' -%}
-                        {%- assign mobile_img = b.settings.image_mobile | default: b.settings.image_desktop -%}
                         <div class="swiper-slide" {{ b.shopify_attributes }}>
                           <div class="custom-info-banner__image">
-                            {%- if b.settings.image_desktop -%}<img src="{{ b.settings.image_desktop | img_url: 'master' }}" alt="" class="custom-info-banner__img-desktop">{%- endif -%}
-                            {%- if mobile_img -%}<img src="{{ mobile_img | img_url: 'master' }}" alt="" class="custom-info-banner__img-mobile">{%- endif -%}
+                            {%- if b.settings.image_desktop and b.settings.image_mobile -%}
+                              <img src="{{ b.settings.image_desktop | img_url: '1400x' }}" srcset="{{ b.settings.image_desktop | img_url: '700x' }} 700w, {{ b.settings.image_desktop | img_url: '1000x' }} 1000w, {{ b.settings.image_desktop | img_url: '1400x' }} 1400w" sizes="(min-width: 1025px) 50vw, 1px" alt="{{ b.settings.image_alt | escape }}" loading="lazy" class="custom-info-banner__img-desktop">
+                              <img src="{{ b.settings.image_mobile | img_url: '1000x' }}" srcset="{{ b.settings.image_mobile | img_url: '500x' }} 500w, {{ b.settings.image_mobile | img_url: '750x' }} 750w, {{ b.settings.image_mobile | img_url: '1000x' }} 1000w" sizes="(min-width: 1025px) 1px, 100vw" alt="{{ b.settings.image_alt | escape }}" loading="lazy" class="custom-info-banner__img-mobile">
+                            {%- elsif b.settings.image_desktop -%}
+                              <img src="{{ b.settings.image_desktop | img_url: '900x' }}" srcset="{{ b.settings.image_desktop | img_url: '600x' }} 600w, {{ b.settings.image_desktop | img_url: '750x' }} 750w, {{ b.settings.image_desktop | img_url: '900x' }} 900w, {{ b.settings.image_desktop | img_url: '1400x' }} 1400w" sizes="(min-width: 1025px) 50vw, 100vw" alt="{{ b.settings.image_alt | escape }}" loading="lazy">
+                            {%- elsif b.settings.image_mobile -%}
+                              <img src="{{ b.settings.image_mobile | img_url: '900x' }}" srcset="{{ b.settings.image_mobile | img_url: '600x' }} 600w, {{ b.settings.image_mobile | img_url: '750x' }} 750w, {{ b.settings.image_mobile | img_url: '900x' }} 900w, {{ b.settings.image_mobile | img_url: '1400x' }} 1400w" sizes="(min-width: 1025px) 50vw, 100vw" alt="{{ b.settings.image_alt | escape }}" loading="lazy">
+                            {%- endif -%}
                           </div>
                         </div>
                       {%- endunless -%}
@@ -470,10 +567,15 @@
                 </div>
 
               {%- elsif image_count == 1 -%}
-                {%- assign mobile_img = first_image.settings.image_mobile | default: first_image.settings.image_desktop -%}
                 <div class="custom-info-banner__image" {{ first_image.shopify_attributes }}>
-                  {%- if first_image.settings.image_desktop -%}<img src="{{ first_image.settings.image_desktop | img_url: 'master' }}" alt="" class="custom-info-banner__img-desktop">{%- endif -%}
-                  {%- if mobile_img -%}<img src="{{ mobile_img | img_url: 'master' }}" alt="" class="custom-info-banner__img-mobile">{%- endif -%}
+                  {%- if first_image.settings.image_desktop and first_image.settings.image_mobile -%}
+                    <img src="{{ first_image.settings.image_desktop | img_url: '1400x' }}" srcset="{{ first_image.settings.image_desktop | img_url: '700x' }} 700w, {{ first_image.settings.image_desktop | img_url: '1000x' }} 1000w, {{ first_image.settings.image_desktop | img_url: '1400x' }} 1400w" sizes="(min-width: 1025px) 50vw, 1px" alt="{{ first_image.settings.image_alt | escape }}" loading="lazy" class="custom-info-banner__img-desktop">
+                    <img src="{{ first_image.settings.image_mobile | img_url: '1000x' }}" srcset="{{ first_image.settings.image_mobile | img_url: '500x' }} 500w, {{ first_image.settings.image_mobile | img_url: '750x' }} 750w, {{ first_image.settings.image_mobile | img_url: '1000x' }} 1000w" sizes="(min-width: 1025px) 1px, 100vw" alt="{{ first_image.settings.image_alt | escape }}" loading="lazy" class="custom-info-banner__img-mobile">
+                  {%- elsif first_image.settings.image_desktop -%}
+                    <img src="{{ first_image.settings.image_desktop | img_url: '900x' }}" srcset="{{ first_image.settings.image_desktop | img_url: '600x' }} 600w, {{ first_image.settings.image_desktop | img_url: '750x' }} 750w, {{ first_image.settings.image_desktop | img_url: '900x' }} 900w, {{ first_image.settings.image_desktop | img_url: '1400x' }} 1400w" sizes="(min-width: 1025px) 50vw, 100vw" alt="{{ first_image.settings.image_alt | escape }}" loading="lazy">
+                  {%- elsif first_image.settings.image_mobile -%}
+                    <img src="{{ first_image.settings.image_mobile | img_url: '900x' }}" srcset="{{ first_image.settings.image_mobile | img_url: '600x' }} 600w, {{ first_image.settings.image_mobile | img_url: '750x' }} 750w, {{ first_image.settings.image_mobile | img_url: '900x' }} 900w, {{ first_image.settings.image_mobile | img_url: '1400x' }} 1400w" sizes="(min-width: 1025px) 50vw, 100vw" alt="{{ first_image.settings.image_alt | escape }}" loading="lazy">
+                  {%- endif -%}
                 </div>
               {%- endif -%}
             </div>
@@ -482,11 +584,34 @@
 
         {%- when 'rating' -%}
           <div class="custom-info-banner__content" {{ block.shopify_attributes }} style="padding-top: {{ block.settings.padding_top | default: 5 }}px; padding-bottom: {{ block.settings.padding_bottom | default: 5 }}px;">
-            {%- if block.settings.star_image or block.settings.star_text != blank -%}
+            {%- liquid
+              assign star_rating = block.settings.star_rating | default: 5 | times: 1.0 | at_most: 5.0 | at_least: 0.0
+              assign star_percent = star_rating | divided_by: 5.0 | times: 100.0 | round: 1
+            -%}
+            {%- if star_rating > 0 or block.settings.star_text != blank -%}
               <div class="custom-info-banner__star-box">
-                {%- if block.settings.star_image -%}
+                {%- if star_rating > 0 -%}
                   <div class="custom-info-banner__star-img">
-                    <img src="{{ block.settings.star_image | img_url: 'master' }}" alt="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="190" height="36" viewBox="0 0 190 36" fill="#DDD6CF" aria-hidden="true" focusable="false">
+                      <defs>
+                        <path id="BannerStar-{{ section.id }}-{{ block.id }}" d="M 0 -18 L 4.04 -5.56 L 17.12 -5.56 L 6.53 2.12 L 10.58 14.56 L 0 6.88 L -10.58 14.56 L -6.53 2.12 L -17.12 -5.56 L -4.04 -5.56 Z"/>
+                      </defs>
+                      <use href="#BannerStar-{{ section.id }}-{{ block.id }}" transform="translate(19 19.7)"/>
+                      <use href="#BannerStar-{{ section.id }}-{{ block.id }}" transform="translate(57 19.7)"/>
+                      <use href="#BannerStar-{{ section.id }}-{{ block.id }}" transform="translate(95 19.7)"/>
+                      <use href="#BannerStar-{{ section.id }}-{{ block.id }}" transform="translate(133 19.7)"/>
+                      <use href="#BannerStar-{{ section.id }}-{{ block.id }}" transform="translate(171 19.7)"/>
+                    </svg>
+                    <span class="custom-info-banner__star-fill" style="width: {{ star_percent }}%">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="190" height="36" viewBox="0 0 190 36" fill="#FB6D00" aria-hidden="true" focusable="false">
+                        <use href="#BannerStar-{{ section.id }}-{{ block.id }}" transform="translate(19 19.7)"/>
+                        <use href="#BannerStar-{{ section.id }}-{{ block.id }}" transform="translate(57 19.7)"/>
+                        <use href="#BannerStar-{{ section.id }}-{{ block.id }}" transform="translate(95 19.7)"/>
+                        <use href="#BannerStar-{{ section.id }}-{{ block.id }}" transform="translate(133 19.7)"/>
+                        <use href="#BannerStar-{{ section.id }}-{{ block.id }}" transform="translate(171 19.7)"/>
+                      </svg>
+                    </span>
+                    <span class="custom-info-banner__sr-only">Rated {{ star_rating }} out of 5 stars</span>
                   </div>
                 {%- endif -%}
                 {%- if block.settings.star_text != blank -%}
@@ -523,6 +648,9 @@
               <div class="custom-info-banner__button">
                 <a href="{% if block.settings.button_link != blank %}{{ block.settings.button_link }}{% elsif product %}{{ product.url }}{% endif %}">
                   {{ block.settings.button_text }}
+                  <svg width="22" height="13" viewBox="0 0 22 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                    <path d="M0.843262 5.36644C0.377534 5.36644 -1.22974e-05 5.74399 -1.23382e-05 6.20972C-1.23789e-05 6.67544 0.377534 7.05299 0.843262 7.05299L0.843262 6.20972L0.843262 5.36644ZM21.4395 6.806C21.7689 6.47668 21.7689 5.94275 21.4395 5.61343L16.073 0.24687C15.7437 -0.0824491 15.2097 -0.0824491 14.8804 0.24687C14.5511 0.576189 14.5511 1.11012 14.8804 1.43944L19.6507 6.20972L14.8804 10.98C14.5511 11.3093 14.5511 11.8432 14.8804 12.1726C15.2097 12.5019 15.7437 12.5019 16.073 12.1726L21.4395 6.806ZM0.843262 6.20972L0.843262 7.05299L20.8433 7.05299L20.8433 6.20972L20.8433 5.36644L0.843262 5.36644L0.843262 6.20972Z" fill="currentColor"/>
+                  </svg>
                 </a>
               </div>
             {%- endif -%}
@@ -530,10 +658,10 @@
 
         {%- when 'icon_note' -%}
           <div class="custom-info-banner__content" {{ block.shopify_attributes }} style="padding-top: {{ block.settings.padding_top | default: 5 }}px; padding-bottom: {{ block.settings.padding_bottom | default: 5 }}px;">
-            {%- if block.settings.icon != blank or block.settings.text != blank -%}
+            {%- if block.settings.show_icon or block.settings.text != blank -%}
               <div class="custom-info-banner__note custom-info-banner__note--{{ block.settings.alignment | default: 'left' }}">
-                {%- if block.settings.icon != blank -%}
-                  <img class="custom-info-banner__note-icon" src="{{ block.settings.icon | img_url: 'master' }}" alt="">
+                {%- if block.settings.show_icon -%}
+                  <svg class="custom-info-banner__note-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45" fill="none" aria-hidden="true" focusable="false"><circle cx="22.5" cy="22.5" r="20" stroke="#2A2724" stroke-width="3"/><path d="M22.5 11 V22.5 L31.5 31" stroke="#2A2724" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 {%- endif -%}
                 {%- if block.settings.text != blank -%}
                   <span class="custom-info-banner__note-text">{{ block.settings.text }}</span>
@@ -561,6 +689,34 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 {%- endif -%}
+
+<script>
+  (function () {
+    var root = document.getElementById('InfoBanner-{{ section.id }}');
+    if (!root) return;
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.theme && window.theme.settings && window.theme.settings.enableAnimations === false) return;
+
+    var contents = root.querySelectorAll('.custom-info-banner__content');
+    contents.forEach(function (el, i) {
+      el.style.transitionDelay = (0.12 + i * 0.12) + 's';
+    });
+
+    root.classList.add('anim-ready');
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          root.classList.add('is-inview');
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.15 });
+
+    observer.observe(root);
+  })();
+</script>
 
 {% schema %}
 {
@@ -638,6 +794,39 @@ document.addEventListener("DOMContentLoaded", function () {
           "content": "Image"
         },
         {
+          "type": "select",
+          "id": "media_fit",
+          "label": "Image fit (desktop)",
+          "info": "Uses the first Media block's value. Mobile and tablet stack and always show the full image.",
+          "default": "cover",
+          "options": [
+            { "value": "cover", "label": "Fill (crop overflow)" },
+            { "value": "contain", "label": "Fit (show whole image)" },
+            { "value": "fill", "label": "Stretch to fill" },
+            { "value": "natural", "label": "Natural (image sets the height)" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "media_fit_position",
+          "label": "Image focal position",
+          "info": "Which part stays visible when cropping (Fill), or where the image sits when smaller (Fit)",
+          "default": "center",
+          "options": [
+            { "value": "center", "label": "Center" },
+            { "value": "top", "label": "Top" },
+            { "value": "bottom", "label": "Bottom" },
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image alt text",
+          "info": "Describe the image for screen readers and SEO. Leave blank if purely decorative."
+        },
+        {
           "type": "image_picker",
           "id": "image_desktop",
           "label": "Image — desktop"
@@ -684,9 +873,14 @@ document.addEventListener("DOMContentLoaded", function () {
       "name": "Rating",
       "settings": [
         {
-          "type": "image_picker",
-          "id": "star_image",
-          "label": "Star Image"
+          "type": "range",
+          "id": "star_rating",
+          "label": "Star rating",
+          "info": "Controls how much of the stars are filled. 0 hides the stars.",
+          "min": 0,
+          "max": 5,
+          "step": 0.1,
+          "default": 5
         },
         {
           "type": "textarea",
@@ -849,10 +1043,11 @@ document.addEventListener("DOMContentLoaded", function () {
       "name": "Icon Note",
       "settings": [
         {
-          "type": "image_picker",
-          "id": "icon",
-          "label": "Icon",
-          "info": "Optional — shows in front of the text."
+          "type": "checkbox",
+          "id": "show_icon",
+          "label": "Show clock icon",
+          "info": "Shows in front of the text.",
+          "default": true
         },
         {
           "type": "text",

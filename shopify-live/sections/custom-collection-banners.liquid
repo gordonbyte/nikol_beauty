@@ -16,6 +16,7 @@
 
 .custom-collection-banners__title {
     color: var(--COLOR-TEXT);
+    font-size: 56px;
     line-height: 110%;
     font-family: var(--FONT-STACK-HEADING);
     letter-spacing: -3px;
@@ -44,7 +45,7 @@
 }
 
 .custom-collection-banners__item {
-    width: 32.3%;
+    flex: 1 1 32.3%;
 }
 
 .custom-collection-banners__item-title {
@@ -82,9 +83,57 @@
 .custom-collection-banners__list .custom-collection-banners__item:last-child .custom-collection-banners__item-title {
     width: 50%;
 }
+
+.custom-collection-banners__media {
+    overflow: hidden;
+}
+
+.custom-collection-banners__media img {
+    transition: transform 0.6s ease;
+}
+
+.custom-collection-banners__shop svg {
+    transition: transform 0.5s ease;
+    transform: translateZ(0);
+}
+
+.custom-collection-banners__link:focus-visible .custom-collection-banners__shop svg {
+    transform: translate3d(5px, 0, 0);
+}
+
+@media (hover: hover) {
+  a.custom-collection-banners__link:hover .custom-collection-banners__media img {
+    transform: scale(1.05);
+  }
+
+  a.custom-collection-banners__link:hover .custom-collection-banners__shop svg {
+    transform: translate3d(5px, 0, 0);
+  }
+}
+
+/* Scroll-in reveal: initial hidden states apply ONLY once JS adds anim-ready,
+   so content stays visible without JS and under reduced motion. */
+.custom-collection-banners.anim-ready .custom-collection-banners__title,
+.custom-collection-banners.anim-ready .custom-collection-banners__subtitle,
+.custom-collection-banners.anim-ready .custom-collection-banners__item {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.custom-collection-banners.anim-ready.is-inview .custom-collection-banners__title,
+.custom-collection-banners.anim-ready.is-inview .custom-collection-banners__subtitle,
+.custom-collection-banners.anim-ready.is-inview .custom-collection-banners__item {
+    opacity: 1;
+    transform: none;
+}
 @media only screen and (max-width: 600px) {
 .custom-collection-banners {
     padding-top: 40px;
+}
+
+.custom-collection-banners__title {
+    font-size: 34px;
 }
 
 .custom-collection-banners__list {
@@ -92,7 +141,7 @@
 }
 
 .custom-collection-banners__item {
-    width: 100%;
+    flex-basis: 100%;
 }
 
 .custom-collection-banners__item-title {
@@ -122,6 +171,7 @@
 
 <section
   class="custom-collection-banners"
+  id="CollBanners-{{ section.id }}"
   {% if section.settings.title != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
   {% if section.settings.bg_image != blank %}
     style="background-image: url('{{ section.settings.bg_image | img_url: 'master' }}');"
@@ -201,6 +251,35 @@
   </div>
 </section>
 
+<script>
+  (function () {
+    var root = document.getElementById('CollBanners-{{ section.id }}');
+    if (!root) return;
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.theme && window.theme.settings && window.theme.settings.enableAnimations === false) return;
+
+    var targets = root.querySelectorAll('.custom-collection-banners__title, .custom-collection-banners__subtitle, .custom-collection-banners__item');
+    if (!targets.length) return;
+
+    targets.forEach(function (el, i) {
+      el.style.transitionDelay = (i * 0.12) + 's';
+    });
+
+    root.classList.add('anim-ready');
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          root.classList.add('is-inview');
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.15 });
+
+    observer.observe(root);
+  })();
+</script>
 
 {% schema %}
 {

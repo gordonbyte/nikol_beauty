@@ -49,44 +49,65 @@
   object-fit: contain;
 }
 
+.custom-guarantee-list__marquee { overflow: hidden; }
+
+.custom-guarantee-list__track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  animation: custom-guarantee-list-scroll 20s linear infinite;
+}
+
+.custom-guarantee-list__track .custom-guarantee-list__box {
+  width: auto;
+  padding-right: 30px;
+}
+
+@keyframes custom-guarantee-list-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-guarantee-list__track {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px 25px;
+  }
+  .custom-guarantee-list__track [aria-hidden="true"] { display: none; }
+}
+
+/* JS-toggled when the static items don't fit the bar (tablets etc.) */
+.custom-guarantee-list.is-scrolling .custom-guarantee-list__desktop { display: none; }
+.custom-guarantee-list.is-scrolling .custom-guarantee-list__mobile { display: block; }
+
+/* off-screen measuring clone: natural single-line width of the item set */
+.custom-guarantee-list__items--measure {
+  position: absolute !important;
+  left: -9999px;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+  width: max-content;
+  justify-content: flex-start;
+  gap: 40px;
+}
+
+.custom-guarantee-list__items--measure .custom-guarantee-list__box {
+  width: auto;
+  white-space: nowrap;
+}
+
 @media only screen and (max-width: 600px) {
   .custom-guarantee-list__desktop { display: none; }
   .custom-guarantee-list__mobile { display: block; }
 
-  .custom-guarantee-list__marquee { overflow: hidden; }
-
-  .custom-guarantee-list__track {
-    display: flex;
-    width: max-content;
-    align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    animation: custom-guarantee-list-scroll 20s linear infinite;
-  }
-
-  .custom-guarantee-list__track .custom-guarantee-list__box {
-    width: auto;
-    padding-right: 30px;
-  }
-
   .custom-guarantee-list__track .custom-guarantee-list__icon { height: 22px; }
-
-  @keyframes custom-guarantee-list-scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .custom-guarantee-list__track {
-      animation: none;
-      width: 100%;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 16px 25px;
-    }
-    .custom-guarantee-list__track [aria-hidden="true"] { display: none; }
-  }
 }
 </style>
 
@@ -136,18 +157,64 @@
 
 <script>
   (function () {
-    var track = document.querySelector('#GuaranteeList-{{ section.id }} .custom-guarantee-list__track');
-    if (!track) return;
+    var root = document.getElementById('GuaranteeList-{{ section.id }}');
+    if (!root) return;
+    var track = root.querySelector('.custom-guarantee-list__track');
+    var items = root.querySelector('.custom-guarantee-list__items');
+
     /* Constant 50px/s regardless of item count or text length; the CSS 20s is the no-JS fallback. */
     function scaleDuration() {
+      if (!track) return;
       var distance = track.scrollWidth / 2;
       if (distance > 0) track.style.animationDuration = (distance / 50) + 's';
     }
-    if (document.readyState === 'complete') {
-      scaleDuration();
-    } else {
-      window.addEventListener('load', scaleDuration);
+
+    /* Marquee kicks in whenever the static items genuinely don't fit the bar. */
+    function fitCheck() {
+      if (!items) return;
+      if (window.innerWidth <= 600) {
+        root.classList.remove('is-scrolling');
+        return;
+      }
+      var clone = items.cloneNode(true);
+      clone.classList.add('custom-guarantee-list__items--measure');
+      clone.setAttribute('aria-hidden', 'true');
+      root.appendChild(clone);
+      var needed = clone.getBoundingClientRect().width;
+      root.removeChild(clone);
+
+      var containers = root.querySelectorAll('.custom-guarantee-list__bar .page-width');
+      var visible = null;
+      for (var i = 0; i < containers.length; i++) {
+        if (containers[i].offsetParent !== null) { visible = containers[i]; break; }
+      }
+      if (!visible) return;
+      var cs = getComputedStyle(visible);
+      var available = visible.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+
+      var overflowing = needed > available;
+      if (root.classList.contains('is-scrolling') !== overflowing) {
+        root.classList.toggle('is-scrolling', overflowing);
+        if (overflowing) scaleDuration();
+      }
     }
+
+    function update() {
+      fitCheck();
+      scaleDuration();
+    }
+
+    if (document.readyState === 'complete') {
+      update();
+    } else {
+      window.addEventListener('load', update);
+    }
+
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(update, 150);
+    });
   })();
 </script>
 

@@ -41,7 +41,6 @@
 
 .custom-videos__video {
   width: 100%;
-  height: 560px;
 }
 
 .custom-videos__btn-wrap {
@@ -66,15 +65,46 @@
   font-weight: 700;
   letter-spacing: 0;
   text-transform: uppercase;
+  transition: background 0.3s ease;
+}
+
+.custom-videos__btn-wrap a:focus-visible {
+  background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+}
+
+@media (hover: hover) {
+  .custom-videos__btn-wrap a:hover {
+    background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+  }
+
+  .custom-videos__btn-wrap a svg {
+    transition: transform 0.5s ease;
+    transform: translateZ(0);
+  }
+
+  .custom-videos__btn-wrap a:hover svg {
+    transform: translate3d(5px, 0, 0);
+  }
+}
+
+/* Scroll-in reveal: initial hidden states apply ONLY once JS adds anim-ready,
+   so content stays visible without JS and under reduced motion. */
+.custom-videos.anim-ready .custom-videos__header,
+.custom-videos.anim-ready .custom-videos__slide,
+.custom-videos.anim-ready .custom-videos__btn-wrap {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.custom-videos.anim-ready .is-inview {
+  opacity: 1;
+  transform: none;
 }
 
 @media only screen and (max-width: 600px) {
   .custom-videos {
     padding: 40px 15px;
-  }
-
-  .custom-videos__video {
-    height: 220px;
   }
 
   .custom-videos__title {
@@ -197,6 +227,32 @@ div#shopify-block-ARm9XTUZHZFV1WGhCV__live_shopping_by_channelize_io_shoppable_v
     </div>
   </div>
 </section>
+
+<script>
+  (function () {
+    var root = document.getElementById('Videos-{{ section.id }}');
+    if (!root) return;
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.theme && window.theme.settings && window.theme.settings.enableAnimations === false) return;
+
+    var targets = root.querySelectorAll('.custom-videos__header, .custom-videos__slide, .custom-videos__btn-wrap');
+    if (!targets.length) return;
+
+    root.classList.add('anim-ready');
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-inview');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    targets.forEach(function (t) { observer.observe(t); });
+  })();
+</script>
 
 {% schema %}
 {

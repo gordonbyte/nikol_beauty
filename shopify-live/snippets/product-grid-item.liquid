@@ -287,6 +287,22 @@
       assign badge = badge[1] | split: ',' | first | replace: '_', ' '
     endif
 
+    comment
+      Badge colors by message meaning (unmatched text keeps the default pink):
+        gold    -> newness ("new" only — per Randell, "Just Launched" stays default)
+        dark    -> proven ("best seller")
+        neutral -> product descriptors ("matte", "cream formula")
+    endcomment
+    assign badge_style = ''
+    assign badge_lower = badge | downcase
+    if badge_lower contains 'new'
+      assign badge_style = 'gold'
+    elsif badge_lower contains 'best seller'
+      assign badge_style = 'dark'
+    elsif badge_lower contains 'matte' or badge_lower contains 'cream formula'
+      assign badge_style = 'neutral'
+    endif
+
     if product.metafields.theme.preorder.type == 'boolean' and product.metafields.theme.preorder.value == true
       assign is_preorder_meta = true
     endif
@@ -355,7 +371,7 @@ assign promo_ribbon_shadow = product.metafields.custom.promo_ribbon_shadow.value
   -%}
 
   {%- if badge != '' -%}
-    <span class="badge-box"
+    <span class="badge-box{% if badge_style != '' %} badge-box--{{ badge_style }}{% endif %}"
       data-aos="fade"
       data-aos-delay="{{ aos_delay }}"
       data-aos-duration="{{ aos_duration }}"

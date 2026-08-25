@@ -1,0 +1,138 @@
+<!-- /sections/custom-collections-picker.liquid -->
+
+{%- if section.settings.enable -%}
+  <nav class="collections-picker" aria-label="Collections on this page" data-collections-picker hidden>
+    <span class="collections-picker__marker" data-collections-picker-marker aria-hidden="true"></span>
+    <ul class="collections-picker__list" data-collections-picker-list></ul>
+  </nav>
+
+  <script>
+    (function () {
+      function initCollectionsPicker() {
+        var picker = document.querySelector('[data-collections-picker]');
+        if (!picker) return;
+
+        var list = picker.querySelector('[data-collections-picker-list]');
+        var marker = picker.querySelector('[data-collections-picker-marker]');
+        var targets = Array.prototype.filter.call(
+          document.querySelectorAll('section.index-products'),
+          function (el) { return el.querySelector('.grid__heading'); }
+        );
+
+        if (targets.length < 2) {
+          picker.hidden = true;
+          return;
+        }
+
+        list.innerHTML = '';
+        var links = targets.map(function (target, i) {
+          var heading = target.querySelector('.grid__heading').textContent.trim();
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.className = 'collections-picker__link';
+          a.href = '#' + target.id;
+          a.textContent = heading;
+          a.addEventListener('click', function (e) {
+            e.preventDefault();
+            var headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height'), 10) || 90;
+            var top = window.scrollY + target.getBoundingClientRect().top - headerHeight;
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            window.scrollTo({ top: top, behavior: reduceMotion ? 'auto' : 'smooth' });
+          });
+          li.appendChild(a);
+          list.appendChild(li);
+          return a;
+        });
+
+        var activeIndex = -1;
+
+        function currentIndex() {
+          var center = window.innerHeight / 2;
+          var best = 0;
+          var bestDist = Infinity;
+          targets.forEach(function (target, i) {
+            var rect = target.getBoundingClientRect();
+            var dist = 0;
+            if (rect.top > center) dist = rect.top - center;
+            else if (rect.bottom < center) dist = center - rect.bottom;
+            if (dist < bestDist) { bestDist = dist; best = i; }
+          });
+          return best;
+        }
+
+        function moveMarker() {
+          var active = links[activeIndex];
+          if (!active || !marker) return;
+          marker.style.height = active.offsetHeight + 'px';
+          marker.style.transform = 'translateY(' + active.offsetTop + 'px)';
+        }
+
+        function update() {
+          var index = currentIndex();
+          if (index === activeIndex) return;
+          activeIndex = index;
+          moveMarker();
+          links.forEach(function (link, i) {
+            var distance = Math.abs(i - index);
+            if (distance === 0) {
+              link.classList.add('is-active');
+              link.removeAttribute('style');
+              link.setAttribute('aria-current', 'true');
+            } else {
+              link.classList.remove('is-active');
+              link.style.opacity = Math.max(0.15, 0.55 - (distance - 1) * 0.13).toFixed(2);
+              link.removeAttribute('aria-current');
+            }
+          });
+        }
+
+        var ticking = false;
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(function () {
+            ticking = false;
+            update();
+          });
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', function () {
+          activeIndex = -1;
+          onScroll();
+        });
+        update();
+        picker.hidden = false;
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCollectionsPicker);
+      } else {
+        initCollectionsPicker();
+      }
+
+      document.addEventListener('shopify:section:load', initCollectionsPicker);
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "[Custom] Scroll picker",
+    "class": "shopify-section--collections-picker",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable",
+        "label": "Enable collections picker",
+        "info": "Fixed list on the left of the screen that highlights the collection currently in view. Desktop only.",
+        "default": true
+      }
+    ],
+    "presets": [
+      {
+        "name": "[Custom] Scroll picker"
+      }
+    ]
+  }
+{% endschema %}

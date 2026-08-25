@@ -1,0 +1,302 @@
+<!--
+  BACKUP of live page content, taken 2026-08-24 before content redesign.
+  Page: "FAQ Rewards Program" | handle: faq-rewards-program | id: gid://shopify/Page/144102064432
+  Live updatedAt at time of backup: 2026-07-27T17:30:39Z
+  Restore: paste everything below this comment into the page body (admin > Pages > FAQ Rewards Program > show HTML).
+-->
+<style>
+  /* FAQ Rewards Program - scoped styles, MOBILE-FIRST.
+     Fonts & text sizes inherit the theme (Cormorant / Inter). */
+  .faq-rewards { text-align: left; line-height: 1.65; overflow-wrap: break-word; }
+  .faq-rewards__title { text-align: center; font-size: 2.2em; font-weight: 600; margin: 10px 0 20px; }
+  .faq-rewards section { margin: 0 0 50px; }
+  .faq-rewards p, .faq-rewards li { margin: 0 0 12px; }
+  .faq-rewards ul, .faq-rewards ol { padding-left: 0; }
+  .faq-rewards a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+  .faq-rewards a[href^="mailto:"]:not(.btn) { font-weight: 500; }
+  .faq-rewards a:focus-visible, .faq-rewards button:focus-visible { outline: 3px solid #45413B; outline-offset: 3px; border-radius: 2px; }
+
+  /* ---------- Welcome panel ---------- */
+  .faq-rewards__hero { background: linear-gradient(135deg, #F8F3EF 0%, #FDEEF1 100%); border: 1px solid #F0E4DC; border-radius: 14px; padding: 24px 20px; margin: 4px 0 18px; text-align: center; }
+  .faq-rewards__hero svg { width: 44px; height: 44px; display: block; margin: 0 auto 10px; }
+  .faq-rewards__hero p { margin: 0 auto; max-width: 75%; }
+  .faq-rewards__stats { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 0; margin: 10px 0 0; }
+  .faq-rewards__stats li { background: #fff; border: 1px solid #F0CDD6; border-radius: 999px; padding: 10px 18px; margin: 0; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .faq-rewards__stats li::before { content: ""; width: 1.25em; height: 1.25em; flex: 0 0 auto; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='9' r='5.2' fill='%23D34270'/%3E%3Ccircle cx='12' cy='9' r='3' fill='%23E98FA8'/%3E%3Ccircle cx='12' cy='9' r='1.3' fill='%23FDEEF1'/%3E%3Cpath d='M12 14.5V20M12 19.2c-1.3-1.4-3-1.6-4-1.6M12 19.2c1.3-1.4 3-1.6 4-1.6' stroke='%237A9471' stroke-width='1.5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E") no-repeat center / contain; }
+  .faq-rewards__stats .rose-num { color: #B93A62; }
+  .faq-rewards__stats { margin-top: 10px !important;}
+
+  /* ---------- Jump menu: cream bar, links divided by vertical separators ---------- */
+  .faq-rewards__toc { background: #f8f3ef; border-radius: 8px; padding: 6px 10px; margin: 8px 0 16px; }
+  .faq-rewards__toc ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; gap: 2px 0; }
+  .faq-rewards__toc li { margin: 0; display: flex; border-bottom: 1px solid #D4BCAB; }
+  .faq-rewards__toc li:last-child { grid-column: 1 / -1; border-bottom: none; }
+  .faq-rewards__toc a { display: flex; align-items: center; justify-content: center; width: 100%; text-align: center; padding: 4px 6px; min-height: 58px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 700; }
+  .faq-rewards__toc a:hover { color: #B93A62; }
+  /* the theme paints link underlines via a currentColor gradient - suppress it here */
+  .faq-rewards__toc a, .faq-rewards__toc a:hover, .faq-rewards__toc a:focus { background: none !important; background-image: none !important; }
+
+  /* ---------- Section header bands ---------- */
+  .faq-rewards h2 { position: sticky; top: var(--header-height, 0px); z-index: 10; background: #f8f3ef; margin: 28px 0 4px; padding: 8px 14px; border: 1px solid #d9d9d9; border-radius: 8px; font-size: 1.7em; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; scroll-margin-top: calc(var(--header-height, 0px) + 80px); display: flex; align-items: center; gap: 10px; }
+  .faq-rewards h2 svg { width: 22px; height: 22px; flex: 0 0 auto; }
+
+  /* ---------- Questions ---------- */
+  .faq-rewards h3 { margin: 26px 0 8px; padding-left: 12px; border-left: 4px solid #F0CDD6; font-size: 1.2em; font-weight: 600; }
+
+  /* Rose bullets for answer lists (numbered steps keep their numbers) */
+  .faq-rewards section ul { list-style: none; padding-left: 0.2em; }
+  .faq-rewards section ul > li { position: relative; padding-left: 1.9em; }
+  .faq-rewards section ul > li::before { content: ""; position: absolute; left: 0; top: 0.1em; width: 1.3em; height: 1.3em; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 4c2.6 0 4.7 2.1 4.7 4.7 0 3.5-2.9 6.3-4.7 7.6-1.8-1.3-4.7-4.1-4.7-7.6C7.3 6.1 9.4 4 12 4Z' fill='%23D34270'/%3E%3Cpath d='M12 9.5c.9 0 1.6.7 1.6 1.6 0 1.2-1 2.1-1.6 2.6-.6-.5-1.6-1.4-1.6-2.6 0-.9.7-1.6 1.6-1.6Z' fill='%23FDEEF1'/%3E%3Cpath d='M12 16.5v4M12 20.5c-1.4-1.6-3.2-1.9-4.5-1.8M12 20.5c1.4-1.6 3.2-1.9 4.5-1.8' stroke='%237A9471' stroke-width='1.5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E") no-repeat center / contain; }
+
+  /* Numbered step lists: indented, with bold numbers */
+  .faq-rewards section ol:not(.faq-rewards__tiers) { padding-left: 1.9em; }
+  .faq-rewards section ol:not(.faq-rewards__tiers) > li::marker { font-weight: 700; }
+
+  /* Conversion list: tabbed in, with the matching tier rose beside each line */
+  .faq-rewards section ul.faq-rewards__convert { padding-left: 2.5em; }
+  .faq-rewards__convert > li:nth-child(1)::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 5c1.7 0 3 1.5 3 3.4 0 2.6-1.9 4.3-3 5-1.1-.7-3-2.4-3-5C9 6.5 10.3 5 12 5Z' fill='%23FCC9C6'/%3E%3Cpath d='M12 13.5V20' stroke='%237A9471' stroke-width='1.5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E"); }
+  .faq-rewards__convert > li:nth-child(2)::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 4.5c2 0 3.6 1.7 3.6 3.9 0 3-2.3 5-3.6 5.8-1.3-.8-3.6-2.8-3.6-5.8 0-2.2 1.6-3.9 3.6-3.9Z' fill='%23E98FA8'/%3E%3Ccircle cx='12' cy='8.6' r='1.7' fill='%23FDEEF1'/%3E%3Cpath d='M12 14.2V20M12 19c-1.2-1.3-2.7-1.5-3.7-1.5M12 19c1.2-1.3 2.7-1.5 3.7-1.5' stroke='%237A9471' stroke-width='1.5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E"); }
+  .faq-rewards__convert > li:nth-child(3)::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='9' r='5.2' fill='%23D34270'/%3E%3Ccircle cx='12' cy='9' r='3' fill='%23E98FA8'/%3E%3Ccircle cx='12' cy='9' r='1.3' fill='%23FDEEF1'/%3E%3Cpath d='M12 14.5V20M12 19.2c-1.3-1.4-3-1.6-4-1.6M12 19.2c1.3-1.4 3-1.6 4-1.6' stroke='%237A9471' stroke-width='1.5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E"); }
+
+  /* ---------- VIP tier cards ---------- */
+  .faq-rewards__tiers { list-style: none; padding: 0; margin: 14px 0 6px; display: grid; gap: 20px; counter-reset: tier; }
+  .faq-rewards__tiers li { margin: 0; background: #FEF8FA; border: 1px solid #F0E4DC; border-radius: 12px; padding: 18px 16px 14px; text-align: center; position: relative; }
+  .faq-rewards__tiers li::before { counter-increment: tier; content: "Tier " counter(tier); display: inline-block; font-size: 0.8em; letter-spacing: 0.08em; text-transform: uppercase; color: #B93A62; background: #FDEEF1; border-radius: 999px; padding: 3px 12px; margin-bottom: 8px; }
+  .faq-rewards__tiers svg { width: 40px; height: 40px; display: block; margin: 2px auto 6px; }
+  .faq-rewards__tiers .tier-name { display: block; font-weight: 700; margin-bottom: 4px; }
+  .faq-rewards__tiers .tier-how { display: block; }
+  .faq-rewards__tiers .tier-rate { display: block; margin-top: 6px; color: #B93A62; font-weight: 600; }
+
+  /* ---------- Back to top + help card ---------- */
+  .faq-rewards__top-link { display: inline-block; padding: 12px 4px; margin-top: 4px; }
+  .faq-rewards__top-link:hover { color: #B93A62; }
+  .faq-rewards__help { background: #F8F3EF; border: 1px solid #F0E4DC; border-radius: 14px; text-align: center; padding: 26px 20px; margin: 36px 0 8px; }
+  .faq-rewards__help h2 { position: static; background: none; border: none; padding: 0; margin: 0 0 6px; display: block; border-radius: 0; }
+  .faq-rewards__help p { margin: 0 0 16px; }
+  /* self-contained button styling: does not depend on theme .btn classes */
+  .faq-rewards__help a { display: inline-block; background: #D34270 !important; background-image: none !important; color: #fff !important; border: 1px solid #D34270; padding: 14px 26px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; transition: background-color .15s ease; }
+  .faq-rewards__help a:hover { background: #B93A62 !important; border-color: #B93A62; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+    .faq-rewards__toc a, .faq-rewards__top-link { transition: background-color .15s ease, border-color .15s ease; }
+  }
+
+  /* ---------- Larger screens ---------- */
+  @media (min-width: 768px) {
+    .faq-rewards h2 { margin-top: 0; top: calc(var(--header-height, 0px) + 74px); }
+    .faq-rewards__toc { position: sticky; top: var(--header-height, 0px); z-index: 20; padding: 8px 14px; background: #fff; }
+    .faq-rewards__toc ul { display: flex; flex-wrap: wrap; column-gap: 0; justify-content: center; }
+    .faq-rewards__toc li { border-bottom: none; }
+    .faq-rewards__toc li + li { border-left: 1px solid #D4BCAB; }
+    .faq-rewards__toc a { display: inline-block; padding: 11px 18px; min-height: 0; }
+    .faq-rewards h3 { margin-top: 30px; }
+    .faq-rewards ul, .faq-rewards ol { padding-left: 0; }
+    .faq-rewards__hero { padding: 34px 28px; }
+    .faq-rewards__toc { padding: 8px 14px; }
+    .faq-rewards section > *:not(h2) { margin-left: 20px; }
+    .faq-rewards__tiers { grid-template-columns: 1fr 1fr 1fr; }
+  }
+</style>
+
+<div class="faq-rewards" id="faq-top">
+
+  <h1 class="faq-rewards__title">FAQ Rewards Program</h1>
+
+  <div class="faq-rewards__hero">
+    <svg viewbox="0 0 24 24" aria-hidden="true" fill="none"><path d="M12 4c2.6 0 4.7 2.1 4.7 4.7 0 3.5-2.9 6.3-4.7 7.6-1.8-1.3-4.7-4.1-4.7-7.6C7.3 6.1 9.4 4 12 4Z" fill="#D34270"></path><path d="M12 9.5c.9 0 1.6.7 1.6 1.6 0 1.2-1 2.1-1.6 2.6-.6-.5-1.6-1.4-1.6-2.6 0-.9.7-1.6 1.6-1.6Z" fill="#FDEEF1"></path><path d="M12 16.5v4M12 20.5c-1.4-1.6-3.2-1.9-4.5-1.8M12 20.5c1.4-1.6 3.2-1.9 4.5-1.8" stroke="#7A9471" stroke-width="1.5" stroke-linecap="round"></path></svg>
+    <p><strong>Welcome!</strong> Every purchase grows your <em>roses</em> (points), and your roses turn into money off future orders. Here are the answers to everything members ask us. Choose a topic below, or simply scroll.</p>
+    <ul class="faq-rewards__stats">
+      <li>
+<span class="rose-num">20 roses</span> = $1</li>
+      <li>100% free to join</li>
+      <li>
+<span class="rose-num">Birthday</span> bonus roses</li>
+    </ul>
+  </div>
+
+  <nav class="faq-rewards__toc" aria-label="FAQ sections">
+    <ul>
+      <li><a href="#signing-up">Signing up</a></li>
+      <li><a href="#account">Your account</a></li>
+      <li><a href="#earning-redeeming">Earning and redeeming roses</a></li>
+      <li><a href="#vip-program">VIP program</a></li>
+      <li><a href="#troubleshooting">Troubleshooting</a></li>
+    </ul>
+  </nav>
+
+  <section aria-labelledby="signing-up">
+    <h2 id="signing-up">
+<svg viewbox="0 0 24 24" aria-hidden="true" fill="none"><circle cx="12" cy="12" r="9" stroke="#D34270" stroke-width="1.6"></circle><path d="M8.5 12.5l2.4 2.4 4.6-5.3" stroke="#D34270" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>Signing up</h2>
+
+    <h3>How do I sign up for the rewards program?</h3>
+    <p>Signing up is easy and free to join! Simply create an account by following the prompts and enter what is required. Once you sign up, start earning <em>roses</em> (points) with every purchase!</p>
+
+    <h3>What are the advantages of becoming a rewards member?</h3>
+    <p>Our rewards program is a tiered program that allows members to earn more perks the more they engage with us. Members receive reward <em>roses</em> (points) for each purchase, which can then be redeemed towards the cost of future purchases.</p>
+    <p>You earn <em>roses</em> (points) for joining our rewards program, along with following Nikol on YouTube, Instagram, TikTok, and Pinterest, sharing with friends, and you are gifted bonus <em>roses</em> (points) for your birthday. You can view the full list of perks on our rewards page.</p>
+
+    <p><a class="faq-rewards__top-link" href="#faq-top">↑ Back to top</a></p>
+  </section>
+
+  <section aria-labelledby="account">
+    <h2 id="account">
+<svg viewbox="0 0 24 24" aria-hidden="true" fill="none"><circle cx="12" cy="8.5" r="3.5" stroke="#D34270" stroke-width="1.6"></circle><path d="M5 19.5c1.2-3.2 3.9-4.8 7-4.8s5.8 1.6 7 4.8" stroke="#D34270" stroke-width="1.6" stroke-linecap="round"></path></svg>Your account</h2>
+
+    <h3>I already have an account. Do I need to create a new one to earn rewards?</h3>
+    <p>No, if you already have an account with us, you are already a part of the rewards program!</p>
+
+    <h3>Where can I find my rewards account info?</h3>
+    <p>The rewards page is your guide to all your <em>roses</em> (points) and perks. You can access your information by visiting our rewards page while you are logged in to see your personal progress.</p>
+
+    <h3>Will I receive points for purchases I made prior to creating my rewards account?</h3>
+    <p>You will only receive <em>roses</em> (points) for purchases made after creating your rewards account. Make sure to create an account before placing an order so you can receive roses!</p>
+
+    <h3>What if I have an old email address or multiple email addresses and want to combine my accounts and earnings?</h3>
+    <p>Please contact customer service by emailing <a href="mailto:hello@nikolbeauty.com">hello@nikolbeauty.com</a> and our team will be happy to assist you with manually merging your accounts. Please keep in mind, only one account will stay active after the merge.</p>
+
+    <h3>Does it cost anything to begin earning points?</h3>
+    <p>Signing up is 100% free, and <em>roses</em> (points) will automatically be applied to your account after you sign up!</p>
+
+    <p><a class="faq-rewards__top-link" href="#faq-top">↑ Back to top</a></p>
+  </section>
+
+  <section aria-labelledby="earning-redeeming">
+    <h2 id="earning-redeeming">
+<svg viewbox="0 0 24 24" aria-hidden="true" fill="none"><path d="M12 4.5c2.2 0 4 1.8 4 4 0 3-2.5 5.4-4 6.5-1.5-1.1-4-3.5-4-6.5 0-2.2 1.8-4 4-4Z" stroke="#D34270" stroke-width="1.6"></path><path d="M12 15v5M12 20c-1.2-1.4-2.8-1.6-3.9-1.6M12 20c1.2-1.4 2.8-1.6 3.9-1.6" stroke="#D34270" stroke-width="1.6" stroke-linecap="round"></path></svg>Earning and redeeming roses</h2>
+
+    <h3>How do I redeem my roses?</h3>
+    <p>Your <em>roses</em> (points) will be available for redemption once they qualify for our great rewards at checkout! To redeem your <em>roses</em> in checkout, use the dropdown at checkout to choose the amount you would like to apply, then select the <strong>“Apply”</strong> button.</p>
+
+    <h3>How do roses convert to dollars?</h3>
+    <p><strong>20 roses (points) = $1.</strong> How fast you earn roses depends on your VIP tier:</p>
+    <ul class="faq-rewards__convert">
+      <li>In the <strong>Rose Bud</strong> tier, you earn 1 rose for every dollar you spend. For example, if you spend $150, you earn 150 <em>roses</em>.</li>
+      <li>In the <strong>Rose Blossom</strong> tier, you earn <em>roses</em> 1.25× faster. Spend $150 and earn 187.50 <em>roses</em>.</li>
+      <li>In the <strong>Full Bloom</strong> tier, you earn 1.5× as fast, earning 225 <em>roses</em> on a $150 purchase.</li>
+    </ul>
+
+    <h3>Can I add redeemed roses to an order I have already placed?</h3>
+    <p>If an order is placed without applying reward points (roses), Nikol Beauty is unable to retroactively apply them once the order has been submitted. However, if the order has not yet been processed at our shipping facility, we can cancel the order upon request. You may then resubmit your order and apply the roses during checkout.</p>
+
+    <h3>Is there a limit to how many roses I can earn?</h3>
+    <p>You will always have opportunities to earn <em>roses</em> and enjoy exclusive perks with us. Joining our rewards program comes with great benefits, with every purchase and the additional rewards listed on our rewards page.</p>
+
+    <h3>Do roses ever expire?</h3>
+    <p>If you do not make a purchase within 12 months of your last transaction, your account will be considered dormant, and your <em>roses</em> will reset to zero. Additionally, you will be moved down to Rose Bud, the lowest tier.</p>
+    <p>If your account is terminated, whether by you or by us, you will forfeit all unredeemed <em>roses</em>.</p>
+
+    <h3>Are there currently exclusions from <strong>earning</strong> rewards on the website?</h3>
+    <p>Yes, any orders placed with the use of a gift card will not earn <em>roses</em> (points).</p>
+
+    <h3>Are there currently exclusions from <strong>redeeming</strong> rewards on the website?</h3>
+    <p>Yes, roses cannot be redeemed for rewards in combination with a promotional discount.</p>
+
+    <p><a class="faq-rewards__top-link" href="#faq-top">↑ Back to top</a></p>
+  </section>
+
+  <section aria-labelledby="vip-program">
+    <h2 id="vip-program">
+<svg viewbox="0 0 24 24" aria-hidden="true" fill="none"><path d="M4 9l4 4 4-7 4 7 4-4-1.5 9.5h-13L4 9Z" stroke="#D34270" stroke-width="1.6" stroke-linejoin="round"></path></svg>VIP program</h2>
+
+    <h3>How is my VIP tier determined?</h3>
+    <p>Your VIP tier is determined by your total spending with us over a 12-month period. The more you bloom, the faster you earn:</p>
+    <ol class="faq-rewards__tiers">
+      <li>
+        <svg viewbox="0 0 24 24" aria-hidden="true" fill="none"><path d="M12 5c1.7 0 3 1.5 3 3.4 0 2.6-1.9 4.3-3 5-1.1-.7-3-2.4-3-5C9 6.5 10.3 5 12 5Z" fill="#FCC9C6"></path><path d="M12 13.5V20" stroke="#7A9471" stroke-width="1.5" stroke-linecap="round"></path></svg>
+        <span class="tier-name">Rose Bud</span>
+        <span class="tier-how">Yours automatically when you <strong><a href="/account">sign up</a></strong></span>
+        <span class="tier-rate">1 rose per $1 spent</span>
+      </li>
+      <li>
+        <svg viewbox="0 0 24 24" aria-hidden="true" fill="none"><path d="M12 4.5c2 0 3.6 1.7 3.6 3.9 0 3-2.3 5-3.6 5.8-1.3-.8-3.6-2.8-3.6-5.8 0-2.2 1.6-3.9 3.6-3.9Z" fill="#E98FA8"></path><circle cx="12" cy="8.6" r="1.7" fill="#FDEEF1"></circle><path d="M12 14.2V20M12 19c-1.2-1.3-2.7-1.5-3.7-1.5M12 19c1.2-1.3 2.7-1.5 3.7-1.5" stroke="#7A9471" stroke-width="1.5" stroke-linecap="round"></path></svg>
+        <span class="tier-name">Rose Blossom</span>
+        <span class="tier-how">Unlocked when you spend <strong>$500</strong></span>
+        <span class="tier-rate">1.25 roses per $1 spent</span>
+      </li>
+      <li>
+        <svg viewbox="0 0 24 24" aria-hidden="true" fill="none"><circle cx="12" cy="9" r="5.2" fill="#D34270"></circle><circle cx="12" cy="9" r="3" fill="#E98FA8"></circle><circle cx="12" cy="9" r="1.3" fill="#FDEEF1"></circle><path d="M12 14.5V20M12 19.2c-1.3-1.4-3-1.6-4-1.6M12 19.2c1.3-1.4 3-1.6 4-1.6" stroke="#7A9471" stroke-width="1.5" stroke-linecap="round"></path></svg>
+        <span class="tier-name">Full Bloom</span>
+        <span class="tier-how">Reached when you spend <strong>$1,000</strong></span>
+        <span class="tier-rate">1.5 roses per $1 spent</span>
+      </li>
+    </ol>
+    <p>Once you qualify for a new tier, you’ll be instantly upgraded and enjoy its exclusive perks. As you move up, you’ll retain all your accrued <em>roses</em> from previous tiers!</p>
+
+    <h3>How do I know which VIP tier I am currently a member of?</h3>
+    <p>When you’re signed in to your rewards account, your homepage will display your current VIP tier and your <em>roses</em>. On the VIP page, you’ll also find a progress bar that tracks your status and shows how much more you need to spend to reach the next tier.</p>
+
+    <p><a class="faq-rewards__top-link" href="#faq-top">↑ Back to top</a></p>
+  </section>
+
+  <section aria-labelledby="troubleshooting">
+    <h2 id="troubleshooting">
+<svg viewbox="0 0 24 24" aria-hidden="true" fill="none"><circle cx="12" cy="12" r="9" stroke="#D34270" stroke-width="1.6"></circle><path d="M12 7.5v5.5" stroke="#D34270" stroke-width="1.8" stroke-linecap="round"></path><circle cx="12" cy="16.4" r="1.2" fill="#D34270"></circle></svg>Troubleshooting</h2>
+
+    <h3>Why didn’t I earn roses on my purchase?</h3>
+    <p>You must be signed in when making purchases to earn <em>roses</em>. If you accidentally checked out as a guest, contact us at <a href="mailto:hello@nikolbeauty.com">hello@nikolbeauty.com</a> for assistance. Customer service will manually apply your <em>roses</em> to your account. Please keep in mind, you will not receive <em>roses</em> if your purchase is canceled for any reason.</p>
+
+    <h3>I should have earned roses for a purchase or incentive, but I didn’t see my account balance change. Did I get credit?</h3>
+    <p>Yes! The first thing to note is that there may be a delay in our system’s communication, and <em>roses</em> could take anywhere from minutes to several hours to appear in your account. If you feel like you have earned <em>roses</em> but they are not showing up in your account, you can also troubleshoot with these steps:</p>
+    <ol>
+      <li>Refresh your browser.</li>
+      <li>Log out, then log back in to your account.</li>
+      <li>Check your <strong>“Rewards history”</strong> in your rewards account to see if the <em>roses</em> were added without you realizing it. Your rewards history shows the number of <em>roses</em> earned, how and when they were earned, as well as any redemptions made on your account.</li>
+    </ol>
+    <p>If you still feel like your <em>rose</em> balance is not accurate, contact our customer service team at <a href="mailto:hello@nikolbeauty.com">hello@nikolbeauty.com</a> and they will investigate the issue for you.</p>
+
+    <h3>I received an error message when referring friends through the email referral box. What went wrong?</h3>
+    <p>We are sorry to hear that. There are a couple of scenarios that could have triggered the error message.</p>
+    <p>The first possible scenario is that there was a mistype in one of the email addresses that you entered, or you forgot to put commas between multiple emails to separate them. To eliminate confusion, we recommend that you go back and enter each email address one at a time, selecting <strong>“Send”</strong> after each one rather than sending them all at once.</p>
+    <p>If you are still having problems using email referrals, we recommend using your unique referral link and sharing it directly with your friend. Please contact our customer service at <a href="mailto:hello@nikolbeauty.com">hello@nikolbeauty.com</a> if you need further assistance.</p>
+
+    <h3>I’ve referred several friends but haven’t received any points for it. Is there something else I need to do?</h3>
+    <p>Thank you so much for sharing us with your friends! We really appreciate it.</p>
+    <p>Referred friends must be first-time customers for both of you to receive the referral rewards, along with completing a purchase of at least $60 (not including shipping). In addition, the referral must be initiated through our rewards referral box on your personal rewards page, or through the use of your unique referral link (also found there).</p>
+    <p>Roses will be added to your account as soon as your friend completes their first order of $60+ (not including shipping) on our website. Once this happens, you will receive an email letting you know that one of your referrals made a purchase using your code and that a reward was added to your account. You can also check your <strong>“Rewards history”</strong> to see a list of any roses that you have received for referrals.</p>
+
+    <h3>I signed up for the birthday bonus but I didn’t receive it.</h3>
+    <p>Our team wishes you a happy birthday! We’re so glad that you have chosen to celebrate with us through our rewards program. In order to receive your birthday bonus on your birthday, you must register your birthday at least 30 days prior to your birthday.</p>
+    <p>If your birthday falls between the day that you registered and the 30-day waiting period afterward, you will receive your birthday bonus 30 days after your registration. This delay only applies to the first year that you signed up.</p>
+    <p>Remember, the birthday <em>roses</em> amount is determined by the VIP member tier that you are part of on the date of your birthday. If it has been more than 30 days since you registered for your birthday reward and you still have not received the additional <em>roses</em> in your account, please contact <a href="mailto:hello@nikolbeauty.com">hello@nikolbeauty.com</a> and we will be happy to assist you.</p>
+
+    <p><a class="faq-rewards__top-link" href="#faq-top">↑ Back to top</a></p>
+  </section>
+
+  <div class="faq-rewards__help">
+    <h2>Still have a question?</h2>
+    <p>Our team is happy to help..</p>
+    <a class="btn btn--primary btn--solid" href="mailto:hello@nikolbeauty.com">Email hello@nikolbeauty.com</a>
+  </div>
+
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"How do I sign up for the rewards program?","acceptedAnswer":{"@type":"Answer","text":"Signing up is easy and free to join. Create an account by following the prompts, and once you sign up you start earning roses (points) with every purchase."}},
+    {"@type":"Question","name":"What are the advantages of becoming a rewards member?","acceptedAnswer":{"@type":"Answer","text":"Our tiered rewards program lets members earn roses (points) for each purchase, redeemable towards future purchases. You also earn roses for joining, following Nikol on YouTube, Instagram, TikTok and Pinterest, sharing with friends, and as a birthday bonus."}},
+    {"@type":"Question","name":"I already have an account. Do I need to create a new one to earn rewards?","acceptedAnswer":{"@type":"Answer","text":"No, if you already have an account with us, you are already part of the rewards program."}},
+    {"@type":"Question","name":"Where can I find my rewards account info?","acceptedAnswer":{"@type":"Answer","text":"Visit our rewards page while logged in to see your roses (points), perks and personal progress."}},
+    {"@type":"Question","name":"Will I receive points for purchases I made prior to creating my rewards account?","acceptedAnswer":{"@type":"Answer","text":"You only receive roses (points) for purchases made after creating your rewards account. Create an account before placing an order to receive roses."}},
+    {"@type":"Question","name":"What if I have multiple email addresses and want to combine my accounts and earnings?","acceptedAnswer":{"@type":"Answer","text":"Email hello@nikolbeauty.com and our team will manually merge your accounts. Only one account stays active after the merge."}},
+    {"@type":"Question","name":"Does it cost anything to begin earning points?","acceptedAnswer":{"@type":"Answer","text":"Signing up is 100% free, and roses (points) are automatically applied to your account after you sign up."}},
+    {"@type":"Question","name":"How do I redeem my roses?","acceptedAnswer":{"@type":"Answer","text":"At checkout, use the dropdown to choose the amount of roses you would like to apply, then select the Apply button."}},
+    {"@type":"Question","name":"How do roses convert to dollars?","acceptedAnswer":{"@type":"Answer","text":"20 roses (points) equal 1 dollar. Rose Bud tier earns 1 rose per dollar spent, Rose Blossom earns 1.25 roses per dollar, and Full Bloom earns 1.5 roses per dollar."}},
+    {"@type":"Question","name":"Can I add redeemed roses to an order I have already placed?","acceptedAnswer":{"@type":"Answer","text":"Roses cannot be applied retroactively after an order is submitted. If the order has not yet been processed at our shipping facility, we can cancel it upon request so you can resubmit and apply your roses at checkout."}},
+    {"@type":"Question","name":"Is there a limit to how many roses I can earn?","acceptedAnswer":{"@type":"Answer","text":"No, you will always have opportunities to earn roses through purchases and the additional rewards listed on our rewards page."}},
+    {"@type":"Question","name":"Do roses ever expire?","acceptedAnswer":{"@type":"Answer","text":"If you do not make a purchase within 12 months of your last transaction, your account becomes dormant, your roses reset to zero, and you move down to the Rose Bud tier. If your account is terminated, all unredeemed roses are forfeited."}},
+    {"@type":"Question","name":"Are there exclusions from earning rewards on the website?","acceptedAnswer":{"@type":"Answer","text":"Yes, orders placed with the use of a gift card do not earn roses (points)."}},
+    {"@type":"Question","name":"Are there exclusions from redeeming rewards on the website?","acceptedAnswer":{"@type":"Answer","text":"Yes, roses cannot be redeemed in combination with a promotional discount."}},
+    {"@type":"Question","name":"How is my VIP tier determined?","acceptedAnswer":{"@type":"Answer","text":"Your tier is based on total spending over 12 months: Rose Bud on signup, Rose Blossom at $500, and Full Bloom at $1,000. Tier upgrades are instant and you keep all accrued roses."}},
+    {"@type":"Question","name":"How do I know which VIP tier I am currently a member of?","acceptedAnswer":{"@type":"Answer","text":"When signed in, your rewards homepage displays your current VIP tier and roses, and the VIP page shows a progress bar toward the next tier."}},
+    {"@type":"Question","name":"Why didn't I earn roses on my purchase?","acceptedAnswer":{"@type":"Answer","text":"You must be signed in when purchasing to earn roses. If you checked out as a guest, contact hello@nikolbeauty.com and customer service will manually apply your roses. Canceled purchases do not earn roses."}},
+    {"@type":"Question","name":"I should have earned roses but my balance didn't change. Did I get credit?","acceptedAnswer":{"@type":"Answer","text":"Roses can take from minutes to several hours to appear. Try refreshing your browser, logging out and back in, and checking your Rewards history. If the balance still looks wrong, contact hello@nikolbeauty.com."}},
+    {"@type":"Question","name":"I received an error message when referring friends through the email referral box. What went wrong?","acceptedAnswer":{"@type":"Answer","text":"Usually a mistyped email address or missing commas between multiple addresses. Enter each address one at a time and select Send after each. You can also share your unique referral link directly, or contact hello@nikolbeauty.com."}},
+    {"@type":"Question","name":"I've referred several friends but haven't received any points. Is there something else I need to do?","acceptedAnswer":{"@type":"Answer","text":"Referred friends must be first-time customers and complete a purchase of at least $60 excluding shipping, initiated through your referral box or unique referral link. Roses are added when your friend completes that first qualifying order, and you receive a confirmation email."}},
+    {"@type":"Question","name":"I signed up for the birthday bonus but didn't receive it.","acceptedAnswer":{"@type":"Answer","text":"Register your birthday at least 30 days before it. If your birthday falls within 30 days of registering, the bonus arrives 30 days after registration (first year only). The bonus amount depends on your VIP tier on your birthday. If it is overdue, contact hello@nikolbeauty.com."}}
+  ]
+}
+</script>

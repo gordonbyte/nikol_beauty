@@ -36,6 +36,10 @@
   color: #fff !important;
 }
 
+.custom-newsletter__input-wrap input.custom-newsletter__input:focus {
+  box-shadow: 0 0 0 1px #fff;
+}
+
 .custom-newsletter__button-wrap {
   padding: 15px 0;
 }
@@ -54,6 +58,45 @@
   font-weight: 700;
   letter-spacing: 0;
   text-transform: uppercase;
+  transition: background 0.3s ease;
+}
+
+.custom-newsletter__button-wrap button:focus-visible {
+  background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+}
+
+@media (hover: hover) {
+  .custom-newsletter__button-wrap button:hover {
+    background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+  }
+
+  .custom-newsletter__button-wrap button svg {
+    transition: transform 0.5s ease;
+    transform: translateZ(0);
+  }
+
+  .custom-newsletter__button-wrap button:hover svg {
+    transform: translate3d(5px, 0, 0);
+  }
+}
+
+/* Scroll-in reveal: initial hidden states apply ONLY once JS adds anim-ready,
+   so content stays visible without JS and under reduced motion. */
+.custom-newsletter.anim-ready .custom-newsletter__title,
+.custom-newsletter.anim-ready .custom-newsletter__input-wrap,
+.custom-newsletter.anim-ready .custom-newsletter__button-wrap,
+.custom-newsletter.anim-ready .custom-newsletter__note {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.custom-newsletter.anim-ready.is-inview .custom-newsletter__title,
+.custom-newsletter.anim-ready.is-inview .custom-newsletter__input-wrap,
+.custom-newsletter.anim-ready.is-inview .custom-newsletter__button-wrap,
+.custom-newsletter.anim-ready.is-inview .custom-newsletter__note {
+  opacity: 1;
+  transform: none;
 }
 
 .custom-newsletter__note {
@@ -109,7 +152,7 @@
 }
 </style>
 
-<section class="custom-newsletter"{% if section.settings.bg_image != blank %} style="background-image: url({{ section.settings.bg_image | image_url: width: 3000 }});"{% endif %}>
+<section class="custom-newsletter" id="Newsletter-{{ section.id }}"{% if section.settings.bg_image != blank %} style="background-image: url({{ section.settings.bg_image | image_url: width: 3000 }});"{% endif %}>
   <div class="page-width">
     <div class="custom-newsletter__parent">
 
@@ -183,6 +226,37 @@
     </div>
   </div>
 </section>
+
+<script>
+  (function () {
+    var root = document.getElementById('Newsletter-{{ section.id }}');
+    if (!root) return;
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.theme && window.theme.settings && window.theme.settings.enableAnimations === false) return;
+    if (root.querySelector('.custom-newsletter__message')) return;
+
+    var targets = root.querySelectorAll('.custom-newsletter__title, .custom-newsletter__input-wrap, .custom-newsletter__button-wrap, .custom-newsletter__note');
+    if (!targets.length) return;
+
+    targets.forEach(function (el, i) {
+      el.style.transitionDelay = (i * 0.12) + 's';
+    });
+
+    root.classList.add('anim-ready');
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          root.classList.add('is-inview');
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.15 });
+
+    observer.observe(root);
+  })();
+</script>
 
 {% schema %}
 {

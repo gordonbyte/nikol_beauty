@@ -184,8 +184,17 @@
 {{ 'theme.min.css' | asset_url | stylesheet_tag: preload: true }}
 {{ 'main.min.css' | asset_url | stylesheet_tag: preload: true }}
 
-<link rel="stylesheet" href="{{ 'swiper.css' | asset_url }}" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="{{ 'swiper.css' | asset_url }}"></noscript>
+{%- comment -%} Swiper only ships where swiper-based sections can appear (custom info banners,
+  customer reviews, coming-soon, PDP, video/testimonial pages) — blog, collection, cart,
+  account, search etc. skip the ~160KB. {%- endcomment -%}
+{%- assign needs_swiper = false -%}
+{%- if template.name == 'index' or template.name == 'product' or template.name == 'page' -%}
+  {%- assign needs_swiper = true -%}
+{%- endif -%}
+{%- if needs_swiper -%}
+  <link rel="stylesheet" href="{{ 'swiper.css' | asset_url }}" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ 'swiper.css' | asset_url }}"></noscript>
+{%- endif -%}
 
 {%- if settings.color_swatches or settings.show_siblings -%}
   {{ 'swatches.css' | asset_url | preload_tag: as: 'style' }}
@@ -457,7 +466,9 @@
       </button>
     {%- endif -%}
 
-  <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+  {%- if template.name == 'index' or template.name == 'product' or template.name == 'page' -%}
+    <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
+  {%- endif -%}
 
    <!-- Custom CD Scripts -->
   <script src="{{ 'main.min.js' | asset_url }}" defer></script>

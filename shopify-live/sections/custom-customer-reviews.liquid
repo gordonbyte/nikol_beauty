@@ -9,6 +9,7 @@
 
 .custom-customer-reviews__title {
     color: var(--COLOR-TEXT);
+    font-size: 56px;
     line-height: 110%;
     font-family: var(--FONT-STACK-HEADING);
     letter-spacing: -3px;
@@ -30,15 +31,54 @@
     background: var(--COLOR-BG);
     padding: 20px;
     text-align: center;
+    /* equal-height cards: slides stretch to the tallest, product strip pins to the bottom */
+    height: auto;
+    display: flex;
+    flex-direction: column;
 }
 
-.custom-customer-reviews__stars img {
-    max-width: 125px;
-    object-fit: contain;
+.custom-customer-reviews__product {
+    margin-top: auto;
 }
 
-.custom-customer-reviews__quote-icon img {
-    max-width: 25px;
+.custom-customer-reviews__stars {
+    line-height: 0;
+}
+
+.custom-customer-reviews__stars-img {
+    display: inline-block;
+    position: relative;
+    line-height: 0;
+}
+
+.custom-customer-reviews__stars-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.custom-customer-reviews__stars-img svg {
+    width: 125px;
+    height: auto;
+}
+
+.custom-customer-reviews__sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.custom-customer-reviews__quote-icon svg {
+    width: 25px;
+    height: auto;
 }
 
 .custom-customer-reviews__quote-icon {
@@ -136,9 +176,14 @@
     text-decoration: none;
 }
 
-.custom-customer-reviews__product-cart img {
-    max-width: 35px;
-    object-fit: contain;
+.custom-customer-reviews__product-cart svg {
+    width: 35px;
+    height: auto;
+}
+
+.custom-customer-reviews__product-cart {
+    flex-shrink: 0;
+    line-height: 0;
 }
 
 .custom-customer-reviews__product-mid {
@@ -168,16 +213,46 @@
     line-height: 0;
     position: absolute;
     top: 50%;
-    z-index: 1;
+    z-index: 3;
     cursor: pointer;
 }
 
 .custom-customer-reviews__next {
-    right: 10%;
+    right: 40px;
 }
 
 .custom-customer-reviews__prev {
-    left: 10%;
+    left: 40px;
+}
+
+/* edge fades at the page ends — same treatment as the Best Sellers slider:
+   solid section bg (layered over the page bg) dissolving inward; end cards
+   slide under them, arrows float on the solid zone (desktop only) */
+@media only screen and (min-width: 1200px) {
+  .custom-customer-reviews__swiper::before,
+  .custom-customer-reviews__swiper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 260px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .custom-customer-reviews__swiper::before {
+    left: 0;
+    background:
+      linear-gradient(to right, var(--custom-reviews-bg) 30%, transparent),
+      linear-gradient(to right, var(--COLOR-BG, #fff) 30%, transparent);
+  }
+
+  .custom-customer-reviews__swiper::after {
+    right: 0;
+    background:
+      linear-gradient(to left, var(--custom-reviews-bg) 30%, transparent),
+      linear-gradient(to left, var(--COLOR-BG, #fff) 30%, transparent);
+  }
 }
 
 .custom-customer-reviews__pagination {
@@ -186,16 +261,36 @@
     justify-content: center;
 }
 
-.custom-customer-reviews__pagination span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+.custom-customer-reviews__pagination .swiper-pagination-bullet {
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 0;
+    border: 1.33px solid #45413B59;
+    border-radius: 999px;
+    background: transparent;
+    opacity: 1;
+    width: 11px;
+    height: 11px;
+    cursor: pointer;
+    transition: background 0.45s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.45s cubic-bezier(0.4, 0, 0.2, 1), width 0.45s cubic-bezier(0.4, 0, 0.2, 1), transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.custom-customer-reviews__pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    width: 26px;
+    border-color: #45413B;
     background: #45413B;
 }
 
-.custom-customer-reviews__pagination span.swiper-pagination-bullet {
-    border: 1.33px solid #45413B59;
-    background: transparent;
-    opacity: 1;
-    width: 15px;
-    height: 15px;
+.custom-customer-reviews__pagination .swiper-pagination-bullet:focus-visible {
+    outline: 2px solid var(--COLOR-TEXT);
+    outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .custom-customer-reviews__pagination .swiper-pagination-bullet:not(.swiper-pagination-bullet-active):hover {
+    border-color: #45413B;
+    transform: scale(1.2);
+  }
 }
 
 .custom-customer-reviews__nav:focus-visible,
@@ -204,12 +299,51 @@
     outline-offset: 2px;
 }
 
+.custom-customer-reviews__nav svg {
+    transition: transform 0.3s ease;
+}
+
+.custom-customer-reviews__product-link {
+    transition: background 0.3s ease;
+}
+
+@media (hover: hover) {
+  .custom-customer-reviews__nav:hover svg {
+    transform: scale(1.08);
+  }
+
+  .custom-customer-reviews__product-link:hover {
+    background: #F1E8DF;
+  }
+}
+
+/* Scroll-in reveal: initial hidden states apply ONLY once JS adds anim-ready,
+   so content stays visible without JS and under reduced motion. */
+.custom-customer-reviews.anim-ready .custom-customer-reviews__title,
+.custom-customer-reviews.anim-ready .custom-customer-reviews__subtitle,
+.custom-customer-reviews.anim-ready .custom-customer-reviews__swiper {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.custom-customer-reviews.anim-ready.is-inview .custom-customer-reviews__title,
+.custom-customer-reviews.anim-ready.is-inview .custom-customer-reviews__subtitle,
+.custom-customer-reviews.anim-ready.is-inview .custom-customer-reviews__swiper {
+    opacity: 1;
+    transform: none;
+}
+
 @media only screen and (max-width: 600px) {
 .custom-customer-reviews__swiper {
     padding: 0 40px !important;
 }
 .custom-customer-reviews {
     padding: 40px 0px;
+}
+
+.custom-customer-reviews__title {
+    font-size: 34px;
 }
 
 .custom-customer-reviews__header {
@@ -224,16 +358,19 @@
 
 .custom-customer-reviews__prev svg {
     width: 30px;
+    height: 30px;
 }
 
 .custom-customer-reviews__prev {
-    top: 93%;
+    top: auto;
+    bottom: 10px;
 }
 
 .custom-customer-reviews__pagination {
     margin-top: 0px;
     position: absolute;
-    bottom: 10px !important;
+    /* arrows: 30px tall anchored at bottom 10px -> center 25px; 11px dots need bottom 19.5px to share it */
+    bottom: 19.5px !important;
 }
 
 .custom-customer-reviews__swiper .swiper-wrapper {
@@ -241,15 +378,17 @@
 }
 
 .custom-customer-reviews__next {
-    top: 93%;
+    top: auto;
+    bottom: 10px;
 }
 
 .custom-customer-reviews__next svg {
     width: 30px;
+    height: 30px;
 }
 
-.custom-customer-reviews__stars img {
-    max-width: 105px;
+.custom-customer-reviews__stars-img svg {
+    width: 105px;
 }
 
 .custom-customer-reviews__review-title {
@@ -282,7 +421,7 @@
   class="custom-customer-reviews"
   id="CustomerReviews-{{ section.id }}"
   {% if section.settings.title != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
-  style="background: {{ section.settings.bg_color }}; --cr-lines: {{ section.settings.review_lines }};"
+  style="background: {{ section.settings.bg_color }}; --custom-reviews-bg: {{ section.settings.bg_color | default: '#F7F2ED' }}; --cr-lines: {{ section.settings.review_lines }};"
 >
   <div class="page-width">
     <div class="custom-customer-reviews__header">
@@ -298,8 +437,10 @@
         </p>
       {% endif %}
     </div>
+  </div>
 
-    <div class="custom-customer-reviews__inner">
+  {%- comment -%} Slider deliberately outside page-width: it runs edge-to-edge with the fade overlays at the page ends {%- endcomment -%}
+  <div class="custom-customer-reviews__inner">
 
       <div class="swiper custom-customer-reviews__swiper">
         <div class="swiper-wrapper">
@@ -307,15 +448,40 @@
           {% for block in section.blocks %}
             <article class="swiper-slide custom-customer-reviews__slide" {{ block.shopify_attributes }}>
 
-              {% if block.settings.stars != blank %}
+              {%- liquid
+                assign star_rating = block.settings.star_rating | default: 5 | times: 1.0 | at_most: 5.0 | at_least: 0.0
+                assign star_percent = star_rating | divided_by: 5.0 | times: 100.0 | round: 1
+              -%}
+              {% if star_rating > 0 %}
                 <div class="custom-customer-reviews__stars">
-                  <img src="{{ block.settings.stars | img_url: 'master' }}" alt="" loading="lazy">
+                  <span class="custom-customer-reviews__stars-img">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="190" height="36" viewBox="0 0 190 36" fill="#DDD6CF" aria-hidden="true" focusable="false">
+                      <defs>
+                        <path id="ReviewStar-{{ section.id }}-{{ block.id }}" d="M 0 -18 L 4.04 -5.56 L 17.12 -5.56 L 6.53 2.12 L 10.58 14.56 L 0 6.88 L -10.58 14.56 L -6.53 2.12 L -17.12 -5.56 L -4.04 -5.56 Z"/>
+                      </defs>
+                      <use href="#ReviewStar-{{ section.id }}-{{ block.id }}" transform="translate(19 19.7)"/>
+                      <use href="#ReviewStar-{{ section.id }}-{{ block.id }}" transform="translate(57 19.7)"/>
+                      <use href="#ReviewStar-{{ section.id }}-{{ block.id }}" transform="translate(95 19.7)"/>
+                      <use href="#ReviewStar-{{ section.id }}-{{ block.id }}" transform="translate(133 19.7)"/>
+                      <use href="#ReviewStar-{{ section.id }}-{{ block.id }}" transform="translate(171 19.7)"/>
+                    </svg>
+                    <span class="custom-customer-reviews__stars-fill" style="width: {{ star_percent }}%">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="190" height="36" viewBox="0 0 190 36" fill="#FB6D00" aria-hidden="true" focusable="false">
+                        <use href="#ReviewStar-{{ section.id }}-{{ block.id }}" transform="translate(19 19.7)"/>
+                        <use href="#ReviewStar-{{ section.id }}-{{ block.id }}" transform="translate(57 19.7)"/>
+                        <use href="#ReviewStar-{{ section.id }}-{{ block.id }}" transform="translate(95 19.7)"/>
+                        <use href="#ReviewStar-{{ section.id }}-{{ block.id }}" transform="translate(133 19.7)"/>
+                        <use href="#ReviewStar-{{ section.id }}-{{ block.id }}" transform="translate(171 19.7)"/>
+                      </svg>
+                    </span>
+                  </span>
+                  <span class="custom-customer-reviews__sr-only">Rated {{ star_rating }} out of 5 stars</span>
                 </div>
               {% endif %}
 
-              {% if block.settings.quote_icon != blank %}
+              {% if block.settings.show_quote_icon %}
                 <div class="custom-customer-reviews__quote-icon">
-                  <img src="{{ block.settings.quote_icon | img_url: 'master' }}" alt="" loading="lazy">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 196 192" aria-hidden="true" focusable="false"><path fill="#2A2724" d="M 58.8 12 C 58 13.2, 56.4 14, 54.8 14 C 53.1 14, 51.5 14.8, 50.8 16 C 50.1 17.1, 48.4 18, 47 18 C 45.3 18, 42.8 19.8, 38.7 24 C 35.2 27.6, 32.1 30, 30.8 30 C 28 30, 22 35.9, 22 38.7 C 22 40.1, 19.8 43.1, 16 46.7 C 11.8 50.8, 10 53.3, 10 55 C 10 56.4, 9.1 58.1, 8 58.8 C 6.3 59.8, 6 61.1, 6 66.8 C 6 72.4, 5.7 73.7, 4 74.8 C 2.2 75.9, 2 77.1, 2 87 C 2 93.7, 1.6 98, 1 98 C -1.4 98, -0.2 173.7, 2.2 176.5 C 4.4 179, 4.4 179, 38.3 179 C 83.1 179, 79 182.9, 79 140.6 C 79 100.3, 79.9 102, 58.3 102 C 44.4 102, 44 101.9, 41.5 99.5 C 38.1 96, 37.7 84.3, 41 82.2 C 42.5 81.3, 43 79.9, 43 76.2 C 43 72.6, 43.5 71.2, 45 70.2 C 46.1 69.5, 47 67.9, 47 66.6 C 47 63.2, 63.2 47, 66.6 47 C 67.9 47, 69.5 46.1, 70.2 45 C 71 43.8, 72.6 43, 74 43 C 79.3 43, 81.7 29.7, 77 26.8 C 75.8 26, 75 24.4, 75 22.8 C 75 21.1, 74.2 19.5, 73 18.8 C 71.8 18, 71 16.4, 71 15 C 71 9.8, 61.6 7.5, 58.8 12 M 170.8 12 C 170 13.2, 168.4 14, 166.8 14 C 165.1 14, 163.5 14.8, 162.8 16 C 162 17.2, 160.4 18, 158.8 18 C 157.1 18, 155.5 18.8, 154.8 20 C 154.1 21.1, 152.4 22, 151.1 22 C 147.7 22, 122 47.7, 122 51.1 C 122 52.4, 121.1 54.1, 120 54.8 C 118.5 55.7, 118 57.1, 118 60.8 C 118 64.4, 117.5 65.8, 116 66.8 C 114.5 67.7, 114 69.1, 114 72.8 C 114 76.4, 113.5 77.8, 112 78.8 C 109.6 80.3, 108.8 175.4, 111.2 177.8 C 112.1 178.7, 121.3 179, 146.3 179 C 191.3 179, 187 183.3, 187 138.5 C 187 97.7, 189.2 102, 168.3 102 C 152.3 102, 152.1 102, 149.5 99.5 C 146.4 96.4, 146.2 92, 149 90.2 C 150.7 89.2, 151 87.9, 151 82.2 C 151 76.6, 151.3 75.3, 153 74.2 C 154.2 73.5, 155 71.9, 155 70.2 C 155 68.6, 155.8 67, 157 66.2 C 158.1 65.5, 159 63.9, 159 62.6 C 159 59.5, 167.3 51, 170.4 51 C 171.7 51, 174.1 49.4, 176.3 47 C 178.4 44.7, 180.9 43, 182.1 43 C 187.8 43, 193.2 33.4, 189 30.8 C 187.8 30, 187 28.4, 187 26.8 C 187 25.1, 186.2 23.5, 185 22.8 C 183.9 22.1, 183 20.4, 183 19.1 C 183 13.3, 173.4 7.7, 170.8 12"/></svg>
                 </div>
               {% endif %}
 
@@ -342,7 +508,7 @@
 
                   {% if block.settings.buyer_icon != blank %}
                     <span class="custom-customer-reviews__buyer">
-                      <img src="{{ block.settings.buyer_icon | img_url: 'master' }}" alt="Verified buyer" loading="lazy">
+                      <img src="{{ block.settings.buyer_icon | img_url: '220x' }}" alt="Verified buyer" loading="lazy">
                     </span>
                   {% endif %}
                 </div>
@@ -355,7 +521,7 @@
 
                     <div class="custom-customer-reviews__product-img">
                       {% if product.featured_image != blank %}
-                        <img src="{{ product.featured_image | img_url: 'master' }}" alt="" loading="lazy">
+                        <img src="{{ product.featured_image | img_url: '200x' }}" alt="" loading="lazy">
                       {% endif %}
                     </div>
 
@@ -368,9 +534,9 @@
                       </div>
                     </div>
 
-                    {% if block.settings.cart_icon != blank %}
+                    {% if block.settings.show_cart_icon %}
                       <div class="custom-customer-reviews__product-cart">
-                        <img src="{{ block.settings.cart_icon | img_url: 'master' }}" alt="" loading="lazy">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none" aria-hidden="true" focusable="false"><circle cx="40" cy="40" r="40" fill="#D34270"/><path d="M21 25 H26.5 L32.5 48.5 H53.5 L57.5 31 H28" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="35.5" cy="55.5" r="2.3" fill="#fff"/><circle cx="51" cy="55.5" r="2.3" fill="#fff"/></svg>
                       </div>
                     {% endif %}
 
@@ -399,15 +565,18 @@
         <div class="custom-customer-reviews__pagination"></div>
       </div>
 
-    </div>
   </div>
 </section>
 
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll("#CustomerReviews-{{ section.id }} .custom-customer-reviews__swiper").forEach(function (el) {
-    new Swiper(el, {
+  // Lazy init: build the Swiper only when the section approaches the viewport,
+  // keeping its layout work out of the page-load critical path.
+  function initReviewsSwipers() {
+    document.querySelectorAll("#CustomerReviews-{{ section.id }} .custom-customer-reviews__swiper").forEach(function (el) {
+      if (el.swiper) return;
+      new Swiper(el, {
       slidesPerView: 1,
       spaceBetween: 20,
       centeredSlides: false,
@@ -423,7 +592,8 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       pagination: {
         el: el.querySelector(".custom-customer-reviews__pagination"),
-        clickable: true
+        clickable: true,
+        bulletElement: "button"
       },
       breakpoints: {
         0: {
@@ -433,11 +603,33 @@ document.addEventListener("DOMContentLoaded", function () {
           slidesPerView: 2
         },
         1024: {
+          slidesPerView: 3
+        },
+        1200: {
+          slidesPerView: 4
+        },
+        1441: {
           slidesPerView: {{ section.settings.slides_per_view }}
         }
       }
+      });
     });
-  });
+  }
+
+  var lazyRoot = document.getElementById("CustomerReviews-{{ section.id }}");
+  if (lazyRoot && 'IntersectionObserver' in window) {
+    var lazyIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          lazyIo.disconnect();
+          initReviewsSwipers();
+        }
+      });
+    }, { rootMargin: '600px 0px' });
+    lazyIo.observe(lazyRoot);
+  } else {
+    initReviewsSwipers();
+  }
 
   var reviewsRoot = document.getElementById("CustomerReviews-{{ section.id }}");
   if (reviewsRoot) {
@@ -465,6 +657,35 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+<script>
+  (function () {
+    var root = document.getElementById('CustomerReviews-{{ section.id }}');
+    if (!root) return;
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.theme && window.theme.settings && window.theme.settings.enableAnimations === false) return;
+
+    var targets = root.querySelectorAll('.custom-customer-reviews__title, .custom-customer-reviews__subtitle, .custom-customer-reviews__swiper');
+    if (!targets.length) return;
+
+    targets.forEach(function (el, i) {
+      el.style.transitionDelay = (i * 0.12) + 's';
+    });
+
+    root.classList.add('anim-ready');
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          root.classList.add('is-inview');
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.15 });
+
+    observer.observe(root);
+  })();
+</script>
 
 {% schema %}
 {
@@ -551,14 +772,20 @@ document.addEventListener("DOMContentLoaded", function () {
   "label": "Select Product"
 },
         {
-          "type": "image_picker",
-          "id": "stars",
-          "label": "Stars Image"
+          "type": "range",
+          "id": "star_rating",
+          "label": "Star rating",
+          "info": "Controls how much of the stars are filled. 0 hides the stars.",
+          "min": 0,
+          "max": 5,
+          "step": 0.1,
+          "default": 5
         },
         {
-          "type": "image_picker",
-          "id": "quote_icon",
-          "label": "Quote Icon"
+          "type": "checkbox",
+          "id": "show_quote_icon",
+          "label": "Show quote icon",
+          "default": true
         },
         {
           "type": "text",
@@ -583,9 +810,10 @@ document.addEventListener("DOMContentLoaded", function () {
           "label": "Verified Buyer Icon"
         },
         {
-          "type": "image_picker",
-          "id": "cart_icon",
-          "label": "Cart Icon"
+          "type": "checkbox",
+          "id": "show_cart_icon",
+          "label": "Show cart button icon",
+          "default": true
         }
       ]
     }
