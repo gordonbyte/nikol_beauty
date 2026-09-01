@@ -87,6 +87,7 @@ const STYLE_METAFIELDS = {
   badgeText: "promo_badge_text",
   badgeStyle: "promo_badge_style", // "ribbon"; absent = theme default circle
   shadowColor: "promo_ribbon_shadow", // ribbon box-shadow base color; absent = theme default (black)
+  pillRadius: "promo_pill_radius", // "On Sale" pill border-radius (px); absent = theme default (999)
 };
 
 async function saveAppliedState(shop, state) {
@@ -193,6 +194,7 @@ function buildDesiredWrites(variantPct, products, variantDiscount, styleByDiscou
       if (style.badgeText) s[STYLE_METAFIELDS.badgeText] = style.badgeText;
       if (style.badgeStyle && style.badgeStyle !== "circle") s[STYLE_METAFIELDS.badgeStyle] = style.badgeStyle;
       if (style.shadowColor) s[STYLE_METAFIELDS.shadowColor] = style.shadowColor;
+      if (style.pillRadius) s[STYLE_METAFIELDS.pillRadius] = style.pillRadius;
       if (Object.keys(s).length) desired.styles[product.id] = s;
     }
   }
@@ -411,6 +413,7 @@ export async function syncShop(admin, shop, { dryRun = false } = {}) {
         badgeText: t.badgeText,
         badgeStyle: t.badgeStyle,
         shadowColor: t.shadowColor,
+        pillRadius: t.pillRadius,
       },
     ]),
   );

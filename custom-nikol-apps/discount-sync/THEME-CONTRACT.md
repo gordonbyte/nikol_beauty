@@ -25,6 +25,7 @@ has that field set in the app. The theme reads each with a fallback:
 | `custom.promo_badge_text` | badge text template, verbatim, contains `{n}` | built-in `{n}% OFF` (localized `off`) |
 | `custom.promo_badge_style` | card badge shape: `ribbon` = glossy corner ribbon (top-right, color via `--promo-ribbon-color` CSS var, `{br}` rendered as space) | absent = circle `promo-box` |
 | `custom.promo_ribbon_shadow` | ribbon box-shadow base color (hex) — drives `--promo-ribbon-shadow-color`; the CSS derives the dark inset ring (35%) and drop shadow (28%) from it via `color-mix`, white gloss inset stays fixed | absent = `#000000` (original black shading) |
+| `custom.promo_pill_radius` | border-radius (whole px, 0-999) of the `.promo-on-sale-pill` "On Sale" pill in all three consumers — rendered as an inline `border-radius: <n>px` on the span, overriding the CSS default | absent = CSS default `999px` (fully rounded) |
 
 - The theme substitutes `{n}` with the product's percent and keeps the automatic "Up to" line
   for `promo-up-to-<n>` products. `settings.promo_badge_text_color` (card text color) stays global.

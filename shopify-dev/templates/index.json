@@ -53,7 +53,7 @@
         "border_top_thickness": 0,
         "border_top_color": "#f6f6c9",
         "border_bottom_thickness": 0,
-        "border_bottom_color": "#F8F3EF",
+        "border_bottom_color": "#f8f3ef",
         "text_color": "#212121",
         "text_size": 18,
         "text_weight": "400"
@@ -65,8 +65,8 @@
         "image_w3NqUL": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/New_Banner_June_desktop.png",
-            "mobile_image": "shopify://shop_images/Banner_for_Mobile_June.png",
+            "image": "shopify://shop_images/Labor_Day_sale_websaite_hero_2000x719_258f3dd1-49c2-4400-b266-3c130648cbfa.png",
+            "mobile_image": "shopify://shop_images/Labor_Day_sale_websaite_hero_mobile_1950x951_d99952bf-55af-4236-84a5-3ea205daf0cb.png",
             "overlay_opacity": 0,
             "overlay_color": "#000000",
             "show_overlay_text": false,
@@ -137,6 +137,7 @@
           "type": "feature",
           "disabled": true,
           "settings": {
+            "svg_icon": "none",
             "feature_icon": "shopify://shop_images/banner-usp4.png",
             "feature_title": "Gluten-Free"
           }
@@ -152,12 +153,15 @@
       "name": "[Custom] Hero Banner",
       "settings": {
         "bg_image": "shopify://shop_images/banner-desktop.jpg",
+        "star_rating": "4.76",
         "star_text": "<strong>4.76/5</strong> stars | <strong>12,000+</strong> happy women",
         "title": "Clean Makeup That Looks Natural on Mature Skin",
         "description": "Thoughtfully formulated to enhance your features and match your skin tone without settling into fine lines, feeling heavy, or making you look overdone.",
         "button_text": "Shop Our Best Sellers",
         "button_link": "/collections/best-selling-products",
         "right_image_1": "shopify://shop_images/Frame_2085670276_2.webp",
+        "right_image_1_alt": "Mature woman with silver hair wearing natural-looking makeup, holding a red lipstick",
+        "right_image_2_alt": "Nikol Beauty makeup products with a silver cosmetic bag",
         "feature_bg_color": "#f7f2ed"
       }
     },
@@ -166,6 +170,7 @@
       "name": "[Custom] Customer Quote",
       "settings": {
         "bg_image": "shopify://shop_images/reviews-banner.jpg",
+        "show_stars": true,
         "star_alt": "5 out of 5 stars",
         "review_text": "“I absolutely love my BB Créme makeup. It stays nice all day. Doesn’t look cakey and covers great! I have loved all of the products from Nicole Beauty. I’ll be buying more! Thank you for your products and I enjoy the You Tube presentations.\"",
         "author_name": "- Janet S.",
@@ -575,8 +580,7 @@
             "button_type": "btn--primary",
             "button_size": "",
             "button_style": "btn--solid",
-            "show_arrow": true,
-            "image": "shopify://shop_images/lipstick.jpg"
+            "show_arrow": true
           }
         },
         "text_slide_DjLchx": {

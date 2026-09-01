@@ -331,6 +331,11 @@
         "type": "shopify://apps/microsoft-clarity/blocks/brandAgents_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
         "disabled": true,
         "settings": {}
+      },
+      "14538267190432877901": {
+        "type": "shopify://apps/tolstoy/blocks/widget-block/06fa8282-42ff-403e-b67c-1936776aed11",
+        "disabled": false,
+        "settings": {}
       }
     }
   },

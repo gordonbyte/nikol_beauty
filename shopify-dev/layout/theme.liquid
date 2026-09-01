@@ -341,8 +341,17 @@
 
 {{ content_for_header }}
 
-{%- comment -%} Channelize Shoppable Videos Playlist Script - Load in head for proper custom element registration {%- endcomment -%}
-{%- if request.path contains '/pages/beauty-tutorial-videos' -%}
+{%- comment -%} Channelize Shoppable Videos Playlist Script - Load in head for proper custom element registration.
+  Skipped on episode pages whose metaobject carries a Tolstoy publish ID in shoppable_playlist
+  (those pages render a Tolstoy carousel instead — see templates/metaobject/beauty_tutorial_videos.liquid). {%- endcomment -%}
+{%- assign tolstoy_episode_id = metaobject.shoppable_playlist | strip -%}
+{%- if tolstoy_episode_id == blank -%}
+  {%- assign tolstoy_episode_id = metaobject.shoppable_playlist.value | strip -%}
+{%- endif -%}
+{%- if tolstoy_episode_id contains '-' -%}
+  {%- assign tolstoy_episode_id = '' -%}
+{%- endif -%}
+{%- if request.path contains '/pages/beauty-tutorial-videos' and tolstoy_episode_id == blank -%}
   <script>
     // Set options BEFORE loading script
     window.initChannelizeShoppableVideoPlaylistOptions = {

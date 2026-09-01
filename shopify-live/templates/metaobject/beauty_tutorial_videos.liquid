@@ -1,6 +1,27 @@
 
 {% layout 'theme' %}
 
+{% comment %}
+  Tolstoy gate: when this episode's metaobject has a Tolstoy publish ID in its
+  shoppable_playlist field, each product's video cell renders a Tolstoy carousel
+  (the episode's one widget, filtered per product via data-product-id) and the
+  page skips all Channelize widgets/scripts. Clearing the field reverts the page
+  to the Channelize path untouched below. Channelize playlist UUIDs contain
+  dashes, Tolstoy publish IDs never do — the dash check keeps any legacy UUID in
+  this field from being mistaken for a Tolstoy ID.
+{% endcomment %}
+{% assign tolstoy_publish_id = metaobject.shoppable_playlist | strip %}
+{% if tolstoy_publish_id == blank %}
+  {% assign tolstoy_publish_id = metaobject.shoppable_playlist.value | strip %}
+{% endif %}
+{% if tolstoy_publish_id contains '-' %}
+  {% assign tolstoy_publish_id = '' %}
+{% endif %}
+{% assign use_tolstoy = false %}
+{% if tolstoy_publish_id != blank %}
+  {% assign use_tolstoy = true %}
+{% endif %}
+
 <style>
   .video-detail {
     padding: 2rem 0;
@@ -809,8 +830,126 @@
       padding-bottom: 0 !important;
     }
   }
+  /* Tolstoy mode: one full-size 9:16 video per product in the cell Channelize used.
+     Tolstoy renders a fixed 234x416 tile; the video column is sized to fit it exactly.
+     Extra clips for a product stay reachable in the tap-to-open player (which also
+     carries add-to-cart), so the inline carousel arrows are hidden and only the
+     first tile shows. */
+  @media (min-width: 769px) {
+    .tolstoy-mode .featured-item {
+      padding: 20px;
+    }
+
+    .tolstoy-mode .featured-item-row {
+      grid-template-columns: minmax(0, 1fr) 234px;
+      gap: 20px;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .tolstoy-mode .featured-item-video {
+      max-width: 234px;
+    }
+  }
+
+  .tolstoy-mode .featured-item-video {
+    min-height: 0;
+  }
+
+  .tolstoy-mode .featured-item-video .tolstoy-carousel-container,
+  .tolstoy-mode .featured-item-video .tolstoy-video-carousel-container,
+  .tolstoy-mode .featured-item-video .tolstoy-carousel-videos-container {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .tolstoy-mode .featured-item-video .tolstoy-video-carousel-container {
+    gap: 0 !important;
+  }
+
+  .tolstoy-mode .featured-item-video .tolstoy-carousel-videos-container {
+    align-content: start;
+  }
+
+  .tolstoy-mode .featured-item-video .tolstoy-carousel-tile-container:not(:first-child) {
+    display: none;
+  }
+
+  .tolstoy-mode .featured-item-video .tolstoy-carousel-arrow-button-container {
+    display: none !important;
+  }
+
+  /* Tolstoy's compact player opens bottom-right by default. Recenter it as a
+     modal: the wrapper (.tolstoy-modal, "SmallModal" marker = compact mode
+     only, never the fullscreen feed) stretches over the viewport and carries
+     the dim; the player iframe centers at video width, so product info stays
+     overlaid on the video instead of a side panel. Desktop only — mobile
+     already gets Tolstoy's full-screen mobile player. */
+  @media (min-width: 769px) {
+    .tolstoy-modal[class*="SmallModal"] {
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none !important;
+      max-height: none !important;
+      background: rgba(0, 0, 0, 0.72) !important;
+      transform: none !important;
+    }
+
+    /* The player renders at Tolstoy's designed 380x676 (wider and their
+       internal layout adds a side product panel) and is then zoomed so it
+       DISPLAYS at 80% of the viewport height — bigger visuals, same
+       panel-free layout. Browsers without zoom/calc-ratio support fall back
+       to the unscaled 380px player, still centered. */
+    .tolstoy-modal[class*="SmallModal"] iframe {
+      left: 50% !important;
+      top: 50% !important;
+      right: auto !important;
+      bottom: auto !important;
+      width: 380px !important;
+      height: 676px !important;
+      margin: -338px 0 0 -190px !important;
+      transform: none !important;
+      zoom: min(calc(80vh / 676px), calc(92vw / 380px));
+      border-radius: 14px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Tolstoy's page-level close button is zero-sized on desktop; surface it
+       as a white circle pinned 10px inside the video's top-left corner
+       (video display width = min(45vh, 92vw), so half = min(22.5vh, 46vw)). */
+    .tolstoy-modal[class*="SmallModal"] .minimize-tolstoy-modal {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      position: absolute !important;
+      left: calc(50% - min(22.5vh, 46vw) + 10px) !important;
+      top: calc(50% - 40vh + 10px) !important;
+      right: auto !important;
+      width: 38px !important;
+      height: 38px !important;
+      background: rgba(255, 255, 255, 0.92) !important;
+      border-radius: 50% !important;
+      cursor: pointer;
+      z-index: 5;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    .tolstoy-modal[class*="SmallModal"] .minimize-tolstoy-modal svg {
+      width: 16px !important;
+      height: 16px !important;
+      display: block;
+    }
+
+    .tolstoy-modal[class*="SmallModal"] .minimize-tolstoy-modal svg path {
+      fill: #2a2724 !important;
+      stroke: #2a2724 !important;
+    }
+  }
 </style>
 
+{% unless use_tolstoy %}
 <script>
   
   // Check if video URL exists
@@ -1350,8 +1489,9 @@
     setTimeout(closeChannelizeModals, 1000);
   }
 </script>
+{% endunless %}
 
-<section class="video-detail page-width">
+<section class="video-detail page-width{% if use_tolstoy %} tolstoy-mode{% endif %}">
   
   {% comment %} Section 1: Video + Featured Bundle + Video Info {% endcomment %}
   <div class="hero-section">
@@ -1470,7 +1610,7 @@
       </div>
     </div>
   </div>
-  
+
   {% comment %} Section 3: Featured Products Grid (2 columns with product + video) {% endcomment %}
   <div class="featured-products-section">
     <h2 class="section-title">FEATURED PRODUCTS</h2>
@@ -1559,8 +1699,21 @@
                 </div>
               </div>
               <div class="featured-item-video">
+                {% if use_tolstoy %}
+                {% comment %} Tolstoy mode: the episode's one widget, filtered to this product —
+                  the app embed's script scans for .tolstoy-carousel[data-publish-id] and
+                  data-product-id makes each instance fetch only this product's clips. {% endcomment %}
+                {%- comment -%}
+                  data-priority="high" makes Tolstoy's loader initialize this
+                  cell at page load instead of ~200px before it scrolls into
+                  view — below-fold cells otherwise start initializing exactly
+                  when the shopper first sees them, which is the window where
+                  clicks hit their init race.
+                {%- endcomment -%}
+                <div class="tolstoy-carousel" data-priority="high" data-publish-id="{{ tolstoy_publish_id }}" data-product-id="{{ product_obj.id }}"></div>
+                {% else %}
                 {% comment %} Determine playlist ID based on video category {% endcomment %}
-                
+
                 {% if metaobject.category == 'fierceaging' %}
                   {% comment %} For fierceaging videos: get video identifier and lookup in JSON {% endcomment %}
                   {% comment %} Try direct property access first (metaobject fields are often direct properties) {% endcomment %}
@@ -1685,6 +1838,7 @@
                     {% comment %} DIAGNOSTIC COMMENT - Remove after fixing: NO PLAYLIST_ID - product={{ product_obj.title }}, category={{ metaobject.category }}, video_identifier={{ video_identifier }}, playlists_metafield={{ playlists_metafield | json | slice: 0, 100 }}, product_metafields={{ product_metafields | json | slice: 0, 100 }} {% endcomment %}
                   </div>
                 {% endif %}
+                {% endif %}
               </div>
             </div>
           </div>
@@ -1704,6 +1858,7 @@
                   <button type="button" class="btn-add-to-cart" disabled>ADD TO CART</button>
                 </div>
               </div>
+              {% unless use_tolstoy %}
               <div class="featured-item-video">
                 <channelize-shoppable-videos-playlist
                   playlist_id="7863bba4-b4f3-11f0-97e5-f3ee3e2246b5"
@@ -1711,6 +1866,7 @@
                   navigation_type="QUICK_OPEN">
                 </channelize-shoppable-videos-playlist>
               </div>
+              {% endunless %}
             </div>
           </div>
         {% endfor %}
@@ -1720,6 +1876,217 @@
   
 </section>
 
+{% if use_tolstoy %}
+<script>
+  // Tolstoy's carousel manager only assigns a poster frame to the first carousel
+  // on the page (it assumes one per page); the other cells render grey and none
+  // of them autoplay. Each cell fetches its own one-product widget config from
+  // the same public CDN endpoint the widget uses, fills in the missing poster,
+  // and autoplays the SD rendition muted while the cell is in the viewport
+  // (paused off-screen; skipped entirely under prefers-reduced-motion).
+  (function () {
+    var embedScript = document.querySelector('script[src*="gotolstoy.com"][data-app-key]');
+    var appKey = embedScript && embedScript.getAttribute('data-app-key');
+    if (!appKey || !window.fetch) return;
+    var cacheVersion = embedScript.getAttribute('data-cache-version') || '';
+    var publishId = {{ tolstoy_publish_id | json }};
+    var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function whenVideoReady(cell, callback) {
+      var tries = 0;
+      var timer = setInterval(function () {
+        var video = cell.querySelector('video');
+        if (video) {
+          clearInterval(timer);
+          callback(video);
+        } else if (++tries > 60) {
+          clearInterval(timer);
+        }
+      }, 500);
+    }
+
+    function setupCell(cell, poster, src) {
+      whenVideoReady(cell, function (video) {
+        if (poster && !video.poster) video.poster = poster;
+        if (reducedMotion || !src || !('IntersectionObserver' in window)) return;
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              video.muted = true;
+              video.loop = true;
+              video.setAttribute('playsinline', '');
+              if (!video.src) video.src = src;
+              var p = video.play();
+              if (p && p.catch) p.catch(function () {});
+            } else if (!video.paused) {
+              video.pause();
+            }
+          });
+        }, { threshold: 0.35 });
+        observer.observe(cell);
+      });
+    }
+
+    // Bridge Tolstoy's add-to-cart into Broadcast's cart UI. Tolstoy posts to
+    // the real Shopify cart itself but leaves theme UI integration to the
+    // merchant. On a successful add: refresh the header count, rebuild the
+    // drawer contents, close the Tolstoy player, and open the theme's cart
+    // drawer. Primary hook = their subscribe API's ONLY cart event,
+    // 'tolstoy_add_to_cart' (fires on tap, before the add lands — their
+    // widget rejects 'tolstoy_add_to_cart_success' as an invalid external
+    // event, so the desktop path only ever worked via the fetch fallback and
+    // mobile's feed player was missed entirely); a short cart poll confirms
+    // the add landed before touching the UI. Fallback = watching window.fetch
+    // for /cart/add (their cart call uses bare fetch). Debounced so multiple
+    // paths handle one add once.
+    if (!window.__tolstoyCartBridge) {
+      window.__tolstoyCartBridge = true;
+      var origFetch = window.fetch.bind(window);
+      var lastHandled = 0;
+
+      var closeTolstoyPlayer = function () {
+        try {
+          if (window.tolstoyWidget && typeof window.tolstoyWidget.closePlayer === 'function') {
+            window.tolstoyWidget.closePlayer();
+          }
+        } catch (e) {}
+        // The mobile fullscreen feed modal doesn't always honor closePlayer —
+        // click the still-visible modal's own close button as a fallback.
+        setTimeout(function () {
+          document.querySelectorAll('.tolstoy-modal').forEach(function (m) {
+            var r = m.getBoundingClientRect();
+            if (r.width > 0 && r.height > 0) {
+              var btn = m.querySelector('.minimize-tolstoy-modal');
+              if (btn) btn.click();
+            }
+          });
+        }, 600);
+      };
+
+      var onTolstoyCartAdd = function () {
+        var now = Date.now();
+        if (now - lastHandled < 1500) return;
+        lastHandled = now;
+        origFetch('/cart.js').then(function (r) { return r.json(); }).then(function (cart) {
+          document.dispatchEvent(new CustomEvent('theme:cart:change', { bubbles: true, detail: { cartCount: cart.item_count } }));
+        }).catch(function () {});
+        var items = document.querySelector('cart-items');
+        if (items && typeof items.getCart === 'function') items.getCart();
+        closeTolstoyPlayer();
+        setTimeout(function () {
+          document.dispatchEvent(new CustomEvent('theme:product:added', { bubbles: true }));
+        }, 400);
+      };
+
+      // Tap detected — wait for the cart count to actually change (the add
+      // request lands after the event), then run the UI updates. Bows out if
+      // the fetch fallback already handled this add.
+      var onTolstoyCartIntent = function () {
+        var stampAtStart = lastHandled;
+        origFetch('/cart.js').then(function (r) { return r.json(); }).then(function (cart) {
+          var baseline = cart.item_count;
+          var tries = 0;
+          var timer = setInterval(function () {
+            tries++;
+            if (lastHandled !== stampAtStart) { clearInterval(timer); return; }
+            origFetch('/cart.js').then(function (r2) { return r2.json(); }).then(function (c2) {
+              if (lastHandled !== stampAtStart) { clearInterval(timer); return; }
+              if (c2.item_count !== baseline) {
+                clearInterval(timer);
+                onTolstoyCartAdd();
+              } else if (tries >= 12) {
+                clearInterval(timer);
+              }
+            }).catch(function () {});
+          }, 500);
+        }).catch(function () {});
+      };
+
+      var wireTries = 0;
+      var wireTimer = setInterval(function () {
+        if (window.tolstoyWidget && typeof window.tolstoyWidget.subscribe === 'function') {
+          clearInterval(wireTimer);
+          try { window.tolstoyWidget.subscribe('tolstoy_add_to_cart', onTolstoyCartIntent); } catch (e) {}
+        } else if (++wireTries > 60) {
+          clearInterval(wireTimer);
+        }
+      }, 500);
+
+      window.fetch = function () {
+        var result = origFetch.apply(null, arguments);
+        try {
+          var arg = arguments[0];
+          var url = typeof arg === 'string' ? arg : (arg && arg.url) || '';
+          if (url.indexOf('/cart/add') !== -1) {
+            result.then(function (res) {
+              if (res && res.ok) onTolstoyCartAdd();
+            }).catch(function () {});
+          }
+        } catch (e) {}
+        return result;
+      };
+    }
+
+    // Clicks pass straight through to Tolstoy — no shield, no retries (all
+    // custom click intervention removed 2026-09-01 per Randell; the known
+    // early-click init race is Tolstoy's to fix, tracked on their ticket).
+    // Only kept behavior: an open theme cart drawer closes when a video is
+    // clicked — the video takes focus.
+    document.addEventListener('click', function (e) {
+      var trigger = e.target.closest && e.target.closest('.featured-item-video .tolstoy-play-button-container, .featured-item-video .tolstoy-carousel video');
+      if (!trigger) return;
+      try {
+        var drawer = document.querySelector('cart-drawer');
+        if (drawer && (drawer.cartDrawerIsOpen || drawer.classList.contains('is-open'))) {
+          if (typeof drawer.closeCartDrawer === 'function') drawer.closeCartDrawer();
+          else document.dispatchEvent(new CustomEvent('theme:quick-add:open', { bubbles: true }));
+        }
+      } catch (err) {}
+    }, true);
+
+    // Clicking the dim overlay (outside the video) closes the player, like a
+    // standard modal backdrop. Prefer Tolstoy's own close button (cleaner
+    // teardown); fall back to the closePlayer API.
+    document.addEventListener('click', function (e) {
+      var modal = e.target.closest && e.target.closest('.tolstoy-modal');
+      if (!modal || !/SmallModal/.test(modal.className)) return;
+      if (e.target.closest('iframe') || e.target.tagName === 'IFRAME') return;
+      if (e.target.closest('.minimize-tolstoy-modal')) return;
+      var closeBtn = modal.querySelector('.minimize-tolstoy-modal');
+      if (closeBtn) {
+        closeBtn.click();
+        return;
+      }
+      try {
+        if (window.tolstoyWidget && typeof window.tolstoyWidget.closePlayer === 'function') {
+          window.tolstoyWidget.closePlayer();
+        }
+      } catch (err) {}
+    }, true);
+
+    document.querySelectorAll('.featured-item-video .tolstoy-carousel[data-product-id]').forEach(function (cell) {
+      var pid = cell.getAttribute('data-product-id');
+      if (!pid) return;
+      var url = 'https://cf-apilb.gotolstoy.com/player-widget/config/getWidgetConfig?appKey=' + encodeURIComponent(appKey)
+        + '&publishId=' + encodeURIComponent(publishId)
+        + '&productId=' + encodeURIComponent(pid)
+        + (cacheVersion ? '&v=' + encodeURIComponent(cacheVersion) : '');
+      fetch(url)
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (cfg) {
+          var steps = cfg && cfg.carouselEmbed && cfg.carouselEmbed.carouselSteps;
+          var asset = steps && steps[0] && steps[0].stockAsset;
+          if (!asset) return;
+          var sources = asset.shopifySources || {};
+          setupCell(cell, asset.shopifyPosterUrl, sources.sd || asset.videoUrl);
+        })
+        .catch(function () {});
+    });
+  })();
+</script>
+{% endif %}
+
+{% unless use_tolstoy %}
 <!-- Channelize Shoppable Videos Playlist Script - Load once for all widgets -->
 <script>
   // DIAGNOSTIC SCRIPT - Remove after fixing the issue
@@ -1825,6 +2192,7 @@
     }, 5000);
   })();
 </script>
+{% endunless %}
 
 
 

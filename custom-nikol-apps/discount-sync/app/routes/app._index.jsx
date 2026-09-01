@@ -67,6 +67,7 @@ export const loader = async ({ request }) => {
           badgeText: t?.badgeText ?? null,
           badgeStyle: t?.badgeStyle ?? null,
           shadowColor: t?.shadowColor ?? null,
+          pillRadius: t?.pillRadius ?? null,
         };
       })
       // Schedule order: latest start date first (upcoming on top, expired at the bottom).
@@ -90,6 +91,11 @@ const normColor = (v) => {
 const normText = (v) => {
   const s = (v ?? "").trim();
   return s.length ? s.slice(0, 80) : null;
+};
+// Whole px value 0-999; anything else -> null (theme default fully-rounded pill).
+const normRadius = (v) => {
+  const s = (v ?? "").trim();
+  return /^\d{1,3}$/.test(s) ? String(Number(s)) : null;
 };
 
 export const action = async ({ request }) => {
@@ -127,6 +133,7 @@ export const action = async ({ request }) => {
       badgeText: normText(form.get("badgeText")),
       badgeStyle: form.get("badgeStyle") === "ribbon" ? "ribbon" : null,
       shadowColor: normColor(form.get("shadowColor")),
+      pillRadius: normRadius(form.get("pillRadius")),
     };
     await prisma.trackedDiscount.upsert({
       where: {
@@ -207,6 +214,7 @@ export default function Index() {
   const [text, setText] = useState("");
   const [shape, setShape] = useState("circle");
   const [shadow, setShadow] = useState("");
+  const [pillRad, setPillRad] = useState("");
 
   const openStyle = (d) => {
     setEditing(d);
@@ -215,6 +223,7 @@ export default function Index() {
     setText(d.badgeText ?? "");
     setShape(d.badgeStyle ?? "circle");
     setShadow(d.shadowColor ?? "");
+    setPillRad(d.pillRadius ?? "");
   };
   const closeStyle = () => setEditing(null);
   const saveStyle = () => {
@@ -228,6 +237,7 @@ export default function Index() {
         badgeText: text,
         badgeStyle: shape,
         shadowColor: shadow,
+        pillRadius: pillRad,
       },
       { method: "post" },
     );
@@ -428,7 +438,7 @@ export default function Index() {
                       style={{
                         display: "inline-block",
                         padding: "2px 8px",
-                        borderRadius: "6px",
+                        borderRadius: d.pillRadius != null ? `${d.pillRadius}px` : "6px",
                         fontSize: "12px",
                         fontWeight: 600,
                         color: "#ffffff",
@@ -526,6 +536,23 @@ export default function Index() {
                 >
                   sale price
                 </span>
+                <span
+                  style={{
+                    display: "inline-block",
+                    padding: "4px 8px",
+                    fontSize: "10px",
+                    fontWeight: 600,
+                    lineHeight: 1,
+                    letterSpacing: "0.02em",
+                    textTransform: "uppercase",
+                    color: "#ffffff",
+                    background: normColorClient(bg) || DEFAULT_BADGE_BG,
+                    borderRadius: `${/^\d{1,3}$/.test(pillRad.trim()) ? pillRad.trim() : 999}px`,
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  On Sale
+                </span>
               </InlineStack>
 
               <FormLayout>
@@ -558,6 +585,16 @@ export default function Index() {
                   value={price}
                   onChange={setPrice}
                   helpText="Color of the discounted price text on cards, product pages, and the cart bar. Blank = theme default."
+                />
+                <TextField
+                  label="On Sale pill corner radius (px)"
+                  type="number"
+                  min={0}
+                  max={999}
+                  value={pillRad}
+                  onChange={setPillRad}
+                  autoComplete="off"
+                  helpText="Rounding of the “On Sale” pill shown next to sale prices (product page, cards, cart bar). 0 = square corners. Blank = theme default (fully rounded)."
                 />
                 <TextField
                   label="Badge text"

@@ -43,10 +43,6 @@
             "padding_bottom": 16
           }
         },
-        "se_wishlist_engine_product_page_PNbWRj": {
-          "type": "shopify://apps/se-wishlist-engine/blocks/Product-Page/8f7c0857-8e71-463d-a168-8e133094753b",
-          "settings": {}
-        },
         "code_jzPbiC": {
           "type": "code",
           "settings": {
@@ -147,7 +143,6 @@
         "badges_8GMAqL",
         "price",
         "variants",
-        "se_wishlist_engine_product_page_PNbWRj",
         "code_jzPbiC",
         "buttons",
         "pickup",

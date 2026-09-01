@@ -5,6 +5,8 @@
   assign contact_title = section.settings.contact_title
   assign contact_info = section.settings.contact_info
   assign contact_phone = section.settings.contact_phone
+  assign contact_text_number = section.settings.contact_text_number
+  assign sms_notice = section.settings.sms_notice
   assign menu_1 = section.settings.footer_menu_1
   assign shop_menu = section.settings.footer_menu_shop
   assign help_menu = section.settings.footer_menu_help | default: menu_1
@@ -115,6 +117,23 @@
     padding: 6px 0 !important;
   }
   .nbf__hours { font-size: 15px; margin: 6px 0 0; }
+  .nbf__method { margin: 0 0 10px; }
+  .nbf__method-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+  .nbf__method a { display: inline-block; padding: 2px 0; }
+  .nbf__sms-notice {
+    font-size: 12.5px;
+    line-height: 1.55;
+    opacity: 0.75;
+    margin: 14px auto 0;
+    max-width: 360px;
+  }
   .nbf__social .social { display: flex; gap: 18px; margin: 14px 0 0; padding: 0; list-style: none; }
   .nbf__social .social-link { font-size: 24px; }
   .nbf__subscribe-title {
@@ -153,7 +172,78 @@
   .nbf--d1 .nbf__bottom { justify-content: center; text-align: center; }
 
   /* ---------- Design 2: Links with contact card ---------- */
-  .nbf--d2 .nbf__subscribe { max-width: 560px; margin: 0 0 40px; }
+  .nbf--d2 .nbf__masthead {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 48px;
+    align-items: center;
+    margin: 0 0 40px;
+  }
+  .nbf--d2 .nbf__subscribe { max-width: 560px; margin: 0; }
+  .nbf--d2 .nbf__crest { justify-self: center; display: inline-block; padding: 4px; }
+  /* Engraved N: the PNG letterform is used as a CSS mask, so the glyph can be
+     rebuilt in layers — a light edge offset below (the lit rim of the carve)
+     under the charcoal glyph, which carries a top-down dark gradient (depth).
+     A mask clips the whole subtree, so the depth overlay stays inside the N. */
+  .nbf--d2 .nbf__crest-emboss {
+    position: relative;
+    display: block;
+    height: 72px;
+    aspect-ratio: 100 / 107;
+  }
+  .nbf--d2 .nbf__crest-layer {
+    position: absolute;
+    inset: 0;
+    -webkit-mask: url('{{ 'logo-2.png' | asset_url }}') center / contain no-repeat;
+            mask: url('{{ 'logo-2.png' | asset_url }}') center / contain no-repeat;
+  }
+  .nbf--d2 .nbf__crest-layer--light {
+    background: rgba(255, 255, 255, 0.65);
+    transform: translateY(2px);
+  }
+  .nbf--d2 .nbf__crest-layer--main { background: #3F3B35; }
+  /* Inner shadow: dark paint masked to (full box MINUS the glyph offset 3px
+     down) = dark slivers hugging each stroke's upper edge, blurred soft. */
+  .nbf--d2 .nbf__crest-depth {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    -webkit-mask-image: linear-gradient(#fff, #fff), url('{{ 'logo-2.png' | asset_url }}');
+    -webkit-mask-size: 100% 100%, contain;
+    -webkit-mask-position: 0 0, center 3px;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-composite: destination-out;
+    mask-image: linear-gradient(#fff, #fff), url('{{ 'logo-2.png' | asset_url }}');
+    mask-size: 100% 100%, contain;
+    mask-position: 0 0, center 3px;
+    mask-repeat: no-repeat;
+    mask-composite: subtract;
+    filter: blur(1.1px);
+  }
+  @media (max-width: 785px) {
+    .nbf--d2 .nbf__masthead { grid-template-columns: 1fr; gap: 22px; }
+    .nbf--d2 .nbf__crest { display: none; }
+  }
+  .nbf .klaviyo-form-Ug8YTK input[type="email"],
+  .nbf .klaviyo-form-Ug8YTK input[type="text"] {
+    background: #fff !important;
+    border: 1px solid rgba(70, 65, 60, 0.6) !important;
+    height: 48px !important;
+    padding: 0 16px !important;
+    font-size: 16px !important;
+  }
+  .nbf .klaviyo-form-Ug8YTK button {
+    background: var(--BTN-PRIMARY-BG-COLOR, #D34270) !important;
+    color: #fff !important;
+    height: 48px !important;
+    padding: 0 28px !important;
+    letter-spacing: 0.08em !important;
+    font-size: 14px !important;
+    transition: background 0.3s ease;
+  }
+  .nbf .klaviyo-form-Ug8YTK button:hover {
+    background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER, #DD6890) !important;
+  }
   .nbf--d2 .nbf__grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: start; }
   @media (max-width: 785px) { .nbf--d2 .nbf__grid { grid-template-columns: 1fr; } }
   .nbf--d2 .nbf__links a { font-size: 18px; padding: 5px 0; display: block; }
@@ -169,7 +259,7 @@
   }
   .nbf--d2 .nbf__card .nbf__heading { font-size: 20px; }
   .nbf--d2 .nbf__card .nbf__contact { font-size: 17px; }
-  .nbf--d2 .nbf__phone { font-size: 26px; }
+  .nbf--d2 .nbf__phone { font-size: 22px; }
   .nbf--d2 .nbf__card .nbf__social { margin-top: 8px; }
   .nbf--d2 .nbf__card .nbf__social .social { margin-top: 0; }
   .nbf--d2 .nbf__card .nbf__social .social { justify-content: center; }
@@ -196,14 +286,42 @@
   {%- for link in linklists[help_menu].links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}
 {%- endcapture -%}
 
+{%- liquid
+  assign phone_digits = contact_phone | remove: '-' | remove: ' ' | remove: '(' | remove: ')' | remove: '.'
+  assign text_digits = contact_text_number | remove: '-' | remove: ' ' | remove: '(' | remove: ')' | remove: '.'
+  if phone_digits.size == 10
+    assign phone_digits = phone_digits | prepend: '+1'
+  endif
+  if text_digits.size == 10
+    assign text_digits = text_digits | prepend: '+1'
+  endif
+-%}
+
 {%- capture contact_block -%}
   <address class="nbf__contact">
-    {{ contact_info }}
-    {%- if contact_phone -%}
-      <br><a class="nbf__phone" href="tel:{{ contact_phone }}">{{ contact_phone }}</a>
+    {%- if contact_phone != blank -%}
+      <div class="nbf__method">
+        <span class="nbf__method-label">Call</span>
+        <a class="nbf__phone" href="tel:{{ phone_digits }}">{{ contact_phone }}</a>
+      </div>
+    {%- endif -%}
+    {%- if contact_text_number != blank -%}
+      <div class="nbf__method">
+        <span class="nbf__method-label">Text</span>
+        <a class="nbf__phone" href="sms:{{ text_digits }}">{{ contact_text_number }}</a>
+      </div>
+    {%- endif -%}
+    {%- if contact_info != blank -%}
+      <div class="nbf__method">
+        <span class="nbf__method-label">Email</span>
+        {{ contact_info }}
+      </div>
     {%- endif -%}
     {%- if hours_text != blank -%}
       <p class="nbf__hours">{{ hours_text }}</p>
+    {%- endif -%}
+    {%- if contact_text_number != blank and sms_notice != blank -%}
+      <p class="nbf__sms-notice">{{ sms_notice }}</p>
     {%- endif -%}
   </address>
 {%- endcapture -%}
@@ -248,9 +366,19 @@
 {%- elsif design == 'design2' -%}
 <footer class="nbf nbf--d2 site-footer-wrapper">
   <div class="nbf__inner">
-    <div class="nbf__subscribe">
-      <h2 class="nbf__subscribe-title">{{ title_subscribe }}</h2>
-      {% render 'klaviyo-form' %}
+    <div class="nbf__masthead">
+      <div class="nbf__subscribe">
+        <h2 class="nbf__subscribe-title">{{ title_subscribe }}</h2>
+        {% render 'klaviyo-form' %}
+      </div>
+      <a class="nbf__crest" href="{{ routes.root_url }}" aria-label="{{ shop.name }} home">
+        <span class="nbf__crest-emboss" aria-hidden="true">
+          <span class="nbf__crest-layer nbf__crest-layer--light"></span>
+          <span class="nbf__crest-layer nbf__crest-layer--main">
+            <span class="nbf__crest-depth"></span>
+          </span>
+        </span>
+      </a>
     </div>
     <div class="nbf__grid">
       <nav aria-labelledby="nbf-links-heading">
@@ -377,6 +505,19 @@
       "type": "text",
       "id": "contact_phone",
       "label": "Contact Phone"
+    },
+    {
+      "type": "text",
+      "id": "contact_text_number",
+      "label": "Text (SMS) number",
+      "default": "954-833-0936"
+    },
+    {
+      "type": "textarea",
+      "id": "sms_notice",
+      "label": "Text messaging notice",
+      "info": "Compliance notice shown under the contact methods when a text number is set.",
+      "default": "By texting us, you agree to receive text messages from Nikol Beauty related to your inquiry. Message frequency varies and msg & data rates may apply. Reply STOP to opt out or HELP for help."
     },
     {
       "type": "text",

@@ -152,10 +152,6 @@
             "padding_bottom": 16
           }
         },
-        "5e95bd58-e59e-42dc-a60a-763c3d4df302": {
-          "type": "shopify://apps/se-wishlist-engine/blocks/Product-Page/8f7c0857-8e71-463d-a168-8e133094753b",
-          "settings": {}
-        },
         "bundle_item_beginner_1": {
           "type": "bundle_item",
           "settings": {
@@ -623,7 +619,6 @@
         "color_swatch_light_medium",
         "color_swatch_tan",
         "variants",
-        "5e95bd58-e59e-42dc-a60a-763c3d4df302",
         "bundle_item_beginner_1",
         "bundle_item_beginner_2",
         "bundle_item_beginner_3",
@@ -1134,7 +1129,6 @@
         "rating_1": {
           "type": "rating",
           "settings": {
-            "star_image": "shopify://shop_images/Stars_Container_a8ef23fa-4cb0-442a-aebc-8875c6ae38e3.png",
             "star_text": "<strong>4.76/5</strong> stars | <strong>12,000+</strong> happy women"
           }
         },

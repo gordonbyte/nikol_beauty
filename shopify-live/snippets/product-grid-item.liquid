@@ -352,6 +352,7 @@
       # global promo settings / default wording when the metafields are absent.
       assign promo_badge_bg = product.metafields.custom.promo_badge_bg.value | default: settings.promo_badge_bg_color
       assign promo_price_color = product.metafields.custom.promo_price_color.value | default: settings.promo_badge_bg_color
+      assign promo_pill_radius = product.metafields.custom.promo_pill_radius.value
       assign promo_off_word = 'products.product.off' | t
       if promo_amount != blank
         # Amount badge: {n} renders as "$<x>", default wording "$<x> OFF".
@@ -709,7 +710,7 @@ assign promo_ribbon_shadow = product.metafields.custom.promo_ribbon_shadow.value
         {% endif %}
         {{ promo_sale_price_display }}
       </span>
-      <span class="promo-on-sale-pill" style="background: {{ promo_badge_bg }};">On Sale</span>
+      <span class="promo-on-sale-pill" style="background: {{ promo_badge_bg }};{% if promo_pill_radius != blank %} border-radius: {{ promo_pill_radius }}px;{% endif %}">On Sale</span>
     {%- else -%}
       {% if product.compare_at_price > product.price %}
         <span class="old-price">{{ product_compare_at_price }}</span>
