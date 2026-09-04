@@ -41,27 +41,12 @@
 .product__block--lines {
     display: none !important;
 }
-.cw-bb-color-top-text {
-    font-size: 16px;
-    line-height: 110%;
-    letter-spacing: 0;
-    font-weight: 400;
-    font-family: Inter, sans-serif;
-    color: #2A2724;
-}
-
-.cw-bb-color-top-text img {
-    max-width: 66px;
-    object-fit: contain;
-}
-
 .cw-bb-color-description {
     font-size: 18px;
     line-height: 150%;
     font-weight: 400;
     color: #2A2724;
     font-family: Inter, sans-serif;
-    padding-top: 15px;
 }
 
 .cw-bb-color-features ul li {
@@ -157,9 +142,45 @@
     gap: 5px;
 }
 
-.cw-bb-rating-image img {
-    max-width: 94px;
-    object-fit: contain;
+/* Match Broadcast's solid buttons (ATC + cart bar) to the page's custom-button
+   hover: a plain background fade to the brighter token with the text color
+   held, instead of the theme's skewed ::after wipe + grey hover text. */
+.product__submit__buttons .btn--solid,
+.cart-bar__submit .btn--solid {
+    transition: background-color 0.3s ease;
+}
+
+.product__submit__buttons .btn--solid:after,
+.cart-bar__submit .btn--solid:after {
+    content: none;
+}
+
+@media (hover: hover) {
+  .product__submit__buttons .btn--solid:hover,
+  .cart-bar__submit .btn--solid:hover {
+    background-color: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+    border-color: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+    color: var(--BTN-PRIMARY-TEXT-COLOR);
+  }
+}
+
+.cw-bb-rating-image {
+    display: inline-block;
+    position: relative;
+    line-height: 0;
+}
+
+.cw-bb-rating-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.cw-bb-rating-image svg {
+    width: 94px;
+    height: auto;
 }
 
 .cw-bb-rating-text {
@@ -212,6 +233,11 @@
 }
 .product__block.product__block--buttons.block-padding {
     display: flex;
+}
+
+.product__block.product__block--buttons product-form {
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 .product__block.tabs-wrapper.block-padding {
@@ -338,6 +364,66 @@ span.new-price {
     display: flex;
 }
 
+.cw-bb-pvideo-container {
+    width: 100%;
+}
+
+/* Same arrow treatment as the gallery thumbnail slider: Tolstoy's native
+   arrows stay hidden and our 30px dark-circle buttons forward to them. */
+.cw-bb-pvideo-tolstoy {
+    position: relative;
+}
+
+.cw-bb-pvideo-tolstoy [class*="arrow-button-container"] {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.cw-bb-pvideo-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    background: none;
+    border: 0;
+    padding: 0;
+    line-height: 0;
+    cursor: pointer;
+}
+
+.cw-bb-pvideo-nav--prev {
+    left: 2px;
+}
+
+.cw-bb-pvideo-nav--next {
+    right: 2px;
+}
+
+/* Tolstoy's CSS-module container (hashed class, e.g. _carouselContainer_xxx)
+   renders at 90% — stretch it; matched by stable substring since the hash
+   changes with their deploys. */
+.cw-bb-pvideo-tolstoy [class*="carouselContainer"] {
+    width: 95% !important;
+    max-width: 95% !important;
+}
+
+.cw-bb-pvideo-nav svg {
+    width: 36px;
+    height: 36px;
+    transition: transform 0.3s ease;
+}
+
+@media (hover: hover) {
+  .cw-bb-pvideo-nav:hover svg {
+    transform: scale(1.08);
+  }
+}
+
+.cw-bb-pvideo-nav:focus-visible {
+    outline: 2px solid var(--COLOR-TEXT);
+    outline-offset: 2px;
+}
+
 .cw-bb-pvideo-title {
     font-size: 36px;
     letter-spacing: -1px;
@@ -345,6 +431,13 @@ span.new-price {
     font-weight: 400;
     color: #2A2724;
     font-family: 'Cormorant',sans-serif;
+    text-align: center;
+}
+
+@media only screen and (min-width: 601px) {
+    .product__badge {
+        margin-top: 15px;
+    }
 }
 
 .cw-mobile{
@@ -454,8 +547,8 @@ div#Product--template--26106250068272__main {
     padding-top: 20px !important;
 }
 
-.cw-bb-rating-image img {
-    max-width: 84px;
+.cw-bb-rating-image svg {
+    width: 84px;
 }
 
 .cw-bb-rating-text {
@@ -472,14 +565,6 @@ div#Product--template--26106250068272__main {
 
 .template-product .product__price {
     font-size: 20px !important;
-}
-
-.cw-bb-color-top-text {
-    font-size: 14px;
-}
-
-.cw-bb-color-top-text img {
-    max-width: 59px;
 }
 
 .cw-bb-color-description {font-size: 16px;}

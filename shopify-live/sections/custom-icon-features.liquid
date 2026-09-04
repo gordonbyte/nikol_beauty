@@ -7,6 +7,7 @@
 <style>
 .custom-icon-features {
   background: var(--custom-icon-features-bg);
+  overflow: hidden;
 }
 
 .custom-icon-features__container {
@@ -49,6 +50,7 @@
 
 .custom-icon-features__feature-icon img {
   max-width: 130px;
+  height: auto;
   object-fit: contain;
 }
 
@@ -70,12 +72,45 @@
 
 .custom-icon-features__image {
   width: 50%;
+  overflow: hidden;
+  align-self: stretch;
 }
 
 .custom-icon-features__image img {
+  display: block;
   width: 100%;
   max-width: 100%;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Hover life: the portrait eases into a gentle zoom under the pointer. */
+@media (hover: hover) {
+  .custom-icon-features__image img {
+    transition: transform 0.45s ease;
+  }
+
+  .custom-icon-features__image:hover img {
+    transform: scale(1.02);
+  }
+}
+
+/* Scroll-in reveal: initial hidden states apply ONLY once JS adds anim-ready,
+   so content stays visible without JS and under reduced motion. The image
+   reveal lives on the wrapper so it never collides with the img hover zoom. */
+.custom-icon-features.anim-ready .custom-icon-features__heading,
+.custom-icon-features.anim-ready .custom-icon-features__subtitle,
+.custom-icon-features.anim-ready .custom-icon-features__feature,
+.custom-icon-features.anim-ready .custom-icon-features__button,
+.custom-icon-features.anim-ready .custom-icon-features__image {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.custom-icon-features.anim-ready .is-inview {
+  opacity: 1;
+  transform: none;
 }
 
 .custom-icon-features__button a {
@@ -93,6 +128,29 @@
   line-height: 26px;
   letter-spacing: 0;
   cursor: pointer;
+  gap: 5px;
+  transition: background 0.3s ease;
+}
+
+.custom-icon-features__button a:focus-visible {
+  background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+  color: var(--BTN-PRIMARY-TEXT-COLOR);
+}
+
+@media (hover: hover) {
+  .custom-icon-features__button a:hover {
+    background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+    color: var(--BTN-PRIMARY-TEXT-COLOR);
+  }
+
+  .custom-icon-features__button a svg {
+    transition: transform 0.5s ease;
+    transform: translateZ(0);
+  }
+
+  .custom-icon-features__button a:hover svg {
+    transform: translate3d(5px, 0, 0);
+  }
 }
 
 @media only screen and (max-width: 1600px) {
@@ -188,7 +246,12 @@
 
       {%- if section.settings.button_text != blank and section.settings.button_link != blank -%}
         <div class="custom-icon-features__button">
-          <a href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
+          <a href="{{ section.settings.button_link }}">
+            {{ section.settings.button_text }}
+            <svg width="22" height="13" viewBox="0 0 22 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <path d="M0.843262 5.36644C0.377534 5.36644 0 5.74399 0 6.20972C0 6.67544 0.377534 7.05299 0.843262 7.05299H20.8433C21.309 7.05299 21.6866 6.67544 21.6866 6.20972C21.6866 5.74399 21.309 5.36644 20.8433 5.36644H0.843262ZM21.4395 6.806C21.7689 6.47668 21.7689 5.94275 21.4395 5.61343L16.073 0.24687C15.7437 -0.0824491 15.2097 -0.0824491 14.8804 0.24687C14.5511 0.576189 14.5511 1.11012 14.8804 1.43944L19.6507 6.20972L14.8804 10.98C14.5511 11.3093 14.5511 11.8432 14.8804 12.1726C15.2097 12.5019 15.7437 12.5019 16.073 12.1726L21.4395 6.806Z" fill="currentColor"/>
+            </svg>
+          </a>
         </div>
       {%- endif -%}
 
@@ -202,6 +265,45 @@
 
   </div>
 </section>
+
+<script>
+  (function () {
+    var root = document.getElementById('IconFeatures-{{ section.id }}');
+    if (!root) return;
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.theme && window.theme.settings && window.theme.settings.enableAnimations === false) return;
+
+    var targets = root.querySelectorAll('.custom-icon-features__heading, .custom-icon-features__subtitle, .custom-icon-features__feature, .custom-icon-features__button, .custom-icon-features__image');
+    if (!targets.length) return;
+
+    root.classList.add('anim-ready');
+
+    /* Items entering together stagger 90ms apart in DOM order; the batch
+       resets between bursts so later reveals start immediately. */
+    var batch = 0;
+    var lastHit = 0;
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var now = performance.now();
+        if (now - lastHit > 400) batch = 0;
+        lastHit = now;
+        el.style.transitionDelay = Math.min(batch * 90, 540) + 'ms';
+        batch++;
+        el.classList.add('is-inview');
+        el.addEventListener('transitionend', function clear() {
+          el.style.transitionDelay = '';
+          el.removeEventListener('transitionend', clear);
+        });
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.15 });
+
+    targets.forEach(function (t) { observer.observe(t); });
+  })();
+</script>
 
 {% schema %}
 {

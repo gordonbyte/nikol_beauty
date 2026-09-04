@@ -125,11 +125,9 @@
                       <a href="{{ link_url }}" class="video-gallery-video-card" data-video-url="{{ video.video_url }}" {% if section.settings.use_youtube_links %}target="_blank"{% endif %}>
                         <div class="video-gallery-video-thumbnail">
                           <img src="{{ thumbnail_url }}" alt="{{ video.title }}" loading="lazy">
-                          <div class="video-gallery-video-overlay">
-                            <svg class="video-gallery-play-icon" width="48" height="48" viewBox="0 0 24 24" fill="white">
-                              <path d="M8 5v14l11-7z"/>
-                            </svg>
-                          </div>
+                          {% if section.settings.show_play_icon %}
+                            <svg class="video-gallery-play-icon" width="48" height="48" viewBox="0 0 24 24" fill="white" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg>
+                          {% endif %}
                         </div>
                         <div class="video-gallery-video-info">
                           <h3 class="video-gallery-video-title">{{ video.title }}</h3>
@@ -261,11 +259,9 @@
                       <a href="{{ link_url }}" class="video-gallery-video-card" data-video-url="{{ video.video_url }}" {% if section.settings.use_youtube_links %}target="_blank"{% endif %}>
                         <div class="video-gallery-video-thumbnail">
                           <img src="{{ thumbnail_url }}" alt="{{ video.title }}" loading="lazy">
-                          <div class="video-gallery-video-overlay">
-                            <svg class="video-gallery-play-icon" width="48" height="48" viewBox="0 0 24 24" fill="white">
-                              <path d="M8 5v14l11-7z"/>
-                            </svg>
-                          </div>
+                          {% if section.settings.show_play_icon %}
+                            <svg class="video-gallery-play-icon" width="48" height="48" viewBox="0 0 24 24" fill="white" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg>
+                          {% endif %}
                         </div>
                         <div class="video-gallery-video-info">
                           <h3 class="video-gallery-video-title">{{ video.title }}</h3>
@@ -488,6 +484,17 @@
   border-radius: 12px;
 }
 
+.video-gallery-play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.45));
+  pointer-events: none;
+}
+
 .video-gallery-video-thumbnail img {
   width: 100%;
   height: auto;
@@ -495,28 +502,11 @@
   vertical-align: middle;
 }
 
-.video-gallery-video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
 
-.video-gallery-video-card:hover .video-gallery-video-overlay {
-  opacity: 1;
-}
 
-.video-gallery-play-icon {
-  width: 48px;
-  height: 48px;
-}
+.video-gallery-video-card:hover 
+
+
 
 .video-gallery-video-info {
   padding: 15px 0;
@@ -678,11 +668,7 @@ document.addEventListener('DOMContentLoaded', function() {
     link.innerHTML = `
       <div class="video-gallery-video-thumbnail">
         <img src="${videoData.thumbnailUrl}" alt="${videoData.title}" loading="lazy">
-        <div class="video-gallery-video-overlay">
-          <svg class="video-gallery-play-icon" width="48" height="48" viewBox="0 0 24 24" fill="white">
-            <path d="M8 5v14l11-7z"/>
-          </svg>
-        </div>
+        {% if section.settings.show_play_icon %}<svg class="video-gallery-play-icon" width="48" height="48" viewBox="0 0 24 24" fill="white" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg>{% endif %}
       </div>
       <div class="video-gallery-video-info">
         <h3 class="video-gallery-video-title">${videoData.title}</h3>
@@ -820,6 +806,12 @@ document.addEventListener('DOMContentLoaded', function() {
       "label": "Use YouTube Links Instead of Video Pages",
       "default": false,
       "info": "When checked, video cards will link directly to YouTube. When unchecked, they will link to individual video pages (requires 'Publish entries as web pages' to be active)."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_play_icon",
+      "label": "Show play icon on thumbnails",
+      "default": false
     }
   ],
   "presets": [

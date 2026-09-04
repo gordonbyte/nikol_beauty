@@ -3,28 +3,53 @@
 {%- comment -%} Review-card styles (self-contained; previously inherited from the alternating-rows section) {%- endcomment -%}
 <style>
 .mp-review-box {
+    display: flex;
+    flex-direction: column;
     margin-top: 20px;
+    padding: 20px 30px;
+    background: #f7f2ed;
 }
-.mp-review-stars img {
-    max-width: 95px;
-    object-fit: contain;
+.mp-review-stars {
+    display: inline-block;
+    position: relative;
+    line-height: 0;
+}
+.mp-review-stars-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+}
+.mp-review-stars svg {
+    width: 95px;
+    height: auto;
+}
+.mp-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 .mp-review-text {
     font-size: var(--FONT-SIZE-BASE);
     line-height: 150%;
     font-weight: 400;
     color: #2A2724;
-    padding-top: 5px;
     font-family: 'Inter', sans-serif;
 }
 .mp-author-box {
     display: flex;
     align-items: center;
     gap: 5px;
-    margin-top: 10px;
 }
 .mp-author-name {
-    font-size: var(--FONT-SIZE-BASE);
+    font-size: 14px;
     line-height: 150%;
     font-weight: 400;
     color: #2A2724;
@@ -40,7 +65,7 @@
     object-fit: contain;
 }
 .mp-verified-text {
-    font-size: var(--FONT-SIZE-BASE);
+    font-size: 14px;
     line-height: 150%;
     font-weight: 400;
     color: #2A2724;
@@ -48,20 +73,14 @@
 }
 @media only screen and (max-width: 600px) {
 .mp-review-box {
-    padding-left: 15px;
+    padding: 15px 20px;
     margin-top: 15px;
 }
 .mp-review-text {
     font-size: var(--FONT-SIZE-BASE);
 }
-.mp-review-stars img {
-    max-width: 85px;
-}
-.mp-author-name {
-    font-size: var(--FONT-SIZE-BASE);
-}
-.mp-verified-text {
-    font-size: var(--FONT-SIZE-BASE);
+.mp-review-stars svg {
+    width: 85px;
 }
 .mp-verified img {
     max-width: 12px;
@@ -275,6 +294,47 @@
       Watch Our Products In Action
     </div>
 
+    {%- assign pvideo_tolstoy_id = section.settings.pvideo_tolstoy_publish_id | strip -%}
+    {%- if pvideo_tolstoy_id != blank -%}
+      <div class="cw-bb-pvideo-tolstoy">
+        <div class="tolstoy-carousel" data-priority="high" data-publish-id="{{ pvideo_tolstoy_id }}"></div>
+        <button type="button" class="cw-bb-pvideo-nav cw-bb-pvideo-nav--prev" aria-label="Previous videos">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <rect width="30" height="30" rx="15" transform="matrix(-1 0 0 1 30 0)" fill="#45413B"/>
+            <path d="M18 10.6955C18 10.7317 17.991 10.7739 17.9729 10.8221C17.9548 10.8704 17.9337 10.9065 17.9096 10.9306L13.8434 15L17.9096 19.0513C17.9337 19.0875 17.9548 19.1266 17.9729 19.1689C17.991 19.2111 18 19.2502 18 19.2864C18 19.3346 17.991 19.3799 17.9729 19.4221C17.9548 19.4643 17.9337 19.5034 17.9096 19.5396L17.3855 20.046C17.3494 20.0822 17.3102 20.1093 17.2681 20.1274C17.2259 20.1455 17.1867 20.1545 17.1506 20.1545C17.1024 20.1545 17.0572 20.1455 17.0151 20.1274C16.9729 20.1093 16.9398 20.0822 16.9157 20.046L12.0904 15.2351C12.0663 15.199 12.0452 15.1598 12.0271 15.1176C12.009 15.0754 12 15.0362 12 15C12 14.9518 12.009 14.9066 12.0271 14.8644C12.0452 14.8222 12.0663 14.789 12.0904 14.7649L16.9157 9.93591C16.9398 9.9118 16.9729 9.8907 17.0151 9.87261C17.0572 9.85453 17.1024 9.84548 17.1506 9.84548C17.1867 9.84548 17.2259 9.85453 17.2681 9.87261C17.3102 9.8907 17.3494 9.9118 17.3855 9.93591L17.9096 10.4604C17.9337 10.4845 17.9548 10.5177 17.9729 10.5599C17.991 10.6021 18 10.6473 18 10.6955Z" fill="white"/>
+          </svg>
+        </button>
+        <button type="button" class="cw-bb-pvideo-nav cw-bb-pvideo-nav--next" aria-label="Next videos">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <rect width="30" height="30" rx="15" fill="#45413B"/>
+            <path d="M12 10.6955C12 10.7317 12.009 10.7739 12.0271 10.8221C12.0452 10.8704 12.0663 10.9065 12.0904 10.9306L16.1566 15L12.0904 19.0513C12.0663 19.0875 12.0452 19.1266 12.0271 19.1689C12.009 19.2111 12 19.2502 12 19.2864C12 19.3346 12.009 19.3799 12.0271 19.4221C12.0452 19.4643 12.0663 19.5034 12.0904 19.5396L12.6145 20.046C12.6506 20.0822 12.6898 20.1093 12.7319 20.1274C12.7741 20.1455 12.8133 20.1545 12.8494 20.1545C12.8976 20.1545 12.9428 20.1455 12.9849 20.1274C13.0271 20.1093 13.0602 20.0822 13.0843 20.046L17.9096 15.2351C17.9337 15.199 17.9548 15.1598 17.9729 15.1176C17.991 15.0754 18 15.0362 18 15C18 14.9518 17.991 14.9066 17.9729 14.8644C17.9548 14.8222 17.9337 14.789 17.9096 14.7649L13.0843 9.93591C13.0602 9.9118 13.0271 9.8907 12.9849 9.87261C12.9428 9.85453 12.8976 9.84548 12.8494 9.84548C12.8133 9.84548 12.7741 9.85453 12.7319 9.87261C12.6898 9.8907 12.6506 9.9118 12.6145 9.93591L12.0904 10.4604C12.0663 10.4845 12.0452 10.5177 12.0271 10.5599C12.009 10.6021 12 10.6473 12 10.6955Z" fill="white"/>
+          </svg>
+        </button>
+      </div>
+      {% render 'custom-tolstoy-player' %}
+      <script>
+        (function () {
+          var wrap = document.querySelector('.cw-bb-pvideo-tolstoy');
+          if (!wrap) return;
+          var carousel = wrap.querySelector('.tolstoy-carousel');
+          var nativeArrow = function (dir) {
+            var sel = dir < 0 ? '.tolstoy-previous-button' : '.tolstoy-next-button';
+            return carousel.querySelector(sel) || wrap.querySelector(sel);
+          };
+          var forward = function (dir) {
+            var target = nativeArrow(dir);
+            if (!target) return;
+            ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'click'].forEach(function (type) {
+              try {
+                target.dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, view: window }));
+              } catch (e) {}
+            });
+          };
+          wrap.querySelector('.cw-bb-pvideo-nav--prev').addEventListener('click', function () { forward(-1); });
+          wrap.querySelector('.cw-bb-pvideo-nav--next').addEventListener('click', function () { forward(1); });
+        })();
+      </script>
+    {%- else -%}
       {%- for block in section.blocks -%}
  {%- case block.type -%}
                   {%- when '@app' -%}
@@ -285,6 +345,7 @@
                     {% endif %}
                     {% endcase %}
   {% endfor %}
+    {%- endif -%}
   </div>
 </div>
 
@@ -586,20 +647,44 @@
                       <div class="product__block block-padding" {{ block_style }} {{ block.shopify_attributes }}>
                         <div class="cw-bb-rating-box" {% if block.settings.anchor_id != blank %}id="{{ block.settings.anchor_id }}"{% endif %}>
                           {% if block.settings.link_url != blank %}<a href="{{ block.settings.link_url }}">{% endif %}
-                            {%- if block.settings.rating_image != blank or block.settings.rating_image_url != blank -%}
+                            {%- liquid
+                              assign mf_rating = product.metafields.reviews.rating.value.rating | times: 1.0
+                              if mf_rating > 0
+                                assign star_rating = mf_rating
+                              else
+                                assign star_rating = block.settings.star_rating | default: 5 | times: 1.0
+                              endif
+                              assign star_rating = star_rating | at_most: 5.0 | at_least: 0.0
+                              assign star_percent = star_rating | divided_by: 5.0 | times: 100.0 | round: 1
+                            -%}
+                            {%- if star_rating > 0 -%}
                               <div class="cw-bb-rating-image">
-                                {%- if block.settings.rating_image != blank -%}
-                                  {{ block.settings.rating_image | image_url: width: 320 | image_tag: alt: block.settings.rating_image_alt, loading: 'lazy' }}
-                                {%- else -%}
-                                  <img src="{{ block.settings.rating_image_url }}" alt="{{ block.settings.rating_image_alt }}" loading="lazy">
-                                {%- endif -%}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="190" height="36" viewBox="0 0 190 36" fill="#DDD6CF" aria-hidden="true" focusable="false">
+                                  <defs>
+                                    <path id="CwBbRatingStar-{{ block.id }}" d="M 0 -18 L 4.04 -5.56 L 17.12 -5.56 L 6.53 2.12 L 10.58 14.56 L 0 6.88 L -10.58 14.56 L -6.53 2.12 L -17.12 -5.56 L -4.04 -5.56 Z"/>
+                                  </defs>
+                                  <use href="#CwBbRatingStar-{{ block.id }}" transform="translate(19 19.7)"/>
+                                  <use href="#CwBbRatingStar-{{ block.id }}" transform="translate(57 19.7)"/>
+                                  <use href="#CwBbRatingStar-{{ block.id }}" transform="translate(95 19.7)"/>
+                                  <use href="#CwBbRatingStar-{{ block.id }}" transform="translate(133 19.7)"/>
+                                  <use href="#CwBbRatingStar-{{ block.id }}" transform="translate(171 19.7)"/>
+                                </svg>
+                                <span class="cw-bb-rating-fill" style="width: {{ star_percent }}%">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="190" height="36" viewBox="0 0 190 36" fill="#FB6D00" aria-hidden="true" focusable="false">
+                                    <use href="#CwBbRatingStar-{{ block.id }}" transform="translate(19 19.7)"/>
+                                    <use href="#CwBbRatingStar-{{ block.id }}" transform="translate(57 19.7)"/>
+                                    <use href="#CwBbRatingStar-{{ block.id }}" transform="translate(95 19.7)"/>
+                                    <use href="#CwBbRatingStar-{{ block.id }}" transform="translate(133 19.7)"/>
+                                    <use href="#CwBbRatingStar-{{ block.id }}" transform="translate(171 19.7)"/>
+                                  </svg>
+                                </span>
                               </div>
                             {%- endif -%}
 
                             <div class="cw-bb-rating-text">
-                              {%- if block.settings.rating_text != blank -%}<strong>{{ block.settings.rating_text }}</strong>{%- endif -%}
-                              {%- if block.settings.review_count_text != blank -%} stars | <strong>{{ block.settings.review_count_text }}</strong>{%- endif -%}
-                              {%- if block.settings.summary_suffix != blank -%} {{ block.settings.summary_suffix }}{%- endif -%}
+                              {%- if mf_rating > 0 -%}<strong>{{ mf_rating | round: 1 }}/5</strong>{%- elsif block.settings.rating_text != blank -%}<strong>{{ block.settings.rating_text }}</strong>{%- endif -%}
+                              {%- if block.settings.review_count_text != blank %} stars | <strong>{{ block.settings.review_count_text }}</strong>{%- endif -%}
+                              {%- if block.settings.summary_suffix != blank %} {{ block.settings.summary_suffix }}{%- endif -%}
                             </div>
                           {% if block.settings.link_url != blank %}</a>{% endif %}
                         </div>
@@ -609,26 +694,6 @@
                   {%- when 'payment_details' -%}
                     <div class="product__block block-padding" {{ block_style }} {{ block.shopify_attributes }}>
                       <div class="cw-bb-color-main-container">
-                        {%- if block.settings.installment_text != blank or block.settings.payment_logo != blank or block.settings.learn_more_text != blank -%}
-                          <div class="cw-bb-color-top-bar">
-                            <div class="cw-bb-color-top-inner">
-                              <div class="cw-bb-color-top-text">
-                                {{ block.settings.installment_text }}
-                                {%- if block.settings.payment_logo != blank or block.settings.payment_logo_url != blank -%}
-                                  {%- if block.settings.payment_logo != blank -%}
-                                    {{ block.settings.payment_logo | image_url: width: 180 | image_tag: class: 'cw-bb-color-shop-pay-img', alt: block.settings.payment_logo_alt, loading: 'lazy' }}
-                                  {%- else -%}
-                                    <img class="cw-bb-color-shop-pay-img" src="{{ block.settings.payment_logo_url }}" alt="{{ block.settings.payment_logo_alt }}" loading="lazy">
-                                  {%- endif -%}
-                                {%- endif -%}
-                                {%- if block.settings.learn_more_text != blank -%}
-                                  <a href="{{ block.settings.learn_more_url | default: '#' }}" class="cw-bb-color-learn-more">{{ block.settings.learn_more_text }}</a>
-                                {%- endif -%}
-                              </div>
-                            </div>
-                          </div>
-                        {%- endif -%}
-
                         {%- if block.settings.description != blank -%}
                           <div class="cw-bb-color-description">
                             {{ block.settings.description }}
@@ -798,13 +863,32 @@
                     {%- if block.settings.quote != blank -%}
                       <div class="product__block block-padding" {{ block_style }} {{ block.shopify_attributes }}>
                         <div class="mp-review-box main-product-box">
-                          {%- if block.settings.star_image != blank or block.settings.star_image_url != blank -%}
+                          {%- liquid
+                            assign star_rating = block.settings.star_rating | default: 5 | times: 1.0 | at_most: 5.0 | at_least: 0.0
+                            assign star_percent = star_rating | divided_by: 5.0 | times: 100.0 | round: 1
+                          -%}
+                          {%- if star_rating > 0 -%}
                             <div class="mp-review-stars">
-                              {%- if block.settings.star_image != blank -%}
-                                {{ block.settings.star_image | image_url: width: 320 | image_tag: alt: block.settings.star_image_alt, loading: 'lazy' }}
-                              {%- else -%}
-                                <img src="{{ block.settings.star_image_url }}" alt="{{ block.settings.star_image_alt }}" loading="lazy">
-                              {%- endif -%}
+                              <svg xmlns="http://www.w3.org/2000/svg" width="190" height="36" viewBox="0 0 190 36" fill="#DDD6CF" aria-hidden="true" focusable="false">
+                                <defs>
+                                  <path id="MpReviewStar-{{ block.id }}" d="M 0 -18 L 4.04 -5.56 L 17.12 -5.56 L 6.53 2.12 L 10.58 14.56 L 0 6.88 L -10.58 14.56 L -6.53 2.12 L -17.12 -5.56 L -4.04 -5.56 Z"/>
+                                </defs>
+                                <use href="#MpReviewStar-{{ block.id }}" transform="translate(19 19.7)"/>
+                                <use href="#MpReviewStar-{{ block.id }}" transform="translate(57 19.7)"/>
+                                <use href="#MpReviewStar-{{ block.id }}" transform="translate(95 19.7)"/>
+                                <use href="#MpReviewStar-{{ block.id }}" transform="translate(133 19.7)"/>
+                                <use href="#MpReviewStar-{{ block.id }}" transform="translate(171 19.7)"/>
+                              </svg>
+                              <span class="mp-review-stars-fill" style="width: {{ star_percent }}%">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="190" height="36" viewBox="0 0 190 36" fill="#FB6D00" aria-hidden="true" focusable="false">
+                                  <use href="#MpReviewStar-{{ block.id }}" transform="translate(19 19.7)"/>
+                                  <use href="#MpReviewStar-{{ block.id }}" transform="translate(57 19.7)"/>
+                                  <use href="#MpReviewStar-{{ block.id }}" transform="translate(95 19.7)"/>
+                                  <use href="#MpReviewStar-{{ block.id }}" transform="translate(133 19.7)"/>
+                                  <use href="#MpReviewStar-{{ block.id }}" transform="translate(171 19.7)"/>
+                                </svg>
+                              </span>
+                              <span class="mp-sr-only">Rated {{ star_rating }} out of 5 stars</span>
                             </div>
                           {%- endif -%}
 
@@ -1405,11 +1489,115 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+<style>
+/* Product-wrapper reveal (same system as the homepage-style-2 sections):
+   hidden start states apply ONLY once JS adds cs-anim-ready, so content stays
+   visible without JS, under reduced motion, and with theme animations off.
+   The gallery animates opacity only — it can be sticky, and transforms fight
+   sticky positioning. */
+.cs-anim-ready .cw-new-popup-main-slider,
+.cs-anim-ready .cw-new-popup-thumb-slider-vt {
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.cs-anim-ready .product__content .product__block {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.cs-anim-ready .cw-new-popup-main-slider.is-inview,
+.cs-anim-ready .cw-new-popup-thumb-slider-vt.is-inview {
+  opacity: 1;
+}
+
+.cs-anim-ready .product__content .product__block.is-inview {
+  opacity: 1;
+  transform: none;
+}
+</style>
+
+<script>
+  (function () {
+    var root = document.getElementById('Product--{{ unique }}');
+    if (!root) return;
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.theme && window.theme.settings && window.theme.settings.enableAnimations === false) return;
+
+    var targets = [];
+    var revealNow = [];
+    root.querySelectorAll('.cw-new-popup-main-slider, .cw-new-popup-thumb-slider-vt').forEach(function (g) { targets.push(g); });
+    root.querySelectorAll('.product__content .product__block').forEach(function (b) {
+      /* Blocks without layout (display:none bundle items, empty upsell) never
+         intersect — pre-reveal them so they're visible if the theme ever
+         shows them later. */
+      if (b.offsetParent === null) revealNow.push(b);
+      else targets.push(b);
+    });
+    if (!targets.length && !revealNow.length) return;
+
+    root.classList.add('cs-anim-ready');
+    revealNow.forEach(function (b) { b.classList.add('is-inview'); });
+
+    /* The section parses (and hides) long before first paint; starting the
+       observers immediately lets the whole cascade finish invisibly during
+       page load. Begin revealing only after the first painted frame. */
+    var start = function () {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          targets.forEach(function (t) { observer.observe(t); });
+        });
+      });
+    };
+
+    /* Items entering the viewport together stagger 70ms apart (load-in burst
+       above the fold, scroll reveals below); the batch counter resets between
+       bursts so later reveals start immediately. */
+    var batch = 0;
+    var lastHit = 0;
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var now = performance.now();
+        if (now - lastHit > 400) batch = 0;
+        lastHit = now;
+        el.style.transitionDelay = Math.min(batch * 70, 560) + 'ms';
+        batch++;
+        el.classList.add('is-inview');
+        el.addEventListener('transitionend', function clear() {
+          el.style.transitionDelay = '';
+          el.removeEventListener('transitionend', clear);
+        });
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.12 });
+
+    if (document.readyState !== 'loading') {
+      start();
+    } else {
+      document.addEventListener('DOMContentLoaded', start);
+    }
+  })();
+</script>
+
 {% schema %}
   {
     "name": "[Custom] Coming Soon",
     "class": "section-overlay-header",
     "settings": [
+      {
+        "type": "header",
+        "content": "Watch Our Products In Action"
+      },
+      {
+        "type": "text",
+        "id": "pvideo_tolstoy_publish_id",
+        "label": "Tolstoy publish ID",
+        "info": "Shows that Tolstoy widget's full playlist under the title. Leave empty for the legacy Channelize app block."
+      },
       {
         "type": "header",
         "content": "Layout"
@@ -2038,25 +2226,17 @@ document.addEventListener("DOMContentLoaded", function () {
         "name": "Rating summary",
         "settings": [
           {
-            "type": "image_picker",
-            "id": "rating_image",
-            "label": "Rating image"
-          },
-          {
             "type": "text",
-            "id": "rating_image_url",
-            "label": "Rating image URL"
-          },
-          {
-            "type": "text",
-            "id": "rating_image_alt",
-            "label": "Image alt text",
-            "default": "Product rating"
+            "id": "star_rating",
+            "label": "Star rating (0-5)",
+            "info": "Fallback only — the product's review rating metafield (reviews.rating) drives the stars and the X/5 text when present. Controls how much of the stars are filled. 0 hides the stars.",
+            "default": "4.76"
           },
           {
             "type": "text",
             "id": "rating_text",
             "label": "Rating text",
+            "info": "Fallback only — ignored when the product has a review rating metafield.",
             "default": "4.76/5"
           },
           {
@@ -2101,39 +2281,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "type": "payment_details",
         "name": "Payment & Features",
         "settings": [
-          {
-            "type": "text",
-            "id": "installment_text",
-            "label": "Installment text",
-            "default": "Pay in 2 interest-free installments of $21.50 with"
-          },
-          {
-            "type": "image_picker",
-            "id": "payment_logo",
-            "label": "Payment logo"
-          },
-          {
-            "type": "text",
-            "id": "payment_logo_url",
-            "label": "Payment logo URL"
-          },
-          {
-            "type": "text",
-            "id": "payment_logo_alt",
-            "label": "Payment logo alt text",
-            "default": "Payment logo"
-          },
-          {
-            "type": "text",
-            "id": "learn_more_text",
-            "label": "Learn more text",
-            "default": "Learn more"
-          },
-          {
-            "type": "url",
-            "id": "learn_more_url",
-            "label": "Learn more link"
-          },
           {
             "type": "richtext",
             "id": "description",
@@ -2302,20 +2449,14 @@ document.addEventListener("DOMContentLoaded", function () {
         "name": "Testimonial",
         "settings": [
           {
-            "type": "image_picker",
-            "id": "star_image",
-            "label": "Stars image"
-          },
-          {
-            "type": "text",
-            "id": "star_image_url",
-            "label": "Stars image URL"
-          },
-          {
-            "type": "text",
-            "id": "star_image_alt",
-            "label": "Stars image alt text",
-            "default": "Review stars"
+            "type": "range",
+            "id": "star_rating",
+            "label": "Star rating",
+            "info": "Controls how much of the stars are filled. 0 hides the stars.",
+            "min": 0,
+            "max": 5,
+            "step": 0.1,
+            "default": 5
           },
           {
             "type": "richtext",

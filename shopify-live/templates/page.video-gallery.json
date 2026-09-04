@@ -17,7 +17,8 @@
         "fierceaging_title": "#FIERCEAGING Series",
         "fierceaging_description": "Embrace aging with confidence and style. Discover tips, tricks, and inspiration for looking and feeling your best at every age.",
         "store_url": "/collections/all",
-        "youtube_channel_url": "#"
+        "youtube_channel_url": "#",
+        "show_play_icon": true
       }
     }
   },

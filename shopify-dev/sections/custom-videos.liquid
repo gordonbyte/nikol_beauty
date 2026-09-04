@@ -8,6 +8,7 @@
 .custom-videos {
   padding: 80px 0;
   background: var(--custom-videos-bg);
+  overflow-x: clip;
 }
 
 .custom-videos__parent {
@@ -43,6 +44,114 @@
   width: 100%;
 }
 
+.custom-videos__tolstoy {
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+/* Edge fades + floating circle arrows, matching custom-product-slider so the
+   carousels read as one system. Tolstoy's own arrows stay in the DOM (hidden)
+   and our buttons forward clicks to them — Tolstoy keeps doing the scrolling. */
+@media only screen and (min-width: 1200px) {
+  .custom-videos__tolstoy::before,
+  .custom-videos__tolstoy::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 260px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .custom-videos__tolstoy::before {
+    left: 0;
+    background: linear-gradient(to right, var(--custom-videos-bg) 30%, transparent);
+  }
+
+  .custom-videos__tolstoy::after {
+    right: 0;
+    background: linear-gradient(to left, var(--custom-videos-bg) 30%, transparent);
+  }
+}
+
+.custom-videos__tolstoy [class*="arrow-button-container"] {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.custom-videos__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  background: none;
+  border: 0;
+  padding: 0;
+  line-height: 0;
+  cursor: pointer;
+}
+
+.custom-videos__nav--prev {
+  left: 40px;
+}
+
+.custom-videos__nav--next {
+  right: 40px;
+}
+
+.custom-videos__nav svg {
+  transition: transform 0.3s ease;
+}
+
+.custom-videos__nav svg rect {
+  fill: #ffffff;
+}
+
+.custom-videos__nav svg path {
+  fill: var(--custom-videos-bg);
+}
+
+@media (hover: hover) {
+  .custom-videos__nav:hover svg {
+    transform: scale(1.08);
+  }
+}
+
+.custom-videos__nav:focus-visible {
+  outline: 2px solid var(--COLOR-TEXT);
+  outline-offset: 2px;
+}
+
+@media only screen and (max-width: 749px) {
+  .custom-videos__nav--prev {
+    left: 10px;
+  }
+
+  .custom-videos__nav--next {
+    right: 10px;
+  }
+
+  .custom-videos__nav svg {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.custom-videos__tolstoy .tolstoy-carousel-container,
+.custom-videos__tolstoy .tolstoy-video-carousel-container,
+.custom-videos__tolstoy .tolstoy-carousel-videos-container {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.custom-videos__tolstoy [class*="carouselContainer"] {
+  width: 95% !important;
+  max-width: 95% !important;
+}
+
 .custom-videos__btn-wrap {
   padding: 0;
   padding-top: 50px;
@@ -70,11 +179,13 @@
 
 .custom-videos__btn-wrap a:focus-visible {
   background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+  color: var(--BTN-PRIMARY-TEXT-COLOR);
 }
 
 @media (hover: hover) {
   .custom-videos__btn-wrap a:hover {
     background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+    color: var(--BTN-PRIMARY-TEXT-COLOR);
   }
 
   .custom-videos__btn-wrap a svg {
@@ -98,6 +209,20 @@
 }
 
 .custom-videos.anim-ready .is-inview {
+  opacity: 1;
+  transform: none;
+}
+
+/* Tolstoy injects its tiles asynchronously and they pop in — hide the
+   carousel until real content exists, then fade it up (is-loaded added by
+   the script below). Rides anim-ready so all the animation guards apply. */
+.custom-videos.anim-ready .custom-videos__tolstoy .tolstoy-carousel {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.custom-videos.anim-ready .custom-videos__tolstoy .tolstoy-carousel.is-loaded {
   opacity: 1;
   transform: none;
 }
@@ -192,26 +317,107 @@ div#shopify-block-ARm9XTUZHZFV1WGhCV__live_shopping_by_channelize_io_shoppable_v
         {%- endif -%}
       </div>
 
-      <div class="custom-videos__slider-wrap">
-        {%- for block in section.blocks -%}
-          {%- if block.settings.video != blank -%}
-            <div class="custom-videos__slide" {{ block.shopify_attributes }}>
-              <div class="custom-videos__box">
-                <video
-                  class="custom-videos__video"
-                  {% if block.settings.poster != blank %}poster="{{ block.settings.poster | image_url: width: 1400 }}"{% endif %}
-                  muted
-                  playsinline
-                  loop
-                  controls
-                >
-                  <source src="{{ block.settings.video }}" type="video/mp4">
-                </video>
+      {%- assign tolstoy_id = section.settings.tolstoy_publish_id | strip -%}
+      {%- if section.settings.content_source == 'tolstoy' and tolstoy_id != blank -%}
+        <div class="custom-videos__tolstoy">
+          <div class="tolstoy-carousel" data-priority="high" data-publish-id="{{ tolstoy_id }}"></div>
+          <button type="button" class="custom-videos__nav custom-videos__nav--prev" aria-label="Previous videos">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <rect width="48" height="48" rx="24" fill="#45413B"></rect>
+              <path d="M28.8 30.8872C28.8 30.8294 28.7855 30.7618 28.7566 30.6847C28.7277 30.6075 28.6939 30.5496 28.6554 30.511L22.1493 24.0001L28.6554 17.518C28.6939 17.4601 28.7277 17.3974 28.7566 17.3299C28.7855 17.2624 28.8 17.1997 28.8 17.1418C28.8 17.0647 28.7855 16.9923 28.7566 16.9248C28.7277 16.8573 28.6939 16.7946 28.6554 16.7367L27.8168 15.9264C27.759 15.8686 27.6963 15.8252 27.6289 15.7962C27.5614 15.7673 27.4987 15.7528 27.4409 15.7528C27.3638 15.7528 27.2915 15.7673 27.224 15.7962C27.1566 15.8252 27.1036 15.8686 27.065 15.9264L19.3445 23.6239C19.306 23.6817 19.2722 23.7444 19.2433 23.812C19.2144 23.8795 19.2 23.9422 19.2 24.0001C19.2 24.0772 19.2144 24.1496 19.2433 24.2171C19.2722 24.2846 19.306 24.3377 19.3445 24.3762L27.065 32.1026C27.1036 32.1412 27.1566 32.175 27.224 32.2039C27.2915 32.2328 27.3638 32.2473 27.4409 32.2473C27.4987 32.2473 27.5614 32.2328 27.6289 32.2039C27.6963 32.175 27.759 32.1412 27.8168 32.1026L28.6554 31.2634C28.6939 31.2248 28.7277 31.1718 28.7566 31.1043C28.7855 31.0367 28.8 30.9644 28.8 30.8872Z" fill="white"></path>
+            </svg>
+          </button>
+          <button type="button" class="custom-videos__nav custom-videos__nav--next" aria-label="Next videos">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <rect width="48" height="48" rx="24" fill="#45413B"></rect>
+              <path d="M19.2 17.1129C19.2 17.1708 19.2145 17.2383 19.2434 17.3155C19.2723 17.3926 19.3061 17.4505 19.3446 17.4891L25.8507 24.0001L19.3446 30.4821C19.3061 30.54 19.2723 30.6027 19.2434 30.6702C19.2145 30.7377 19.2 30.8004 19.2 30.8583C19.2 30.9355 19.2145 31.0078 19.2434 31.0753C19.2723 31.1429 19.3061 31.2056 19.3446 31.2634L20.1832 32.0737C20.241 32.1316 20.3037 32.175 20.3711 32.2039C20.4386 32.2328 20.5013 32.2473 20.5591 32.2473C20.6362 32.2473 20.7085 32.2328 20.776 32.2039C20.8434 32.175 20.8964 32.1316 20.935 32.0737L28.6555 24.3763C28.694 24.3184 28.7278 24.2557 28.7567 24.1882C28.7856 24.1206 28.8 24.0579 28.8 24.0001C28.8 23.9229 28.7856 23.8506 28.7567 23.783C28.7278 23.7155 28.694 23.6625 28.6555 23.6239L20.935 15.8975C20.8964 15.8589 20.8434 15.8252 20.776 15.7962C20.7085 15.7673 20.6362 15.7528 20.5591 15.7528C20.5013 15.7528 20.4386 15.7673 20.3711 15.7962C20.3037 15.8252 20.241 15.8589 20.1832 15.8975L19.3446 16.7367C19.3061 16.7753 19.2723 16.8283 19.2434 16.8959C19.2145 16.9634 19.2 17.0357 19.2 17.1129Z" fill="white"></path>
+            </svg>
+          </button>
+        </div>
+        {% render 'custom-tolstoy-player' %}
+        <script>
+          (function () {
+            var host = document.getElementById('Videos-{{ section.id }}');
+            if (!host) return;
+            var wrap = host.querySelector('.custom-videos__tolstoy');
+            if (!wrap) return;
+            var carousel = wrap.querySelector('.tolstoy-carousel');
+
+            /* Our circle buttons forward a full pointer sequence to Tolstoy's
+               own (visually hidden) arrows. Direction comes from class/aria
+               hints first, then from which side of the carousel's midpoint the
+               arrow sits on — never "leftmost of all matches", which broke the
+               prev button whenever Tolstoy renders only its right arrow at the
+               start position. Dispatch on the deepest match so inner-button
+               handlers fire (events bubble up to container handlers anyway). */
+            /* Exact selectors from Tolstoy's own class map (we/widget.js):
+               previousButton = tolstoy-previous-button, nextButton =
+               tolstoy-next-button. Missing button (e.g. prev at the start
+               position) = no-op. */
+            var nativeArrow = function (dir) {
+              var sel = dir < 0 ? '.tolstoy-previous-button' : '.tolstoy-next-button';
+              return carousel.querySelector(sel) || wrap.querySelector(sel);
+            };
+
+            var forward = function (dir) {
+              var target = nativeArrow(dir);
+              if (!target) return;
+              ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'click'].forEach(function (type) {
+                try {
+                  target.dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, view: window }));
+                } catch (e) {}
+              });
+            };
+
+            wrap.querySelector('.custom-videos__nav--prev').addEventListener('click', function () { forward(-1); });
+            wrap.querySelector('.custom-videos__nav--next').addEventListener('click', function () { forward(1); });
+
+            /* Fade the carousel up once Tolstoy has injected real tiles
+               (safety timeout so nothing can stay hidden if it never loads). */
+            var revealCarousel = function () {
+              carousel.classList.add('is-loaded');
+            };
+            var hasContent = function () {
+              return carousel.querySelector('video, [class*="tile-container"], img');
+            };
+            if (hasContent()) {
+              revealCarousel();
+            } else if ('MutationObserver' in window) {
+              var mo = new MutationObserver(function () {
+                if (hasContent()) {
+                  revealCarousel();
+                  mo.disconnect();
+                }
+              });
+              mo.observe(carousel, { childList: true, subtree: true });
+              setTimeout(revealCarousel, 15000);
+            } else {
+              revealCarousel();
+            }
+          })();
+        </script>
+      {%- else -%}
+        <div class="custom-videos__slider-wrap">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.video != blank -%}
+              <div class="custom-videos__slide" {{ block.shopify_attributes }}>
+                <div class="custom-videos__box">
+                  <video
+                    class="custom-videos__video"
+                    {% if block.settings.poster != blank %}poster="{{ block.settings.poster | image_url: width: 1400 }}"{% endif %}
+                    muted
+                    playsinline
+                    loop
+                    controls
+                  >
+                    <source src="{{ block.settings.video }}" type="video/mp4">
+                  </video>
+                </div>
               </div>
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
-      </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
 
       {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
         <div class="custom-videos__btn-wrap">
@@ -272,6 +478,27 @@ div#shopify-block-ARm9XTUZHZFV1WGhCV__live_shopping_by_channelize_io_shoppable_v
       "id": "subtitle",
       "label": "Section Subtitle",
       "default": "See the products in action."
+    },
+    {
+      "type": "header",
+      "content": "Content source"
+    },
+    {
+      "type": "select",
+      "id": "content_source",
+      "label": "Content source",
+      "options": [
+        { "value": "videos", "label": "Video Slide blocks" },
+        { "value": "tolstoy", "label": "Tolstoy playlist" }
+      ],
+      "default": "videos",
+      "info": "Tolstoy playlist shows the widget below as a full-playlist carousel. Falls back to the Video Slide blocks while the publish ID is empty."
+    },
+    {
+      "type": "text",
+      "id": "tolstoy_publish_id",
+      "label": "Tolstoy publish ID",
+      "info": "The Tolstoy widget whose playlist to show (from the Tolstoy dashboard). Used only when Content source is Tolstoy playlist. Requires the Tolstoy app embed."
     },
     {
       "type": "text",

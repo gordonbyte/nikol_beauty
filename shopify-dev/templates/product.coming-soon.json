@@ -56,8 +56,7 @@
         "code_QTP4Qc": {
           "type": "rating_summary",
           "settings": {
-            "rating_image_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/Stars_Container_a8ef23fa-4cb0-442a-aebc-8875c6ae38e3.png?v=1771227398",
-            "rating_image_alt": "4.76 out of 5 stars",
+            "star_rating": "4.76",
             "rating_text": "4.76/5",
             "review_count_text": "12,000+",
             "summary_suffix": "happy women",
@@ -91,11 +90,6 @@
         "code_CtMwbx": {
           "type": "payment_details",
           "settings": {
-            "installment_text": "Pay in 2 interest-free installments of $21.50 with",
-            "payment_logo_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/Img_-_Shop_Pay.png?v=1771238348",
-            "payment_logo_alt": "Shop Pay",
-            "learn_more_text": "Learn more",
-            "learn_more_url": "#",
             "description": "<p>An esthetician-approved BB Creme for mature skin that evens tone without settling into lines or feeling thick. It softens redness and uneven areas without that \"too much makeup\" look.</p>",
             "feature_1": "Reduces shine without making skin look dull",
             "feature_2": "Stays comfortable around the nose and mouth",
@@ -151,10 +145,6 @@
             "subscriptions_enable_selectors": false,
             "padding_bottom": 16
           }
-        },
-        "5e95bd58-e59e-42dc-a60a-763c3d4df302": {
-          "type": "shopify://apps/se-wishlist-engine/blocks/Product-Page/8f7c0857-8e71-463d-a168-8e133094753b",
-          "settings": {}
         },
         "bundle_item_beginner_1": {
           "type": "bundle_item",
@@ -572,9 +562,7 @@
         "code_dVeTYP": {
           "type": "testimonial_card",
           "settings": {
-            "star_image": "shopify://shop_images/Stars_Container_a8ef23fa-4cb0-442a-aebc-8875c6ae38e3.png",
-            "star_image_url": "",
-            "star_image_alt": "Review Stars",
+            "star_rating": 5,
             "quote": "<p>“I think this is my favourite product. I also gave the creme to my aunty, who is 86 years young. She asked me what i was using. She absolutely loves it.”</p>",
             "author_name": "C.M.",
             "show_verified": true,
@@ -623,7 +611,6 @@
         "color_swatch_light_medium",
         "color_swatch_tan",
         "variants",
-        "5e95bd58-e59e-42dc-a60a-763c3d4df302",
         "bundle_item_beginner_1",
         "bundle_item_beginner_2",
         "bundle_item_beginner_3",
@@ -665,6 +652,7 @@
         ".gravity-button-wrapper {--gravity-button-width: unset;}"
       ],
       "settings": {
+        "pvideo_tolstoy_publish_id": "089bmq19bnsc0",
         "product_sticky_enable": true,
         "image_layout": "thumbnails",
         "image_size": "normal",
@@ -862,7 +850,7 @@
       "settings": {
         "heading": "Natural, Polished Skin In 3 Simple Steps",
         "subheading": "Here’s exactly how Nikol Beauty BB Creme works:",
-        "button_text": "GET YOURS NOW →",
+        "button_text": "GET YOURS NOW",
         "button_link": "#buynow"
       }
     },
@@ -904,7 +892,7 @@
         "heading": "<p>Made With Skin-Safe<br/>Ingredients You Can Trust</p>",
         "subheading": "Formulated to feel comfortable on mature and sensitive skin.",
         "main_image": "shopify://shop_images/ingredients-img.png",
-        "button_text": "GET YOURS NOW →",
+        "button_text": "GET YOURS NOW",
         "button_link": "#buynow"
       }
     },
@@ -932,7 +920,7 @@
             "title": "Won’t Settle Into Fine Lines or Creases",
             "text": "It’s designed specifically for mature skin, so it moves with your face instead of settling into lines as the day goes on.",
             "show_review": true,
-            "stars": "shopify://shop_images/Stars_Container_a8ef23fa-4cb0-442a-aebc-8875c6ae38e3.png",
+            "star_rating": 5,
             "review_text": "“I think this is my favourite product. I also gave the creme to my aunty, who is 86 years young. She asked me what i was using. She absolutely loves it.”",
             "author": "C.M.",
             "verified_icon": "shopify://shop_images/verify.png",
@@ -963,19 +951,33 @@
         "bg_image": "shopify://shop_images/switched-bg.jpg",
         "title": "Why Thousands of Mature Women Switched to Nikol beauty BB Creme",
         "description": "It fixes uneven tone without settling, caking, or masking the skin.",
-        "button_text": "GET YOURS NOW →",
+        "button_text": "GET YOURS NOW",
         "button_link": "#buynow"
       }
     },
     "cw_videos_WcxwdJ": {
       "type": "custom-videos",
+      "blocks": {
+        "video_item_bbcreme": {
+          "type": "video_item",
+          "settings": {
+            "poster": "shopify://shop_images/vid.jpg",
+            "video": "https://cdn.shopify.com/videos/c/o/v/c39362bf898b4ca1a112fe28958e87f5.mp4"
+          }
+        }
+      },
+      "block_order": [
+        "video_item_bbcreme"
+      ],
       "name": "[Custom] Videos",
       "settings": {
         "title": "What Women Are Saying",
         "subtitle": "See how women in their 50s, 60s, and 70s use Nikol Beauty to look polished without fighting their skin.",
+        "content_source": "tolstoy",
+        "tolstoy_publish_id": "ea0tfbf1c0mkc",
         "button_label": "",
         "button_link": "",
-        "enable_live_shopping_style": true
+        "enable_live_shopping_style": false
       }
     },
     "1771850328ecb59717": {
@@ -1126,7 +1128,7 @@
           "settings": {
             "media_type": "image",
             "media_position": "left",
-            "media_padding": 0,
+            "media_padding": 80,
             "image_desktop": "shopify://shop_images/wearing-img.png",
             "image_mobile": "shopify://shop_images/wearing-img.png"
           }
@@ -1134,7 +1136,6 @@
         "rating_1": {
           "type": "rating",
           "settings": {
-            "star_image": "shopify://shop_images/Stars_Container_a8ef23fa-4cb0-442a-aebc-8875c6ae38e3.png",
             "star_text": "<strong>4.76/5</strong> stars | <strong>12,000+</strong> happy women"
           }
         },
@@ -1157,7 +1158,7 @@
         "button_1": {
           "type": "button",
           "settings": {
-            "button_text": "GET YOURS NOW →",
+            "button_text": "GET YOURS NOW",
             "button_link": "#buynow"
           }
         }

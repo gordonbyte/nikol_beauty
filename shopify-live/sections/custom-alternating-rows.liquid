@@ -4,6 +4,7 @@
     background-repeat: no-repeat;
     background-position: center;
     padding: 90px 0;
+    overflow: hidden;
 }
 
 .custom-alternating-rows__title {
@@ -58,6 +59,17 @@
     object-fit: contain;
 }
 
+/* Hover life: the row's photo eases into a gentle zoom under the pointer. */
+@media (hover: hover) {
+  .custom-alternating-rows__media img {
+    transition: transform 0.45s ease;
+  }
+
+  .custom-alternating-rows__row:hover .custom-alternating-rows__media img {
+    transform: scale(1.02);
+  }
+}
+
 .custom-alternating-rows__row-title {
     line-height: 110%;
     letter-spacing: -1px;
@@ -78,12 +90,44 @@
 }
 
 .custom-alternating-rows__review {
+    display: flex;
+    flex-direction: column;
     margin: 20px 0 0;
 }
 
-.custom-alternating-rows__stars img {
-    max-width: 95px;
-    object-fit: contain;
+.custom-alternating-rows__stars {
+    margin-left: 30px;
+}
+
+.custom-alternating-rows__stars-img {
+    display: inline-block;
+    position: relative;
+    line-height: 0;
+}
+
+.custom-alternating-rows__stars-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.custom-alternating-rows__stars svg {
+    width: 95px;
+    height: auto;
+}
+
+.custom-alternating-rows__sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .custom-alternating-rows__quote {
@@ -92,7 +136,6 @@
     font-weight: 400;
     color: var(--COLOR-TEXT);
     margin: 0;
-    padding-top: 5px;
     font-family: var(--FONT-STACK-BODY);
 }
 
@@ -148,6 +191,29 @@
     color: var(--BTN-PRIMARY-TEXT-COLOR);
     font-family: var(--BTN-FONT-STACK);
     cursor: pointer;
+    gap: 5px;
+    transition: background 0.3s ease;
+}
+
+.custom-alternating-rows__cta-link:focus-visible {
+    background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+    color: var(--BTN-PRIMARY-TEXT-COLOR);
+}
+
+@media (hover: hover) {
+  .custom-alternating-rows__cta-link:hover {
+    background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER);
+    color: var(--BTN-PRIMARY-TEXT-COLOR);
+  }
+
+  .custom-alternating-rows__cta-link svg {
+    transition: transform 0.5s ease;
+    transform: translateZ(0);
+  }
+
+  .custom-alternating-rows__cta-link:hover svg {
+    transform: translate3d(5px, 0, 0);
+  }
 }
 
 .custom-alternating-rows__row--reverse {
@@ -207,8 +273,8 @@
     font-size: var(--FONT-SIZE-BASE);
 }
 
-.custom-alternating-rows__stars img {
-    max-width: 85px;
+.custom-alternating-rows__stars svg {
+    width: 85px;
 }
 
 .custom-alternating-rows__cta-link {
@@ -227,11 +293,29 @@
     max-width: 12px;
 }
 }
+
+/* Scroll-in reveal: initial hidden states apply ONLY once JS adds anim-ready,
+   so content stays visible without JS and under reduced motion. Reveals ride
+   the row element, never the media img (which carries the hover zoom). */
+.custom-alternating-rows.anim-ready .custom-alternating-rows__title,
+.custom-alternating-rows.anim-ready .custom-alternating-rows__subtitle,
+.custom-alternating-rows.anim-ready .custom-alternating-rows__row,
+.custom-alternating-rows.anim-ready .custom-alternating-rows__cta {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.custom-alternating-rows.anim-ready .is-inview {
+  opacity: 1;
+  transform: none;
+}
 </style>
 
 {%- assign heading_id = 'CustomAltRows-title-' | append: section.id -%}
 
 <section
+  id="AltRows-{{ section.id }}"
   class="custom-alternating-rows"
   {% if section.settings.title != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
   {% if section.settings.bg_image %}style="background-image: url({{ section.settings.bg_image | image_url: width: 2000 }});"{% endif %}
@@ -292,13 +376,34 @@
                 {% if block.settings.show_review %}
                   <figure class="custom-alternating-rows__review">
 
-                    {% if block.settings.stars %}
+                    {% liquid
+                      assign star_rating = block.settings.star_rating | default: 5 | times: 1.0 | at_most: 5.0 | at_least: 0.0
+                      assign star_percent = star_rating | divided_by: 5.0 | times: 100.0 | round: 1
+                    %}
+                    {% if star_rating > 0 %}
                       <div class="custom-alternating-rows__stars">
-                        <img
-                          src="{{ block.settings.stars | image_url: width: 200 }}"
-                          alt="{{ block.settings.stars_alt | strip_html | escape }}"
-                          loading="lazy"
-                        >
+                        <span class="custom-alternating-rows__stars-img">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="190" height="36" viewBox="0 0 190 36" fill="#DDD6CF" aria-hidden="true" focusable="false">
+                            <defs>
+                              <path id="AltRowsStar-{{ block.id }}" d="M 0 -18 L 4.04 -5.56 L 17.12 -5.56 L 6.53 2.12 L 10.58 14.56 L 0 6.88 L -10.58 14.56 L -6.53 2.12 L -17.12 -5.56 L -4.04 -5.56 Z"/>
+                            </defs>
+                            <use href="#AltRowsStar-{{ block.id }}" transform="translate(19 19.7)"/>
+                            <use href="#AltRowsStar-{{ block.id }}" transform="translate(57 19.7)"/>
+                            <use href="#AltRowsStar-{{ block.id }}" transform="translate(95 19.7)"/>
+                            <use href="#AltRowsStar-{{ block.id }}" transform="translate(133 19.7)"/>
+                            <use href="#AltRowsStar-{{ block.id }}" transform="translate(171 19.7)"/>
+                          </svg>
+                          <span class="custom-alternating-rows__stars-fill" style="width: {{ star_percent }}%">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="190" height="36" viewBox="0 0 190 36" fill="#FB6D00" aria-hidden="true" focusable="false">
+                              <use href="#AltRowsStar-{{ block.id }}" transform="translate(19 19.7)"/>
+                              <use href="#AltRowsStar-{{ block.id }}" transform="translate(57 19.7)"/>
+                              <use href="#AltRowsStar-{{ block.id }}" transform="translate(95 19.7)"/>
+                              <use href="#AltRowsStar-{{ block.id }}" transform="translate(133 19.7)"/>
+                              <use href="#AltRowsStar-{{ block.id }}" transform="translate(171 19.7)"/>
+                            </svg>
+                          </span>
+                        </span>
+                        <span class="custom-alternating-rows__sr-only">Rated {{ star_rating }} out of 5 stars</span>
                       </div>
                     {% endif %}
 
@@ -347,6 +452,9 @@
         <div class="custom-alternating-rows__cta">
           <a class="custom-alternating-rows__cta-link" href="{{ section.settings.button_link }}">
             {{ section.settings.button_text }}
+            <svg width="22" height="13" viewBox="0 0 22 13" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <path d="M0.843262 5.36644C0.377534 5.36644 0 5.74399 0 6.20972C0 6.67544 0.377534 7.05299 0.843262 7.05299H20.8433C21.309 7.05299 21.6866 6.67544 21.6866 6.20972C21.6866 5.74399 21.309 5.36644 20.8433 5.36644H0.843262ZM21.4395 6.806C21.7689 6.47668 21.7689 5.94275 21.4395 5.61343L16.073 0.24687C15.7437 -0.0824491 15.2097 -0.0824491 14.8804 0.24687C14.5511 0.576189 14.5511 1.11012 14.8804 1.43944L19.6507 6.20972L14.8804 10.98C14.5511 11.3093 14.5511 11.8432 14.8804 12.1726C15.2097 12.5019 15.7437 12.5019 16.073 12.1726L21.4395 6.806Z" fill="currentColor"/>
+            </svg>
           </a>
         </div>
       {% endif %}
@@ -354,6 +462,45 @@
     </div>
   </div>
 </section>
+
+<script>
+  (function () {
+    var root = document.getElementById('AltRows-{{ section.id }}');
+    if (!root) return;
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.theme && window.theme.settings && window.theme.settings.enableAnimations === false) return;
+
+    var targets = root.querySelectorAll('.custom-alternating-rows__title, .custom-alternating-rows__subtitle, .custom-alternating-rows__row, .custom-alternating-rows__cta');
+    if (!targets.length) return;
+
+    root.classList.add('anim-ready');
+
+    /* Items entering together stagger 90ms apart in DOM order; the batch
+       resets between bursts so later scroll reveals start immediately. */
+    var batch = 0;
+    var lastHit = 0;
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var now = performance.now();
+        if (now - lastHit > 400) batch = 0;
+        lastHit = now;
+        el.style.transitionDelay = Math.min(batch * 90, 540) + 'ms';
+        batch++;
+        el.classList.add('is-inview');
+        el.addEventListener('transitionend', function clear() {
+          el.style.transitionDelay = '';
+          el.removeEventListener('transitionend', clear);
+        });
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.12 });
+
+    targets.forEach(function (t) { observer.observe(t); });
+  })();
+</script>
 
 {% schema %}
 {
@@ -429,16 +576,14 @@
           "default": false
         },
         {
-          "type": "image_picker",
-          "id": "stars",
-          "label": "Stars Image"
-        },
-        {
-          "type": "text",
-          "id": "stars_alt",
-          "label": "Star rating alt text",
-          "info": "Read by screen readers in place of the stars image (e.g. \"5 out of 5 stars\"). Leave blank to treat the stars as decorative.",
-          "default": "5 out of 5 stars"
+          "type": "range",
+          "id": "star_rating",
+          "label": "Star rating",
+          "info": "Controls how much of the stars are filled. 0 hides the stars.",
+          "min": 0,
+          "max": 5,
+          "step": 0.1,
+          "default": 5
         },
         {
           "type": "textarea",

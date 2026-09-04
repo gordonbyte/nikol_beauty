@@ -2044,6 +2044,65 @@
       } catch (err) {}
     }, true);
 
+    // Firefox overlays its native picture-in-picture toggle on any hovered
+    // playing video; on these muted preview loops it's misleading (it pops out
+    // the silent loop, never the player). Tolstoy injects the videos later, so
+    // mark them as they appear.
+    var disablePreviewPiP = function () {
+      document.querySelectorAll('.featured-item-video .tolstoy-carousel video:not([disablepictureinpicture])').forEach(function (v) {
+        v.disablePictureInPicture = true;
+        v.setAttribute('disablepictureinpicture', '');
+      });
+    };
+    disablePreviewPiP();
+    new MutationObserver(disablePreviewPiP).observe(document.body, { childList: true, subtree: true });
+
+    // Console readiness log: one "[tolstoy-status]" table when every tile is
+    // ready to play. "Ready" = Tolstoy marked the tile loaded and its preview
+    // video element exists. Preview DATA buffers only when a tile scrolls into
+    // view (Tolstoy behavior), so buffering is reported but not waited on; and
+    // Tolstoy exposes no signal for "a click will open the player" (their
+    // ticket), so that can't be logged.
+    (function () {
+      var t0 = performance.now();
+      var readyAt = {};
+      var timer = setInterval(function () {
+        var cells = document.querySelectorAll('.featured-item-video .tolstoy-carousel');
+        if (!cells.length) return;
+        var rows = [];
+        var allReady = true;
+        var playable = 0;
+        var noVideo = 0;
+        cells.forEach(function (c, i) {
+          var v = c.querySelector('video');
+          var status = c.getAttribute('data-status') || '(none)';
+          // 'notFound' is terminal: Tolstoy has no clip for that product on
+          // this widget, so no video is coming for the tile.
+          var ready = (status === 'loaded' && !!v) || status === 'notFound';
+          if (status === 'loaded' && v) playable++;
+          if (status === 'notFound') noVideo++;
+          if (ready && readyAt[i] === undefined) readyAt[i] = Math.round(performance.now() - t0);
+          if (!ready) allReady = false;
+          rows.push({
+            tile: i + 1,
+            product: c.getAttribute('data-product-id') || '',
+            tolstoy: status,
+            preview: v ? (v.readyState >= 2 ? 'buffered' : 'buffers on scroll') : (status === 'notFound' ? 'no clip for product' : 'no video yet'),
+            readyAtMs: readyAt[i] !== undefined ? readyAt[i] : '—',
+          });
+        });
+        if (allReady) {
+          clearInterval(timer);
+          console.log('[tolstoy-status] all ' + rows.length + ' tiles resolved at ' + Math.round(performance.now() - t0) + 'ms — ' + playable + ' ready to play' + (noVideo ? ', ' + noVideo + ' with no clip for the product (notFound)' : ''));
+          console.table(rows);
+        } else if (performance.now() - t0 > 60000) {
+          clearInterval(timer);
+          console.log('[tolstoy-status] timed out after 60s — not all videos ready:');
+          console.table(rows);
+        }
+      }, 250);
+    })();
+
     // Clicking the dim overlay (outside the video) closes the player, like a
     // standard modal backdrop. Prefer Tolstoy's own close button (cleaner
     // teardown); fall back to the closePlayer API.

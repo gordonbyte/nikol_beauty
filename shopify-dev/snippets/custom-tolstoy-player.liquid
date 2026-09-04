@@ -1,0 +1,201 @@
+{%- comment -%} Tolstoy compact-player treatment shared by every non-episode Tolstoy embed;
+   mirrors templates/metaobject/beauty_tutorial_videos.liquid. Safe to render more than
+   once per page (the script self-guards). Each placement uses its OWN widget, so
+   Tolstoy's manager drives every carousel natively (posters, previews, arrows). {%- endcomment -%}
+<style>
+  /* Tolstoy's compact player opens bottom-right by default. Recenter it as a
+     modal: the wrapper (.tolstoy-modal, "SmallModal" marker = compact mode
+     only, never the fullscreen feed) stretches over the viewport and carries
+     the dim. Desktop only — mobile already gets Tolstoy's full-screen player. */
+  @media (min-width: 769px) {
+    .tolstoy-modal[class*="SmallModal"] {
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none !important;
+      max-height: none !important;
+      background: rgba(0, 0, 0, 0.72) !important;
+      transform: none !important;
+    }
+
+    /* Player renders at Tolstoy's designed 380x676, zoomed to DISPLAY at 80%
+       of viewport height. Browsers without zoom/calc-ratio support fall back
+       to the unscaled 380px player, still centered. */
+    .tolstoy-modal[class*="SmallModal"] iframe {
+      left: 50% !important;
+      top: 50% !important;
+      right: auto !important;
+      bottom: auto !important;
+      width: 380px !important;
+      height: 676px !important;
+      margin: -338px 0 0 -190px !important;
+      transform: none !important;
+      zoom: min(calc(80vh / 676px), calc(92vw / 380px));
+      border-radius: 14px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Tolstoy's page-level close button is zero-sized on desktop; surface it
+       as a white circle pinned 10px inside the video's top-left corner. */
+    .tolstoy-modal[class*="SmallModal"] .minimize-tolstoy-modal {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      position: absolute !important;
+      left: calc(50% - min(22.5vh, 46vw) + 10px) !important;
+      top: calc(50% - 40vh + 10px) !important;
+      right: auto !important;
+      width: 38px !important;
+      height: 38px !important;
+      background: rgba(255, 255, 255, 0.92) !important;
+      border-radius: 50% !important;
+      cursor: pointer;
+      z-index: 5;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    .tolstoy-modal[class*="SmallModal"] .minimize-tolstoy-modal svg {
+      width: 16px !important;
+      height: 16px !important;
+      display: block;
+    }
+
+    .tolstoy-modal[class*="SmallModal"] .minimize-tolstoy-modal svg path {
+      fill: #2a2724 !important;
+      stroke: #2a2724 !important;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    if (window.__customTolstoyPlayerInit) return;
+    window.__customTolstoyPlayerInit = true;
+
+    /* Clicking the dim overlay (outside the video) closes the player, like a
+       standard modal backdrop. Prefer Tolstoy's own close button (cleaner
+       teardown); fall back to the closePlayer API. */
+    document.addEventListener('click', function (e) {
+      var modal = e.target.closest && e.target.closest('.tolstoy-modal');
+      if (!modal || !/SmallModal/.test(modal.className)) return;
+      if (e.target.closest('iframe') || e.target.tagName === 'IFRAME') return;
+      if (e.target.closest('.minimize-tolstoy-modal')) return;
+      var closeBtn = modal.querySelector('.minimize-tolstoy-modal');
+      if (closeBtn) {
+        closeBtn.click();
+        return;
+      }
+      try {
+        if (window.tolstoyWidget && typeof window.tolstoyWidget.closePlayer === 'function') {
+          window.tolstoyWidget.closePlayer();
+        }
+      } catch (err) {}
+    }, true);
+
+    /* Bridge Tolstoy's add-to-cart into Broadcast's cart UI (same bridge as
+       the episode pages). Tolstoy posts to the real Shopify cart itself but
+       leaves theme UI integration to the merchant. On a successful add:
+       refresh the header count, rebuild the drawer contents, close the
+       Tolstoy player, and open the theme's cart drawer. Primary hook = their
+       subscribe API's ONLY cart event, 'tolstoy_add_to_cart' (fires on tap,
+       before the add lands); a short cart poll confirms the add landed before
+       touching the UI. Fallback = watching window.fetch for /cart/add.
+       Debounced so multiple paths handle one add once. */
+    if (!window.__tolstoyCartBridge) {
+      window.__tolstoyCartBridge = true;
+      var origFetch = window.fetch.bind(window);
+      var lastHandled = 0;
+
+      var closeTolstoyPlayer = function () {
+        try {
+          if (window.tolstoyWidget && typeof window.tolstoyWidget.closePlayer === 'function') {
+            window.tolstoyWidget.closePlayer();
+          }
+        } catch (e) {}
+        setTimeout(function () {
+          document.querySelectorAll('.tolstoy-modal').forEach(function (m) {
+            var r = m.getBoundingClientRect();
+            if (r.width > 0 && r.height > 0) {
+              var btn = m.querySelector('.minimize-tolstoy-modal');
+              if (btn) btn.click();
+            }
+          });
+        }, 600);
+      };
+
+      var onTolstoyCartAdd = function () {
+        var now = Date.now();
+        if (now - lastHandled < 1500) return;
+        lastHandled = now;
+        origFetch('/cart.js').then(function (r) { return r.json(); }).then(function (cart) {
+          document.dispatchEvent(new CustomEvent('theme:cart:change', { bubbles: true, detail: { cartCount: cart.item_count } }));
+        }).catch(function () {});
+        var items = document.querySelector('cart-items');
+        if (items && typeof items.getCart === 'function') items.getCart();
+        closeTolstoyPlayer();
+        setTimeout(function () {
+          document.dispatchEvent(new CustomEvent('theme:product:added', { bubbles: true }));
+        }, 400);
+      };
+
+      var onTolstoyCartIntent = function () {
+        var stampAtStart = lastHandled;
+        origFetch('/cart.js').then(function (r) { return r.json(); }).then(function (cart) {
+          var baseline = cart.item_count;
+          var tries = 0;
+          var timer = setInterval(function () {
+            tries++;
+            if (lastHandled !== stampAtStart) { clearInterval(timer); return; }
+            origFetch('/cart.js').then(function (r2) { return r2.json(); }).then(function (c2) {
+              if (lastHandled !== stampAtStart) { clearInterval(timer); return; }
+              if (c2.item_count !== baseline) {
+                clearInterval(timer);
+                onTolstoyCartAdd();
+              } else if (tries >= 12) {
+                clearInterval(timer);
+              }
+            }).catch(function () {});
+          }, 500);
+        }).catch(function () {});
+      };
+
+      var wireTries = 0;
+      var wireTimer = setInterval(function () {
+        if (window.tolstoyWidget && typeof window.tolstoyWidget.subscribe === 'function') {
+          clearInterval(wireTimer);
+          try { window.tolstoyWidget.subscribe('tolstoy_add_to_cart', onTolstoyCartIntent); } catch (e) {}
+        } else if (++wireTries > 60) {
+          clearInterval(wireTimer);
+        }
+      }, 500);
+
+      window.fetch = function () {
+        var result = origFetch.apply(null, arguments);
+        try {
+          var arg = arguments[0];
+          var url = typeof arg === 'string' ? arg : (arg && arg.url) || '';
+          if (url.indexOf('/cart/add') !== -1) {
+            result.then(function (res) {
+              if (res && res.ok) onTolstoyCartAdd();
+            }).catch(function () {});
+          }
+        } catch (e) {}
+        return result;
+      };
+    }
+
+    /* An open theme cart drawer closes when a video is clicked — the video
+       takes focus (same behavior as the episode pages). */
+    document.addEventListener('click', function (e) {
+      var trigger = e.target.closest && e.target.closest('.custom-videos__tolstoy .tolstoy-play-button-container, .custom-videos__tolstoy .tolstoy-carousel video, .cw-bb-pvideo-tolstoy .tolstoy-play-button-container, .cw-bb-pvideo-tolstoy .tolstoy-carousel video');
+      if (!trigger) return;
+      try {
+        var drawer = document.querySelector('cart-drawer');
+        if (drawer && (drawer.cartDrawerIsOpen || drawer.classList.contains('is-open'))) {
+          if (typeof drawer.closeCartDrawer === 'function') drawer.closeCartDrawer();
+          else document.dispatchEvent(new CustomEvent('theme:quick-add:open', { bubbles: true }));
+        }
+      } catch (err) {}
+    }, true);
+  })();
+</script>
