@@ -24,11 +24,12 @@
   margin: 0;
   color: var(--COLOR-TEXT);
   font-family: 'Cormorant';
-  font-size: 56px;
+  font-size: clamp(34px, 3.24vw + 14.6px, 56px);
   font-weight: 500;
   line-height: 110%;
   letter-spacing: -3px;
   text-transform: capitalize;
+  text-wrap: pretty;
 }
 
 .custom-videos__subtitle {
@@ -37,7 +38,7 @@
   padding-bottom: 40px;
   color: var(--COLOR-TEXT);
   font-family: 'Inter';
-  font-size: 20px;
+  font-size: clamp(var(--FONT-SIZE-BASE), 0.47vw + 15.2px, 20px);
 }
 
 .custom-videos__video {
@@ -51,32 +52,9 @@
   margin-left: calc(50% - 50vw);
 }
 
-/* Edge fades + floating circle arrows, matching custom-product-slider so the
-   carousels read as one system. Tolstoy's own arrows stay in the DOM (hidden)
-   and our buttons forward clicks to them — Tolstoy keeps doing the scrolling. */
-@media only screen and (min-width: 1200px) {
-  .custom-videos__tolstoy::before,
-  .custom-videos__tolstoy::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 260px;
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  .custom-videos__tolstoy::before {
-    left: 0;
-    background: linear-gradient(to right, var(--custom-videos-bg) 30%, transparent);
-  }
-
-  .custom-videos__tolstoy::after {
-    right: 0;
-    background: linear-gradient(to left, var(--custom-videos-bg) 30%, transparent);
-  }
-}
-
+/* Floating circle arrows, matching custom-product-slider. Tolstoy's own
+   arrows stay in the DOM (hidden) and our buttons forward clicks to them —
+   Tolstoy keeps doing the scrolling. (Edge fades removed 2026-09-09.) */
 .custom-videos__tolstoy [class*="arrow-button-container"] {
   opacity: 0 !important;
   pointer-events: none !important;
@@ -304,21 +282,40 @@ div#shopify-block-ARm9XTUZHZFV1WGhCV__live_shopping_by_channelize_io_shoppable_v
 </style>
 {%- endif -%}
 
+{%- liquid
+  # Coming-soon product template: with "Use Coming Soon Page metaobject" on,
+  # content comes from the product's custom.coming_soon metaobject (no
+  # fallback, section hidden without an entry). Off = section settings render.
+  assign cs_mode = false
+  if template.suffix == 'coming-soon' and product and section.settings.use_metaobject
+    assign cs_mode = true
+    assign cs = product.metafields.custom.coming_soon.value
+  endif
+
+  assign tolstoy_id = section.settings.tolstoy_publish_id | strip
+  assign videos_source = section.settings.content_source
+  if cs_mode
+    assign tolstoy_id = cs.tolstoy_bottom | strip
+    assign videos_source = 'tolstoy'
+  endif
+-%}
+{%- if cs_mode and tolstoy_id == blank -%}
+  {%- comment -%} no per-product widget — section hidden {%- endcomment -%}
+{%- else -%}
 <section class="custom-videos" id="Videos-{{ section.id }}">
   <div class="page-width">
     <div class="custom-videos__parent">
 
       <div class="custom-videos__header">
         {%- if section.settings.title != blank -%}
-          <h2 class="custom-videos__title">{{ section.settings.title }}</h2>
+          <h2 class="custom-videos__title">{% render 'custom-no-orphan', text: section.settings.title %}</h2>
         {%- endif -%}
         {%- if section.settings.subtitle != blank -%}
           <p class="custom-videos__subtitle">{{ section.settings.subtitle }}</p>
         {%- endif -%}
       </div>
 
-      {%- assign tolstoy_id = section.settings.tolstoy_publish_id | strip -%}
-      {%- if section.settings.content_source == 'tolstoy' and tolstoy_id != blank -%}
+      {%- if videos_source == 'tolstoy' and tolstoy_id != blank -%}
         <div class="custom-videos__tolstoy">
           <div class="tolstoy-carousel" data-priority="high" data-publish-id="{{ tolstoy_id }}"></div>
           <button type="button" class="custom-videos__nav custom-videos__nav--prev" aria-label="Previous videos">
@@ -433,6 +430,7 @@ div#shopify-block-ARm9XTUZHZFV1WGhCV__live_shopping_by_channelize_io_shoppable_v
     </div>
   </div>
 </section>
+{%- endif -%}
 
 <script>
   (function () {
@@ -467,6 +465,13 @@ div#shopify-block-ARm9XTUZHZFV1WGhCV__live_shopping_by_channelize_io_shoppable_v
     "templates": ["index", "product"]
   },
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "use_metaobject",
+      "label": "Use Coming Soon Page metaobject",
+      "info": "Coming-soon product template only: pull this section's content from the product's Coming Soon Page metaobject (custom.coming_soon) instead of the settings below. Leave off to show the settings below.",
+      "default": false
+    },
     {
       "type": "text",
       "id": "title",

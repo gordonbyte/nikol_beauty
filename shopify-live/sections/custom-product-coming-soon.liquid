@@ -71,6 +71,120 @@
     color: #2A2724;
     font-family: 'Inter', sans-serif;
 }
+.mp-review-title {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+.mp-review-text p {
+    margin: 0;
+    font-style: italic;
+}
+.mp-review-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+.mp-review-nav[hidden] {
+    display: none;
+}
+.mp-review-stars {
+    margin-bottom: 10px;
+}
+.mp-review-stars-fill {
+    transition: width 0.3s ease;
+}
+.mp-review-slide {
+    transition: transform 0.28s ease, opacity 0.28s ease;
+}
+.mp-review-slide.mp-slide-out-left { transform: translateX(-26px); opacity: 0; }
+.mp-review-slide.mp-slide-out-right { transform: translateX(26px); opacity: 0; }
+.mp-review-slide.mp-slide-in-right { transform: translateX(26px); opacity: 0; transition: none; }
+.mp-review-slide.mp-slide-in-left { transform: translateX(-26px); opacity: 0; transition: none; }
+@media (prefers-reduced-motion: reduce) {
+    .mp-review-slide, .mp-review-stars-fill { transition: none; }
+}
+/* Junip mode: clamp bodies to 3 lines and reserve space (1 title line +
+   3 body lines + author row) so every review renders the same height. */
+.mp-review-box--junip .mp-review-text p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.mp-review-box--junip .mp-author-box {
+    min-height: 21px;
+    margin-top: 8px;
+}
+/* Fixed box size lives on the slide, not the text — the author row sits
+   right under the body and the spare space falls below it. */
+.mp-review-box--junip .mp-review-slide {
+    min-height: 170px;
+}
+@media only screen and (max-width: 600px) {
+    .mp-review-box--junip .mp-review-slide {
+        min-height: 158px;
+    }
+}
+.mp-review-box--junip {
+    position: relative;
+}
+.mp-review-viewall {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    color: #2A2724;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+}
+.mp-review-viewall[hidden] {
+    display: none;
+}
+@media only screen and (max-width: 600px) {
+    .mp-review-viewall {
+        top: 15px;
+        right: 20px;
+    }
+}
+.mp-review-slide--link {
+    cursor: pointer;
+}
+.mp-review-slide--link:focus-visible {
+    outline: 2px solid #45413B;
+    outline-offset: 4px;
+}
+.mp-review-nav-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: #45413B;
+    color: #fff;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0 2px;
+}
+.mp-review-nav-btn:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+.mp-review-nav-count {
+    font-size: 13px;
+    color: #2A2724;
+    font-family: 'Inter', sans-serif;
+}
 @media only screen and (max-width: 600px) {
 .mp-review-box {
     padding: 15px 20px;
@@ -201,19 +315,6 @@
 
     --swatch-size: var(--swatch-size-product);
   }
-
-  /* Sticky gallery — template-agnostic replacement for the section-ID-hardcoded
-     rules in custom-pdp-css.liquid, so it works regardless of which template renders custom-product-coming-soon. */
-  #Product--{{ section.id }} .product__page > .cw-new-popup-kl {
-    position: sticky;
-    top: 100px;
-    height: fit-content;
-  }
-  @media only screen and (max-width: 600px) {
-    #Product--{{ section.id }} .product__page > .cw-new-popup-kl {
-      position: static;
-    }
-  }
 {%- endstyle -%}
 
 <div id="Product--{{ unique }}"
@@ -238,13 +339,15 @@
     <div class="swiper-wrapper">
 
       <!-- Dynamic Product Images -->
-      {% for image in product.images %}
-        <div class="swiper-slide">
+      {% for media in product.media %}
+        {% if media.media_type == 'image' %}
+        <div class="swiper-slide" data-media-id="{{ media.id }}">
           <img
-            src="{{ image | img_url: 'master' }}"
-            alt="{{ image.alt | escape }}"
+            src="{{ media.preview_image | img_url: 'master' }}"
+            alt="{{ media.alt | escape }}"
             loading="lazy">
         </div>
+        {% endif %}
       {% endfor %}
 
     </div>
@@ -258,13 +361,15 @@
     <div class="swiper-wrapper">
 
       <!-- Dynamic Thumbnails -->
-      {% for image in product.images %}
-        <div class="swiper-slide">
+      {% for media in product.media %}
+        {% if media.media_type == 'image' %}
+        <div class="swiper-slide" data-media-id="{{ media.id }}">
           <img
-            src="{{ image | img_url: 'master' }}"
-            alt="{{ image.alt | escape }}"
+            src="{{ media.preview_image | img_url: 'master' }}"
+            alt="{{ media.alt | escape }}"
             loading="lazy">
         </div>
+        {% endif %}
       {% endfor %}
 
     </div>
@@ -287,14 +392,15 @@
     </div>
 </div>
 
-<div class="cw-bb-pvideo-section cw-desktop">
+{%- assign pvideo_tolstoy_id = section.settings.pvideo_tolstoy_publish_id | strip -%}
+{%- if pvideo_tolstoy_id != blank -%}
+<div class="cw-bb-pvideo-section">
   <div class="cw-bb-pvideo-container">
 
     <div class="cw-bb-pvideo-title">
-      Watch Our Products In Action
+      {% render 'custom-no-orphan', text: 'Watch Our Products In Action' %}
     </div>
 
-    {%- assign pvideo_tolstoy_id = section.settings.pvideo_tolstoy_publish_id | strip -%}
     {%- if pvideo_tolstoy_id != blank -%}
       <div class="cw-bb-pvideo-tolstoy">
         <div class="tolstoy-carousel" data-priority="high" data-publish-id="{{ pvideo_tolstoy_id }}"></div>
@@ -348,6 +454,7 @@
     {%- endif -%}
   </div>
 </div>
+{%- endif -%}
 
 
 </div>
@@ -421,7 +528,9 @@
                     {%- render 'product-buttons' product: product, current_variant: current_variant, unique: unique, block: block, block_style: block_style, product_form_id: product_form_id, preorder: preorder -%}
 
                   {%- when 'tab_richtext' -%}
-                    {%- render 'product-description'  product: product, block: block, block_style: block_style -%}
+                    <div class="product__block tabs-wrapper block-padding" {{ block.shopify_attributes }} {{ block_style }}>
+                      {%- render 'product-tabs', product: product, block: block, hide_description: true, accordions_closed: true, check_prefix: '&gt; ' -%}
+                    </div>
 
                   {%- when 'inventory_countdown' -%}
                     {% comment %} Product inventory {% endcomment %}
@@ -643,19 +752,24 @@
                     <pickup-availability class="product__block product__pickup block-padding" data-store-availability-container="{{ current_variant.id }}" {{ block.shopify_attributes }} {{ block_style }}></pickup-availability>
 
                   {%- when 'rating_summary' -%}
-                    {%- if block.settings.rating_text != blank or block.settings.review_count_text != blank or block.settings.summary_suffix != blank -%}
+                    {%- liquid
+                      assign junip_rating = product.metafields.junip.rating_average | times: 1.0
+                      assign junip_count = product.metafields.junip.rating_count | times: 1
+                    -%}
+                    {%- if junip_rating > 0 and junip_count > 0 -%}
                       <div class="product__block block-padding" {{ block_style }} {{ block.shopify_attributes }}>
                         <div class="cw-bb-rating-box" {% if block.settings.anchor_id != blank %}id="{{ block.settings.anchor_id }}"{% endif %}>
                           {% if block.settings.link_url != blank %}<a href="{{ block.settings.link_url }}">{% endif %}
                             {%- liquid
-                              assign mf_rating = product.metafields.reviews.rating.value.rating | times: 1.0
-                              if mf_rating > 0
-                                assign star_rating = mf_rating
-                              else
-                                assign star_rating = block.settings.star_rating | default: 5 | times: 1.0
-                              endif
-                              assign star_rating = star_rating | at_most: 5.0 | at_least: 0.0
+                              assign star_rating = junip_rating | at_most: 5.0 | at_least: 0.0
                               assign star_percent = star_rating | divided_by: 5.0 | times: 100.0 | round: 1
+                              assign rating_display = junip_rating | round: 2
+                              assign count_display = junip_count
+                              if junip_count >= 1000
+                                assign count_thousands = junip_count | divided_by: 1000
+                                assign count_remainder = junip_count | modulo: 1000 | prepend: '00' | slice: -3, 3
+                                assign count_display = count_thousands | append: ',' | append: count_remainder
+                              endif
                             -%}
                             {%- if star_rating > 0 -%}
                               <div class="cw-bb-rating-image">
@@ -682,8 +796,7 @@
                             {%- endif -%}
 
                             <div class="cw-bb-rating-text">
-                              {%- if mf_rating > 0 -%}<strong>{{ mf_rating | round: 1 }}/5</strong>{%- elsif block.settings.rating_text != blank -%}<strong>{{ block.settings.rating_text }}</strong>{%- endif -%}
-                              {%- if block.settings.review_count_text != blank %} stars | <strong>{{ block.settings.review_count_text }}</strong>{%- endif -%}
+                              <strong>{{ rating_display }}/5</strong> stars | <strong>{{ count_display }}</strong>
                               {%- if block.settings.summary_suffix != blank %} {{ block.settings.summary_suffix }}{%- endif -%}
                             </div>
                           {% if block.settings.link_url != blank %}</a>{% endif %}
@@ -694,24 +807,30 @@
                   {%- when 'payment_details' -%}
                     <div class="product__block block-padding" {{ block_style }} {{ block.shopify_attributes }}>
                       <div class="cw-bb-color-main-container">
-                        {%- if block.settings.description != blank -%}
-                          <div class="cw-bb-color-description">
-                            {{ block.settings.description }}
+                        {%- liquid
+                          assign cs_product_description = product.description | strip
+                          assign cs_check_open = '<p class="cw-bb-check-item">'
+                          assign cs_product_description = cs_product_description | replace: '<p>- ', cs_check_open | replace: '<p> - ', cs_check_open | replace: '<p>&nbsp;- ', cs_check_open | replace: '<p> - ', cs_check_open | replace: '<p class="MsoPlainText"> - ', cs_check_open | replace: '<p class="MsoPlainText">&nbsp;- ', cs_check_open | replace: '<p class="MsoPlainText"> - ', cs_check_open | replace: '<p class="MsoPlainText">- ', cs_check_open | replace: '<p>-', cs_check_open | replace: '<p class="MsoPlainText">-', cs_check_open
+                        -%}
+                        {%- if cs_product_description != blank -%}
+                          <div class="cw-bb-color-description rte">
+                            <toggle-ellipsis data-height="260">
+                              <div class="toggle-ellipsis__content" data-content>
+                                {{ cs_product_description }}
+                              </div>
+
+                              <div class="toggle-ellipsis__actions" data-actions>
+                                <button type="button" class="caps--link" data-button>
+                                  <span>{{ 'products.general.read_more' | t }}</span>
+                                </button>
+                              </div>
+                            </toggle-ellipsis>
+                            <button type="button" class="caps--link cs-desc-less" data-cs-desc-less>
+                              <span>Show less</span>
+                            </button>
                           </div>
                         {%- endif -%}
 
-                        {%- assign feature_1 = block.settings.feature_1 | strip -%}
-                        {%- assign feature_2 = block.settings.feature_2 | strip -%}
-                        {%- assign feature_3 = block.settings.feature_3 | strip -%}
-                        {%- if feature_1 != blank or feature_2 != blank or feature_3 != blank -%}
-                          <div class="cw-bb-color-features">
-                            <ul class="cw-bb-color-feature-list">
-                              {%- if feature_1 != blank -%}<li class="cw-bb-color-feature-item">{{ feature_1 }}</li>{%- endif -%}
-                              {%- if feature_2 != blank -%}<li class="cw-bb-color-feature-item">{{ feature_2 }}</li>{%- endif -%}
-                              {%- if feature_3 != blank -%}<li class="cw-bb-color-feature-item">{{ feature_3 }}</li>{%- endif -%}
-                            </ul>
-                          </div>
-                        {%- endif -%}
                       </div>
                     </div>
 
@@ -862,11 +981,15 @@
                   {%- when 'testimonial_card' -%}
                     {%- if block.settings.quote != blank -%}
                       <div class="product__block block-padding" {{ block_style }} {{ block.shopify_attributes }}>
-                        <div class="mp-review-box main-product-box">
+                        <div class="mp-review-box main-product-box"{% if block.settings.load_junip_reviews %} data-junip-reviews data-junip-product-id="{{ product.id }}"{% if block.settings.junip_store_key != blank %} data-junip-key="{{ block.settings.junip_store_key | strip }}"{% endif %}{% endif %}>
                           {%- liquid
                             assign star_rating = block.settings.star_rating | default: 5 | times: 1.0 | at_most: 5.0 | at_least: 0.0
                             assign star_percent = star_rating | divided_by: 5.0 | times: 100.0 | round: 1
                           -%}
+                          {%- if block.settings.load_junip_reviews -%}
+                            <button type="button" class="mp-review-viewall" data-junip-viewall hidden>View all</button>
+                          {%- endif -%}
+                          <div class="mp-review-slide">
                           {%- if star_rating > 0 -%}
                             <div class="mp-review-stars">
                               <svg xmlns="http://www.w3.org/2000/svg" width="190" height="36" viewBox="0 0 190 36" fill="#DDD6CF" aria-hidden="true" focusable="false">
@@ -918,6 +1041,15 @@
                                   </div>
                                 </div>
                               {%- endif -%}
+                            </div>
+                          {%- endif -%}
+                          </div>
+
+                          {%- if block.settings.load_junip_reviews -%}
+                            <div class="mp-review-nav" hidden>
+                              <button type="button" class="mp-review-nav-btn" data-junip-prev aria-label="Previous review">&#8249;</button>
+                              <span class="mp-review-nav-count" data-junip-count aria-live="polite"></span>
+                              <button type="button" class="mp-review-nav-btn" data-junip-next aria-label="Next review">&#8250;</button>
                             </div>
                           {%- endif -%}
                         </div>
@@ -1434,7 +1566,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const thumbSwiper = new Swiper(".cw-new-popup-thumb-slider", {
     spaceBetween: 15,
-    slidesPerView: 4,
+    slidesPerView: 2,
+    breakpoints: {
+      421: { slidesPerView: 3 },
+      1024: { slidesPerView: 4 }
+    },
+    threshold: 12,
     watchSlidesProgress: true,
     navigation: {
       nextEl: ".swiper-button-nextpt",
@@ -1442,10 +1579,24 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
 
-  new Swiper(".cw-new-popup-main-slider", {
+  const mainSwiper = new Swiper(".cw-new-popup-main-slider", {
     spaceBetween: 10,
     thumbs: { swiper: thumbSwiper },
 
+  });
+
+  // Variant change → show that variant's featured image (event bubbles up
+  // from Broadcast's product form; slides carry data-media-id).
+  document.addEventListener("theme:variant:change", function (e) {
+    var variant = e.detail && e.detail.variant;
+    if (!variant || !variant.featured_media) return;
+    var slides = mainSwiper.slides || [];
+    for (var i = 0; i < slides.length; i++) {
+      if (slides[i].getAttribute("data-media-id") === String(variant.featured_media.id)) {
+        mainSwiper.slideTo(i);
+        break;
+      }
+    }
   });
 
 });
@@ -1486,6 +1637,172 @@ document.addEventListener("DOMContentLoaded", function () {
 
   });
 
+});
+</script>
+
+<script>
+/* Mini Junip review carousel: fills the testimonial box with the product's
+   real reviews (Junip storefront API, public store key). If the product has
+   no reviews or the fetch fails, the static editor content stays untouched. */
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("[data-junip-reviews]").forEach(function (box) {
+    var productId = box.getAttribute("data-junip-product-id");
+    var keyEl = document.querySelector("[data-store-key]");
+    var key = box.getAttribute("data-junip-key") || (keyEl && keyEl.getAttribute("data-store-key"));
+    var textEl = box.querySelector(".mp-review-text");
+    if (!productId || !key || !textEl) return;
+
+    var fillEl = box.querySelector(".mp-review-stars-fill");
+    var srEl = box.querySelector(".mp-sr-only");
+    var authorEl = box.querySelector(".mp-author-name");
+    var verifiedEl = box.querySelector(".mp-verified");
+    var nav = box.querySelector(".mp-review-nav");
+    var prevBtn = box.querySelector("[data-junip-prev]");
+    var nextBtn = box.querySelector("[data-junip-next]");
+    var countEl = box.querySelector("[data-junip-count]");
+
+    var reviews = [];
+    var cursor = null;
+    var idx = 0;
+    var fetching = false;
+    var done = false;
+    var PAGE_SIZE = 25;
+    var MAX_REVIEWS = 8;
+    var MAX_PAGES = 4;
+    var pagesFetched = 0;
+
+    var formatName = function (c) {
+      if (!c || !c.first_name) return "";
+      var first = c.first_name.toLowerCase().replace(/(^|[\s'-])\S/g, function (ch) { return ch.toUpperCase(); });
+      var last = (c.last_name || "").charAt(0).toUpperCase();
+      return first + (last ? " " + last + "." : "");
+    };
+
+    var slideEl = box.querySelector(".mp-review-slide");
+    var animating = false;
+
+    var applyReview = function () {
+      var r = reviews[idx];
+      if (!r) return;
+      if (fillEl) {
+        var pct = Math.max(0, Math.min(100, (r.rating / 5) * 100));
+        fillEl.style.width = pct + "%";
+      }
+      if (srEl) srEl.textContent = "Rated " + r.rating + " out of 5 stars";
+      textEl.textContent = "";
+      if (r.title) {
+        var t = document.createElement("strong");
+        t.className = "mp-review-title";
+        t.textContent = r.title;
+        textEl.appendChild(t);
+      }
+      var p = document.createElement("p");
+      p.textContent = "“" + (r.body || "").trim() + "”";
+      textEl.appendChild(p);
+      if (authorEl) authorEl.textContent = formatName(r.customer);
+      if (verifiedEl) verifiedEl.style.display = r.verified_buyer ? "" : "none";
+      if (countEl) countEl.textContent = (idx + 1) + " / " + reviews.length + (done ? "" : "+");
+      if (prevBtn) prevBtn.disabled = idx === 0;
+      if (nextBtn) nextBtn.disabled = done && idx >= reviews.length - 1;
+      if (nav) nav.hidden = done && reviews.length < 2;
+    };
+
+    /* dir: 1 = next (new review slides in from the right), -1 = prev,
+       0/undefined = no animation (first paint). */
+    var render = function (dir) {
+      if (!dir || !slideEl) { applyReview(); return; }
+      if (animating) return;
+      animating = true;
+      var out = dir > 0 ? "mp-slide-out-left" : "mp-slide-out-right";
+      var inn = dir > 0 ? "mp-slide-in-right" : "mp-slide-in-left";
+      slideEl.classList.add(out);
+      setTimeout(function () {
+        applyReview();
+        slideEl.classList.remove(out);
+        slideEl.classList.add(inn);
+        void slideEl.offsetWidth;
+        slideEl.classList.remove(inn);
+        setTimeout(function () { animating = false; }, 300);
+      }, 200);
+    };
+
+    var load = function (cb) {
+      if (fetching || done) { if (cb) cb(); return; }
+      fetching = true;
+      var url = "https://api.juniphq.com/v1/product_reviews" +
+        "?filter[product_remote_id]=" + encodeURIComponent(productId) +
+        "&filter[rating]=5" +
+        "&page[size]=" + PAGE_SIZE + "&include=customer" +
+        (cursor ? "&page[after]=" + encodeURIComponent(cursor) : "");
+      fetch(url, { headers: { "Junip-Store-Key": key } })
+        .then(function (res) { return res.ok ? res.json() : null; })
+        .then(function (data) {
+          fetching = false;
+          var list = data && data.product_reviews;
+          if (!list || !list.length) { done = true; if (cb) cb(); return; }
+          pagesFetched++;
+          // only reviews that have a title
+          reviews = reviews.concat(list.filter(function (r) { return r.title && String(r.title).trim(); }));
+          cursor = data.meta && data.meta.page && data.meta.page.after;
+          if (!cursor || list.length < PAGE_SIZE || pagesFetched >= MAX_PAGES) done = true;
+          if (reviews.length >= MAX_REVIEWS) {
+            reviews = reviews.slice(0, MAX_REVIEWS);
+            done = true;
+          }
+          if (!done && reviews.length < MAX_REVIEWS) { load(cb); return; }
+          if (cb) cb();
+        })
+        .catch(function () { fetching = false; done = true; if (cb) cb(); });
+    };
+
+    if (prevBtn) prevBtn.addEventListener("click", function () {
+      if (animating) return;
+      if (idx > 0) { idx--; render(-1); }
+    });
+    if (nextBtn) nextBtn.addEventListener("click", function () {
+      if (animating) return;
+      if (idx < reviews.length - 1) {
+        idx++;
+        render(1);
+        if (!done && idx >= reviews.length - 3) load(null);
+      } else if (!done) {
+        load(function () {
+          if (idx < reviews.length - 1) { idx++; render(1); }
+          else { applyReview(); }
+        });
+      }
+    });
+
+    load(function () {
+      if (!reviews.length) return;
+      box.classList.add("mp-review-box--junip");
+      render();
+      // Clicking the review jumps to the full Junip reviews section, when the
+      // page has one. (Junip's widget has no API to open a specific review.)
+      var reviewsTarget = document.querySelector(".junip-product-review");
+      if (reviewsTarget) {
+        var goToReviews = function () {
+          var top = reviewsTarget.getBoundingClientRect().top + window.pageYOffset - 110;
+          var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          window.scrollTo({ top: top, behavior: reduced ? "auto" : "smooth" });
+        };
+        slideEl.classList.add("mp-review-slide--link");
+        slideEl.setAttribute("role", "button");
+        slideEl.setAttribute("tabindex", "0");
+        slideEl.setAttribute("aria-label", "Read all reviews");
+        slideEl.setAttribute("title", "Read all reviews");
+        slideEl.addEventListener("click", goToReviews);
+        slideEl.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); goToReviews(); }
+        });
+        var viewAllBtn = box.querySelector("[data-junip-viewall]");
+        if (viewAllBtn) {
+          viewAllBtn.hidden = false;
+          viewAllBtn.addEventListener("click", goToReviews);
+        }
+      }
+    });
+  });
 });
 </script>
 
@@ -1580,6 +1897,32 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       document.addEventListener('DOMContentLoaded', start);
     }
+  })();
+</script>
+
+<script>
+  (function () {
+    var root = document.getElementById('Product--{{ unique }}');
+    if (!root) return;
+    root.querySelectorAll('.cw-bb-color-description').forEach(function (wrap) {
+      var box = wrap.querySelector('toggle-ellipsis');
+      var less = wrap.querySelector('[data-cs-desc-less]');
+      var more = box && box.querySelector('[data-button]');
+      if (!box || !less || !more) return;
+      var collapsedHeight = (box.getAttribute('data-height') || '175') + 'px';
+
+      more.addEventListener('click', function () {
+        less.classList.add('is-visible');
+      });
+
+      less.addEventListener('click', function () {
+        box.style.setProperty('--height', collapsedHeight);
+        box.classList.remove('is-open');
+        less.classList.remove('is-visible');
+        var top = wrap.getBoundingClientRect().top + window.pageYOffset - 120;
+        if (window.pageYOffset > top) window.scrollTo({ top: top, behavior: 'smooth' });
+      });
+    });
   })();
 </script>
 
@@ -2226,24 +2569,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "name": "Rating summary",
         "settings": [
           {
-            "type": "text",
-            "id": "star_rating",
-            "label": "Star rating (0-5)",
-            "info": "Fallback only — the product's review rating metafield (reviews.rating) drives the stars and the X/5 text when present. Controls how much of the stars are filled. 0 hides the stars.",
-            "default": "4.76"
-          },
-          {
-            "type": "text",
-            "id": "rating_text",
-            "label": "Rating text",
-            "info": "Fallback only — ignored when the product has a review rating metafield.",
-            "default": "4.76/5"
-          },
-          {
-            "type": "text",
-            "id": "review_count_text",
-            "label": "Review count text",
-            "default": "12,000+"
+            "type": "paragraph",
+            "content": "Stars, rating and review count come from the product's Junip metafields (junip.rating_average / junip.rating_count). The block is hidden until the product has at least one review."
           },
           {
             "type": "text",
@@ -2282,27 +2609,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "name": "Payment & Features",
         "settings": [
           {
-            "type": "richtext",
-            "id": "description",
-            "label": "Description"
-          },
-          {
-            "type": "text",
-            "id": "feature_1",
-            "label": "Feature 1",
-            "default": "Reduces shine without making skin look dull"
-          },
-          {
-            "type": "text",
-            "id": "feature_2",
-            "label": "Feature 2",
-            "default": "Stays comfortable around the nose and mouth"
-          },
-          {
-            "type": "text",
-            "id": "feature_3",
-            "label": "Feature 3",
-            "default": "Formulated with clinically proven ingredients (no sulfates or parabens)"
+            "type": "paragraph",
+            "content": "The intro text is the product's own description (Products → Description in admin), shown collapsed with a Read more toggle."
           },
           {
             "type": "header",
@@ -2497,6 +2805,23 @@ document.addEventListener("DOMContentLoaded", function () {
             "id": "verified_text",
             "label": "Verified text",
             "default": "Verified Buyer"
+          },
+          {
+            "type": "header",
+            "content": "Junip reviews"
+          },
+          {
+            "type": "checkbox",
+            "id": "load_junip_reviews",
+            "label": "Load Junip reviews for this product",
+            "info": "Shows the product's real reviews one at a time with prev/next arrows. Falls back to the static quote above when the product has no reviews or Junip can't be reached.",
+            "default": true
+          },
+          {
+            "type": "text",
+            "id": "junip_store_key",
+            "label": "Junip store key override",
+            "info": "Leave blank to auto-detect from the Junip app embed. Only needed on stores without Junip installed (e.g. the dev store)."
           },
           {
             "type": "header",

@@ -16,6 +16,15 @@
   if product == nil
     assign product_description_content = 'home_page.onboarding.no_description' | t
   endif
+
+  if hide_description
+    assign product_description_content = blank
+  endif
+
+  if check_prefix != blank
+    assign check_prefix_strong = '<p><strong>' | append: check_prefix
+    assign check_prefix_plain = '<p>' | append: check_prefix
+  endif
 -%}
 
 {%- if block.settings.style == 'tabs' -%}
@@ -62,6 +71,9 @@
 
     {%- assign content = 'raw_content_' | append: forloop.index -%}
     {%- assign content = block.settings[content] -%}
+    {%- if check_prefix != blank -%}
+      {%- assign content = content | replace: check_prefix_strong, '<p class="cw-bb-check-item"><strong>' | replace: check_prefix_plain, '<p class="cw-bb-check-item">' -%}
+    {%- endif -%}
 
     {%- if title != '' and content != '' -%}
       {%- capture tab_links_html -%}
@@ -118,9 +130,12 @@
 
           assign content = 'raw_content_' | append: forloop.index
           assign content = block.settings[content]
+          if check_prefix != blank
+            assign content = content | replace: check_prefix_strong, '<p class="cw-bb-check-item"><strong>' | replace: check_prefix_plain, '<p class="cw-bb-check-item">'
+          endif
 
           assign accordion_open = false
-          if product_description_content == blank and forloop.index == 1
+          if product_description_content == blank and forloop.index == 1 and accordions_closed != true
             assign accordion_open = true
           endif
         -%}

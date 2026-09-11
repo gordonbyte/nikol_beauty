@@ -1,0 +1,2603 @@
+{
+ "exported": "2026-09-10",
+ "store": "nikolbeauty-dev-mab1srre (DEV)",
+ "definitions": {
+  "cs_faq_item": [
+   "question single_line_text_field (required)",
+   "answer multi_line_text_field (required)"
+  ],
+  "coming_soon_page": "fields used here: page_name, faq_subtitle, faqs (list.metaobject_reference -> cs_faq_item); product metafield custom.coming_soon (metaobject_reference)"
+ },
+ "pages": [
+  {
+   "handle": "bb-creme",
+   "page_name": "BB Crème",
+   "faq_subtitle": "Everything you need to know about BB Crème, from choosing a shade to daily wear.",
+   "faqs": [
+    {
+     "question": "Which BB Crème shade should I choose: Fair, Light, Light/Medium or Tan?",
+     "answer": "Fair suits the lightest complexions, Light is for fair-to-light skin, Light/Medium is for light-to-medium skin with a little more warmth, and Tan is for medium to deeper tones. Because BB Crème is a lightweight blur with low-to-medium coverage, it blends toward your natural tone, so if you sit between two shades choose the lighter one for everyday wear. Still unsure? Email hello@nikolbeauty.com with a natural-light photo and the shades you wear in other brands and we will help you pick before you order."
+    },
+    {
+     "question": "How much coverage does BB Crème give?",
+     "answer": "BB Crème gives low-to-medium coverage with a soft, semi-matte finish designed to blur and even out mature skin rather than mask it. Your skin still looks like skin, with redness and small discolorations softened. For extra help on age spots or under-eye darkness, layer a Nikol Beauty color corrector or Creamy Concealer only where you need it instead of adding more BB Crème."
+    },
+    {
+     "question": "Is BB Crème suitable for dry or combination skin?",
+     "answer": "Yes. It is enriched with shea butter and emollient oils, plus Kakadu Plum, one of the richest natural sources of Vitamin C, so it stays comfortable and hydrating throughout the day. If your skin is very dry, apply your moisturizer first and let it absorb for a few minutes before applying BB Crème."
+    },
+    {
+     "question": "Do I need a moisturizer or primer underneath?",
+     "answer": "Start with your usual skincare and give it a few minutes to set. A primer is optional: our Fiercely Smooth Face Primer smooths texture and helps BB Crème last longer, but BB Crème also works beautifully on its own over moisturizer."
+    },
+    {
+     "question": "Will BB Crème settle into fine lines?",
+     "answer": "Use a small amount and build in thin layers, pressing it in with the Foundation Buffing Brush or your fingertips rather than dragging. Let your skincare and primer absorb first, then set only the areas that need it, such as around the nose and mouth, with a light dusting of Nikita Banana Brightening Powder. Less product means less to settle into lines."
+    },
+    {
+     "question": "Nothing is coming out of the pump on my new bottle. What should I do?",
+     "answer": "BB Crème uses an airless pump, and the product can lose contact with the pump if air gets trapped during shipping. Shake the bottle well, turn it so the pump faces downward, and pump gently several times until the product begins to flow. If it still will not dispense, email hello@nikolbeauty.com with a photo of the bottle and the batch number embossed near the base, and our Customer Care team will make it right."
+    },
+    {
+     "question": "Can I build it up over redness and age spots?",
+     "answer": "You can add a second thin layer where needed, but for stronger correction pair it with a color corrector applied underneath: No Redness for redness, or Just Peachy and Simply Apricot for darkness. Then apply BB Crème over the top for an even, natural finish."
+    },
+    {
+     "question": "How long does one bottle last?",
+     "answer": "A little goes a long way, so with daily use most customers find a bottle lasts for months. Store it upright at room temperature, away from heat and direct sunlight, to keep the formula fresh."
+    },
+    {
+     "question": "How is BB Crème different from the Serum Foundation?",
+     "answer": "BB Crème is a lightweight complexion blur with a semi-matte finish and low-to-medium coverage, ideal for an effortless everyday look. Serum Foundation is a skincare-infused liquid with a radiant, silk-smooth finish and buildable light-to-medium coverage, applied with a dropper. Choose BB Crème for a quick, natural finish and Serum Foundation when you want more luminosity."
+    }
+   ]
+  },
+  {
+   "handle": "serum-foundation",
+   "page_name": "Serum Foundation",
+   "faq_subtitle": "Everything you need to know about Serum Foundation, from choosing a shade to daily wear.",
+   "faqs": [
+    {
+     "question": "Which Serum Foundation shade should I choose, and which are cool or warm?",
+     "answer": "Serum Foundation comes in four shades: Ivory and Fair have cool undertones, while Light and Light-Medium have warm undertones. If your veins look blue or pink and silver jewelry flatters you, start with Ivory or Fair; if your skin leans golden or peachy and gold jewelry suits you, look at Light or Light-Medium. For a personal recommendation, email hello@nikolbeauty.com with a natural-light photo and the foundation shades you already wear."
+    },
+    {
+     "question": "How much coverage does the Serum Foundation give?",
+     "answer": "It gives customizable light-to-medium coverage with an ultra-natural, radiant, silk-smooth finish. Skin looks more even-toned and imperfections are diffused rather than masked. Start with a few drops and add a second thin layer only where you want more coverage."
+    },
+    {
+     "question": "Do I need the Fiercely Smooth Face Primer underneath?",
+     "answer": "A primer is optional. Serum Foundation applies beautifully over well-absorbed skincare on its own, but if you have visible pores or texture, or you want extra wear time, a thin layer of Fiercely Smooth Face Primer creates a smoother canvas. Whichever you choose, let it set for a few minutes before applying foundation."
+    },
+    {
+     "question": "Why do I need to shake the bottle before each use?",
+     "answer": "Serum Foundation is a skincare-infused liquid, and its pigments and serum ingredients can settle between uses. A good shake blends them back together so the shade and coverage stay consistent from the first drop to the last."
+    },
+    {
+     "question": "How do I use the dropper without applying too much?",
+     "answer": "Shake well, then dispense two or three drops onto the back of your hand rather than directly onto your face. Pick the product up with the Foundation Buffing Brush, a damp sponge or your fingertips and press it into the skin in thin layers. A little goes a long way, and you can always add more where needed."
+    },
+    {
+     "question": "How do I keep it from settling into pores and fine lines?",
+     "answer": "Let your sunscreen and moisturizer absorb fully, about five to ten minutes, before applying, since layering over a still-dewy base is the most common cause of settling. Apply a thin layer with gentle pressing motions instead of sweeping or rubbing, and finish crease-prone areas such as under the eyes and around the mouth with a light touch of Nikita Banana Brightening Powder."
+    },
+    {
+     "question": "Is it fragrance-free and suitable for sensitive skin?",
+     "answer": "Yes. Serum Foundation is fragrance-free and made without parabens or sulfates, and the formula is designed to be gentle for all skin types. It also contains Salicylic Acid, which helps improve the look of your skin over time. As with any new product, patch test first if your skin is very reactive."
+    },
+    {
+     "question": "Should I choose Serum Foundation or BB Crème for everyday wear?",
+     "answer": "Choose BB Crème if you want a quick, lightweight blur with a semi-matte finish and low-to-medium coverage. Choose Serum Foundation if you prefer a luminous, radiant finish with buildable light-to-medium coverage and skincare benefits. Many customers keep both: BB Crème for easy days and Serum Foundation for a more polished look."
+    },
+    {
+     "question": "What if the shade I ordered is not right for me?",
+     "answer": "Because our products are personal-care items, all sales are final and we are unable to accept returns or exchanges once an order has shipped. We are always happy to help you choose before you buy, so email hello@nikolbeauty.com with a natural-light photo and we will recommend a shade. If your order arrives damaged or incorrect, contact us within 48 hours of delivery with photos and your invoice and we will make it right."
+    }
+   ]
+  },
+  {
+   "handle": "custom-concealer-trio-in-buffed-cool",
+   "page_name": "Creamy Concealer",
+   "faq_subtitle": "Everything you need to know about Creamy Concealer, from choosing a shade to a crease-free finish.",
+   "faqs": [
+    {
+     "question": "Does the Creamy Concealer come as a set, or do I choose one shade?",
+     "answer": "Each Creamy Concealer is sold individually, and you choose one of three shades: Fair (CC01, cool), Light (CC02, cool neutral) or Med (CC03, warm). Many customers own two so they can conceal with one shade and use a lighter shade to highlight, or mix in a warmer shade for summer."
+    },
+    {
+     "question": "Which shade should I order: Fair, Light or Med?",
+     "answer": "For under-eye concealing, choose the shade closest to your skin tone or a touch lighter. Fair is cool-toned for the lightest complexions, Light is a cool neutral that suits most fair-to-light skin, and Med is warm for light-medium to medium tones. Nikol wears Light to conceal, uses Fair to highlight and mixes in Med for a warmer summer concealer. Email hello@nikolbeauty.com with a photo if you would like a recommendation."
+    },
+    {
+     "question": "Will it settle into the fine lines under my eyes?",
+     "answer": "The formula was created for mature skin, with a creamy, moisturizing texture that gives high coverage without weight. To keep it crease-free, apply a small amount, blend with the Concealer Brush or your ring finger using gentle pressing motions, and set lightly with Nikita Banana Brightening Powder using the Soft Set Technique Brush."
+    },
+    {
+     "question": "Does it go over or under a color corrector like Just Peachy?",
+     "answer": "Color corrector goes on first, directly on the discoloration, and Creamy Concealer goes over the top. The corrector neutralizes the darkness so you need far less concealer for a bright, natural finish."
+    },
+    {
+     "question": "Do I need to set it with the Nikita Banana powder?",
+     "answer": "Setting is optional but recommended if you want the longest wear or your skin is oily. A light press of Nikita Banana Brightening Powder keeps the concealer from creasing and settling into fine lines while brightening the under-eye area."
+    },
+    {
+     "question": "How much coverage does it give on dark circles?",
+     "answer": "Creamy Concealer is a high-coverage liquid concealer with a luminous finish. For deep or blue-toned dark circles, pair it with Just Peachy or Simply Apricot color corrector underneath so a thin layer of concealer is all you need."
+    },
+    {
+     "question": "Which brush works best for applying it?",
+     "answer": "Our Concealer Brush has uniquely sculpted bristles and a dense tip made for precise, buildable application under the eyes. You can also use the Nikol Beauty Concealer/Lip Brush or your fingertips; just press and blend rather than dragging the delicate under-eye skin."
+    },
+    {
+     "question": "Is it gentle enough for thin, sensitive under-eye skin?",
+     "answer": "Yes. Creamy Concealer is fragrance-free and enriched with soothing Chamomile Flower Water, Evodia Rutaecarpa Fruit Extract, Allantoin and Sodium Hyaluronate to help calm and hydrate the delicate eye area. It is clean beauty, cruelty-free and made in Italy."
+    },
+    {
+     "question": "What if the shade I ordered is not right for me?",
+     "answer": "Because our products are personal-care items, all sales are final and we cannot accept returns or exchanges once an order has shipped. We are glad to help you choose beforehand, so email hello@nikolbeauty.com with a natural-light photo for a recommendation. If an item arrives damaged or incorrect, contact us within 48 hours of delivery with photos and your invoice and we will take care of it."
+    }
+   ]
+  },
+  {
+   "handle": "fbs-eye-brightener",
+   "page_name": "Eye Brightener",
+   "faq_subtitle": "Everything you need to know about the Eye Brightener and where it fits in your routine.",
+   "faqs": [
+    {
+     "question": "Where does the Eye Brightener go: over or under my concealer?",
+     "answer": "Apply Eye Brightener as a finishing step over your concealer, or on its own on lighter-makeup days. Its pink-based creamy formula neutralizes dullness and brings light to the under-eye area, so a small amount patted over concealer gives that awake, illuminated look."
+    },
+    {
+     "question": "Can I use it on my eyelids as well as under my eyes?",
+     "answer": "Yes. A thin layer on the lid or inner corner brightens the whole eye area. For eyeshadow that stays put all day, use our Eye Primer on the lid and reserve the Eye Brightener for under the eyes and the inner corners."
+    },
+    {
+     "question": "What does it do that a concealer or color corrector does not?",
+     "answer": "A color corrector cancels discoloration and a concealer covers it; the Eye Brightener adds light. Its pink base illuminates and lifts the under-eye area, and it is lightweight, oil-free and enriched with Chamomile Flower Water and Sodium Hyaluronate, so it also helps the skin look smoother and more hydrated."
+    },
+    {
+     "question": "How much should I use?",
+     "answer": "Very little. Dot a small amount under each eye and pat it in with your ring finger or the Concealer Brush. The tube is 1.5 ml because only a tiny amount is needed each day, so it lasts longer than it looks."
+    },
+    {
+     "question": "Will it crease under my eyes during the day?",
+     "answer": "Applied sparingly over set concealer it should stay smooth. If you are prone to creasing, press a light touch of Nikita Banana Brightening Powder over it with the Soft Set Technique Brush."
+    },
+    {
+     "question": "What should I do if product collects around the applicator?",
+     "answer": "Wipe the applicator and the neck of the tube with a clean tissue after each use and close it tightly. If your Eye Brightener arrived leaking or damaged, email hello@nikolbeauty.com within 48 hours of delivery with a photo and your invoice and our Customer Care team will make it right."
+    },
+    {
+     "question": "Do I need to set it with powder?",
+     "answer": "Setting is optional. On normal to dry skin many customers wear it without powder for a dewy finish. If your skin is oily or you want maximum wear, set lightly with Nikita Banana Brightening Powder."
+    },
+    {
+     "question": "Is the single shade meant to work on every skin tone?",
+     "answer": "Eye Brightener is a sheer, pink-based illuminator rather than a concealer, so it is designed to blend into a wide range of skin tones. On deeper complexions apply an even thinner layer over your concealer and blend the edges well."
+    },
+    {
+     "question": "Is it suitable for sensitive skin?",
+     "answer": "Yes. Eye Brightener is fragrance-free, oil-free and free of parabens and phthalates, with calming Chamomile Flower Water for sensitive, delicate skin. It is cruelty-free and made in Italy."
+    }
+   ]
+  },
+  {
+   "handle": "nikita-banana-translucent-pressed-color-corrector-powder",
+   "page_name": "Nikita Banana Brightening Powder",
+   "faq_subtitle": "Everything you need to know about Nikita Banana Brightening Powder and how to set without heaviness.",
+   "faqs": [
+    {
+     "question": "Is Nikita Banana tinted, and will it work on deeper skin tones?",
+     "answer": "Nikita Banana is a soft yellow pressed powder that is universally flattering. The yellow tone brightens and neutralizes darkness rather than leaving a white cast, so it blends into fair, medium and deeper complexions alike when applied with a light hand."
+    },
+    {
+     "question": "Where do I apply it: only under the eyes, or all over my face?",
+     "answer": "Both work. Use the Soft Set Technique Brush to press it gently under the eyes to set concealer, or dust it over the whole face or just the T-zone with the Essential Powder Brush to absorb oil and soften the look of pores. Apply it after concealer and foundation as your finishing step."
+    },
+    {
+     "question": "How do I keep it from looking cakey or settling into lines?",
+     "answer": "Use less than you think you need. Tap the excess off your brush, press the powder into the skin rather than sweeping it back and forth, and set only the areas that need it. Nikita Banana is designed to keep concealer from creasing, so a light touch is all it takes."
+    },
+    {
+     "question": "Which brush should I use with it?",
+     "answer": "For the under-eye area, press the angled side of the Soft Set Technique Brush into the powder and gently press it into place. For all-over or T-zone setting, use the Essential Powder Brush from our brush set. Use a sponge or puff only where you want fuller coverage."
+    },
+    {
+     "question": "Does it set concealer and corrector, or replace them?",
+     "answer": "It sets them. Apply your color corrector and Creamy Concealer first, then press Nikita Banana over the top to lock everything in place and brighten. It can also be worn alone over the BB Crème or Serum Foundation for a soft veil of coverage."
+    },
+    {
+     "question": "Will it make my pores look larger?",
+     "answer": "No. Nikita Banana absorbs oil and diminishes the appearance of pores for a smooth, soft finish. Apply a thin layer with a pressing motion rather than dragging so the powder sits on top of the skin instead of gathering in pores."
+    },
+    {
+     "question": "Is this a translucent powder or a brightening powder?",
+     "answer": "It is a brightening powder. Unlike a colorless translucent powder, its soft yellow tone corrects redness and dark under-eye circles while it sets your makeup, so you get setting and brightening in one step."
+    },
+    {
+     "question": "Can I use it over the BB Crème and the Serum Foundation?",
+     "answer": "Yes. Nikita Banana is meant to be applied after your concealer and foundation, and it pairs beautifully with both BB Crème and Serum Foundation. Dust it lightly wherever you want less shine and longer wear."
+    },
+    {
+     "question": "Is it talc-free?",
+     "answer": "Yes. Nikita Banana Brightening Powder is talc-free and cruelty-free, and it now comes in a pink compact. Keep the compact closed and dry between uses to protect the pressed powder."
+    }
+   ]
+  },
+  {
+   "handle": "fiercely-smooth-face-primer",
+   "page_name": "Fiercely Smooth Face Primer",
+   "faq_subtitle": "Everything you need to know about Fiercely Smooth Face Primer, from the airless pump to a smooth base.",
+   "faqs": [
+    {
+     "question": "What is the Fiercely Smooth Face Primer made with?",
+     "answer": "Our new, improved formula is 95 percent of natural origin and completely silicone-free, so it does not feel like traditional silicone primers. It is a velvety, lightweight formula that absorbs quickly, minimizes the look of fine lines and preps the skin so your BB Crème or foundation applies more smoothly and lasts longer."
+    },
+    {
+     "question": "What do I do if the pump will not dispense?",
+     "answer": "Fiercely Smooth uses an airless pump, and the product can lose contact with the pump if air is trapped during shipping. Shake the bottle well, turn it so the pump faces downward, and pump gently several times until the primer starts to flow. If it still will not dispense, email hello@nikolbeauty.com with a photo of the bottle and the batch number embossed near the base and our Customer Care team will make it right."
+    },
+    {
+     "question": "How much should I use?",
+     "answer": "A pea-sized amount is enough for the whole face. Warm it between your fingertips and press a thin, even layer onto the areas where you want smoothing, such as the cheeks, forehead and around the nose. Using more than a thin layer does not add benefit and can affect how your foundation sits."
+    },
+    {
+     "question": "Do I apply it to bare skin, or over my serum and moisturizer?",
+     "answer": "Apply it as the last step of your skincare, after your serum, moisturizer and sunscreen have fully absorbed, and before foundation. Cleansed, moisturized skin gives the primer the best surface to grip."
+    },
+    {
+     "question": "Is it hydrating, or is it for smoothing texture and controlling shine?",
+     "answer": "Fiercely Smooth is designed to smooth and blur. It creates a soft, velvety canvas that fills the look of fine lines and pores, gives a radiant finish and helps makeup last, and it is suitable for all skin types and tones. Keep your moisturizer in your routine for hydration and let the primer do the smoothing."
+    },
+    {
+     "question": "Do I still need it under the Serum Foundation?",
+     "answer": "It is optional. Serum Foundation applies well on its own over well-absorbed skincare, but if you have visible texture or want extra wear time, a thin layer of Fiercely Smooth underneath gives a smoother, longer-lasting result."
+    },
+    {
+     "question": "How long should I wait before applying foundation over it?",
+     "answer": "Give it a minute or two to settle into the skin. The formula absorbs quickly, and once it feels velvety rather than tacky you are ready to apply your BB Crème or foundation."
+    },
+    {
+     "question": "Will it keep my makeup out of fine lines and pores?",
+     "answer": "That is exactly what it is for. Fiercely Smooth blurs the look of fine lines and pores and gives your BB Crème a smoother surface to sit on, so makeup is less likely to settle and lasts longer through the day."
+    },
+    {
+     "question": "Is it suitable for sensitive skin?",
+     "answer": "Fiercely Smooth is clean beauty, silicone-free and 95 percent of natural origin, and it is formulated for all skin types and tones. If your skin is very reactive, patch test on a small area first, as you would with any new product."
+    }
+   ]
+  },
+  {
+   "handle": "just-peachy-color-corrector",
+   "page_name": "Just Peachy Color Corrector",
+   "faq_subtitle": "Everything you need to know about Just Peachy, from who it suits to how to layer it.",
+   "faqs": [
+    {
+     "question": "Which skin tones is Just Peachy formulated for?",
+     "answer": "Just Peachy is a peach-based corrector designed to disguise dark circles and dark spots on fair to light-medium skin tones. If your skin is light-medium to medium, or your discoloration leans blue or purple, Simply Apricot is usually the better match."
+    },
+    {
+     "question": "How much should I apply?",
+     "answer": "A little goes a long way. Apply a thin swipe directly onto the darkest part of the under-eye or the spot you want to neutralize, then blend the edges with your fingertip or the Concealer Brush. Build a second thin layer only if the darkness still shows through."
+    },
+    {
+     "question": "Where does it go in my routine?",
+     "answer": "Apply your moisturizer and sunscreen and let them absorb, then apply Just Peachy to the discoloration. Follow with Creamy Concealer over the top and your BB Crème or foundation, and finish by setting the under-eye area with Nikita Banana Brightening Powder."
+    },
+    {
+     "question": "Will it settle into the creases under my eyes?",
+     "answer": "Just Peachy has a creamy, lightweight texture with shea butter that is made for mature skin. Keep the layer thin, press rather than rub, and set lightly with Nikita Banana Brightening Powder to keep it smooth through the day."
+    },
+    {
+     "question": "Do I need to put concealer over the top of it?",
+     "answer": "Yes. A color corrector neutralizes the darkness but is not meant to be worn alone. A thin layer of Creamy Concealer over Just Peachy evens the tone and gives you a bright, natural finish with far less product than concealer alone."
+    },
+    {
+     "question": "What is the difference between Just Peachy and Simply Apricot?",
+     "answer": "Both cancel darkness, but Just Peachy is a lighter peach for fair to light-medium skin, while Simply Apricot is a deeper apricot for light-medium to medium skin and stronger blue or purple discoloration. If you are between the two, Just Peachy is the softer option for everyday brightening."
+    },
+    {
+     "question": "Is it suitable for sensitive skin?",
+     "answer": "Yes. Just Peachy is clean beauty, fragrance-free and cruelty-free, with a moisturizing shea butter formula that is gentle on the delicate under-eye area."
+    },
+    {
+     "question": "How do I care for the product so it lasts?",
+     "answer": "Twist up only a small amount at a time, apply with light pressure and retract it before replacing the cap. Store it at room temperature away from heat, and wipe the tip with a tissue occasionally to keep it clean."
+    },
+    {
+     "question": "Where can I see how to apply it?",
+     "answer": "Nikol demonstrates Just Peachy step by step on her YouTube channel, youtube.com/nikoljohnson, including how to place it, blend it and layer concealer over it for a bright under-eye. If you have a question about your specific concern, email hello@nikolbeauty.com and we will point you to the right tutorial."
+    }
+   ]
+  },
+  {
+   "handle": "no-redness-beauty-stix",
+   "page_name": "No Redness Color Corrector",
+   "faq_subtitle": "Everything you need to know about No Redness, from blending the green to all-day wear.",
+   "faqs": [
+    {
+     "question": "It looks green on my face. How do I blend it out properly?",
+     "answer": "The minty green tone is what neutralizes redness, and it disappears once it is blended and covered. Apply it only to the red areas, blend the edges with your fingertips or the Concealer Brush, then apply your BB Crème or foundation over the top. The green should never show through the finished look."
+    },
+    {
+     "question": "How much do I need to neutralize rosacea or general redness?",
+     "answer": "Start with a thin layer directly on the red area and blend. No Redness gives medium to full coverage, so one thin layer is usually enough; add a second only where redness still shows. Using less and layering gives a more natural result than one heavy application."
+    },
+    {
+     "question": "What goes over it: BB Crème, foundation or concealer?",
+     "answer": "Apply your moisturizer first, then No Redness on the red areas, then your BB Crème or Serum Foundation over the whole face. Use Creamy Concealer only where you want extra coverage, and finish by setting with Nikita Banana Brightening Powder."
+    },
+    {
+     "question": "Is it suitable for rosacea-prone and sensitive skin?",
+     "answer": "Yes. No Redness was created for exactly this: rosacea, T-zone redness and random flushing. It is clean beauty, fragrance-free and cruelty-free with a creamy, moisturizing shea butter formula that feels comfortable on reactive skin."
+    },
+    {
+     "question": "How do I apply it without dragging my skin?",
+     "answer": "Warm the tip against the back of your hand for a moment, then swipe lightly or dot it onto the area. Blend with a patting motion using your fingertips or the Concealer Brush rather than pulling the product across the skin."
+    },
+    {
+     "question": "Can I use it on blemishes and broken capillaries?",
+     "answer": "Yes. Dot a small amount directly on the blemish or capillary, blend the edges and cover with your BB Crème or foundation. It also neutralizes hyperpigmentation with a red tone."
+    },
+    {
+     "question": "Will the coverage hold all day?",
+     "answer": "Applied in a thin layer under your BB Crème or foundation and set with Nikita Banana Brightening Powder, No Redness stays put through a normal day. If you are very warm or active, a light touch-up of powder in the afternoon is all most customers need."
+    },
+    {
+     "question": "Does it work across all skin tones?",
+     "answer": "Yes. Because the green cancels red rather than adding color, No Redness is ideal for all skin tones. Simply match your BB Crème or foundation shade over the top as usual."
+    },
+    {
+     "question": "Do I use it alongside Just Peachy, or instead of it?",
+     "answer": "They do different jobs, so many customers use both. No Redness cancels red tones on the cheeks, nose and chin, while Just Peachy or Simply Apricot cancels blue and purple darkness under the eyes. Apply each only where it is needed, then cover with BB Crème or foundation."
+    }
+   ]
+  },
+  {
+   "handle": "extreme-cancel-color-corrector",
+   "page_name": "Simply Apricot",
+   "faq_subtitle": "Everything you need to know about Simply Apricot, from who it suits to how to layer it.",
+   "faqs": [
+    {
+     "question": "Who is Simply Apricot for, compared with Just Peachy?",
+     "answer": "Simply Apricot is a deeper apricot corrector made for light-medium to medium skin tones and for stronger blue or purple discoloration under the eyes. Just Peachy is a lighter peach for fair to light-medium skin. If you have light skin with pronounced blue-toned circles, Simply Apricot can still work; it depends on your level of pigmentation."
+    },
+    {
+     "question": "Why does it look so orange in the stick?",
+     "answer": "The warm apricot tone is what cancels blue and purple. It looks bold in the stick, but once a thin layer is blended and covered with Creamy Concealer the orange disappears and the under-eye simply looks brighter and more even."
+    },
+    {
+     "question": "What kind of discoloration does it cancel?",
+     "answer": "Simply Apricot neutralizes blue and purple-toned imperfections, most often dark circles under the eyes and shadowy areas around the nose or mouth. For redness, use No Redness Color Corrector instead."
+    },
+    {
+     "question": "How much should I use under my eyes?",
+     "answer": "Very little. Use the pointed tip to swipe a thin line directly on the darkest area, then blend with your fingertips or the Concealer Brush. The formula is buildable, so add a second thin layer only if darkness still shows."
+    },
+    {
+     "question": "Do I need concealer over the top?",
+     "answer": "Yes. A corrector cancels the discoloration but is not meant to be worn alone. Follow with a thin layer of Creamy Concealer for a smooth, bright finish, then set with Nikita Banana Brightening Powder."
+    },
+    {
+     "question": "How do I apply it without pulling the under-eye skin?",
+     "answer": "Warm the tip on the back of your hand, then place it on the skin with light pressure and let the product glide. Blend by pressing with your ring finger or the Concealer Brush instead of rubbing back and forth."
+    },
+    {
+     "question": "Is it fragrance-free and suitable for sensitive skin?",
+     "answer": "Yes. Simply Apricot is clean beauty, fragrance-free and cruelty-free, with a creamy, moisturizing shea butter formula. It is made in the USA."
+    },
+    {
+     "question": "Where does it go in my routine?",
+     "answer": "After moisturizer and sunscreen have absorbed, apply Simply Apricot to the discoloration, then Creamy Concealer over it, then your BB Crème or foundation. Finish by setting the under-eye area lightly with Nikita Banana Brightening Powder."
+    },
+    {
+     "question": "Where can I see how to apply it?",
+     "answer": "Nikol walks through Simply Apricot on her YouTube channel, youtube.com/nikoljohnson, showing placement, blending and how to layer concealer over it. If you have a question about your own under-eye concern, email hello@nikolbeauty.com and we will help."
+    }
+   ]
+  },
+  {
+   "handle": "color-corrector-collection-2",
+   "page_name": "Color Corrector Collection",
+   "faq_subtitle": "Everything you need to know about the Color Corrector Collection and which corrector to reach for.",
+   "faqs": [
+    {
+     "question": "Which three correctors come in the collection?",
+     "answer": "The Color Corrector Collection includes Just Peachy, No Redness and Simply Apricot, our newly reformulated correctors with a creamy, moisturizing shea butter formula. Together they cover redness, darkness, and blue and purple discoloration."
+    },
+    {
+     "question": "Which one do I use for dark circles, and which for redness?",
+     "answer": "Use No Redness (green) on redness, rosacea and blemishes anywhere on the face. Use Just Peachy on dark under-eye circles if you are fair to light-medium, or Simply Apricot if you are light-medium to medium or your circles lean blue or purple."
+    },
+    {
+     "question": "Is the collection suitable for my skin tone?",
+     "answer": "No Redness works on all skin tones. Just Peachy is designed for fair to light-medium skin and Simply Apricot for light-medium to medium skin, so between the two you are covered from fair through medium complexions. Email hello@nikolbeauty.com with a natural-light photo if you would like help deciding which corrector to reach for."
+    },
+    {
+     "question": "How much do I save buying all three together?",
+     "answer": "You save 15 percent compared with buying the three correctors individually. Only one discount code can be applied per order, and the bundle price is already reduced."
+    },
+    {
+     "question": "Can I use more than one corrector at a time?",
+     "answer": "Yes, but place each one only where it is needed rather than layering them on the same spot. For example, No Redness on the cheeks and nose and Just Peachy under the eyes, each blended thinly before your concealer and BB Crème go on top."
+    },
+    {
+     "question": "What order do they go in with concealer, BB Crème and powder?",
+     "answer": "Moisturizer first, then the corrector on the area of concern, then Creamy Concealer where you want extra coverage, then BB Crème or Serum Foundation over the face. Finish by setting with Nikita Banana Brightening Powder."
+    },
+    {
+     "question": "Are the correctors fragrance-free?",
+     "answer": "Yes. All three are clean beauty, fragrance-free and cruelty-free, and they are made in the USA. The lightweight, creamy texture is comfortable on sensitive and mature skin."
+    }
+   ]
+  },
+  {
+   "handle": "eye-primer",
+   "page_name": "Eye Primer",
+   "faq_subtitle": "Everything you need to know about our Eye Primer and crease-free eyeshadow.",
+   "faqs": [
+    {
+     "question": "Is the Eye Primer tinted, and will the color show on my lids?",
+     "answer": "Yes, it has a soft skin tone that neutralizes the natural darkness of the eyelid so your eyeshadow reads its true color. Applied in a thin layer and blended to the edges, it disappears into the skin and simply looks like an even, brighter lid."
+    },
+    {
+     "question": "It looks a little dark or yellow on me. Am I using too much?",
+     "answer": "Most likely, yes. A small dot is enough for both lids. Blend it thin with the Concealer Brush or your fingertip all the way to the brow bone, then give it 30 to 60 seconds to set before applying shadow. Once eyeshadow goes over it, the tone of the primer is no longer visible."
+    },
+    {
+     "question": "How thin a layer should I apply, and do I let it set first?",
+     "answer": "Apply a very thin, even layer from lash line to brow bone and let it set for about a minute until it feels smooth rather than tacky. That set layer is what keeps shadow from creasing all day."
+    },
+    {
+     "question": "Will it stop shadow creasing on hooded or crepey lids?",
+     "answer": "That is what it was made for. As eyelid skin thins and loses elasticity, shadow tends to crease and fade into fine lines. Eye Primer creates a smooth, even canvas that holds eyeshadow in place from morning to night, even on oily lids and during hot flashes."
+    },
+    {
+     "question": "Does it work under both powder and cream shadows?",
+     "answer": "Yes. It gives powder shadows something to grip so they look more pigmented, and it keeps cream shadows and liners from sliding. Let it set fully before applying either."
+    },
+    {
+     "question": "Can I wear it on its own as a lid concealer?",
+     "answer": "Yes. Many customers wear a thin layer alone on no-makeup days to even out lid discoloration and give a fresh, awake look."
+    },
+    {
+     "question": "Will it make my eyeshadow colors look brighter?",
+     "answer": "Yes. By neutralizing the darkness of the lid, Eye Primer lets shadows show their true color instead of looking muddy, so your palettes look more vibrant and stay true all day."
+    },
+    {
+     "question": "Is it safe for sensitive eyes and contact lens wearers?",
+     "answer": "Eye Primer is formulated without fragrance or parabens and is gentle enough for sensitive eyes. It is applied to the lid only, away from the lash line and waterline, so it is comfortable for contact lens wearers. It is cruelty-free."
+    },
+    {
+     "question": "How long does one tube last?",
+     "answer": "Because you need only a small dot for both eyes, one tube lasts for months of daily use. Keep the cap closed tightly and store it at room temperature."
+    }
+   ]
+  },
+  {
+   "handle": "mascara-intense-curling-volumizing",
+   "page_name": "Volume Up Mascara",
+   "faq_subtitle": "Everything you need to know about Volume Up Mascara, from choosing a color to removal.",
+   "faqs": [
+    {
+     "question": "Is Volume Up Mascara waterproof or water-resistant?",
+     "answer": "Volume Up is water-resistant and transfer-resistant, not waterproof. It holds up to everyday wear, humidity and watery eyes, yet removes easily at night without tugging at your lashes."
+    },
+    {
+     "question": "Which color should I choose: Jet Black #27 or Dark Brown #72?",
+     "answer": "Jet Black gives the most definition and is lovely for evening or for darker hair and brows. Dark Brown is softer and very flattering on blonde, grey and silver hair, and many customers use it on the lower lashes for a natural daytime look. Our Volume Up Mascara Bundle includes both."
+    },
+    {
+     "question": "What do I do if the wand picks up too much product?",
+     "answer": "Pull the wand out slowly and wipe the tip against the rim of the tube or a clean tissue before applying. The creamy formula is designed to build volume, so a lighter load on the wand gives you clean separation and you can add a second coat for more drama."
+    },
+    {
+     "question": "How should I store it so it stays fresh?",
+     "answer": "Close the tube tightly after each use and avoid pumping the wand in and out, which pushes air into the tube and dries the formula. Store it at room temperature away from heat, and replace your mascara every three months for eye hygiene."
+    },
+    {
+     "question": "Is it safe for sensitive eyes and contact lens wearers?",
+     "answer": "Yes. Volume Up Mascara is safe for sensitive eyes and contact lens wearers. The creamy, nourishing formula contains Candelilla dispersed in Jojoba oil for adhesion and antioxidant Vitamin E, and it is cruelty-free and made in Italy."
+    },
+    {
+     "question": "Will it flake or transfer under my eyes during the day?",
+     "answer": "The formula is transfer-resistant, so it is designed to stay on the lashes. Let each coat set for a few seconds before adding another, keep the lower lashes to a light coat, and avoid applying heavy eye cream right before mascara, which can cause any mascara to move."
+    },
+    {
+     "question": "How do I use the wand on short, sparse lashes?",
+     "answer": "The wand has tiny teeth all the way around, made to grip and lift every little lash. Place the wand at the root, wiggle side to side, then sweep up. Use the tip of the wand vertically to reach the small inner and outer lashes and the lower lashes. Nikol shows more wand techniques on her YouTube channel."
+    },
+    {
+     "question": "What is the best way to remove it at night?",
+     "answer": "Because it is water-resistant rather than waterproof, it comes off easily. Hold a cotton pad soaked in warm water or your gentle eye makeup remover against closed lashes for a few seconds, then wipe downward without rubbing."
+    },
+    {
+     "question": "How long should a tube last before I replace it?",
+     "answer": "Each tube holds 11 ml, and with daily use we recommend replacing it about every three months, as with any mascara, to keep the formula fresh and your eyes healthy."
+    }
+   ]
+  },
+  {
+   "handle": "nikol-cosmetics-waterproof-eyeliner",
+   "page_name": "WaterProof Eyeliner Pencils",
+   "faq_subtitle": "Everything you need to know about our Waterproof Eyeliner Pencils, from sharpening to removal.",
+   "faqs": [
+    {
+     "question": "How do I sharpen the eyeliner pencils?",
+     "answer": "Use the Nikol Beauty Pencil Sharpener, which was custom-designed for our creamy formulas. One or two gentle twists is all you need. Please note that our pencils are a softer formula made for mature skin and sharpen to a soft, rounded tip rather than a sharp point; forcing a point can damage the barrel and the formula."
+    },
+    {
+     "question": "How do I keep the tip from breaking?",
+     "answer": "Sharpen with only one or two twists, apply with light pressure and store the pencil capped and away from heat. The formula is highly pigmented and very creamy, so it needs far less pressure than a traditional hard eye pencil. If a pencil arrives damaged, email hello@nikolbeauty.com within 48 hours of delivery with a photo and your invoice and we will make it right."
+    },
+    {
+     "question": "Do I need your Pencil Sharpener specifically?",
+     "answer": "We strongly recommend it. Our sharpener, made in Germany, was designed for the diameter and softness of Nikol Beauty pencils and shapes them to the intended rounded end. Standard sharpeners often grab too much of the creamy core and waste product."
+    },
+    {
+     "question": "How do I remove a waterproof liner gently?",
+     "answer": "Hold a cotton pad soaked in an oil-based or bi-phase eye makeup remover against the closed eye for several seconds to dissolve the liner, then wipe gently downward. There is no need to scrub, which is especially important for delicate mature eye skin."
+    },
+    {
+     "question": "Which shade suits my eye color and skin tone?",
+     "answer": "Dark Chocolate is the softest everyday choice and flatters every eye color, especially on blonde, grey or silver hair. Charcoal gives definition without the harshness of black. Plum brightens green and hazel eyes, Navy makes brown eyes pop, and Deep Green brings out warmth in brown and hazel eyes. Each barrel is color-matched to the formula so you can always find the shade you want."
+    },
+    {
+     "question": "Will it stay put on oily or hooded lids and in humidity?",
+     "answer": "Yes. The formula is waterproof, long-lasting and smudge-resistant once it sets. For the longest wear on oily or hooded lids, apply a thin layer of Eye Primer first and let it set before lining."
+    },
+    {
+     "question": "Can I smudge it for a softer line, and how long do I have before it sets?",
+     "answer": "Yes. The creamy formula gives you a short window of about 20 to 30 seconds to soften the line with a smudge brush, a cotton swab or the Eyeshadow Blending Brush before it sets in place for the day."
+    },
+    {
+     "question": "How much pressure should I use?",
+     "answer": "Very little. The high pigment payout means a light glide delivers full color, and pressing hard is the most common reason a soft pencil tip breaks. Let the pencil do the work and build a second pass if you want a bolder line."
+    },
+    {
+     "question": "What makes this liner different from a regular eye pencil?",
+     "answer": "It is a brand-new, ultra-creamy formula created for mature eyes, with high pigment, long wear and no smudging once set. This is not a hard eye pencil: it glides without tugging on thin eyelid skin and sharpens to a soft, rounded tip that gives a flattering, slightly diffused line."
+    }
+   ]
+  },
+  {
+   "handle": "bottled-blonde",
+   "page_name": "Le Bottled Blonde 3-Well Eyeshadow Palette",
+   "faq_subtitle": "Everything you need to know about the Le Bottled Blonde palette, from placement to wear.",
+   "faqs": [
+    {
+     "question": "Are the Le Bottled Blonde shades shimmery or matte?",
+     "answer": "All three are Pearlized Satin finishes: rose gold, golden taupe and bronze toffee. The pearl is refined and light-catching rather than glittery, so it brightens mature eyes without emphasizing texture when applied over Eye Primer with a light hand."
+    },
+    {
+     "question": "Which shade goes where: lid, crease and brow bone?",
+     "answer": "Sweep the rose gold across the lid and inner corner, blend the golden taupe softly through the crease for dimension, and use the bronze toffee along the outer corner and lash line for definition. Reverse the order for a lighter look with taupe on the lid."
+    },
+    {
+     "question": "Do the colors look the same in person as online?",
+     "answer": "We photograph every palette carefully, but eyeshadow colors will vary depending on your screen settings. For the truest view, watch Nikol swatch and apply the palette on her YouTube channel, youtube.com/nikoljohnson."
+    },
+    {
+     "question": "Is this palette meant for blonde or grey hair?",
+     "answer": "The warm rose-gold and toffee tones were created with blondes in mind, and they are equally flattering on grey and silver hair, where the warmth brings life to the eye area. The neutral tones work beautifully on every eye color."
+    },
+    {
+     "question": "How do I stop fallout landing under my eyes?",
+     "answer": "Tap the excess off your brush before it reaches your eye, and press the shadow onto the lid rather than sweeping. Doing your eyes before your under-eye concealer, or placing the These Bags Are Designer eye masks under the eyes while you blend, keeps the rest of your makeup pristine."
+    },
+    {
+     "question": "Do I need the Eye Primer underneath?",
+     "answer": "We recommend it. Eye Primer neutralizes lid darkness so the pearlized shades show their true color, gives the powder something to grip and keeps it from creasing or fading through the day, especially on hooded or crepey lids."
+    },
+    {
+     "question": "Which brushes do I need?",
+     "answer": "The compact hosts two exclusive Nikol Beauty brushes, so you can start right away. For more control, add the Nikol Beauty Eyeshadow Blending Brush for the crease and the shadow brushes from the Essential Makeup Brush Set for the lid."
+    },
+    {
+     "question": "What is the formula made without?",
+     "answer": "This is a clean beauty palette: vegan, gluten-free and sulfite-free, and made without parabens, wax, mineral oil, silicone or talc. It contains three 6.9 g eyeshadows and is made in Italy."
+    },
+    {
+     "question": "What should I do if the palette arrives damaged?",
+     "answer": "Email hello@nikolbeauty.com within 48 hours of delivery with a clear photo of the damage and a copy of the invoice from inside your package. Our Customer Care team will review it and follow up to make it right."
+    }
+   ]
+  },
+  {
+   "handle": "fresh-beauty-studio-eye-shadow-palette",
+   "page_name": "Fresh Beauty 3-Well Eyeshadow Palette",
+   "faq_subtitle": "Everything you need to know about the Fresh Beauty palette, from placement to wear.",
+   "faqs": [
+    {
+     "question": "How shimmery is the Fresh Beauty palette, and is it suitable for mature eyes?",
+     "answer": "The three shades, soft seashell, warm rose pink and mid-toned lavender, are pearlized rather than glittery. The fine pearl catches light and brightens the eye without chunky sparkle, so it is very wearable on eyes over 60 when applied over Eye Primer."
+    },
+    {
+     "question": "How pigmented are the shades, and can I build them up?",
+     "answer": "They give medium to high coverage with vivid, long-wearing color. Start with a light layer and press on more where you want depth; the soft formula builds smoothly without looking heavy."
+    },
+    {
+     "question": "Which shade goes on the lid, and which in the crease?",
+     "answer": "Use the soft seashell over the whole lid and inner corner, the warm rose pink through the crease and outer lid, and the lavender along the outer corner or lower lash line for a touch of color. Blend where the shades meet with the Eyeshadow Blending Brush."
+    },
+    {
+     "question": "Are the colors too light to give me definition?",
+     "answer": "Fresh Beauty is a soft, romantic palette, so definition comes from placement. Deepen the outer corner with the lavender, line the upper lashes with a Waterproof Eyeliner Pencil in Plum or Charcoal, and finish with Volume Up Mascara for a complete look."
+    },
+    {
+     "question": "Do I need an eye primer for these to show up?",
+     "answer": "We recommend it. Eye Primer neutralizes lid darkness so these lighter shades read true and bright, and it keeps them from creasing or fading through the day."
+    },
+    {
+     "question": "How do I keep fallout off my cheeks?",
+     "answer": "Tap excess powder off the brush and press color onto the lid rather than sweeping. Doing your eye makeup before your concealer and foundation, or resting the These Bags Are Designer eye masks under your eyes while you blend, catches any fallout."
+    },
+    {
+     "question": "Do the colors look the same in person as on screen?",
+     "answer": "Eyeshadow colors will vary depending on your screen settings. For the truest impression, watch Nikol swatch and apply the palette on her YouTube channel, youtube.com/nikoljohnson."
+    },
+    {
+     "question": "What is the formula made without, and does it include brushes?",
+     "answer": "Fresh Beauty is vegan, gluten-free and sulfite-free, and made without parabens, wax, mineral oil, silicone or talc. The custom compact hosts two exclusive Nikol Beauty brushes and holds three 6.9 g eyeshadows, made in Italy."
+    },
+    {
+     "question": "What should I do if the palette arrives damaged?",
+     "answer": "Email hello@nikolbeauty.com within 48 hours of delivery with a clear photo of the damage and the invoice from your package. Our Customer Care team will review it and follow up to make it right."
+    }
+   ]
+  },
+  {
+   "handle": "naughty-nancy-eye-shadow-palette-limited-edition",
+   "page_name": "Naughty Nancy 3-Well Eyeshadow Palette",
+   "faq_subtitle": "Everything you need to know about the Naughty Nancy palette, from placement to wear.",
+   "faqs": [
+    {
+     "question": "What are the three Naughty Nancy shades, and how purple is the palette?",
+     "answer": "Naughty Nancy holds three Pearlized Satin shades: sparkling mauve, plum pink and sugar deep plum. It reads as a soft, wearable plum rather than a bright purple, with warm pink undertones that flatter mature skin and every eye color."
+    },
+    {
+     "question": "Is the lightest shade pale enough to use as a highlighter?",
+     "answer": "Yes. The sparkling mauve is light enough to brighten the inner corner and the center of the lid, and a touch under the brow bone gives a soft lift."
+    },
+    {
+     "question": "How shimmery are they on a mature lid?",
+     "answer": "The pearl is fine and satin-like, not glittery, so it brightens without settling into lines. Apply over Eye Primer, press the color on rather than sweeping, and keep the shimmer to the center of the lid if your lids are very textured."
+    },
+    {
+     "question": "Which color goes where for an everyday look?",
+     "answer": "Sweep sparkling mauve over the lid, blend plum pink through the crease, and use sugar deep plum along the outer corner and upper lash line for definition. Finish with Volume Up Mascara in Dark Brown or Jet Black."
+    },
+    {
+     "question": "How close are the colors to the website photos?",
+     "answer": "Eyeshadow colors will vary depending on your screen settings. For the truest impression, watch Nikol swatch and apply Naughty Nancy on her YouTube channel, youtube.com/nikoljohnson."
+    },
+    {
+     "question": "Do these need a primer to stay put?",
+     "answer": "We recommend Eye Primer underneath. It neutralizes lid darkness so the plums read true instead of muddy, and it keeps the shadow from creasing or fading through the day."
+    },
+    {
+     "question": "How do I stop fallout while blending?",
+     "answer": "Tap the brush before it reaches your eye and press the shadow on rather than sweeping. Do your eyes before your concealer, or rest the These Bags Are Designer eye masks under your eyes to catch any fallout."
+    },
+    {
+     "question": "Which brushes should I use?",
+     "answer": "The compact hosts two exclusive Nikol Beauty brushes. For a softer crease, add the Nikol Beauty Eyeshadow Blending Brush, and use the shadow brushes from the Essential Makeup Brush Set for packing color onto the lid."
+    },
+    {
+     "question": "What is the formula made without?",
+     "answer": "Naughty Nancy is vegan, gluten-free and sulfite-free, and made without parabens, wax, mineral oil, silicone or talc. It contains three 6.9 g eyeshadows and is made in Italy."
+    }
+   ]
+  },
+  {
+   "handle": "limited-edition-sweet-carol-3-well-eye-shadow-palette",
+   "page_name": "Sweet Carol 3-Well Eye Shadow Palette",
+   "faq_subtitle": "Everything you need to know about the Sweet Carol palette, from placement to wear.",
+   "faqs": [
+    {
+     "question": "How do I use the three Sweet Carol colors: which one goes where?",
+     "answer": "Sweet Carol pairs two velvety mattes with one pearlized shade. Sweep the matte powder pink over the lid as your base, blend the matte rich plum brown through the crease and outer corner for depth, and press the pearlized smoked grape onto the center of the lid or along the lower lash line for a soft glow."
+    },
+    {
+     "question": "How shimmery is the mid-tone on mature eyes?",
+     "answer": "The smoked grape is a Pearlized Satin, so it has a refined sheen rather than glitter. Pressed onto the center of the lid over Eye Primer it brightens the eye without emphasizing texture; the two matte shades do the shaping."
+    },
+    {
+     "question": "Is the darkest shade too pigmented to control?",
+     "answer": "The rich plum brown is beautifully pigmented, so pick it up with a light touch, tap off the excess and build in thin layers with the Eyeshadow Blending Brush. Start at the outer corner and blend inward so the color goes exactly where you want it."
+    },
+    {
+     "question": "What is the formula made without?",
+     "answer": "Sweet Carol is clean beauty: vegan, gluten-free and sulfite-free, and made without paraffin, wax, mineral oil, silicone or talc. It is expertly created in Italy and contains three 6.9 g eyeshadows."
+    },
+    {
+     "question": "Do I need a primer underneath?",
+     "answer": "We recommend Eye Primer. It neutralizes lid darkness so the pinks and plums read true, gives the powder something to grip and keeps the look crease-free from morning to night."
+    },
+    {
+     "question": "How long do they wear before creasing?",
+     "answer": "Over Eye Primer the shadows are long-wearing and hold through a full day. Apply thin layers, let the primer set first, and avoid heavy eye cream right before application for the longest wear."
+    },
+    {
+     "question": "How do I stop fallout under my eyes?",
+     "answer": "Tap the excess off the brush and press the shadow on rather than sweeping. Doing your eyes before your under-eye concealer, or resting the These Bags Are Designer eye masks under your eyes while you blend, keeps the rest of your makeup clean."
+    },
+    {
+     "question": "Do the colors look the same in person as on screen?",
+     "answer": "Eyeshadow colors will vary depending on your screen settings. For the truest impression, watch Nikol swatch and apply Sweet Carol on her YouTube channel, youtube.com/nikoljohnson."
+    },
+    {
+     "question": "What should I do if the palette arrives damaged?",
+     "answer": "Email hello@nikolbeauty.com within 48 hours of delivery with a clear photo of the damage and the invoice from your package. Our Customer Care team will review it and follow up to make it right."
+    }
+   ]
+  },
+  {
+   "handle": "rewrite-the-rules-eye-shadow-palette",
+   "page_name": "Rewrite The Rules 3-Well Eyeshadow Palette",
+   "faq_subtitle": "Everything you need to know about the Rewrite The Rules matte palette.",
+   "faqs": [
+    {
+     "question": "Is Rewrite The Rules a powder or a cream eyeshadow?",
+     "answer": "It is a pressed powder with a creamy, soft-touch feel. The shea butter-infused matte formula melts onto the skin with a velvety sensation and reduced fallout, so it applies like a cream and wears like a powder."
+    },
+    {
+     "question": "What are the three shades, and how do I place them?",
+     "answer": "Rewrite The Rules is a cool grey palette: Beige, Soft Gray and Deep Smoke. Use Beige over the lid and under the brow, blend Soft Gray through the crease, and press Deep Smoke into the outer corner and along the upper lash line for a soft smoky effect."
+    },
+    {
+     "question": "How pigmented is the darkest shade, and is it hard to control?",
+     "answer": "Deep Smoke delivers full, intense color, so use a light hand: pick up a little on the Eyeshadow Blending Brush, tap off the excess and build in thin layers starting at the outer corner. It blends easily thanks to the silky texture."
+    },
+    {
+     "question": "Are the shades matte?",
+     "answer": "Yes. All three shades are matte, which makes this palette ideal for mature lids where shimmer can emphasize texture. The finish is soft and velvety rather than flat or chalky."
+    },
+    {
+     "question": "Do I need an eye primer under them?",
+     "answer": "We recommend Eye Primer. It evens the lid tone so the greys read cool and clean rather than muddy, and it keeps the matte shadows in place all day without creasing."
+    },
+    {
+     "question": "Will they crease or fade during the day?",
+     "answer": "The formula is designed for long-lasting, full-coverage wear. Over a set layer of Eye Primer it stays true through the day; keep your layers thin for the longest wear."
+    },
+    {
+     "question": "How do I stop fallout while blending?",
+     "answer": "The silky formula is made for reduced fallout. Tap excess off the brush, press color onto the lid, and do your eyes before your concealer or rest the These Bags Are Designer eye masks under your eyes while you blend."
+    },
+    {
+     "question": "What is the formula made without?",
+     "answer": "Rewrite The Rules is free from gluten, sulfates, parabens, mineral oils and silicones, and infused with high-quality shea butter for comfort. It contains three 6.9 g eyeshadows and is made in Italy."
+    },
+    {
+     "question": "Do the colors match how they look online?",
+     "answer": "Eyeshadow colors will vary depending on your screen settings. For the truest impression, watch Nikol swatch and apply the palette on her YouTube channel, youtube.com/nikoljohnson."
+    }
+   ]
+  },
+  {
+   "handle": "the-cabana-eyeshadow-palette",
+   "page_name": "The Cabana 3-Well Eyeshadow Palette",
+   "faq_subtitle": "Everything you need to know about The Cabana, our essential neutral palette.",
+   "faqs": [
+    {
+     "question": "How much sheen does The Cabana have? Is it too sparkly for daytime?",
+     "answer": "The Cabana is our essential neutral palette with three Pearlized Satin shades: crisp champagne, iced pink and toffee bronze. The pearl is soft and light-reflecting rather than glittery, so it is perfectly wearable for daytime and easy to deepen for evening."
+    },
+    {
+     "question": "What technique makes them easiest to blend?",
+     "answer": "Apply over a set layer of Eye Primer, press the color onto the lid with the flat side of a shadow brush, then soften the edges with the Nikol Beauty Eyeshadow Blending Brush using small circular motions. Build in thin layers rather than one heavy pass."
+    },
+    {
+     "question": "Which shade goes on the lid, crease and brow bone?",
+     "answer": "Sweep crisp champagne over the lid and under the brow bone, blend iced pink through the center of the lid and inner crease, and use toffee bronze in the outer corner and along the lash line for definition."
+    },
+    {
+     "question": "Is this palette suitable for mature, hooded eyes?",
+     "answer": "Yes. Neutral, satin-finish shades are the most forgiving on hooded and mature lids. Keep the champagne on the lid, blend the toffee bronze slightly above the natural crease so it shows when your eyes are open, and use Eye Primer to prevent creasing."
+    },
+    {
+     "question": "Do I need a primer to stop them creasing?",
+     "answer": "We recommend Eye Primer. It neutralizes lid darkness so the champagne and pink stay bright, gives the powder grip and keeps the look crease-free from morning to night."
+    },
+    {
+     "question": "How do I control fallout?",
+     "answer": "Tap the excess off your brush and press the shadow on rather than sweeping. Do your eyes before your concealer, or rest the These Bags Are Designer eye masks under your eyes while you blend."
+    },
+    {
+     "question": "Are the colors true to the website photos?",
+     "answer": "Eyeshadow colors will vary depending on your screen settings. For the truest impression, watch Nikol swatch and apply The Cabana on her YouTube channel, youtube.com/nikoljohnson."
+    },
+    {
+     "question": "Is it an everyday palette or an evening one?",
+     "answer": "Both. Champagne and iced pink alone make a soft everyday eye; add toffee bronze to the outer corner and lash line, and a Waterproof Eyeliner Pencil in Dark Chocolate, for evening."
+    },
+    {
+     "question": "What is the formula made without, and does it include brushes?",
+     "answer": "The Cabana is vegan, gluten-free and sulfite-free, and made without parabens, wax, mineral oil, silicone or talc. The compact hosts two exclusive Nikol Beauty brushes and holds three 6.9 g eyeshadows, made in Italy."
+    }
+   ]
+  },
+  {
+   "handle": "strong-brew-3-well-eyeshadow-palette",
+   "page_name": "Strong Brew 3-Well Eyeshadow Palette",
+   "faq_subtitle": "Everything you need to know about the Strong Brew matte palette.",
+   "faqs": [
+    {
+     "question": "Does Strong Brew have a scent, and is it suitable for sensitive eyes?",
+     "answer": "Strong Brew is a clean beauty formula free from gluten, sulfates, parabens, mineral oils and silicones, infused with shea butter for comfort on the lids. It is designed with skin health in mind and is gentle for everyday wear; as with any new product, patch test first if your eyes are very reactive."
+    },
+    {
+     "question": "How dark is the deepest brown? Is it wearable for daytime?",
+     "answer": "The rich brown is deep but warm, and because it is matte it reads soft rather than harsh. For daytime, use a small amount in the outer corner or as a liner along the upper lashes; for evening, blend it further into the crease."
+    },
+    {
+     "question": "Are the shades matte?",
+     "answer": "Yes. Strong Brew is a cocoa and nude matte palette: creamy nude peach, soft taupe and rich brown. The creamy, soft-touch formula delivers full coverage with a velvety finish, ideal for mature lids."
+    },
+    {
+     "question": "Which shade goes where for a soft neutral eye?",
+     "answer": "Sweep the creamy nude peach over the whole lid, blend the soft taupe through the crease, and press the rich brown into the outer corner and along the upper lash line. Finish with Volume Up Mascara."
+    },
+    {
+     "question": "How pigmented are they, and can I go lighter?",
+     "answer": "They are full-coverage, so a little goes a long way. Pick up a small amount, tap off the excess and build in thin layers with the Eyeshadow Blending Brush. Keeping the brush light gives a soft wash of color."
+    },
+    {
+     "question": "Do I need an eye primer underneath?",
+     "answer": "We recommend Eye Primer. It evens the lid so the nude and taupe read true, gives the powder grip and keeps the matte shadows from creasing or fading through the day."
+    },
+    {
+     "question": "How do I keep fallout off my cheeks?",
+     "answer": "The silky texture is made for reduced fallout. Tap the excess off the brush, press color onto the lid, and do your eyes before your concealer or rest the These Bags Are Designer eye masks under your eyes while you blend."
+    },
+    {
+     "question": "How long do they wear before creasing?",
+     "answer": "The formula is long-lasting and holds through a full day over a set layer of Eye Primer. Apply thin layers and avoid heavy eye cream right before application for the best wear."
+    },
+    {
+     "question": "Do the colors look the same in person as online?",
+     "answer": "Eyeshadow colors will vary depending on your screen settings. For the truest impression, watch Nikol swatch and apply Strong Brew on her YouTube channel, youtube.com/nikoljohnson. It contains three 6.9 g eyeshadows and is made in Italy."
+    }
+   ]
+  },
+  {
+   "handle": "skinny-brow-pencil",
+   "page_name": "Skinny Brow Pencil",
+   "faq_subtitle": "Everything you need to know about the Skinny Brow Pencil, from choosing a shade to hair-like strokes.",
+   "faqs": [
+    {
+     "question": "Which Skinny Brow Pencil shade should I pick: Dark Blonde, Taupe, Brownie or Soft Gray?",
+     "answer": "Choose a shade close to your brow hair or one step lighter for the most natural result. Dark Blonde suits blonde and light brows, Taupe is the universal choice for ash-toned, light brown and greying brows, Brownie is for medium to dark brown brows, and Soft Gray is made for silver and grey brows. Email hello@nikolbeauty.com with a natural-light photo if you would like a recommendation."
+    },
+    {
+     "question": "Do I draw individual hair strokes, or fill and brush through?",
+     "answer": "The ultra-fine tip is made for short, feathery hair-like strokes in the direction of growth, especially where brows are sparse. Then brush through with a spoolie to soften. For extra shape and hold, layer Brow Mascara over the top."
+    },
+    {
+     "question": "How do I keep the thin tip from breaking?",
+     "answer": "Twist up only a tiny amount at a time, no more than a millimeter or two, and use light, short strokes. The reformulated, ultra-smooth formula glides on easily, so very little pressure is needed. Retract the tip before replacing the cap."
+    },
+    {
+     "question": "Does it need sharpening?",
+     "answer": "No. The Skinny Brow Pencil is a fine-tip twist-up pencil, so it is always ready to use without a sharpener."
+    },
+    {
+     "question": "Which shade works with grey or silver hair?",
+     "answer": "Soft Gray was created for silver and grey brows, and Taupe is a lovely option if your brows still have some ash-brown in them. Both avoid the warm, orange tone that can happen when brown pencils are used on grey hair."
+    },
+    {
+     "question": "Will it last all day?",
+     "answer": "Yes. The smooth formula is designed for definition and control that lasts through the day. For maximum hold, set your strokes with Brow Mascara in a matching shade or Clear."
+    },
+    {
+     "question": "Can I use it on very sparse or thin brows?",
+     "answer": "Absolutely. The precision tip lets you draw individual hairs exactly where they are missing, and pairing it with our Precision Eyebrow Stencils helps you rebuild a shape that suits your face."
+    },
+    {
+     "question": "What should I do if my pencil arrives damaged or the spoolie is loose?",
+     "answer": "Email hello@nikolbeauty.com within 48 hours of delivery with a photo and the invoice from your package, and our Customer Care team will make it right."
+    },
+    {
+     "question": "How long does one pencil last?",
+     "answer": "The pencil holds 90 mg of product, which sounds small but goes a long way because the skinny tip deposits only what you need. With daily use most customers get many weeks of wear from one pencil."
+    }
+   ]
+  },
+  {
+   "handle": "brow-fixx",
+   "page_name": "Brow Mascara",
+   "faq_subtitle": "Everything you need to know about Brow Mascara, from choosing a shade to all-day hold.",
+   "faqs": [
+    {
+     "question": "Which Brow Mascara shade should I choose?",
+     "answer": "Clear sets and shapes without adding color. Blonde suits blonde, light and silver brows. Milk Chocolate is a medium brown for light-brown to medium-brown brows, and Cocoa is the deepest shade for dark brows. When in doubt, choose the lighter of two shades; the high pigment builds quickly."
+    },
+    {
+     "question": "Is there a shade that covers grey brow hairs?",
+     "answer": "Yes. The rich pigment concentration is designed to cover blank spaces and grey hairs. Blonde or Milk Chocolate softly tints greys on lighter brows, and Cocoa covers greys on dark brows. Brush upward and outward so every hair is coated."
+    },
+    {
+     "question": "What do I do if there is too much product on the brush?",
+     "answer": "Wipe the brush lightly against the rim of the tube or a clean tissue before applying. A lighter load gives natural, separated brows, and the fast-drying formula lets you add a second pass wherever you want more color."
+    },
+    {
+     "question": "How do I work the brush into short, sparse brows?",
+     "answer": "Hold the wand vertically and use the tip to press color into the skin where hairs are missing, then brush through in the direction of growth. For extra definition, draw hair strokes with the Skinny Brow Pencil first and set them with Brow Mascara."
+    },
+    {
+     "question": "Does it hold my brow hairs in place, or only add color?",
+     "answer": "Both. The velvety formula tints and defines while it sets the hairs in place, so brows stay flawless throughout the day. It dries fast to a soft matte finish and never feels stiff or crunchy."
+    },
+    {
+     "question": "Will it last all day without flaking?",
+     "answer": "Yes. Applied in a thin layer, the fast-drying formula holds color and shape from morning to night. Avoid layering it thickly, which is the usual cause of any brow product flaking."
+    },
+    {
+     "question": "Can I use it over the Skinny Brow Pencil?",
+     "answer": "Yes, that is our favorite combination. Draw fine strokes with the Skinny Brow Pencil where brows are sparse, then brush Brow Mascara through to blend the strokes, tint the hairs and lock everything in place."
+    },
+    {
+     "question": "How do I remove it?",
+     "answer": "It comes off easily with your regular cleanser or a cotton pad with gentle makeup remover. Wipe in the direction of hair growth so you are not tugging the brow hairs."
+    },
+    {
+     "question": "How should I store it so it stays fresh?",
+     "answer": "Close the tube tightly after each use and avoid pumping the wand in and out, which dries the formula. Stored at room temperature, one tube lasts for months of daily use."
+    }
+   ]
+  },
+  {
+   "handle": "nikol-cosmetics-precision-eyebrow-stencils",
+   "page_name": "Nikol Beauty Precision Eyebrow Stencils",
+   "faq_subtitle": "Everything you need to know about our Precision Eyebrow Stencils.",
+   "faqs": [
+    {
+     "question": "How many stencil shapes are included?",
+     "answer": "The set includes four styles designed by Nikol, a Certified Permanent Makeup Artist and Licensed Esthetician: Slim Arch, Classic Arch, Full Arch and Bold Arch. Each transparent stencil is labeled with its arch name in black so you can find the shape you want at a glance."
+    },
+    {
+     "question": "Which shape should I start with?",
+     "answer": "Slim Arch gives the most delicate brow and suits smaller or narrow faces, Classic Arch is the natural everyday shape, Full Arch adds width and softness, and Bold Arch gives the most presence. Try each one in the mirror; the stencils are a stress-free way to test new shapes and thickness before committing."
+    },
+    {
+     "question": "Do they work on short, thin or sparse brows?",
+     "answer": "Yes, that is exactly what they are for. Place the stencil where you would like your brow to sit, then fill in the shape with the Skinny Brow Pencil and set with Brow Mascara. The stencil gives you the outline your natural hairs no longer provide."
+    },
+    {
+     "question": "How do I hold them in place while filling?",
+     "answer": "Hold the stencil gently against the brow bone with your non-dominant hand and fill with short, light strokes. Because the stencils are transparent, you can see your natural hairs underneath and line the shape up with them."
+    },
+    {
+     "question": "Which products should I use with them?",
+     "answer": "Use the Skinny Brow Pencil for hair-like strokes inside the stencil, then Brow Mascara to tint, blend and set. Both are available in shades for blonde, brown, dark and grey brows."
+    },
+    {
+     "question": "How do I clean and store them?",
+     "answer": "Wipe them with a damp cloth or mild soap and water after use, dry them flat and store them in a clean, dry place. They are designed for longevity, so with a little care they will last for years."
+    }
+   ]
+  },
+  {
+   "handle": "lip-and-cheek-cream",
+   "page_name": "Cream Blush Stick",
+   "faq_subtitle": "Everything you need to know about the Cream Blush Stick, from choosing a shade to blending.",
+   "faqs": [
+    {
+     "question": "Which Cream Blush Stick shade suits me?",
+     "answer": "Palm Beach is a warm apricot that flatters warm and golden complexions. St. Barths is a soft petal pink, the most natural choice for fair and cool-toned skin. Paris is a vibrant berry that brightens medium and deeper tones or adds a pop to any complexion. Coconut Row is a rich toasted-coconut cream bronzer for a warm glow. Email hello@nikolbeauty.com with a natural-light photo if you would like help choosing."
+    },
+    {
+     "question": "Will the shade look too bright or too brown on my complexion?",
+     "answer": "The formula is soft and buildable, so the color you see in the stick is the maximum intensity, not the starting point. Dab a small amount onto the apples of the cheeks and blend outward; one light layer gives a sheer, natural flush that you can build if you like."
+    },
+    {
+     "question": "How long does it wear?",
+     "answer": "Cream blush melts into the skin and wears comfortably through the day. For the longest wear, apply it over your BB Crème or foundation and set very lightly with Nikita Banana Brightening Powder or a translucent powder only if your skin is oily."
+    },
+    {
+     "question": "Do I apply it with fingers, a brush or a sponge?",
+     "answer": "Fingertips are easiest: dab the stick lightly onto the cheeks, then blend with your ring finger in gentle pressing motions. A damp sponge or the Foundation Buffing Brush also blends it seamlessly. Avoid dragging the stick across the skin."
+    },
+    {
+     "question": "Does it go on before or after powder?",
+     "answer": "Before. Cream products blend best onto other creams, so apply the blush over your BB Crème or foundation and then set with powder afterward if you wish. Applying cream over powder can look patchy."
+    },
+    {
+     "question": "Will it sit in lines or drag on mature skin?",
+     "answer": "The silky-smooth cream was designed for mature skin and is meant to enhance rather than cover. Apply a small amount and press it in with your fingertips instead of rubbing, and keep the color on the higher part of the cheek where skin is smoothest."
+    },
+    {
+     "question": "Is it suitable for oily or dry skin?",
+     "answer": "Yes to both. Dry skin loves the creamy, non-drying texture. If your skin is oily, apply a thin layer and set lightly with powder to keep the glow in place all day."
+    },
+    {
+     "question": "How should I store it?",
+     "answer": "Keep the cap on tightly, retract the stick after use and store it at room temperature away from heat and direct sun. Wipe the top with a clean tissue now and then to keep it fresh."
+    },
+    {
+     "question": "What if the shade I ordered is not right for me?",
+     "answer": "Because our products are personal-care items, all sales are final and we cannot accept returns or exchanges once an order has shipped. We are glad to help you choose beforehand: email hello@nikolbeauty.com with a natural-light photo for a recommendation. If an item arrives damaged or incorrect, contact us within 48 hours of delivery with photos and your invoice and we will make it right."
+    }
+   ]
+  },
+  {
+   "handle": "classic-beach-palette",
+   "page_name": "Classic Beach Glow",
+   "faq_subtitle": "Everything you need to know about the Classic Beach Glow cream palette.",
+   "faqs": [
+    {
+     "question": "Will the Classic Beach Glow shades be too deep for fair skin?",
+     "answer": "No. Classic Beach Glow is an all-cream palette with pearl pigments that melts into the skin, so the color builds gradually from a sheer glow. Fair complexions should start with the lightest well and a fingertip amount, blending outward; you control the depth with how much you layer."
+    },
+    {
+     "question": "Is it a glow or a matte finish?",
+     "answer": "It is a glow. The fusion of pearl pigments and a biodegradable blend of emollient esters is designed to emphasize the natural radiance of mature skin while helping support the skin barrier. The finish is luminous and skin-like, never glittery."
+    },
+    {
+     "question": "Which of the three wells do I use, and can I mix them?",
+     "answer": "Use them alone or mix them. The palette is multi-use for face, eyes and lips: try the lightest shade as a highlight on the cheekbones and lids, the mid shade as your everyday cheek color, and the deepest for warmth along the cheekbone or as a lip tint. Blending two wells together creates a custom shade."
+    },
+    {
+     "question": "How do I get the cream to apply smoothly without patching?",
+     "answer": "Apply it over BB Crème or foundation and before any powder, since cream blends best onto cream. Warm a small amount on your fingertip, dab it onto the cheek and press to blend rather than rubbing. Build thin layers for more color."
+    },
+    {
+     "question": "Which brush should I use?",
+     "answer": "Fingertips work beautifully with a cream formula, and the warmth helps it melt in. If you prefer a tool, use a damp sponge or the Foundation Buffing Brush in light pressing motions, and a small shadow brush for the eyes."
+    },
+    {
+     "question": "Is it suitable for mature, dry skin?",
+     "answer": "Yes, it was crafted for exactly that. The formula is more than 90 percent natural ingredients and infused with a special canola oil rich in omega-9, so it feels nourishing and never sits dry or chalky on the skin."
+    },
+    {
+     "question": "Can I use it as a bronzer as well as a blush?",
+     "answer": "Yes. Sweep the deepest well lightly along the cheekbones, temples and jawline for warmth, then use the mid shade on the apples of the cheeks. Because it is cream, the two blend into each other seamlessly."
+    },
+    {
+     "question": "How long does the color last on the skin?",
+     "answer": "The cream wears comfortably through the day. If your skin is oily or you want extra insurance, set very lightly with Nikita Banana Brightening Powder after blending."
+    },
+    {
+     "question": "Do the shades match the website photos?",
+     "answer": "Colors can vary slightly depending on your screen settings. For the truest look, watch Nikol apply Classic Beach Glow on her YouTube channel, youtube.com/nikoljohnson, or email hello@nikolbeauty.com if you would like advice for your skin tone."
+    }
+   ]
+  },
+  {
+   "handle": "new-blush-palette-ageless",
+   "page_name": "Ballerina Rose Blush Palette",
+   "faq_subtitle": "Everything you need to know about the Ballerina Rose Blush Palette.",
+   "faqs": [
+    {
+     "question": "What do I do with the three Ballerina Rose colors? Which is the everyday one?",
+     "answer": "Ballerina Rose holds three powder blushes: rose in the nude on the left, sparkling blush pink in the middle and warm petal pink on the right. The rose nude is the softest everyday choice, the warm petal pink adds a healthy flush, and the sparkling pink works as a highlight on the cheekbones or swirled with the others for a glow."
+    },
+    {
+     "question": "Is this a powder palette or a cream blush?",
+     "answer": "Ballerina Rose is a pressed powder blush palette. Our reformulated blushes blend seamlessly and build without feeling heavy or chalky. If you prefer cream, see our Cream Blush Stick."
+    },
+    {
+     "question": "Are the pinks wearable on mature skin without looking chalky?",
+     "answer": "Yes. The formula is made with 100 percent natural ingredients, natural mica and shea butter, which gives a silky, luminous finish rather than a dry, powdery one. Apply with a light hand over BB Crème and build gradually."
+    },
+    {
+     "question": "How buildable is the color?",
+     "answer": "The blushes give medium coverage and build beautifully. Tap the excess off your brush, start with a light sweep on the apples of the cheeks and add another layer for more color."
+    },
+    {
+     "question": "Which brush works best?",
+     "answer": "A fluffy, tapered blush brush such as the blush brush from our Essential Makeup Brush Set gives the softest diffusion. Use a smaller brush to place the sparkling pink precisely on the cheekbones."
+    },
+    {
+     "question": "How long does it wear?",
+     "answer": "The finish is natural and long-lasting through a normal day. For extra staying power, apply over BB Crème or foundation that has been lightly set, or layer the powder over a touch of Cream Blush Stick."
+    },
+    {
+     "question": "Can I mix the three wells together?",
+     "answer": "Yes. Swirling your brush through two or all three wells creates a custom rosy glow, and the sparkling pink on top of either matte shade adds a soft radiance."
+    },
+    {
+     "question": "Will powder blush cling to dry patches or fine lines?",
+     "answer": "Prep well-moisturized skin, let your BB Crème set, and apply the blush with a light, sweeping motion to the higher part of the cheek where skin is smoothest. The shea butter-enriched formula is silky, so it should not cling when applied this way."
+    },
+    {
+     "question": "How does it compare with the Cream Blush Stick?",
+     "answer": "Ballerina Rose is powder with a luminous finish and three shades to mix; the Cream Blush Stick is a single creamy shade that melts into the skin. Many customers use both, applying the cream first for a dewy base and dusting the powder over it for longer wear."
+    }
+   ]
+  },
+  {
+   "handle": "after-glow-blush-palette",
+   "page_name": "After Glow Blush Palette",
+   "faq_subtitle": "Everything you need to know about the After Glow Blush Palette.",
+   "faqs": [
+    {
+     "question": "What are the three After Glow shades, and who do they suit?",
+     "answer": "After Glow is our warm peachy palette: nude peach on the left, soft coral in the middle and warm peach on the right. Peach tones brighten warm and golden complexions and give fair skin a sun-kissed glow, and they are especially flattering with blonde, red and warm-brown hair."
+    },
+    {
+     "question": "How buildable is the color?",
+     "answer": "The blushes give medium coverage with a natural luminous finish and build easily. Tap the excess off your brush, start with a light sweep and add a second layer for more color."
+    },
+    {
+     "question": "Which brush should I use?",
+     "answer": "A soft, tapered blush brush such as the blush brush from our Essential Makeup Brush Set diffuses the color evenly. For the softest look, sweep upward from the apples of the cheeks toward the temples."
+    },
+    {
+     "question": "Is it suitable for sensitive skin?",
+     "answer": "The formula is made with 100 percent natural ingredients, natural mica and shea butter, and it is non-greasy and lightweight. As with any new product, patch test first if your skin is very reactive."
+    },
+    {
+     "question": "How does it differ from In Full Bloom and Ballerina Rose?",
+     "answer": "All three share the same silky, luminous formula; the difference is color family. After Glow is warm peach and coral, In Full Bloom is sophisticated berry and plum, and Ballerina Rose is soft rosy pink. Choose peach for warmth, berry for depth and rose for a classic flush."
+    },
+    {
+     "question": "How long does it wear?",
+     "answer": "The finish is natural and long-lasting through a normal day. For extra staying power, apply over set BB Crème or foundation, or layer the powder over a touch of Cream Blush Stick in Palm Beach."
+    },
+    {
+     "question": "What should I do if the compact arrives damaged?",
+     "answer": "Email hello@nikolbeauty.com within 48 hours of delivery with a clear photo of the damage and the invoice from your package. Our Customer Care team will review it and follow up to make it right."
+    }
+   ]
+  },
+  {
+   "handle": "in-full-bloom-blush-palette",
+   "page_name": "In Full Bloom Blush Palette",
+   "faq_subtitle": "Everything you need to know about the In Full Bloom Blush Palette.",
+   "faqs": [
+    {
+     "question": "What are the three In Full Bloom shades, and which is most wearable daily?",
+     "answer": "In Full Bloom is our sophisticated berry palette: spicy coral on the left, soft berry in the middle and sparkling plum on the right. Soft berry is the easiest everyday shade, spicy coral adds warmth, and sparkling plum gives a luminous evening glow or a highlight over the other two."
+    },
+    {
+     "question": "Is this a cream blush palette or a powder one?",
+     "answer": "In Full Bloom is a pressed powder palette with a silky, luminous finish. If you prefer cream, our Cream Blush Stick in Paris is the berry option."
+    },
+    {
+     "question": "Are berry tones too strong for mature skin?",
+     "answer": "Not when applied with a light hand. Berry brings a healthy, lifted look to mature skin, and because the coverage is medium and buildable you decide the intensity. Start with a light sweep of the soft berry and build only if you want more."
+    },
+    {
+     "question": "How long does it wear?",
+     "answer": "The finish is natural and long-lasting through a normal day. For extra staying power, apply over set BB Crème or foundation, or layer it over a touch of Cream Blush Stick."
+    },
+    {
+     "question": "What do I do if the compact arrives cracked?",
+     "answer": "Email hello@nikolbeauty.com within 48 hours of delivery with a clear photo of the damage and the invoice from your package. Our Customer Care team will review it and follow up to make it right."
+    },
+    {
+     "question": "Which brush works best?",
+     "answer": "A soft, tapered blush brush such as the blush brush from our Essential Makeup Brush Set gives the smoothest diffusion. Tap off the excess before applying, since berry shades are pigmented."
+    },
+    {
+     "question": "Can the shades be mixed?",
+     "answer": "Yes. Swirl your brush through two or three wells for a custom berry, or press the sparkling plum lightly over the soft berry for a radiant finish."
+    },
+    {
+     "question": "How does it compare with After Glow and Ballerina Rose?",
+     "answer": "All three share the same natural-mica and shea butter formula with a luminous finish. In Full Bloom is berry and plum for depth, After Glow is warm peach and coral, and Ballerina Rose is soft pink for a classic flush."
+    }
+   ]
+  },
+  {
+   "handle": "creme-brulee",
+   "page_name": "Crème Brûlée",
+   "faq_subtitle": "Everything you need to know about Crème Brûlée, our hybrid bronzer for mature skin.",
+   "faqs": [
+    {
+     "question": "Will Crème Brûlée look too orange on fair or light skin?",
+     "answer": "No. Crème Brûlée is a hybrid bronzer that blends deep and light pigments in every compact, so it reads as a healthy warmth rather than a flat orange. Fair skin should pick up a small amount, tap off the excess and build gradually where the sun would naturally touch the face."
+    },
+    {
+     "question": "Why does the marbling look different in every compact?",
+     "answer": "Each compact is individually made with its own marbled pattern of deep and light pigments, so no two are exactly alike. The overall shade and performance are the same; the design is simply unique to yours."
+    },
+    {
+     "question": "Is it a matte or a luminous finish?",
+     "answer": "Luminous. The light-as-air formula gives cheeks and face a thin veil of naturally radiant color with a soft glow, never sparkle, so it flatters mature skin."
+    },
+    {
+     "question": "Where do I place it on a mature face?",
+     "answer": "Sweep it lightly where the sun naturally warms the face: the tops of the cheekbones, the temples and along the hairline, with a whisper across the bridge of the nose and the jawline. Keep it high on the face for a lifted look."
+    },
+    {
+     "question": "How buildable is it, and how do I avoid overdoing it?",
+     "answer": "Coverage is medium and buildable. Swirl a large fluffy brush in the compact, tap off the excess, and apply in light layers; it is much easier to add than to take away. If you go too far, blend the edges with a clean brush or a touch of Nikita Banana Brightening Powder."
+    },
+    {
+     "question": "Which brush should I use?",
+     "answer": "A large, soft powder or bronzer brush such as the powder brush from our Essential Makeup Brush Set gives the most natural diffusion. Use a smaller angled brush if you want to place it more precisely under the cheekbone."
+    },
+    {
+     "question": "Can I use it as a contour as well as a bronzer?",
+     "answer": "Yes. Because it blends deep and light pigments, it adds warmth as a bronzer and, applied with a smaller brush in the hollows of the cheeks, gives soft, natural-looking definition without a harsh line."
+    },
+    {
+     "question": "Does it emphasize texture or fine lines?",
+     "answer": "It was created to do the opposite. The silky, extremely lightweight formula is infused with shea butter to soften and soothe, and it sits on the skin like a thin veil rather than settling into lines. Apply over set BB Crème with a light hand."
+    },
+    {
+     "question": "Is it talc-free and gluten-free?",
+     "answer": "Crème Brûlée is clean beauty, vegan and cruelty-free, made in Italy without gluten, sulfates, animal ingredients, parabens, silicone, mineral oil, waxes or TEA. Each compact holds 8 g of product."
+    }
+   ]
+  },
+  {
+   "handle": "nikray-lipstick",
+   "page_name": "NikRay Shiny Velvet Cream Lipstick #701",
+   "faq_subtitle": "Everything you need to know about NikRay, from the matching liner to daily wear.",
+   "faqs": [
+    {
+     "question": "What does NikRay look like on the lips?",
+     "answer": "NikRay is a rosy beige, the everyday nude that flatters nearly every complexion and works with any eye look. It gives medium to high coverage with immediate color payout and a soft, shiny velvet finish that looks polished without being glossy."
+    },
+    {
+     "question": "Which Waterproof Lip Liner matches NikRay?",
+     "answer": "You have three options: Cameo for a natural lip with a hint of brown, Organza for a slightly deeper frame, or Silk for a soft pink nude. Each barrel is color-matched to the formula, so the liner is easy to find in your makeup bag."
+    },
+    {
+     "question": "Will it feather or bleed into the lines around my lips?",
+     "answer": "The creamy formula stays comfortable, and lining first is the key to a crisp edge on mature lips. Trace the lip line with the matching Waterproof Lip Liner or our Crystal Clear Invisible Lip Liner to create a barrier, then apply NikRay from the center outward."
+    },
+    {
+     "question": "Is the formula hydrating enough for dry, mature lips?",
+     "answer": "Yes. The Shiny Velvet Cream formula was developed specifically for mature lips, with shea butter and olive oil for an ultra-creamy, smooth, hydrating feel. It is vegan and formulated without silicones. For very dry lips, apply Rose Lip Balm first and let it absorb."
+    },
+    {
+     "question": "How long does the color last before I reapply?",
+     "answer": "A creamy, hydrating lipstick wears comfortably for several hours and fades gracefully rather than patchily. Lining and filling the lips with the matching Waterproof Lip Liner underneath extends the wear and leaves a soft tint behind."
+    },
+    {
+     "question": "How shiny is it, and can I make it more matte?",
+     "answer": "The finish is a soft velvet shine, not a high gloss. For a more matte look, blot with a tissue after applying, or press a tiny amount of Nikita Banana Brightening Powder through a tissue over the lips."
+    },
+    {
+     "question": "Can I sheer it out for a softer look?",
+     "answer": "Yes. Dab the lipstick on with your fingertip or the Nikol Beauty Concealer/Lip Brush and blend toward the edges for a soft stain, or layer Rose Lip Balm over the top for a sheer, glossy version."
+    },
+    {
+     "question": "How much product is in the tube, and how is it made?",
+     "answer": "Each lipstick holds 3.5 g of product and is made in Italy. The formula is vegan, cruelty-free and free of silicones."
+    },
+    {
+     "question": "What if the shade is not right for me once it arrives?",
+     "answer": "Because lip products are personal-care items, all sales are final and we cannot accept returns or exchanges once an order has shipped. We are always happy to help you choose beforehand: email hello@nikolbeauty.com with a natural-light photo and the lip colors you already love. If an item arrives damaged or incorrect, contact us within 48 hours of delivery with photos and your invoice and we will make it right."
+    }
+   ]
+  },
+  {
+   "handle": "actually-i-can",
+   "page_name": "Actually, I Can Shiny Velvet Cream Lipstick #33",
+   "faq_subtitle": "Everything you need to know about Actually, I Can, from the matching liner to daily wear.",
+   "faqs": [
+    {
+     "question": "How does Actually, I Can read on the lips: warm or cool?",
+     "answer": "Actually, I Can is a medium pink with slightly warm undertones. It is a lively, true pink that looks bright and cheerful without tipping into fuchsia, and it flatters both fair and medium complexions."
+    },
+    {
+     "question": "Which lip liner should I pair with it?",
+     "answer": "Rose All Day, our soft petal pink Waterproof Lip Liner, is the match. Line and lightly fill the lips first to prevent feathering and extend the wear."
+    },
+    {
+     "question": "Will it feather into the lines around my mouth?",
+     "answer": "Lining first is the secret. Trace the lip line with Rose All Day or the Crystal Clear Invisible Lip Liner to create a barrier, then apply the lipstick from the center outward. The creamy formula stays comfortable without migrating."
+    },
+    {
+     "question": "How creamy is the formula on dry lips?",
+     "answer": "Very. The Shiny Velvet Cream formula was developed for mature lips with shea butter and olive oil for an ultra-creamy, smooth and hydrating feel. It is vegan and silicone-free. If your lips are very dry, prep with Rose Lip Balm first."
+    },
+    {
+     "question": "How long does it wear?",
+     "answer": "It wears comfortably for several hours and fades evenly rather than patchily. Filling the lips with Rose All Day underneath extends the color and leaves a soft pink tint behind."
+    },
+    {
+     "question": "Can I wear it without a liner?",
+     "answer": "Yes, for a soft, casual look. Dab it on with your fingertip and blend the edges. For a crisp edge and longer wear, especially if you have lines around the lips, we recommend lining first."
+    },
+    {
+     "question": "How opaque is it in one swipe?",
+     "answer": "It gives medium to high coverage with immediate color payout, so one swipe delivers true color. Blot with a tissue for a sheerer wash, or apply a second layer for full intensity."
+    },
+    {
+     "question": "How much product is in the tube, and how is it made?",
+     "answer": "Each lipstick holds 3.5 g and is made in Italy. The formula is vegan, cruelty-free and free of silicones."
+    },
+    {
+     "question": "What if the color does not work for me?",
+     "answer": "Because lip products are personal-care items, all sales are final and we cannot accept returns or exchanges once an order has shipped. We are glad to help you choose beforehand: email hello@nikolbeauty.com with a natural-light photo and the lip colors you already love. If an item arrives damaged or incorrect, contact us within 48 hours of delivery with photos and your invoice and we will make it right."
+    }
+   ]
+  },
+  {
+   "handle": "beach-house-lipstick",
+   "page_name": "Beach House Shiny Velvet Cream Lipstick #122",
+   "faq_subtitle": "Everything you need to know about Beach House, from the matching liner to daily wear.",
+   "faqs": [
+    {
+     "question": "Is Beach House more coral or more orange in real life?",
+     "answer": "Beach House is a toasted coral with a slight touch of gold shimmer. It reads as a warm, sunny coral rather than orange, and the fine gold shimmer gives it a soft glow on the lips."
+    },
+    {
+     "question": "Which Waterproof Lip Liner matches it?",
+     "answer": "Coral is the matching Waterproof Lip Liner. Line and lightly fill the lips first for a crisp edge and longer wear."
+    },
+    {
+     "question": "Is it flattering on cool-toned skin?",
+     "answer": "Yes. Coral is one of the most universally flattering lip colors because it sits between pink and orange. On cool skin it brings a fresh warmth to the face; keep the rest of your makeup soft and let the lips be the focus."
+    },
+    {
+     "question": "Will it feather or travel outside my lip line?",
+     "answer": "Lining first is the key. Trace the lip line with the Coral Waterproof Lip Liner or the Crystal Clear Invisible Lip Liner to create a barrier, then apply Beach House from the center outward."
+    },
+    {
+     "question": "Is the formula hydrating on mature lips?",
+     "answer": "Yes. The Shiny Velvet Cream formula was developed for mature lips with shea butter and olive oil for an ultra-creamy, hydrating feel. It is vegan and silicone-free. For very dry lips, prep with Rose Lip Balm first."
+    },
+    {
+     "question": "How long does it last before reapplying?",
+     "answer": "It wears comfortably for several hours and fades evenly. Filling the lips with the Coral liner underneath extends the wear and leaves a soft tint behind."
+    },
+    {
+     "question": "How buildable is the color?",
+     "answer": "It gives medium to high coverage with immediate payout. Dab it on with a fingertip for a sheer wash of coral, or apply straight from the bullet and add a second layer for full intensity."
+    },
+    {
+     "question": "How much product is in the tube, and how is it made?",
+     "answer": "Each lipstick holds 3.5 g and is made in Italy. The formula is vegan, cruelty-free and free of silicones."
+    },
+    {
+     "question": "What if the shade is not right for me once it arrives?",
+     "answer": "Because lip products are personal-care items, all sales are final and we cannot accept returns or exchanges once an order has shipped. We are glad to help you choose beforehand: email hello@nikolbeauty.com with a natural-light photo and the lip colors you already love. If an item arrives damaged or incorrect, contact us within 48 hours of delivery with photos and your invoice and we will make it right."
+    }
+   ]
+  },
+  {
+   "handle": "pretty-smart-lipstick",
+   "page_name": "Pretty Smart Shiny Velvet Cream Lipstick #337",
+   "faq_subtitle": "Everything you need to know about Pretty Smart, from the matching liner to daily wear.",
+   "faqs": [
+    {
+     "question": "How pale is Pretty Smart in person?",
+     "answer": "Pretty Smart is a natural soft pink, the shade that looks like your lips with a little more life. It is light without being pastel or frosty, which makes it an easy everyday color on fair to medium complexions."
+    },
+    {
+     "question": "Which lip liner should I wear with it?",
+     "answer": "Rose All Day, our soft petal pink Waterproof Lip Liner, is the match. Line and lightly fill first to define the lip and help the color last."
+    },
+    {
+     "question": "Can I layer it over a liner for more depth?",
+     "answer": "Yes. Fill the entire lip with Rose All Day or Cameo before applying Pretty Smart for a warmer, deeper version of the shade. Cameo underneath gives a soft nude-pink; Rose All Day keeps it fresh and pink."
+    },
+    {
+     "question": "Is it creamy enough for dry, lined lips?",
+     "answer": "Yes. The Shiny Velvet Cream formula was developed for mature lips with shea butter and olive oil for an ultra-creamy, hydrating feel, and it is vegan and silicone-free. For very dry lips, prep with Rose Lip Balm first."
+    },
+    {
+     "question": "Will it feather?",
+     "answer": "Lining first is the secret to a crisp edge. Trace the lip line with Rose All Day or the Crystal Clear Invisible Lip Liner to create a barrier, then apply the lipstick from the center outward."
+    },
+    {
+     "question": "How long does it last on the lips?",
+     "answer": "It wears comfortably for several hours and fades evenly rather than patchily. Filling the lips with liner underneath extends the wear and leaves a soft tint behind."
+    },
+    {
+     "question": "How opaque is it?",
+     "answer": "It gives medium to high coverage with immediate color payout, so one swipe delivers true color. Blot for a sheerer wash or add a second layer for full coverage."
+    },
+    {
+     "question": "How much product is in the tube, and how is it made?",
+     "answer": "Each lipstick holds 3.5 g and is made in Italy. The formula is vegan, cruelty-free and free of silicones."
+    },
+    {
+     "question": "What if the shade is wrong for me?",
+     "answer": "Because lip products are personal-care items, all sales are final and we cannot accept returns or exchanges once an order has shipped. We are glad to help you choose beforehand: email hello@nikolbeauty.com with a natural-light photo and the lip colors you already love. If an item arrives damaged or incorrect, contact us within 48 hours of delivery with photos and your invoice and we will make it right."
+    }
+   ]
+  },
+  {
+   "handle": "1975-shiny-velvet-cream-lipstick",
+   "page_name": "1975 Shiny Velvet Cream Lipstick #9",
+   "faq_subtitle": "Everything you need to know about 1975, from the matching liner to daily wear.",
+   "faqs": [
+    {
+     "question": "Is 1975 a deep nude, and how brown does it read on the lips?",
+     "answer": "1975 is a deep nude with brown and rosewood undertones. On the lips it reads as a sophisticated, warm rosy brown, richer than a pale nude but softer than a true brown, and it pairs beautifully with a neutral eye."
+    },
+    {
+     "question": "Which liner matches: Silk or Organza?",
+     "answer": "Silk is the perfect match for a seamless edge. Choose Organza if you would like the liner a little darker than the lipstick for extra definition."
+    },
+    {
+     "question": "Will it look too dark on fair skin?",
+     "answer": "Deep nudes are very wearable on fair skin when kept soft. Dab 1975 on with your fingertip and blend for a rosewood stain, or wear it over Silk liner for a lighter version. Applied straight from the bullet it makes a polished statement lip."
+    },
+    {
+     "question": "How hydrating is the formula?",
+     "answer": "Very. The Shiny Velvet Cream formula was developed for mature lips with shea butter and olive oil for an ultra-creamy, smooth, hydrating feel. It is vegan and formulated without silicones."
+    },
+    {
+     "question": "How long does it wear?",
+     "answer": "It wears comfortably for several hours and fades evenly. Filling the lips with Silk or Organza underneath extends the wear and leaves a soft tint behind."
+    },
+    {
+     "question": "Can I sheer it out for daytime?",
+     "answer": "Yes. Dab it on with a fingertip or the Nikol Beauty Concealer/Lip Brush and blend to the edges for a soft wash of rosewood, or top it with Rose Lip Balm for a sheer, glossy finish."
+    },
+    {
+     "question": "Will it feather into lip lines?",
+     "answer": "Lining first is the key. Trace the lip line with Silk or the Crystal Clear Invisible Lip Liner to create a barrier, then apply 1975 from the center outward."
+    },
+    {
+     "question": "Is it flattering with grey hair?",
+     "answer": "Yes. The rosewood undertone brings warmth to the face without competing with silver or grey hair, and it looks especially elegant with a soft taupe or grey eye such as our Rewrite The Rules palette."
+    },
+    {
+     "question": "What if the shade is not right for me once it arrives?",
+     "answer": "Because lip products are personal-care items, all sales are final and we cannot accept returns or exchanges once an order has shipped. We are glad to help you choose beforehand: email hello@nikolbeauty.com with a natural-light photo and the lip colors you already love. If an item arrives damaged or incorrect, contact us within 48 hours of delivery with photos and your invoice and we will make it right. Each lipstick holds 3.5 g and is made in Italy."
+    }
+   ]
+  },
+  {
+   "handle": "confidence-shiny-velvet-cream-lipstick",
+   "page_name": "Confidence Shiny Velvet Cream Lipstick #173",
+   "faq_subtitle": "Everything you need to know about Confidence, from the matching liner to daily wear.",
+   "faqs": [
+    {
+     "question": "Confidence is described as a blue-based berry. How does it look on the lips?",
+     "answer": "Confidence is a rich, blue-based berry with a touch of golden sheen. The cool berry base makes teeth look brighter, and the golden sheen keeps it from looking flat. Your natural lip color and the liner underneath influence how warm or cool it reads, so line with Unapologetic for the truest berry."
+    },
+    {
+     "question": "Which lip liner pairs with it?",
+     "answer": "Unapologetic, our ripe berry Waterproof Lip Liner, is the match. Line and fill the lips first so the berry stays true and the edge stays crisp."
+    },
+    {
+     "question": "Will a berry suit warm-toned skin?",
+     "answer": "Yes. A berry with golden sheen is one of the most flattering deep shades across skin tones, and on warm complexions it adds richness and contrast. Keep cheeks soft with a sheer blush and let the lips lead."
+    },
+    {
+     "question": "How long does the color last?",
+     "answer": "It wears comfortably for several hours and fades to a soft berry stain rather than patchily. Filling the lips with Unapologetic underneath extends the wear."
+    },
+    {
+     "question": "Is it hydrating on mature lips?",
+     "answer": "Yes. The Shiny Velvet Cream formula was developed for mature lips with shea butter and olive oil for an ultra-creamy, hydrating feel. It is vegan and formulated without silicones. For very dry lips, prep with Rose Lip Balm first."
+    },
+    {
+     "question": "Will it bleed outside my lip line?",
+     "answer": "Deeper shades show feathering more, so lining is essential. Trace the lip line with Unapologetic or the Crystal Clear Invisible Lip Liner to create a barrier, apply from the center outward, and blot once."
+    },
+    {
+     "question": "Can I tone it down or wear it sheer?",
+     "answer": "Yes. Dab it on with a fingertip or the Nikol Beauty Concealer/Lip Brush and blend for a berry stain, or top it with Rose Lip Balm for a sheer, glossy version. Applied from the bullet it gives full, medium-to-high coverage."
+    },
+    {
+     "question": "How much product is in the tube, and how is it made?",
+     "answer": "Each lipstick holds 3.5 g and is made in Italy. The formula is vegan, cruelty-free and free of silicones."
+    },
+    {
+     "question": "What if the shade is not right for me once it arrives?",
+     "answer": "Because lip products are personal-care items, all sales are final and we cannot accept returns or exchanges once an order has shipped. We are glad to help you choose beforehand: email hello@nikolbeauty.com with a natural-light photo and the lip colors you already love. If an item arrives damaged or incorrect, contact us within 48 hours of delivery with photos and your invoice and we will make it right."
+    }
+   ]
+  },
+  {
+   "handle": "aperitif-shiny-velvet-cream-lipstick",
+   "page_name": "Aperitif Shiny Velvet Cream Lipstick #419",
+   "faq_subtitle": "Everything you need to know about Aperitif, from the matching liner to daily wear.",
+   "faqs": [
+    {
+     "question": "Is Aperitif more berry-mauve or more brown in person?",
+     "answer": "Aperitif is a berry mauve: a soft, muted berry with a rosy-mauve base rather than brown. It is the grown-up alternative to a nude, adding color and polish while staying easy to wear every day."
+    },
+    {
+     "question": "Should I line it with Silk or Cameo?",
+     "answer": "Both work. Silk gives a lighter, pink-nude edge that keeps Aperitif soft, while Cameo is slightly darker for more definition. Choose Silk for daytime and Cameo when you want the lip to stand out."
+    },
+    {
+     "question": "How long does it wear before reapplying?",
+     "answer": "It wears comfortably for several hours and fades evenly to a soft mauve tint. Filling the lips with Silk or Cameo underneath extends the wear."
+    },
+    {
+     "question": "Is the formula hydrating on dry lips?",
+     "answer": "Yes. The Shiny Velvet Cream formula was developed for mature lips with shea butter and olive oil for an ultra-creamy, hydrating feel. It is vegan and silicone-free. For very dry lips, prep with Rose Lip Balm first."
+    },
+    {
+     "question": "Will it feather into the lines around my lips?",
+     "answer": "Lining first is the key. Trace the lip line with Silk, Cameo or the Crystal Clear Invisible Lip Liner to create a barrier, then apply Aperitif from the center outward."
+    },
+    {
+     "question": "How shiny is the finish?",
+     "answer": "The finish is a soft velvet shine, polished but not glossy. Blot with a tissue for a more matte look, or add Rose Lip Balm or a Nikol Beauty lip gloss on top for extra shine."
+    },
+    {
+     "question": "Can I sheer it out?",
+     "answer": "Yes. Dab it on with a fingertip or the Nikol Beauty Concealer/Lip Brush and blend to the edges for a soft mauve stain. Applied straight from the bullet it gives medium-to-high coverage with immediate color payout."
+    },
+    {
+     "question": "How much product is in the tube, and how is it made?",
+     "answer": "Each lipstick holds 3.5 g and is made in Italy. The formula is vegan, cruelty-free and free of silicones."
+    },
+    {
+     "question": "What if the shade is not right for me?",
+     "answer": "Because lip products are personal-care items, all sales are final and we cannot accept returns or exchanges once an order has shipped. We are glad to help you choose beforehand: email hello@nikolbeauty.com with a natural-light photo and the lip colors you already love. If an item arrives damaged or incorrect, contact us within 48 hours of delivery with photos and your invoice and we will make it right."
+    }
+   ]
+  },
+  {
+   "handle": "fleur-shiny-velvet-cream-lipstick-34",
+   "page_name": "Fleur Shiny Velvet Cream Lipstick #34",
+   "faq_subtitle": "Everything you need to know about Fleur, from the matching liner to daily wear.",
+   "faqs": [
+    {
+     "question": "How bright is Fleur? Is a fuchsia wearable day to day?",
+     "answer": "Fleur is a vibrant fuchsia full of personality, and it is more wearable than you might expect. Applied straight from the bullet it is a bold statement lip; dabbed on with a fingertip and blended, it becomes a fresh pink stain that brightens the whole face for daytime."
+    },
+    {
+     "question": "Which liner matches: Unapologetic or Rose All Day?",
+     "answer": "Both pair with Fleur. Unapologetic, our ripe berry liner, deepens the edge and keeps the fuchsia bold; Rose All Day, a soft petal pink, keeps the overall look lighter and softer."
+    },
+    {
+     "question": "Is it flattering on cool-toned skin?",
+     "answer": "Yes. Fuchsia has a cool pink base, so it is especially flattering on cool and neutral complexions and with silver or grey hair. Warm complexions can wear it too; simply keep the rest of the makeup soft."
+    },
+    {
+     "question": "How long does it last on the lips?",
+     "answer": "Bright pinks tend to leave a stain, so Fleur wears for several hours and fades to a soft pink tint. Filling the lips with liner underneath extends the wear even further."
+    },
+    {
+     "question": "Will it feather at the edges?",
+     "answer": "A bright shade shows feathering more, so lining is essential. Trace the lip line with Unapologetic, Rose All Day or the Crystal Clear Invisible Lip Liner to create a barrier, apply from the center outward and blot once."
+    },
+    {
+     "question": "Is the formula hydrating?",
+     "answer": "Yes. The Shiny Velvet Cream formula was developed for mature lips with shea butter and olive oil for an ultra-creamy, hydrating feel, and it is vegan and silicone-free. For very dry lips, prep with Rose Lip Balm first."
+    },
+    {
+     "question": "Can I sheer it into a stain?",
+     "answer": "Absolutely. Dab it on with a fingertip or the Nikol Beauty Concealer/Lip Brush, blend to the edges and blot. Top with Rose Lip Balm for a sheer, glossy pink."
+    },
+    {
+     "question": "How opaque is it?",
+     "answer": "It gives medium to high coverage with immediate color payout, so one swipe delivers full fuchsia. Each lipstick holds 3.5 g and is made in Italy."
+    },
+    {
+     "question": "What if the shade is not right for me once it arrives?",
+     "answer": "Because lip products are personal-care items, all sales are final and we cannot accept returns or exchanges once an order has shipped. We are glad to help you choose beforehand: email hello@nikolbeauty.com with a natural-light photo and the lip colors you already love. If an item arrives damaged or incorrect, contact us within 48 hours of delivery with photos and your invoice and we will make it right."
+    }
+   ]
+  },
+  {
+   "handle": "champs-lip-gloss",
+   "page_name": "Champs Lip Gloss #461",
+   "faq_subtitle": "Everything you need to know about Champs Lip Gloss.",
+   "faqs": [
+    {
+     "question": "How much color does Champs give?",
+     "answer": "Champs is a soft ballerina pink with silver metallic flecks. It gives a sheer wash of pink and a high-shine, light-catching finish rather than opaque color, which makes it lovely alone or layered over any lipstick."
+    },
+    {
+     "question": "Is the gloss sticky or tacky on the lips?",
+     "answer": "No. Our gloss is a non-sticky formula infused with a blend of emollient and brilliant oils, so it feels lightweight and comfortable while delivering high-impact shine without being heavy or goopy."
+    },
+    {
+     "question": "Does it have a mint flavor or scent?",
+     "answer": "Yes. Every Nikol Beauty lip gloss has a fresh mint lip experience, a light, cooling mint that feels refreshing on the lips."
+    },
+    {
+     "question": "How long does the shine last?",
+     "answer": "Like any gloss, the shine lasts a few hours and longer if you are not eating or drinking. The curved application tip makes touch-ups quick, and the avocado oil and shea butter keep lips feeling soft as it wears."
+    },
+    {
+     "question": "Can I wear it over a lipstick?",
+     "answer": "Yes. Swipe it alone for a fresh, natural lip or layer it over any Shiny Velvet Cream Lipstick to create a custom color and add shine. The silver flecks look especially pretty over pinks and mauves."
+    },
+    {
+     "question": "Will it settle into lip lines or feather?",
+     "answer": "The lightweight formula is made for the mature woman, and lining first keeps it in place. Trace the lip line with a Waterproof Lip Liner or the Crystal Clear Invisible Lip Liner to create a barrier, then apply the gloss to the center of the lips and press together."
+    },
+    {
+     "question": "Is the applicator tip easy to control?",
+     "answer": "Yes. The curved application tip was designed for mature lips: it follows the shape of the lip so you can apply precisely without overloading, and it doubles as a quick touch-up tool."
+    },
+    {
+     "question": "Is it hydrating on dry lips?",
+     "answer": "Yes. It is infused with avocado oil and shea butter for comfortable wear that leaves lips looking fresh and natural. For very dry lips, apply Rose Lip Balm first and let it absorb."
+    },
+    {
+     "question": "How much product is in the tube, and how is it made?",
+     "answer": "Each gloss holds 6.5 ml and is clean beauty, cruelty-free and made in Italy."
+    }
+   ]
+  },
+  {
+   "handle": "coco-13-lip-gloss",
+   "page_name": "Coco 13 Lip Gloss #259",
+   "faq_subtitle": "Everything you need to know about Coco 13 Lip Gloss.",
+   "faqs": [
+    {
+     "question": "Is Coco 13 pink or more of a peach-nude in person?",
+     "answer": "Coco 13 is a warm-toned medium pink with a pearl finish. It leans pink rather than nude, with enough warmth to flatter golden complexions, and the pearl gives it a soft glow."
+    },
+    {
+     "question": "Does it feel sticky?",
+     "answer": "No. The formula is infused with a blend of emollient and brilliant oils for high shine without being heavy or goopy. It glides on smoothly and feels lightweight on the lips."
+    },
+    {
+     "question": "Does it have a scent or flavor?",
+     "answer": "Yes. Every Nikol Beauty lip gloss has a fresh mint lip experience, a light, cooling mint that feels refreshing on the lips."
+    },
+    {
+     "question": "How long does the shine last?",
+     "answer": "Like any gloss, the shine lasts a few hours and longer between meals. The curved application tip makes touch-ups quick, and the avocado oil and shea butter keep lips feeling soft as it wears."
+    },
+    {
+     "question": "Can I layer it over lipstick?",
+     "answer": "Yes. Wear it alone for a soft pink shine or layer it over a Shiny Velvet Cream Lipstick such as Pretty Smart or Actually, I Can to add warmth and gloss."
+    },
+    {
+     "question": "Will it bleed outside my lip line?",
+     "answer": "Lining first keeps any gloss in place. Trace the lip line with a Waterproof Lip Liner or the Crystal Clear Invisible Lip Liner, then apply the gloss to the center of the lips and press together."
+    },
+    {
+     "question": "Is it hydrating?",
+     "answer": "Yes. It is infused with avocado oil and shea butter for comfortable wear that leaves lips looking fresh and natural. For very dry lips, apply Rose Lip Balm first."
+    },
+    {
+     "question": "How much product is in the tube, and how is it made?",
+     "answer": "Each gloss holds 6.5 ml and is clean beauty, cruelty-free and made in Italy. The curved application tip was designed for precise application on mature lips."
+    }
+   ]
+  },
+  {
+   "handle": "good-vibes-lip-gloss",
+   "page_name": "Good Vibes Lip Gloss #443",
+   "faq_subtitle": "Everything you need to know about Good Vibes Lip Gloss.",
+   "faqs": [
+    {
+     "question": "What does Good Vibes smell and taste like?",
+     "answer": "Every Nikol Beauty lip gloss has a fresh mint lip experience, a light, cooling mint that feels refreshing rather than sweet or perfumed."
+    },
+    {
+     "question": "How sheer or pigmented is this shade?",
+     "answer": "Good Vibes is a nude with a hint of pink, the everyday gloss that enhances your natural lip color with shine rather than adding strong color. It is the easiest shade to wear alone or over any lipstick."
+    },
+    {
+     "question": "Is it sticky on the lips?",
+     "answer": "No. The formula is infused with a blend of emollient and brilliant oils for high shine without being heavy or goopy. It glides on smoothly and feels lightweight."
+    },
+    {
+     "question": "How long does it last?",
+     "answer": "Like any gloss, the shine lasts a few hours and longer between meals. The curved application tip makes touch-ups quick and precise."
+    },
+    {
+     "question": "Can I wear it over lipstick?",
+     "answer": "Yes. Good Vibes is the perfect topper: it adds shine to any Shiny Velvet Cream Lipstick without changing the color much, and it softens deeper shades such as Confidence or 1975."
+    },
+    {
+     "question": "Is it hydrating on dry lips?",
+     "answer": "Yes. It is infused with avocado oil and shea butter for comfortable wear that leaves lips looking fresh and natural. For very dry lips, apply Rose Lip Balm first and let it absorb."
+    },
+    {
+     "question": "Will it feather into lip lines?",
+     "answer": "Lining first keeps any gloss in place. Trace the lip line with a Waterproof Lip Liner or the Crystal Clear Invisible Lip Liner, then apply the gloss to the center of the lips and press together."
+    },
+    {
+     "question": "How much product is in the tube, and how is it made?",
+     "answer": "Each gloss holds 6.5 ml and is clean beauty, cruelty-free and made in Italy."
+    }
+   ]
+  },
+  {
+   "handle": "upgrade-lip-gloss",
+   "page_name": "Upgrade Lip Gloss #94",
+   "faq_subtitle": "Everything you need to know about Upgrade Lip Gloss.",
+   "faqs": [
+    {
+     "question": "How much color does Upgrade give?",
+     "answer": "Upgrade is a bright, vibrant fuchsia gloss, the most colorful shade in our gloss collection. Alone it gives a sheer-to-medium wash of pink with high shine; over a lipstick such as Fleur or Actually, I Can it turns up the color and adds gloss."
+    },
+    {
+     "question": "Does it have a scent or flavor?",
+     "answer": "Yes. Every Nikol Beauty lip gloss has a fresh mint lip experience, a light, cooling mint that feels refreshing rather than sweet or perfumed."
+    },
+    {
+     "question": "Is the texture sticky?",
+     "answer": "No. The formula is infused with a blend of emollient and brilliant oils for high shine without being heavy or goopy. It glides on smoothly and feels lightweight on the lips."
+    },
+    {
+     "question": "How long does the shine last?",
+     "answer": "Like any gloss, the shine lasts a few hours and longer between meals. Bright pinks tend to leave a soft tint behind, and the curved application tip makes touch-ups quick and precise."
+    },
+    {
+     "question": "Is it comfortable on dry, mature lips?",
+     "answer": "Yes. It is infused with avocado oil and shea butter for comfortable wear that leaves lips looking fresh. The curved tip and lightweight feel were designed for the mature woman. For very dry lips, apply Rose Lip Balm first."
+    },
+    {
+     "question": "Will it feather?",
+     "answer": "A bright gloss shows feathering more, so line first. Trace the lip line with a Waterproof Lip Liner such as Unapologetic or the Crystal Clear Invisible Lip Liner, then apply the gloss to the center of the lips and press together."
+    },
+    {
+     "question": "How much product is in the tube, and how is it made?",
+     "answer": "Each gloss holds 6.5 ml and is clean beauty, cruelty-free and made in Italy."
+    }
+   ]
+  },
+  {
+   "handle": "defiance-lip-gloss",
+   "page_name": "Defiance Lip Gloss #62",
+   "faq_subtitle": "Everything you need to know about Defiance Lip Gloss.",
+   "faqs": [
+    {
+     "question": "How much color does Defiance give?",
+     "answer": "Defiance is a rich, fresh coral with metallic flecks. Alone it gives a sheer-to-medium wash of coral with a light-catching shine; over a lipstick such as Beach House it deepens the coral and adds gloss."
+    },
+    {
+     "question": "Is the gloss sticky?",
+     "answer": "No. The formula is infused with a blend of emollient and brilliant oils for high shine without being heavy or goopy. It glides on smoothly and feels lightweight."
+    },
+    {
+     "question": "Does it have a scent or flavor?",
+     "answer": "Yes. Every Nikol Beauty lip gloss has a fresh mint lip experience, a light, cooling mint that feels refreshing rather than sweet or perfumed."
+    },
+    {
+     "question": "How long does it wear?",
+     "answer": "Like any gloss, the shine lasts a few hours and longer between meals. The curved application tip makes touch-ups quick and precise."
+    },
+    {
+     "question": "Can I wear it over lipstick?",
+     "answer": "Yes. Swipe it alone for a fresh coral shine or layer it over any Shiny Velvet Cream Lipstick to create a custom color; it is especially pretty over Beach House and NikRay."
+    },
+    {
+     "question": "How do I keep the cap secure and the tube clean in my handbag?",
+     "answer": "Wipe the applicator and the neck of the tube with a tissue before closing, then twist the cap until it stops. Store it upright when you can and away from heat. If your gloss arrived damaged, email hello@nikolbeauty.com within 48 hours of delivery with a photo and your invoice and we will make it right."
+    },
+    {
+     "question": "How much product is in the tube, and how is it made?",
+     "answer": "Each gloss holds 6.5 ml and is infused with avocado oil and shea butter. It is clean beauty, cruelty-free and made in Italy."
+    }
+   ]
+  },
+  {
+   "handle": "manifest-glow-lip-gloss",
+   "page_name": "Manifest & Glow #183",
+   "faq_subtitle": "Everything you need to know about Manifest & Glow Lip Gloss.",
+   "faqs": [
+    {
+     "question": "How much gold shimmer is in Manifest & Glow?",
+     "answer": "Manifest & Glow is a sheer golden glow with metallic flecks for a multidimensional look. The shimmer is fine and light-catching rather than chunky, so it reads as a warm, glowing shine on the lips."
+    },
+    {
+     "question": "Does it have a scent or flavor?",
+     "answer": "Yes. Every Nikol Beauty lip gloss has a fresh mint lip experience, a light, cooling mint that feels refreshing rather than sweet or perfumed."
+    },
+    {
+     "question": "How long does the glow last?",
+     "answer": "Like any gloss, the shine lasts a few hours and longer between meals. The curved application tip makes touch-ups quick, and the fine flecks leave a soft glow even as the shine fades."
+    },
+    {
+     "question": "Is it sticky?",
+     "answer": "No. The formula is infused with a blend of emollient and brilliant oils for high shine without being heavy or goopy. It glides on smoothly and feels lightweight."
+    },
+    {
+     "question": "Can I wear it over lipstick for a custom color?",
+     "answer": "Yes, that is where it shines. A sheer golden gloss warms and brightens any Shiny Velvet Cream Lipstick; try it over NikRay for a golden nude or over 1975 for a bronzed rosewood."
+    },
+    {
+     "question": "Will the shimmer settle into lip lines?",
+     "answer": "The flecks are very fine and suspended in a lightweight, non-sticky base made for mature lips. Prep with Rose Lip Balm if lips are dry, line first with a Waterproof Lip Liner or the Crystal Clear Invisible Lip Liner, and apply to the center of the lips and press together."
+    },
+    {
+     "question": "Is it hydrating?",
+     "answer": "Yes. It is infused with avocado oil and shea butter for comfortable wear that leaves lips looking fresh and natural."
+    },
+    {
+     "question": "Is the shade too warm for cool-toned skin?",
+     "answer": "Because it is sheer, Manifest & Glow adapts to your natural lip color rather than changing it, so cool complexions can wear it easily. Worn over a cool pink or berry lipstick it simply adds glow."
+    },
+    {
+     "question": "How much product is in the tube, and how is it made?",
+     "answer": "Each gloss holds 6.5 ml and is clean beauty, cruelty-free and made in Italy."
+    }
+   ]
+  },
+  {
+   "handle": "ignite-lip-gloss-176",
+   "page_name": "Ignite Lip Gloss #176",
+   "faq_subtitle": "Everything you need to know about Ignite Lip Gloss.",
+   "faqs": [
+    {
+     "question": "How does Ignite look on the lips?",
+     "answer": "Ignite is a rich, warm cranberry-rose gloss infused with delicate golden micro-shimmer. Alone it gives a sheer-to-medium wash of rosy cranberry with a warm glow; over a lipstick such as Confidence or Aperitif it deepens the color and adds shine."
+    },
+    {
+     "question": "How noticeable is the gold micro-shimmer?",
+     "answer": "It is subtle. The micro-shimmer catches the light for a lit-from-within glow rather than visible sparkle, which keeps it elegant on mature lips."
+    },
+    {
+     "question": "Is it sticky or comfortable to wear?",
+     "answer": "Comfortable. The formula is infused with a blend of emollient and brilliant oils for high shine without being heavy or goopy, plus avocado oil and shea butter for a soft, lightweight feel."
+    },
+    {
+     "question": "Does it have a mint flavor?",
+     "answer": "Yes. Every Nikol Beauty lip gloss has a fresh mint lip experience, a light, cooling mint that feels refreshing rather than sweet or perfumed."
+    },
+    {
+     "question": "Can I layer it over lipstick?",
+     "answer": "Yes. Swipe it alone for a rosy glow or layer it over any Shiny Velvet Cream Lipstick to create a custom color and add shine. Line first with a Waterproof Lip Liner or the Crystal Clear Invisible Lip Liner for a crisp edge."
+    },
+    {
+     "question": "How long does it last?",
+     "answer": "Like any gloss, the shine lasts a few hours and longer between meals, and the cranberry tone leaves a soft tint behind. The curved application tip makes touch-ups quick and precise."
+    },
+    {
+     "question": "How much product is in the tube, and how is it made?",
+     "answer": "Each gloss holds 6.5 ml and is clean beauty, cruelty-free and made in Italy."
+    }
+   ]
+  },
+  {
+   "handle": "lip-liners-waterproof",
+   "page_name": "WaterProof Lip Liner Pencils",
+   "faq_subtitle": "Everything you need to know about our Waterproof Lip Liner Pencils, from shade matching to sharpening.",
+   "faqs": [
+    {
+     "question": "Which Waterproof Lip Liner shade should I choose?",
+     "answer": "Silk is a perfect pink nude, Rose All Day is a soft petal pink for a very natural lip, Cameo is a natural lip with a hint of brown, Organza is a slightly deeper nude, Coral is a fresh warm coral, and Unapologetic is a gorgeous ripe berry. For a liner you can wear with everything, start with Silk or Cameo."
+    },
+    {
+     "question": "Which liner matches the lipstick I already own?",
+     "answer": "Each Shiny Velvet Cream Lipstick page lists its matching liner: Rose All Day for Actually, I Can and Pretty Smart; Cameo, Organza or Silk for NikRay; Coral for Beach House; Silk or Organza for 1975; Silk or Cameo for Aperitif; and Unapologetic for Confidence and Fleur. If you are unsure, email hello@nikolbeauty.com and we will match you."
+    },
+    {
+     "question": "How do I apply it without pressing hard?",
+     "answer": "Our liners are ultra-creamy and highly pigmented, so let the pencil glide with light pressure. Warm the tip on the back of your hand for a moment if it feels firm, then trace the lip line in short strokes from the center outward."
+    },
+    {
+     "question": "How do I remove a waterproof liner at the end of the day?",
+     "answer": "Use an oil-based or bi-phase makeup remover, or a little Rose Lip Balm massaged over the lips, then wipe gently with a soft cloth. There is no need to scrub."
+    },
+    {
+     "question": "Will it stop my lipstick feathering into the lines around my lips?",
+     "answer": "Yes, that is exactly what it is designed for. The waterproof formula defines the lip without tugging and creates a barrier that keeps lipstick and gloss from bleeding. For an invisible barrier that works with every color, see our Crystal Clear Invisible Lip Liner."
+    },
+    {
+     "question": "Can I fill in my whole lip with it as a base?",
+     "answer": "Yes. Filling the entire lip gives your lipstick a longer-lasting base and leaves a soft tint behind as the lipstick fades. Rose All Day filled all over with Rose Lip Balm on top is one of our favorite natural looks."
+    },
+    {
+     "question": "How do I sharpen it, and do I need your sharpener?",
+     "answer": "We recommend the Nikol Beauty Pencil Sharpener, custom-designed for our creamy formulas. One or two gentle twists is enough. Our pencils sharpen to a soft, rounded end rather than a sharp point; that is by design and gives a smoother line on mature lips."
+    },
+    {
+     "question": "How long does it last on the lips?",
+     "answer": "The waterproof formula is long-wearing and stays put through eating and drinking far longer than lipstick. Many customers wear it alone all day as a soft, defined lip."
+    },
+    {
+     "question": "How do I tell the shades apart in my makeup bag?",
+     "answer": "Each barrel is color-matched to the formula inside, so you can see the shade at a glance without uncapping. Stress-free and easy, the way makeup for mature women should be."
+    }
+   ]
+  },
+  {
+   "handle": "nikol-cosmetics-stay-put-lip-liner",
+   "page_name": "Crystal Clear Invisible Water-Proof Lip Liner",
+   "faq_subtitle": "Everything you need to know about the Crystal Clear Invisible Lip Liner.",
+   "faqs": [
+    {
+     "question": "What does an invisible lip liner actually do?",
+     "answer": "Crystal Clear is a transparent, universal liner that creates a barrier around your lips so lipstick and gloss stay where you put them. Because it has no color, it works with every lipstick in our collection."
+    },
+    {
+     "question": "Will it stop lipstick bleeding into my lip lines?",
+     "answer": "Yes. The lightweight, smooth, creamy formula sets into a waterproof barrier that prevents feathering and bleeding, especially useful for the fine lines around mature lips."
+    },
+    {
+     "question": "Where do I draw it: on the lip line or just outside it?",
+     "answer": "Apply it like a regular lip liner right along the edge of your lips, concentrating on the areas where your lipstick tends to feather. You can also use it over the entire lip as a base."
+    },
+    {
+     "question": "Can I use it under any lipstick or gloss?",
+     "answer": "Yes. It is our most versatile liner because it works with every lipstick and gloss shade, from the sheerest gloss to the deepest berry."
+    },
+    {
+     "question": "Do I still need a colored liner as well?",
+     "answer": "Not necessarily. Crystal Clear handles the barrier; a colored Waterproof Lip Liner adds definition and a longer-lasting base. Use Crystal Clear alone for a natural look, or apply it first and then your colored liner for both benefits."
+    },
+    {
+     "question": "How long does it hold?",
+     "answer": "The waterproof formula holds through the day and through eating and drinking. Reapply along with your lipstick if you do a full touch-up."
+    },
+    {
+     "question": "How do I sharpen it?",
+     "answer": "Use the Nikol Beauty Pencil Sharpener with one or two gentle twists. Like all our pencils it sharpens to a soft, rounded end rather than a sharp point."
+    },
+    {
+     "question": "Is it visible on the lips at all?",
+     "answer": "No. Once applied it is completely invisible, so nothing changes about the color you are wearing. It is vegan, cruelty-free and made in the USA."
+    }
+   ]
+  },
+  {
+   "handle": "rose-lip-balm",
+   "page_name": "Rose Lip Balm #100",
+   "faq_subtitle": "Everything you need to know about Rose Lip Balm.",
+   "faqs": [
+    {
+     "question": "Is Rose Lip Balm tinted or clear?",
+     "answer": "Rose Lip Balm is a clear lip treatment; the rose is in the name and the nourishing Rosa Canina fruit oil, not the color. For a natural rosy look, apply our Waterproof Lip Liner in Rose All Day all over the lips and layer Rose Lip Balm over the top."
+    },
+    {
+     "question": "Does it feel sticky?",
+     "answer": "No. The custom hydrating formula was developed to moisturize without a sticky residue. Apply a thin layer and let it absorb for a few moments; it settles into a soft, comfortable cushion."
+    },
+    {
+     "question": "How often should I reapply it?",
+     "answer": "As often as your lips feel dry. Many customers apply it in the morning as a primer under lipstick, again during the day for comfort and at night before bed. For an intensive overnight treatment, try our Dream Melt Lip Mask."
+    },
+    {
+     "question": "Can I wear it under lipstick or gloss?",
+     "answer": "Yes. It is the perfect primer for your lips: apply a thin layer, let it absorb, then apply your Shiny Velvet Cream Lipstick or gloss for a smoother, more comfortable finish."
+    },
+    {
+     "question": "Is it a treatment for chapped lips, or mainly for shine?",
+     "answer": "It is a treatment. Rosa Canina fruit oil, sunflower seed oil and castor oil give dry lips nourishing, conditioning care, with a soft natural sheen as a bonus."
+    },
+    {
+     "question": "Does it have a scent or flavor?",
+     "answer": "No. Rose Lip Balm is fragrance-free, which makes it ideal for sensitive lips. It is also vegan, cruelty-free and made in Italy."
+    },
+    {
+     "question": "Will it feather into the lines around my lips?",
+     "answer": "Applied in a thin layer and allowed to absorb, it stays on the lips. If you are layering lipstick over it, line first with a Waterproof Lip Liner or the Crystal Clear Invisible Lip Liner to keep everything crisp."
+    },
+    {
+     "question": "How is it different from the Dream Melt Lip Mask?",
+     "answer": "Rose Lip Balm is your everyday balm and lipstick primer, light enough to wear all day. Dream Melt Lip Mask is a richer overnight treatment that restores dehydrated lips while you sleep. Many customers use both: balm by day, mask by night."
+    },
+    {
+     "question": "How much product is in the tube?",
+     "answer": "Each Rose Lip Balm holds 3.45 g. Because a thin layer is all you need, one tube lasts for weeks of daily use. It is suitable for all skin tones."
+    }
+   ]
+  },
+  {
+   "handle": "dream-melt-lip-mask",
+   "page_name": "Dream Melt Lip Mask",
+   "faq_subtitle": "Everything you need to know about the Dream Melt Lip Mask.",
+   "faqs": [
+    {
+     "question": "Is Dream Melt meant to tingle or plump my lips?",
+     "answer": "No. Dream Melt is a comfort treatment, not a plumper. It melts into the lips to create a cushion of moisture with shea butter, safflower oil and Vitamin E, so you should feel softness rather than tingling."
+    },
+    {
+     "question": "Do I use it overnight only, or in the daytime too?",
+     "answer": "Both. Apply a thin, even layer before bed for the ultimate overnight ritual. During the day, layer it under lipstick or gloss for a cushiony base, or wear a Waterproof Lip Liner all over the lips and apply the mask on top for a soft, tinted look."
+    },
+    {
+     "question": "How is it different from the Rose Lip Balm?",
+     "answer": "Rose Lip Balm is a lightweight everyday balm and lipstick primer. Dream Melt is a richer overnight mask that helps soften and restore dehydrated lips while you sleep, with moisture that lingers into the next day. Many customers use balm by day and mask by night."
+    },
+    {
+     "question": "How thick a layer should I apply before bed?",
+     "answer": "A thin, even layer is all you need; the silk melt-in texture is designed for comfort, not mess. Apply with a clean fingertip or a lip brush and let it settle before you lie down."
+    },
+    {
+     "question": "Will it transfer onto my pillow?",
+     "answer": "The non-sticky formula melts into the lips rather than sitting on top, so with a thin layer transfer is minimal. Give it a minute to absorb before bed."
+    },
+    {
+     "question": "Does it help the fine lines around my lips?",
+     "answer": "Yes. Dream Melt was created for mature lips and helps smooth the look of fine lines around the mouth by deeply hydrating overnight, so lips look smoother and feel softer by morning, ready for lipstick."
+    },
+    {
+     "question": "Is it fragrance-free and vegan?",
+     "answer": "Yes. Dream Melt Lip Mask is fragrance-free, vegan and cruelty-free, made in Italy with clean, skin-loving ingredients."
+    },
+    {
+     "question": "What should I do if the jar arrives damaged?",
+     "answer": "Email hello@nikolbeauty.com within 48 hours of delivery with a clear photo of the damage and the invoice from your package. Our Customer Care team will review it and follow up to make it right."
+    },
+    {
+     "question": "How should I store it?",
+     "answer": "Keep the lid closed tightly and store it at room temperature away from heat and direct sun. Use a clean fingertip or lip brush each time to keep the formula fresh."
+    }
+   ]
+  },
+  {
+   "handle": "nikol-cosmetics-lipstick-case",
+   "page_name": "Nikol Beauty Lipstick Case",
+   "faq_subtitle": "Everything you need to know about the Nikol Beauty Lipstick Case.",
+   "faqs": [
+    {
+     "question": "How many lipsticks does the case hold?",
+     "answer": "The Nikol Beauty Lipstick Case fits two Nikol Beauty lipsticks. You can also use it for tissues, Eye Primer or a Cream Blush Stick when you are traveling light. Lipsticks are sold separately."
+    },
+    {
+     "question": "Does it have a mirror?",
+     "answer": "Yes. There is a mirror built into the top of the case so you can touch up your lipstick anywhere without hunting for a compact."
+    },
+    {
+     "question": "What is it made of, and how big is it?",
+     "answer": "The case is made of 100 percent vegan material in a sophisticated metallic silver with a silver zipper and the Nikol Beauty logo embossed on top. It measures 3.9 by 2.7 by 1.38 inches and arrives in a beautiful gift box."
+    },
+    {
+     "question": "Will it protect my lipsticks in a handbag?",
+     "answer": "Yes. The zippered case keeps your lipsticks together, clean and easy to find, so you always know you have the right color for day or evening. As with any lipstick, avoid leaving your bag in a hot car."
+    },
+    {
+     "question": "Is it a good gift?",
+     "answer": "It is one of our favorite gifts. The case comes in a gift box, and pairing it with two Shiny Velvet Cream Lipsticks makes a complete present. A Nikol Beauty Gift Card is a lovely option if you would rather let her choose the shades."
+    }
+   ]
+  },
+  {
+   "handle": "travel-makeup-brushes",
+   "page_name": "Essential Makeup Brush Set",
+   "faq_subtitle": "Everything you need to know about the Essential Makeup Brush Set, from what each brush does to washing.",
+   "faqs": [
+    {
+     "question": "Which brush in the set is for what?",
+     "answer": "Every brush is named on the handle, so you always know which one to reach for. The set of ten was hand-picked by Nikol for her clients: brushes for foundation and powder, concealer, blush and bronzer, and several for eyeshadow and brows, each chosen for durability and the specific job it does."
+    },
+    {
+     "question": "How many brushes are included, and what is the case like?",
+     "answer": "The kit includes ten brushes in a beautiful blush pink protective tube. The top of the tube doubles as a holder for your daily cosmetics, from mascara to brow pencils, so everything stays within reach on your vanity or in your suitcase."
+    },
+    {
+     "question": "Is the set practical to travel with?",
+     "answer": "Yes, it was designed as a travel set. The brushes are compact and the protective tube keeps them clean and undamaged in a suitcase or tote, and the whole set is light enough for everyday carry."
+    },
+    {
+     "question": "Are the bristles vegan?",
+     "answer": "Yes. The Essential Makeup Brush Set is 100 percent vegan and cruelty-free, with soft synthetic bristles that work with both cream and powder products."
+    },
+    {
+     "question": "How do I wash them, and how often?",
+     "answer": "Wash complexion brushes weekly and eye brushes every one to two weeks with our Lux Brush Soap. Wet the bristles with the brush pointing down, swirl on the soap, rinse until clear, reshape and lay flat to dry. Keep water out of the ferrule, the metal neck, to protect the glue."
+    },
+    {
+     "question": "Do they work with cream products as well as powder?",
+     "answer": "Yes. Synthetic bristles do not absorb cream products, so the set works beautifully with BB Crème, Cream Blush Stick and Creamy Concealer as well as our powders and eyeshadows."
+    },
+    {
+     "question": "What should I do if a brush arrives damaged?",
+     "answer": "Email hello@nikolbeauty.com within 48 hours of delivery with a clear photo and the invoice from your package, and our Customer Care team will make it right. Washing with the brush pointing down and drying flat keeps the handles and ferrules secure for years."
+    },
+    {
+     "question": "Do I need any other brushes on top of this set?",
+     "answer": "The set covers a complete face. Popular additions are the Soft Set Technique Brush for setting under the eyes with Nikita Banana powder, the Foundation Buffing Brush for a buffed base, and the Concealer Brush for precise under-eye work."
+    },
+    {
+     "question": "Are they designed for mature-skin application?",
+     "answer": "Yes. Nikol selected each of the ten not-so-basic brushes for the way mature skin needs product placed and blended: soft enough for thinner skin, dense enough to press product in rather than drag it."
+    }
+   ]
+  },
+  {
+   "handle": "foundation-buffing-brush",
+   "page_name": "Foundation Buffing Brush",
+   "faq_subtitle": "Everything you need to know about the Foundation Buffing Brush.",
+   "faqs": [
+    {
+     "question": "How do I use the Foundation Buffing Brush without streaks?",
+     "answer": "Dot your BB Crème, Serum Foundation or tinted moisturizer onto the face, then buff in small circular motions, working from the center of the face outward. Finish with light pressing motions over the cheeks to melt the product in. A little product and a light hand give the smoothest result."
+    },
+    {
+     "question": "Does it work with the Serum Foundation dropper and the BB Crème?",
+     "answer": "Yes, it pairs perfectly with both. Dispense Serum Foundation onto the back of your hand and pick it up with the brush, or apply a pump of BB Crème to the face and buff."
+    },
+    {
+     "question": "Will it give more or less coverage than my fingers?",
+     "answer": "A buffing brush gives a more even, airbrushed finish and lets you build coverage in thin layers, while fingers tend to sheer product out. Use the brush for the base and your fingertips to press in any spots that need extra blending."
+    },
+    {
+     "question": "Are the bristles vegan?",
+     "answer": "Yes. The Foundation Buffing Brush is 100 percent vegan and cruelty-free with soft synthetic bristles."
+    },
+    {
+     "question": "How do I wash and dry it?",
+     "answer": "Wash weekly with Lux Brush Soap: wet the bristles with the brush pointing down, swirl on the soap, rinse until the water runs clear, squeeze gently, reshape and lay flat to dry. Keep water out of the ferrule, the metal neck, to protect the glue."
+    },
+    {
+     "question": "Is it too big for the under-eye area?",
+     "answer": "It is designed for the face. For the under-eye area use the Concealer Brush, which has a dense, sculpted tip for precise placement of Creamy Concealer and Eye Brightener."
+    },
+    {
+     "question": "Can I use it with powder as well?",
+     "answer": "Yes. Once clean and dry it buffs Nikita Banana Brightening Powder or Crème Brûlée bronzer into the skin beautifully. Keep one brush for cream and one for powder if you use both daily."
+    },
+    {
+     "question": "How long should it last?",
+     "answer": "With weekly washing and flat drying, a quality synthetic brush lasts for years. If your brush arrives damaged, email hello@nikolbeauty.com within 48 hours of delivery with a photo and your invoice and we will make it right."
+    }
+   ]
+  },
+  {
+   "handle": "angled-concealer-brush",
+   "page_name": "Concealer Brush",
+   "faq_subtitle": "Everything you need to know about the Concealer Brush.",
+   "faqs": [
+    {
+     "question": "How do I use the Concealer Brush under my eyes?",
+     "answer": "Dot Creamy Concealer onto the darkest area, then use the dense, sculpted tip to press and blend outward in small patting motions. The shape follows the curve under the eye so you can place product precisely without dragging the skin."
+    },
+    {
+     "question": "Are the bristles soft enough for delicate under-eye skin?",
+     "answer": "Yes. The brush was redesigned for comfort and ease of application, with uniquely sculpted bristles that are soft on the skin yet dense enough to blend concealer seamlessly."
+    },
+    {
+     "question": "Which products does it work with?",
+     "answer": "It works with all formulas and is perfect for Eye Primer, Creamy Concealer and Eye Brightener. It also blends Just Peachy, Simply Apricot and No Redness color correctors precisely where you need them."
+    },
+    {
+     "question": "How do I wash it?",
+     "answer": "Wash weekly with Lux Brush Soap: wet the bristles with the brush pointing down, swirl on the soap, rinse until clear, reshape and lay flat to dry. Keep water out of the ferrule, the metal neck, to protect the glue."
+    },
+    {
+     "question": "How does it compare with using my fingers?",
+     "answer": "Fingers warm the product and are wonderful for a final press, but the brush places concealer exactly where you want it and builds coverage in thin layers without pulling the skin. Many customers use the brush to apply and a ring finger to finish."
+    },
+    {
+     "question": "Is it vegan and cruelty-free?",
+     "answer": "Yes. The Concealer Brush is vegan and cruelty-free, and it fits seamlessly into the Essential Makeup Brush Set."
+    },
+    {
+     "question": "How long is the handle?",
+     "answer": "The handle is approximately 4 inches long, sized for control and for slipping into a makeup bag. Brush coverage is buildable."
+    },
+    {
+     "question": "What should I do if the brush arrives damaged?",
+     "answer": "Email hello@nikolbeauty.com within 48 hours of delivery with a clear photo and the invoice from your package, and our Customer Care team will make it right."
+    }
+   ]
+  },
+  {
+   "handle": "nikol-beauty-eyeshadow-blending-brush",
+   "page_name": "Nikol Beauty Eyeshadow Blending Brush",
+   "faq_subtitle": "Everything you need to know about the Eyeshadow Blending Brush.",
+   "faqs": [
+    {
+     "question": "Is this brush for blending or for packing shadow onto the lid?",
+     "answer": "The Eyeshadow Blending Brush is for blending. Use it in small circular motions through the crease to soften edges and diffuse color. To pack color onto the lid, use the flat shadow brushes from the Essential Makeup Brush Set or the brushes included in our pearlized palettes."
+    },
+    {
+     "question": "Do I need a second brush to apply color?",
+     "answer": "For the cleanest result, yes: one brush to place color and this one to blend. If you keep only one, the Blending Brush can also apply a soft wash of a single shade across the lid."
+    },
+    {
+     "question": "Is it soft enough for thin eyelid skin?",
+     "answer": "Yes. The soft, fluffy bristles are made to blend with light pressure, which is exactly what mature eyelids need. Let the brush do the work and avoid pressing hard."
+    },
+    {
+     "question": "How do I wash it?",
+     "answer": "Wash every one to two weeks with Lux Brush Soap: wet the bristles with the brush pointing down, swirl on the soap, rinse until clear, reshape and lay flat to dry. Keep water out of the ferrule, the metal neck."
+    },
+    {
+     "question": "Is it vegan?",
+     "answer": "Yes. Like all Nikol Beauty brushes it is vegan and cruelty-free with soft synthetic bristles."
+    },
+    {
+     "question": "Which palettes does it work best with?",
+     "answer": "All of them. It is especially useful with the matte palettes, Rewrite The Rules and Strong Brew, for diffusing the deepest shade through the crease, and for softening the edges of the pearlized palettes such as The Cabana."
+    }
+   ]
+  },
+  {
+   "handle": "nikol-beauty-blending-brush",
+   "page_name": "Nikol Beauty Concealer/Lip Brush",
+   "faq_subtitle": "Everything you need to know about the Concealer/Lip Brush.",
+   "faqs": [
+    {
+     "question": "Is this brush for lipstick or for concealer?",
+     "answer": "Both. It is a dual-ended brush with a precision concealer brush on one end and a lip brush on the other, so you can apply Creamy Concealer like a pro and then line and fill your lips with lipstick for a perfect edge."
+    },
+    {
+     "question": "Is it firm enough to blend concealer under the eyes?",
+     "answer": "Yes. The concealer end is soft on the under-eye area yet precise, ideal for placing and patting Creamy Concealer, Eye Brightener or a color corrector exactly where you need it."
+    },
+    {
+     "question": "How do I clean it?",
+     "answer": "Wash weekly with Lux Brush Soap: wet each end with the bristles pointing down, swirl on the soap, rinse until clear, reshape and lay flat to dry. Keep water out of the ferrule, the metal neck."
+    },
+    {
+     "question": "Is it vegan?",
+     "answer": "Yes. The Concealer/Lip Brush is 100 percent vegan and cruelty-free, and it is perfect to carry in your makeup bag."
+    },
+    {
+     "question": "How does it differ from the Concealer Brush?",
+     "answer": "The Concealer Brush is a single-ended brush with a denser, sculpted tip for buildable coverage. The Concealer/Lip Brush is dual-ended and more compact, giving you a precision concealer brush and a lip brush in one travel-friendly tool. It is available for a limited time."
+    }
+   ]
+  },
+  {
+   "handle": "soft-set-technique-brush",
+   "page_name": "SOFT SET TECHNIQUE Brush",
+   "faq_subtitle": "Everything you need to know about the Soft Set Technique Brush.",
+   "faqs": [
+    {
+     "question": "What is the Soft Set technique, and how do I use this brush?",
+     "answer": "Soft Set is Nikol’s method for setting the under-eye without heaviness. Press the angled side of the brush into Nikita Banana Brightening Powder, then gently press it into the under-eye area as a finishing step. The dense, tapered tip places just the right amount of powder for a skin-like finish."
+    },
+    {
+     "question": "Is it only for setting under the eyes?",
+     "answer": "That is its specialty, but it is also perfect for setting Nikita Banana over creamy concealer, color correctors or Eye Brightener anywhere you want precise, controlled powder placement, such as around the nose and mouth."
+    },
+    {
+     "question": "How much powder should it pick up?",
+     "answer": "Very little. Press the angled side into the powder once and tap off any excess. The brush is designed to deliver the ideal amount for mature skin, so one light press per eye is usually enough."
+    },
+    {
+     "question": "Does it fit with the Essential Makeup Brush Set?",
+     "answer": "Yes. It was designed as an add-on to the Essential Makeup Brush Set and fits seamlessly into the set’s protective tube. The handle is approximately 4 inches long."
+    },
+    {
+     "question": "Is it soft enough for under-eye skin?",
+     "answer": "Yes. The uniquely sculpted vegan bristles are soft on delicate skin while the dense, tapered tip gives you controlled, precise placement. It is cruelty-free."
+    },
+    {
+     "question": "How do I wash it?",
+     "answer": "Wash weekly with Lux Brush Soap: wet the bristles with the brush pointing down, swirl on the soap, rinse until clear, reshape and lay flat to dry. Keep water out of the ferrule, the metal neck, to protect the glue."
+    }
+   ]
+  },
+  {
+   "handle": "lux-brush-soap",
+   "page_name": "Lux Brush Soap",
+   "faq_subtitle": "Everything you need to know about Lux Brush Soap and caring for your brushes.",
+   "faqs": [
+    {
+     "question": "Should I buy the large size or the travel size?",
+     "answer": "Choose the large Lux Brush Soap for your vanity if you wash brushes weekly; it lasts for months. The travel size is perfect for trips or for keeping in your makeup bag so you can clean brushes on the go. Both come in a tin with the built-in silicone scrubber."
+    },
+    {
+     "question": "How do I use it without getting water into the ferrule?",
+     "answer": "Wet the brush under running water with the bristles pointing down and keep it angled downward the whole time so water runs away from the ferrule, the silver metal neck. Swirl the damp bristles on the soap and the silicone scrubber, rinse until the water runs clear, squeeze gently, reshape and lay flat to dry."
+    },
+    {
+     "question": "How often should I wash my brushes?",
+     "answer": "Wash complexion brushes used with BB Crème, concealer and cream blush about once a week, and eyeshadow and powder brushes every one to two weeks. Regular cleaning keeps bristles soft, colors true and skin happy."
+    },
+    {
+     "question": "Does the tin come with the silicone scrubber?",
+     "answer": "Yes. Each tin has a built-in silicone scrubber pad designed to make cleaning easier and more efficient, so you do not need a separate cleaning mat."
+    },
+    {
+     "question": "Will it dry out or damage synthetic bristles?",
+     "answer": "No. Lux Brush Soap is an all-natural, vegan formula made in Italy with high-quality coconut oil that deeply cleanses while conditioning and nourishing the bristles, helping them stay soft and last longer. It is safe for our vegan synthetic brushes."
+    },
+    {
+     "question": "Will it remove stubborn makeup like cream blush and concealer?",
+     "answer": "Yes. The professional-grade coconut-oil formula is known for removing even the most stubborn makeup residue. For heavily used brushes, swirl on the soap, work the bristles across the scrubber, rinse and repeat once."
+    },
+    {
+     "question": "How long does one tin last?",
+     "answer": "A little soap goes a long way, so the large tin lasts many months of weekly washing and the travel tin is ideal for several trips. Let the soap dry with the lid off before closing the tin to keep it fresh."
+    },
+    {
+     "question": "Can I use it on sponges too?",
+     "answer": "Yes. Wet the sponge, work the soap through it on the scrubber, rinse until the water runs clear and squeeze out the excess. Let it dry fully in an open space before storing."
+    }
+   ]
+  },
+  {
+   "handle": "pencil-sharpener",
+   "page_name": "Pencil Sharpener",
+   "faq_subtitle": "Everything you need to know about the Pencil Sharpener and our rounded-tip pencils.",
+   "faqs": [
+    {
+     "question": "Why do the pencils not sharpen to a fine point?",
+     "answer": "That is by design. Nikol Beauty eyeliner and lip liner pencils are a softer, creamier formula made for mature skin, and they sharpen to a soft, rounded end rather than a sharp point. The rounded tip glides without tugging and gives a flattering, slightly diffused line. Trying to force a point can damage the barrel and the formula."
+    },
+    {
+     "question": "How many twists does it take to sharpen properly?",
+     "answer": "One or two gentle twists is all you need. Sharpening more than that only removes product; the rounded end is the finished shape."
+    },
+    {
+     "question": "What if the pencil seems to crumble while sharpening?",
+     "answer": "A creamy pencil can soften in a warm room or bag. Place the pencil in the refrigerator for ten minutes to firm the core, then sharpen with one or two light twists without pressing the pencil into the blade. Emptying the shavings and keeping the blade clean also helps it cut smoothly."
+    },
+    {
+     "question": "Will it fit both the eyeliner and the lip liner pencils?",
+     "answer": "Yes. The sharpener was custom-designed to work with Nikol Beauty eyeliners and lip liners, including the Crystal Clear Invisible Lip Liner, and shapes each to the intended rounded end."
+    },
+    {
+     "question": "How do I clean the blade and empty the shavings?",
+     "answer": "The sharpener has a cover that captures shavings and a built-in blade cleaner. Open the cover to tip out the shavings, then use the cleaner to clear any product from the blade so it stays sharp and clean."
+    },
+    {
+     "question": "Can I use a different sharpener on your pencils?",
+     "answer": "We recommend ours. Standard sharpeners are made for firmer pencils and often grab too much of our creamy core, wasting product and roughening the tip. Our sharpener, made in Germany, was designed for the diameter and softness of Nikol Beauty pencils."
+    },
+    {
+     "question": "Does it work on the Skinny Brow Pencil?",
+     "answer": "The Skinny Brow Pencil does not need sharpening; it is a fine-tip twist-up pencil. The sharpener is for our Waterproof Eyeliner Pencils, Waterproof Lip Liner Pencils and Crystal Clear Invisible Lip Liner."
+    },
+    {
+     "question": "What should I do if the sharpener arrives damaged?",
+     "answer": "Email hello@nikolbeauty.com within 48 hours of delivery with a clear photo and the invoice from your package, and our Customer Care team will make it right."
+    }
+   ]
+  },
+  {
+   "handle": "gua-sha",
+   "page_name": "Gua Sha Stainless Steel",
+   "faq_subtitle": "Everything you need to know about the Stainless Steel Gua Sha.",
+   "faqs": [
+    {
+     "question": "How do I use the Gua Sha, and are fuller instructions available?",
+     "answer": "Apply a facial oil or serum so the tool glides, hold the Gua Sha almost flat against the skin and sweep gently from the center of the face outward and upward, three to five strokes per area. Nikol demonstrates her full routine on her YouTube channel, youtube.com/nikoljohnson."
+    },
+    {
+     "question": "Which direction do I work in on the face and neck?",
+     "answer": "Always outward and upward: from the center of the chin along the jaw toward the ear, from the nose across the cheek toward the temple, and from the brow up toward the hairline. On the neck, sweep gently downward toward the collarbone to encourage lymphatic drainage."
+    },
+    {
+     "question": "Do I need to use oil or serum with it?",
+     "answer": "Yes. A few drops of facial oil or a hydrating serum let the stainless steel glide without pulling the skin. Never use the tool on dry skin."
+    },
+    {
+     "question": "How often should I use it?",
+     "answer": "A few minutes each morning or evening is ideal, and even two or three times a week helps release tension, support circulation and enhance the appearance of the skin. Use light pressure; more is not better."
+    },
+    {
+     "question": "Why stainless steel instead of stone?",
+     "answer": "Stainless steel stays naturally cool, is non-porous and easy to keep hygienic, and will not chip or crack if dropped. Ours comes with a custom blush pink vegan leather holder to protect it on your vanity, in your gym bag or in your luggage."
+    },
+    {
+     "question": "How do I clean it?",
+     "answer": "Wash with warm water and a gentle soap after each use, dry thoroughly and return it to its holder. For a cooling treat, keep it in the refrigerator between uses."
+    }
+   ]
+  },
+  {
+   "handle": "cooling-eye-roller",
+   "page_name": "Cooling Eye Roller",
+   "faq_subtitle": "Everything you need to know about the Cooling Eye Roller.",
+   "faqs": [
+    {
+     "question": "How do I use the Cooling Eye Roller?",
+     "answer": "Apply your favorite eye cream or serum, then glide the roller gently from the inner corner of the under-eye outward toward the temple, repeating a few times. The cool tip massages the product in while instantly helping to de-puff the under-eye area."
+    },
+    {
+     "question": "Do I need to keep it in the fridge to get the cooling effect?",
+     "answer": "The metal tip feels cool on its own, but keeping the roller in the refrigerator gives an extra cooling boost that many customers love, especially on puffy mornings."
+    },
+    {
+     "question": "How long should I use it for in the morning?",
+     "answer": "About one minute per eye is plenty. Use light pressure and slow, outward strokes; the goal is a gentle massage, not firm pressure on the delicate eye area."
+    },
+    {
+     "question": "Does it help with puffiness or with dark circles?",
+     "answer": "It is designed for puffiness and tired-looking eyes: the cooling massage helps the under-eye look refreshed and revitalized. For dark circles, follow with Just Peachy or Simply Apricot color corrector and Creamy Concealer."
+    },
+    {
+     "question": "Can I use it with any eye cream or serum?",
+     "answer": "Yes. It works with any of your go-to eye creams or serums, morning or night, and helps them absorb evenly while adding a spa-like moment to your routine."
+    },
+    {
+     "question": "How do I clean it?",
+     "answer": "Wipe the roller tip with a damp cloth or a little gentle soap and water after each use, dry it and store it in a clean, dry place or the refrigerator. If it arrives damaged, email hello@nikolbeauty.com within 48 hours of delivery with a photo and your invoice and we will make it right."
+    }
+   ]
+  },
+  {
+   "handle": "10x-mirror",
+   "page_name": "10x Magnification Mirror",
+   "faq_subtitle": "Everything you need to know about the 10x Magnification Mirror.",
+   "faqs": [
+    {
+     "question": "Is 10x magnification too strong for everyday makeup?",
+     "answer": "10x is the magnification professionals use for detail work. It is ideal for eyeliner, brow shaping, applying mascara to every lash and blending concealer, and it reveals fine lines and texture so you can place product exactly where you want it. Use it for the close work, then step back to a regular mirror to check the overall look."
+    },
+    {
+     "question": "What does the LED ring light do?",
+     "answer": "The built-in LED ring light surrounds the mirror to eliminate shadows and provide true-to-life illumination. Even lighting makes it far easier to match foundation shades, blend edges and see whether your brows are symmetrical."
+    },
+    {
+     "question": "Who is this mirror designed for?",
+     "answer": "It was designed for mature skin that deserves a closer look. Compact and elegant, it brings professional-grade clarity to eyeshadow application, brow shaping and flawless foundation blending at home."
+    },
+    {
+     "question": "How do I clean the mirror?",
+     "answer": "Wipe the glass with a soft, dry microfiber cloth. For smudges, lightly dampen the cloth with water and dry immediately. Avoid spraying liquid directly onto the mirror to protect the LED light."
+    },
+    {
+     "question": "What should I do if the light does not work properly?",
+     "answer": "Email hello@nikolbeauty.com within 48 hours of delivery with your order number and a short video showing the issue. Our Customer Care team will review it and arrange a replacement, including a prepaid label to return the defective mirror."
+    },
+    {
+     "question": "Is it a good gift?",
+     "answer": "It is one of our most-loved gifts for the makeup lover who wants to see every detail. Pair it with the Essential Makeup Brush Set or a Nikol Beauty Gift Card for a complete present."
+    }
+   ]
+  },
+  {
+   "handle": "no-crease-beauty-clips",
+   "page_name": "No-Crease Hair Clips",
+   "faq_subtitle": "Everything you need to know about the No-Crease Hair Clips.",
+   "faqs": [
+    {
+     "question": "What are the No-Crease Hair Clips for?",
+     "answer": "They keep every strand out of your face while you do your skincare and makeup, so you can apply your Nikol Beauty look without hair in the way and without a dent left behind when you take them out."
+    },
+    {
+     "question": "Will they hold my hair without creasing it?",
+     "answer": "Yes. The clips are designed to be creaseless, gripping the hair firmly enough to hold sections back during glam time and releasing without a mark, so your blowout stays intact."
+    },
+    {
+     "question": "How do I use them?",
+     "answer": "Section your hair away from your face, slide a clip in flat against the head and close it. Use one on each side for a fringe or front layers, or gather everything back with two or three clips for a full skincare routine."
+    },
+    {
+     "question": "Are they a limited-edition item?",
+     "answer": "Yes. The No-Crease Hair Clips are limited edition. If they show as sold out, click Notify Me When Back In Stock on the product page and you will receive an email as soon as inventory returns."
+    }
+   ]
+  },
+  {
+   "handle": "these-bags-are-designer-eye-mask",
+   "page_name": "These Bags Are Designer Eye Mask",
+   "faq_subtitle": "Everything you need to know about our reusable silicone eye masks.",
+   "faqs": [
+    {
+     "question": "How do I use the eye masks? Do I put serum on first?",
+     "answer": "Yes. Apply your eye cream or serum to the under-eye area, then place a mask over each eye and smooth it down. The 100 percent medical-grade silicone holds the product close to the skin so it fully absorbs rather than evaporating."
+    },
+    {
+     "question": "How long should I leave them on?",
+     "answer": "Ten to twenty minutes is ideal, or while you do the rest of your skincare and makeup. They are lightweight and thin enough to wear daily."
+    },
+    {
+     "question": "How many times can I reuse them?",
+     "answer": "They are designed to be reused again and again. Rinse them after each use and store them in the tin, and with care they last for months of daily use."
+    },
+    {
+     "question": "Do they stay in place while I move around?",
+     "answer": "Yes. Applied to skin with a thin layer of serum or cream, the silicone clings gently and stays put while you move through your routine. If they slip, use a little less product underneath."
+    },
+    {
+     "question": "How do I clean them between uses?",
+     "answer": "After each use, run the masks under cold water to remove any skincare residue, dry them flat and place them back in the reusable tin so they stay clean and ready."
+    },
+    {
+     "question": "Can I wear them while doing my eye makeup?",
+     "answer": "Absolutely. They are ideal for catching eyeshadow fallout: place them under the eyes while you blend, then remove them and apply your concealer to a perfectly clean under-eye."
+    },
+    {
+     "question": "What are they made from, and are they suitable for my skin type?",
+     "answer": "They are made from 100 percent medical-grade silicone for safety and durability, and they suit normal, dry, combination and oily skin. They come packaged in a reusable tin embossed with our rose."
+    },
+    {
+     "question": "Do they help with puffiness, dark circles or both?",
+     "answer": "The masks help whichever product you use underneath work harder by locking it against the skin, so pair them with a de-puffing gel for puffiness or a brightening eye cream for dark circles. For an instant cooling boost, use them with the Cooling Eye Roller first."
+    }
+   ]
+  },
+  {
+   "handle": "the-best-seller-beauty-bundle",
+   "page_name": "The Best Seller Beauty Bundle",
+   "faq_subtitle": "Everything you need to know about The Best Seller Beauty Bundle, from what is inside to choosing shades.",
+   "faqs": [
+    {
+     "question": "Exactly which products are in The Best Seller Beauty Bundle?",
+     "answer": "You receive ten of our best sellers: Eye Primer, BB Crème, NikRay Shiny Velvet Cream Lipstick, Rose Lip Balm, Waterproof Lip Liner in Cameo, Cream Blush Stick, Volume Up Mascara, the Essential Makeup Brush Set, Skinny Brow Pencil and our Precision Eyebrow Stencils. Everything you need for a polished, natural look."
+    },
+    {
+     "question": "Which shades do I need to choose?",
+     "answer": "You choose three shades on the product page: your Cream Blush Stick color (Palm Beach, St. Barths, Paris or Coconut Row Bronzer), your BB Crème shade (Fair, Light, Light/Medium or Tan) and your Skinny Brow Pencil shade (Dark Blonde, Taupe, Brownie or Soft Gray). Email hello@nikolbeauty.com with a natural-light photo if you would like help choosing."
+    },
+    {
+     "question": "How much do I save compared with buying separately?",
+     "answer": "The bundle saves you 15 percent compared with buying the ten products individually. The savings is already built into the bundle price; only one discount code can be applied per order."
+    },
+    {
+     "question": "Are these the same products sold individually?",
+     "answer": "Yes. Each item in the bundle is the same product you would buy on its own page, simply packaged together at a savings."
+    },
+    {
+     "question": "What if one of the shades I picked does not suit me?",
+     "answer": "Because our products are personal-care items, all sales are final and we cannot accept returns or exchanges once an order has shipped. We are glad to help before you order: email hello@nikolbeauty.com with a natural-light photo and we will recommend your shades. If any item arrives damaged or incorrect, contact us within 48 hours of delivery with photos and your invoice and we will make it right."
+    },
+    {
+     "question": "Can I swap an item for something else?",
+     "answer": "The bundle is a fixed set, so items cannot be swapped, but you can add any other product to your order. Orders of 125 dollars or more ship free within the US."
+    }
+   ]
+  },
+  {
+   "handle": "beginner-beauty-bundle",
+   "page_name": "Beginner Beauty Bundle",
+   "faq_subtitle": "Everything you need to know about the Beginner Beauty Bundle, from what is inside to choosing shades.",
+   "faqs": [
+    {
+     "question": "What is included in the Beginner Beauty Bundle, and is it enough for a complete look?",
+     "answer": "The box includes Eye Primer, Volume Up Mascara, Brow Mascara, Rose Lip Balm, Skinny Brow Pencil, our Precision Eyebrow Stencils and Creamy Concealer. Nikol curated it as just the necessities for a fresh, minimalistic look: brightened eyes, defined brows, soft lips and a concealed under-eye."
+    },
+    {
+     "question": "Which shades do I choose?",
+     "answer": "You choose three shades on the product page: Volume Up Mascara in Jet Black or Dark Brown, Creamy Concealer in Fair, Light or Med, and Skinny Brow Pencil in Dark Blonde, Taupe, Brownie or Soft Gray. Email hello@nikolbeauty.com with a natural-light photo if you would like help choosing."
+    },
+    {
+     "question": "Is it suitable if I have never worn much makeup?",
+     "answer": "Yes, that is who it was made for. Every product is forgiving and easy to use, and Nikol shows step-by-step beginner tutorials on her YouTube channel, youtube.com/nikoljohnson. It is also a great way to get back into makeup after a break."
+    },
+    {
+     "question": "How much does the bundle save me?",
+     "answer": "You receive 15 percent off the original pricing compared with buying each product individually. The savings is already built into the bundle price; only one discount code can be applied per order."
+    },
+    {
+     "question": "Are these the same products sold individually?",
+     "answer": "Yes. Each item is the same product you would buy on its own page, simply packaged together at a savings."
+    },
+    {
+     "question": "Does it include brushes or tools?",
+     "answer": "It includes the Precision Eyebrow Stencils, and the mascara, brow mascara and brow pencil have their own applicators. For concealer, the Concealer Brush or the Essential Makeup Brush Set are popular additions, though fingertips work beautifully too."
+    }
+   ]
+  },
+  {
+   "handle": "perfect-complexion-bundle",
+   "page_name": "Perfect Complexion Bundle",
+   "faq_subtitle": "Everything you need to know about the Perfect Complexion Bundle, from what is inside to application order.",
+   "faqs": [
+    {
+     "question": "Which four products are in the Perfect Complexion Bundle?",
+     "answer": "The bundle brings together four of our best sellers: Creamy Concealer, BB Crème, Fiercely Smooth Face Primer and our number-one selling Eye Primer. Together they smooth, even and brighten mature skin for a radiant complexion in any season."
+    },
+    {
+     "question": "Which shades do I pick?",
+     "answer": "You choose your Creamy Concealer shade (Fair, Light or Med) and your BB Crème shade (Fair, Light, Light/Medium or Tan) on the product page. Email hello@nikolbeauty.com with a natural-light photo if you would like a recommendation before you order."
+    },
+    {
+     "question": "What order do I apply them in?",
+     "answer": "After your skincare has absorbed, apply a thin layer of Fiercely Smooth Face Primer, then BB Crème over the face, then Creamy Concealer under the eyes and anywhere you want extra coverage. Apply Eye Primer to the lids before eyeshadow, and finish by setting the under-eye with Nikita Banana Brightening Powder if you like."
+    },
+    {
+     "question": "Do I save by buying them together?",
+     "answer": "Yes. The bundle is priced below the four products bought separately, and the savings is built into the bundle price. Only one discount code can be applied per order."
+    },
+    {
+     "question": "Do I need the primer if I use the Serum Foundation instead?",
+     "answer": "The primer is optional with Serum Foundation but helpful if you have visible texture or want longer wear. Fiercely Smooth works under BB Crème and Serum Foundation alike, so nothing in the bundle goes to waste."
+    },
+    {
+     "question": "What if a shade I picked does not suit me?",
+     "answer": "Because our products are personal-care items, all sales are final and we cannot accept returns or exchanges once an order has shipped. We are glad to help before you order: email hello@nikolbeauty.com with a natural-light photo and we will recommend your shades. If any item arrives damaged or incorrect, contact us within 48 hours of delivery with photos and your invoice and we will make it right."
+    }
+   ]
+  },
+  {
+   "handle": "volume-up-mascara-bundle",
+   "page_name": "Volume Up Mascara Bundle",
+   "faq_subtitle": "Everything you need to know about the Volume Up Mascara Bundle.",
+   "faqs": [
+    {
+     "question": "Which two colors come in the Volume Up Mascara Bundle?",
+     "answer": "You receive both Volume Up Mascara shades: #27 Jet Black and #72 Dark Brown. Wear Dark Brown for a softer daytime look or on the lower lashes, and Jet Black when you want a darker, more defined lash."
+    },
+    {
+     "question": "Is the formula the same as the single mascara?",
+     "answer": "Yes. It is the same creamy, nourishing Volume Up formula with Candelilla dispersed in Jojoba oil for adhesion, antioxidant Vitamin E and a glossy finish, with the same customized wand whose tiny teeth grip and lift every lash. Each tube holds 11 ml and is made in Italy."
+    },
+    {
+     "question": "Is it water-resistant or waterproof?",
+     "answer": "Volume Up is water-resistant and transfer-resistant, not waterproof. It holds up to everyday wear and watery eyes yet removes easily at night with warm water or a gentle eye makeup remover."
+    },
+    {
+     "question": "Is it safe for sensitive eyes and contact lens wearers?",
+     "answer": "Yes. Volume Up Mascara is safe for sensitive eyes and contact lens wearers, and it is cruelty-free."
+    },
+    {
+     "question": "How long will two tubes stay fresh once opened?",
+     "answer": "For eye hygiene we recommend replacing any mascara about three months after opening. Keep the second tube sealed until you need it, and store both at room temperature with the caps closed tightly."
+    },
+    {
+     "question": "Do I save by buying the bundle?",
+     "answer": "The bundle is priced so you never have to pick between the two colors, and the savings compared with two single tubes is shown on the product page. Only one discount code can be applied per order."
+    }
+   ]
+  }
+ ]
+}

@@ -224,6 +224,13 @@
     .nbf--d2 .nbf__masthead { grid-template-columns: 1fr; gap: 22px; }
     .nbf--d2 .nbf__crest { display: none; }
   }
+  /* Small-phone crest above the contact-card title (the masthead crest is
+     hidden below 785px, so the N would otherwise never appear on phones). */
+  .nbf--d2 .nbf__card .nbf__crest--card { display: none; }
+  @media (max-width: 768px) {
+    .nbf--d2 .nbf__card .nbf__crest--card { display: block; width: fit-content; margin: 0 auto 12px; }
+    .nbf--d2 .nbf__card .nbf__crest--card .nbf__crest-emboss { height: 52px; }
+  }
   .nbf .klaviyo-form-Ug8YTK input[type="email"],
   .nbf .klaviyo-form-Ug8YTK input[type="text"] {
     background: #fff !important;
@@ -277,6 +284,8 @@
   .nbf--d3 .nbf__phone { font-size: 26px; }
   .nbf--d3 .nbf__social .social-link { font-size: 28px; }
   .nbf--d3 .nbf__bottom { justify-content: center; text-align: center; }
+
+  @media (max-width: 420px) { .nbf__social .social { gap: 7px; } }
 {% endstyle %}
 
 {%- capture footer_links_combined -%}
@@ -366,6 +375,7 @@
 {%- elsif design == 'design2' -%}
 <footer class="nbf nbf--d2 site-footer-wrapper">
   <div class="nbf__inner">
+    {%- unless template.suffix == 'coming-soon' -%}
     <div class="nbf__masthead">
       <div class="nbf__subscribe">
         <h2 class="nbf__subscribe-title">{{ title_subscribe }}</h2>
@@ -380,6 +390,7 @@
         </span>
       </a>
     </div>
+    {%- endunless -%}
     <div class="nbf__grid">
       <nav aria-labelledby="nbf-links-heading">
         <h3 class="nbf__heading" id="nbf-links-heading">{{ help_title }}</h3>
@@ -388,6 +399,14 @@
         </ul>
       </nav>
       <div class="nbf__card">
+        <a class="nbf__crest nbf__crest--card" href="{{ routes.root_url }}" aria-label="{{ shop.name }} home">
+          <span class="nbf__crest-emboss" aria-hidden="true">
+            <span class="nbf__crest-layer nbf__crest-layer--light"></span>
+            <span class="nbf__crest-layer nbf__crest-layer--main">
+              <span class="nbf__crest-depth"></span>
+            </span>
+          </span>
+        </a>
         <h3 class="nbf__heading">{{ contact_title | default: "We're here to help" }}</h3>
         {{ contact_block }}
         <div class="nbf__social">

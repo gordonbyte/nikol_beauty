@@ -1,0 +1,106 @@
+{%- comment -%} TEST ONLY (2026-09-08): tile-embed experiment for the episode pages —
+   three per-product Tolstoy product tiles + a live status board reading each tile's
+   own data-status readiness attribute. Delete this section + page.tolstoy-tile-test
+   once the tile-embed decision is made. View at /pages/<any-page>?view=tolstoy-tile-test {%- endcomment -%}
+<style>
+.tile-test {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.tile-test h1 {
+  font-size: 32px;
+}
+
+.tile-test__grid {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.tile-test__cell {
+  width: 280px;
+}
+
+.tile-test__cell .tolstoy-tile {
+  display: block;
+  min-height: 420px;
+}
+
+.tile-test__label {
+  font-size: 14px;
+  font-family: Inter, sans-serif;
+  margin: 8px 0 4px;
+}
+
+.tile-test__board {
+  margin-top: 40px;
+  padding: 16px;
+  background: #f7f2ed;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  white-space: pre-line;
+}
+</style>
+
+<div class="tile-test">
+  <h1>Tolstoy tile-embed test</h1>
+  <p>Widget 271nixpww3rj4 · one element per product, each initializes independently. Click a video the instant it appears — that's the test.</p>
+
+  <div class="tile-test__grid">
+    {%- assign test_handles = 'bb-cream,eye-primer,mascara-intense-curling-volumizing' | split: ',' -%}
+    {%- for handle in test_handles -%}
+      {%- assign p = all_products[handle] -%}
+      {%- if p != blank -%}
+        <div class="tile-test__cell">
+          <div class="tile-test__label">{{ p.title }} ({{ p.id }})</div>
+          <div
+            class="tolstoy-tile"
+            data-publish-id="271nixpww3rj4"
+            data-product-id="{{ p.id }}"
+            data-priority="high"
+          ></div>
+        </div>
+      {%- else -%}
+        <div class="tile-test__cell"><div class="tile-test__label">MISSING PRODUCT: {{ handle }}</div></div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  <div class="tile-test__board" id="TileTestBoard">status board loading…</div>
+
+  <h1 style="margin-top:60px;">Spotlight widget test</h1>
+  <p>Widget k9u4lko99y6th · "one large featured video with the product beside it" — page-context (no product filter).</p>
+  <div class="tolstoy-carousel" data-publish-id="k9u4lko99y6th" data-priority="high"></div>
+</div>
+
+<script>
+  (function () {
+    var board = document.getElementById('TileTestBoard');
+    var t0 = performance.now();
+    var readyAt = {};
+    var render = function () {
+      var lines = ['t+' + Math.round(performance.now() - t0) + 'ms'];
+      document.querySelectorAll('.tile-test__cell .tolstoy-tile').forEach(function (el, i) {
+        var video = el.querySelector('video');
+        var initialized = el.children.length > 0;
+        if (initialized && !readyAt[i]) readyAt[i] = Math.round(performance.now() - t0);
+        lines.push('tile ' + (i + 1) + ' [' + el.dataset.productId + ']  children: ' + el.children.length
+          + '  video: ' + (video ? ('yes rs=' + video.readyState + (video.poster ? ' poster' : '')) : 'no')
+          + (readyAt[i] ? '  initialized at ' + readyAt[i] + 'ms' : ''));
+      });
+      board.textContent = lines.join('\n');
+    };
+    render();
+    setInterval(render, 300);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "[Custom] Tile TEST",
+  "settings": [],
+  "presets": [{ "name": "[Custom] Tile TEST" }]
+}
+{% endschema %}

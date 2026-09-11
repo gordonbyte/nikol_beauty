@@ -56,9 +56,6 @@
         "code_QTP4Qc": {
           "type": "rating_summary",
           "settings": {
-            "star_rating": "4.76",
-            "rating_text": "4.76/5",
-            "review_count_text": "12,000+",
             "summary_suffix": "happy women",
             "link_url": "#judgeme_product_reviews",
             "anchor_id": "pro-scroll",
@@ -90,10 +87,6 @@
         "code_CtMwbx": {
           "type": "payment_details",
           "settings": {
-            "description": "<p>An esthetician-approved BB Creme for mature skin that evens tone without settling into lines or feeling thick. It softens redness and uneven areas without that \"too much makeup\" look.</p>",
-            "feature_1": "Reduces shine without making skin look dull",
-            "feature_2": "Stays comfortable around the nose and mouth",
-            "feature_3": "Formulated with clinically proven ingredients (no sulfates or parabens)",
             "padding_bottom": 16
           }
         },
@@ -984,7 +977,21 @@
       "type": "apps",
       "settings": {
         "include_margins": false
-      }
+      },
+      "blocks": {
+        "junip_reviews_cs": {
+          "type": "shopify://apps/junip/blocks/junip-product-review/dc14f5a8-ed15-41b1-ad08-cfba23f9789b",
+          "settings": {
+            "product": "{{product}}",
+            "title": "",
+            "alignment": "center",
+            "sortOrder": "mostRecent"
+          }
+        }
+      },
+      "block_order": [
+        "junip_reviews_cs"
+      ]
     },
     "16904264243ceba35b": {
       "type": "apps",
@@ -999,64 +1006,64 @@
         "faq_gA3VtR": {
           "type": "faq",
           "settings": {
-            "question": "Is this BB Creme really made for mature skin?",
-            "answer": "Yes. It was developed by licensed esthetician Nikol Johnson-Sanchez specifically for women 40+ whose skin has changed. The formula is designed to wear evenly on skin that creases more easily, feels drier, or reacts poorly to heavier makeup."
+            "question": "Which BB Crème shade should I choose: Fair, Light, Light/Medium or Tan?",
+            "answer": "Fair suits the lightest complexions, Light is for fair-to-light skin, Light/Medium is for light-to-medium skin with a little more warmth, and Tan is for medium to deeper tones. Because BB Crème is a lightweight blur with low-to-medium coverage, it blends toward your natural tone, so if you sit between two shades choose the lighter one for everyday wear. Still unsure? Email hello@nikolbeauty.com with a natural-light photo and the shades you wear in other brands and we will help you pick before you order."
           }
         },
         "faq_49QHp8": {
           "type": "faq",
           "settings": {
-            "question": "Will this settle into fine lines or pores?",
-            "answer": "No. The texture is designed to stay flexible on the skin instead of drying down stiff. It holds together throughout the day rather than collecting in expression lines, pores, or around the nose and mouth."
+            "question": "How much coverage does BB Crème give?",
+            "answer": "BB Crème gives low-to-medium coverage with a soft, semi-matte finish designed to blur and even out mature skin rather than mask it. Your skin still looks like skin, with redness and small discolorations softened. For extra help on age spots or under-eye darkness, layer a Nikol Beauty color corrector or Creamy Concealer only where you need it instead of adding more BB Crème."
           }
         },
         "faq_7ntjTx": {
           "type": "faq",
           "settings": {
-            "question": "How much coverage does it give?",
-            "answer": "Light to light-medium. It evens tone and softens redness without covering freckles or natural texture. You can build slightly in areas you want more coverage, but it’s meant to still look like skin."
+            "question": "Is BB Crème suitable for dry or combination skin?",
+            "answer": "Yes. It is enriched with shea butter and emollient oils, plus Kakadu Plum, one of the richest natural sources of Vitamin C, so it stays comfortable and hydrating throughout the day. If your skin is very dry, apply your moisturizer first and let it absorb for a few minutes before applying BB Crème."
           }
         },
         "faq_nUpBQY": {
           "type": "faq",
           "settings": {
-            "question": "Will it feel heavy or tight after a few hours?",
-            "answer": "No. The formula includes hydrating and skin-softening ingredients to help avoid that tight, dry feeling that often shows up later in the day with traditional base products."
+            "question": "Do I need a moisturizer or primer underneath?",
+            "answer": "Start with your usual skincare and give it a few minutes to set. A primer is optional: our Fiercely Smooth Face Primer smooths texture and helps BB Crème last longer, but BB Crème also works beautifully on its own over moisturizer."
           }
         },
         "faq_9DX3k7": {
           "type": "faq",
           "settings": {
-            "question": "Is this safe for sensitive skin?",
-            "answer": "Yes. It’s made without sulfates or parabens and uses ingredients selected to sit calmly on mature, sensitive skin. Many customers with easily irritated skin use it comfortably for everyday wear."
+            "question": "Will BB Crème settle into fine lines?",
+            "answer": "Use a small amount and build in thin layers, pressing it in with the Foundation Buffing Brush or your fingertips rather than dragging. Let your skincare and primer absorb first, then set only the areas that need it, such as around the nose and mouth, with a light dusting of Nikita Banana Brightening Powder. Less product means less to settle into lines."
           }
         },
         "faq_9W4BQQ": {
           "type": "faq",
           "settings": {
-            "question": "Do I need special tools to apply it?",
-            "answer": "No. You can apply it with your fingers, a brush, or a sponge. It spreads easily without tugging, so there’s no need for precision tools or complicated techniques."
+            "question": "Nothing is coming out of the pump on my new bottle. What should I do?",
+            "answer": "BB Crème uses an airless pump, and the product can lose contact with the pump if air gets trapped during shipping. Shake the bottle well, turn it so the pump faces downward, and pump gently several times until the product begins to flow. If it still will not dispense, email hello@nikolbeauty.com with a photo of the bottle and the batch number embossed near the base, and our Customer Care team will make it right."
           }
         },
         "faq_r6GhFp": {
           "type": "faq",
           "settings": {
-            "question": "How do I choose the right shade?",
-            "answer": "Shades are labeled by depth and undertone (warm or cool) to make choosing easier. If you’re unsure, our quick quiz can help guide you based on your skin tone and preferences."
+            "question": "Can I build it up over redness and age spots?",
+            "answer": "You can add a second thin layer where needed, but for stronger correction pair it with a color corrector applied underneath: No Redness for redness, or Just Peachy and Simply Apricot for darkness. Then apply BB Crème over the top for an even, natural finish."
           }
         },
         "faq_qmicbe": {
           "type": "faq",
           "settings": {
-            "question": "Can I wear this every day?",
-            "answer": "Yes. It’s designed for daily use when you want your skin to look even and put together without spending time layering, fixing, or reapplying."
+            "question": "How long does one bottle last?",
+            "answer": "A little goes a long way, so with daily use most customers find a bottle lasts for months. Store it upright at room temperature, away from heat and direct sunlight, to keep the formula fresh."
           }
         },
         "faq_8yGXxe": {
           "type": "faq",
           "settings": {
-            "question": "What if my product arrives damaged?",
-            "answer": "If your order arrives damaged, contact our support team within 48 hours of delivery with photos and your invoice so we can assist."
+            "question": "How is BB Crème different from the Serum Foundation?",
+            "answer": "BB Crème is a lightweight complexion blur with a semi-matte finish and low-to-medium coverage, ideal for an effortless everyday look. Serum Foundation is a skincare-infused liquid with a radiant, silk-smooth finish and buildable light-to-medium coverage, applied with a dropper. Choose BB Crème for a quick, natural finish and Serum Foundation when you want more luminosity."
           }
         }
       },
@@ -1074,7 +1081,7 @@
       "name": "[Custom] FAQ",
       "settings": {
         "title": "Frequently Asked Questions",
-        "subtitle": "Everything you need to know before trying Nikol Beauty BB Creme.",
+        "subtitle": "Everything you need to know about BB Crème, from choosing a shade to daily wear.",
         "plus_icon": "shopify://shop_images/FAQ-plus.png",
         "minus_icon": "shopify://shop_images/FAQ-minus.png"
       }
@@ -1135,9 +1142,7 @@
         },
         "rating_1": {
           "type": "rating",
-          "settings": {
-            "star_text": "<strong>4.76/5</strong> stars | <strong>12,000+</strong> happy women"
-          }
+          "settings": {}
         },
         "heading_1": {
           "type": "heading",

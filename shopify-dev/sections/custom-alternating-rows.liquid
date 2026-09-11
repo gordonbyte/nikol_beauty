@@ -12,6 +12,7 @@
     line-height: 110%;
     letter-spacing: -1px;
     font-weight: 500;
+    text-wrap: pretty;
     max-width: 900px;
     margin: 0 auto;
     color: var(--COLOR-TEXT);
@@ -54,6 +55,7 @@
 }
 
 .custom-alternating-rows__media img {
+    width: 100%;
     max-width: 610px;
     height: auto;
     object-fit: contain;
@@ -70,13 +72,22 @@
   }
 }
 
+/* same treatment as .custom-icon-features__feature-text h3 / .custom-steps-horizontal__card h3 */
 .custom-alternating-rows__row-title {
-    line-height: 110%;
-    letter-spacing: -1px;
-    font-weight: 500;
-    color: var(--COLOR-TEXT);
     margin: 0;
-    font-family: var(--FONT-STACK-HEADING);
+    color: var(--COLOR-TEXT);
+    font-family: 'Cormorant', sans-serif;
+    font-size: clamp(23px, 1.32vw + 15.1px, 32px);
+    font-weight: 600;
+    line-height: 120%;
+    letter-spacing: 0;
+    text-wrap: pretty;
+}
+
+@media only screen and (min-width: 1025px) {
+.custom-alternating-rows__row-title {
+    font-size: 41px;
+}
 }
 
 .custom-alternating-rows__row-text {
@@ -96,7 +107,7 @@
 }
 
 .custom-alternating-rows__stars {
-    margin-left: 30px;
+    margin-left: 0;
 }
 
 .custom-alternating-rows__stars-img {
@@ -136,7 +147,15 @@
     font-weight: 400;
     color: var(--COLOR-TEXT);
     margin: 0;
+    padding-left: 0;
+    border-left: 0;
     font-family: var(--FONT-STACK-BODY);
+}
+
+@media only screen and (max-width: 1024px) {
+.custom-alternating-rows__review {
+    display: none;
+}
 }
 
 .custom-alternating-rows__author {
@@ -223,6 +242,15 @@
 .custom-alternating-rows__row--reverse .custom-alternating-rows__body {
     padding-right: 0;
     padding-left: 60px;
+}
+
+/* tablet band: the 60px text gutter is dropped so the copy uses the full half column */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+.custom-alternating-rows__row .custom-alternating-rows__body,
+.custom-alternating-rows__row--reverse .custom-alternating-rows__body {
+    padding-left: 0;
+    padding-right: 0;
+}
 }
 
 @media only screen and (max-width: 600px) {
@@ -313,30 +341,83 @@
 </style>
 
 {%- assign heading_id = 'CustomAltRows-title-' | append: section.id -%}
+{%- liquid
+  # Coming-soon product template: with "Use Coming Soon Page metaobject" on,
+  # content comes from the product's custom.coming_soon metaobject (no
+  # fallback, section hidden without an entry). Off = section settings render.
+  assign cs_mode = false
+  if template.suffix == 'coming-soon' and product and section.settings.use_metaobject
+    assign cs_mode = true
+    assign cs = product.metafields.custom.coming_soon.value
+  endif
 
+  assign ar_title = section.settings.title
+  assign ar_desc = section.settings.description
+  if cs_mode
+    assign ar_title = cs.switched_title
+    assign ar_desc = cs.switched_text
+  endif
+-%}
+{%- if cs_mode and ar_title == blank -%}
+  {%- comment -%} no per-product content — section hidden {%- endcomment -%}
+{%- else -%}
 <section
   id="AltRows-{{ section.id }}"
   class="custom-alternating-rows"
-  {% if section.settings.title != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
+  {% if ar_title != blank %}aria-labelledby="{{ heading_id }}"{% endif %}
   {% if section.settings.bg_image %}style="background-image: url({{ section.settings.bg_image | image_url: width: 2000 }});"{% endif %}
 >
   <div class="page-width">
 
     <div class="custom-alternating-rows__inner">
 
-      {% if section.settings.title != blank %}
+      {% if ar_title != blank %}
         <h2 id="{{ heading_id }}" class="custom-alternating-rows__title heading-size-11">
-          {{ section.settings.title }}
+          {% render 'custom-no-orphan', text: ar_title %}
         </h2>
       {% endif %}
 
-      {% if section.settings.description != blank %}
+      {% if ar_desc != blank %}
         <p class="custom-alternating-rows__subtitle">
-          {{ section.settings.description }}
+          {{ ar_desc }}
         </p>
       {% endif %}
 
-      {% if section.blocks.size > 0 %}
+      {% if cs_mode %}
+        <div class="custom-alternating-rows__rows">
+          {% assign cs_rows = cs.switched_rows.value %}{% for item in cs_rows %}
+            {% liquid
+              assign r_image = item.image
+              assign r_title = item.title
+              assign r_text = item.text
+              assign row_is_even = forloop.index | modulo: 2
+            %}
+            {% if r_title != blank or r_text != blank %}
+              <div class="custom-alternating-rows__row{% if row_is_even == 0 %} custom-alternating-rows__row--reverse{% endif %}">
+                {% if r_image != blank %}
+                  <div class="custom-alternating-rows__media">
+                    <img
+                      src="{{ r_image | image_url: width: 900 }}"
+                      srcset="{{ r_image | image_url: width: 400 }} 400w, {{ r_image | image_url: width: 600 }} 600w, {{ r_image | image_url: width: 900 }} 900w"
+                      sizes="(max-width: 749px) 100vw, 50vw"
+                      alt="{{ r_title | strip_html | escape }}"
+                      loading="lazy"
+                    >
+                  </div>
+                {% endif %}
+                <div class="custom-alternating-rows__body">
+                  {% if r_title != blank %}
+                    <h3 class="custom-alternating-rows__row-title">{% render 'custom-no-orphan', text: r_title %}</h3>
+                  {% endif %}
+                  {% if r_text != blank %}
+                    <p class="custom-alternating-rows__row-text">{{ r_text }}</p>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% elsif section.blocks.size > 0 %}
         <div class="custom-alternating-rows__rows">
 
           {% for block in section.blocks %}
@@ -362,8 +443,8 @@
               <div class="custom-alternating-rows__body">
 
                 {% if block.settings.title != blank %}
-                  <h3 class="custom-alternating-rows__row-title heading-size-9">
-                    {{ block.settings.title }}
+                  <h3 class="custom-alternating-rows__row-title">
+                    {% render 'custom-no-orphan', text: block.settings.title %}
                   </h3>
                 {% endif %}
 
@@ -462,6 +543,7 @@
     </div>
   </div>
 </section>
+{%- endif -%}
 
 <script>
   (function () {
@@ -506,6 +588,13 @@
 {
   "name": "[Custom] Alternating Rows",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "use_metaobject",
+      "label": "Use Coming Soon Page metaobject",
+      "info": "Coming-soon product template only: pull this section's content from the product's Coming Soon Page metaobject (custom.coming_soon) instead of the settings below. Leave off to show the settings below.",
+      "default": false
+    },
     {
       "type": "image_picker",
       "id": "bg_image",

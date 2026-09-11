@@ -1,0 +1,32 @@
+{%- comment -%}
+  Outputs `text` with the last space replaced by a non-breaking space so a
+  wrapped heading never ends on a single word. Applied only to titles of
+  three or more words, so a long two-word title can still break instead of
+  overflowing a narrow screen.
+
+  Usage: {% render 'custom-no-orphan', text: item.title %}
+{%- endcomment -%}
+{%- liquid
+  assign words = text | strip | split: ' '
+  if words.size < 3
+    echo text
+  else
+    assign last_index = words.size | minus: 1
+    assign last = words[last_index]
+    assign second_last_index = words.size | minus: 2
+    assign second_last = words[second_last_index]
+    assign head = ''
+    for w in words limit: second_last_index
+      if forloop.first
+        assign head = w
+      else
+        assign head = head | append: ' ' | append: w
+      endif
+    endfor
+    if head == ''
+      echo second_last | append: '&nbsp;' | append: last
+    else
+      echo head | append: ' ' | append: second_last | append: '&nbsp;' | append: last
+    endif
+  endif
+-%}

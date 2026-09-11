@@ -135,12 +135,13 @@
 .custom-info-banner__title {
     margin: 0;
     color: var(--COLOR-TEXT);
-    font-size: 62px;
+    font-size: clamp(34px, 4.12vw + 9.3px, 62px);
     line-height: 110%;
     font-family: 'Cormorant';
     letter-spacing: -3px;
     text-transform: capitalize;
     font-weight: 500;
+    text-wrap: pretty;
 }
 
 .custom-info-banner__description {
@@ -151,7 +152,7 @@
 }
 
 .custom-info-banner__price {
-    font-size: 24px;
+    font-size: clamp(20px, 0.59vw + 16.5px, 24px);
     line-height: 135%;
     font-weight: 400;
     color: var(--COLOR-TEXT);
@@ -293,7 +294,7 @@
 .custom-info-banner__blog-title {
     margin: 0;
     display: block;
-    font-size: 28px;
+    font-size: clamp(22px, 0.88vw + 16.7px, 28px);
     line-height: 120%;
     font-family: 'Cormorant', sans-serif;
     color: #fff;
@@ -371,7 +372,7 @@
 }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 767px) {
 .custom-info-banner {
     padding: 0 !important;
 }
@@ -469,11 +470,17 @@
 }
 }
 
+@media only screen and (max-width: 767px) {
+.custom-info-banner {
+    padding: 40px 0 !important;
+}
+}
+
     </style>
 
 <style>
-{%- comment -%} Adjustable media / content split (desktop >1024px only; mobile and tablet stack full-width). Set on the first Media block. {%- endcomment -%}
-@media only screen and (min-width: 1025px) {
+{%- comment -%} Adjustable media / content split (two columns from 768px up; below that everything stacks full-width). Set on the first Media block. {%- endcomment -%}
+@media only screen and (min-width: 768px) {
   #InfoBanner-{{ section.id }} .custom-info-banner__main {
     grid-template-columns: {% if media_position == 'right' %}{{ content_width }}fr {{ media_width }}fr{% else %}{{ media_width }}fr {{ content_width }}fr{% endif %};
   }
@@ -502,8 +509,34 @@
   }
 {% endif %}
 }
+
+{%- comment -%} Tablet band: drop the block-level "media padding" (inline on the section) and tighten the column gap; the media width formula tracks the gap. {%- endcomment -%}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  #InfoBanner-{{ section.id }}.custom-info-banner {
+    padding: 40px 0 !important;
+  }
+  #InfoBanner-{{ section.id }} .custom-info-banner__main {
+    column-gap: 30px;
+  }
+  #InfoBanner-{{ section.id }} .custom-info-banner__media {
+    width: calc((100% - 30px) * {{ media_width | divided_by: 100.0 }});
+  }
+}
 </style>
 
+{%- liquid
+  # Coming-soon product template: with "Use Coming Soon Page metaobject" on,
+  # content comes from the product's custom.coming_soon metaobject (no
+  # fallback, section hidden without an entry). Off = section settings render.
+  assign cs_mode = false
+  if template.suffix == 'coming-soon' and product and section.settings.use_metaobject
+    assign cs_mode = true
+    assign cs = product.metafields.custom.coming_soon.value
+  endif
+-%}
+{%- if cs_mode and cs.banner_heading == blank -%}
+  {%- comment -%} no per-product content — section hidden {%- endcomment -%}
+{%- else -%}
 <section id="InfoBanner-{{ section.id }}" class="custom-info-banner" style="{% if section.settings.bg_image %}background-image: url({{ section.settings.bg_image | img_url: '2000x' }});{% endif %}{% if section.settings.bg_color != blank %} background-color: {{ section.settings.bg_color }};{% endif %} padding: {{ media_padding }}px; box-sizing: border-box;">
   <div class="page-width">
   <div class="custom-info-banner__main {% if media_position == 'right' %}custom-info-banner__main--media-right{% endif %}">
@@ -514,7 +547,13 @@
         {%- when 'media' -%}
           {%- unless media_rendered -%}
             <div class="custom-info-banner__media">
-              {%- if blog_media != blank -%}
+              {%- if cs_mode -%}
+                {%- if cs.banner_image != blank -%}
+                  <div class="custom-info-banner__image">
+                    <img src="{{ cs.banner_image | image_url: width: 1400 }}" srcset="{{ cs.banner_image | image_url: width: 700 }} 700w, {{ cs.banner_image | image_url: width: 1000 }} 1000w, {{ cs.banner_image | image_url: width: 1400 }} 1400w" sizes="(min-width: 768px) 50vw, 100vw" alt="{{ cs.banner_heading | strip_html | escape }}" loading="lazy">
+                  </div>
+                {%- endif -%}
+              {%- elsif blog_media != blank -%}
                 {%- assign blog_obj = blogs[blog_media.settings.blog] -%}
                 {%- if blog_obj != blank and blog_obj.articles.size > 0 -%}
                   <div class="custom-info-banner__blog-swiper custom-info-banner__swiper swiper" {{ blog_media.shopify_attributes }}>
@@ -553,12 +592,12 @@
                         <div class="swiper-slide" {{ b.shopify_attributes }}>
                           <div class="custom-info-banner__image">
                             {%- if b.settings.image_desktop and b.settings.image_mobile -%}
-                              <img src="{{ b.settings.image_desktop | img_url: '1400x' }}" srcset="{{ b.settings.image_desktop | img_url: '700x' }} 700w, {{ b.settings.image_desktop | img_url: '1000x' }} 1000w, {{ b.settings.image_desktop | img_url: '1400x' }} 1400w" sizes="(min-width: 1025px) 50vw, 1px" alt="{{ b.settings.image_alt | escape }}" loading="lazy" class="custom-info-banner__img-desktop">
-                              <img src="{{ b.settings.image_mobile | img_url: '1000x' }}" srcset="{{ b.settings.image_mobile | img_url: '500x' }} 500w, {{ b.settings.image_mobile | img_url: '750x' }} 750w, {{ b.settings.image_mobile | img_url: '1000x' }} 1000w" sizes="(min-width: 1025px) 1px, 100vw" alt="{{ b.settings.image_alt | escape }}" loading="lazy" class="custom-info-banner__img-mobile">
+                              <img src="{{ b.settings.image_desktop | img_url: '1400x' }}" srcset="{{ b.settings.image_desktop | img_url: '700x' }} 700w, {{ b.settings.image_desktop | img_url: '1000x' }} 1000w, {{ b.settings.image_desktop | img_url: '1400x' }} 1400w" sizes="(min-width: 768px) 50vw, 1px" alt="{{ b.settings.image_alt | escape }}" loading="lazy" class="custom-info-banner__img-desktop">
+                              <img src="{{ b.settings.image_mobile | img_url: '1000x' }}" srcset="{{ b.settings.image_mobile | img_url: '500x' }} 500w, {{ b.settings.image_mobile | img_url: '750x' }} 750w, {{ b.settings.image_mobile | img_url: '1000x' }} 1000w" sizes="(min-width: 768px) 1px, 100vw" alt="{{ b.settings.image_alt | escape }}" loading="lazy" class="custom-info-banner__img-mobile">
                             {%- elsif b.settings.image_desktop -%}
-                              <img src="{{ b.settings.image_desktop | img_url: '900x' }}" srcset="{{ b.settings.image_desktop | img_url: '600x' }} 600w, {{ b.settings.image_desktop | img_url: '750x' }} 750w, {{ b.settings.image_desktop | img_url: '900x' }} 900w, {{ b.settings.image_desktop | img_url: '1400x' }} 1400w" sizes="(min-width: 1025px) 50vw, 100vw" alt="{{ b.settings.image_alt | escape }}" loading="lazy">
+                              <img src="{{ b.settings.image_desktop | img_url: '900x' }}" srcset="{{ b.settings.image_desktop | img_url: '600x' }} 600w, {{ b.settings.image_desktop | img_url: '750x' }} 750w, {{ b.settings.image_desktop | img_url: '900x' }} 900w, {{ b.settings.image_desktop | img_url: '1400x' }} 1400w" sizes="(min-width: 768px) 50vw, 100vw" alt="{{ b.settings.image_alt | escape }}" loading="lazy">
                             {%- elsif b.settings.image_mobile -%}
-                              <img src="{{ b.settings.image_mobile | img_url: '900x' }}" srcset="{{ b.settings.image_mobile | img_url: '600x' }} 600w, {{ b.settings.image_mobile | img_url: '750x' }} 750w, {{ b.settings.image_mobile | img_url: '900x' }} 900w, {{ b.settings.image_mobile | img_url: '1400x' }} 1400w" sizes="(min-width: 1025px) 50vw, 100vw" alt="{{ b.settings.image_alt | escape }}" loading="lazy">
+                              <img src="{{ b.settings.image_mobile | img_url: '900x' }}" srcset="{{ b.settings.image_mobile | img_url: '600x' }} 600w, {{ b.settings.image_mobile | img_url: '750x' }} 750w, {{ b.settings.image_mobile | img_url: '900x' }} 900w, {{ b.settings.image_mobile | img_url: '1400x' }} 1400w" sizes="(min-width: 768px) 50vw, 100vw" alt="{{ b.settings.image_alt | escape }}" loading="lazy">
                             {%- endif -%}
                           </div>
                         </div>
@@ -571,12 +610,12 @@
               {%- elsif image_count == 1 -%}
                 <div class="custom-info-banner__image" {{ first_image.shopify_attributes }}>
                   {%- if first_image.settings.image_desktop and first_image.settings.image_mobile -%}
-                    <img src="{{ first_image.settings.image_desktop | img_url: '1400x' }}" srcset="{{ first_image.settings.image_desktop | img_url: '700x' }} 700w, {{ first_image.settings.image_desktop | img_url: '1000x' }} 1000w, {{ first_image.settings.image_desktop | img_url: '1400x' }} 1400w" sizes="(min-width: 1025px) 50vw, 1px" alt="{{ first_image.settings.image_alt | escape }}" loading="lazy" class="custom-info-banner__img-desktop">
-                    <img src="{{ first_image.settings.image_mobile | img_url: '1000x' }}" srcset="{{ first_image.settings.image_mobile | img_url: '500x' }} 500w, {{ first_image.settings.image_mobile | img_url: '750x' }} 750w, {{ first_image.settings.image_mobile | img_url: '1000x' }} 1000w" sizes="(min-width: 1025px) 1px, 100vw" alt="{{ first_image.settings.image_alt | escape }}" loading="lazy" class="custom-info-banner__img-mobile">
+                    <img src="{{ first_image.settings.image_desktop | img_url: '1400x' }}" srcset="{{ first_image.settings.image_desktop | img_url: '700x' }} 700w, {{ first_image.settings.image_desktop | img_url: '1000x' }} 1000w, {{ first_image.settings.image_desktop | img_url: '1400x' }} 1400w" sizes="(min-width: 768px) 50vw, 1px" alt="{{ first_image.settings.image_alt | escape }}" loading="lazy" class="custom-info-banner__img-desktop">
+                    <img src="{{ first_image.settings.image_mobile | img_url: '1000x' }}" srcset="{{ first_image.settings.image_mobile | img_url: '500x' }} 500w, {{ first_image.settings.image_mobile | img_url: '750x' }} 750w, {{ first_image.settings.image_mobile | img_url: '1000x' }} 1000w" sizes="(min-width: 768px) 1px, 100vw" alt="{{ first_image.settings.image_alt | escape }}" loading="lazy" class="custom-info-banner__img-mobile">
                   {%- elsif first_image.settings.image_desktop -%}
-                    <img src="{{ first_image.settings.image_desktop | img_url: '900x' }}" srcset="{{ first_image.settings.image_desktop | img_url: '600x' }} 600w, {{ first_image.settings.image_desktop | img_url: '750x' }} 750w, {{ first_image.settings.image_desktop | img_url: '900x' }} 900w, {{ first_image.settings.image_desktop | img_url: '1400x' }} 1400w" sizes="(min-width: 1025px) 50vw, 100vw" alt="{{ first_image.settings.image_alt | escape }}" loading="lazy">
+                    <img src="{{ first_image.settings.image_desktop | img_url: '900x' }}" srcset="{{ first_image.settings.image_desktop | img_url: '600x' }} 600w, {{ first_image.settings.image_desktop | img_url: '750x' }} 750w, {{ first_image.settings.image_desktop | img_url: '900x' }} 900w, {{ first_image.settings.image_desktop | img_url: '1400x' }} 1400w" sizes="(min-width: 768px) 50vw, 100vw" alt="{{ first_image.settings.image_alt | escape }}" loading="lazy">
                   {%- elsif first_image.settings.image_mobile -%}
-                    <img src="{{ first_image.settings.image_mobile | img_url: '900x' }}" srcset="{{ first_image.settings.image_mobile | img_url: '600x' }} 600w, {{ first_image.settings.image_mobile | img_url: '750x' }} 750w, {{ first_image.settings.image_mobile | img_url: '900x' }} 900w, {{ first_image.settings.image_mobile | img_url: '1400x' }} 1400w" sizes="(min-width: 1025px) 50vw, 100vw" alt="{{ first_image.settings.image_alt | escape }}" loading="lazy">
+                    <img src="{{ first_image.settings.image_mobile | img_url: '900x' }}" srcset="{{ first_image.settings.image_mobile | img_url: '600x' }} 600w, {{ first_image.settings.image_mobile | img_url: '750x' }} 750w, {{ first_image.settings.image_mobile | img_url: '900x' }} 900w, {{ first_image.settings.image_mobile | img_url: '1400x' }} 1400w" sizes="(min-width: 768px) 50vw, 100vw" alt="{{ first_image.settings.image_alt | escape }}" loading="lazy">
                   {%- endif -%}
                 </div>
               {%- endif -%}
@@ -587,10 +626,21 @@
         {%- when 'rating' -%}
           <div class="custom-info-banner__content" {{ block.shopify_attributes }} style="padding-top: {{ block.settings.padding_top | default: 5 }}px; padding-bottom: {{ block.settings.padding_bottom | default: 5 }}px;">
             {%- liquid
-              assign star_rating = block.settings.star_rating | default: 5 | times: 1.0 | at_most: 5.0 | at_least: 0.0
+              if product
+                assign star_rating = product.metafields.junip.rating_average | times: 1.0 | at_most: 5.0 | at_least: 0.0
+                assign junip_count = product.metafields.junip.rating_count | times: 1
+                assign star_text = ''
+                if star_rating > 0 and junip_count > 0
+                  assign star_text_rating = star_rating | round: 2
+                  assign star_text = '<strong>' | append: star_text_rating | append: '/5</strong> stars | <strong>' | append: junip_count | append: '</strong> reviews'
+                endif
+              else
+                assign star_rating = block.settings.star_rating | default: 5 | times: 1.0 | at_most: 5.0 | at_least: 0.0
+                assign star_text = block.settings.star_text
+              endif
               assign star_percent = star_rating | divided_by: 5.0 | times: 100.0 | round: 1
             -%}
-            {%- if star_rating > 0 or block.settings.star_text != blank -%}
+            {%- if star_rating > 0 or star_text != blank -%}
               <div class="custom-info-banner__star-box">
                 {%- if star_rating > 0 -%}
                   <div class="custom-info-banner__star-img">
@@ -616,8 +666,8 @@
                     <span class="custom-info-banner__sr-only">Rated {{ star_rating }} out of 5 stars</span>
                   </div>
                 {%- endif -%}
-                {%- if block.settings.star_text != blank -%}
-                  <div class="custom-info-banner__star-text">{{ block.settings.star_text }}</div>
+                {%- if star_text != blank -%}
+                  <div class="custom-info-banner__star-text">{{ star_text }}</div>
                 {%- endif -%}
               </div>
             {%- endif -%}
@@ -625,8 +675,14 @@
 
         {%- when 'heading' -%}
           <div class="custom-info-banner__content" {{ block.shopify_attributes }} style="padding-top: {{ block.settings.padding_top | default: 5 }}px; padding-bottom: {{ block.settings.padding_bottom | default: 5 }}px;">
-            {%- if block.settings.heading != blank -%}
-              <h2 class="custom-info-banner__title">{{ block.settings.heading }}</h2>
+            {%- liquid
+              assign ib_heading = block.settings.heading
+              if cs_mode
+                assign ib_heading = cs.banner_heading
+              endif
+            -%}
+            {%- if ib_heading != blank -%}
+              <h2 class="custom-info-banner__title">{% render 'custom-no-orphan', text: ib_heading %}</h2>
             {%- endif -%}
           </div>
 
@@ -639,7 +695,11 @@
 
         {%- when 'text' -%}
           <div class="custom-info-banner__content" {{ block.shopify_attributes }} style="padding-top: {{ block.settings.padding_top | default: 5 }}px; padding-bottom: {{ block.settings.padding_bottom | default: 5 }}px;">
-            {%- if block.settings.text != blank -%}
+            {%- if cs_mode -%}
+              {%- if cs.banner_text != blank -%}
+                <div class="custom-info-banner__description">{{ cs.banner_text | metafield_tag }}</div>
+              {%- endif -%}
+            {%- elsif block.settings.text != blank -%}
               <div class="custom-info-banner__description">{{ block.settings.text }}</div>
             {%- endif -%}
           </div>
@@ -677,6 +737,7 @@
   </div>
   </div>
 </section>
+{%- endif -%}
 
 {%- if use_slider -%}
 <script>
@@ -724,6 +785,13 @@ document.addEventListener("DOMContentLoaded", function () {
 {
   "name": "[Custom] Info Banner",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "use_metaobject",
+      "label": "Use Coming Soon Page metaobject",
+      "info": "Coming-soon product template only: pull this section's content from the product's Coming Soon Page metaobject (custom.coming_soon) instead of the settings below. Leave off to show the settings below.",
+      "default": false
+    },
     {
       "type": "image_picker",
       "id": "bg_image",
@@ -878,7 +946,7 @@ document.addEventListener("DOMContentLoaded", function () {
           "type": "range",
           "id": "star_rating",
           "label": "Star rating",
-          "info": "Controls how much of the stars are filled. 0 hides the stars.",
+          "info": "Non-product pages only. On product templates the stars and text come from the Junip rating metafields and hide until Junip has synced.",
           "min": 0,
           "max": 5,
           "step": 0.1,
@@ -887,7 +955,8 @@ document.addEventListener("DOMContentLoaded", function () {
         {
           "type": "textarea",
           "id": "star_text",
-          "label": "Star Text"
+          "label": "Star Text",
+          "info": "Non-product pages only; ignored on product templates."
         },
         {
           "type": "range",

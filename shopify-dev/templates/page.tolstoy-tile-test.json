@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "custom-tolstoy-tile-test",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
