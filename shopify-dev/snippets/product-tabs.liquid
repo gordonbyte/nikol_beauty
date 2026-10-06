@@ -5,6 +5,7 @@
     Accepts:
     - section: {Object} Current section (required)
     - product: {Object} Current product (optional)
+    - cs_mode / cs_content_1 / cs_content_2: when cs_mode is true, tabs 1 and 2 use the given HTML (blank hides the tab)
 
     Usage:
     {% render 'product-tabs', section: section, product: product  %}
@@ -71,6 +72,8 @@
 
     {%- assign content = 'raw_content_' | append: forloop.index -%}
     {%- assign content = block.settings[content] -%}
+    {%- if cs_mode and forloop.index == 1 -%}{%- assign content = cs_content_1 -%}{%- endif -%}
+    {%- if cs_mode and forloop.index == 2 -%}{%- assign content = cs_content_2 -%}{%- endif -%}
     {%- if check_prefix != blank -%}
       {%- assign content = content | replace: check_prefix_strong, '<p class="cw-bb-check-item"><strong>' | replace: check_prefix_plain, '<p class="cw-bb-check-item">' -%}
     {%- endif -%}
@@ -130,6 +133,12 @@
 
           assign content = 'raw_content_' | append: forloop.index
           assign content = block.settings[content]
+          if cs_mode and forloop.index == 1
+            assign content = cs_content_1
+          endif
+          if cs_mode and forloop.index == 2
+            assign content = cs_content_2
+          endif
           if check_prefix != blank
             assign content = content | replace: check_prefix_strong, '<p class="cw-bb-check-item"><strong>' | replace: check_prefix_plain, '<p class="cw-bb-check-item">'
           endif
@@ -138,13 +147,22 @@
           if product_description_content == blank and forloop.index == 1 and accordions_closed != true
             assign accordion_open = true
           endif
+
+          assign cs_slot = ''
+          if cs_mode and forloop.index == 1
+            assign cs_slot = 'ingredients'
+          elsif cs_mode and forloop.index == 2
+            assign cs_slot = 'benefits'
+          elsif cs_mode and forloop.index == 3
+            assign cs_slot = 'shipping'
+          endif
         -%}
 
         {%- if title != '' and content != '' -%}
           {%- capture accordion_blocks_html -%}
             {{ accordion_blocks_html }}
 
-            <details class="accordion" data-collapsible{% if accordion_open %} open="true"{% endif %}>
+            <details class="accordion" data-collapsible{% if accordion_open %} open="true"{% endif %}{% if cs_slot != '' %} data-cs-slot="{{ cs_slot }}"{% endif %}>
               <summary class="accordion__title" data-collapsible-trigger {{ block.shopify_attributes }}>
                 {{ title }}
 

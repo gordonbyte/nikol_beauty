@@ -1,0 +1,46 @@
+{%- comment -%}
+  Outputs the promo sale price (in cents) for one variant, using the same rules as
+  product-price.liquid / cart-bar.liquid (Discount Sync tags + per-variant metafields).
+  Outputs nothing when no promo applies.
+  Params: product, variant
+{%- endcomment -%}
+{%- liquid
+  assign pc_out = ''
+  if settings.promo_badge_enable and product.available and variant.price > 0
+    assign pc_percent = ''
+    assign pc_amount = ''
+    if product.variants.size == 1
+      assign pc_tags = product.tags | join: ',' | append: ','
+      if pc_tags contains 'promo-amt-up-to-'
+        assign pc_parts = pc_tags | split: 'promo-amt-up-to-'
+        assign pc_amount = pc_parts[1] | split: ',' | first | strip
+      elsif pc_tags contains 'promo-amt-'
+        assign pc_parts = pc_tags | split: 'promo-amt-'
+        assign pc_amount = pc_parts[1] | split: ',' | first | strip
+      elsif pc_tags contains 'promo-up-to-'
+        assign pc_parts = pc_tags | split: 'promo-up-to-'
+        assign pc_percent = pc_parts[1] | split: ',' | first | strip
+      elsif pc_tags contains 'promo-'
+        assign pc_parts = pc_tags | split: 'promo-'
+        assign pc_percent = pc_parts[1] | split: ',' | first | strip
+      endif
+    else
+      assign pc_amount = variant.metafields.custom.promo_amount.value
+      assign pc_percent = variant.metafields.custom.promo_percent.value
+    endif
+
+    if pc_amount != blank
+      assign pc_amount_cents = pc_amount | times: 100.0 | round
+      assign pc_sale = variant.price | minus: pc_amount_cents
+      if pc_sale < 0
+        assign pc_sale = 0
+      endif
+      assign pc_out = pc_sale
+    elsif pc_percent != blank
+      assign pc_discount = variant.price | times: pc_percent | divided_by: 100
+      assign pc_sale = variant.price | minus: pc_discount
+      assign pc_out = pc_sale
+    endif
+  endif
+  echo pc_out
+-%}

@@ -1,0 +1,331 @@
+[
+ {
+  "title": "Vivid, Long-Wearing Color",
+  "label": "Long-Wearing Color",
+  "file": "palettes.png",
+  "halfSpanDeg": 94.6,
+  "textSize": 66
+ },
+ {
+  "title": "Rich Color Payout",
+  "label": "Rich Color Payout",
+  "file": "lipsticks.png",
+  "halfSpanDeg": 84.9,
+  "textSize": 66
+ },
+ {
+  "title": "Three Correcting Shades",
+  "label": "Three Correctors",
+  "file": "correctors.png",
+  "halfSpanDeg": 80.2,
+  "textSize": 66
+ },
+ {
+  "title": "Six Matched Barrels",
+  "label": "Six Matched Barrels",
+  "file": "liners.png",
+  "halfSpanDeg": 94.3,
+  "textSize": 66
+ },
+ {
+  "title": "Works Under Any Lipstick",
+  "label": "Under Any Lipstick",
+  "file": "clear.png",
+  "halfSpanDeg": 88.2,
+  "textSize": 66
+ },
+ {
+  "title": "Candelilla, Jojoba & Vitamin E",
+  "label": "Jojoba & Vitamin E",
+  "file": "candelilla-jojoba-and-vitamin-e-molecule.png",
+  "halfSpanDeg": 88.8,
+  "textSize": 66
+ },
+ {
+  "title": "Fragrance-Free & Ophthalmologist-Tested",
+  "label": "Fragrance-Free",
+  "file": "fragrance-free-and-ophthalmologist-tested-base.png",
+  "halfSpanDeg": 73.4,
+  "textSize": 66
+ },
+ {
+  "title": "Paraben-Free & Fragrance-Free",
+  "label": "Paraben-Free",
+  "file": "paraben-free-and-fragrance-free-aroma.png",
+  "halfSpanDeg": 65,
+  "textSize": 66
+ },
+ {
+  "title": "High-Pigment, Fast-Drying",
+  "label": "High-Pigment",
+  "file": "high-pigment-fast-drying-brow.png",
+  "halfSpanDeg": 65,
+  "textSize": 66
+ },
+ {
+  "title": "Talc-Free & Vegan",
+  "label": "Talc-Free & Vegan",
+  "file": "talc-free-and-vegan-leaves.png",
+  "halfSpanDeg": 87.2,
+  "textSize": 66
+ },
+ {
+  "title": "Silicone Scrubber Included",
+  "label": "Silicone Scrubber",
+  "file": "silicone-scrubber-included-pad.png",
+  "halfSpanDeg": 83.4,
+  "textSize": 66
+ },
+ {
+  "title": "Silicone Scrubber Included",
+  "label": "Silicone Scrubber",
+  "file": "silicone-scrubber-included-circle.png",
+  "halfSpanDeg": 83.4,
+  "textSize": 66
+ },
+ {
+  "title": "Silicone Scrubber Included",
+  "label": "Silicone Scrubber",
+  "file": "silicone-scrubber-included-circle-v1.png",
+  "halfSpanDeg": 83.4,
+  "textSize": 66
+ },
+ {
+  "title": "All-Natural Coconut Oil",
+  "label": "Coconut Oil",
+  "file": "all-natural-coconut-oil-bowl.png",
+  "halfSpanDeg": 55.7,
+  "textSize": 66
+ },
+ {
+  "title": "Shea Butter Formula",
+  "label": "Shea Butter Formula",
+  "file": "shea-butter-formula-droplet.png",
+  "halfSpanDeg": 97,
+  "textSize": 66
+ },
+ {
+  "title": "100% Vegan Bristles",
+  "label": "100% Vegan Bristles",
+  "file": "vegan-bristles-leaves.png",
+  "halfSpanDeg": 98.1,
+  "textSize": 66
+ },
+ {
+  "title": "Uniquely Sculpted Bristles",
+  "label": "Uniquely Sculpted",
+  "file": "uniquely-sculpted-bristles-round.png",
+  "halfSpanDeg": 85.8,
+  "textSize": 66
+ },
+ {
+  "title": "Uniquely Sculpted Bristles",
+  "label": "Uniquely Sculpted",
+  "file": "uniquely-sculpted-bristles-dome.png",
+  "halfSpanDeg": 85.8,
+  "textSize": 66
+ },
+ {
+  "title": "Uniquely Sculpted Bristles",
+  "label": "Uniquely Sculpted",
+  "file": "uniquely-sculpted-bristles-arc.png",
+  "halfSpanDeg": 85.8,
+  "textSize": 66
+ },
+ {
+  "title": "Uniquely Sculpted Bristles",
+  "label": "Uniquely Sculpted",
+  "file": "uniquely-sculpted-bristles-slant.png",
+  "halfSpanDeg": 85.8,
+  "textSize": 66
+ },
+ {
+  "title": "Uniquely Sculpted Bristles",
+  "label": "Uniquely Sculpted",
+  "file": "uniquely-sculpted-bristles-even.png",
+  "halfSpanDeg": 85.8,
+  "textSize": 66
+ },
+ {
+  "title": "Chamomile & Hyaluronate",
+  "label": "Chamomile",
+  "file": "chamomile-and-hyaluronate-flower.png",
+  "halfSpanDeg": 54.4,
+  "textSize": 66
+ },
+ {
+  "title": "Shea Butter",
+  "label": "Shea Butter",
+  "file": "shea-butter-nuts.png",
+  "halfSpanDeg": 55.7,
+  "textSize": 66
+ },
+ {
+  "title": "Shea Butter Formula",
+  "label": "Shea Butter Formula",
+  "file": "shea-butter-formula-nuts.png",
+  "halfSpanDeg": 97,
+  "textSize": 66
+ },
+ {
+  "title": "Safflower Oil & Vitamin E",
+  "label": "Safflower Oil",
+  "file": "safflower-oil-and-vitamin-e-molecule.png",
+  "halfSpanDeg": 59.6,
+  "textSize": 66
+ },
+ {
+  "title": "Fragrance-Free & Ophthalmologist-Tested",
+  "label": "Fragrance-Free",
+  "file": "fragrance-free-and-ophthalmologist-tested-aroma.png",
+  "halfSpanDeg": 73.4,
+  "textSize": 66
+ },
+ {
+  "title": "95% Natural Origin",
+  "label": "95% Natural Origin",
+  "file": "natural-origin-leaves.png",
+  "halfSpanDeg": 89.2,
+  "textSize": 66
+ },
+ {
+  "title": "Naturally Cooling",
+  "label": "Naturally Cooling",
+  "file": "naturally-cooling-wind.png",
+  "halfSpanDeg": 80.8,
+  "textSize": 66
+ },
+ {
+  "title": "Vegan Leather Holder",
+  "label": "Vegan Leather",
+  "file": "vegan-leather-holder-hide.png",
+  "halfSpanDeg": 68.4,
+  "textSize": 66
+ },
+ {
+  "title": "Stainless Steel",
+  "label": "Stainless Steel",
+  "file": "stainless-steel-bar-sparkle.png",
+  "halfSpanDeg": 69.7,
+  "textSize": 66
+ },
+ {
+  "title": "10x Magnification",
+  "label": "10x Magnification",
+  "file": "magnification-lens-plus.png",
+  "halfSpanDeg": 82.8,
+  "textSize": 66
+ },
+ {
+  "title": "LED Ring Light",
+  "label": "LED Ring Light",
+  "file": "led-ring-light-sun.png",
+  "halfSpanDeg": 70,
+  "textSize": 66
+ },
+ {
+  "title": "Rechargeable & Cordless",
+  "label": "Rechargeable",
+  "file": "rechargeable-battery-plug.png",
+  "halfSpanDeg": 66.2,
+  "textSize": 66
+ },
+ {
+  "title": "Chamomile Flower Water",
+  "label": "Chamomile Flower",
+  "file": "chamomile-flower-water-flower.png",
+  "halfSpanDeg": 88.4,
+  "textSize": 66
+ },
+ {
+  "title": "90%+ Natural Ingredients",
+  "label": "90%+ Natural",
+  "file": "natural-ingredients-leaves.png",
+  "halfSpanDeg": 65.2,
+  "textSize": 66
+ },
+ {
+  "title": "Vegan & Talc-Free",
+  "label": "Vegan & Talc-Free",
+  "file": "vegan-and-talc-free-leaves.png",
+  "halfSpanDeg": 87.2,
+  "textSize": 66
+ },
+ {
+  "title": "Ultra-Smooth Formula",
+  "label": "Ultra-Smooth",
+  "file": "ultra-smooth-formula-brow.png",
+  "halfSpanDeg": 63.5,
+  "textSize": 66
+ },
+ {
+  "title": "Medical-Grade Silicone",
+  "label": "Medical-Grade",
+  "file": "medical-grade-silicone-molecule.png",
+  "halfSpanDeg": 70,
+  "textSize": 66
+ },
+ {
+  "title": "Reusable Tin Included",
+  "label": "Reusable Tin",
+  "file": "reusable-tin-arrows.png",
+  "halfSpanDeg": 61.8,
+  "textSize": 66
+ },
+ {
+  "title": "For All Skin Types",
+  "label": "For All Skin Types",
+  "file": "for-all-skin-types-layers.png",
+  "halfSpanDeg": 84.5,
+  "textSize": 66
+ },
+ {
+  "title": "Sensitive-Eye Safe",
+  "label": "Sensitive-Eye Safe",
+  "file": "sensitive-eye-safe-shield.png",
+  "halfSpanDeg": 88.8,
+  "textSize": 66
+ },
+ {
+  "title": "Vivid, Long-Wearing Color",
+  "label": "Long-Wearing Color",
+  "file": "vivid-long-wearing-color-clock.png",
+  "halfSpanDeg": 94.6,
+  "textSize": 66
+ },
+ {
+  "title": "Waterline Safe",
+  "label": "Waterline Safe",
+  "file": "waterline-safe-drops.png",
+  "halfSpanDeg": 68.4,
+  "textSize": 66
+ },
+ {
+  "title": "Shea Butter & Olive Oil",
+  "label": "Shea & Olive Oil",
+  "file": "shea-and-olive-oil-nuts.png",
+  "halfSpanDeg": 75.6,
+  "textSize": 66
+ },
+ {
+  "title": "Vegan & Silicone-Free",
+  "label": "Vegan & Silicone-Free",
+  "file": "vegan-and-silicone-free-leaves.png",
+  "halfSpanDeg": 101.5,
+  "textSize": 64
+ },
+ {
+  "title": "Fresh Mint Feel",
+  "label": "Fresh Mint Feel",
+  "file": "fresh-mint-feel-leaf.png",
+  "halfSpanDeg": 72.2,
+  "textSize": 66
+ },
+ {
+  "title": "Shea Butter & Avocado Oil",
+  "label": "Shea & Avocado Oil",
+  "file": "shea-and-avocado-oil-nuts.png",
+  "halfSpanDeg": 93.6,
+  "textSize": 66
+ }
+]

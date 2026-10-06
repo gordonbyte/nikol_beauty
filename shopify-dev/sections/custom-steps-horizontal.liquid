@@ -46,6 +46,27 @@
   padding-top: 20px;
 }
 
+.custom-steps-horizontal__container--two {
+  justify-content: center;
+  gap: 6%;
+}
+.custom-steps-horizontal__container--two .custom-steps-horizontal__card {
+  width: 36%;
+  margin: 0;
+}
+
+/* Four steps: the base card is 33% and would shrink edge-to-edge, so give the row a gap
+   and size the cards to match it. Only applies when the page supplies four steps. */
+.custom-steps-horizontal__container--four {
+  gap: 3%;
+}
+.custom-steps-horizontal__container--four .custom-steps-horizontal__card {
+  width: 22.75%;
+  margin: 0;
+}
+.custom-steps-horizontal__container--four .custom-steps-horizontal__card:nth-child(4) .custom-steps-horizontal__number {
+  padding-bottom: 11px;
+}
 .custom-steps-horizontal__image {
   position: relative;
   width: 100%;
@@ -232,6 +253,9 @@
 .custom-steps-horizontal.anim-ready .custom-steps-horizontal__card:nth-child(3) {
   transition-delay: 0.24s;
 }
+.custom-steps-horizontal.anim-ready .custom-steps-horizontal__card:nth-child(4) {
+  transition-delay: 0.36s;
+}
 
 .custom-steps-horizontal.anim-ready .is-inview {
   opacity: 1;
@@ -257,11 +281,11 @@
 </style>
 
 {%- liquid
-  # Coming-soon product template: with "Use Coming Soon Page metaobject" on,
+  # Product templates: with "Use Coming Soon Page metaobject" on,
   # content comes from the product's custom.coming_soon metaobject (no
   # fallback, section hidden without an entry). Off = section settings render.
   assign cs_mode = false
-  if template.suffix == 'coming-soon' and product and section.settings.use_metaobject
+  if template.name == 'product' and product and section.settings.use_metaobject
     assign cs_mode = true
     assign cs = product.metafields.custom.coming_soon.value
   endif
@@ -288,16 +312,48 @@
       {%- endif -%}
     </div>
 
-    <div class="custom-steps-horizontal__container">
+    {%- liquid
+      assign sh_two = false
+      assign sh_four = false
+      if cs_mode
+        assign cs_steps = cs.steps.value
+        if cs_steps.size == 2
+          assign sh_two = true
+        endif
+        if cs_steps.size == 4
+          assign sh_four = true
+        endif
+      endif
+    -%}
+    <div class="custom-steps-horizontal__container{% if sh_two %} custom-steps-horizontal__container--two{% endif %}{% if sh_four %} custom-steps-horizontal__container--four{% endif %}">
       {%- if cs_mode -%}
         {%- assign cs_steps = cs.steps.value -%}{%- for item in cs_steps -%}
             <div class="custom-steps-horizontal__card">
 
+              {%- liquid
+                assign sh_show_number = true
+                assign sh_hide_all = cs.steps_hide_numbers
+                if sh_hide_all == true or sh_hide_all == 'true'
+                  assign sh_show_number = false
+                endif
+                if section.settings.hide_number_without_image
+                  if item.image == blank
+                    assign sh_show_number = false
+                  else
+                    assign sh_img_url = item.image | image_url: width: 100
+                    if sh_img_url contains 'coming-soon-placeholder'
+                      assign sh_show_number = false
+                    endif
+                  endif
+                endif
+              -%}
               <div class="custom-steps-horizontal__image">
                 {%- if item.image != blank -%}
                   {{ item.image | image_url: width: 780 | image_tag: widths: '300, 390, 600, 780', sizes: '390px', loading: 'lazy', alt: '' }}
                 {%- endif -%}
-                <div class="custom-steps-horizontal__number">{{ forloop.index }}</div>
+                {%- if sh_show_number -%}
+                  <div class="custom-steps-horizontal__number">{{ forloop.index }}</div>
+                {%- endif -%}
               </div>
 
               {%- if item.title != blank -%}
@@ -314,11 +370,26 @@
       {%- for block in section.blocks -%}
         <div class="custom-steps-horizontal__card" {{ block.shopify_attributes }}>
 
+          {%- liquid
+            assign sh_show_number = true
+            if section.settings.hide_number_without_image
+              if block.settings.image == blank
+                assign sh_show_number = false
+              else
+                assign sh_img_url = block.settings.image | image_url: width: 100
+                if sh_img_url contains 'coming-soon-placeholder'
+                  assign sh_show_number = false
+                endif
+              endif
+            endif
+          -%}
           <div class="custom-steps-horizontal__image">
             {%- if block.settings.image != blank -%}
               {{ block.settings.image | image_url: width: 780 | image_tag: widths: '300, 390, 600, 780', sizes: '390px', loading: 'lazy', alt: '' }}
             {%- endif -%}
-            <div class="custom-steps-horizontal__number">{{ forloop.index }}</div>
+            {%- if sh_show_number -%}
+              <div class="custom-steps-horizontal__number">{{ forloop.index }}</div>
+            {%- endif -%}
           </div>
 
           {%- if block.settings.title != blank -%}
@@ -385,6 +456,13 @@
       "label": "Use Coming Soon Page metaobject",
       "info": "Coming-soon product template only: pull this section's content from the product's Coming Soon Page metaobject (custom.coming_soon) instead of the settings below. Leave off to show the settings below.",
       "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_number_without_image",
+      "label": "Hide step numbers on cards without a real image",
+      "info": "Cards whose image is blank or still the 'Image coming soon' placeholder won't show the numbered badge.",
+      "default": true
     },
     {
       "type": "image_picker",

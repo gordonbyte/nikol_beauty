@@ -203,12 +203,12 @@
 </style>
 
 {%- liquid
-  # Coming-soon product template: with "Use Coming Soon Page metaobject" on,
+  # Product templates: with "Use Coming Soon Page metaobject" on,
   # content comes from the product's custom.coming_soon metaobject (no
   # fallback, section hidden without an entry). Off = section settings render.
   assign cs_mode = false
   assign cs_faq_count = 0
-  if template.suffix == 'coming-soon' and product and section.settings.use_metaobject
+  if template.name == 'product' and product and section.settings.use_metaobject
     assign cs_mode = true
     assign cs = product.metafields.custom.coming_soon.value
     assign cs_faqs = cs.faqs.value
@@ -222,8 +222,8 @@
     assign faq_subtitle = cs.faq_subtitle
   endif
 -%}
-{%- if cs_mode and cs_faq_count < 1 -%}
-  {%- comment -%} no per-product FAQs — section hidden {%- endcomment -%}
+{%- if cs_mode and cs_faq_count < 4 -%}
+  {%- comment -%} fewer than 4 per-product FAQs — section hidden {%- endcomment -%}
 {%- else -%}
 <section class="custom-faq" id="Faq-{{ section.id }}" aria-labelledby="custom-faq-title-{{ section.id }}">
   <div class="page-width">

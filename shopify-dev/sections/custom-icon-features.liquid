@@ -19,7 +19,7 @@
 
 .custom-icon-features__content {
   width: 50%;
-  padding-left: 200px;
+  padding: 60px 0 60px 200px;
 }
 
 .custom-icon-features__heading {
@@ -248,11 +248,11 @@
 </style>
 
 {%- liquid
-  # Coming-soon product template: with "Use Coming Soon Page metaobject" on,
+  # Product templates: with "Use Coming Soon Page metaobject" on,
   # content comes from the product's custom.coming_soon metaobject (no
   # fallback, section hidden without an entry). Off = section settings render.
   assign cs_mode = false
-  if template.suffix == 'coming-soon' and product and section.settings.use_metaobject
+  if template.name == 'product' and product and section.settings.use_metaobject
     assign cs_mode = true
     assign cs = product.metafields.custom.coming_soon.value
   endif
@@ -344,8 +344,8 @@
     </div>
 
     <div class="custom-icon-features__image">
-      {%- if section.settings.main_image != blank -%}
-        {{ section.settings.main_image | image_url: width: 1000 | image_tag: widths: '300, 500, 700, 900, 1100', sizes: '(min-width: 601px) 50vw, 100vw', loading: 'lazy' }}
+      {%- if if_image != blank -%}
+        {{ if_image | image_url: width: 1000 | image_tag: widths: '300, 500, 700, 900, 1100', sizes: '(min-width: 601px) 50vw, 100vw', loading: 'lazy' }}
       {%- endif -%}
     </div>
 

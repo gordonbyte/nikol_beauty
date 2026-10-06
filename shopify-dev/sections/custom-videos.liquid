@@ -60,6 +60,9 @@
   pointer-events: none !important;
 }
 
+.custom-videos__tolstoy.nav-hidden .custom-videos__nav {
+  display: none !important;
+}
 .custom-videos__nav {
   position: absolute;
   top: 50%;
@@ -283,11 +286,11 @@ div#shopify-block-ARm9XTUZHZFV1WGhCV__live_shopping_by_channelize_io_shoppable_v
 {%- endif -%}
 
 {%- liquid
-  # Coming-soon product template: with "Use Coming Soon Page metaobject" on,
+  # Product templates: with "Use Coming Soon Page metaobject" on,
   # content comes from the product's custom.coming_soon metaobject (no
   # fallback, section hidden without an entry). Off = section settings render.
   assign cs_mode = false
-  if template.suffix == 'coming-soon' and product and section.settings.use_metaobject
+  if template.name == 'product' and product and section.settings.use_metaobject
     assign cs_mode = true
     assign cs = product.metafields.custom.coming_soon.value
   endif
@@ -368,6 +371,42 @@ div#shopify-block-ARm9XTUZHZFV1WGhCV__live_shopping_by_channelize_io_shoppable_v
 
             wrap.querySelector('.custom-videos__nav--prev').addEventListener('click', function () { forward(-1); });
             wrap.querySelector('.custom-videos__nav--next').addEventListener('click', function () { forward(1); });
+
+            /* Hide our arrows when the carousel has nothing to scroll: after tiles load, keep them
+               only while Tolstoy shows a native prev/next button or the tiles overflow the track. */
+            var navSettled = false;
+            var navSync = function () {
+              var tiles = carousel.querySelectorAll(".tolstoy-carousel-tile-container");
+              /* Wait for Tolstoy to inject something (or for the settle timer) so arrows never flash off pre-load. */
+              if (!tiles.length && !carousel.children.length && !navSettled) return;
+              var track = carousel.querySelector(".tolstoy-carousel-videos-container") || carousel;
+              var overflow = false;
+              if (tiles.length) {
+                var total = 0;
+                tiles.forEach(function (t) { total += t.getBoundingClientRect().width; });
+                var cs = window.getComputedStyle(track);
+                var gap = parseFloat(cs.columnGap) || parseFloat(cs.gap) || 0;
+                total += gap * (tiles.length - 1);
+                var trackW = track.getBoundingClientRect().width;
+                overflow = total > trackW + 2 || track.scrollWidth > track.clientWidth + 2;
+              }
+              var nativeVisible = function (el) { return !!el && el.offsetParent !== null && window.getComputedStyle(el).display !== "none"; };
+              var hasNative = nativeVisible(nativeArrow(-1)) || nativeVisible(nativeArrow(1));
+              wrap.classList.toggle("nav-hidden", !(hasNative || (window.innerWidth <= 450 && overflow)));
+            };
+            var navSyncQueued = false;
+            var queueNavSync = function () {
+              if (navSyncQueued) return;
+              navSyncQueued = true;
+              requestAnimationFrame(function () { navSyncQueued = false; navSync(); });
+            };
+            if ("MutationObserver" in window) {
+              new MutationObserver(queueNavSync).observe(carousel, { childList: true, subtree: true, attributes: true, attributeFilter: ["class", "style", "hidden", "disabled"] });
+            }
+            window.addEventListener("resize", queueNavSync);
+            window.addEventListener("load", queueNavSync);
+            setTimeout(function () { navSettled = true; queueNavSync(); }, 6000);
+            queueNavSync();
 
             /* Fade the carousel up once Tolstoy has injected real tiles
                (safety timeout so nothing can stay hidden if it never loads). */

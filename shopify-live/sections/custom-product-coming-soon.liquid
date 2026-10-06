@@ -1,13 +1,815 @@
   {% render 'custom-pdp-css' %}
 
 {%- comment -%} Review-card styles (self-contained; previously inherited from the alternating-rows section) {%- endcomment -%}
+{%- comment -%} The theme loads the heading font (Cormorant) at 500/600 only; the review title uses true bold. {%- endcomment -%}
+{%- assign cs_heading_font_700 = settings.type_heading_font | font_modify: 'weight', '700' -%}
 <style>
+{%- if cs_heading_font_700 -%}{{ cs_heading_font_700 | font_face: font_display: 'swap' }}{%- endif -%}
 .mp-review-box {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
     padding: 20px 30px;
     background: #f7f2ed;
+}
+/* Quiz call-out (under "Complete the look") */
+.cs-addons {
+  --cs-addon-gap: 12px;
+  --cs-pink: #d34270;
+  --cs-ink: #2A2724;
+  --cs-muted: #6d655f;
+  --cs-line: #ccc;
+  --cs-blush: #faf6f3;
+  --cs-blush-strong: #fbe9e7;
+}
+/* Included products (bundles) — bordered grid, heading breaks the top border */
+.cs-included {
+  position: relative;
+  margin: 34px 0 0;
+  padding: 30px 18px 20px;
+  border: 2px solid var(--cs-inc-line, #000);
+  border-radius: 14px;
+}
+.cs-included__title {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 0 12px;
+  max-width: calc(100% - 36px);
+  background: var(--bg, #fff);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--cs-ink, #2A2724);
+}
+.cs-included__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cs-included__item {
+  flex: 0 0 auto;
+  width: calc((100% - 36px) / 4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cs-included__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 4px;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .18s ease, background-color .18s ease;
+}
+.cs-included__link:hover,
+.cs-included__link:focus-visible {
+  transform: translateY(-2px);
+  background: var(--cs-blush, #faf6f3);
+  text-decoration: none;
+}
+.cs-included__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.cs-included__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.cs-included__label {
+  position: relative;
+  display: block;
+  width: 100%;
+  perspective: 600px;
+}
+.cs-included__name,
+.cs-included__price {
+  font-size: 13px;
+  line-height: 1.3;
+  backface-visibility: hidden;
+  transition: transform .32s ease, opacity .22s ease;
+}
+.cs-included__name {
+  display: block;
+  font-weight: 700;
+  color: var(--cs-ink, #2A2724);
+  transform: rotateX(0deg);
+  opacity: 1;
+}
+.cs-included__price {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--cs-ink, #2A2724);
+  transform: rotateX(-90deg);
+  opacity: 0;
+}
+.cs-included__link:hover .cs-included__name,
+.cs-included__link:focus-visible .cs-included__name {
+  transform: rotateX(90deg);
+  opacity: 0;
+}
+.cs-included__link:hover .cs-included__price,
+.cs-included__link:focus-visible .cs-included__price {
+  transform: rotateX(0deg);
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-included__link { transition: none; }
+  .cs-included__link:hover,
+  .cs-included__link:focus-visible { transform: none; }
+  .cs-included__name,
+  .cs-included__price { transition: opacity .15s ease; transform: none !important; }
+}
+/* No hover available (phones, touch tablets): show the price permanently instead of flipping */
+@media (hover: none), (max-width: 749px) {
+  .cs-included__label { perspective: none; }
+  .cs-included__name {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .cs-included__price {
+    position: static;
+    inset: auto;
+    display: block;
+    margin-top: 2px;
+    font-weight: 400;
+    color: var(--cs-muted, #6d655f);
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+@media (max-width: 749px) {
+  .cs-included { padding: 28px 14px 18px; }
+  .cs-included__title { font-size: 14px; }
+  .cs-included__media { width: 64px; }
+  .cs-included__grid { gap: 16px 10px; }
+  .cs-included__item { width: calc((100% - 10px) / 2); }
+}
+.cs-addons__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 14px;
+}
+.cs-addons__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.cs-addons__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: Inter, sans-serif;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cs-pink);
+}
+.cs-addons__eyebrow:before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  background: var(--cs-pink);
+}
+.cs-addons__title {
+  font-family: Cormorant, serif;
+  font-size: clamp(22px, 0.7vw + 17px, 27px);
+  line-height: 1.15;
+  font-weight: 600;
+  color: var(--cs-ink);
+  margin: 0;
+}
+.cs-addons__viewport {
+  position: relative;
+}
+.cs-addons__list {
+  display: grid;
+  gap: var(--cs-addon-gap);
+  margin: 0;
+  padding: 0;
+}
+.cs-addon {
+  position: relative;
+  display: grid;
+  grid-template-columns: 28px 108px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  padding: 16px 18px;
+  background: #fff;
+  border: 1px solid var(--cs-ink);
+  box-shadow: 0 8px 22px rgba(42, 39, 36, 0.08);
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+.cs-addon.is-soldout {
+  border-color: var(--cs-line);
+  box-shadow: none;
+}
+@media (hover: hover) {
+  .cs-addon:not(.is-soldout):hover {
+    box-shadow: none;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .cs-addon__badge {
+    right: 10px;
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+}
+.cs-addon.is-featured {
+  border-color: #e0c39b;
+  box-shadow: 0 8px 22px rgba(201, 168, 106, 0.2);
+}
+.cs-addon__badge {
+  position: absolute;
+  top: -9px;
+  right: 14px;
+  z-index: 2;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--cs-ink);
+  color: #fff;
+  font-family: Inter, sans-serif;
+  font-size: 10px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(42, 39, 36, 0.18);
+  pointer-events: none;
+}
+.cs-addons__list {
+  padding-top: 8px;
+}
+.cs-addon.is-selected,
+.cs-addon.is-selected:hover {
+  border-color: var(--cs-pink);
+  box-shadow: inset 0 0 0 1px var(--cs-pink), 0 8px 22px rgba(211, 66, 112, 0.12);
+  background: #fff8f7;
+}
+.cs-addon.is-soldout {
+  opacity: 0.55;
+  cursor: default;
+}
+.cs-addon__check {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  pointer-events: none;
+}
+.cs-addon__circle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--cs-ink);
+  background: #fff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.cs-addon__plus {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  transition: opacity 0.15s ease, transform 0.2s ease;
+}
+.cs-addon__plus:before,
+.cs-addon__plus:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 1.5px;
+  background: var(--cs-ink);
+  transform: translate(-50%, -50%);
+}
+.cs-addon__plus:after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.cs-addon__tick {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.15s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cs-addon__check:checked ~ .cs-addon__circle {
+  background: var(--cs-pink);
+  border-color: var(--cs-pink);
+}
+.cs-addon__check:checked ~ .cs-addon__circle .cs-addon__plus {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.5);
+}
+.cs-addon__check:checked ~ .cs-addon__circle .cs-addon__tick {
+  opacity: 1;
+  transform: scale(1);
+}
+.cs-addon__check:focus-visible ~ .cs-addon__circle {
+  outline: 2px solid var(--cs-pink);
+  outline-offset: 3px;
+}
+.cs-addon__check:disabled ~ .cs-addon__circle {
+  cursor: default;
+  border-style: dashed;
+  border-color: #9a928c;
+}
+.cs-addon__check:disabled ~ .cs-addon__circle .cs-addon__plus:before,
+.cs-addon__check:disabled ~ .cs-addon__circle .cs-addon__plus:after {
+  background: #9a928c;
+}
+.cs-addon__media {
+  width: 108px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--cs-blush);
+}
+.cs-addon__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.35s ease;
+}
+@media (hover: hover) {
+  .cs-addon:not(.is-soldout):hover .cs-addon__media img {
+    transform: scale(1.04);
+  }
+}
+.cs-addon__body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.cs-addon__top {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cs-addon__name {
+  font-family: Inter, sans-serif;
+  font-size: 17px;
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--cs-ink);
+  text-decoration: none;
+}
+.cs-addon__note {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--cs-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cs-addon__note strong {
+  font-weight: 600;
+  color: var(--cs-ink);
+}
+.cs-addon__rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: Inter, sans-serif;
+  font-size: 13px;
+  color: var(--cs-muted);
+}
+.cs-addon__stars {
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+.cs-addon__stars:before {
+  content: "\2605\2605\2605\2605\2605";
+  background: linear-gradient(90deg, var(--cs-pink) calc(var(--rating, 0) / 5 * 100%), #d9d2cc calc(var(--rating, 0) / 5 * 100%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.cs-addon__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+.cs-addon__price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--cs-ink);
+}
+.cs-addon__price-current:before {
+  content: "+";
+  margin-right: 1px;
+  font-weight: 500;
+  color: var(--cs-muted);
+}
+.cs-addon__price-compare {
+  font-size: 14px;
+  font-weight: 400;
+  color: #9a928c;
+}
+.cs-addon__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+.cs-addon__opt {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 0;
+}
+.cs-addon__opt-label {
+  font-family: Inter, sans-serif;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cs-muted);
+}
+.cs-addon.is-unavailable .cs-addon__hint {
+  color: #9a928c;
+}
+.cs-addon__opt-label {
+  color: var(--cs-ink);
+}
+.cs-addon__variant {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  max-width: 200px;
+  min-height: 36px;
+  margin: 0;
+  padding: 0 38px 0 12px;
+  border: 1px solid var(--cs-line);
+  border-radius: 0;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d34270' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px 14px;
+  color: var(--cs-ink);
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.cs-addon__variant:hover {
+  border-color: #b3aba4;
+  background-color: var(--cs-blush);
+}
+.cs-addon__variant:focus,
+.cs-addon__variant:focus-visible {
+  outline: none;
+  border: 1px solid var(--cs-pink);
+  box-shadow: 0 0 0 3px rgba(211, 66, 112, 0.15);
+}
+.cs-addon.is-selected .cs-addon__variant {
+  border-color: var(--cs-pink);
+}
+.cs-addon__hint {
+  margin-left: auto;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cs-ink);
+  padding: 0;
+  border: 0;
+  background: none;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+.cs-addon.is-selected .cs-addon__hint {
+  color: var(--cs-pink);
+}
+.cs-addon.is-selected .cs-addon__hint:before {
+  content: "\2713";
+  margin-right: 5px;
+}
+.cs-addons--single .cs-addon__bottom:has(.cs-addon__options) {
+  align-items: flex-end;
+}
+.cs-addons--single .cs-addon__bottom:has(.cs-addon__options) .cs-addon__price {
+  align-self: flex-end;
+  padding-bottom: 8px;
+}
+.cs-addons--single .cs-addon__bottom:has(.cs-addon__options) .cs-addon__hint,
+.cs-addons--single .cs-addon__bottom:has(.cs-addon__options) .cs-addon__soldout {
+  align-self: flex-end;
+  padding-bottom: 12px;
+}
+.cs-addon__soldout {
+  margin-left: auto;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9a928c;
+}
+.cs-addons__summary {
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  background: var(--cs-blush-strong);
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--cs-ink);
+}
+.cs-addons__summary strong {
+  font-weight: 600;
+}
+.cs-addons__summary[hidden] {
+  display: none;
+}
+.cs-addons--grid .cs-addons__list {
+  grid-template-columns: repeat(var(--cs-addon-count, 2), minmax(0, 1fr));
+}
+.cs-addons--grid .cs-addon,
+.cs-addons--slider .cs-addon {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 14px;
+}
+.cs-addons--grid .cs-addon__circle,
+.cs-addons--slider .cs-addon__circle {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+}
+.cs-addons--grid .cs-addon__media,
+.cs-addons--slider .cs-addon__media {
+  width: 100%;
+}
+.cs-addons--grid .cs-addon__body,
+.cs-addons--slider .cs-addon__body {
+  height: 100%;
+}
+.cs-addons--grid .cs-addon__bottom,
+.cs-addons--slider .cs-addon__bottom {
+  margin-top: auto;
+}
+.cs-addons--grid .cs-addon__hint,
+.cs-addons--slider .cs-addon__hint,
+.cs-addons--grid .cs-addon__soldout,
+.cs-addons--slider .cs-addon__soldout {
+  margin-left: 0;
+  width: 100%;
+  text-align: center;
+  padding-top: 6px;
+}
+.cs-addons--grid .cs-addon__name,
+.cs-addons--slider .cs-addon__name {
+  font-size: 16px;
+}
+.cs-addons--grid .cs-addon__note,
+.cs-addons--slider .cs-addon__note {
+  display: none;
+}
+.cs-addons--grid .cs-addon__options,
+.cs-addons--slider .cs-addon__options,
+.cs-addons--grid .cs-addon__opt,
+.cs-addons--slider .cs-addon__opt {
+  width: 100%;
+}
+.cs-addons--grid .cs-addon__variant,
+.cs-addons--slider .cs-addon__variant {
+  width: 100%;
+  max-width: none;
+}
+.cs-addons--slider .cs-addons__list {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.cs-addons--slider .cs-addons__list::-webkit-scrollbar {
+  display: none;
+}
+.cs-addons--slider .cs-addon {
+  flex: 0 0 calc((100% - 2 * var(--cs-addon-gap)) / 3);
+  scroll-snap-align: start;
+}
+.cs-addons__nav {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  margin: 0 0 2px;
+}
+.cs-addons__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 0;
+  background: var(--cs-pink);
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.cs-addons__arrow:hover:not(:disabled) {
+  background: #b8325d;
+}
+.cs-addons__arrow:disabled {
+  background: #e9d5db;
+  cursor: default;
+}
+@media only screen and (max-width: 600px) {
+  .cs-addons__title {
+    font-size: 22px;
+  }
+  .cs-addons--single .cs-addon {
+    grid-template-columns: 26px 84px minmax(0, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+  .cs-addons--single .cs-addon__circle {
+    width: 26px;
+    height: 26px;
+  }
+  .cs-addons--single .cs-addon__media {
+    width: 84px;
+  }
+  .cs-addons--single .cs-addon__hint {
+    margin-left: 0;
+  }
+  .cs-addon__options,
+  .cs-addon__opt {
+    width: 100%;
+  }
+  .cs-addon__variant {
+    width: 100%;
+    max-width: none;
+  }
+  .cs-addon__name {
+    font-size: 15px;
+  }
+  .cs-addon__note {
+    font-size: 13px;
+  }
+  .cs-addons--grid .cs-addons__list {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    gap: 10px;
+  }
+  .cs-addons--grid .cs-addons__list::-webkit-scrollbar {
+    display: none;
+  }
+  .cs-addons--grid .cs-addon,
+  .cs-addons--slider .cs-addon {
+    flex: 0 0 calc((100% - 10px) / 2);
+    scroll-snap-align: start;
+  }
+  .cs-addons--grid .cs-addon__note,
+  .cs-addons--slider .cs-addon__note {
+    display: -webkit-box;
+  }
+}
+
+.cw-bb-quiz {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 26px;
+    background: #fbe9e7;
+}
+.cw-bb-quiz__text {
+    min-width: 0;
+}
+.cw-bb-quiz__title {
+    margin: 0 0 4px;
+    font-family: 'Cormorant', sans-serif;
+    font-weight: 700;
+    font-size: clamp(20px, 0.6vw + 16px, 24px);
+    line-height: 1.2;
+    color: #2A2724;
+    text-wrap: pretty;
+}
+.cw-bb-quiz__copy {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #2A2724;
+    text-wrap: pretty;
+}
+.cw-bb-quiz__btn {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 24px;
+    background: var(--BTN-PRIMARY-BG-COLOR, #d34270);
+    color: var(--BTN-PRIMARY-TEXT-COLOR, #fff);
+    font-family: var(--BTN-FONT-STACK, 'Inter', sans-serif);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+}
+.cw-bb-quiz__btn:hover,
+.cw-bb-quiz__btn:focus-visible {
+    background: var(--BTN-PRIMARY-BG-COLOR-BRIGHTER, #cc2f61);
+    color: var(--BTN-PRIMARY-TEXT-COLOR, #fff);
+    text-decoration: none;
+}
+@media only screen and (max-width: 600px) {
+    .cw-bb-quiz {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+        padding: 18px 20px;
+    }
+    .cw-bb-quiz__btn {
+        width: 100%;
+    }
+}
+.cw-bb-installments {
+    margin-top: -24px;
+    text-align: center;
+}
+.cw-bb-installments .installment {
+    margin: 0;
+    text-align: center;
+}
+.cw-bb-installments shopify-payment-terms {
+    display: block;
+    text-align: center;
 }
 .mp-review-stars {
     display: inline-block;
@@ -73,7 +875,10 @@
 }
 .mp-review-title {
     display: block;
-    font-weight: 600;
+    font-family: 'Cormorant', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
     margin-bottom: 4px;
 }
 .mp-review-text p {
@@ -85,7 +890,7 @@
     align-items: center;
     justify-content: flex-end;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 0;
 }
 .mp-review-nav[hidden] {
     display: none;
@@ -94,15 +899,57 @@
     margin-bottom: 10px;
 }
 .mp-review-stars-fill {
-    transition: width 0.3s ease;
+    transition: width 0.45s ease;
 }
 .mp-review-slide {
-    transition: transform 0.28s ease, opacity 0.28s ease;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.mp-review-slide.mp-slide-out-left { transform: translateX(-26px); opacity: 0; }
-.mp-review-slide.mp-slide-out-right { transform: translateX(26px); opacity: 0; }
-.mp-review-slide.mp-slide-in-right { transform: translateX(26px); opacity: 0; transition: none; }
-.mp-review-slide.mp-slide-in-left { transform: translateX(-26px); opacity: 0; transition: none; }
+.mp-review-main {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+/* Square photo box, sized against the review box width (container units):
+   scales down with the layout and stops at 170px. */
+.mp-review-photo {
+    display: none;
+    position: relative;
+    flex: 0 0 auto;
+    width: clamp(104px, 47cqw - 37px, 170px);
+    aspect-ratio: 1 / 1;
+    border: 1px solid #ccc;
+}
+.mp-review-slide--has-photo .mp-review-photo {
+    display: block;
+}
+@supports not (width: 1cqw) {
+    .mp-review-photo { width: clamp(104px, 13vw, 170px); }
+}
+.mp-review-photo img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* Junip mode: the block stays hidden until qualifying reviews load; a product
+   with no 4–5★ titled reviews (or no Junip) never shows the box. */
+.product__block[data-junip-pending],
+.product__block[data-junip-empty] {
+    display: none !important;
+}
+@media only screen and (max-width: 600px) {
+    .mp-review-slide {
+        gap: 12px;
+    }
+}
+.mp-review-slide.mp-slide-out-left { transform: translateX(-18px); opacity: 0; }
+.mp-review-slide.mp-slide-out-right { transform: translateX(18px); opacity: 0; }
+.mp-review-slide.mp-slide-in-right { transform: translateX(18px); opacity: 0; transition: none; }
+.mp-review-slide.mp-slide-in-left { transform: translateX(-18px); opacity: 0; transition: none; }
 @media (prefers-reduced-motion: reduce) {
     .mp-review-slide, .mp-review-stars-fill { transition: none; }
 }
@@ -125,11 +972,144 @@
 }
 @media only screen and (max-width: 600px) {
     .mp-review-box--junip .mp-review-slide {
-        min-height: 158px;
+        min-height: 120px;
     }
 }
 .mp-review-box--junip {
     position: relative;
+}
+.mp-review-more {
+    display: inline;
+    margin-left: 2px;
+    padding: 0;
+    font-style: normal;
+    vertical-align: baseline;
+    border: 0;
+    background: none;
+    font-family: Inter, sans-serif;
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #d34270;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.mp-review-more[hidden] {
+    display: none;
+}
+
+.mp-review-more:hover,
+.mp-review-more:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    outline: none;
+}
+.mp-review-expand {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 30px;
+    background: #f7f2ed;
+}
+.mp-review-expand[hidden] {
+    display: none;
+}
+.mp-review-expand__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding-right: 0;
+}
+.mp-review-expand__title {
+    font-family: Cormorant, serif;
+    font-size: clamp(15px, 2.8cqw + 6.6px, 20px);
+    line-height: 1.2;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #2A2724;
+}
+.mp-review-expand__close {
+    flex: 0 0 auto;
+    width: 28px;
+    height: 28px;
+    margin: -6px -8px 0 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #2A2724;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+}
+.mp-review-expand__close:hover,
+.mp-review-expand__close:focus-visible {
+    color: #d34270;
+    outline: none;
+}
+.mp-review-expand__body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 10px;
+    font-family: Inter, sans-serif;
+    font-size: clamp(14px, 1.43cqw + 9.7px, 16px);
+    line-height: 160%;
+    font-style: italic;
+    color: #2A2724;
+    scrollbar-width: thin;
+    scrollbar-color: #d34270 #eadfd8;
+}
+.mp-review-expand__body::-webkit-scrollbar {
+    width: 6px;
+}
+.mp-review-expand__body::-webkit-scrollbar-thumb {
+    background: #d34270;
+    border-radius: 3px;
+}
+.mp-review-expand__body::-webkit-scrollbar-track {
+    background: #eadfd8;
+}
+.mp-review-expand__body:focus-visible {
+    outline: 2px solid #d34270;
+    outline-offset: 2px;
+}
+.mp-review-expand__foot {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.mp-review-expand__author {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+}
+.mp-review-expand__nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.mp-review-expand .mp-review-more--less {
+    margin-left: auto;
+}
+.mp-review-box.is-expanded .mp-review-viewall {
+    visibility: hidden;
+}
+@media only screen and (max-width: 600px) {
+    .mp-review-expand {
+        padding: 16px 18px;
+        gap: 8px;
+    }
+    .mp-review-expand__foot {
+        gap: 8px 10px;
+    }
 }
 .mp-review-viewall {
     position: absolute;
@@ -164,9 +1144,9 @@
 .mp-review-nav-btn {
     width: 28px;
     height: 28px;
-    border-radius: 50%;
+    border-radius: 0;
     border: none;
-    background: #45413B;
+    background: #d34270;
     color: #fff;
     font-size: 18px;
     line-height: 1;
@@ -196,14 +1176,98 @@
 .mp-review-stars svg {
     width: 85px;
 }
-.mp-verified img {
-    max-width: 12px;
+.mp-review-nav {
+    justify-content: center;
+    margin-top: 10px;
 }
+.mp-review-stars {
+    margin-bottom: 6px;
+}
+/* Phone: title on one line (ellipsis), body clamped to two lines. */
+.mp-review-box--junip .mp-review-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.mp-review-box--junip .mp-review-text p {
+    -webkit-line-clamp: 2;
+}
+.mp-review-box--junip .mp-author-box {
+    margin-top: 3px;
+}
+}
+/* Fluid type + spacing for the review box, measured against its own width
+   (the buy column narrows long before the phone breakpoint). Desktop values
+   are the caps; the floors apply from roughly 335px box width down. */
+.mp-review-box {
+    container-type: inline-size;
+}
+.mp-review-slide {
+    gap: clamp(10px, 4.3cqw - 3px, 16px);
+}
+.mp-review-text {
+    font-size: clamp(14px, 1.43cqw + 9.7px, 16px);
+}
+.mp-review-title {
+    font-size: clamp(15px, 2.8cqw + 6.6px, 20px);
+}
+.mp-author-name,
+.mp-verified-text {
+    font-size: clamp(12px, 1.43cqw + 7.7px, 14px);
+}
+.mp-review-stars svg {
+    width: clamp(80px, 10.7cqw + 47.9px, 95px);
+}
+@media only screen and (max-width: 600px) {
+    .mp-review-photo {
+        width: clamp(84px, 32cqw - 12px, 130px);
+    }
+}
+@supports not (width: 1cqw) {
+    .mp-review-slide { gap: clamp(10px, 1.3vw, 16px); }
+    .mp-review-text { font-size: clamp(14px, 1.25vw, 16px); }
+    .mp-review-title { font-size: clamp(15px, 1.6vw, 20px); }
+    .mp-author-name, .mp-verified-text { font-size: clamp(12px, 1.1vw, 14px); }
+    .mp-review-stars svg { width: clamp(80px, 7.5vw, 95px); }
 }
 </style>
 
 {%- liquid
   assign current_variant = product.selected_or_first_available_variant
+  # Per-product content from the Coming Soon Page metaobject (top Tolstoy + accordions)
+  assign cs_main = false
+  if section.settings.use_metaobject and product
+    assign cs = product.metafields.custom.coming_soon.value
+    if cs
+      assign cs_main = true
+    endif
+  endif
+  # Does the custom colour picker have at least one swatch image for this product? If not, the theme's own variant picker stays visible.
+  assign cs_has_swatches = false
+  for cs_pick_block in section.blocks
+    if cs_pick_block.type == 'color_picker'
+      assign cs_pick_option_name = cs_pick_block.settings.option_name | default: 'Color'
+      assign cs_pick_option = product.options_with_values | where: 'name', cs_pick_option_name | first
+      if cs_pick_option
+        for cs_pick_value in cs_pick_option.values
+          for cs_sw in section.blocks
+            if cs_sw.type == 'color_swatch_item' and cs_sw.settings.option_value == cs_pick_value
+              assign cs_sw_scope = cs_sw.settings.product_handle | strip | downcase
+              if cs_sw_scope == blank or cs_sw_scope == product.handle
+                if cs_sw.settings.image != blank or cs_sw.settings.image_url != blank
+                  assign cs_has_swatches = true
+                  break
+                endif
+              endif
+            endif
+          endfor
+          if cs_has_swatches
+            break
+          endif
+        endfor
+      endif
+    endif
+  endfor
   assign enable_video_looping = section.settings.enable_video_looping
   assign image_size = section.settings.image_size
   assign image_layout = section.settings.image_layout
@@ -318,7 +1382,7 @@
 {%- endstyle -%}
 
 <div id="Product--{{ unique }}"
-  class="index-product section-padding"
+  class="index-product section-padding{% if cs_has_swatches %} cs-has-swatches{% endif %}"
   data-section-id="{{ unique }}"
   data-section-type="product"
   data-product-handle="{{ product.handle }}"
@@ -392,7 +1456,15 @@
     </div>
 </div>
 
-{%- assign pvideo_tolstoy_id = section.settings.pvideo_tolstoy_publish_id | strip -%}
+{%- liquid
+  assign pvideo_tolstoy_id = section.settings.pvideo_tolstoy_publish_id | strip
+  if section.settings.use_metaobject
+    assign pvideo_tolstoy_id = ''
+    if cs_main
+      assign pvideo_tolstoy_id = cs.tolstoy_top | strip
+    endif
+  endif
+-%}
 {%- if pvideo_tolstoy_id != blank -%}
 <div class="cw-bb-pvideo-section">
   <div class="cw-bb-pvideo-container">
@@ -438,6 +1510,42 @@
           };
           wrap.querySelector('.cw-bb-pvideo-nav--prev').addEventListener('click', function () { forward(-1); });
           wrap.querySelector('.cw-bb-pvideo-nav--next').addEventListener('click', function () { forward(1); });
+
+          /* Hide our arrows when the carousel has nothing to scroll: after tiles load, keep them
+             only while Tolstoy shows a native prev/next button or the tiles overflow the track. */
+          var navSettled = false;
+          var navSync = function () {
+            var tiles = carousel.querySelectorAll(".tolstoy-carousel-tile-container");
+            /* Wait for Tolstoy to inject something (or for the settle timer) so arrows never flash off pre-load. */
+            if (!tiles.length && !carousel.children.length && !navSettled) return;
+            var track = carousel.querySelector(".tolstoy-carousel-videos-container") || carousel;
+            var overflow = false;
+            if (tiles.length) {
+              var total = 0;
+              tiles.forEach(function (t) { total += t.getBoundingClientRect().width; });
+              var cs = window.getComputedStyle(track);
+              var gap = parseFloat(cs.columnGap) || parseFloat(cs.gap) || 0;
+              total += gap * (tiles.length - 1);
+              var trackW = track.getBoundingClientRect().width;
+              overflow = total > trackW + 2 || track.scrollWidth > track.clientWidth + 2;
+            }
+            var nativeVisible = function (el) { return !!el && el.offsetParent !== null && window.getComputedStyle(el).display !== "none"; };
+            var hasNative = nativeVisible(nativeArrow(-1)) || nativeVisible(nativeArrow(1));
+            wrap.classList.toggle("nav-hidden", !(hasNative || (window.innerWidth <= 450 && overflow)));
+          };
+          var navSyncQueued = false;
+          var queueNavSync = function () {
+            if (navSyncQueued) return;
+            navSyncQueued = true;
+            requestAnimationFrame(function () { navSyncQueued = false; navSync(); });
+          };
+          if ("MutationObserver" in window) {
+            new MutationObserver(queueNavSync).observe(carousel, { childList: true, subtree: true, attributes: true, attributeFilter: ["class", "style", "hidden", "disabled"] });
+          }
+          window.addEventListener("resize", queueNavSync);
+          window.addEventListener("load", queueNavSync);
+          setTimeout(function () { navSettled = true; queueNavSync(); }, 6000);
+          queueNavSync();
         })();
       </script>
     {%- else -%}
@@ -526,10 +1634,38 @@
 
                   {%- when 'buttons' -%}
                     {%- render 'product-buttons' product: product, current_variant: current_variant, unique: unique, block: block, block_style: block_style, product_form_id: product_form_id, preorder: preorder -%}
+                    {%- if block.settings.show_installments_below -%}
+                      {%- assign cs_installment_form_id = 'product-form-installment-below-' | append: unique | append: '-' | append: product.id -%}
+                      {%- capture cs_installments_html -%}
+                        {%- form 'product', product, id: cs_installment_form_id, class: 'installment', data-cs-installment-below: '' -%}
+                          <input type="hidden" name="id" value="{{ current_variant.id }}">
+                          {{ form | payment_terms }}
+                        {%- endform -%}
+                      {%- endcapture -%}
+                      {%- if cs_installments_html contains 'shopify-payment-terms' -%}
+                        <div class="product__block block-padding cw-bb-installments" {{ block_style }}>{{ cs_installments_html }}</div>
+                      {%- endif -%}
+                    {%- endif -%}
 
                   {%- when 'tab_richtext' -%}
                     <div class="product__block tabs-wrapper block-padding" {{ block.shopify_attributes }} {{ block_style }}>
-                      {%- render 'product-tabs', product: product, block: block, hide_description: true, accordions_closed: true, check_prefix: '&gt; ' -%}
+                      {%- liquid
+                        assign cs_tab_1 = ''
+                        assign cs_tab_2 = ''
+                        if cs_main
+                          if cs.ingredients != blank
+                            assign cs_tab_1 = cs.ingredients | metafield_tag
+                          endif
+                          if cs.benefits != blank
+                            assign cs_tab_2 = cs.benefits | metafield_tag
+                          endif
+                        endif
+                        # Fallback: the product-level ingredients metafield the previous default template used for its Ingredients tab
+                        if cs_tab_1 == '' and product.metafields.custom.tab_content != blank
+                          assign cs_tab_1 = product.metafields.custom.tab_content | metafield_tag
+                        endif
+                      -%}
+                      {%- render 'product-tabs', product: product, block: block, hide_description: true, accordions_closed: true, check_prefix: '&gt; ', cs_mode: section.settings.use_metaobject, cs_content_1: cs_tab_1, cs_content_2: cs_tab_2 -%}
                     </div>
 
                   {%- when 'inventory_countdown' -%}
@@ -748,6 +1884,216 @@
 
                     {%- endif -%}
 
+                  {%- when 'addons' -%}
+                    {%- liquid
+                      assign cs_addon_products = blank
+                      assign cs_addon_title = block.settings.fallback_title
+                      assign cs_addon_featured_id = 0
+                      assign cs_addon_featured_label = block.settings.featured_label | default: 'Most Added'
+                      if section.settings.use_metaobject and cs != blank
+                        assign cs_addon_products = cs.addon_products.value
+                        if cs.addon_title != blank
+                          assign cs_addon_title = cs.addon_title.value
+                        endif
+                        if cs.addon_featured != blank
+                          assign cs_addon_featured_id = cs.addon_featured.value.id
+                        endif
+                        if cs.addon_featured_label != blank
+                          assign cs_addon_featured_label = cs.addon_featured_label.value
+                        endif
+                      endif
+                    -%}
+                    {%- if section.settings.show_addons and cs_addon_products != blank and cs_addon_products.size > 0 -%}
+                      {%- liquid
+                        assign cs_addon_count = cs_addon_products.size
+                        assign cs_addon_layout = 'single'
+                        if cs_addon_count > 3
+                          assign cs_addon_layout = 'slider'
+                        elsif cs_addon_count > 1
+                          assign cs_addon_layout = 'grid'
+                        endif
+                      -%}
+                      {%- capture cs_main_prices -%}
+                        {
+                        {%- for cs_mv in product.variants -%}
+                          {%- capture cs_mv_sale -%}{%- render 'custom-promo-cents', product: product, variant: cs_mv -%}{%- endcapture -%}
+                          {%- assign cs_mv_sale = cs_mv_sale | strip -%}
+                          {%- if cs_mv_sale == blank -%}{%- assign cs_mv_sale = cs_mv.price -%}{%- endif -%}
+                          "{{ cs_mv.id }}": { "orig": {{ cs_mv.price }}, "sale": {{ cs_mv_sale }} }{%- unless forloop.last -%},{%- endunless -%}
+                        {%- endfor -%}
+                        }
+                      {%- endcapture -%}
+                      {%- capture cs_main_sale -%}{%- render 'custom-promo-cents', product: product, variant: current_variant -%}{%- endcapture -%}
+                      {%- assign cs_main_sale = cs_main_sale | strip -%}
+                      {%- if cs_main_sale == blank -%}{%- assign cs_main_sale = current_variant.price -%}{%- endif -%}
+                      <div class="product__block block-padding" {{ block_style }} {{ block.shopify_attributes }}>
+                        <div class="cs-addons cs-addons--{{ cs_addon_layout }}" style="--cs-addon-count: {{ cs_addon_count }};" data-cs-addons data-cs-addon-count="{{ cs_addon_count }}" data-cs-form="{{ product_form_id }}" data-cs-main-price="{{ cs_main_sale }}" data-cs-main-prices='{{ cs_main_prices | strip | strip_newlines }}' data-cs-main-title="{{ product.title | escape }}">
+                          <div class="cs-addons__head">
+                            <div class="cs-addons__heading">
+                              {%- if block.settings.eyebrow != blank -%}
+                                <span class="cs-addons__eyebrow">{{ block.settings.eyebrow }}</span>
+                              {%- endif -%}
+                              {%- if cs_addon_title != blank -%}
+                                <p class="cs-addons__title">{{ cs_addon_title | replace: '[product]', product.title }}</p>
+                              {%- endif -%}
+                            </div>
+                            {%- if cs_addon_layout == 'slider' -%}
+                              <div class="cs-addons__nav">
+                                <button type="button" class="cs-addons__arrow cs-addons__arrow--prev" data-cs-addons-prev aria-label="Previous products">&#8249;</button>
+                                <button type="button" class="cs-addons__arrow cs-addons__arrow--next" data-cs-addons-next aria-label="Next products">&#8250;</button>
+                              </div>
+                            {%- endif -%}
+                          </div>
+                          <div class="cs-addons__viewport">
+                            <div class="cs-addons__list" data-cs-addons-list>
+                              {%- for cs_ap in cs_addon_products -%}
+                                {%- liquid
+                                  assign cs_av = cs_ap.selected_or_first_available_variant | default: cs_ap.variants.first
+                                  capture cs_av_sale
+                                    render 'custom-promo-cents', product: cs_ap, variant: cs_av
+                                  endcapture
+                                  assign cs_av_sale = cs_av_sale | strip
+                                  assign cs_av_orig = cs_av.price
+                                  if cs_av_sale == blank
+                                    assign cs_av_sale = cs_av.price
+                                    if cs_av.compare_at_price > cs_av.price
+                                      assign cs_av_orig = cs_av.compare_at_price
+                                    endif
+                                  else
+                                    assign cs_av_sale = cs_av_sale | plus: 0
+                                  endif
+                                  assign cs_ap_img = cs_av.featured_image | default: cs_ap.featured_image
+                                  assign cs_ap_rating = cs_ap.metafields.junip.rating_average | times: 1.0
+                                  assign cs_ap_count = cs_ap.metafields.junip.rating_count | times: 1
+                                  assign cs_ap_id = unique | append: '-addon-' | append: cs_ap.id
+                                  assign cs_ap_note = ''
+                                  if block.settings.show_note
+                                    assign cs_ap_note = cs_ap.description | replace: '<strong>', '[[b]]' | replace: '</strong>', '[[/b]]' | replace: '<b>', '[[b]]' | replace: '</b>', '[[/b]]' | strip_html | strip_newlines | replace: '  ', ' ' | strip | split: '. ' | first | strip
+                                    if cs_ap_note contains '? '
+                                      assign cs_ap_note = cs_ap_note | split: '? ' | first | append: '?'
+                                    endif
+                                    if cs_ap_note contains '! '
+                                      assign cs_ap_note = cs_ap_note | split: '! ' | first | append: '!'
+                                    endif
+                                    if cs_ap_note.size > 132
+                                      assign cs_ap_note = cs_ap_note | truncate: 132
+                                    endif
+                                    assign cs_ap_note = cs_ap_note | replace: '[[b]]', '<strong>' | replace: '[[/b]]', '</strong>'
+                                    assign cs_ap_note_open = cs_ap_note | split: '<strong>' | size
+                                    assign cs_ap_note_close = cs_ap_note | split: '</strong>' | size
+                                    if cs_ap_note_open > cs_ap_note_close
+                                      assign cs_ap_note = cs_ap_note | append: '</strong>'
+                                    endif
+                                  endif
+                                -%}
+                                <div class="cs-addon{% unless cs_ap.available %} is-soldout{% endunless %}{% if cs_ap.id == cs_addon_featured_id %} is-featured{% endif %}" data-cs-addon data-cs-addon-handle="{{ cs_ap.handle }}" data-cs-addon-title="{{ cs_ap.title | escape }}">
+                                  {%- if cs_ap.id == cs_addon_featured_id -%}
+                                    <span class="cs-addon__badge">{{ cs_addon_featured_label }}</span>
+                                  {%- endif -%}
+                                  <input type="checkbox" id="{{ cs_ap_id }}" class="cs-addon__check" data-cs-addon-check{% unless cs_ap.available %} disabled{% endunless %}>
+                                  <label for="{{ cs_ap_id }}" class="cs-addon__circle" aria-label="Add {{ cs_ap.title | escape }} to cart with this product">
+                                    <span class="cs-addon__plus" aria-hidden="true"></span>
+                                    <svg class="cs-addon__tick" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                  </label>
+                                  <div class="cs-addon__media">
+                                    {%- if cs_ap_img -%}
+                                      {{ cs_ap_img | image_url: width: 400 | image_tag: alt: cs_ap.title, loading: 'lazy', widths: '200, 400' }}
+                                    {%- endif -%}
+                                  </div>
+                                  <div class="cs-addon__body">
+                                    <div class="cs-addon__top">
+                                      <span class="cs-addon__name">{{ cs_ap.title }}</span>
+                                      {%- if block.settings.show_rating and cs_ap_rating > 0 and cs_ap_count > 0 -%}
+                                        <div class="cs-addon__rating" aria-label="Rated {{ cs_ap_rating | round: 1 }} out of 5 from {{ cs_ap_count }} reviews">
+                                          <span class="cs-addon__stars" style="--rating: {{ cs_ap_rating | at_most: 5.0 | at_least: 0.0 }};" aria-hidden="true"></span>
+                                          <span class="cs-addon__rating-text">{{ cs_ap_rating | round: 1 }} ({{ cs_ap_count }})</span>
+                                        </div>
+                                      {%- endif -%}
+                                      {%- if cs_ap_note != blank -%}
+                                        {%- assign cs_ap_note_last = cs_ap_note | slice: -1 -%}<p class="cs-addon__note">{{ cs_ap_note }}{% unless cs_ap_note_last == '.' or cs_ap_note_last == '?' or cs_ap_note_last == '!' or cs_ap_note_last == '…' %}.{% endunless %}</p>
+                                      {%- endif -%}
+                                    </div>
+                                    <div class="cs-addon__bottom">
+                                      <div class="cs-addon__price">
+                                        <span class="cs-addon__price-current" data-cs-addon-price data-cs-addon-cents="{{ cs_av_sale }}">{{ cs_av_sale | money }}</span>
+                                        <s class="cs-addon__price-compare" data-cs-addon-compare{% unless cs_av_orig > cs_av_sale %} hidden{% endunless %}>{{ cs_av_orig | money }}</s>
+                                      </div>
+                                      <input type="hidden" data-cs-addon-variant value="{{ cs_av.id }}" data-cents="{{ cs_av_sale }}" data-orig="{{ cs_av_orig }}">
+                                      {%- unless cs_ap.has_only_default_variant -%}
+                                        <div class="cs-addon__options" data-cs-addon-options>
+                                          {%- for cs_opt in cs_ap.options_with_values -%}
+                                            {%- assign cs_opt_idx = forloop.index0 -%}
+                                            <div class="cs-addon__opt">
+                                              <span class="cs-addon__opt-label">{{ cs_opt.name }}</span>
+                                              <select class="cs-addon__variant" data-cs-addon-opt data-cs-opt-index="{{ cs_opt_idx }}" aria-label="{{ cs_ap.title | escape }} {{ cs_opt.name | escape }}">
+                                                {%- for cs_val in cs_opt.values -%}
+                                                  <option value="{{ cs_val | escape }}"{% if cs_val == cs_av.options[cs_opt_idx] %} selected{% endif %}>{{ cs_val }}</option>
+                                                {%- endfor -%}
+                                              </select>
+                                            </div>
+                                          {%- endfor -%}
+                                        </div>
+                                        <script type="application/json" data-cs-addon-variants>[
+                                          {%- for cs_v in cs_ap.variants -%}
+                                            {%- capture cs_v_sale -%}{%- render 'custom-promo-cents', product: cs_ap, variant: cs_v -%}{%- endcapture -%}
+                                            {%- assign cs_v_sale = cs_v_sale | strip -%}
+                                            {%- assign cs_v_orig = cs_v.price -%}
+                                            {%- if cs_v_sale == blank -%}
+                                              {%- assign cs_v_sale = cs_v.price -%}
+                                              {%- if cs_v.compare_at_price > cs_v.price -%}{%- assign cs_v_orig = cs_v.compare_at_price -%}{%- endif -%}
+                                            {%- else -%}
+                                              {%- assign cs_v_sale = cs_v_sale | plus: 0 -%}
+                                            {%- endif -%}
+                                            {"id": {{ cs_v.id }}, "options": {{ cs_v.options | json }}, "available": {{ cs_v.available | json }}, "cents": {{ cs_v_sale }}, "orig": {{ cs_v_orig }}, "price": {{ cs_v_sale | money | json }}, "origPrice": {{ cs_v_orig | money | json }}, "image": {% if cs_v.featured_image %}{{ cs_v.featured_image | image_url: width: 400 | json }}{% else %}null{% endif %}}{%- unless forloop.last -%},{%- endunless -%}
+                                          {%- endfor -%}
+                                        ]</script>
+                                      {%- endunless -%}
+                                      {%- if cs_ap.available -%}
+                                        <span class="cs-addon__hint" data-cs-addon-hint data-hint-add="{{ block.settings.hint_add | default: 'Tap to add' | escape }}" data-hint-added="{{ block.settings.hint_added | default: 'Added' | escape }}">{{ block.settings.hint_add | default: 'Tap to add' }}</span>
+                                      {%- else -%}
+                                        <span class="cs-addon__soldout">Sold out</span>
+                                      {%- endif -%}
+                                    </div>
+                                  </div>
+                                </div>
+                              {%- endfor -%}
+                            </div>
+                          </div>
+                          <p class="cs-addons__summary" data-cs-addons-summary hidden></p>
+                        </div>
+                      </div>
+                    {%- endif -%}
+
+                  {%- when 'quiz_callout' -%}
+                    {%- liquid
+                      assign q_title = block.settings.title | replace: '[product]', product.title
+                      assign q_text = block.settings.text | replace: '[product]', product.title
+                      # Hidden until "Show quiz call-out" is ticked in the section settings.
+                      assign q_show = false
+                      if section.settings.show_quiz
+                        if q_title != blank or q_text != blank
+                          assign q_show = true
+                        endif
+                      endif
+                    -%}
+                    {%- if q_show -%}
+                      <div class="product__block block-padding" {{ block_style }} {{ block.shopify_attributes }}>
+                        <div class="cw-bb-quiz"{% if block.settings.bg_color != blank %} style="background: {{ block.settings.bg_color }};"{% endif %}>
+                          <div class="cw-bb-quiz__text">
+                            {%- if q_title != blank -%}
+                              <p class="cw-bb-quiz__title">{{ q_title }}</p>
+                            {%- endif -%}
+                            {%- if q_text != blank -%}
+                              <p class="cw-bb-quiz__copy">{{ q_text }}</p>
+                            {%- endif -%}
+                          </div>
+                          {%- if block.settings.button_label != blank and block.settings.button_link != blank -%}
+                            <a class="cw-bb-quiz__btn" href="{{ block.settings.button_link }}">{{ block.settings.button_label }}</a>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    {%- endif -%}
+
                   {%- when 'pickup' -%}
                     <pickup-availability class="product__block product__pickup block-padding" data-store-availability-container="{{ current_variant.id }}" {{ block.shopify_attributes }} {{ block_style }}></pickup-availability>
 
@@ -812,22 +2158,59 @@
                           assign cs_check_open = '<p class="cw-bb-check-item">'
                           assign cs_product_description = cs_product_description | replace: '<p>- ', cs_check_open | replace: '<p> - ', cs_check_open | replace: '<p>&nbsp;- ', cs_check_open | replace: '<p> - ', cs_check_open | replace: '<p class="MsoPlainText"> - ', cs_check_open | replace: '<p class="MsoPlainText">&nbsp;- ', cs_check_open | replace: '<p class="MsoPlainText"> - ', cs_check_open | replace: '<p class="MsoPlainText">- ', cs_check_open | replace: '<p>-', cs_check_open | replace: '<p class="MsoPlainText">-', cs_check_open
                         -%}
+                        {%- liquid
+                          assign cs_quick_facts = blank
+                          if section.settings.use_metaobject and cs != blank
+                            assign cs_quick_facts = cs.quick_facts.value
+                          endif
+                        -%}
+                        {%- liquid
+                          # Quick facts: "Made in <not USA>" moves to the end of the description; everything else (incl. Made in the USA) stays in the row above READ MORE.
+                          assign cs_row_facts = ''
+                          assign cs_origin_html = ''
+                          if cs_quick_facts != blank and cs_quick_facts.size > 0
+                            for cs_fact in cs_quick_facts
+                              assign cs_fact_l = cs_fact | downcase
+                              assign cs_fact_is_origin = false
+                              if cs_fact_l contains 'made in'
+                                assign cs_fact_is_origin = true
+                                if cs_fact_l contains 'usa' or cs_fact_l contains 'u.s.' or cs_fact_l contains 'united states' or cs_fact_l contains 'america'
+                                  assign cs_fact_is_origin = false
+                                endif
+                              endif
+                              if cs_fact_is_origin
+                                assign cs_origin_html = cs_origin_html | append: '<p class="cs-desc__meta cs-desc__origin">' | append: cs_fact | append: '</p>'
+                              else
+                                assign cs_row_facts = cs_row_facts | append: '<span class="cs-desc__meta">' | append: cs_fact | append: '</span>'
+                              endif
+                            endfor
+                          endif
+                          assign cs_quick_facts_html = ''
+                          if cs_row_facts != ''
+                            assign cs_quick_facts_html = '<p class="cs-desc__meta-row">' | append: cs_row_facts | append: '</p>'
+                          endif
+                        -%}
                         {%- if cs_product_description != blank -%}
-                          <div class="cw-bb-color-description rte">
-                            <toggle-ellipsis data-height="260">
+                          <div class="cw-bb-color-description rte{% if cs_quick_facts_html != blank %} has-quick-facts{% endif %}">
+                            <toggle-ellipsis data-height="430">
                               <div class="toggle-ellipsis__content" data-content>
-                                {{ cs_product_description }}
+                                {{ cs_product_description }}{{ cs_origin_html }}
                               </div>
 
                               <div class="toggle-ellipsis__actions" data-actions>
+                                {{ cs_quick_facts_html }}
                                 <button type="button" class="caps--link" data-button>
                                   <span>{{ 'products.general.read_more' | t }}</span>
                                 </button>
+                                <button type="button" class="caps--link cs-desc-less" data-cs-desc-less>
+                                  <span>Show less</span>
+                                </button>
                               </div>
                             </toggle-ellipsis>
-                            <button type="button" class="caps--link cs-desc-less" data-cs-desc-less>
-                              <span>Show less</span>
-                            </button>
+                          </div>
+                        {%- elsif cs_quick_facts_html != blank or cs_origin_html != blank -%}
+                          <div class="cw-bb-color-description rte">
+                            {{ cs_origin_html }}{{ cs_quick_facts_html }}
                           </div>
                         {%- endif -%}
 
@@ -839,8 +2222,8 @@
                       assign option_name = block.settings.option_name | default: 'Color'
                       assign color_option = product.options_with_values | where: 'name', option_name | first
                     -%}
+                    {%- capture cs_swatches_html -%}
                     {%- if color_option -%}
-                      <div class="product__block block-padding" {{ block_style }} {{ block.shopify_attributes }}>
                         <div class="cw-bb-color-chooser-title">
                           {{ block.settings.label | default: 'Choose Color:' }}
                           <span class="cw-bb-color-selected">
@@ -856,11 +2239,10 @@
                             {%- for swatch_block in section.blocks -%}
                               {%- if swatch_block.type == 'color_swatch_item' -%}
                                 {%- assign swatch_count = swatch_count | plus: 1 -%}
-                                {%- if swatch_block.settings.option_value == value -%}
+                                {%- assign swatch_scope = swatch_block.settings.product_handle | strip | downcase -%}
+                                {%- if swatch_block.settings.option_value == value and swatch_scope == blank or swatch_block.settings.option_value == value and swatch_scope == product.handle -%}
                                   {%- assign matching_swatch = swatch_block -%}
                                   {%- break -%}
-                                {%- elsif matching_swatch == blank and swatch_count == value_index -%}
-                                  {%- assign matching_swatch = swatch_block -%}
                                 {%- endif -%}
                               {%- endif -%}
                             {%- endfor -%}
@@ -883,13 +2265,72 @@
                             {%- endif -%}
                           {%- endfor -%}
                         </div>
-                      </div>
+                    {%- endif -%}
+                    {%- endcapture -%}
+                    {%- if cs_swatches_html contains 'cw-bb-color-swatch' -%}
+                      <div class="product__block block-padding" {{ block_style }} {{ block.shopify_attributes }}>{{ cs_swatches_html }}</div>
                     {%- endif -%}
 
                   {%- when 'color_swatch_item' -%}
                     {% comment %} Rendered by the color picker block. {% endcomment %}
 
+                  {%- when 'included_products' -%}
+                    {%- liquid
+                      assign cs_inc_products = blank
+                      assign cs_inc_title = block.settings.fallback_title | default: 'Included products'
+                      if section.settings.use_metaobject and cs != blank
+                        assign cs_inc_products = cs.included_products.value
+                        if cs.included_title != blank
+                          assign cs_inc_title = cs.included_title.value
+                        endif
+                      endif
+                    -%}
+                    {%- if cs_inc_products != blank and cs_inc_products.size > 0 -%}
+                      <div class="product__block block-padding" {{ block_style }} {{ block.shopify_attributes }}>
+                        <div class="cs-included">
+                          {%- if cs_inc_title != blank -%}
+                            <p class="cs-included__title">{{ cs_inc_title }}</p>
+                          {%- endif -%}
+                          <ul class="cs-included__grid">
+                            {%- for cs_inc in cs_inc_products -%}
+                              {%- liquid
+                                assign cs_inc_alt = cs_inc.title
+                                if cs_inc.featured_image.alt != blank
+                                  assign cs_inc_alt = cs_inc.featured_image.alt
+                                endif
+                              -%}
+                              <li class="cs-included__item">
+                                <a class="cs-included__link" href="{{ cs_inc.url }}">
+                                  <span class="cs-included__media">
+                                    {%- if cs_inc.featured_image != blank -%}
+                                      {{ cs_inc.featured_image | image_url: width: 400 | image_tag: alt: cs_inc_alt, loading: 'lazy', widths: '150,220,300,400', sizes: '(max-width: 749px) 45vw, 190px' }}
+                                    {%- endif -%}
+                                  </span>
+                                  <span class="cs-included__label">
+                                    <span class="cs-included__name">{{ cs_inc.title }}</span>
+                                    {%- if block.settings.show_price and cs_inc.price > 0 -%}
+                                      <span class="cs-included__price" aria-hidden="true">{{ cs_inc.price | money }}</span>
+                                      <span class="mp-sr-only">{{ cs_inc.price | money }}</span>
+                                    {%- endif -%}
+                                  </span>
+                                </a>
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        </div>
+                      </div>
+                    {%- endif -%}
+
                   {%- when 'bundle_item' -%}
+                    {%- liquid
+                      # Legacy hard-coded bundle rows. Suppressed automatically once the product's
+                      # Coming Soon Page entry has "Included — products in this bundle" filled in,
+                      # so the new included_products grid replaces them with no template edit.
+                      assign cs_legacy_bundle_ok = true
+                      if section.settings.use_metaobject and cs != blank and cs.included_products != blank
+                        assign cs_legacy_bundle_ok = false
+                      endif
+                    -%}
                     {%- liquid
                       assign product_title_downcase = product.title | downcase
                       assign show_bundle_item = false
@@ -946,7 +2387,7 @@
                         endif
                       endif
                     -%}
-                    {%- if show_bundle_item -%}
+                    {%- if show_bundle_item and cs_legacy_bundle_ok -%}
                       {%- unless prev_bundle_visible -%}
                         <div class="product__block block-padding" {{ block_style }} {{ block.shopify_attributes }}>
                           <div style="display:flex; flex-direction:column; margin-top:30px;">
@@ -980,16 +2421,21 @@
 
                   {%- when 'testimonial_card' -%}
                     {%- if block.settings.quote != blank -%}
-                      <div class="product__block block-padding" {{ block_style }} {{ block.shopify_attributes }}>
-                        <div class="mp-review-box main-product-box"{% if block.settings.load_junip_reviews %} data-junip-reviews data-junip-product-id="{{ product.id }}"{% if block.settings.junip_store_key != blank %} data-junip-key="{{ block.settings.junip_store_key | strip }}"{% endif %}{% endif %}>
+                      <div class="product__block block-padding" {{ block_style }} {{ block.shopify_attributes }}{% if block.settings.load_junip_reviews and request.design_mode != true %} data-junip-pending{% endif %}>
+                        {%- liquid
+                          assign cs_review_tags = block.settings.curated_tag | strip | downcase
+                          if section.settings.use_metaobject and cs != blank and cs.review_tag != blank
+                            assign cs_review_tags = cs.review_tag.value | strip | downcase
+                          endif
+                        -%}
+                        <div class="mp-review-box main-product-box"{% if block.settings.load_junip_reviews %} data-junip-reviews data-junip-product-id="{{ product.id }}" data-junip-handle="{{ product.handle }}"{% if cs_review_tags != blank %} data-junip-tag="{{ cs_review_tags }}"{% endif %}{% if block.settings.junip_store_key != blank %} data-junip-key="{{ block.settings.junip_store_key | strip }}"{% endif %}{% endif %}>
                           {%- liquid
                             assign star_rating = block.settings.star_rating | default: 5 | times: 1.0 | at_most: 5.0 | at_least: 0.0
                             assign star_percent = star_rating | divided_by: 5.0 | times: 100.0 | round: 1
                           -%}
-                          {%- if block.settings.load_junip_reviews -%}
-                            <button type="button" class="mp-review-viewall" data-junip-viewall hidden>View all</button>
-                          {%- endif -%}
                           <div class="mp-review-slide">
+                          <div class="mp-review-photo"><img alt="" width="96" height="96" loading="lazy" data-junip-photo></div>
+                          <div class="mp-review-main">
                           {%- if star_rating > 0 -%}
                             <div class="mp-review-stars">
                               <svg xmlns="http://www.w3.org/2000/svg" width="190" height="36" viewBox="0 0 190 36" fill="#DDD6CF" aria-hidden="true" focusable="false">
@@ -1043,6 +2489,7 @@
                               {%- endif -%}
                             </div>
                           {%- endif -%}
+                          </div>
                           </div>
 
                           {%- if block.settings.load_junip_reviews -%}
@@ -1537,6 +2984,7 @@
     {% render 'cart-bar', product: product, form_blocks: section.blocks %}
 
   {%- endif -%}
+  {%- render 'custom-cs-staging', product: product -%}
 </div>
 
 
@@ -1633,10 +3081,59 @@ document.addEventListener("DOMContentLoaded", function () {
         console.warn("Shopify swatch not found for:", value);
       }
 
+      /* Bring the main image into view so the variant's photo is visible
+         (matters on phones/tablets where the swatches sit below the gallery). */
+      const gallery = document.querySelector(".cw-new-popup-main-slider");
+      if (gallery) {
+        const rect = gallery.getBoundingClientRect();
+        const headerOffset = 110;
+        const fullyVisible = rect.top >= headerOffset && rect.bottom <= window.innerHeight;
+        if (!fullyVisible) {
+          const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          window.scrollTo({ top: rect.top + window.pageYOffset - headerOffset, behavior: reduced ? "auto" : "smooth" });
+        }
+      }
+
     });
 
   });
 
+});
+</script>
+
+<script>
+/* Buy-button row: stamp data-buttons="1|2|many" from the visible children so
+   the CSS can cap a lone add-to-cart, split two buttons, wrap three or more.
+   Re-runs when apps inject buttons (Notify Me) or a variant change toggles them. */
+document.addEventListener("DOMContentLoaded", function () {
+  /* Second installments form (under the buy button): Broadcast only syncs the
+     first [data-product-form-installment] form, so keep this one's variant in
+     step ourselves. */
+  document.addEventListener("theme:variant:change", function (e) {
+    var variant = e.detail && e.detail.variant;
+    if (!variant) return;
+    document.querySelectorAll('[data-cs-installment-below] input[name="id"]').forEach(function (input) {
+      input.value = variant.id;
+      input.dispatchEvent(new Event("change", { bubbles: true }));
+    });
+  });
+
+  document.querySelectorAll(".product__buttons-row").forEach(function (row) {
+    var update = function () {
+      var n = Array.prototype.filter.call(row.children, function (el) {
+        var cs = getComputedStyle(el);
+        return cs.display !== "none" && cs.visibility !== "hidden" && el.getClientRects().length > 0;
+      }).length;
+      var v = n <= 1 ? "1" : (n === 2 ? "2" : "many");
+      if (row.getAttribute("data-buttons") !== v) row.setAttribute("data-buttons", v);
+    };
+    update();
+    if (window.MutationObserver) {
+      new MutationObserver(update).observe(row, { childList: true, subtree: true, attributes: true, attributeFilter: ["style", "class", "hidden"] });
+    }
+    document.addEventListener("theme:variant:change", update);
+    window.addEventListener("load", update);
+  });
 });
 </script>
 
@@ -1662,14 +3159,16 @@ document.addEventListener("DOMContentLoaded", function () {
     var countEl = box.querySelector("[data-junip-count]");
 
     var reviews = [];
-    var cursor = null;
     var idx = 0;
-    var fetching = false;
-    var done = false;
-    var PAGE_SIZE = 25;
     var MAX_REVIEWS = 8;
-    var MAX_PAGES = 4;
-    var pagesFetched = 0;
+    var PAGE_SIZE = 100;
+    var MAX_PAGES = 6;
+    var MAX_PAGES_CURATED = 14;
+    var curatedTags = [];
+    if (box.getAttribute("data-junip-tag")) box.getAttribute("data-junip-tag").toLowerCase().split(",").forEach(function (t) { t = t.trim(); if (t && curatedTags.indexOf(t) === -1) curatedTags.push(t); });
+    if (box.getAttribute("data-junip-handle")) curatedTags.push(box.getAttribute("data-junip-handle").toLowerCase());
+    var CACHE_KEY = "cs-junip-reviews-v4-" + productId + "-" + curatedTags.join("|");
+    var CACHE_TTL = 60 * 60 * 1000;
 
     var formatName = function (c) {
       if (!c || !c.first_name) return "";
@@ -1679,6 +3178,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     var slideEl = box.querySelector(".mp-review-slide");
+    var photoEl = box.querySelector("[data-junip-photo]");
     var animating = false;
 
     var applyReview = function () {
@@ -1701,10 +3201,24 @@ document.addEventListener("DOMContentLoaded", function () {
       textEl.appendChild(p);
       if (authorEl) authorEl.textContent = formatName(r.customer);
       if (verifiedEl) verifiedEl.style.display = r.verified_buyer ? "" : "none";
-      if (countEl) countEl.textContent = (idx + 1) + " / " + reviews.length + (done ? "" : "+");
+      if (photoEl) {
+        var photo = r.photo_urls && r.photo_urls[0];
+        var src = photo && (photo.large || photo.thumbnail);
+        if (src) {
+          photoEl.src = src;
+          photoEl.alt = "Photo from " + (formatName(r.customer) || "a customer") + "'s review";
+          slideEl.classList.add("mp-review-slide--has-photo");
+        } else {
+          photoEl.removeAttribute("src");
+          photoEl.alt = "";
+          slideEl.classList.remove("mp-review-slide--has-photo");
+        }
+      }
+      if (countEl) countEl.textContent = (idx + 1) + " / " + reviews.length;
       if (prevBtn) prevBtn.disabled = idx === 0;
-      if (nextBtn) nextBtn.disabled = done && idx >= reviews.length - 1;
-      if (nav) nav.hidden = done && reviews.length < 2;
+      if (nextBtn) nextBtn.disabled = idx >= reviews.length - 1;
+      if (nav) nav.hidden = reviews.length < 2;
+      box.dispatchEvent(new CustomEvent("mp:review:applied"));
     };
 
     /* dir: 1 = next (new review slides in from the right), -1 = prev,
@@ -1722,61 +3236,353 @@ document.addEventListener("DOMContentLoaded", function () {
         slideEl.classList.add(inn);
         void slideEl.offsetWidth;
         slideEl.classList.remove(inn);
-        setTimeout(function () { animating = false; }, 300);
-      }, 200);
+        setTimeout(function () { animating = false; }, 480);
+      }, 450);
+    };
+
+    /* Selection: hand-picked reviews only. A review shows if it carries the
+       block's curated tag (or the product handle) and is rated 4★ or better.
+       Nothing else is ever shown: a product with no tag, or a tag that matches
+       no review, leaves the list empty and the block hides itself. Order is
+       random on every load, with no preference for reviews that have photos. */
+    var hasPhoto = function (r) { return !!(r.photo_urls && r.photo_urls[0] && (r.photo_urls[0].large || r.photo_urls[0].thumbnail)); };
+    var qualifies = function (r) { return r.rating >= 4 && r.title && String(r.title).trim(); };
+    var rank = function (r) { return (hasPhoto(r) ? 0 : 10) + (5 - Math.round(r.rating)); };
+    /* Hand-picked: a review tagged in Junip with the block's tag (or the
+       product handle). Rating floor still applies; a title is not required. */
+    var isCurated = function (r) {
+      if (!curatedTags.length || !r.tags || !r.tags.length || r.rating < 4) return false;
+      return r.tags.some(function (t) { var name = String(t && t.name !== undefined ? t.name : t).toLowerCase(); return curatedTags.indexOf(name) !== -1; });
+    };
+    var shuffle = function (list) {
+      for (var i = list.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var tmp = list[i]; list[i] = list[j]; list[j] = tmp; }
+      return list;
+    };
+    var pick = function (pool) {
+      var seen = {}; var curated = [];
+      pool.forEach(function (r) {
+        if (seen[r.id]) return; seen[r.id] = true;
+        if (isCurated(r)) curated.push(r);
+      });
+      return curated;
+    };
+    var slim = function (r) {
+      return { id: r.id, rating: r.rating, title: r.title, body: r.body, created_at: r.created_at, verified_buyer: r.verified_buyer, curated: isCurated(r),
+        customer: r.customer ? { first_name: r.customer.first_name, last_name: r.customer.last_name } : null,
+        photo_urls: hasPhoto(r) ? [{ large: r.photo_urls[0].large, thumbnail: r.photo_urls[0].thumbnail }] : [] };
+    };
+    /* Fresh random order on every load (cached or not). Reviews with a photo are
+       not favoured; every curated review has an equal chance of showing first. */
+    var arrange = function (list) {
+      return shuffle(list.slice());
+    };
+    var readCache = function () {
+      try { var c = JSON.parse(sessionStorage.getItem(CACHE_KEY)); return c && Date.now() - c.t < CACHE_TTL ? c.r : null; } catch (e) { return null; }
+    };
+    var writeCache = function (list) { try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), r: list })); } catch (e) {} };
+    /* Curated review ids are remembered across sessions (localStorage, 24h) so
+       returning visitors fetch just those reviews, in parallel; the list is
+       re-scanned in the background once it is over an hour old. */
+    var IDS_KEY = "cs-junip-curated-ids-v2-" + productId + "-" + curatedTags.join("|");
+    var IDS_TTL = 24 * 60 * 60 * 1000;
+    var IDS_REVALIDATE = 60 * 60 * 1000;
+    var readIds = function () {
+      try { var c = JSON.parse(localStorage.getItem(IDS_KEY)); return c && Date.now() - c.t < IDS_TTL ? c : null; } catch (e) { return null; }
+    };
+    var writeIds = function (ids) { try { localStorage.setItem(IDS_KEY, JSON.stringify({ t: Date.now(), ids: ids })); } catch (e) {} };
+    var headers = { headers: { "Junip-Store-Key": key } };
+    var API = "https://api.juniphq.com/v1/product_reviews";
+    var makeCursor = function (id) { return btoa(JSON.stringify({ id: id })); };
+    var fetchPage = function (cursor) {
+      var url = API +
+        "?filter[product_remote_id]=" + encodeURIComponent(productId) +
+        "&filter[rating][]=4&filter[rating][]=5" +
+        "&page[size]=" + PAGE_SIZE + "&include=customer" + (curatedTags.length ? ",tags" : "") +
+        (cursor ? "&page[after]=" + encodeURIComponent(cursor) : "");
+      return fetch(url, headers).then(function (res) { return res.ok ? res.json() : null; });
+    };
+    var pageList = function (data) { return (data && data.product_reviews) || []; };
+    var fetchOne = function (id) {
+      return fetch(API + "/" + encodeURIComponent(id) + "?include=customer", headers)
+        .then(function (res) { return res.ok ? res.json() : null; })
+        .then(function (data) { return data && data.product_review; })
+        .catch(function () { return null; });
+    };
+
+    /* Automatic picks: sequential pages, stop once eight 5★ photo reviews exist. */
+    var scanAuto = function (done) {
+      var pool = []; var pages = 0;
+      var enough = function () {
+        return pool.filter(function (r) { return qualifies(r) && hasPhoto(r) && r.rating >= 5; }).length >= MAX_REVIEWS;
+      };
+      var step = function (cursor) {
+        fetchPage(cursor).then(function (data) {
+          var list = pageList(data);
+          if (list.length) { pool = pool.concat(list); pages++; }
+          var next = data && data.meta && data.meta.page && data.meta.page.after;
+          if (list.length === PAGE_SIZE && next && pages < MAX_PAGES && !enough()) { step(next); return; }
+          done(pool);
+        }).catch(function () { done(pool); });
+      };
+      step(null);
+    };
+
+    /* Curated: the whole 4–5★ list is needed (tagged reviews can be old).
+       Junip's cursor is just {"id": lastId}, so after page 1 the remaining
+       pages are requested in parallel at estimated id steps, then any gap
+       between neighbouring pages is filled sequentially. */
+    var scanAll = function (done) {
+      var pool = []; var requests = 0; var MAX_REQUESTS = 40;
+      var lowestOf = function (list) { return list[list.length - 1].id; };
+      var fillFrom = function (fromId, untilId) {
+        if (requests >= MAX_REQUESTS) return Promise.resolve();
+        requests++;
+        return fetchPage(makeCursor(fromId)).then(function (data) {
+          var list = pageList(data);
+          pool = pool.concat(list);
+          if (list.length < PAGE_SIZE) return;
+          var lowest = lowestOf(list);
+          if (untilId !== null && lowest <= untilId) return;
+          return fillFrom(lowest, untilId);
+        }).catch(function () {});
+      };
+      // Pages 1 and 2 go sequentially: the newest reviews are sparse in id
+      // space, so page 2's id span is the usable density estimate.
+      requests++;
+      fetchPage(null).then(function (first) {
+        var list1 = pageList(first);
+        pool = pool.concat(list1);
+        if (list1.length < PAGE_SIZE) { done(pool); return; }
+        requests++;
+        return fetchPage(makeCursor(lowestOf(list1))).then(function (second) {
+          var list2 = pageList(second);
+          pool = pool.concat(list2);
+          if (list2.length < PAGE_SIZE) { done(pool); return; }
+          var start = lowestOf(list2);
+          var span = Math.max(50, list2[0].id - start);
+          var cursors = [];
+          for (var k = 0; k < MAX_PAGES_CURATED - 2; k++) cursors.push(Math.floor(start - k * span * 0.9));
+          requests += cursors.length;
+          return Promise.all(cursors.map(function (c) {
+            return fetchPage(makeCursor(c)).then(function (d) { return { cursor: c, list: pageList(d) }; }).catch(function () { return { cursor: c, list: [] }; });
+          })).then(function (results) {
+            var fills = [];
+            results.forEach(function (r, i) {
+              pool = pool.concat(r.list);
+              if (r.list.length < PAGE_SIZE) return;
+              var lowest = lowestOf(r.list);
+              var next = results[i + 1] ? results[i + 1].cursor : null;
+              if (next === null || lowest > next) fills.push(fillFrom(lowest, next));
+            });
+            return Promise.all(fills);
+          }).then(function () { done(pool); });
+        });
+      }).catch(function () { done(pool); });
+    };
+
+    var finish = function (pool, cb) {
+      reviews = pick(pool).map(slim);
+      writeCache(reviews);
+      if (curatedTags.length) writeIds(reviews.length && reviews[0].curated ? reviews.map(function (r) { return r.id; }) : []);
+      reviews = arrange(reviews);
+      cb();
     };
 
     var load = function (cb) {
-      if (fetching || done) { if (cb) cb(); return; }
-      fetching = true;
-      var url = "https://api.juniphq.com/v1/product_reviews" +
-        "?filter[product_remote_id]=" + encodeURIComponent(productId) +
-        "&filter[rating]=5" +
-        "&page[size]=" + PAGE_SIZE + "&include=customer" +
-        (cursor ? "&page[after]=" + encodeURIComponent(cursor) : "");
-      fetch(url, { headers: { "Junip-Store-Key": key } })
-        .then(function (res) { return res.ok ? res.json() : null; })
-        .then(function (data) {
-          fetching = false;
-          var list = data && data.product_reviews;
-          if (!list || !list.length) { done = true; if (cb) cb(); return; }
-          pagesFetched++;
-          // only reviews that have a title
-          reviews = reviews.concat(list.filter(function (r) { return r.title && String(r.title).trim(); }));
-          cursor = data.meta && data.meta.page && data.meta.page.after;
-          if (!cursor || list.length < PAGE_SIZE || pagesFetched >= MAX_PAGES) done = true;
-          if (reviews.length >= MAX_REVIEWS) {
-            reviews = reviews.slice(0, MAX_REVIEWS);
-            done = true;
+      var cached = readCache();
+      if (cached) { reviews = arrange(cached); cb(); return; }
+      if (!curatedTags.length) { scanAuto(function (pool) { finish(pool, cb); }); return; }
+      var known = readIds();
+      if (known && known.ids.length) {
+        Promise.all(known.ids.map(fetchOne)).then(function (found) {
+          var list = found.filter(function (r) { return r && r.rating >= 4; });
+          if (!list.length) { scanAll(function (pool) { finish(pool, cb); }); return; }
+          reviews = list.map(function (r) { var s = slim(r); s.curated = true; return s; });
+          writeCache(reviews);
+          reviews = arrange(reviews);
+          cb();
+          if (Date.now() - known.t > IDS_REVALIDATE) {
+            scanAll(function (pool) {
+              var fresh = pick(pool).map(slim);
+              writeIds(fresh.length && fresh[0].curated ? fresh.map(function (r) { return r.id; }) : []);
+              writeCache(fresh);
+            });
           }
-          if (!done && reviews.length < MAX_REVIEWS) { load(cb); return; }
-          if (cb) cb();
-        })
-        .catch(function () { fetching = false; done = true; if (cb) cb(); });
+        });
+        return;
+      }
+      scanAll(function (pool) { finish(pool, cb); });
     };
+
+    /* Autoplay: advances every 5s with the same slide animation, wrapping to
+       the first review. Paused while hovered/focused, off-screen, in a hidden
+       tab, or under prefers-reduced-motion; a manual click restarts the clock. */
+    var AUTOPLAY_MS = 5000;
+    var autoTimer = null;
+    var autoHover = false;
+    var expanded = false;
+    var autoFocus = false;
+    var autoInView = true;
+    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var stopAuto = function () { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } };
+    var startAuto = function () {
+      stopAuto();
+      if (reducedMotion || reviews.length < 2 || autoHover || autoFocus || !autoInView || document.hidden || expanded) return;
+      autoTimer = setInterval(function () {
+        if (animating) return;
+        idx = (idx + 1) % reviews.length;
+        render(1);
+      }, AUTOPLAY_MS);
+    };
+    box.addEventListener("mouseenter", function () { autoHover = true; stopAuto(); });
+    box.addEventListener("mouseleave", function () { autoHover = false; startAuto(); });
+    box.addEventListener("focusin", function () { autoFocus = true; stopAuto(); });
+    box.addEventListener("focusout", function (e) { if (!box.contains(e.relatedTarget)) { autoFocus = false; startAuto(); } });
+    document.addEventListener("visibilitychange", startAuto);
+
+    /* "Show all": the clamped body gets a small link (only when the text is
+       actually clipped) that opens a panel laid exactly over the box — same
+       size — with the full review scrolling inside, its own prev/next and a
+       Show less close. Autoplay pauses while it is open. */
+    (function () {
+      var authorBox = box.querySelector(".mp-author-box");
+      var moreBtn = document.createElement("button");
+      moreBtn.type = "button";
+      moreBtn.className = "mp-review-more";
+      moreBtn.textContent = "Show more";
+      moreBtn.hidden = true;
+      moreBtn.setAttribute("aria-expanded", "false");
+
+
+      var panel = document.createElement("div");
+      panel.className = "mp-review-expand";
+      panel.hidden = true;
+      panel.setAttribute("role", "dialog");
+      panel.setAttribute("aria-modal", "false");
+      panel.setAttribute("aria-label", "Full review");
+      panel.innerHTML =
+        '<div class="mp-review-expand__head"><strong class="mp-review-expand__title" data-x-title></strong>' +
+        '<button type="button" class="mp-review-expand__close" data-x-close aria-label="Close full review">&times;</button></div>' +
+        '<div class="mp-review-expand__body" data-x-body tabindex="0"></div>' +
+        '<div class="mp-review-expand__foot"><span class="mp-review-expand__author" data-x-author></span>' +
+        '<button type="button" class="mp-review-more mp-review-more--less" data-x-less>Show less</button>' +
+        '<span class="mp-review-expand__nav"><button type="button" class="mp-review-nav-btn" data-x-prev aria-label="Previous review">&#8249;</button>' +
+        '<span class="mp-review-nav-count" data-x-count></span>' +
+        '<button type="button" class="mp-review-nav-btn" data-x-next aria-label="Next review">&#8250;</button></span></div>';
+      box.appendChild(panel);
+      var xTitle = panel.querySelector("[data-x-title]");
+      var xBody = panel.querySelector("[data-x-body]");
+      var xAuthor = panel.querySelector("[data-x-author]");
+      var xCount = panel.querySelector("[data-x-count]");
+      var xPrev = panel.querySelector("[data-x-prev]");
+      var xNext = panel.querySelector("[data-x-next]");
+      var xClose = panel.querySelector("[data-x-close]");
+      var xLess = panel.querySelector("[data-x-less]");
+
+      var fill = function () {
+        var r = reviews[idx];
+        if (!r) return;
+        xTitle.textContent = r.title || "";
+        xBody.textContent = "“" + (r.body || "").trim() + "”";
+        xAuthor.textContent = "";
+        var xName = document.createElement("span");
+        xName.className = "mp-author-name";
+        xName.textContent = formatName(r.customer);
+        xAuthor.appendChild(xName);
+        if (r.verified_buyer && verifiedEl) {
+          var xBadge = verifiedEl.cloneNode(true);
+          xBadge.style.display = "";
+          xAuthor.appendChild(xBadge);
+        }
+        xCount.textContent = (idx + 1) + " / " + reviews.length;
+        xPrev.disabled = idx === 0;
+        xNext.disabled = idx >= reviews.length - 1;
+        xBody.scrollTop = 0;
+      };
+      /* Fit the quote to the clamped height with "… Show more" inline at the end
+         of the last visible line. Binary-search the cut so text + link fill the
+         clamp exactly; the full body stays in `reviews` for the panel. */
+      var OPEN_Q = "\u201C", CLOSE_Q = "\u201D", ELLIPSIS = "\u2026";
+      var fitText = function () {
+        var pEl = textEl.querySelector("p");
+        var r = reviews[idx];
+        if (!pEl || !r) { moreBtn.hidden = true; return; }
+        var full = (r.body || "").trim();
+        if (moreBtn.parentNode) moreBtn.parentNode.removeChild(moreBtn);
+        pEl.textContent = OPEN_Q + full + CLOSE_Q;
+        if (!(pEl.scrollHeight > pEl.clientHeight + 1)) { moreBtn.hidden = true; return; }
+        moreBtn.hidden = false;
+        var fits = function (n) {
+          var cut = full.slice(0, n).replace(/[\s,.;:!?\-\u2014]+$/, "");
+          pEl.textContent = OPEN_Q + cut + ELLIPSIS + CLOSE_Q + " ";
+          pEl.appendChild(moreBtn);
+          return !(pEl.scrollHeight > pEl.clientHeight + 1);
+        };
+        var lo = 0, hi = full.length;
+        while (lo < hi) {
+          var mid = Math.ceil((lo + hi) / 2);
+          if (fits(mid)) lo = mid; else hi = mid - 1;
+        }
+        fits(lo);
+      };
+      var checkClip = fitText;
+      var open = function () {
+        expanded = true;
+        stopAuto();
+        fill();
+        panel.hidden = false;
+        box.classList.add("is-expanded");
+        moreBtn.setAttribute("aria-expanded", "true");
+        xClose.focus({ preventScroll: true });
+      };
+      var close = function () {
+        expanded = false;
+        panel.hidden = true;
+        box.classList.remove("is-expanded");
+        moreBtn.setAttribute("aria-expanded", "false");
+        moreBtn.focus({ preventScroll: true });
+        startAuto();
+      };
+      var swallow = function (e) { e.preventDefault(); e.stopPropagation(); };
+
+      moreBtn.addEventListener("click", function (e) { swallow(e); open(); });
+      moreBtn.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { swallow(e); open(); } });
+      xClose.addEventListener("click", function (e) { swallow(e); close(); });
+      xLess.addEventListener("click", function (e) { swallow(e); close(); });
+      xPrev.addEventListener("click", function (e) { swallow(e); if (idx > 0) { idx--; render(0); } });
+      xNext.addEventListener("click", function (e) { swallow(e); if (idx < reviews.length - 1) { idx++; render(0); } });
+      panel.addEventListener("click", function (e) { e.stopPropagation(); });
+      panel.addEventListener("keydown", function (e) { if (e.key === "Escape") { swallow(e); close(); } });
+
+      box.addEventListener("mp:review:applied", function () {
+        requestAnimationFrame(checkClip);
+        if (expanded) fill();
+      });
+      window.addEventListener("resize", function () { requestAnimationFrame(checkClip); });
+    })();
+    if (window.IntersectionObserver) {
+      new IntersectionObserver(function (entries) {
+        autoInView = entries[0].isIntersecting;
+        startAuto();
+      }, { threshold: 0.3 }).observe(box);
+    }
 
     if (prevBtn) prevBtn.addEventListener("click", function () {
       if (animating) return;
-      if (idx > 0) { idx--; render(-1); }
+      if (idx > 0) { idx--; render(-1); startAuto(); }
     });
     if (nextBtn) nextBtn.addEventListener("click", function () {
       if (animating) return;
-      if (idx < reviews.length - 1) {
-        idx++;
-        render(1);
-        if (!done && idx >= reviews.length - 3) load(null);
-      } else if (!done) {
-        load(function () {
-          if (idx < reviews.length - 1) { idx++; render(1); }
-          else { applyReview(); }
-        });
-      }
+      if (idx < reviews.length - 1) { idx++; render(1); startAuto(); }
     });
 
+    var block = box.closest(".product__block") || box;
     load(function () {
-      if (!reviews.length) return;
+      if (!reviews.length) { block.setAttribute("data-junip-empty", ""); return; }
+      block.removeAttribute("data-junip-pending");
       box.classList.add("mp-review-box--junip");
       render();
+      startAuto();
       // Clicking the review jumps to the full Junip reviews section, when the
       // page has one. (Junip's widget has no API to open a specific review.)
       var reviewsTarget = document.querySelector(".junip-product-review");
@@ -1909,20 +3715,265 @@ document.addEventListener("DOMContentLoaded", function () {
       var less = wrap.querySelector('[data-cs-desc-less]');
       var more = box && box.querySelector('[data-button]');
       if (!box || !less || !more) return;
-      var collapsedHeight = (box.getAttribute('data-height') || '175') + 'px';
+      var target = parseInt(box.getAttribute('data-height'), 10) || 175;
+      var collapsedHeight = target + 'px';
+      var actions = box.querySelector('[data-actions]');
+      var content = box.querySelector('[data-content]');
+
+      function blockBottoms() {
+        var out = [];
+        if (!content) return out;
+        content.querySelectorAll('p, li, .cs-desc__callout, .cs-desc__shade').forEach(function (el) {
+          if (el.classList.contains('cs-desc__label')) return;
+          if (el.tagName === 'P' && el.closest('.cs-desc__callout')) return;
+          if (el.tagName === 'LI' && el.closest('.cs-desc__shade')) return;
+          if (!el.offsetHeight) return;
+          var top = el.getBoundingClientRect().top - box.getBoundingClientRect().top;
+          out.push(top + el.offsetHeight);
+        });
+        return out;
+      }
+
+      function openHeight() {
+        if (!box.classList.contains('is-open') || !content) return;
+        var h = content.offsetHeight + (actions ? actions.offsetHeight : 0);
+        if (typeof box.setHeight === 'function') box.setHeight(h); else box.style.setProperty('--height', h + 'px');
+      }
+
+      function fit() {
+        if (box.classList.contains('is-open')) { openHeight(); return; }
+        var bottoms = blockBottoms();
+        if (!bottoms.length) return;
+        var pad = (actions ? actions.offsetHeight : 44) + 14;
+        var pick = null;
+        bottoms.forEach(function (b) {
+          if (b + pad <= target && (pick === null || b > pick)) pick = b;
+        });
+        if (pick === null || pick < target * 0.6) {
+          var next = null;
+          bottoms.forEach(function (b) {
+            if (b + pad > target && (next === null || b < next)) next = b;
+          });
+          pick = next !== null ? next : Math.max.apply(null, bottoms);
+        }
+        var h = Math.round(pick + pad);
+        if (h < 120) return;
+        collapsedHeight = h + 'px';
+        box.initialHeight = h;
+        if (typeof box.setHeight === 'function') box.setHeight(h); else box.style.setProperty('--height', collapsedHeight);
+        if (typeof box.toggleActions === 'function') box.toggleActions();
+      }
+
+      fit();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+      window.addEventListener('load', fit);
+      window.addEventListener('resize', fit);
 
       more.addEventListener('click', function () {
-        less.classList.add('is-visible');
+        requestAnimationFrame(openHeight);
+        setTimeout(openHeight, 60);
       });
 
       less.addEventListener('click', function () {
         box.style.setProperty('--height', collapsedHeight);
         box.classList.remove('is-open');
-        less.classList.remove('is-visible');
         var top = wrap.getBoundingClientRect().top + window.pageYOffset - 120;
         if (window.pageYOffset > top) window.scrollTo({ top: top, behavior: 'smooth' });
       });
     });
+  })();
+</script>
+
+<script>
+  (function () {
+    var root = document.getElementById('Product--{{ unique }}');
+    if (!root) return;
+    var wrap = root.querySelector('[data-cs-addons]');
+    if (!wrap) return;
+    var formId = wrap.getAttribute('data-cs-form');
+    var mainTitle = wrap.getAttribute('data-cs-main-title') || 'this product';
+    var mainCents = parseInt(wrap.getAttribute('data-cs-main-price'), 10) || 0;
+    var mainPrices = {};
+    try { mainPrices = JSON.parse(wrap.getAttribute('data-cs-main-prices') || '{}'); } catch (err) { mainPrices = {}; }
+    var cards = Array.prototype.slice.call(wrap.querySelectorAll('[data-cs-addon]'));
+    var summary = wrap.querySelector('[data-cs-addons-summary]');
+    var pending = false;
+    var originalText = null;
+
+    function formatMoney(cents) {
+      var fmt = (window.theme && (theme.moneyFormat || theme.money_format)) || '${{amount}}';
+      var amount = (cents / 100).toFixed(2);
+      var parts = amount.split('.');
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      var noDec = parts[0];
+      return fmt.replace(/\{\{\s*amount_no_decimals\s*\}\}/, noDec).replace(/\{\{\s*amount(_with_comma_separator)?\s*\}\}/, parts.join('.')).replace(/<[^>]+>/g, '');
+    }
+
+    function selectedCards() {
+      return cards.filter(function (c) {
+        var i = c.querySelector('[data-cs-addon-check]');
+        return i && i.checked && !i.disabled;
+      });
+    }
+
+    function variantOf(card) {
+      var v = card.querySelector('[data-cs-addon-variant]');
+      return v ? v.value : null;
+    }
+
+    function centsOf(card) {
+      var h = card.querySelector('input[data-cs-addon-variant]');
+      return h ? parseInt(h.getAttribute('data-cents'), 10) || 0 : 0;
+    }
+
+    function productForm() {
+      return (formId && document.getElementById(formId)) || root.querySelector('form[data-product-form]');
+    }
+
+    function atcTextEl() {
+      var f = productForm();
+      if (!f) return null;
+      var b = f.querySelector('[data-add-to-cart]') || f.querySelector('.product__submit__add');
+      if (!b) return null;
+      return b.querySelector('[data-add-to-cart-text]') || b;
+    }
+
+    function update() {
+      var sel = selectedCards();
+      cards.forEach(function (card) {
+        var check = card.querySelector('[data-cs-addon-check]');
+        var hint = card.querySelector('[data-cs-addon-hint]');
+        var on = !!(check && check.checked);
+        card.classList.toggle('is-selected', on);
+        if (hint) {
+          if (card.classList.contains('is-unavailable')) hint.textContent = 'Unavailable';
+          else hint.textContent = on ? hint.getAttribute('data-hint-added') : hint.getAttribute('data-hint-add');
+        }
+      });
+      if (summary) {
+        if (sel.length) {
+          var total = mainCents;
+          var names = sel.map(function (c) { total += centsOf(c); return c.getAttribute('data-cs-addon-title'); });
+          summary.innerHTML = '<strong>' + mainTitle + '</strong> + <strong>' + names.join('</strong> + <strong>') + '</strong> \u00b7 ' + formatMoney(total) + ' together';
+          summary.hidden = false;
+        } else {
+          summary.hidden = true;
+        }
+      }
+      var t = atcTextEl();
+      if (!t) return;
+      var btn = t.closest('button');
+      if (btn && (btn.disabled || btn.classList.contains('disabled'))) return;
+      if (originalText === null || !t.hasAttribute('data-cs-addon-label')) originalText = t.textContent;
+      if (!sel.length) {
+        if (t.hasAttribute('data-cs-addon-label')) {
+          t.textContent = originalText;
+          t.removeAttribute('data-cs-addon-label');
+        }
+        return;
+      }
+      t.textContent = sel.length === 1 ? 'Add both to cart' : 'Add all to cart';
+      t.setAttribute('data-cs-addon-label', '1');
+    }
+
+    cards.forEach(function (card) {
+      var check = card.querySelector('[data-cs-addon-check]');
+      if (!check) return;
+      var optSelects = Array.prototype.slice.call(card.querySelectorAll('[data-cs-addon-opt]'));
+      var variantsEl = card.querySelector('[data-cs-addon-variants]');
+      var variants = [];
+      if (variantsEl) { try { variants = JSON.parse(variantsEl.textContent); } catch (err) { variants = []; } }
+      function resolveVariant() {
+        if (!optSelects.length || !variants.length) return;
+        var chosen = optSelects.map(function (o) { return o.value; });
+        var match = null;
+        variants.forEach(function (v) {
+          if (!match && v.options.length === chosen.length && v.options.every(function (o, i) { return o === chosen[i]; })) match = v;
+        });
+        var hidden = card.querySelector('input[data-cs-addon-variant]');
+        var priceEl = card.querySelector('[data-cs-addon-price]');
+        var cmp = card.querySelector('[data-cs-addon-compare]');
+        if (match && match.available) {
+          if (hidden) { hidden.value = match.id; hidden.setAttribute('data-cents', match.cents); hidden.setAttribute('data-orig', match.orig); }
+          var img = card.querySelector('.cs-addon__media img');
+          if (img && match.image && img.getAttribute('src') !== match.image) { img.removeAttribute('srcset'); img.src = match.image; }
+          if (priceEl) priceEl.textContent = match.price;
+          if (cmp) { if (match.orig > match.cents) { cmp.textContent = match.origPrice; cmp.hidden = false; } else { cmp.hidden = true; } }
+          card.classList.remove('is-unavailable');
+          check.disabled = false;
+        } else {
+          card.classList.add('is-unavailable');
+          check.checked = false;
+          check.disabled = true;
+        }
+        update();
+      }
+      optSelects.forEach(function (o) { o.addEventListener('change', resolveVariant); });
+      check.addEventListener('change', update);
+      card.addEventListener('click', function (e) {
+        if (check.disabled) return;
+        if (e.target.closest('select, option, input, button, .cs-addon__circle')) return;
+        check.checked = !check.checked;
+        check.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+    });
+
+    document.addEventListener('theme:variant:change', function (e) {
+      if (e.detail && e.detail.variant) {
+        var mp = mainPrices[String(e.detail.variant.id)];
+        if (mp && typeof mp.sale === 'number') mainCents = mp.sale;
+        else if (typeof e.detail.variant.price === 'number') mainCents = e.detail.variant.price;
+      }
+      setTimeout(function () {
+        var t = atcTextEl();
+        if (t && !t.hasAttribute('data-cs-addon-label')) originalText = t.textContent;
+        update();
+      }, 60);
+    });
+
+    document.addEventListener('theme:cart:add', function (e) {
+      if (pending || !e.detail || !e.detail.button) return;
+      var f = e.detail.button.closest('form');
+      if (!f || f !== productForm()) return;
+      var ids = selectedCards().map(variantOf).filter(Boolean);
+      if (!ids.length) return;
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      pending = true;
+      var body = new FormData();
+      ids.forEach(function (id, i) {
+        body.append('items[' + i + '][id]', id);
+        body.append('items[' + i + '][quantity]', '1');
+      });
+      var routes = (window.theme && window.theme.routes) || {};
+      fetch(routes.cart_add_url || '/cart/add', {
+        method: 'POST',
+        headers: { 'X-Requested-With': 'XMLHttpRequest', Accept: 'application/javascript' },
+        body: body
+      }).then(function (r) { return r.json(); }).catch(function () { return {}; }).then(function () {
+        e.detail.button.dispatchEvent(new CustomEvent('theme:cart:add', { bubbles: true, detail: e.detail }));
+        setTimeout(function () { pending = false; }, 400);
+      });
+    }, true);
+
+    var list = wrap.querySelector('[data-cs-addons-list]');
+    var prev = wrap.querySelector('[data-cs-addons-prev]');
+    var next = wrap.querySelector('[data-cs-addons-next]');
+    if (list && prev && next) {
+      var step = function () {
+        var c = list.querySelector('[data-cs-addon]');
+        return c ? c.getBoundingClientRect().width + 12 : list.clientWidth;
+      };
+      var sync = function () {
+        prev.disabled = list.scrollLeft <= 2;
+        next.disabled = list.scrollLeft + list.clientWidth >= list.scrollWidth - 2;
+      };
+      prev.addEventListener('click', function () { list.scrollBy({ left: -step(), behavior: 'smooth' }); });
+      next.addEventListener('click', function () { list.scrollBy({ left: step(), behavior: 'smooth' }); });
+      list.addEventListener('scroll', sync, { passive: true });
+      window.addEventListener('resize', sync);
+      sync();
+    }
   })();
 </script>
 
@@ -1934,6 +3985,13 @@ document.addEventListener("DOMContentLoaded", function () {
       {
         "type": "header",
         "content": "Watch Our Products In Action"
+      },
+      {
+        "id": "use_metaobject",
+        "label": "Use Coming Soon Page metaobject (top Tolstoy + accordions)",
+        "info": "Reads tolstoy_top, ingredients and benefits from the product's Coming Soon Page entry; each hides when empty. Off = the settings below.",
+        "type": "checkbox",
+        "default": false
       },
       {
         "type": "text",
@@ -2025,6 +4083,26 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         ],
         "default": "thumbs"
+      },
+      {
+        "type": "header",
+        "content": "Not launched yet"
+      },
+      {
+        "type": "paragraph",
+        "content": "Turn these on when the features go live. Leaving them off hides the section on every product; nothing is deleted and all block settings are kept."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_addons",
+        "label": "Show Complete Your Set",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_quiz",
+        "label": "Show quiz call-out",
+        "default": false
       },
       {
         "type": "header",
@@ -2181,6 +4259,13 @@ document.addEventListener("DOMContentLoaded", function () {
             "type": "checkbox",
             "id": "show_quantity",
             "label": "Show quantity selector",
+            "default": true
+          },
+          {
+            "type": "checkbox",
+            "id": "show_installments_below",
+            "label": "Show Shop Pay installments under the buy button",
+            "info": "A second copy of the \"Pay in 2 interest-free installments\" line. The one under the price stays.",
             "default": true
           },
           {
@@ -2375,6 +4460,127 @@ document.addEventListener("DOMContentLoaded", function () {
             "type": "color",
             "id": "bg_color",
             "label": "Background"
+          },
+          {
+            "type": "header",
+            "content": "Block spacing"
+          },
+          {
+            "type": "range",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 50,
+            "step": 2,
+            "unit": "px",
+            "label": "Padding bottom",
+            "default": 16
+          }
+        ]
+      },
+      {
+        "type": "addons",
+        "name": "Add-on products",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "paragraph",
+            "content": "Reads the product's Coming Soon Page entry: 'Add-on title' and 'Add-on products'. Hidden when the entry lists no add-on products. Shoppers tick the circle to add the item to the cart together with this product. 1 product = horizontal card, 2–3 = vertical cards, 4+ = slider."
+          },
+          {
+            "type": "text",
+            "id": "eyebrow",
+            "label": "Small label above the title",
+            "default": "Complete your set"
+          },
+          {
+            "type": "text",
+            "id": "fallback_title",
+            "label": "Title when the entry has none",
+            "default": "Pairs perfectly with [product]"
+          },
+          {
+            "type": "checkbox",
+            "id": "show_note",
+            "label": "Show a one-line note from the add-on's description",
+            "default": true
+          },
+          {
+            "type": "checkbox",
+            "id": "show_rating",
+            "label": "Show Junip star rating",
+            "default": true
+          },
+          {
+            "type": "text",
+            "id": "hint_add",
+            "label": "Tag before ticking",
+            "default": "Tap to add"
+          },
+          {
+            "type": "text",
+            "id": "hint_added",
+            "label": "Tag after ticking",
+            "default": "Added"
+          },
+          {
+            "type": "text",
+            "id": "featured_label",
+            "label": "Default badge text (entry can override)",
+            "default": "Most Added"
+          },
+          {
+            "type": "header",
+            "content": "Block spacing"
+          },
+          {
+            "type": "range",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 50,
+            "step": 2,
+            "unit": "px",
+            "label": "Padding bottom",
+            "default": 16
+          }
+        ]
+      },
+      {
+        "type": "quiz_callout",
+        "name": "Quiz call-out",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "paragraph",
+            "content": "A small banner that sends shoppers to the makeup quiz. Write [product] in the title or text to insert the product's name."
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Not Sure What to Pick or Pair?"
+          },
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Text",
+            "default": "Take our free 1-minute quiz for products matched to your skin, undertone and routine."
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button label",
+            "default": "Take the quiz"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+          },
+          {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background",
+            "default": "#fbe9e7"
           },
           {
             "type": "header",
@@ -2671,6 +4877,12 @@ document.addEventListener("DOMContentLoaded", function () {
             "default": "Fair"
           },
           {
+            "type": "text",
+            "id": "product_handle",
+            "label": "Only for product (handle)",
+            "info": "Leave empty to apply to every product with this option value. Set a product handle (e.g. bb-cream) to use this swatch image on that product only."
+          },
+          {
             "type": "image_picker",
             "id": "image",
             "label": "Swatch image"
@@ -2685,6 +4897,43 @@ document.addEventListener("DOMContentLoaded", function () {
             "id": "image_alt",
             "label": "Image alt text",
             "default": "Color swatch"
+          }
+        ]
+      },
+      {
+        "type": "included_products",
+        "name": "Included products",
+        "settings": [
+          {
+            "type": "paragraph",
+            "content": "Shows the products attached to this product's Coming Soon Page entry, under \"Included — products in this bundle\". Image, name and price come from each product. The block hides itself when that field is empty."
+          },
+          {
+            "type": "text",
+            "id": "fallback_title",
+            "label": "Heading",
+            "info": "Used when the entry's own heading field is empty.",
+            "default": "Included products"
+          },
+          {
+            "type": "checkbox",
+            "id": "show_price",
+            "label": "Show price under each name",
+            "default": true
+          },
+          {
+            "type": "header",
+            "content": "Block spacing"
+          },
+          {
+            "type": "range",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 50,
+            "step": 2,
+            "unit": "px",
+            "label": "Padding bottom",
+            "default": 16
           }
         ]
       },
@@ -2816,6 +5065,12 @@ document.addEventListener("DOMContentLoaded", function () {
             "label": "Load Junip reviews for this product",
             "info": "Shows the product's real reviews one at a time with prev/next arrows. Falls back to the static quote above when the product has no reviews or Junip can't be reached.",
             "default": true
+          },
+          {
+            "type": "text",
+            "id": "curated_tag",
+            "label": "Hand-picked reviews: Junip tag",
+            "info": "Fallback only: the Coming Soon Page entry's Reviews — Junip tag wins when it is set. Tag reviews in Junip (Reviews → open a review → add tag) with that tag or with the product's handle. Tagged reviews show photos first, then a fresh random order on every load; 4-star minimum still applies. Products with no tagged reviews fall back to the automatic picks."
           },
           {
             "type": "text",

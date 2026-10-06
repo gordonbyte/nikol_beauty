@@ -1,0 +1,56 @@
+# Memory Index
+
+- [Work in dev folder only](work-in-live-folder-only.md) — REVERSED 2026-08-28: edit shopify-dev/ ONLY (Randell's theme dev watches it); sync shopify-live on request; beware Edit-tool .tmp wedge
+- [Restart dev on .tmp files](restart-dev-on-tmp-files.md) — Claude's own Edit-tool .tmp writes wedge theme dev; edit shopify-live first + Copy-Item into shopify-dev; Randell restarts from the shopify-dev dir
+- [Custom file naming convention](custom-file-naming-convention.md) — custom theme files use `custom-` filename prefix + "[Custom] " editor-name prefix (update both `name` and `presets[].name`)
+- [Theme architecture](theme-architecture.md) — shopify-live is Broadcast 5.5.0; 3 theme folders; custom footer; cw-* vs custom-* sections; PDP variants; banners + homepage variants (index.homepage-style-2)
+- [Apps inventory](apps-inventory.md) — active apps (Klaviyo, ReStock, Junip, SE Wishlist, etc.) vs dead/leftover (HulkApps wishlist, Judge.me metafields, Zooomy)
+- [Keep dated changelog](keep-dated-changelog.md) — log each working day's theme changes as bullets in changelog/YYYY-MM-DD.md (user commits separately)
+- [Report section active status](report-section-active-status.md) — for every section worked on, always state whether it's active and where it's placed (dormant homepage-style-2 vs live templates)
+- [Avoid unnecessary comments](avoid-unnecessary-comments.md) — don't leave non-essential code comments in theme files; put rationale in the changelog instead
+- [Check global element styles](check-global-element-styles.md) — before wrapping content in a new element type (blockquote, nav…), grep theme.css for global rules on it; counter every property; verify served CSS, not just markup
+- [Functional alt over decorative](functional-alt-over-decorative.md) — give images meaningful alt text; don't just set alt="" to silence warnings (reserve alt="" for truly decorative images)
+- [Explain before changing](explain-before-changing.md) — explain each change and wait for approval before editing; move one item at a time
+- [Minified assets workflow](minified-assets-workflow.md) — theme loads .min copies; after editing theme.css/main.css/main.js run node scripts/minify-assets.mjs
+- [Live theme drift](live-theme-drift.md) — RESET 2026-07-20: new theme live on store since 07-17; shopify-dev = exact mirror of shopify-live (source of truth); old sync rules retired; dev untracked in git
+- [Keep live-shopping template](keep-live-shopping-template.md) — NEVER delete page.live-shopping.json (holds the only Channelize live-show embed; user directive 2026-07-15)
+- [Never commit without asking](never-commit-without-asking.md) — every git commit needs explicit per-commit approval, even mid-task fixes
+- [Verify store before writes](verify-store-before-writes.md) — Shopify MCP silently switches live↔dev mid-session; get-shop-info + onlineStoreUrl check before EVERY write batch
+- [Two dev stores](two-dev-stores.md) — theme work = nikolbeauty-dev.myshopify.com (#186425934130); MCP usually = app-dev store (-mab1srre); match full domain before pushing
+- [Never remove header reveal](never-remove-header-reveal.md) — Randell directive 2026-08-12: never override Broadcast's is-loaded desktop-header opacity reveal, even for LCP
+- [User always pushes live](user-always-pushes-live.md) — NEVER push/upload themes to the live store or offer to; user does it themselves, then I verify with read-only probes
+- [Live sync is code-only](live-sync-code-only.md) — Randell keeps live SETTINGS; template/settings_data changes need editor actions on live, tracked on the KAN-146 go-live checklist
+- [Zipify/CreditsYard XHR conflict](zipify-creditsyard-xhr-conflict.md) — live console InvalidStateError = Zipify OCU extension vs CreditsYard store-credit app; app-side bug, not fixable in theme
+- [EVI /products/null preview bug](evi-products-null-preview-bug.md) — 404 GET /products/null = Easy Variant Images app embed, unpublished-theme previews only; report to SpiceGems, no theme fix
+- [Dev-store seed state](dev-store-seed-state.md) — app-dev store seeded 2026-07-21 from live export: 70 products + 131 collections + nav done; pages/blogs/redirects/metaobjects skipped; app token expires & lacks content scopes, MCP blocks bulk mutations
+- [User starts dev server](user-starts-dev-server.md) — NEVER start `shopify app dev` (or any dev server) myself; user starts it, I detect the port read-only and work through its endpoints
+- [Local CloudFront resets](local-cloudfront-resets.md) — this machine's network intermittently resets CloudFront connections; large crawls trigger Cloudflare challenges — filter both before reporting live-site JS errors
+- [Tolstoy carousel class map](tolstoy-carousel-class-map.md) — real DOM classes from their widget source (prev/next = tolstoy-previous-button/tolstoy-next-button); use exact selectors, never guess
+- [Metaobject list loop quirk](metaobject-list-loop-quirk.md) — Liquid for-loops over list.metaobject_reference fields need assign-first (`assign x = field.value` then loop); inline yields nothing
+- [Tolstoy bubbles are account-shared](tolstoy-bubbles-account-shared.md) — Bubble widgets render on ALL stores with the app embed (shared appKey, no block needed); dev bubble tests show on live
+- [Tolstoy tags are per store](tolstoy-tags-are-per-store.md) — get_asset shows only default-store (dev) tags; read live tags via get_widget + live productId; playlist membership = live tag; tag_video_product takes appUrl
+- [Tolstoy dead on localhost](tolstoy-player-dead-on-localhost.md) — 127.0.0.1:9292: player never opens AND (since 2026-09-02) tiles don't even initialize; verify ALL Tolstoy rendering on the dev store domain
+- [Jira board conventions](jira-board-conventions.md) — KAN project epic structure (KAN-1..5), promo runbook, naming/description templates, priority ladder, API field notes; follow when adding/updating tasks
+- [Flagged backlog location](flagged-backlog-location.md) — 74-item unresolved-flags list lives in changelog/flagged-backlog-2026-07-29.md; Randell triages by item number
+- [Randell's working hours](randell-working-hours.md) — Mon–Fri 9–5 ET, 1h lunch = 7h/day, no weekends; schedule and estimate within this
+- [WCAG passes exclude contrast](wcag-passes-exclude-contrast.md) — never change colors/contrast in accessibility passes; report ratios, Randell decides
+- [Theme editor sync flag](theme-editor-sync-flag.md) — `shopify theme dev` without `--theme-editor-sync` strands editor edits on the Development theme; rescue-pull them into local
+- [Discount Sync runs locally](discount-sync-runs-locally.md) — app go-live is NOT sale-critical; Randell triggers syncs locally, don't escalate KAN-133–136 with promo windows
+- [Dev theme push needs --allow-live](dev-theme-push-allow-live.md) — theme #149231566950 is the PUBLISHED theme on the DEV store; CLI prompts fatally without the flag; still not production
+- [Bulk MCP reads spill to file](bulk-mcp-reads-spill-to-file.md) — results >~30KB land in tool-results/*.txt not context; Gorgias cursors are forgeable base64 so a year can be sampled in parallel
+- [Image generation in Higgsfield](image-generation-in-higgsfield.md) — 2026-10-05: ALL images (generation AND edits of real photos) go through Higgsfield; Claude only crops, stages, uploads and does one check — no Lab recolours, masks or paste-backs
+- [Dev server watches shopify-live](dev-server-watches-shopify-live.md) — his local theme dev serves from shopify-live/; mirror theme edits into BOTH folders or he won't see them locally
+- [Shopify CLI location](shopify-cli-location.md) — CLI only under nvm v20.20.2 (not on PATH with Node 22); prepend that dir before `shopify theme push`
+- [No photo reuse on a page](no-photo-reuse-on-page.md) — each coming-soon slot gets a distinct photo; use unused supplied photos (remove text if needed) before re-cropping one already on the page
+- [Higgsfield Nikol Soul](higgsfield-nikol-soul.md) — trained Soul "Nikol" soul_id 27940312-ad48-4d06-af9f-dabdcfd4c3d7; use model soul_2 for any generated image with her face
+- [Coming-soon image style](coming-soon-image-style.md) — vibrant sunlit UGC-ad look, product held close; backgrounds can be real scenes (pool, beach, sky, car), not just solid blocks
+- [No generative edits on Nikol photos](no-generative-edits-on-nikol-photos.md) — REVERSED 2026-10-05: Randell chose Higgsfield for ALL images incl. edits of Nikol photos (saves Claude tokens, accepts face redraw); always flag when her face was regenerated
+- [Dropbox Nikol photo sources](dropbox-nikol-photo-sources.md) — Jan 2026 Valentine's/Women's Day shoot = best real Nikol photos; minimal retouch or everyday-setting edits read least AI
+- [Higgsfield Nikol Soul](higgsfield-nikol-soul.md) — trained soul_2 'Nikol' (27940312…) + element; Soul runs text-only, then nano_banana_pro swaps in the real product
+- [Higgsfield account inventory](higgsfield-account-inventory.md) — Ultra/2.4k credits; Nikol soul + 19-photo Nikol element; no product elements yet; Marketing Studio history incl. Nikol UGC videos; NB2 mask inpainting + 4k
+- [One image at a time](one-image-at-a-time.md) — 2026-10-06: one image per product at a time, 2K high quality (not 4K), daily changelog/YYYY-MM-DD.md summary
+- [Coming-soon image playbook](coming-soon-image-playbook.md) — DRAFT 2026-10-06 (repo changelog/coming-soon-image-playbook.md): sections+purpose, shots S1–S10, tool order per shot, poses, order of work
+- [Images lead, text follows](images-lead-text-follows.md) — 2026-10-06: pick the best/most accurate pose, then rewrite the slot's text to match; never sacrifice image quality to fit prewritten copy
+- [CS local staging](cs-local-staging.md) — 2026-10-06: new coming-soon images/text staged in shopify-live/assets/custom-coming-soon-staging.json, shown only on 127.0.0.1 preview; publish to dev store at the end
+- [Product colour fix: GPT Image](product-color-fix-use-gpt-image.md) — product-only colour edits: gpt_image_2_5 + real crop + hex; NEVER GPT on images showing Nikol's face (redraws her)
+- [Product must look new](product-must-look-new.md) — product shots show untouched pans; applicators never touch/dip into the eyeshadow (Randell 2026-10-06)

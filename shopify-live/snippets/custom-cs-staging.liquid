@@ -1,0 +1,60 @@
+{%- comment -%}
+  Local preview only: swaps staged coming-soon images/text from assets/custom-coming-soon-staging.json
+  into the page when served from localhost / 127.0.0.1 (shopify theme dev). Inert everywhere else.
+{%- endcomment -%}
+<script>
+(function () {
+  var h = location.hostname;
+  if (h !== '127.0.0.1' && h !== 'localhost') return;
+  var handle = {{ product.handle | json }};
+  var url = {{ 'custom-coming-soon-staging.json' | asset_url | json }}.replace(/^(https?:)?\/\/[^\/]+/, '');
+  var base = url.replace(/custom-coming-soon-staging\.json.*$/, '');
+  function src(s) { return /^https?:/.test(s) ? s : base + s; }
+  function setImg(img, e) {
+    if (!img || !e.src) return;
+    img.removeAttribute('srcset');
+    img.src = src(e.src);
+    if (e.alt) img.alt = e.alt;
+  }
+  function setText(el, t) { if (el && t) el.textContent = t; }
+  function apply(p) {
+    var s = p.skinsafe;
+    if (s) setImg(document.querySelector('.custom-icon-features__image img'), s);
+    var rows = document.querySelectorAll('.custom-alternating-rows__rows .custom-alternating-rows__row');
+    Object.keys(p.rows || {}).forEach(function (k) {
+      var r = rows[+k - 1], e = p.rows[k];
+      if (!r) return;
+      setImg(r.querySelector('.custom-alternating-rows__media img'), e);
+      setText(r.querySelector('.custom-alternating-rows__row-title'), e.title);
+      setText(r.querySelector('.custom-alternating-rows__row-text'), e.text);
+    });
+    var cards = document.querySelectorAll('.custom-steps-horizontal__container .custom-steps-horizontal__card');
+    Object.keys(p.steps || {}).forEach(function (k) {
+      var c = cards[+k - 1], e = p.steps[k];
+      if (!c) return;
+      var box = c.querySelector('.custom-steps-horizontal__image');
+      setImg(box && box.querySelector('img'), e);
+      if (box && e.src && !box.querySelector('.custom-steps-horizontal__number')) {
+        var n = document.createElement('div'); n.className = 'custom-steps-horizontal__number'; n.textContent = k; box.appendChild(n);
+      }
+      setText(c.querySelector('h3'), e.title);
+      setText(c.querySelector('p'), e.text);
+    });
+    var b = p.banner;
+    if (b) {
+      setImg(document.querySelector('.custom-info-banner__image img'), b);
+      setText(document.querySelector('.custom-info-banner__title'), b.heading);
+    }
+    console.info('[cs-staging] applied staged content for', handle);
+  }
+  fetch(url + (url.indexOf('?') > -1 ? '&' : '?') + 't=' + Date.now())
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      var p = d && d.products && d.products[handle];
+      if (!p) return;
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { apply(p); });
+      else apply(p);
+    })
+    .catch(function () {});
+})();
+</script>

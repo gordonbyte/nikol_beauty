@@ -103,7 +103,8 @@
           "settings": {
             "option_value": "Fair",
             "image_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/color1.png?v=1771406447",
-            "image_alt": "Fair color swatch"
+            "image_alt": "Fair color swatch",
+            "product_handle": "bb-cream"
           }
         },
         "color_swatch_light": {
@@ -111,15 +112,17 @@
           "settings": {
             "option_value": "Light",
             "image_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/color2.png?v=1771406635",
-            "image_alt": "Light color swatch"
+            "image_alt": "Light color swatch",
+            "product_handle": "bb-cream"
           }
         },
         "color_swatch_light_medium": {
           "type": "color_swatch_item",
           "settings": {
-            "option_value": "Light-Medium",
+            "option_value": "Light/Medium",
             "image_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/color3.png?v=1771406638",
-            "image_alt": "Light-Medium color swatch"
+            "image_alt": "Light-Medium color swatch",
+            "product_handle": "bb-cream"
           }
         },
         "color_swatch_tan": {
@@ -127,7 +130,8 @@
           "settings": {
             "option_value": "Tan",
             "image_url": "https://cdn.shopify.com/s/files/1/0690/6347/5504/files/color4.png?v=1771406644",
-            "image_alt": "Tan color swatch"
+            "image_alt": "Tan color swatch",
+            "product_handle": "bb-cream"
           }
         },
         "variants": {
@@ -534,6 +538,17 @@
             "padding_bottom": 16
           }
         },
+        "quiz_callout_1": {
+          "type": "quiz_callout",
+          "settings": {
+            "title": "Not Sure What to Pick or Pair?",
+            "text": "Take our free 1-minute quiz for products matched to your skin, undertone and routine.",
+            "button_label": "Take the quiz",
+            "button_link": "shopify://pages/the-makeup-quiz",
+            "bg_color": "#fbe9e7",
+            "padding_bottom": 16
+          }
+        },
         "tabs": {
           "type": "tab_richtext",
           "settings": {
@@ -635,6 +650,7 @@
         "bundle_item_holiday_6",
         "buttons",
         "upsell_76CJ9x",
+        "quiz_callout_1",
         "tabs",
         "code_dVeTYP",
         "divider_1",
@@ -1225,10 +1241,10 @@
     "custom_steps_horizontal_48B6BD",
     "custom_icon_features_fHrGm4",
     "custom_alternating_rows_abL96y",
+    "custom_faq_QtK7h3",
     "cw_videos_WcxwdJ",
     "1771850328ecb59717",
     "16904264243ceba35b",
-    "custom_faq_QtK7h3",
     "custom_guarantee_list_qxiYQE",
     "custom_info_banner_Adm6cV",
     "custom_product_slider_CByXCN",

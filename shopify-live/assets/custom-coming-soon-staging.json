@@ -1,0 +1,211 @@
+{
+  "_readme": "Staged coming-soon images + text, shown ONLY in the local theme preview (127.0.0.1/localhost) by snippets/custom-cs-staging.liquid. Keys are product handles. Slots: skinsafe, rows {1..3}, steps {1..4}, banner. Each entry: src (file in assets/ or full https URL), alt, optional title/text (rows, steps) or heading (banner), status (staged|published). Publishing to the dev store happens at the end, then entries are marked published.",
+  "products": {
+    "fresh-beauty-studio-eye-shadow-palette": {
+      "skinsafe": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_161157_064f4407-46c8-4ed2-ace5-2c2dea39bbca.png",
+        "alt": "The open Fresh Beauty palette on a sunlit travertine vanity, its seashell, dusty rose and deep mauve shades swatched on the stone beside a pale pink rose",
+        "status": "staged",
+        "higgsfield_job": "064f4407-46c8-4ed2-ace5-2c2dea39bbca"
+      },
+      "rows": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_165537_45026b3f-4774-4cc8-8e91-63df2d7db3c9.png",
+          "alt": "Nikol holds the open Fresh Beauty palette beside her cheek, a soft rose pearl blended across her eyelids",
+          "status": "staged",
+          "higgsfield_job": "45026b3f-4774-4cc8-8e91-63df2d7db3c9"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_164313_2cd6275e-e7a6-4618-89fc-e1555cf04d20.png",
+          "alt": "Nikol holds the open Fresh Beauty palette in her palm, its seashell, dusty rose and deep mauve shades swatched on three fingertips",
+          "status": "staged",
+          "higgsfield_job": "2cd6275e-e7a6-4618-89fc-e1555cf04d20"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_165003_eda5b0c7-4796-4221-a924-0485280d55fb.png",
+          "alt": "At a sunny café table, Nikol slips the closed Fresh Beauty compact, with its rose line-art lid and N monogram, into her camel handbag",
+          "status": "staged",
+          "higgsfield_job": "eda5b0c7-4796-4221-a924-0485280d55fb"
+        }
+      },
+      "banner": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_171826_aa898856-7242-4280-bdcf-fbf1e47fa57c.png",
+        "alt": "Nikol laughing with her eyes closed and hands at her cheeks, wearing Fresh Beauty: a soft rose-mauve wash across the lids, deeper at the outer corners",
+        "status": "staged",
+        "higgsfield_job": "aa898856-7242-4280-bdcf-fbf1e47fa57c"
+      }
+    },
+    "bottled-blonde": {
+      "skinsafe": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_172228_93fc9ebf-53d3-460c-bf63-23806c78efbe.png",
+        "alt": "The open Le Bottled Blonde palette on a round vanity mirror tray in golden-hour light, its rose gold, golden taupe and bronze toffee pans reflected below, beside dried wheat",
+        "status": "staged",
+        "higgsfield_job": "93fc9ebf-53d3-460c-bf63-23806c78efbe"
+      },
+      "rows": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_172553_e8950db4-0801-4e76-9514-77a6c4dbb760.png",
+          "alt": "Nikol in warm golden-hour light, glancing to the side, golden taupe satin warming her lids with no sparkle",
+          "status": "staged",
+          "higgsfield_job": "e8950db4-0801-4e76-9514-77a6c4dbb760"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_172414_e4384259-d80d-47bd-ab9d-d985cce632fb.png",
+          "alt": "Overhead close-up of the open Le Bottled Blonde palette on cream linen, the bronze toffee pan crushed and its sponge applicator resting across the rose gold, golden taupe and bronze shades",
+          "status": "staged",
+          "higgsfield_job": "e4384259-d80d-47bd-ab9d-d985cce632fb"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_175424_e2cefb7c-5f7b-49fb-8eca-48642066a647.png",
+          "alt": "Nikol holds the open Le Bottled Blonde palette at eye level against a soft blue wall, its mirror reflecting the champagne beige, caramel tan and taupe brown shimmer pans",
+          "status": "staged",
+          "higgsfield_job": "e2cefb7c-5f7b-49fb-8eca-48642066a647"
+        }
+      },
+      "banner": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_173820_d40c4c3d-5692-4272-8727-03ead440b52e.png",
+        "alt": "Nikol with a calm, happy smile and eyes gently closed, wearing Le Bottled Blonde: golden taupe satin blending into bronze toffee at the outer corners",
+        "status": "staged",
+        "higgsfield_job": "d40c4c3d-5692-4272-8727-03ead440b52e"
+      }
+    },
+    "naughty-nancy-eye-shadow-palette-limited-edition": {
+      "skinsafe": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_180044_3283a045-8152-4652-881a-37d83f14f964.png",
+        "alt": "The open Naughty Nancy palette on a blush marble vanity in evening window light, its sparkling mauve, plum pink and sugar deep plum pans beside the rose line-art compact and a sprig of dried heather",
+        "status": "staged",
+        "higgsfield_job": "3283a045-8152-4652-881a-37d83f14f964"
+      },
+      "rows": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_181536_0574f8ea-7e1c-43ca-bcdd-85921cea02e6.png",
+          "alt": "Nikol in warm evening lamplight holding the open Naughty Nancy palette at her collarbone, wearing a soft smoky eye in plum pink and sugar deep plum",
+          "status": "staged",
+          "higgsfield_job": "0574f8ea-7e1c-43ca-bcdd-85921cea02e6"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_193630_391d4a76-8e8d-4bc4-85f2-b02154049869.png",
+          "alt": "Close-up of hands holding the open Naughty Nancy palette and lifting its sponge applicator, dusted with sugar deep plum, from the darkest pan against a soft plum-taupe backdrop",
+          "status": "staged",
+          "higgsfield_job": "391d4a76-8e8d-4bc4-85f2-b02154049869"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_180321_250aaaad-d327-4181-9088-7cdddd597e6c.png",
+          "alt": "Sparkling mauve, plum pink and sugar deep plum swatched side by side on dark slate below the open Naughty Nancy palette, each shimmering in low evening light",
+          "status": "staged",
+          "higgsfield_job": "250aaaad-d327-4181-9088-7cdddd597e6c"
+        }
+      },
+      "banner": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_194529_30453e30-8ddf-4fbe-b646-f26a35165131.png",
+        "alt": "Nikol smiling with her eyes closed to show plum pink lids blended into sugar deep plum, holding the open Naughty Nancy palette beside her cheek",
+        "status": "staged",
+        "higgsfield_job": "30453e30-8ddf-4fbe-b646-f26a35165131"
+      }
+    },
+    "limited-edition-sweet-carol-3-well-eye-shadow-palette": {
+      "skinsafe": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_194955_3a622fad-dce3-44a3-bb68-8b9cec6265cb.png",
+        "alt": "The open Sweet Carol palette in powder pink, smoked grape and plum brown on pale pink linen beside its rose line-art compact, jojoba seeds, a vial of oil and a sunflower in morning light",
+        "status": "staged",
+        "higgsfield_job": "3a622fad-dce3-44a3-bb68-8b9cec6265cb"
+      },
+      "rows": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_195121_5fcc464a-0362-4f84-b8df-7c8acac3f7ec.png",
+          "alt": "Hands tilt the open Sweet Carol palette toward a sunlit window, the pearlized smoked grape shade catching the light between the velvety matte powder pink and plum brown",
+          "status": "staged",
+          "higgsfield_job": "5fcc464a-0362-4f84-b8df-7c8acac3f7ec"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_195734_f2105c7e-ffc6-466c-bfcf-fbe4faee6cc7.png",
+          "alt": "Nikol holds the open Sweet Carol palette beside her jaw, her eyes defined with smoked grape on the lid and rich plum brown at the outer corner",
+          "status": "staged",
+          "higgsfield_job": "f2105c7e-ffc6-466c-bfcf-fbe4faee6cc7"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_195908_4e0f2b4a-2bdd-407b-8364-2be1409ff9b3.png",
+          "alt": "The open Sweet Carol palette on a dusty-rose leather makeup pouch with its two double-ended sponge applicators beside it, tipped in powder pink and plum brown",
+          "status": "staged",
+          "higgsfield_job": "4e0f2b4a-2bdd-407b-8364-2be1409ff9b3"
+        }
+      },
+      "banner": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_200140_e3673c70-423d-4181-9187-660e7947d34b.png",
+        "alt": "Nikol laughing with her eyes closed, her lids soft matte smoked grape deepening to plum brown at the outer corners",
+        "status": "staged",
+        "higgsfield_job": "e3673c70-423d-4181-9187-660e7947d34b"
+      }
+    },
+    "the-cabana-eyeshadow-palette": {
+      "skinsafe": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_200343_239457c1-cdf0-4f94-8ad6-46bd3d312ecf.png",
+        "alt": "The open Cabana palette in crisp champagne, iced pink and toffee bronze on a white-washed poolside table beside its rose line-art compact, a striped towel and lemon water under palm shadows",
+        "status": "staged",
+        "higgsfield_job": "239457c1-cdf0-4f94-8ad6-46bd3d312ecf"
+      },
+      "rows": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_200812_599005bf-7586-413f-ad19-6e6b5e12d4a3.png",
+          "alt": "A hand holds the open Cabana palette over a sunlit pool, its crisp champagne, iced pink and toffee bronze pans sharing the same pearly sheen",
+          "status": "staged",
+          "higgsfield_job": "599005bf-7586-413f-ad19-6e6b5e12d4a3"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_201100_7fc3372b-136b-48fb-b288-bf484b1f2ffe.png",
+          "alt": "Poolside in a white linen shirt, Nikol checks her eyes in the mirror of the open Cabana palette, its rose line-art lid facing the camera",
+          "status": "staged",
+          "higgsfield_job": "7fc3372b-136b-48fb-b288-bf484b1f2ffe"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_201338_a5c4d364-ec7f-4363-97c1-b59a0fcada11.png",
+          "alt": "A hand holds up one of the Cabana palette's double-ended sponge applicators, its tip dusted with toffee bronze, above the open palette on a sunny poolside table",
+          "text": "Tucked beneath the shades are two dual-ended applicators custom-designed by Nikol Beauty, each with a soft sponge tip at both ends. Press color on with one end, then use the clean end to soften and diffuse it.",
+          "status": "staged",
+          "higgsfield_job": "a5c4d364-ec7f-4363-97c1-b59a0fcada11"
+        }
+      },
+      "banner": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_201622_b5a67ea5-eb70-454d-b9ef-f260aa148d7e.png",
+        "alt": "Nikol smiling warmly with the open Cabana palette beside her face, her lids in iced pink softened with toffee bronze at the outer corners",
+        "status": "staged",
+        "higgsfield_job": "b5a67ea5-eb70-454d-b9ef-f260aa148d7e"
+      }
+    },
+    "strong-brew-3-well-eyeshadow-palette": {
+      "skinsafe": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_202021_6b3e0f31-ec62-4c85-b263-2a72dbbd4abe.png",
+        "alt": "The open Strong Brew palette in matte nude peach, soft taupe and rich brown on a walnut cafe counter with its rose line-art compact, shea butter, rice powder, coffee beans and a cappuccino",
+        "status": "staged",
+        "higgsfield_job": "6b3e0f31-ec62-4c85-b263-2a72dbbd4abe"
+      },
+      "rows": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_203857_757a63be-fdbc-4b71-9ac2-a395023ac724.png",
+          "alt": "Fingertips hold the Strong Brew sponge applicator above the untouched matte palette, angled on a gold mirrored tray on a cafe counter",
+          "text": "Every palette tucks two dual-ended applicators under the pans, each with a soft sponge tip at both ends. Pat color on with the sponge; the Shea butter formula melts onto the lid for comfortable wear.",
+          "status": "staged",
+          "higgsfield_job": "757a63be-fdbc-4b71-9ac2-a395023ac724"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_202428_b1baf6c1-0aee-4ecb-9cdd-c9bfeae5d4d7.png",
+          "alt": "Nikol smiles to the side holding the open Strong Brew palette in one hand, its matte nude peach, soft taupe and rich brown running light to deep",
+          "status": "staged",
+          "higgsfield_job": "b1baf6c1-0aee-4ecb-9cdd-c9bfeae5d4d7"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_202138_d4f34264-f56c-4583-8188-fa12b3b3da8f.png",
+          "alt": "Creamy nude peach, soft taupe and rich brown swatched on oatmeal linen as soft, even matte color with no sparkle, beside the open Strong Brew palette",
+          "status": "staged",
+          "higgsfield_job": "d4f34264-f56c-4583-8188-fa12b3b3da8f"
+        }
+      },
+      "banner": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_203517_7b25e304-b3af-4491-abbd-ca6a4052e19b.png",
+        "alt": "Nikol smiling warmly with the open Strong Brew palette held at her cheek, her lids in matte soft taupe deepened with rich brown",
+        "status": "staged",
+        "higgsfield_job": "7b25e304-b3af-4491-abbd-ca6a4052e19b"
+      }
+    }
+  }
+}

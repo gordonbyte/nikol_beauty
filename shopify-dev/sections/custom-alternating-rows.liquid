@@ -342,11 +342,11 @@
 
 {%- assign heading_id = 'CustomAltRows-title-' | append: section.id -%}
 {%- liquid
-  # Coming-soon product template: with "Use Coming Soon Page metaobject" on,
+  # Product templates: with "Use Coming Soon Page metaobject" on,
   # content comes from the product's custom.coming_soon metaobject (no
   # fallback, section hidden without an entry). Off = section settings render.
   assign cs_mode = false
-  if template.suffix == 'coming-soon' and product and section.settings.use_metaobject
+  if template.name == 'product' and product and section.settings.use_metaobject
     assign cs_mode = true
     assign cs = product.metafields.custom.coming_soon.value
   endif

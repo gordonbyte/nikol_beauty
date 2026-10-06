@@ -152,11 +152,27 @@
 }
 
 .custom-info-banner__price {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
     font-size: clamp(20px, 0.59vw + 16.5px, 24px);
     line-height: 135%;
     font-weight: 400;
     color: var(--COLOR-TEXT);
     font-family: Inter, sans-serif;
+}
+
+.custom-info-banner__price:not(.custom-info-banner__price--promo) .promo-old-price,
+.custom-info-banner__price:not(.custom-info-banner__price--promo) .promo-new-price,
+.custom-info-banner__price:not(.custom-info-banner__price--promo) .promo-on-sale-pill,
+.custom-info-banner__price--promo [data-ib-regular],
+.custom-info-banner__price--promo [data-ib-compare] {
+    display: none;
+}
+
+.custom-info-banner__price-strike {
+    color: var(--text-light);
 }
 
 .custom-info-banner__button a {
@@ -525,11 +541,11 @@
 </style>
 
 {%- liquid
-  # Coming-soon product template: with "Use Coming Soon Page metaobject" on,
+  # Product templates: with "Use Coming Soon Page metaobject" on,
   # content comes from the product's custom.coming_soon metaobject (no
   # fallback, section hidden without an entry). Off = section settings render.
   assign cs_mode = false
-  if template.suffix == 'coming-soon' and product and section.settings.use_metaobject
+  if template.name == 'product' and product and section.settings.use_metaobject
     assign cs_mode = true
     assign cs = product.metafields.custom.coming_soon.value
   endif
@@ -689,7 +705,89 @@
         {%- when 'price' -%}
           <div class="custom-info-banner__content" {{ block.shopify_attributes }} style="padding-top: {{ block.settings.padding_top | default: 5 }}px; padding-bottom: {{ block.settings.padding_bottom | default: 5 }}px;">
             {%- if product -%}
-              <div class="custom-info-banner__price">{{ product.price | money }}</div>
+              {%- liquid
+                assign ib_variant = product.selected_or_first_available_variant
+                capture ib_sale
+                  render 'custom-promo-cents', product: product, variant: ib_variant
+                endcapture
+                assign ib_sale = ib_sale | strip
+                assign ib_promo_bg = product.metafields.custom.promo_badge_bg.value | default: settings.promo_badge_bg_color
+                assign ib_promo_color = product.metafields.custom.promo_price_color.value | default: settings.promo_badge_bg_color
+                assign ib_promo_radius = product.metafields.custom.promo_pill_radius.value
+                if settings.currency_code_enable
+                  assign ib_price = ib_variant.price | money_with_currency
+                  assign ib_compare = ib_variant.compare_at_price | money_with_currency
+                else
+                  assign ib_price = ib_variant.price | money
+                  assign ib_compare = ib_variant.compare_at_price | money
+                endif
+                assign ib_sale_display = ''
+                if ib_sale != blank
+                  assign ib_sale = ib_sale | plus: 0
+                  if settings.currency_code_enable
+                    assign ib_sale_display = ib_sale | money_with_currency
+                  else
+                    assign ib_sale_display = ib_sale | money
+                  endif
+                endif
+                assign ib_has_compare = false
+                if ib_variant.compare_at_price > ib_variant.price
+                  assign ib_has_compare = true
+                endif
+              -%}
+              <div class="custom-info-banner__price{% if ib_sale_display != blank %} custom-info-banner__price--promo{% endif %}" data-ib-price>
+                <span class="promo-old-price" data-ib-promo-old>{{ ib_price }}</span>
+                <span class="promo-new-price" data-ib-promo-new style="color: {{ ib_promo_color }};">{{ ib_sale_display }}</span>
+                <span class="promo-on-sale-pill" style="background: {{ ib_promo_bg }};{% if ib_promo_radius != blank %} border-radius: {{ ib_promo_radius }}px;{% endif %}">On Sale</span>
+                <span data-ib-regular>{{ ib_price }}</span>
+                <s class="custom-info-banner__price-strike" data-ib-compare{% unless ib_has_compare %} hidden{% endunless %}>{% if ib_has_compare %}{{ ib_compare }}{% endif %}</s>
+              </div>
+              {%- if product.variants.size > 1 -%}
+                <script type="application/json" data-ib-price-map>
+                  {
+                  {%- for ib_v in product.variants -%}
+                    {%- capture ib_v_sale -%}{%- render 'custom-promo-cents', product: product, variant: ib_v -%}{%- endcapture -%}
+                    {%- assign ib_v_sale = ib_v_sale | strip -%}
+                    {%- assign ib_v_sale_display = '' -%}
+                    {%- if settings.currency_code_enable -%}
+                      {%- assign ib_v_price = ib_v.price | money_with_currency -%}
+                      {%- assign ib_v_compare = ib_v.compare_at_price | money_with_currency -%}
+                      {%- if ib_v_sale != blank -%}{%- assign ib_v_sale_display = ib_v_sale | plus: 0 | money_with_currency -%}{%- endif -%}
+                    {%- else -%}
+                      {%- assign ib_v_price = ib_v.price | money -%}
+                      {%- assign ib_v_compare = ib_v.compare_at_price | money -%}
+                      {%- if ib_v_sale != blank -%}{%- assign ib_v_sale_display = ib_v_sale | plus: 0 | money -%}{%- endif -%}
+                    {%- endif -%}
+                    "{{ ib_v.id }}": { "price": {{ ib_v_price | json }}, "compare": {% if ib_v.compare_at_price > ib_v.price %}{{ ib_v_compare | json }}{% else %}null{% endif %}, "sale": {% if ib_v_sale != blank %}{{ ib_v_sale_display | json }}{% else %}null{% endif %} }{%- unless forloop.last -%},{%- endunless -%}
+                  {%- endfor -%}
+                  }
+                </script>
+                <script>
+                  (function () {
+                    var script = document.currentScript;
+                    var wrap = script ? script.parentNode.querySelector('[data-ib-price]') : null;
+                    var jsonEl = script ? script.parentNode.querySelector('[data-ib-price-map]') : null;
+                    if (!wrap || !jsonEl) return;
+                    var map;
+                    try { map = JSON.parse(jsonEl.textContent); } catch (e) { return; }
+                    var regular = wrap.querySelector('[data-ib-regular]');
+                    var compare = wrap.querySelector('[data-ib-compare]');
+                    var promoOld = wrap.querySelector('[data-ib-promo-old]');
+                    var promoNew = wrap.querySelector('[data-ib-promo-new]');
+                    document.addEventListener('theme:variant:change', function (e) {
+                      var variant = e.detail && e.detail.variant;
+                      var data = variant && map[variant.id];
+                      if (!data) return;
+                      regular.textContent = data.price;
+                      promoOld.textContent = data.price;
+                      compare.textContent = data.compare || '';
+                      compare.hidden = !data.compare;
+                      promoNew.textContent = data.sale || '';
+                      wrap.classList.toggle('custom-info-banner__price--promo', !!data.sale);
+                    });
+                  })();
+                </script>
+              {%- endif -%}
             {%- endif -%}
           </div>
 
