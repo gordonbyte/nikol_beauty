@@ -13,7 +13,7 @@ Day-by-day detail, including every Higgsfield job id, is in `changelog/2026-10-0
 |---|---|
 | Kept (not touched) | `bb-creme`: all its images were kept on purpose. The 4 step images on every eyeshadow palette were also kept. |
 | **Staged locally, NOT yet on the dev store** | `fresh-beauty-studio-eye-shadow-palette`, `bottled-blonde`, `naughty-nancy-eye-shadow-palette-limited-edition`, `limited-edition-sweet-carol-3-well-eye-shadow-palette`, `the-cabana-eyeshadow-palette`, `strong-brew-3-well-eyeshadow-palette`. Each has skin-safe, rows 1–3 and the banner staged. |
-| **Next up** | `rewrite-the-rules-eye-shadow-palette`, the last of the 7 eyeshadow palettes. Same process as the other six. |
+| **Also staged (2026-10-07)** | `rewrite-the-rules-eye-shadow-palette`. All 7 eyeshadow palettes are now staged locally (see `changelog/2026-10-07.md`). Next: pick a non-palette page from section 11. |
 | Still on the placeholder | Every other coming-soon page (59 in total incl. Rewrite the Rules). The full list is in section 11. |
 
 **Open questions for Randell:**
@@ -210,7 +210,7 @@ Then `media_import_url` with `https://nikolbeauty-dev-mab1srre.myshopify.com/cdn
 
 ### 6e. Crop (FLUX.2 Pro Outpaint, free)
 `model: "flux_2_pro_outpaint"`, `medias: [{value: <job id>, role: "image_references"}]`, `prompt: "crop"`, and negative
-`expand_top`, `expand_bottom`, `expand_left`, `expand_right` in pixels (Nano Banana 2K output = 2048×2048).
+`expand_top`, `expand_bottom`, `expand_left`, `expand_right` in pixels (Nano Banana 2K output = 2048×2048, but **GPT Image 2.5 output = 1024×1024**: check the size first. Cropping a 1024 image leaves it small, so ask GPT to recompose instead).
 Keep it square: total vertical cut = total horizontal cut. Check the result; one crop cut off the side of her head and
 had to be redone wider.
 

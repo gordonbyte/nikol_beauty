@@ -54,3 +54,5 @@
 - [CS local staging](cs-local-staging.md) — 2026-10-06: new coming-soon images/text staged in shopify-live/assets/custom-coming-soon-staging.json, shown only on 127.0.0.1 preview; publish to dev store at the end
 - [Product colour fix: GPT Image](product-color-fix-use-gpt-image.md) — product-only colour edits: gpt_image_2_5 + real crop + hex; NEVER GPT on images showing Nikol's face (redraws her)
 - [Product must look new](product-must-look-new.md) — product shots show untouched pans; applicators never touch/dip into the eyeshadow (Randell 2026-10-06)
+- [Fix face, keep image](fix-face-keep-image.md) — 'make it look like Nikol' = keep the existing image/pose, change only the face (NB Pro, original + real photo as likeness ref)
+- [Image concepts: no asking](image-concepts-no-asking.md) — 2026-10-08: for coming-soon image slots, just make my recommended concept; no A/B/C menus
