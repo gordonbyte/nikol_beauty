@@ -56,3 +56,5 @@
 - [Product must look new](product-must-look-new.md) — product shots show untouched pans; applicators never touch/dip into the eyeshadow (Randell 2026-10-06)
 - [Fix face, keep image](fix-face-keep-image.md) — 'make it look like Nikol' = keep the existing image/pose, change only the face (NB Pro, original + real photo as likeness ref)
 - [Image concepts: no asking](image-concepts-no-asking.md) — 2026-10-08: for coming-soon image slots, just make my recommended concept; no A/B/C menus
+- [Staging key = dev handle](staging-key-is-dev-handle.md) — key staging JSON by the DEV product handle; Soft Set is soft-set-technique™-brush on dev
+- [No studio drift](no-studio-drift.md) — 2026-10-09: speed-batched studio flat lays + repeated hand swatches rejected; keep sunlit lifestyle, real packaging, full-size review

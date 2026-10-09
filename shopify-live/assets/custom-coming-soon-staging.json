@@ -22,17 +22,17 @@
           "higgsfield_job": "2cd6275e-e7a6-4618-89fc-e1555cf04d20"
         },
         "3": {
-          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_165003_eda5b0c7-4796-4221-a924-0485280d55fb.png",
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_164957_12095ffe-4ed6-43e0-b174-77b23e65bce1.png",
           "alt": "At a sunny café table, Nikol slips the closed Fresh Beauty compact, with its rose line-art lid and N monogram, into her camel handbag",
           "status": "staged",
-          "higgsfield_job": "eda5b0c7-4796-4221-a924-0485280d55fb"
+          "higgsfield_job": "12095ffe-4ed6-43e0-b174-77b23e65bce1"
         }
       },
       "banner": {
-        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261006_171826_aa898856-7242-4280-bdcf-fbf1e47fa57c.png",
-        "alt": "Nikol laughing with her eyes closed and hands at her cheeks, wearing Fresh Beauty: a soft rose-mauve wash across the lids, deeper at the outer corners",
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_173838_eb68e523-71b7-4d93-999d-ad8bfe295a81.png",
+        "alt": "Nikol smiling with her eyes closed and hands framing her face, wearing Fresh Beauty: soft rose-mauve lids deepening at the outer corners",
         "status": "staged",
-        "higgsfield_job": "aa898856-7242-4280-bdcf-fbf1e47fa57c"
+        "higgsfield_job": "eb68e523-71b7-4d93-999d-ad8bfe295a81"
       }
     },
     "bottled-blonde": {
@@ -2351,6 +2351,612 @@
         "alt": "Four Nikol Skinny Brow Pencils fanned beside a soft, hair-like drawn brow on pink marble",
         "status": "staged",
         "higgsfield_job": "a5e3cb2f-f39a-46d3-8f86-f804755e2f31",
+        "replaces": "placeholder"
+      }
+    },
+    "soft-set-technique™-brush": {
+      "skinsafe": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_130745_5ac54a4c-7e2a-4f53-a7b1-8fe6b2ef5f88.png",
+        "alt": "The chrome Soft Set Technique Brush on pink linen with eucalyptus, cotton pads and a smooth stone",
+        "status": "staged",
+        "higgsfield_job": "5ac54a4c-7e2a-4f53-a7b1-8fe6b2ef5f88",
+        "replaces": "placeholder (backup held product photo, media 27305989144678)"
+      },
+      "steps": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_130747_76b6b18e-7d88-4eff-8704-9695e2172a71.png",
+          "alt": "A blended concealer patch on the back of a hand beside Nikol Creamy Concealer and the Soft Set Technique Brush",
+          "status": "staged",
+          "higgsfield_job": "76b6b18e-7d88-4eff-8704-9695e2172a71",
+          "replaces": "placeholder"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_130749_4f69d0b3-2cf7-4622-9e60-06e9ceba4414.png",
+          "alt": "The angled side of the Soft Set Technique Brush pressed into Nikita Banana Brightening Powder",
+          "status": "staged",
+          "higgsfield_job": "4f69d0b3-2cf7-4622-9e60-06e9ceba4414",
+          "replaces": "placeholder"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_130750_957e1b9b-43f9-4f4d-9824-87bf3b428a77.png",
+          "alt": "The Soft Set Technique Brush pressing Nikita Banana powder over concealer on the back of a hand",
+          "status": "staged",
+          "higgsfield_job": "957e1b9b-43f9-4f4d-9824-87bf3b428a77",
+          "replaces": "placeholder"
+        }
+      },
+      "rows": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_130752_0e6a9e57-2c99-42cc-bb1f-d65a1cd4a13f.png",
+          "alt": "Side-by-side swatches: cakey, cracked powder versus a smooth, skin-like set finish",
+          "status": "staged",
+          "higgsfield_job": "0e6a9e57-2c99-42cc-bb1f-d65a1cd4a13f",
+          "replaces": "placeholder"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_130754_07356504-54e0-49bf-b657-cb08ecce6a40.png",
+          "alt": "The Soft Set Technique Brush smudging a hard eyeliner line into a soft, diffused blur",
+          "status": "staged",
+          "higgsfield_job": "07356504-54e0-49bf-b657-cb08ecce6a40",
+          "replaces": "placeholder"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_130756_2d047eaf-3847-4f6b-bef7-19ca033718d0.png",
+          "alt": "The Soft Set Technique Brush in front of the pink Essential Makeup Brush Set",
+          "status": "staged",
+          "higgsfield_job": "2d047eaf-3847-4f6b-bef7-19ca033718d0",
+          "replaces": "placeholder"
+        }
+      },
+      "banner": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_130758_154696df-9e8f-406e-b4db-a72a95867fe6.png",
+        "alt": "Flat lay of the Soft Set Technique Brush with Nikita Banana powder, Creamy Concealer and pink roses",
+        "status": "staged",
+        "higgsfield_job": "154696df-9e8f-406e-b4db-a72a95867fe6",
+        "replaces": "placeholder"
+      }
+    },
+    "these-bags-are-designer-eye-mask": {
+      "skinsafe": {
+        "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/designer-eye-mask-skinsafe.png?v=1790616348",
+        "alt": "Hands lifting the lid of the These Bags Are Designer tin to show the masks inside",
+        "status": "staged-restore",
+        "restore_media": "gid://shopify/MediaImage/41598240456806",
+        "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+      },
+      "steps": {
+        "1": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/designer-eye-mask-step1-press-on.png?v=1790616349",
+          "alt": "Woman pressing a silicone eye mask under each eye with her fingertips",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/41598240358502",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        },
+        "2": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/designer-eye-mask-step2-wearing.png?v=1790616348",
+          "alt": "Close-up of the rose-patterned silicone mask resting under the eye",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/41598240391270",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        },
+        "3": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/designer-eye-mask-step3-tin.png?v=1790616349",
+          "alt": "Both eye masks back in the open rose-embossed tin, held in two hands",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/41598240424038",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        }
+      },
+      "rows": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_131802_518e27f0-f2ee-4f7f-9874-e1421f70309b.png",
+          "alt": "A silicone eye mask peeled back from the hand to show dewy skin with the cream sealed in",
+          "status": "staged",
+          "higgsfield_job": "518e27f0-f2ee-4f7f-9874-e1421f70309b",
+          "replaces": "placeholder"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_131805_e85c6d67-a160-4be3-8368-f4a09750f345.png",
+          "alt": "The reusable These Bags Are Designer tin and masks in front of a pile of used single-use patch sachets",
+          "status": "staged",
+          "higgsfield_job": "e85c6d67-a160-4be3-8368-f4a09750f345",
+          "replaces": "placeholder"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_131940_eee2c01b-2257-4ca0-8f27-13f3e0e47eee.png",
+          "alt": "A silicone eye mask dusted with eyeshadow fallout beside an open palette and blending brush",
+          "status": "staged",
+          "higgsfield_job": "eee2c01b-2257-4ca0-8f27-13f3e0e47eee",
+          "replaces": "placeholder"
+        }
+      },
+      "banner": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_131810_ea4663b4-5469-4e26-86aa-01f46a9870c7.png",
+        "alt": "Flat lay of the open These Bags Are Designer tin, the pair of masks, a serum bottle and pink roses",
+        "status": "staged",
+        "higgsfield_job": "ea4663b4-5469-4e26-86aa-01f46a9870c7",
+        "replaces": "placeholder"
+      }
+    },
+    "extreme-cancel-color-corrector": {
+      "skinsafe": {
+        "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-simply-apricot-skinsafe.jpg?v=1791217424",
+        "alt": "Nikol tapping the Simply Apricot color corrector stick under her eye, a soft apricot dab on the darkest part of the under-eye",
+        "status": "staged-restore",
+        "restore_media": "gid://shopify/MediaImage/46011685830758",
+        "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+      },
+      "steps": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_132424_bce5ff1f-256d-4f05-878a-8a2bfe13b20f.png",
+          "alt": "Fingertips smoothing moisturizer onto the back of a hand beside the capped Simply Apricot stick",
+          "status": "staged",
+          "higgsfield_job": "bce5ff1f-256d-4f05-878a-8a2bfe13b20f",
+          "replaces": "placeholder"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_132425_5e03e6fc-fa38-4ec4-83ff-99299cce8d59.png",
+          "alt": "The Simply Apricot stick dabbing two small apricot dots onto a blue-purple patch of discoloration",
+          "status": "staged",
+          "higgsfield_job": "5e03e6fc-fa38-4ec4-83ff-99299cce8d59",
+          "replaces": "placeholder"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_132427_3e11dc68-692c-4a4c-a96e-b2207a0393cc.png",
+          "alt": "Concealer tapped over the corrected area beside Simply Apricot, Creamy Concealer and Nikita Banana powder",
+          "status": "staged",
+          "higgsfield_job": "3e11dc68-692c-4a4c-a96e-b2207a0393cc",
+          "replaces": "placeholder"
+        }
+      },
+      "rows": {
+        "1": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-simply-apricot-switched-eye.jpg?v=1791217425",
+          "alt": "Close-up of a mature under-eye with blue-purple darkness and two dabs of salmon-apricot corrector placed on it",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/46011685863526",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        },
+        "2": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-simply-apricot-switched-texture.jpg?v=1791217424",
+          "alt": "The Simply Apricot stick twisted up beside a smooth, creamy salmon-apricot swipe of the corrector on white stone",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/46011685896294",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        },
+        "3": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-simply-apricot-switched-portrait.jpg?v=1791217424",
+          "alt": "Close portrait of Nikol with silver hair and sheer tulle at her shoulders, her under-eyes bright and even",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/46011685929062",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        }
+      },
+      "banner": {
+        "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-simply-apricot-banner.jpg?v=1791217424",
+        "alt": "Nikol looking straight at the camera in a pink satin gown and crystal necklace, her under-eyes smooth and bright",
+        "status": "staged-restore",
+        "restore_media": "gid://shopify/MediaImage/46011685961830",
+        "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+      }
+    },
+    "just-peachy-color-corrector": {
+      "skinsafe": {
+        "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-just-peachy-skinsafe-nikol-applying.jpg?v=1791212812",
+        "alt": "Nikol, silver hair swept back, touches the peach tip of a Just Peachy Color Corrector stick to her chin during a color-correcting demonstration",
+        "status": "staged-restore",
+        "restore_media": "gid://shopify/MediaImage/46011460517990",
+        "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+      },
+      "steps": {
+        "1": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/just-peachy-before-peach-corrector.png?v=1790686228",
+          "alt": "Before: dabs of the peach Just Peachy corrector under the eye and on the cheek",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/41577598156902",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        },
+        "2": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/just-peachy-after-blended.png?v=1790686228",
+          "alt": "After: the corrector blended and concealed, under-eye even and rested",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/41577598189670",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        }
+      },
+      "rows": {
+        "1": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-just-peachy-switched-1-corrector-trio.jpg?v=1791212818",
+          "alt": "Nikol rests her hand on her cheek holding three Nikol Beauty color corrector sticks, including peach Just Peachy and green No Redness",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/46011460550758",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        },
+        "2": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-just-peachy-switched-2-flat-lay-swatch.jpg?v=1791212812",
+          "alt": "Just Peachy Color Corrector lying uncapped beside its silver cap, with a creamy peach swatch on a warm off-white surface",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/46011460583526",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        },
+        "3": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-just-peachy-switched-3-fingertip-blend.jpg?v=1791212812",
+          "alt": "A fingertip tapping a peach Just Peachy swatch into the back of a hand, with the capped Just Peachy stick lying on white linen",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/46011460616294",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        }
+      },
+      "banner": {
+        "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-just-peachy-banner-nikol-portrait.jpg?v=1791216004",
+        "alt": "Close-up of Nikol’s eyes and under-eye area, bright and even, framed by her brows and silver hair",
+        "status": "staged-restore",
+        "restore_media": "gid://shopify/MediaImage/46011493253222",
+        "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+      }
+    },
+    "no-redness-beauty-stix": {
+      "skinsafe": {
+        "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-no-redness-skinsafe-v2.jpg?v=1791216533",
+        "alt": "Nikol applying the No Redness green color corrector stick to her cheek",
+        "status": "staged-restore",
+        "restore_media": "gid://shopify/MediaImage/46011630190694",
+        "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+      },
+      "steps": {
+        "1": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/no-redness-before-green-corrector.png?v=1790686240",
+          "alt": "Before: a dab of the green No Redness corrector on the cheek beside the nose",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/41577542287462",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        },
+        "2": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/no-redness-after-blended.png?v=1790686240",
+          "alt": "After: the corrector blended and concealed, skin even with no redness",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/41577542320230",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        }
+      },
+      "rows": {
+        "1": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-no-redness-switched-cancels.jpg?v=1791217258",
+          "alt": "Close-up of a fingertip blending a thin stroke of mint-green corrector over redness beside the nose",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/46011630223462",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        },
+        "2": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-no-redness-switched-creamy.jpg?v=1791217259",
+          "alt": "A thin, creamy stripe of No Redness green corrector being blended on the back of a hand beside the twist-up stick",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/46011630256230",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        },
+        "3": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-no-redness-switched-stick.jpg?v=1791217258",
+          "alt": "The No Redness stick beside a thin mint stroke with a sheer veil of concealer blended over half of it",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/46011630288998",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        }
+      },
+      "banner": {
+        "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-no-redness-banner.jpg?v=1791216905",
+        "alt": "Even, calm skin along the jaw with the capped No Redness color corrector held beside it",
+        "status": "staged-restore",
+        "restore_media": "gid://shopify/MediaImage/46011630321766",
+        "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+      }
+    },
+    "color-corrector-collection-2": {
+      "skinsafe": {
+        "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-color-corrector-skinsafe-no-redness.jpg?v=1791218040",
+        "alt": "Nikol applying the mint green No Redness Color Corrector to her cheek, with lines of corrector on her face before blending",
+        "status": "staged-restore",
+        "restore_media": "gid://shopify/MediaImage/46011708997734",
+        "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+      },
+      "steps": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_133323_773d9fb3-3719-4a4b-9445-511855df6bd9.png",
+          "alt": "A hand choosing the No Redness stick from the three Nikol color correctors on linen",
+          "status": "staged",
+          "higgsfield_job": "773d9fb3-3719-4a4b-9445-511855df6bd9",
+          "replaces": "placeholder"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_133326_66a71335-74a6-4d17-91ab-0b272da11d4c.png",
+          "alt": "A fingertip tapping a dab of mint No Redness corrector into a red patch on the back of a hand",
+          "status": "staged",
+          "higgsfield_job": "66a71335-74a6-4d17-91ab-0b272da11d4c",
+          "replaces": "placeholder"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_133329_34e75a0e-4ba8-42f5-81c6-f3ee9d437308.png",
+          "alt": "The three color correctors, Creamy Concealer and Nikita Banana powder laid out in order beside an even concealer swatch",
+          "status": "staged",
+          "higgsfield_job": "34e75a0e-4ba8-42f5-81c6-f3ee9d437308",
+          "replaces": "placeholder"
+        }
+      },
+      "rows": {
+        "1": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-color-corrector-switched-just-peachy.jpg?v=1791218040",
+          "alt": "Nikol dabbing the peach Just Peachy Color Corrector beside her chin",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/46011709030502",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        },
+        "2": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-color-corrector-switched-simply-apricot.jpg?v=1791218041",
+          "alt": "Close-up of the Simply Apricot Color Corrector applied under Nikol’s eye",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/46011709063270",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        },
+        "3": {
+          "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-color-corrector-switched-trio.jpg?v=1791218040",
+          "alt": "Just Peachy, No Redness and Simply Apricot Color Correctors standing on ivory linen above peach, mint and apricot swatches",
+          "status": "staged-restore",
+          "restore_media": "gid://shopify/MediaImage/46011709096038",
+          "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+        }
+      },
+      "banner": {
+        "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/nikol-color-corrector-banner-trio.jpg?v=1791218040",
+        "alt": "Nikol smiling, hand at her cheek, holding all three Color Correctors between her fingers",
+        "status": "staged-restore",
+        "restore_media": "gid://shopify/MediaImage/46011709128806",
+        "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+      }
+    },
+    "the-best-seller-beauty-bundle": {
+      "skinsafe": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_134227_f44760e7-0084-4b90-b9c0-3cf7aba072c7.png",
+        "alt": "All ten Best Seller Beauty Bundle products laid out on pink linen with eucalyptus, cotton and a stone",
+        "status": "staged",
+        "higgsfield_job": "f44760e7-0084-4b90-b9c0-3cf7aba072c7",
+        "replaces": "placeholder (backup held the listing graphic with text, media 27305989701734)"
+      },
+      "steps": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_134228_d461e78e-52a4-41d4-9b09-caf72736c201.png",
+          "alt": "BB Crème, brow and blush shade swatches with a fingertip choosing a BB shade",
+          "status": "staged",
+          "higgsfield_job": "d461e78e-52a4-41d4-9b09-caf72736c201",
+          "replaces": "placeholder"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_134231_4149ac9b-3d1d-48e0-b404-c6757c943f7c.png",
+          "alt": "Eye Primer, BB Crème and the Essential Makeup Brush Set laid out as the base of the routine",
+          "status": "staged",
+          "higgsfield_job": "4149ac9b-3d1d-48e0-b404-c6757c943f7c",
+          "replaces": "placeholder"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_134233_cd4f4eba-930e-45e0-950c-af300ef3ab69.png",
+          "alt": "Brow pencil, stencils, Volume Up Mascara, Cream Blush Stick, lip liner, NikRay lipstick and Rose Lip Balm",
+          "status": "staged",
+          "higgsfield_job": "cd4f4eba-930e-45e0-950c-af300ef3ab69",
+          "replaces": "placeholder"
+        }
+      },
+      "rows": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_134334_fe098d28-a65a-4a6b-b579-2b3bebb978f4.png",
+          "alt": "All ten Nikol Beauty best sellers nestled in an open pink gift box",
+          "status": "staged",
+          "higgsfield_job": "fe098d28-a65a-4a6b-b579-2b3bebb978f4",
+          "replaces": "placeholder"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_134235_a850eb05-2a49-4fcc-a919-cd3de21a2375.png",
+          "alt": "Nikol Beauty best sellers bundled together with a pink satin bow and a blank gift tag",
+          "status": "staged",
+          "higgsfield_job": "a850eb05-2a49-4fcc-a919-cd3de21a2375",
+          "replaces": "placeholder"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_134236_57ea2d2c-b37a-41dd-bcdc-90e88e87489c.png",
+          "alt": "BB Crème, blush, lip liner, lipstick and lip balm swatches blending into each other beneath the products",
+          "status": "staged",
+          "higgsfield_job": "57ea2d2c-b37a-41dd-bcdc-90e88e87489c",
+          "replaces": "placeholder"
+        }
+      },
+      "banner": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_134337_eb400c1b-d80a-48f4-9c6e-524fde6594ee.png",
+        "alt": "The full Best Seller Beauty Bundle arranged on a mirrored vanity tray with pink roses",
+        "status": "staged",
+        "higgsfield_job": "eb400c1b-d80a-48f4-9c6e-524fde6594ee",
+        "replaces": "placeholder"
+      }
+    },
+    "beginner-beauty-bundle": {
+      "skinsafe": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_135035_18188fe0-c69b-401b-ae6e-0996d1ba8cc7.png",
+        "alt": "The seven Beginner Beauty Bundle products on ivory linen with eucalyptus, cotton and a stone",
+        "status": "staged",
+        "higgsfield_job": "18188fe0-c69b-401b-ae6e-0996d1ba8cc7",
+        "replaces": "placeholder (backup held the listing graphic with text, media 27305987997798)"
+      },
+      "steps": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_135038_d3340d50-3605-43b5-b82d-4148a19334d6.png",
+          "alt": "Eye Primer and Creamy Concealer beside a hand with primer and concealer tapped onto the skin",
+          "status": "staged",
+          "higgsfield_job": "d3340d50-3605-43b5-b82d-4148a19334d6",
+          "replaces": "placeholder"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_135041_7f963e85-b986-4310-b1da-83926a5e9f49.png",
+          "alt": "A brow drawn through a Nikol brow stencil beside the Skinny Brow Pencil, Brow Mascara and Volume Up Mascara",
+          "status": "staged",
+          "higgsfield_job": "7f963e85-b986-4310-b1da-83926a5e9f49",
+          "replaces": "placeholder"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_135043_133f7d1c-92fa-4bd7-be0d-389fea92ab64.png",
+          "alt": "A hand holding the Rose Lip Balm beside a sheer glossy pink swipe on the other hand",
+          "status": "staged",
+          "higgsfield_job": "133f7d1c-92fa-4bd7-be0d-389fea92ab64",
+          "replaces": "placeholder"
+        }
+      },
+      "rows": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_135045_a980e37b-75ca-42cc-bb4a-5ab66b380e9f.png",
+          "alt": "The seven essentials in one neat row, a hand setting the Rose Lip Balm in place",
+          "status": "staged",
+          "higgsfield_job": "a980e37b-75ca-42cc-bb4a-5ab66b380e9f",
+          "replaces": "placeholder"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_135047_0fdc53b7-c015-4368-a2fe-fbf1a07d23f2.png",
+          "alt": "The Beginner Beauty Bundle products in an open white gift box with pink tissue",
+          "status": "staged",
+          "higgsfield_job": "0fdc53b7-c015-4368-a2fe-fbf1a07d23f2",
+          "replaces": "placeholder"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_135049_126dedad-c88d-4a64-8d89-4aa8dd1332a8.png",
+          "alt": "Starter essentials in focus with BB Crème, Cream Blush Stick and NikRay lipstick softly blurred behind",
+          "status": "staged",
+          "higgsfield_job": "126dedad-c88d-4a64-8d89-4aa8dd1332a8",
+          "replaces": "placeholder"
+        }
+      },
+      "banner": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_135051_6e1d5572-1c10-4c89-8a47-c2b650fbee59.png",
+        "alt": "The seven essentials spilling from a pink makeup pouch on white bed linen with a latte and a rose",
+        "status": "staged",
+        "higgsfield_job": "6e1d5572-1c10-4c89-8a47-c2b650fbee59",
+        "replaces": "placeholder"
+      }
+    },
+    "perfect-complexion-bundle": {
+      "skinsafe": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_135737_c0a47758-3c55-4083-80d5-a494790137d6.png",
+        "alt": "Fiercely Smooth Face Primer, Creamy Concealer, BB Crème and Eye Primer on pink linen with eucalyptus",
+        "status": "staged",
+        "higgsfield_job": "c0a47758-3c55-4083-80d5-a494790137d6",
+        "replaces": "placeholder (backup held the listing graphic with text, media 27305987866726)"
+      },
+      "steps": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_140849_7ada2919-3dbe-4aa1-be70-db95cd1b95f1.png",
+          "alt": "A woman in a white robe smoothing Fiercely Smooth Face Primer onto her cheek in a sunlit marble bathroom, holding the bottle",
+          "status": "staged",
+          "higgsfield_job": "7ada2919-3dbe-4aa1-be70-db95cd1b95f1",
+          "replaces": "placeholder"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_140842_9c5c2f02-dfb0-47b4-b4b8-48d8fe1d91a9.png",
+          "alt": "Concealer dots by the nose and BB Crème being blended along the jaw in a sunlit bathroom, BB tube in hand",
+          "status": "staged",
+          "higgsfield_job": "9c5c2f02-dfb0-47b4-b4b8-48d8fe1d91a9",
+          "replaces": "placeholder"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_141648_49adacb0-4914-4886-8e30-49d58ce7610a.png",
+          "alt": "Hands holding the open Nikol Eye Primer compact in a sunlit marble bathroom, a dab of the pale peach primer on the fingertip",
+          "status": "staged",
+          "higgsfield_job": "49adacb0-4914-4886-8e30-49d58ce7610a",
+          "replaces": "placeholder"
+        }
+      },
+      "rows": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_140948_0b439e32-8de8-4ef6-b110-931d9881446d.png",
+          "alt": "The four Perfect Complexion products on a sunlit vanity above four layered swatches",
+          "status": "staged",
+          "higgsfield_job": "0b439e32-8de8-4ef6-b110-931d9881446d",
+          "replaces": "placeholder"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_140846_76d5585d-ce54-403a-8b93-75154d442043.png",
+          "alt": "A smiling mature woman at a sunlit café holding the silver BB Crème tube to her natural-looking cheek",
+          "status": "staged",
+          "higgsfield_job": "76d5585d-ce54-403a-8b93-75154d442043",
+          "replaces": "placeholder"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_140954_94977ece-fd7f-4b90-96d7-0eb6725d8ab7.png",
+          "alt": "Four BB Crème and three concealer shade swatches on a forearm in a sunlit car, with the products",
+          "status": "staged",
+          "higgsfield_job": "94977ece-fd7f-4b90-96d7-0eb6725d8ab7",
+          "replaces": "placeholder"
+        }
+      },
+      "banner": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_140956_b2ef6c31-01a6-42e3-a235-7bfbfd10b4aa.png",
+        "alt": "A smiling woman by a sunlit bedroom window holding Fiercely Smooth Face Primer to her cheek and the BB Crème tube",
+        "status": "staged",
+        "higgsfield_job": "b2ef6c31-01a6-42e3-a235-7bfbfd10b4aa",
+        "replaces": "placeholder"
+      }
+    },
+    "volume-up-mascara-bundle": {
+      "skinsafe": {
+        "src": "https://cdn.shopify.com/s/files/1/0729/8881/9558/files/Mascara-FINAL6_1.jpg?v=1784652042",
+        "alt": "Nikol, silver hair swept back, applying Volume Up Mascara to her upper lashes",
+        "status": "staged-restore",
+        "restore_media": "gid://shopify/MediaImage/27305988882534",
+        "note": "Restored from backups/coming-soon-image-assignments-2026-10-06.json; publish = set the field back to restore_media (no upload)"
+      },
+      "steps": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_143652_fd2007cb-fa80-4f3e-9b15-5e13bda816ac.png",
+          "alt": "A hand holding the Volume Up wand loaded with Dark Brown mascara on a sunlit marble vanity, a brown swipe on a card",
+          "status": "staged",
+          "higgsfield_job": "fd2007cb-fa80-4f3e-9b15-5e13bda816ac",
+          "replaces": "placeholder"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_143717_9499f26c-4812-44bc-8289-3f80ce6cc0e1.png",
+          "alt": "A hand holding the Volume Up wand loaded with Jet Black mascara on the vanity by candlelight, a bold black swipe on a card",
+          "status": "staged",
+          "higgsfield_job": "9499f26c-4812-44bc-8289-3f80ce6cc0e1",
+          "replaces": "placeholder"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_143744_6082e59d-6376-49b0-bcfb-30357ac964ce.png",
+          "alt": "Macro of the Volume Up wand in sunlight, its tiny teeth covering the brush all the way around",
+          "status": "staged",
+          "higgsfield_job": "6082e59d-6376-49b0-bcfb-30357ac964ce",
+          "replaces": "placeholder"
+        }
+      },
+      "rows": {
+        "1": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_143917_3065476a-70c5-4132-abdf-12703b0d40df.png",
+          "alt": "Jet Black and Dark Brown Volume Up mascaras side by side on sunlit travertine with matching swipes",
+          "status": "staged",
+          "higgsfield_job": "3065476a-70c5-4132-abdf-12703b0d40df",
+          "replaces": "placeholder"
+        },
+        "2": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_143808_85cbf8f5-bb30-43a4-98f3-3f5d25a2a09b.png",
+          "alt": "Hands drawing the evenly loaded Volume Up wand from its tube at a sunny café table",
+          "status": "staged",
+          "higgsfield_job": "85cbf8f5-bb30-43a4-98f3-3f5d25a2a09b",
+          "replaces": "placeholder"
+        },
+        "3": {
+          "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_144656_efc9d033-ea58-4f1e-9cd5-af2507232c4a.png",
+          "alt": "Water droplets beading on a crisp black mascara swipe beside the Volume Up mascara on a rainy windowsill",
+          "status": "staged",
+          "higgsfield_job": "efc9d033-ea58-4f1e-9cd5-af2507232c4a",
+          "replaces": "placeholder"
+        }
+      },
+      "banner": {
+        "src": "https://d8j0ntlcm91z4.cloudfront.net/user_3DwnD5UUMymyD1K8GMrLQ06ryOh/hf_20261009_143819_059f654f-2777-4aa7-af86-c3abf60bd8c3.png",
+        "alt": "A smiling woman on a sunny poolside terrace holding both Volume Up mascaras beside her face",
+        "status": "staged",
+        "higgsfield_job": "059f654f-2777-4aa7-af86-c3abf60bd8c3",
         "replaces": "placeholder"
       }
     }
